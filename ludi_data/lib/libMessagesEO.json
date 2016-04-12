@@ -1,0 +1,338 @@
+{
+    "actions.look.txt": {
+        "message": "rigardi"
+    },
+    "actions.go.txt": {
+        "message": "iri"
+    },
+    "actions.ex.txt": {
+        "message": "ekzameni"
+    },
+    "actions.take.txt": {
+        "message": "preni"
+    },
+    "actions.drop.txt": {
+        "message": "lasi"
+    },
+    "actions.talk.txt": {
+        "message": "paroli"
+    },
+    "actions.become.txt": {
+        "message": "konvertiĝi en"
+    },
+    "actions.put_into.txt": {
+        "message": "enmeti"
+    },
+    "actions.give.txt": {
+        "message": "doni"
+    },
+    "actions.take_from.txt": {
+        "message": "elpreni"
+    },
+    "actions.ask_about.txt": {
+        "message": "demandi pri"
+    },
+    "actions.ask_from.txt": {
+        "message": "pedir"
+    },
+    "actions.show_to.txt": {
+        "message": "montri al"
+    },
+    "actions.read.txt": {
+        "message": "legi"
+    },
+    "actions.turnon.txt": {
+        "message": "ŝalti"
+    },
+    "actions.turnoff.txt": {
+        "message": "malŝalti"
+    },
+    "actions.sing.txt": {
+        "message": "kanti"
+    },
+    "actions.where.txt": {
+        "message": "kie"
+    },
+    "actions.open.txt": {
+        "message": "malfermi"
+    },
+    "actions.close.txt": {
+        "message": "fermi"
+    },
+    "actions.unlock.txt": {
+        "message": "malŝlosi"
+    },
+    "actions.lock.txt": {
+        "message": "ŝlosi"
+    },
+    "actions.look_dir.txt": {
+        "message": "rigardi-al"
+    },
+	"actions.investigate.txt": {
+        "message": "serĉi"
+    },
+	"actions.dig_with.txt": {
+        "message": "fosi_kun"
+    },
+	"actions.climb.txt": {
+        "message": "grimpi"
+    },
+	"actions.swim.txt": {
+        "message": "naĝi"
+    },
+	"actions.jump.txt": {
+        "message": "salti"
+    },
+	"actions.tie.txt": {
+        "message": "ligi"
+    },
+	"actions.untie.txt": {
+        "message": "malligi"
+    },
+	"actions.drink.txt": {
+        "message": "trinki"
+    },
+	"actions.eat.txt": {
+        "message": "manĝi"
+    },
+	"actions.listen.txt": {
+        "message": "aŭdi"
+    },
+	"actions.smell.txt": {
+        "message": "flaru"
+    },
+	"actions.wakeup.txt": {
+        "message": "veki"
+    },
+	"actions.attack.txt": {
+        "message": "ataki"
+    },
+	"actions.strike.txt": {
+        "message": "bati"
+    },
+	"actions.stop.txt": {
+        "message": "fini"
+    },
+	"actions.burn.txt": {
+        "message": "fajrigi"
+    },
+	"actions.throwAction.txt": {
+        "message": "jheti"
+    },
+	"actions.pull.txt": {
+        "message": "tiri"
+    },
+	"actions.raise.txt": {
+        "message": "levi"
+    },
+	"actions.wait.txt": {
+        "message": "atendi"
+    },
+	"actions.attack-with.txt": {
+        "message": "ataki-kun"
+    },	
+     "attributes.container.txt": {
+        "message": "%o1 estas ujo"
+    },
+    "attributes.openclose.txt": {
+        "message": "(mal)fermebla"
+    },
+    "attributes.turnonoff.txt": {
+        "message": "(mal)ŝaltebla"
+    },
+    "attributes.readable.txt": {
+        "message": "Legeblas %o1"
+    },
+    "attributes.wearable.txt": {
+        "message": "(mal)vestebla"
+    },
+    "attributes.notTakeAble.txt": {
+        "message": "Ne prenebla"
+    },
+    "directions.d0.txt": {
+        "message": "n"
+    },
+    "directions.d45.txt": {
+        "message": "nor"
+    },
+    "directions.d90.txt": {
+        "message": "or"
+    },
+    "directions.d135.txt": {
+        "message": "sor"
+    },
+    "directions.d180.txt": {
+        "message": "s"
+    },
+    "directions.d225.txt": {
+        "message": "sok"
+    },
+    "directions.d270.txt": {
+        "message": "ok"
+    },
+    "directions.d315.txt": {
+        "message": "nok"
+    },
+    "directions.in.txt": {
+        "message": "enen"
+    },
+    "directions.out.txt": {
+        "message": "eksteren"
+    },
+    "directions.up.txt": {
+        "message": "supren"
+    },
+    "directions.down.txt": {
+        "message": "malsupren"
+    },
+    "directions.d0.desc": {
+        "message": "norden"
+    },
+    "directions.d45.desc": {
+        "message": "nordorienten"
+    },
+    "directions.d90.desc": {
+        "message": "orienten"
+    },
+    "directions.d135.desc": {
+        "message": "sudorienten"
+    },
+    "directions.d180.desc": {
+        "message": "suden"
+    },
+    "directions.d225.desc": {
+        "message": "sudokcidenten"
+    },
+    "directions.d270.desc": {
+        "message": "okcidenten"
+    },
+    "directions.d315.desc": {
+        "message": "nordokcidenten"
+    },
+    "directions.in.desc": {
+        "message": "enen"
+    },
+    "directions.out.desc": {
+        "message": "elen"
+    },
+    "directions.up.desc": {
+        "message": "supren"
+    },
+	"directions.down.desc": {
+        "message": "malsupren"
+    },
+    "messages.with objects inside.txt": {
+        "message": "kun objektoj ene"
+    },
+    "messages.You just have it!.txt": {
+        "message": "Vi jam havas ĝin!"
+    },
+    "messages.You take %o1.txt": {
+        "message": "Vi prenas %o1"
+    },
+    "messages.You don't have it!.txt": {
+        "message": "Vi ne havas ĝin!"
+    },
+    "messages.You drop it on %o1.txt": {
+        "message": "Vi forlasas ĝin en %o1"
+    },
+    "messages.You talk with %o1.txt": {
+        "message": "Vi parolas kun %o1"
+    },
+    "messages.but without any reaction.txt": {
+        "message": "sed sen atingi ian reagon"
+    },
+    "messages.You become %o1.txt": {
+        "message": "Vi konvertiĝas en %o1!"
+    },
+    "messages.You shoud mark a container first.txt": {
+        "message": "Vi nue devas marki ujon"
+    },
+    "messages.You cannot %v1.txt": {
+        "message": "Vi ne povas %v1"
+    },
+    "messages.You cannot put a object into itself.txt": {
+        "message": "Vi ne povas meti objekton ene de si mem"
+    },
+    "messages.The marked object must be a container.txt": {
+        "message": "La markita objekto devas esti ujo"
+    },
+    "messages.You put %o1 into %o2.txt": {
+        "message": "Vi metas %o1 ene de %o2"
+    },
+    "messages.You take %o1 from %o2.txt": {
+        "message": "Vi prenas %o1 el %o2"
+    },
+    "messages.You examine %o1.txt": {
+        "message": "Vi ekzamenas %o1."
+    },
+    "messages.You read %o1.txt": {
+        "message": "Vi legas %o1"
+    },
+    "messages.You turn on %o1.txt": {
+        "message": "Vi ŝaltas %o1"
+    },
+    "messages.You turn off %o1.txt": {
+        "message": "Vi malŝaltas %o1"
+    },
+    "messages.Default book.txt": {
+        "message": "Aspektas enuige"
+    },
+    "messages.You sing.txt": {
+        "message": "Vi kantas"
+    },
+    "messages.You selected.txt": {
+        "message": "Vi elektis"
+    },
+    "messages.where %o1 was?.txt": {
+        "message": "Kie estis %o1?"
+    },
+    "messages.location unknown of %o1.txt": {
+        "message": "Vi ne scias kie estis %o1"
+    },
+    "messages.The game is over.txt": {
+        "message": "La ludo finiĝis"
+    },
+    "messages.Introduction.txt": {
+        "message": "Enkonduko"
+    },
+    "messages.You eat %o1.txt": {
+        "message": "Vi manĝas %o1"
+    },
+    "messages.You go to %d1.txt": {
+        "message": "Vi iras %d1"
+    },
+    "messages.Game Instructions.txt": {
+        "message": "Luda gvido"
+    },
+    "messages.There is %o1.txt": {
+        "message": "Estas %o1"
+    },
+    "messages.To %d1 there is %o2.txt": {
+        "message": "Je %d1 estas %o2"
+    },
+    "messages.You can see.txt": {
+        "message": "Vi povas vidi"
+    },
+    "messages.%o1 does not react when you ask about %o2.txt": {
+        "message": "%o1 ne reagas kiam vi demandas pri %o2"
+    },
+    "messages.%o1 does not react when you ask for %o2.txt": {
+        "message": "%o1  ne reagas kiam vi petas %o2"
+    },
+    "messages.%o1 does not react when you show %o2.txt": {
+        "message": "%o1 e reagas kiam vi montras %o2"
+    },
+    "messages.You try to give o1 to o2.txt": {
+        "message": "Vi provas doni %o1 al %o2, senrezulte."
+    }, 
+    "messages.You just jump!.txt": {
+        "message": "Vi simple saltas!"
+    },
+    "messages.Time runs.txt": {
+        "message": "Tempo kuras"
+    },
+    "messages.Locked direction.txt": {
+        "message": "Direkto lokita."
+    }
+}
