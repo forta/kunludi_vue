@@ -1,6 +1,6 @@
 # kunludi
 
-> Multilingual and cooperative interactive fiction
+> Multilingual and cooperative interactive fiction.
 
 ## Build Setup
 
