@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
-    <title>Kunludi</title>
+    <title>kunludi</title>
   </head>
-  <body>
-    <div id="app">
-	  <h1>Kunludi</h1>
-	  <p>
-		<!-- use v-link directive for navigation. -->
-		<a v-link="{ path: '/kun' }">Kun</a>
-		<a v-link="{ path: '/ludi' }">Ludi</a>
-	  </p>
-	
-      <router-view></router-view>
-    </div>  
-  </body>
+	<body>
+		<div id="app">
+			<h1>KunLudi</h1>
+			<p>
+			<a v-link="{ path: '/ludi' }"> Ludi | </a>
+			<a v-link="{ path: '/kune' }"> Kune | </a>
+			<a v-link="{ path: '/lingvo' }"> Lingvo </a>
+			</p>
+			<router-view></router-view>	
+		</div>
+	</body>
 </html>

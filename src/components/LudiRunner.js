@@ -1,5 +1,5 @@
 
-exports.gameId = "tresfuentes";
+exports.gameId = "";
 
 // import fs from 'fs'
 //var fs = require("fs");
@@ -7,9 +7,22 @@ exports.gameId = "tresfuentes";
 var supportedLanguages = ["EN", "ES", "EO"];
 // ver: https://jsfiddle.net/yyx990803/KupQL/ sobre cómo leer json de fuera
 
-exports.kernelMSG = ["a"];
+exports.kernelMSG = ["kmsg1", "kmsg2"];
 exports.libMSG = ["a"];
 exports.libMSGByLan = ["a"];
+
+var libModule = {}, libReactions = {}, gameReactions = {};
+
+exports.setModules = function (libModule, libReactions, gameReactions) {
+	this.libModule = libModule;
+	this.libReactions = libReactions;
+	this.gameReactions = gameReactions;
+}
+
+exports.test = function () {
+	return "voila";
+}
+
 
 /*
 for (var i=0; i<supportedLanguages.length;i++) {
