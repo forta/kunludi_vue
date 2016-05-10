@@ -1,5 +1,7 @@
 //export const increment = function (store) {  store.dispatch('INCREMENT') }
 
+export const setLocale = function (store, par) {  store.dispatch('SETLOCALE', par) }
+
 export const resetUserId = ({ dispatch }) => dispatch('RESETUSERID')
 
 export const setUserId = function (store, par) {  store.dispatch('SETUSERID', par) }
