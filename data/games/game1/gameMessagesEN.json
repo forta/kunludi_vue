@@ -1,0 +1,140 @@
+{
+    "actions.play-instrument.txt": {
+        "message": "play"
+    },
+    "actions.play-instrument.disambiguator": {
+        "message": "instrument"
+    },
+    "attributes.music-instrument.txt": {
+        "message": "It's a music instrument, you can play %o1"
+    },
+    "items.harry.desc": {
+        "message": "Harry, the final adventure solver"
+    },
+    "items.harry.txt": {
+        "message": "Harry Harrison"
+    },
+    "items.limbo.desc": {
+        "message": "the limbo"
+    },
+    "items.limbo.txt": {
+        "message": "limbo"
+    },
+    "items.room.desc": {
+        "message": "This is the starting location of the LUDI demo. You can go out if you have the key with you."
+    },
+    "items.room.txt": {
+        "message": "room"
+    },
+    "items.door_room.desc": {
+        "message": "It's a simple door"
+    },
+    "items.door_room.txt": {
+        "message": "door"
+    },
+    "items.exit.desc": {
+        "message": "You are now out of the room"
+    },
+    "items.exit.txt": {
+        "message": "exit"
+    },
+    "items.forest.desc": {
+        "message": "You are now far away from the house. You just can sing here..."
+    },
+    "items.forest.txt": {
+        "message": "forest"
+    },
+    "items.upthetree.desc": {
+        "message": "You are up the tree"
+    },
+    "items.upthetree.txt": {
+        "message": "up the tree"
+    },
+    "items.box.desc": {
+        "message": "It's just a closed box"
+    },
+    "items.box.txt": {
+        "message": "box"
+    },
+    "items.key.desc": {
+        "message": "It's a raw key"
+    },
+    "items.key.txt": {
+        "message": "key"
+    },
+    "items.rope1.desc": {
+        "message": "It's a old rope"
+    },
+    "items.rope1.txt": {
+        "message": "old rope"
+    },
+    "items.rope2.desc": {
+        "message": "It's a dirty rope"
+    },
+    "items.rope2.txt": {
+        "message": "dirty rope"
+    },
+    "items.rope3.desc": {
+        "message": "It's a long rope"
+    },
+    "items.rope3.txt": {
+        "message": "long rope"
+    },
+    "items.book.desc": {
+        "message": "It's a old book"
+    },
+    "items.book.txt": {
+        "message": "book"
+    },
+    "items.book2.desc": {
+        "message": "@items.book.desc"
+    },
+    "items.book2.txt": {
+        "message": "@items.book.txt"
+    },
+    "items.lamp.desc": {
+        "message": "It's a lamp"
+    },
+    "items.lamp.txt": {
+        "message": "lamp"
+    },
+    "items.flute.desc": {
+        "message": "The irish tin whistle"
+    },
+    "items.flute.txt": {
+        "message": "flute"
+    },
+    "items.birds.desc": {
+        "message": "There are dirty pigeons"
+    },
+    "items.birds.txt": {
+        "message": "birds"
+    },
+    "items.flutist.desc": {
+        "message": "The bizarre flutist"
+    },
+    "items.flutist.txt": {
+        "message": "flutist"
+    },
+    "items.woodcutter.desc": {
+        "message": "The unemployed woodcutter"
+    },
+    "items.woodcutter.txt": {
+        "message": "woodcutter"
+    },
+	"items.stick.desc": {
+        "message": "A stick"
+    },
+    "items.stick.txt": {
+        "message": "stick"
+    },
+    "messages.You play %o1.txt": {
+        "message": "You play %o1"
+    },
+    "messages.Text book.txt": {
+        "message": "If you can read this... surely I'm dead."
+    },
+    "messages.The flutist looks at you.txt": {
+        "message": "The flutist looks at you."
+    }
+}

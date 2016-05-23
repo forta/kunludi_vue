@@ -1,0 +1,446 @@
+{
+    "actions": [
+        {
+            "id": "look",
+            "numpar": "1",
+            "on": [
+                "loc"
+            ]
+        },
+        {
+            "id": "go",
+            "numpar": "1",
+            "on": [
+                "loc"
+            ]
+        },
+        {
+            "id": "ex",
+            "numpar": "1",
+            "on": [
+                "obj",
+                "npc",
+				"pc"
+            ]
+        },
+        {
+            "id": "take",
+            "numpar": "1",
+            "on": [
+                "obj"
+            ]
+        },
+        {
+            "id": "drop",
+            "numpar": "1",
+            "on": [
+                "obj"
+            ]
+        },
+        {
+            "id": "talk",
+            "numpar": "1",
+            "on": [
+                "pc",
+                "npc"
+            ]
+        },
+        {
+            "id": "become",
+            "numpar": "1",
+            "on": [
+                "pc"
+            ]
+        },
+        {
+            "id": "put_into",
+            "numpar": "2",
+            "on": [
+                "obj"
+            ]
+        },
+        {
+            "id": "give",
+            "numpar": "2",
+            "on": [
+                "obj"
+            ]
+        },
+        {
+            "id": "take_from",
+            "numpar": "2",
+            "on": [
+                "obj"
+            ]
+        },
+        {
+            "id": "ask_about",
+            "numpar": "2",
+            "on": [
+                "obj", "npc", "pc"
+            ]
+        },
+        {
+            "id": "ask_from",
+            "numpar": "2",
+            "on": [
+                "obj"
+            ]
+        },
+        {
+            "id": "show_to",
+            "numpar": "2",
+            "on": [
+                "obj"
+            ]
+        },
+        {
+            "id": "read",
+            "numpar": "1",
+            "on": [
+                "obj"
+            ]
+        },
+        {
+            "id": "turnon",
+            "numpar": "1",
+            "on": [
+                "obj"
+            ]
+        },
+        {
+            "id": "turnoff",
+            "numpar": "1",
+            "on": [
+                "obj"
+            ]
+        },
+        {
+            "id": "sing",
+            "numpar": "0"
+        },
+        {
+            "id": "where",
+            "numpar": "1",
+            "on": [
+                "obj",
+				"pc",
+				"npc"
+            ]
+        },
+        {
+            "id": "open",
+            "numpar": "1",
+            "on": [
+                "obj"
+            ],
+            "att": [
+                "openclose"
+            ]
+        },
+        {
+            "id": "close",
+            "numpar": "1",
+            "on": [
+                "obj"
+            ],
+            "att": [
+                "openclose"
+            ]
+        },
+        {
+            "id": "unlock",
+            "numpar": "1",
+            "on": [
+                "obj"
+            ],
+            "att": [
+                "openclose"
+            ]
+        },
+        {
+            "id": "lock",
+            "numpar": "1",
+            "on": [
+                "obj"
+            ],
+            "att": [
+                "openclose"
+            ]
+        },
+        {
+            "id": "look_dir",
+            "numpar": "1",
+            "on": [
+                "loc"
+            ]
+        },
+		{  
+			 "id":"investigate",
+			 "numpar":"0"
+		},
+		{  
+			 "id":"dig_with",
+			 "numpar":"2",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"climb",
+			 "numpar":"0"
+		},
+		{  
+			 "id":"swim",
+			 "numpar":"0"
+		},
+		{  
+			 "id":"jump",
+			 "numpar":"0"
+		},
+		{  
+			 "id":"tie",
+			 "numpar":"2",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"untie",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"drink",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"eat",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"listen",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"smell",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"wakeup",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"attack",
+			 "numpar":"1",
+			 "on":[  "pc",	"npc" ]
+		},
+		{  
+			 "id":"strike",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"stop",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"burn",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"throwAction",
+			 "numpar":"2",
+			 "on":[  
+				"obj"
+			 ]
+		},
+		{  
+			 "id":"pull",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},{  
+			 "id":"raise",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},{  
+			 "id":"wait",
+			 "numpar":"0"
+		},{  
+			 "id":"attack-with",
+			 "numpar":"2",
+			 "on":[  
+				"obj"
+			 ]
+		}
+    ],
+    "attributes": [
+		{
+            "id": "isEndGame"
+        },{
+            "id": "isDark",
+			"properties": [
+                {  "id": "state", "value": "false", "use":"mandatory" }
+			]
+        },{
+            "id": "isTakeAble",
+			"properties": [
+                {  "id": "weight", "value": "1" },
+				{  "id": "size", "value": "1" }
+			],
+			"asignedTo": ["obj"]
+        },{
+            "id": "isWearAble",
+			"properties": [
+                {  "id": "state", "value": "false", "use":"mandatory" }
+            ]
+        },{
+            "id": "isContainer",
+            "properties": [
+				{ "id": "maxWeight", "value": "5"}
+            ],
+			"enabledActions_O2": ["take_from","put_into"]
+        },{
+            "id": "canCarry",
+            "properties": [
+               { "id": "maxWeight", "value": "5"}
+            ],
+			"asignedTo": ["pc", "npc"],
+			"enabledActions_O2": ["ask_from","give"]
+        },{
+            "id": "isOpen",
+			"properties": [
+                {  "id": "state", "value": "close" },
+				{  "id": "locked", "value": "false" }
+            ]
+        },{
+            "id": "isEatAble",
+			"properties": []
+        },{
+            "id": "isDrinkAble",
+			"properties": []
+        },{
+            "id": "hasEnergy",
+			"properties": [
+                {  "id": "energy", "value": "100" }
+            ],
+			"asignedTo": ["pc", "npc"]
+        },{
+            "id": "isWeapon",
+			"properties": [
+                { "id": "maxDamage", "value": "5" }
+            ]
+        },{
+            "id": "isBurnAble",
+			"properties": [
+                { "id": "burning", "value": "false" }
+            ]
+        },{
+            "id": "canBurn",
+			"properties": [
+                { "id": "burning", "value": "false", "use":"mandatory" }
+            ]
+        },{
+            "id": "isLightSource",
+			"properties": [
+                { "id": "state", "value": "true", "use":"mandatory" },
+				{ "id": "counter", "value": "notUsed"}
+            ]
+        },{
+            "id": "givesPoints",
+			"properties": [
+                {  "id": "points", "value": "false", "use":"mandatory" }
+            ]
+        },{
+            "id": "isSwitchAble",
+			"properties": [
+                {  "id": "state", "value": "off", "use":"mandatory" }
+            ]
+        }, {
+            "id": "isReadAble",
+            "properties": [
+                { "id": "msgId", "value": "Default book", "use":"mandatory" }
+            ]
+        }, {
+            "id": "isBecomeAble",
+			"properties": [
+                { "id": "state", "value": "false", "use":"mandatory" }
+            ],
+			"asignedTo": ["pc"]
+        }, {
+            "id": "hasDecrementor",
+			"properties": [
+                { "id": "active", "value": "false" },
+                { "id": "counter", "value": "100" }
+            ]
+        }
+    ],
+    "directions": [
+        {
+            "id": "d0"
+        },
+        {
+            "id": "d45"
+        },
+        {
+            "id": "d90"
+        },
+        {
+            "id": "d135"
+        },
+        {
+            "id": "d180"
+        },
+        {
+            "id": "d225"
+        },
+        {
+            "id": "d270"
+        },
+        {
+            "id": "d315"
+        },
+        {
+            "id": "in"
+        },
+        {
+            "id": "out"
+        },
+        {
+            "id": "up"
+        },
+        {
+            "id": "down"
+        }
+    ],
+    "items": []
+}	

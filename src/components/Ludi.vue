@@ -1,24 +1,37 @@
 <template>
   <div class="ludi">
-    <h1>Ludi</h1>
+  	<h2>{{myi18n.Play.message}}</h2>
 	<h2 v-show="gameId"> gameId: {{ gameId}} </h2> 
 	<a v-show="gameId==''" v-link="{ path: '/ludi/games' }"> Games | </a>
 	<a v-show="gameId!=''" v-link="{ path: '/ludi/play' }"> Play | </a>
+	<a v-show="gameId!=''" v-on:click="quit"> Quit | </a>
 	<router-view></router-view>
   </div>
 </template>
 
 <script>
 
+	import store from '../vuex/store'
+	import { geti18n, getGameId } from '../vuex/getters'
+	import * as actions from '../vuex/actions'
+
 export default {
   data () {
     return {
-      // note: changing this line won't causes changes
-      // with hot-reload because the reloaded component
-      // preserves its current state and we are modifying
-      // its initial state.
-      gameId: '' 
     }
+  },
+  methods: {
+    quit: function () { 
+        store.dispatch('RESETGAMEID')
+	}
+  },
+  store: store,
+  vuex: {
+    getters: {
+       myi18n: geti18n,
+       gameId: getGameId,
+    },
+    actions: actions
   }
 }
 </script>
@@ -52,6 +65,5 @@ body {
   width: 100px;
   height: 100px
 }
-
 
 </style>

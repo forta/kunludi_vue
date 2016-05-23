@@ -1,48 +1,58 @@
 <template>
-  <div class="play">
-    <h1>Play zone</h1>
-    <p> {{game | json }} </p>
-    <h2>history</h2>
-    <ul>
-        <li v-for="hItem in history">
-            <p>{{hItem.action.actionId}}</p>   
-        </li>
-    </ul>
-    <h2>choices</h2>
-    <ul>
-        <li v-for="choice in choices">
-            <p>{{choice.actionId}}</p>   
-        </li>
-    </ul>
+  <div id= "play" class="play">
+    <h2>History</h2>
+    <div v-for="hItem in history">
+        <p><b> {{$index+1}}. {{hItem.action.actionId}}</b></p>
+            <!-- to-do: problem with nested v-for: so, we'll create a new component -->   
+            <span v-for="r in hItem.reactionList"> {{t(r.detail)}} </span>
+    </div>
+  </div>
+    
+  <div class="choices">
+    <h2>Choices</h2>
+    <div v-for="choice in choices">
+        <button v-on:click="doGameChoice(choice)">{{choice.actionId}}</button>   
+    </div>
+    
   </div>
 </template>
 
 <script>
 
 
+    import store from '../vuex/store'
+    import { getTranslator, getGameId, getGameMsg, getGameItem, getLocale, getHistory, getChoices } from '../vuex/getters'
+    import * as actions from '../vuex/actions'
+
+
 export default {
 data () {
     return {
-        history: [
-            { action: {actionId:'look'}, 
-                reaction: [
-                    { type: 'msg', detail: 'You can see the abby.' },
-                    { type: 'msg', detail: 'You only can go to the west.' }
-                ]
-            },
-            { action: {actionId:'go west'}, 
-                reaction: [
-                    { type: 'msg', detail: 'You go to the west.' },
-                    { type: 'msg', detail: 'You can see the path home.' },
-                    { type: 'msg', detail: 'You only can go to the east.' }
-                ]
-            }  
-        ],
-        choices: [
-            {actionId:'look'}, 
-            { actionId:'go east' } 
-        ]
     }
+  },
+  methods: {
+      doGameChoice(choice) {
+          store.dispatch('PROCESS_CHOICE', choice)
+          setTimeout(function(){ 
+              var elem = document.getElementById("play")
+              if (elem != null) 
+		            elem.scrollTop =  elem.scrollHeight	
+          }, 100);  
+        
+      } 
+  },
+  store: store,
+  vuex: {
+    getters: {
+       gameId: getGameId,
+       gameMsg: getGameMsg,
+       gameItem: getGameItem,
+       locale: getLocale,
+       history: getHistory,
+       choices: getChoices,
+       t: getTranslator
+    },
+    actions: actions
   }
 }
 
@@ -51,7 +61,21 @@ data () {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 h1 {
   color: #42b983;
 }
+
+.play {
+   	height: 200px;
+	background-color: #EFC;
+ 	overflow: scroll;		
+}		
+
+.choices {
+   	height: 200px;
+	background-color: #AFC;
+ 	overflow: scroll;		
+}
+
 </style>

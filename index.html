@@ -6,12 +6,9 @@
   </head>
 	<body>
 		<div id="app">
-			<h1>KunLudi</h1>
-			<p>
+			<h2> <a v-link="{ path: '/kune' }"> Kunе | </a>
 			<a v-link="{ path: '/ludi' }"> Ludi | </a>
-			<a v-link="{ path: '/kune' }"> Kune | </a>
-			<a v-link="{ path: '/lingvo' }"> Lingvo </a>
-			</p>
+			<a v-link="{ path: '/lingvo' }"> Lingvo </a></h2>
 			<router-view></router-view>	
 		</div>
 	</body>

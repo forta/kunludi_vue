@@ -1,0 +1,116 @@
+{
+  "items.harry.article": {
+    "message": ""
+  },
+  "items.harry.pronoun": {
+    "message": "li"
+  },
+  "items.limbo.article": {
+    "message": "la"
+  },
+  "items.limbo.pronoun": {
+    "message": "ĝi"
+  },
+  "items.room.article": {
+    "message": "la"
+  },
+  "items.room.pronoun": {
+    "message": "ĝi"
+  },
+  "items.door_room.article": {
+    "message": "la"
+  },
+  "items.door_room.pronoun": {
+    "message": "ĝi"
+  },
+  "items.exit.article": {
+    "message": "la"
+  },
+  "items.exit.pronoun": {
+    "message": "ĝi"
+  },
+  "items.forest.article": {
+    "message": "la"
+  },
+  "items.forest.pronoun": {
+    "message": "ĝi"
+  },
+  "items.upthetree.article": {
+    "message": "la"
+  },
+  "items.upthetree.pronoun": {
+    "message": "ĝi"
+  },
+  "items.box.article": {
+    "message": "la"
+  },
+  "items.box.pronoun": {
+    "message": "ĝi"
+  },
+  "items.key.article": {
+    "message": "la"
+  },
+  "items.key.pronoun": {
+    "message": "ĝi"
+  },
+  "items.rope1.article": {
+    "message": "la"
+  },
+  "items.rope1.pronoun": {
+    "message": "ĝi"
+  },
+  "items.rope2.article": {
+    "message": "la"
+  },
+  "items.rope2.pronoun": {
+    "message": "ĝi"
+  },
+  "items.rope3.article": {
+    "message": "la"
+  },
+  "items.rope3.pronoun": {
+    "message": "ĝi"
+  },
+  "items.book.article": {
+    "message": "la"
+  },
+  "items.book.pronoun": {
+    "message": "ĝi"
+  },
+  "items.lamp.article": {
+    "message": "la"
+  },
+  "items.lamp.pronoun": {
+    "message": "ĝi"
+  },
+  "items.flute.article": {
+    "message": "la"
+  },
+  "items.flute.pronoun": {
+    "message": "ĝi"
+  },
+  "items.birds.article": {
+    "message": "la"
+  },
+  "items.birds.pronoun": {
+    "message": "ĝi"
+  },
+  "items.flutist.article": {
+    "message": "la"
+  },
+  "items.flutist.pronoun": {
+    "message": "li"
+  },
+  "items.woodcutter.article": {
+    "message": "la"
+  },
+  "items.woodcutter.pronoun": {
+    "message": "li"
+  },
+  "items.book2.article": {
+    "message": "la"
+  },
+  "items.book2.pronoun": {
+    "message": "ĝi"
+  }
+}

@@ -1,0 +1,42 @@
+{
+	"ludi_id": "4", 
+	"name": "vampiro", 
+	"translation": [
+		{
+			"language": "es",
+			"title": "Vampiro",
+			"desc": "Adaptación a LUDI del juego Vampiro",
+			"introduction": "Vampiro",	
+			"author": {
+				"name": "Jaume Alcazo Castellarnau", 
+				"adaptor": "Francisco Orta", 			
+				"ludi_account": "forta", 
+				"email": "ludi.ludon@gmail.com"
+			}
+		},		
+		{
+			"language": "en",
+			"title": "Vampiro",
+			"desc": "LUDI adaptation of Vampire",
+			"introduction": "Vampire",	
+			"author": {
+				"name": "Jaume Alcazo Castellarnau", 
+				"adaptor": "Francisco Orta", 			
+				"ludi_account": "forta", 
+				"email": "ludi.ludon@gmail.com"
+			}
+		},		
+		{
+			"language": "eo",
+			"title": "Vampiro",
+			"desc": "Adaptaptiĝo al LUDI de Vampiro",
+			"introduction": "Vampiro",	
+			"author": {
+				"name": "Jaume Alcazo Castellarnau", 
+				"adaptor": "Francisco Orta", 			
+				"ludi_account": "forta", 
+				"email": "ludi.ludon@gmail.com"
+			}
+		}		
+	]
+}

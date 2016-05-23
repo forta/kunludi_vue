@@ -1,0 +1,977 @@
+{
+  "items.vagabunda.desc": {
+    "message": "It's a dirty tramp. She is pregnant and is dressed in a wet layer."
+  },
+  "items.vagabunda.txt": {
+    "message": "vagrant woman"
+  },
+  "items.cazador.desc": {
+    "message": "It is a mountain hunter."
+  },
+  "items.cazador.txt": {
+    "message": "hunter"
+  },
+  "items.rosa_vientos.desc": {
+    "message": "You can go to the four cardinal points, each indicated by a stone figure of a different color."
+  },
+  "items.rosa_vientos.txt": {
+    "message": "Crossroad"
+  },
+  "items.cabaña.desc": {
+    "message": "You are in a burning hut."
+  },
+  "items.cabaña.txt": {
+    "message": "cabin"
+  },
+  "items.río.desc": {
+    "message": "Next to the river of the water of green power and other tributaries to the distant sea."
+  },
+  "items.río.txt": {
+    "message": "I laugh"
+  },
+  "items.risco_luna.desc": {
+    "message": "In this easily accessible cumbrecilla it says full moon nights strange things happen."
+  },
+  "items.risco_luna.txt": {
+    "message": "Moon cliff"
+  },
+  "items.figura_verde.desc": {
+    "message": "It is a green elf playing a flute with pointing north."
+  },
+  "items.figura_verde.txt": {
+    "message": "green figure"
+  },
+  "items.figura_roja.txt": {
+    "message": "red figure"
+  },
+  "items.figura_dorada.desc": {
+    "message": "On a mountain of golden stones, gold as a miner dwarf indicates west."
+  },
+  "items.figura_dorada.txt": {
+    "message": "golden figure"
+  },
+  "items.figura_negra.desc": {
+    "message": "The figure has the form of a mysterious woman who is the hidden face under a veil and land facing south."
+  },
+  "items.figura_negra.txt": {
+    "message": "black figure"
+  },
+  "items.fuente_roja.desc": {
+    "message": "Something is unpleasant to contemplate the soft layer of reddish water slides down the mountain walls creating a layer of moss and creating a small pool of blood appearance. Since dragons marked the way here is it that is the blood of dragons once lived on top of the mountain?"
+  },
+  "items.fuente_roja.txt": {
+    "message": "Red Source"
+  },
+  "items.pájaros.txt": {
+    "message": "birds"
+  },
+  "items.pescados.txt": {
+    "message": "fish"
+  },
+  "items.agua_roja.desc": {
+    "message": "The red seems to come simply remains of mud, but otherwise seems safe."
+  },
+  "items.agua_roja.txt": {
+    "message": "red water"
+  },
+  "items.tierras_sur.desc": {
+    "message": "At the base of the southern mountains that rise steeply to the top, unable to be scaled."
+  },
+  "items.tierras_sur.txt": {
+    "message": "The Southlands"
+  },
+  "items.basura.txt": {
+    "message": "the trash"
+  },
+  "items.fuente_verde.txt": {
+    "message": "Green Source"
+  },
+  "items.agua_verde.desc": {
+    "message": "Some green filaments that give color, but otherwise seems to drinking water."
+  },
+  "items.agua_verde.txt": {
+    "message": "green water"
+  },
+  "items.fuente_dorada.txt": {
+    "message": "The Golden Fountain"
+  },
+  "items.fuente_dorada.desc": {
+    "message": "For dwarf figure crossing the road, probably living in this region who diligently dwarf miners looking for gold pierced one valley. They must have been many who have tried to follow the course of underground rivers to find the gold mine, but it seems that no one has succeeded. the yellow water is nauseating and'd say it's the name of the water dragon red font ... at least it smells like pee dragon, yuck! The source is actually a small stream of water coming out of the crack of the mountain, and a small stream winds like a hundred meters outdoors before returning to hide in a crack in the mountain. Here you can not breathe from the stench emanating from the golden water."
+  },
+  "items.agua_dorada.desc": {
+    "message": "Reeks of sulfur. If I were you or touched."
+  },
+  "items.agua_dorada.txt": {
+    "message": "the golden water"
+  },
+  "items.cueva_bruja.txt": {
+    "message": "La Cueva de la Vieja"
+  },
+  "items.hechicera.desc": {
+    "message": "The beautiful sorceress secrets"
+  },
+  "items.hechicera.txt": {
+    "message": "the sorceress"
+  },
+  "items.caldero.desc": {
+    "message": "A dirty witch's cauldron. Better not to know what ingredients have been there."
+  },
+  "items.caldero.txt": {
+    "message": "cauldron"
+  },
+  "items.pergamino.desc": {
+    "message": "If you want to get purple water, you must follow these rules: Rule 1: Remember that elves and dwarves do not like to be together. Rule 2: the dragon wants to be with gold. Rule 3: When the three races come together, the elf likes to be first"
+  },
+  "items.pergamino.txt": {
+    "message": "parchment"
+  },
+  "items.caverna_dragón.desc": {
+    "message": "In the vast cavern of the dragon. It is amazing how this little layer of water protects this place from the outside world. Changing light reflections make this place seem unreal, like another universe."
+  },
+  "items.caverna_dragón.txt": {
+    "message": "Dragon Cave"
+  },
+  "items.escondite.desc": {
+    "message": "A small, dark cave inside"
+  },
+  "items.escondite.txt": {
+    "message": "hiding place"
+  },
+  "items.pócima.desc": {
+    "message": "Watching the potion of remembrance, which is changing color, as if the rainbow was caught inside."
+  },
+  "items.pócima.txt": {
+    "message": "the potion"
+  },
+  "items.agua_púrpura.desc": {
+    "message": "Purpúrero has a very strange color."
+  },
+  "items.agua_púrpura.txt": {
+    "message": "Purple water"
+  },
+  "items.agua_naranja.desc": {
+    "message": "The influence of something red water attenuates the smell of sulfur."
+  },
+  "items.agua_naranja.txt": {
+    "message": "orange water"
+  },
+  "items.flauta.desc": {
+    "message": "A six-hole flute, a rustic version you saw in the green figure."
+  },
+  "items.flauta.txt": {
+    "message": "the flute"
+  },
+  "items.flauta-mágica.desc": {
+    "message": "A six-hole flute, identical to the figure dressed in green."
+  },
+  "items.flauta-mágica.txt": {
+    "message": "the magic Flute"
+  },
+  "items.anzuelo.desc": {
+    "message": "A large hook made of a stainless metal apparently."
+  },
+  "items.anzuelo.txt": {
+    "message": "the hook"
+  },
+  "items.flautista.txt": {
+    "message": "The flute-player"
+  },
+  "items.camisa.desc": {
+    "message": "A rusty shirt."
+  },
+  "items.camisa.txt": {
+    "message": "Shirt"
+  },
+  "items.espejo.txt": {
+    "message": "mirror"
+  },
+  "items.honda.desc": {
+    "message": "A hunting sling."
+  },
+  "items.honda.txt": {
+    "message": "sling"
+  },
+  "items.cuenco.desc": {
+    "message": "A rusty bowl."
+  },
+  "items.cuenco.txt": {
+    "message": "the bowl"
+  },
+  "items.diamante.desc": {
+    "message": "This is a diamond of significant size, you must be worth much."
+  },
+  "items.diamante.txt": {
+    "message": "the diamond"
+  },
+  "items.vieja.desc": {
+    "message": "The nasty old cave"
+  },
+  "items.vieja.txt": {
+    "message": "the old woman"
+  },
+  "messages.Introduction.txt": {
+    "message": "Three Fountains. % UOn homage to the Canary Island of La Palma and its beautiful waterfall colores__http: //www.lamoradadelviajero.es/la-cascada-de-colores-un-manantial-de-paz/%. Here the adventure of the secret of the Three Fountains begins. If you have any questions about the game, you can contact the author at: %uludi.ludon@gmail.com__mailto: ludi.ludon@gmail.com%."
+  },
+  "actions.play-instrument.txt": {
+    "message": "play"
+  },
+  "messages.practicar_flauta_1.txt": {
+    "message": "FIU, FIU, flute conchambrosa only makes a noise without grace, if you know just put your fingers in the holes. <br/>"
+  },
+  "messages.practicar_flauta_2.txt": {
+    "message": "After much practice, you get to go associating sounds fingerings fingers .. <br/>"
+  },
+  "messages.practicar_flauta_3.txt": {
+    "message": "With practice, you learn to play by ear some familiar melodies .. <br/>"
+  },
+  "messages.practicar_flauta_4.txt": {
+    "message": "Practice is the mother of skill, you're not a virtuoso, but until now could win a fourth playing in the street .. <br/>"
+  },
+  "messages.al_pasar_delante_figura.txt": {
+    "message": "Passing of %o1 you can not help but observe: "
+  },
+  "messages.cazador_atraviesa_catarata.txt": {
+    "message": "With much effort, you go through the wall of water from the waterfall. <br/>"
+  },
+  "messages.VR_dragona_atraviesa_catarata_1.txt": {
+    "message": "Converted into dragon, "
+  },
+  "messages.VC_dragona_atraviesa_catarata_2.txt": {
+    "message": "Converted into marine monster, "
+  },
+  "messages.dragona_atraviesa_catarata_2.txt": {
+    "message": "go through the wall of water from the waterfall without difficulty. <br/>"
+  },
+  "messages.VR_reflejo_catarata.txt": {
+    "message": "You see yourself reflected in green font ... it is you, but not you ... only you recognize of yourself snake eyes. This body of woman you could not cross the waterfall, so for now you do not try ... but there is a dragon within you. <br/>"
+  },
+  "messages.VC_reflejo_catarata.txt": {
+    "message": "You look in the mirror and acknowledge your source green snake eyes. Do not you risk jeopardizing the life of your son ... yet. <br/>"
+  },
+  "messages.cueva_bruja_innaccesible_dragona.txt": {
+    "message": "Leaving large stones fell and is no longer accessible for someone your size. <br/>"
+  },
+  "messages.cueva_bruja_innaccesible_vagabunda.txt": {
+    "message": "A crack in the base of the mountain to the south, suggesting an entry in the mountains, but a robust plant thorny does not allow you in. <br/>"
+  },
+  "messages.No_puedes_salir_de_cueva_bruja.txt": {
+    "message": "You've grown a lot, and do not fit through the crack output and can not leave the cave! <br/>"
+  },
+  "messages.no_llevas_portaagua %o1.txt": {
+    "message": "You have nothing to take %o1"
+  },
+  "messages.recuerdas_regla %s1.txt": {
+    "message": "Remember rule number% s1 told you the sorceress. <br/>"
+  },
+  "messages.contenido_cuenco_no_cambia.txt": {
+    "message": "The contents of the bowl does not change. <br/>"
+  },
+  "messages.regla1.txt": {
+    "message": "The green liquid symbolizes the elves and resists that you put liquid on top. As the elves always want to be the last to arrive. <br/>"
+  },
+  "messages.efecto_regla1.txt": {
+    "message": "The liquid starts to turn green in the bowl. You himnotiza, elf seems to be shaped and rises into the air, leaving the empty bowl. <br/>"
+  },
+  "messages.regla2.txt": {
+    "message": "The green and gold liquid represent forest elves and dwarves gold. As water and oil do not mix or by chance. <br/>"
+  },
+  "messages.efecto_regla2.txt": {
+    "message": "The golden liquid begins to bubble and heat and evaporate before you get to take the green water. <br/>"
+  },
+  "messages.regla3.txt": {
+    "message": "The green and gold liquid represent forest elves and dragon's blood. The dragons do not like to be ridden by elves. <br/>"
+  },
+  "messages.efecto_regla3.txt": {
+    "message": "The bowl starts to move like a horse that does not want to be tamed, and the water eventually falls to the ground. <br/>"
+  },
+  "messages.liquido_contenido %o1 %o2.txt": {
+    "message": " It has% %o1 %o2. <br/>"
+  },
+  "messages.efecto_desconocido.txt": {
+    "message": "For some reason, the liquid mixture reacts! <br/>"
+  },
+  "messages.pájaros_no_capturables.txt": {
+    "message": "Birds that are bored effective, you smell a mile and fly. <br/>"
+  },
+  "messages.pájaros_son_capturados.txt": {
+    "message": "Are the spears and two of them are trapped in it; the rest goes flying. <br/>"
+  },
+  "messages.pájaros_no_son_capturados.txt": {
+    "message": "The attempt to hunt, but are faster than you. Perhaps throwing something on ... <br/>"
+  },
+  "messages.pescados_no_capturables.txt": {
+    "message": "The fish is as if you felt from afar, and nothing else to approach away without you can not see them. <br/>"
+  },
+  "messages.pescados_son_capturados.txt": {
+    "message": "With the hook and stick you do an impromptu fishing rod and you get one. <br/>"
+  },
+  "messages.pescados_no_son_capturados.txt": {
+    "message": "The try fishing, but are faster than you. Perhaps, with something ... <br/>"
+  },
+  "messages.pájaros_libres.txt": {
+    "message": "Birds drink peacefully with red pond. <br/>"
+  },
+  "messages.pájaros_capturados.txt": {
+    "message": "You caught birds. <br/>"
+  },
+  "messages.pescados_libres.txt": {
+    "message": "The fish move near the riverbank. <br/>"
+  },
+  "messages.pescados_capturados.txt": {
+    "message": "The fish you caught. <br/>"
+  },
+  "messages.VR_figura_roja.txt": {
+    "message": "The figure is formed by two small red dragons intertwined indicating the way of this. Under an inscription with their names are read. Laila and Kuko <br/>"
+  },
+  "messages.VC_figura_roja.txt": {
+    "message": "The figure represents a red dragon faces east. <br/>"
+  },
+  "messages.al_examinar_basura_aparece_cuenco.txt": {
+    "message": "You stir among branches and dust, you discover a rusted medium bowl"
+  },
+  "messages.junto_con_cuenco_aparece_camisa.txt": {
+    "message": " and a dirty shirt. <br/>"
+  },
+  "messages.vagabunda_ante_espejo.txt": {
+    "message": "How strange it is to see you with that big belly. You still have your snake eyes. <br/>"
+  },
+  "messages.vagabunda_ante_espejo_ve_diamante.txt": {
+    "message": "Recalling the announcement flutist, you look more closely mirror and discover, without knowing how, there is a precious stone in the mirror. Lengthen out and grab the diamond, accessible only to beings like you. <br/>"
+  },
+  "messages.vagabunda_ante_espejo_no_ve_diamante.txt": {
+    "message": "For a moment you think you see a strange refrejo, but I must have been your imagination .. <br/>"
+  },
+  "messages.cazador_ante_espejo.txt": {
+    "message": "You older than you remembered notes, as if they had been years since you went to the underwater world in search of bait to your brother. <br/>"
+  },
+  "messages.flautista_tocando.txt": {
+    "message": "Flutist, lively playing his flute."
+  },
+  "messages.flautista_sin_flauta.txt": {
+    "message": "As a flutist and flute ... he does not sing cheerfully."
+  },
+  "messages.DLG_acepta_petición_porque %o1.txt": {
+    "message": "Okay, but just because you gave me before %o1."
+  },
+  "messages.DLG_da_%o1.txt": {
+    "message": "It takes %o1."
+  },
+  "messages.DLG_no_da_%o1.txt": {
+    "message": "Why should I give %o1?"
+  },
+  "messages.DLG_no_da_%o1_porque_falta_%o2.txt": {
+    "message": "If you want you should bring me %o1 %o2."
+  },
+  "messages.DLG_coge_de_%o1.txt": {
+    "message": "Help yourself to %o1."
+  },
+  "messages.DLG_damelo.txt": {
+    "message": "Give it to me, it's mine !."
+  },
+  "messages.vieja_quita_diamante.txt": {
+    "message": "The old takes it away. <br/>"
+  },
+  "messages.DLG_preguntar_a_cazador_por_onda.txt": {
+    "message": "Thanks to her, I've hunted countless dams."
+  },
+  "messages.DLG_preguntar_a_vagabunda_por_anzuelo.txt": {
+    "message": "I have much attachment, reminds me of my distant homeland."
+  },
+  "messages.DLG_necesita_diamante.txt": {
+    "message": "We appreciate it very much if I will recover the diamond."
+  },
+  "messages.DLG_pide_agua_púrpura.txt": {
+    "message": "Bring me the purple water so you can break the spell."
+  },
+  "messages.DLG_examina_pergamino.txt": {
+    "message": "Examine the scroll so you know how to get it."
+  },
+  "messages.DLG_bebe_pócima.txt": {
+    "message": "Drink the potion of remembrance, when consider appropriate."
+  },
+  "messages.DLG_atraviesa_a_catarata.txt": {
+    "message": "Now you know everything. Go to the other side of the waterfall to find your destination"
+  },
+  "messages.DLG_no_deberías_aquí.txt": {
+    "message": "Although you should not do it here."
+  },
+  "messages.undefined_gameParameters.txt": {
+    "message": "This game need gameParameters attribute defined in the initial location of <br/> game"
+  },
+  "messages.bienvenida_juego.txt": {
+    "message": "Welcome to Las Tres Fuentes, interactive adventure developed in javascript. On the same basis world, you can choose to play a more childish tone down version or the full version, which control two characters. <br/>"
+  },
+  "messages.chooseVersion.txt": {
+    "message": "Which version you choose?"
+  },
+  "messages.chooseVersion_simple.txt": {
+    "message": "reduced version"
+  },
+  "messages.chooseVersion_long.txt": {
+    "message": "complete version"
+  },
+  "messages.elegida_version_reducida.txt": {
+    "message": "It's a good choice to finish in less time, but the full version has a little more juice. <br/>"
+  },
+  "messages.intro_reducida_1.txt": {
+    "message": "Laila are the dragon. The witch was tired of revolotees around with your brother Kuko burning things left and right, and hath cast a spell. <br/>"
+  },
+  "messages.intro_reducida_2.txt": {
+    "message": "You has become human and has brought you out of the cave of the dragon, far from Kuko, across the waterfall. <br/>"
+  },
+  "messages.intro_reducida_3.txt": {
+    "message": "You will not stay with his arms crossed. The witch, who will know to be prepared. Kuko not desfallezcas, I'm coming! <br/>"
+  },
+  "messages.chooseVersion_long_echo.txt": {
+    "message": "You have chosen the version you choose an intrepid adventurer. The stars of this game are two legendary lovers who have fallen out with a goddess opposed to his love. Although you control both characters, choose now who start with the vagabond, in reality the sea princess, who left his homeland for love; or the hunter, a relative of the evil goddess. <br/>"
+  },
+  "messages.choosePC.txt": {
+    "message": "What character you want to start playing, how the vagabond or the hunter?"
+  },
+  "messages.choosePC_woman.txt": {
+    "message": "Vagrant"
+  },
+  "messages.choosePC_man.txt": {
+    "message": "the hunter"
+  },
+  "messages.dejar_flauta.txt": {
+    "message": "It is a gift of the flutist, who you committed to practice before returning. <br/>"
+  },
+  "messages.pájaros_vuelan.txt": {
+    "message": "Releasing the birds fly away to the red font. <br/>"
+  },
+  "messages.dejar_pájaros.txt": {
+    "message": "When you release the birds back where they were in the red font. <br/>"
+  },
+  "messages.dejar_cuenco.txt": {
+    "message": "The content of the story is emptied to fall. <br/>"
+  },
+  "messages.agua_dorada_mata_planta.txt": {
+    "message": "Empty the water on the ground, killing her and widening a little the entrance to the cave. <br/>"
+  },
+  "messages.dejar_pócima.txt": {
+    "message": "Throw away anything that has cost so you get? I think you better preserved the potion. <br/>"
+  },
+  "messages.dejar_arma_inicial.txt": {
+    "message": "It can be useful to get food or to earn someone's trust. What preserves. <br/>"
+  },
+  "messages.bebida_agotada.txt": {
+    "message": "Not much to drink. <br/>"
+  },
+  "messages.beber_verde.txt": {
+    "message": "The green filaments having something you get disgusted at first, but the end result is rich and all. In any case you do not drink the full. <br/>"
+  },
+  "messages.beber_dorada.txt": {
+    "message": "Reeks of sulfur. By bringing the nose, instinctively you flinch and not the babies. <br/>"
+  },
+  "messages.beber_roja.txt": {
+    "message": "Red seems to come simply remains of mud, tastes nasty and just try a little, leaving the rest. <br/>"
+  },
+  "messages.beber_naranja.txt": {
+    "message": "Something still smells of sulfur, but the red seems to have made drinking water ... but do not dare to try. <br/>"
+  },
+  "messages.beber_púrpura.txt": {
+    "message": "A normal human might not be able to drink it, but you are no ordinary man and this water brings back memories of the grotto pond. [PAUSE]. To prove you are sad reminders of Kuko, will be in the grotto ?, what he's doing now ?. There's just you, you leave it for later. <br/>"
+  },
+  "messages.repetir_pócima.txt": {
+    "message": "You've already drunk, hurry and let wasting time. <br/>"
+  },
+  "messages.aviso_pócima_grieta.txt": {
+    "message": "Remember that the witch said that if you drink you'll get your way ... and you could not get out through the crack. <br/>"
+  },
+  "messages.Menu_drinkNow.txt": {
+    "message": "Are you sure you want to drink now?"
+  },
+  "messages.Menu_drinkNow_yes.txt": {
+    "message": "Yes, I want to recover and my form."
+  },
+  "messages.Menu_drinkNow_no.txt": {
+    "message": "No, I will wait to be out."
+  },
+  "messages.empiezas_a_crecer_dentro_caverna.txt": {
+    "message": "Although internally know that you should not do, you can not help drink the potion ... you start to grow ...! <br/>"
+  },
+  "messages.Menu_drinkNow_no_reaction.txt": {
+    "message": "You would think better and do not drink the potion yet. <br/>"
+  },
+  "messages.empiezas_recordar.txt": {
+    "message": "To drink the potion memories begin to surface clearly. <br/>"
+  },
+  "messages.vagabunda2_recuerda_1.txt": {
+    "message": "You remember how you met the hunter, semi-divine nature, nothing less than the grandson of the goddess of the mountain, when was your underwater world in search of a magic hook to his brother Hoderi <br/>"
+  },
+  "messages.vagabunda2_recuerda_2.txt": {
+    "message": "Remember how I fled because enamorásteis and because of your kind must give birth on land. <br/>"
+  },
+  "messages.vagabunda2_recuerda_3.txt": {
+    "message": "Remember the day when you knew you were pregnant and the hunter told her aunt the day I swore using his cane to force the magic diamond, at the mountain cabin, your home. <br/>"
+  },
+  "messages.vagabunda2_recuerda_4.txt": {
+    "message": "And you remember your marina nature, begins to pour down between your legs, you've broken waters and you know what will happen to you, your kind recover their horrific nature to alumnbrar. You know I must hurry and give birth to your son in a safe place on the other side of the waterfall. <br/>"
+  },
+  "messages.locura_3a_persona.txt": {
+    "message": "The hunter scared watching you. You look in his eyes, half way transform your marina. See how your beloved companion before pisses and shits up and runs away, frightened. <br/>"
+  },
+  "messages.transformación_1a_persona.txt": {
+    "message": "You conclude your transformation. Your immense figure some call scaly dragon and others in distant lands, siren will not let you move easily. This is not how you met the hunter. This was a graceful mexcla of both worlds; now you have the purely marine, without trace of humanity. <br/>"
+  },
+  "messages.alumbramiento_1a_persona.txt": {
+    "message": "With a slight effort you release your precious egg. <br/>"
+  },
+  "messages.hechicera_expulsa_dragona_según_vagabunda.txt": {
+    "message": "After a while, the witch appears and with a spell, this time unwavering send you back to your underwater world. Nature never know if your child is human or marine, nor see grow, nor know what will become of your lover hunter. <br/>"
+  },
+  "messages.quien_sabe_si.txt": {
+    "message": "Who knows if in a parallel world by the end of this story could not have been happier. <br/>"
+  },
+  "messages.cazador_recuerda_1.txt": {
+    "message": "You remember how you met the beautiful princess of the sea when you sank into the ocean in search of the magic hook that had asked your brother Hoderi. <br/>"
+  },
+  "messages.cazador_recuerda_2.txt": {
+    "message": "Remember the day you came to the mainland, fleeing the wrath of her father and I instalásteis in the log cabin, your home. <br/>"
+  },
+  "messages.cazador_recuerda_3.txt": {
+    "message": "Remember the fateful day when your relative condemned you to forget that you ye known. <br/>"
+  },
+  "messages.cazador_recuerda_4.txt": {
+    "message": "From repende you realize that you are pregnant and you need to be with them, but remember the advice of your aunt: - let the dragon gives birth alone, or you'll regret the rest of your life <br/>."
+  },
+  "messages.cazador_recuerda_5.txt": {
+    "message": "You know she will go to the other side of the waterfall, but when will be the best time to go? <br/>"
+  },
+  "messages.vagabunda1_recuerda_1.txt": {
+    "message": "You remember Kuko, alone in the mountain of gold, across the green font. <br/>"
+  },
+  "messages.empiezas_a_crecer.txt": {
+    "message": "you start to grow ...! <br/>"
+  },
+  "messages.perdona_vida_dragona_encerrada.txt": {
+    "message": "Message <br/> writer of the game: to grow should not have gotten out: considered to be like you lost a life, but we leave to play <br/>!"
+  },
+  "messages.deux_ex_machina_saca_dragona.txt": {
+    "message": "Do not! You can not leave him alone for all eternity! You rush out at the crack of your new body and growing agrandas the crack and get out of the cave of the sorceress. <br/>"
+  },
+  "messages.vagabunda_recibe_arma.txt": {
+    "message": "Thank you so much Mr! I think I can be useful. So far he looked suspiciously but maybe you can trust you."
+  },
+  "messages.cazador_recibe_arma.txt": {
+    "message": "Thank you very much, sweetheart! I think I can be useful. So far he looked suspiciously but I think I can trust you."
+  },
+  "messages.no_acepto_regalos.txt": {
+    "message": "I do not accept gifts from strangers."
+  },
+  "messages.da_gracias.txt": {
+    "message": "Well thanks."
+  },
+  "messages.no_gracias.txt": {
+    "message": "Do not worry, I do not need thanks."
+  },
+  "messages.rechaza_comida.txt": {
+    "message": "Thanks for bringing me something to eat. I'm hungry, but just something you've caught you."
+  },
+  "messages.lo_espero_de_otro.txt": {
+    "message": "Thanks, I have still hungry, but I hope I bring someone else."
+  },
+  "messages.flautista_hambriento_solo_quiere_comida.txt": {
+    "message": "I think you have nothing of interest to me, what I have is hunger."
+  },
+  "messages.flautista_rechaza_flauta_en_fuente_verde.txt": {
+    "message": "Do you think you've practiced enough? Llévamela the lunar bluff when you're ready."
+  },
+  "messages.flautista_al_recibir_flauta_en_risco.txt": {
+    "message": "Do you think you've practiced enough? Let me hear what this play first."
+  },
+  "messages.gracias_por_traer_piedra.txt": {
+    "message": "Thank you for bringing the moonstone!"
+  },
+  "messages.%o1 lo_guarda.txt": {
+    "message": " %o1 saved him eagerly. <br/>"
+  },
+  "messages.te_espero_en_risco.txt": {
+    "message": "You in the lunar ridge."
+  },
+  "messages.ven_con_%o1.txt": {
+    "message": "Please come with %o1."
+  },
+  "messages.VC_pide_que_practiques.txt": {
+    "message": "You must honor my ears with good music if you want me to help with your spell."
+  },
+  "messages.VR_pide_que_practiques.txt": {
+    "message": "You must honor my ears with good music if you want me to help with your spell."
+  },
+  "messages.VC_fin_acto_I.txt": {
+    "message": "<br/> Here ends Act I: or forgetful how the two lovers met again and worked to feed the hungry and bring the flutist moonstone <br/>."
+  },
+  "messages.VR_fin_acto_I.txt": {
+    "message": "<br/> Here ends Act I: or how Laila fed the hungry and flutist took the moonstone <br/>"
+  },
+  "messages.DLG_no_acepto_agua_no_púrpura.txt": {
+    "message": "And why would I want that vulgar water?"
+  },
+  "messages.DLG_dar_agua_púrpura_a_vieja.txt": {
+    "message": "That's a very interesting mix. I do not know how you've learned to get it, but I do not need at all."
+  },
+  "messages.DLG_ya_me_lo_habías_dado.txt": {
+    "message": "Since you had given me before, do not try so hard."
+  },
+  "messages.DLG_hechicera_pide_que_estén_ambos.txt": {
+    "message": "You must be both here so you can do to break and make the potion release."
+  },
+  "messages.DLG_hechicera_recibe_agua_púrpura.txt": {
+    "message": "The sorceress almost takes away the cupped hands and pour its contents into the cauldron."
+  },
+  "messages.hechicera_hace_pócima.txt": {
+    "message": "By giving the purple water, witch makes you a flowery ritual performed around the cauldron. Multicolor diamond shining rays, coming together in the cauldron. Purple water turns and turns, changing color, to be an ever-changing color .... <br/>"
+  },
+  "messages.DLG_VR_al_hacer_pócima_1.txt": {
+    "message": "As a reward for bringing me before the diamond, I will return your original appearance. Take this potion and go back to your world, again through the green source"
+  },
+  "messages.DLG_VR_al_hacer_pócima_2.txt": {
+    "message": "But remember, once you drink the potion begin to grow uncontrollably. Just you are safe in the grotto of dragons, where you expect your loved Kuko."
+  },
+  "messages.DLG_VR_al_hacer_pócima_3.txt": {
+    "message": "Goodbye dragon, good luck!"
+  },
+  "messages.DLG_VC_al_hacer_pócima_1.txt": {
+    "message": "As a reward for habedme brought before the diamond, I am going to release my spell. I remain opposed to your union: do not see natural that a sea creature is one with a prince of the mountains. But you are granditos and you will see what you will do."
+  },
+  "messages.DLG_VC_al_hacer_pócima_2.txt": {
+    "message": "Princess Otohime, when you take the potion, monstrous begin to recover your original form and will soon give birth to your child. Almost do not fit through the crack: you should not drink here. You must go to the other side of the waterfall, out of sight of my relative, who can go crazy to see your superhuman nature."
+  },
+  "messages.DLG_VC_al_hacer_pócima_3.txt": {
+    "message": "Hoori, get out of your way and you do not go to it until after delivery. When the time comes you'll know."
+  },
+  "messages.DLG_VC_al_hacer_pócima_4.txt": {
+    "message": "One last thing. After crossing the waterfall princess, I can not help it fulfill a small effect of my curse: the entrance to the waterfall will be closed and sealed ... But what bad'm !, Jua, ha, ha!"
+  },
+  "messages.DLG_VC_al_hacer_pócima_5.txt": {
+    "message": "Goodbye, stupid lovers, your love is doomed! <br/>"
+  },
+  "messages.hechicera_hace_mutis.txt": {
+    "message": "The diamond shines so blinding and recover the vision, you see that the witch is gone, only the cauldron of the potion and diamond turning innacesible high and illuminating the whole cave. <br/>"
+  },
+  "messages.DLG_no_quiero_eso.txt": {
+    "message": "And why would I want this? No thanks."
+  },
+  "messages.DLG_dame_comida_por_flauta.txt": {
+    "message": "I am so hungry, give me something to eat and I'll see if I will give the flute or something else."
+  },
+  "messages.DLG_esperando_comida_de_otro_por_flauta.txt": {
+    "message": "I'm waiting for someone else's gain."
+  },
+  "messages.DLG_flauta_ya_no_la_tengo.txt": {
+    "message": "I do not have it already."
+  },
+  "messages.DLG_flautista_sobre_vieja_a_cazador.txt": {
+    "message": "Relative of yours that cave, believe it or not, has hurt you in the past. Be careful with her."
+  },
+  "messages.DLG_flautista_sobre_vieja_a_vagabunda.txt": {
+    "message": "That is an old witch and, believe it or not, has hurt you in the past. Be careful with her."
+  },
+  "messages.DLG_vieja_sobre_diamante.txt": {
+    "message": "I lost it and can not find, help me find it, please."
+  },
+  "messages.DLG_vieja_sobre_flautista.txt": {
+    "message": "She loves music, but is more than just a flutist."
+  },
+  "messages.DLG_hechicera_sobre_diamante.txt": {
+    "message": "Good thing you got me recover."
+  },
+  "messages.DLG_hechicera_sobre_flautista.txt": {
+    "message": "I see he gave you the stone of light. You're very clever indeed."
+  },
+  "messages.DLG_hechicera_sobre_pócima.txt": {
+    "message": "I already told you, bring me the purple water and have the potion from memory."
+  },
+  "messages.fuente_roja_básico.txt": {
+    "message": "The water appears to be poisonous and unhealthy"
+  },
+  "messages.fuente_roja_con_pájaros %o1.txt": {
+    "message": "But incredibly %o1 drink it casually <br/>"
+  },
+  "messages.descripcion_fuente_verde_base.txt": {
+    "message": "The green font! A powerful waterfall falls from a considerable height and with great force. A blanket of green moss and lichen grows everywhere. You can see a spectacular rainbow caused by water droplets jumping everywhere after colliding with the small lake that forms at the base, which also has a green appearance. <br/>"
+  },
+  "messages.mencionar_flautista_con_flauta.txt": {
+    "message": "You see a young farmer in the shade of a tree, casually playing the flute. <br/>"
+  },
+  "messages.mencionar_flautista_sin_flauta.txt": {
+    "message": "You see without his flute flutist sitting idly in the shade of a tree, singing. <br/>"
+  },
+  "messages.hay_basura %o1.txt": {
+    "message": "Nothing noteworthy, only matorrares %o1 and windblown. <br/>"
+  },
+  "messages.flautista_aparece.txt": {
+    "message": "From the bushes flautist appears. <br/>"
+  },
+  "messages.DLG_flautista_quita_diamante.txt": {
+    "message": "You would not believe that you would leave to take the valuable stone old before exercising his magic to me."
+  },
+  "messages.flautista_se_va.txt": {
+    "message": "The Pied Piper snatches diamond and disappears from your view. <br/>"
+  },
+  "messages.en_cueva_oscura.txt": {
+    "message": "In the dark cave, in the old house. <br/>"
+  },
+  "messages.en_cueva_brillante.txt": {
+    "message": "In the glowing cave"
+  },
+  "messages.hechicera_presente %o1.txt": {
+    "message": "With o1%"
+  },
+  "messages.DLG_bienvenido_vagabunda.txt": {
+    "message": "Welcome to my humble home, princess."
+  },
+  "messages.DLG_bienvenido_cazador.txt": {
+    "message": "Welcome, dear grandson, to my humble home. No, I do not look at that face. About your cottage was a fatal incident not want to talk. Just know that I rescued you from a snake that had you arrested."
+  },
+  "messages.DLG_bienvenido_cazador_2.txt": {
+    "message": "You will see that my appearance has been lackluster since the last time you saw me. I do not have the beautiful way it was. The day of your cabin so I lost the diamond retains some of my power, I would appreciate if I could retrieve."
+  },
+  "messages.DLG_bienvenido_a_cueva_luminosa.txt": {
+    "message": "Like how my cave shines with the power of light enclosed?"
+  },
+  "messages.que_hambre.txt": {
+    "message": "I'm so hungry! I would be grateful if you gave me something to eat."
+  },
+  "messages.DLG_hambre_y_se_que_cazaste.txt": {
+    "message": "Hunger must have! I know you've caught something, "
+  },
+  "messages.DLG_pregunta_si_das_comida.txt": {
+    "message": "Will you give me food?"
+  },
+  "messages.flautista_das_comida_si.txt": {
+    "message": "Done deal!"
+  },
+  "messages.flautista_das_comida_no.txt": {
+    "message": "It's going to be no."
+  },
+  "messages.DLG_qué_tacaño_eres.txt": {
+    "message": "how stingy you are, you're missing out. I still have mine, to play music when I forget the hunger."
+  },
+  "messages.flautista_toca.txt": {
+    "message": "The piper plays his tune ..."
+  },
+  "messages.DLG_ven_con_comida.txt": {
+    "message": "returns with what you caught and talked."
+  },
+  "messages.DLG_finito_te_veo_en_risco.txt": {
+    "message": "I gave you what you needed. When you're ready, you go to the ridge of the moon."
+  },
+  "messages.DLG_envía_saludos_a_vieja.txt": {
+    "message": "Give greetings to old for me."
+  },
+  "messages.DLG_ya_bebiste_apurate.txt": {
+    "message": "And you drank the potion, hurry up with what you must do."
+  },
+  "messages.tocas_flauta_si.txt": {
+    "message": "Okay, I'll try, but I do not know."
+  },
+  "messages.tocas_flauta_no.txt": {
+    "message": "Sorry, but I can not play the flute."
+  },
+  "messages.DLG_anima_música.txt": {
+    "message": "Come, give!"
+  },
+  "messages.DLG_tocas_nivel_0.txt": {
+    "message": "Socorro, what pain! Get out of my sight and do not come back until you have practiced more."
+  },
+  "messages.DLG_tocas_nivel_1.txt": {
+    "message": "How you dare you make that noise without having practiced almost nothing?"
+  },
+  "messages.DLG_tocas_nivel_2.txt": {
+    "message": "You are improving, but still must practice more."
+  },
+  "messages.DLG_tocas_nivel_3.txt": {
+    "message": "Congratulations, you made a virtuoso! Now you're worth I play the flute for you. We honor to the moon and she will do something for you two."
+  },
+  "messages.flautista_recupera_diamante.txt": {
+    "message": "The Pied Piper takes away the flute, as one gets an old treasure."
+  },
+  "messages.DLG_flautista_sin_oirte.txt": {
+    "message": "So I'll never know if you've learned enough."
+  },
+  "messages.DLG_debes_traerme_diamante.txt": {
+    "message": "But for this, the moonstone must be present."
+  },
+  "messages.DLG_falta_uno_para_transformación_lunar.txt": {
+    "message": "Both must be present to honor the moon."
+  },
+  "messages.fluteTransformation.txt": {
+    "message": "The piper begins to play the flute ... that becomes your hands on a golden flute, it seems to be haunted. Plays and plays could not stop ... and they pass the hours ... to get dark. Before you see how the piper becomes an elf and how miraculously still watching the rainbow of green power despite being overnight."
+  },
+  "messages.DLG_VC_toma_diamante.txt": {
+    "message": "Take the diamond you are eager many. Go with him to the old witch in the cave, but before ... it's time to dance!"
+  },
+  "messages.DLG_VR_toma_diamante.txt": {
+    "message": "Take the diamond that both crave. Go with him to the old witch in the cave, but before ... it's time to dance!"
+  },
+  "messages.VC_transformación_flautista_1.txt": {
+    "message": "The diamond shines with an unreal beauty. You still remain almost unknown, you take you by the hand and you begin to dance for hours. <br/>"
+  },
+  "messages.VC_transformación_flautista_2.txt": {
+    "message": "Some memories reappear, remember to have danced between corals and jellyfish. When it seems that the veil of forgetfulness ... I leave the music stops and with it those sweet memories. <br/>"
+  },
+  "messages.VC_transformación_flautista_3.txt": {
+    "message": "Tardais a time give notice that it has dawned and the elf has stopped playing and has come back to the country back in shape flutist. <br/>"
+  },
+  "messages.VR_transformación_flautista_1.txt": {
+    "message": "The diamond shines with an unreal beauty. Dam uncontrolled joy, you start to spin and dance for hours, until the music stops and it takes a moment to realize that it has dawned and the elf has stopped playing and has come back to recapture the form of country flutist . <br/>"
+  },
+  "messages.VR_transformación_flautista_2.txt": {
+    "message": ""
+  },
+  "messages.VR_transformación_flautista_3.txt": {
+    "message": ""
+  },
+  "messages.DLG_VC_id_con_vieja.txt": {
+    "message": "Go where the old witch, she will know that the spell forgive you if you wear cursed diamond."
+  },
+  "messages.DLG_VR_id_con_vieja.txt": {
+    "message": "Go where the old witch, she knows forgive the spell that I cursed you and Kuko, if you bring the diamond."
+  },
+  "messages.flaustista_desaparece_tras_árbol.txt": {
+    "message": "Flutist leaps and disappears without further behind a tree. To follow in his footsteps, you see that disappear without further behind the tree. <br/>"
+  },
+  "messages.VC_fin_acto_2.txt": {
+    "message": "Here ends <br/> Act II: or how the elf danced the two lovebirds <br/> <br/>"
+  },
+  "messages.VR_fin_acto_2.txt": {
+    "message": "Here ends <br/> Act II: or how the elf danced Laila until dawn <br/> <br/>"
+  },
+  "messages.DLG_gracias_por_comida_%o1.txt": {
+    "message": "Please %o1! I will prepare grilled."
+  },
+  "messages.DLG_toma_flauta.txt": {
+    "message": "Take the flute, practice with it. When you've achieved sufficient mastery of it, look me up and show me what you know if you want my help."
+  },
+  "messages.DLG_aviso_espejo.txt": {
+    "message": "You know that your vision of snake can see what other hidden. Look calmly at the cabin and bring me what you find."
+  },
+  "messages.DLG_me_voy_al_risco.txt": {
+    "message": "I think I'll go take a nap in the ridge of the moon."
+  },
+  "messages.DLG_te_espero_vagabunda.txt": {
+    "message": "I hope there when you list with my stone princess. At midnight, with the hunter."
+  },
+  "messages.DLG_te_espero_cazador.txt": {
+    "message": "I hope there when you're ready to give me a beautiful tune, hunter. At midnight, with the tramp."
+  },
+  "messages.DLG_VC_adelanto_baile.txt": {
+    "message": "If you gratify me, tonight the moonstone shine in a special way and will regain something that you had lost, if only for a while."
+  },
+  "messages.DLG_VR_adelanto_baile.txt": {
+    "message": "I hope there when you're ready. At midnight come and visit, but only when you have achieved mastery of the flute and have the moonstone, which shine tonight especially."
+  },
+  "messages.DLG_aún_espero_comida_del_otro.txt": {
+    "message": "I hope your dreams bring me something to eat too."
+  },
+  "messages.DLG_primer_saludo.txt": {
+    "message": "Good morning, have we met? Your face looks familiar."
+  },
+  "messages.DLG_No_le_conozco.txt": {
+    "message": "I do not know, I think I should not talk to you."
+  },
+  "messages.DLG_deberías_ayudar_a_%o1.txt": {
+    "message": "It has nothing to bring you to you ... but you are a %o1."
+  },
+  "messages.DLG_yo_confío.txt": {
+    "message": "I trust you, what could I do for you to trust me?"
+  },
+  "messages.DLG_deberíamos_usar_armas.txt": {
+    "message": "We should use the weapons that we have exchanged."
+  },
+  "messages.DLG_deberías_cazar.txt": {
+    "message": "I already received my part, you should do the same."
+  },
+  "messages.DLG_deberías_visitar_flautista_1.txt": {
+    "message": "I might have to go visit the piper again."
+  },
+  "messages.DLG_deberías_visitar_flautista_2.txt": {
+    "message": "flutist think could help you."
+  },
+  "messages.DLG_recordar_flautista_en_risco.txt": {
+    "message": "Flutist quoted us on the ridge of the moon with the flute and the moonstone."
+  },
+  "messages.DLG_no_sé_qué_decir.txt": {
+    "message": "I do not know what to tell you."
+  },
+  "messages.DLG_debemos_conseguir_pócima.txt": {
+    "message": "We have to get the potion!"
+  },
+  "messages.DLG_debemos_llevar_agua_púrpura.txt": {
+    "message": "We should take the purple water to bring it to the sorceress."
+  },
+  "messages.DLG_vagabunda_aviso_1.txt": {
+    "message": "Please stay away from the road to the waterfall, you will not like me after I take the potion, until after delivery."
+  },
+  "messages.DLG_cazador_aviso_1.txt": {
+    "message": "I am very nervous, I do not know what happens when you take the potion; I am afraid, I will not leave you alone."
+  },
+  "messages.DLG_cazador_aviso_2.txt": {
+    "message": "Now I remember everything, honey. Remember that before you drink, you should let me hide."
+  },
+  "messages.DLG_te_avisé.txt": {
+    "message": "We had warned !, out of my way!"
+  },
+  "messages.DLG_vagabunda_aviso_2.txt": {
+    "message": "Honey, you remember everything, but when you take the potion I transform you into something I do not want you to see: out of my way to the waterfall or you will regret in the worst of ways."
+  },
+  "messages.DLG_no_puede_ser.txt": {
+    "message": "It can not be !, monster from hell!"
+  },
+  "messages.introWoman_1.txt": {
+    "message": "You're the princess of the sea, you should be swimming with other creatures like you ... instead of as now, with both legs and on land."
+  },
+  "messages.introWoman_2.txt": {
+    "message": "Confusing images. A handsome man in your world ... then, once on land, a log cabin, a fire. Noise, pain ... and now here in the middle of nowhere."
+  },
+  "messages.introWoman_3.txt": {
+    "message": "You get up and heavy you notes. Not only you are imprisoned in this body and out of your element, but discover you're pregnant and you do not know who the father is. <br/>"
+  },
+  "messages.introWoman_4.txt": {
+    "message": "'Father !, Mother !, I want to return with you - you cry inconsolably."
+  },
+  "messages.introWoman_5.txt": {
+    "message": "No emabargo, you know that your race when you are conceived by humans must give birth on land. Your child will be born human ... or else, more akin to you, but will not know until that moment, very close. <br/>"
+  },
+  "messages.introWoman_6.txt": {
+    "message": "Ui! Notes contraction. The time is going to be very close. You must find a protected location where light ... especially knowing that then regain your true appearance, which will freeze with horror and hatred of humans who see you. </ br>"
+  },
+  "messages.introMan_1.txt": {
+    "message": "You are're a hunter ranger of the few inhabitants of this remote region of the island. Live relatively close to your aunt, the goddess of the mountain."
+  },
+  "messages.introMan_2.txt": {
+    "message": "You are in your cabin ... well, what's left of it: burned ?, but what the hell happened here? You look around and find that the fire was very recently. There is still some smoldering embers. <br/>"
+  },
+  "messages.introMan_3.txt": {
+    "message": "What a headache! What happened? The last thing you remember is that you went to the underwater world in search of the magic hook that needed your brother, Hoderi."
+  },
+  "messages.introMan_4.txt": {
+    "message": "There was a beautiful girl, she moved with the grace of the dolphins ... and then a ray launched by the goddess of the mountain and the burning cabin."
+  },
+  "messages.introMan_5.txt": {
+    "message": "My aunt, in his cave beyond the southern lands, have to help me find out what happened. <br/>"
+  },
+  "messages.transfomación_vieja.txt": {
+    "message": "When the old take the diamond, he holds it up, utters some unintelligible sentences for you and diamond begins to shine brightly illuminating the entire cave. You realize now how huge is the cave. The old transforms itself before your eyes into a beautiful lady dressed in black, as the figure of the crossroads. <br/>"
+  },
+  "messages.VR_vieja_recibe_diamante.txt": {
+    "message": "-Hechicera: Thank you for returning the light stone had noisy elf. I need you to bring me the Purple water, you'll get mixing waters Three Fountains. When you bring me, I will pronounce a spell to light the sacred and consecrated water to drink you that you will recover the form that you lost."
+  },
+  "messages.VC_vieja_recibe_diamante.txt": {
+    "message": "-Hechicera: Thank you for returning the stone had Kukonichi light, in the form of country flutist. I do not ask how he knew. It is more powerful than it seems and could not take it off for good. I need you to bring me the Purple water, you'll get mixing waters Three Fountains. When you bring, returns with the other and utter a spell before the holy light, to prepare you a potion that will release the spell that you did. A drink that consecrated water, you will regain the memories that you snatched. <br/>"
+  },
+  "messages.hechicera_da_instrucciones.txt": {
+    "message": "-Hechicera Take these instructions for you to prepare me purple water because some water mixtures of the Three Fountains are somewhat special <br/> The witch gives you a scroll with instructions. <br/>."
+  },
+  "messages.%o1_desconfia.txt": {
+    "message": " %o1 looks at you suspiciously, no wonder sóis unknown."
+  },
+  "messages.DLG_me_voy.txt": {
+    "message": "Excuse me go, do not frequent strangers."
+  },
+	"messages.pulsa_para_ver_imagen_de_%o1.txt": {
+		"message": "Click to view image of %o1.<br/>"
+	}	
+}

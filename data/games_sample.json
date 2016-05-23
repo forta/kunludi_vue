@@ -1,0 +1,14 @@
+{
+	"games": [
+		{
+			"name": "game",
+			"type": "0",
+			"group": "0"
+		},
+		{
+			"name": "game2",
+			"type": "0",
+			"group": "0"
+		}
+	]
+}

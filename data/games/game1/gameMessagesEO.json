@@ -1,0 +1,140 @@
+{
+  "actions.play-instrument.txt": {
+    "message": "ludi"
+  },
+  "actions.play-instrument.disambiguator": {
+    "message": "instrumento"
+  },
+  "attributes.music-instrument.txt": {
+    "message": "Estas muzika instrumento, vi povas ludi %o1"
+  },
+  "items.harry.desc": {
+    "message": "Harry, la fina aventur-solvanto"
+  },
+  "items.harry.txt": {
+    "message": "Harry Harrison"
+  },
+  "items.limbo.desc": {
+    "message": "la limbo"
+  },
+  "items.limbo.txt": {
+    "message": "limbo"
+  },
+  "items.room.desc": {
+    "message": "Jen la startanta situon de la Ludi-a demo. Vi povas eliri, se vi havas la ŝlosilon kun vi."
+  },
+  "items.room.txt": {
+    "message": "ĉambro"
+  },
+  "items.door_room.desc": {
+    "message": "Estas simpla pordo"
+  },
+  "items.door_room.txt": {
+    "message": "pordo"
+  },
+  "items.exit.desc": {
+    "message": "Vi nun ekster la ĉambro"
+  },
+  "items.exit.txt": {
+    "message": "eliro"
+  },
+  "items.forest.desc": {
+    "message": "Vi nun estas fore de la domo. Vi nur povas kanti ĉi tie ..."
+  },
+  "items.forest.txt": {
+    "message": "arbaro"
+  },
+  "items.upthetree.desc": {
+    "message": "Vi estas sur la arbo"
+  },
+  "items.upthetree.txt": {
+    "message": "sur la arbo"
+  },
+  "items.box.desc": {
+    "message": "Estas nur fermita skatolo"
+  },
+  "items.box.txt": {
+    "message": "skatolo"
+  },
+  "items.key.desc": {
+    "message": "Estas simpla ŝlosilo"
+  },
+  "items.key.txt": {
+    "message": "ŝlosilo"
+  },
+  "items.rope1.desc": {
+    "message": "Estas malnova ŝnuro"
+  },
+  "items.rope1.txt": {
+    "message": "malnova ŝnuro"
+  },
+  "items.rope2.desc": {
+    "message": "Estas malpuraj ŝnuro"
+  },
+  "items.rope2.txt": {
+    "message": "malpura ŝnuro"
+  },
+  "items.rope3.desc": {
+    "message": "Estas longa ŝnuro"
+  },
+  "items.rope3.txt": {
+    "message": "longa ŝnuro"
+  },
+  "items.book.desc": {
+    "message": "Estas malnova libro"
+  },
+  "items.book.txt": {
+    "message": "libro"
+  },
+  "items.book2.desc": {
+    "message": "@items.book.desc"
+  },
+  "items.book2.txt": {
+    "message": "@items.book.txt"
+  },
+  "items.lamp.desc": {
+    "message": "Estas lampo"
+  },
+  "items.lamp.txt": {
+    "message": "lampo"
+  },
+  "items.flute.desc": {
+    "message": "La irlanda tin-whistle fluto"
+  },
+  "items.flute.txt": {
+    "message": "fluto"
+  },
+  "items.birds.desc": {
+    "message": "Estas malpuraj kolomboj"
+  },
+  "items.birds.txt": {
+    "message": "birdoj"
+  },
+  "items.flutist.desc": {
+    "message": "La bizara flutisto"
+  },
+  "items.flutist.txt": {
+    "message": "flutisto"
+  },
+  "items.woodcutter.desc": {
+    "message": "La senlabora arbo-hakisto"
+  },
+  "items.woodcutter.txt": {
+    "message": "arbo-hakisto"
+  },
+  "items.stick.desc": {
+    "message": "Bastonetoj"
+  },
+  "items.stick.txt": {
+    "message": "bastono"
+  },
+  "messages.You play %o1.txt": {
+    "message": "Vi ludos %o1"
+  },
+  "messages.Text book.txt": {
+    "message": "Se vi povas legi ĝin ... certe mi estas mortinta."
+  },
+  "messages.The flutist looks at you.txt": {
+    "message": "La flutisto rigardas vin."
+  }
+}

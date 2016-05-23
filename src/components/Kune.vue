@@ -1,12 +1,8 @@
 <template>
   <div class="kune">
-    <h1>Kune</h1>
-    <h1>userId: {{ userId }}</h1>
-
-	<div v-show="userId == 'annonymous'">
-    	<!-- <a v-link="{ name: 'user',  params: { userId:userId } } " > Login | </a> --> 
-	</div>
-	<div v-else>
+  	<h2>{{myi18n.Together.message}}</h2>
+	<div v-show="userId != ''">
+        <h3>{{myi18n.Username.message}}: {{ userId }}</h3>
         <button v-on:click="logout">Logout</button>
         <a v-show="userId != 'annonymous'"  v-link="{ path: '/kune/messages' }"> Messages | </a>
         <a v-show="userId != 'annonymous'"  v-link="{ path: '/kune/boards' }"> Boards | </a>
@@ -14,11 +10,10 @@
     <router-view></router-view>
   </div>
 </template>
-
 <script>
 
 import store from '../vuex/store'
-import { getUserId } from '../vuex/getters'
+import { geti18n,  getUserId } from '../vuex/getters'
 import * as actions from '../vuex/actions'
 
 export default {
@@ -35,6 +30,7 @@ export default {
   store: store,
   vuex: {
     getters: {
+        myi18n: geti18n,
        userId: getUserId
     },
     actions: actions

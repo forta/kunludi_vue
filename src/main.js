@@ -13,7 +13,7 @@ var router = new VueRouter()
 
 // VueRouter.use(Vuex)
 
-var store = require('./vuex//store.js')
+var store = require('./vuex/store.js')
 
 //Vue.http.options.emulateJSON = true;
 Vue.http.options.emulateHTTP = true;

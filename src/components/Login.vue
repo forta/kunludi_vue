@@ -1,14 +1,20 @@
 <template>
   <div class="login">
-    <button @click='increment'>Increment +1</button>
-    <p>External user name: {{userId}}</p>
-
-	<div v-show="userId == 'annonymous'">
-  		<label>Please type your user name and press enter: </label>
-        <input v-model="newUserId" v-on:keyup.enter="modifyUserId">
-	</div>
-	<div v-else>
-        <p>Internal user name: {{newUserId}}</p>
+	<div v-show="userId == ''">
+  		
+        <!-- <p>Please type your user name and password to logon: </p> -->
+        <label> Your user name and push enter: </label><input v-model="newUserId" v-on:keyup.enter="modifyUserId"><br/>
+        <!--
+  		<label>Password: </label> <input v-model="newUserId2">
+        
+        <br/>
+         
+  		<p>Or create a new aocout: </p>
+  		<label>New user name: </label> <input v-model="newUserId2"><br/>
+  		<label>Password: </label> <input v-model="newPwd"><br/>
+  		<label>email: </label> <input v-model="newEmail">
+        -->
+        
 	</div>
   </div>
 </template>
@@ -22,7 +28,7 @@ import * as actions from '../vuex/actions'
 export default {
   data () {
     return {
-      newUserId: 'annonymous'
+      newUserId: ''
     }
   },
   created: function () {
@@ -38,7 +44,6 @@ export default {
 		  if (text) {
 			this.newUserId = text
             store.dispatch('SETUSERID', text)
-            store.dispatch('INCREMENT')
 		  }
 	}
   },
@@ -66,4 +71,9 @@ export default {
 h1 {
   color: #42b983;
 }
+
+.login {
+  text-align: left;
+}
+
 </style>

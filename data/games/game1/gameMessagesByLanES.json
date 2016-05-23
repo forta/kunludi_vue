@@ -1,0 +1,64 @@
+﻿ {
+    "items.harry.articulo": {
+        "message": ""
+    },
+    "items.limbo.articulo": {
+        "message": "el"
+    },
+    "items.room.articulo": {
+        "message": "la"
+    },
+    "items.door_room.articulo": {
+        "message": "la"
+    },
+    "items.exit.articulo": {
+        "message": "la"
+    },
+    "items.forest.articulo": {
+        "message": "el"
+    },
+    "items.upthetree.articulo": {
+        "message": "el"
+    },
+    "items.box.articulo": {
+        "message": "la"
+    },
+    "items.key.articulo": {
+        "message": "la"
+    },
+    "items.rope1.articulo": {
+        "message": "la"
+    },
+    "items.rope2.articulo": {
+        "message": "la"
+    },
+    "items.rope3.articulo": {
+        "message": "la"
+    },
+    "items.book.articulo": {
+        "message": "el"
+    },
+    "items.lamp.articulo": {
+        "message": "la"
+    },
+    "items.flute.articulo": {
+        "message": "la"
+    },
+    "items.birds.articulo": {
+        "message": "las"
+    },
+    "items.flutist.articulo": {
+        "message": "el"
+    },
+    "items.woodcutter.articulo": {
+        "message": "el"
+    },
+    "items.book2.article": {
+        "message": "el"
+    },
+    "items.book2.pronoun": {
+        "message": "el"
+    }
+}
+
+ 

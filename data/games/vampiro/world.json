@@ -1,0 +1,243 @@
+{
+    "items": [
+        {
+            "id": "prota",
+            "type": "pc",
+            "loc": "vestibulo"
+        },
+        {
+            "id": "limbo",
+            "type": "loc"
+        },
+        {
+			"id": "vestibulo",
+            "type": "loc",
+			"address":[  
+				{  	"dir":"d0",	"target":"pasillo"	},
+				{  	"dir":"out", "locked":"true"  }
+			],
+            "att": {
+				"gameParameters": []
+            }
+        },
+        {
+			"id": "pasillo",
+            "type": "loc",
+			"address":[  
+				{  "dir":"d0", "target":"escaleras"  },
+			    {  "dir":"d180", "target":"vestibulo"  },
+				{  "dir":"d90", "target":"biblioteca"  },
+				{  "dir":"d270", "target":"cocina"  }
+			]
+        },
+        {
+			"id": "escaleras",
+            "type": "loc",
+			"address":[  
+				{  "dir":"d180", "target":"pasillo"  },
+				{  "dir":"up", "target":"escaleras_superiores"},
+				{  "dir":"down", "target":"sotano"},
+				{  "dir":"d270", "target":"dormitorio"},
+				{  "dir":"d90", "target":"sala_estar"}
+			]
+        },
+        {
+			"id": "biblioteca",
+            "type": "loc",
+			"address":[  
+				{  "dir":"d270", "target":"pasillo"  }
+			]
+        },
+        {
+			"id": "cocina",
+            "type": "loc",
+			"address":[  
+				{  "dir":"d90", "target":"pasillo"  }
+			]
+        },
+		{
+			"id": "escaleras_superiores",
+            "type": "loc",
+			"address":[  
+				{  	"dir":"down", "target":"escaleras"  },
+				{  	"dir":"d270", "target":"final"  }
+			]
+        },
+		{
+			"id": "final",
+            "type": "loc",
+			"address":[  
+				{  	"dir":"d90", "target":"escaleras_superiores"  }
+			]
+        },
+		{
+			"id": "sotano",
+            "type": "loc",
+			"address":[  
+				{  	"dir":"up", "target":"escaleras"  }
+			]
+        },
+		{
+			"id": "sala_estar",
+            "type": "loc",
+			"address":[  
+				{  	"dir":"d270", "target":"escaleras"  }
+			]
+        },
+		{
+			"id": "dormitorio",
+            "type": "loc",
+			"address":[  
+				{  	"dir":"d90", "target":"escaleras"  }
+			]
+        },
+		{
+			"id": "traje",
+            "type": "obj",
+            "loc": "prota"
+        },
+        {
+			"id": "cacerolas",
+            "type": "obj",
+            "loc": "cocina"
+        },
+        {
+			"id": "horno",
+            "type": "obj",
+            "loc": "cocina"
+        },
+        {
+			"id": "fregadero",
+            "type": "obj",
+            "loc": "cocina"
+        },
+        {
+			"id": "armario_pequeño",
+            "type": "obj",
+            "loc": "cocina",
+			"att":{  
+				"isOpen": []
+			}			
+        },
+        {
+			"id": "cuchillo",
+            "type": "obj",
+            "loc": "cocina"
+        },
+        {
+			"id": "cama",
+            "type": "obj",
+            "loc": "dormitorio"
+        },
+        {
+			"id": "sábanas",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "llave",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "armario",
+            "type": "obj",
+            "loc": "dormitorio"
+        },
+        {
+			"id": "ajos",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "chimenea",
+            "type": "obj",
+            "loc": "sala_estar"
+        },
+        {
+			"id": "madera",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "mesa",
+            "type": "obj",
+            "loc": "sala_estar"
+        },
+        {
+			"id": "silla",
+            "type": "obj",
+            "loc": "sala_estar"
+        },
+        {
+			"id": "trofeos",
+            "type": "obj",
+            "loc": "sala_estar"
+        },
+        {
+			"id": "adornos",
+            "type": "obj",
+            "loc": "sala_estar"
+        },
+        {
+			"id": "barril",
+            "type": "obj",
+            "loc": "sotano",
+			 "att":{  
+				"isOpen": []
+			 }			
+        },
+        {
+			"id": "estaca",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "martillo",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "cruz",
+            "type": "obj",
+            "loc": "biblioteca"
+        },
+        {
+			"id": "palanca",
+            "type": "obj",
+            "loc": "biblioteca"
+        },
+        {
+			"id": "ataud",
+            "type": "obj",
+            "loc": "final",
+			 "att":{  
+				"isOpen": []
+			 }			
+        }
+    ],
+	"attributes":[  
+	  {  
+         "id":"gameParameters",
+		 "properties": [
+                { "id": "version", "value": "", "use":"mandatory" }	
+          ]		 
+      }	  
+    ],
+	"actions": [
+      {  
+         "id":"afilar",
+         "numpar":"1",
+         "on":[  
+            "obj"
+         ]
+      }
+	],
+	"directions": [	],
+	"attExceptions":[
+	  {  
+         "id":"isTakeAble",
+         "exceptionList": ["cacerolas", "horno", "fregadero", "armario_pequeño", "cama", "sábanas", "armario", "sábanas", "mesa", "silla", "trofeos", "adornos", "chimenea", "barril", "ataud" ]
+	  } 	  
+   ]   
+}

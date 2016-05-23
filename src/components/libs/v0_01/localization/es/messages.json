@@ -1,0 +1,338 @@
+﻿{
+    "actions.look.txt": {
+        "message": "mirar"
+    },
+    "actions.go.txt": {
+        "message": "ir"
+    },
+    "actions.ex.txt": {
+        "message": "examinar"
+    },
+    "actions.take.txt": {
+        "message": "coger"
+    },
+    "actions.drop.txt": {
+        "message": "dejar"
+    },
+    "actions.talk.txt": {
+        "message": "hablar"
+    },
+    "actions.become.txt": {
+        "message": "convertirse en"
+    },
+    "actions.put_into.txt": {
+        "message": "meter dentro"
+    },
+    "actions.give.txt": {
+        "message": "dar"
+    },
+    "actions.take_from.txt": {
+        "message": "sacar de"
+    },
+    "actions.ask_about.txt": {
+        "message": "preguntar acerca"
+    },
+    "actions.ask_from.txt": {
+        "message": "pedir"
+    },
+    "actions.show_to.txt": {
+        "message": "mostrar a"
+    },
+    "actions.read.txt": {
+        "message": "leer"
+    },
+    "actions.turnon.txt": {
+        "message": "encender"
+    },
+    "actions.turnoff.txt": {
+        "message": "apagar"
+    },
+    "actions.sing.txt": {
+        "message": "cantar"
+    },
+    "actions.where.txt": {
+        "message": "dónde"
+    },
+    "actions.open.txt": {
+        "message": "open"
+    },
+    "actions.close.txt": {
+        "message": "close"
+    },
+    "actions.unlock.txt": {
+        "message": "unlock"
+    },
+    "actions.lock.txt": {
+        "message": "lock"
+    },
+    "actions.look_dir.txt": {
+        "message": "mirar-dir"
+    },
+   	"actions.investigate.txt": {
+        "message": "investigar"
+    },
+	"actions.dig_with.txt": {
+        "message": "cavar-con"
+    },
+	"actions.climb.txt": {
+        "message": "escalar"
+    },
+	"actions.swim.txt": {
+        "message": "nadar"
+    },
+	"actions.jump.txt": {
+        "message": "saltar"
+    },
+	"actions.tie.txt": {
+        "message": "atar"
+    },
+	"actions.untie.txt": {
+        "message": "desatar"
+    },
+	"actions.drink.txt": {
+        "message": "beber"
+    },
+	"actions.eat.txt": {
+        "message": "comer"
+    },
+	"actions.listen.txt": {
+        "message": "escuchar"
+    },
+	"actions.smell.txt": {
+        "message": "oler"
+    },
+	"actions.wakeup.txt": {
+        "message": "despertar"
+    },
+	"actions.attack.txt": {
+        "message": "atacar"
+    },
+	"actions.strike.txt": {
+        "message": "golpear"
+    },
+	"actions.stop.txt": {
+        "message": "parar"
+    },
+	"actions.burn.txt": {
+        "message": "quemar"
+    },
+	"actions.throwAction.txt": {
+        "message": "lanzar"
+    },
+	"actions.pull.txt": {
+        "message": "halar"
+    },
+	"actions.raise.txt": {
+        "message": "levantar"
+    },
+	"actions.wait.txt": {
+        "message": "esperar"
+    },
+	"actions.attack-with.txt": {
+        "message": "atacar-con"
+    },
+	"attributes.container.txt": {
+        "message": "%o1 es un contenedor"
+    },
+    "attributes.openclose.txt": {
+        "message": "Se puede abrir y cerrar"
+    },
+    "attributes.turnonoff.txt": {
+        "message": "Se puede encender y apagar"
+    },
+    "attributes.readable.txt": {
+        "message": "Puedes leer %o1"
+    },
+    "attributes.wearable.txt": {
+        "message": "Se puede poner y quitar de encima"
+    },
+    "attributes.notTakeAble.txt": {
+        "message": "(No se puede coger)"
+    },
+    "directions.d0.txt": {
+        "message": "n"
+    },
+    "directions.d45.txt": {
+        "message": "ne"
+    },
+    "directions.d90.txt": {
+        "message": "e"
+    },
+    "directions.d135.txt": {
+        "message": "se"
+    },
+    "directions.d180.txt": {
+        "message": "s"
+    },
+    "directions.d225.txt": {
+        "message": "so"
+    },
+    "directions.d270.txt": {
+        "message": "o"
+    },
+    "directions.d315.txt": {
+        "message": "no"
+    },
+    "directions.in.txt": {
+        "message": "dentro"
+    },
+    "directions.out.txt": {
+        "message": "fuera"
+    },
+    "directions.up.txt": {
+        "message": "arriba"
+    },
+    "directions.down.txt": {
+        "message": "abajo"
+    },
+    "directions.d0.desc": {
+        "message": "norte"
+    },
+    "directions.d45.desc": {
+        "message": "noreste"
+    },
+    "directions.d90.desc": {
+        "message": "este"
+    },
+    "directions.d135.desc": {
+        "message": "sudeste"
+    },
+    "directions.d180.desc": {
+        "message": "sur"
+    },
+    "directions.d225.desc": {
+        "message": "sudoeste"
+    },
+    "directions.d270.desc": {
+        "message": "oeste"
+    },
+    "directions.d315.desc": {
+        "message": "noroeste"
+    },
+    "directions.in.desc": {
+        "message": "dentro"
+    },
+    "directions.out.desc": {
+        "message": "fuera"
+    },
+    "directions.up.desc": {
+        "message": "arriba"
+    },
+	"directions.down.desc": {
+        "message": "abajo"
+    },
+    "messages.with objects inside.txt": {
+        "message": "con objetos dentro"
+    },
+    "messages.You just have it!.txt": {
+        "message": "Ya lo tienes!"
+    },
+    "messages.You take %o1.txt": {
+        "message": "Coges %o1"
+    },
+    "messages.You don't have it!.txt": {
+        "message": "No lo tienes!"
+    },
+    "messages.You drop it on %o1.txt": {
+        "message": "Lo dejas caer en %o1"
+    },
+    "messages.You talk with %o1.txt": {
+        "message": "Hablas con %o1"
+    },
+    "messages.but without any reaction.txt": {
+        "message": "pero sin conseguir ninguna reacción"
+    },
+    "messages.You become %o1.txt": {
+        "message": "¡Te conviertes en %o1!"
+    },
+    "messages.You shoud mark a container first.txt": {
+        "message": "Debes marcar un contenedor primero"
+    },
+    "messages.You cannot %v1.txt": {
+        "message": "No puedes %v1"
+    },
+    "messages.You cannot put a object into itself.txt": {
+        "message": "No puedes poner un objeto dentro de si mismo"
+    },
+    "messages.The marked object must be a container.txt": {
+        "message": "El objeto marcado debe ser un contenedor"
+    },
+    "messages.You put %o1 into %o2.txt": {
+        "message": "Metes %o1 en %o2"
+    },
+    "messages.You take %o1 from %o2.txt": {
+        "message": "Coger %o1 de %o2"
+    },
+    "messages.You examine %o1.txt": {
+        "message": "Examinas %o1."
+    },
+    "messages.You read %o1.txt": {
+        "message": "Lees %o1"
+    },
+    "messages.You turn on %o1.txt": {
+        "message": "Enciendes %o1"
+    },
+    "messages.You turn off %o1.txt": {
+        "message": "Apagas %o1"
+    },
+    "messages.Default book.txt": {
+        "message": "Parece algo de aburrida lectura"
+    },
+    "messages.You sing.txt": {
+        "message": "Cantas"
+    },
+    "messages.You selected.txt": {
+        "message": "Elegiste"
+    },
+    "messages.where %o1 was?.txt": {
+        "message": "¿Dónde estaba %o1?"
+    },
+    "messages.location unknown of %o1.txt": {
+        "message": "No sabes donde estaba %o1"
+    },
+    "messages.The game is over.txt": {
+        "message": "El juego terminó"
+    },
+    "messages.Introduction.txt": {
+        "message": "Introducción"
+    },
+    "messages.You eat %o1.txt": {
+        "message": "Comes %o1"
+    },
+    "messages.You go to %d1.txt": {
+        "message": "Vas al %d1"
+    },
+    "messages.Game Instructions.txt": {
+        "message": "Instrucciones del juego"
+    },
+    "messages.There is %o1.txt": {
+        "message": "Hay %o1"
+    },
+    "messages.To %d1 there is %o2.txt": {
+        "message": "Hacia %d1 hay %o2"
+    },
+    "messages.You can see.txt": {
+        "message": "Puedes ver"
+    },
+    "messages.%o1 does not react when you ask about %o2.txt": {
+        "message": "%o1 no reacciona cuando preguntas por %o2"
+    },
+    "messages.%o1 does not react when you ask for %o2.txt": {
+        "message": "%o1 no reacciona cuando pides %o2"
+    },
+    "messages.%o1 does not react when you show %o2.txt": {
+        "message": "%o1 no reacciona cuando muestras %o2"
+    },
+    "messages.You try to give o1 to o2.txt": {
+        "message": "Tratas de dar %o1 a %o2, sin resultado."
+    }, 
+    "messages.You just jump!.txt": {
+        "message": "Simplemente... ¡saltas!"
+    },
+    "messages.Time runs.txt": {
+        "message": "El tiempo corre"
+    },
+    "messages.Locked direction.txt": {
+        "message": "Dirección bloqueada."
+    }
+}

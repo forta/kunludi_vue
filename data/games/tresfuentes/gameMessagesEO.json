@@ -1,0 +1,977 @@
+{
+  "items.vagabunda.desc": {
+    "message": "Ĝi estas malpura vagabondino. Ŝi estas graveda kaj estas vestita en malseka mantelo."
+  },
+  "items.vagabunda.txt": {
+    "message": "vagantino"
+  },
+  "items.cazador.desc": {
+    "message": "Estas monto ĉasisto."
+  },
+  "items.cazador.txt": {
+    "message": "ĉasisto"
+  },
+  "items.rosa_vientos.desc": {
+    "message": "Vi povas iri al la kvar punktoj cardinales, ĉiu indikita per ŝtono figuro de malsama koloro."
+  },
+  "items.rosa_vientos.txt": {
+    "message": "Crossroad"
+  },
+  "items.cabaña.desc": {
+    "message": "Vi estas en brula kabano."
+  },
+  "items.cabaña.txt": {
+    "message": "kajuto"
+  },
+  "items.río.desc": {
+    "message": "Apud la rivero de la akvo de verda potenco kaj aliaj alfluantoj al la malproksima maro."
+  },
+  "items.río.txt": {
+    "message": "rivero"
+  },
+  "items.risco_luna.desc": {
+    "message": "En ĉi facile atingebla cumbrecilla diras plenluno noktoj strangaj aferoj okazas."
+  },
+  "items.risco_luna.txt": {
+    "message": "Luno klifo"
+  },
+  "items.figura_verde.desc": {
+    "message": "Ĝi estas verda elfo ludante fluton kun indikanta norde."
+  },
+  "items.figura_verde.txt": {
+    "message": "verda figuro"
+  },
+  "items.figura_roja.txt": {
+    "message": "ruĝa figuro"
+  },
+  "items.figura_dorada.desc": {
+    "message": "Sur monto de ora ŝtonoj, oro kiel ministo nano indikas okcidente."
+  },
+  "items.figura_dorada.txt": {
+    "message": "ora figuro"
+  },
+  "items.figura_negra.desc": {
+    "message": "La figuro havas la formon de mistera virino kiu estas la kaŝita vizaĝo sub vualo kaj tero alfrontanta sude."
+  },
+  "items.figura_negra.txt": {
+    "message": "nigra figuro"
+  },
+  "items.fuente_roja.desc": {
+    "message": "Io estas malagrabla kontempli la mola tavolo de ruĝeta akvo diapozitivoj malsupren la monto muroj kreante tavolo de musko kaj kreante malgranda flako de sango apero. Ekde drakoj markis la vojon tie estas kiu la sango de drakoj iam vivis sur supro de la monto?"
+  },
+  "items.fuente_roja.txt": {
+    "message": "Ruĝa Fonto"
+  },
+  "items.pájaros.txt": {
+    "message": "birdoj"
+  },
+  "items.pescados.txt": {
+    "message": "fiŝo"
+  },
+  "items.agua_roja.desc": {
+    "message": "La ruĝa ŝajnas veni simple restas de koto, sed alie similas sekura."
+  },
+  "items.agua_roja.txt": {
+    "message": "ruĝa akvo"
+  },
+  "items.tierras_sur.desc": {
+    "message": "Ĉe la bazo de la sudaj montoj kiuj leviĝas krute al la pinto, nekapabla grimpi."
+  },
+  "items.tierras_sur.txt": {
+    "message": "La Southlands"
+  },
+  "items.basura.txt": {
+    "message": "malŝparo"
+  },
+  "items.fuente_verde.txt": {
+    "message": "Verda Fonto"
+  },
+  "items.agua_verde.desc": {
+    "message": "Iuj verda filamentoj kiuj donas koloron, sed alie ŝajnas trinkakvo."
+  },
+  "items.agua_verde.txt": {
+    "message": "verda akvo"
+  },
+  "items.fuente_dorada.txt": {
+    "message": "La Ora Fontano"
+  },
+  "items.fuente_dorada.desc": {
+    "message": "Por nana figuro transirante la vojon, probable el tiu ĉi regiono kiuj diligente nano ministoj serĉis oron trapikis unu valo. Ili certe estis multaj kiuj provis sekvi la kurson de subteraj riveroj trovi la oron mia, sed ŝajnas ke neniu sukcesis. la flava akvo estas naŭza and'd diri ĝi estas la nomo de la akvo drako ruĝa tiparo ... almenaŭ ĝi odoras pii drako, yuck! La fonto estas fakte malgranda rivereto de akvo eliranta de la fendo de la monto, kaj malgranda rivereto ventoj tiel cent metroj libera ĉielo antaŭ reveni al kaŝi en fendo en la monto. Ĉi tie vi povas spiri de la fetoro emanas el la ora akvo."
+  },
+  "items.agua_dorada.desc": {
+    "message": "Reeks de sulfuro. Se mi estus vi aŭ tuŝis."
+  },
+  "items.agua_dorada.txt": {
+    "message": "la ora akvo"
+  },
+  "items.cueva_bruja.txt": {
+    "message": "La Cueva de La Vieja"
+  },
+  "items.hechicera.desc": {
+    "message": "La bela sorĉistino sekretoj"
+  },
+  "items.hechicera.txt": {
+    "message": "la sorĉistino"
+  },
+  "items.caldero.desc": {
+    "message": "Malpura sorĉistino kaldrono. Pli bona ne scii kion ingrediencoj tien."
+  },
+  "items.caldero.txt": {
+    "message": "kaldrono"
+  },
+  "items.pergamino.desc": {
+    "message": "Se vi deziras akiri purpura akvo, vi devas sekvi ĉi tiujn regulojn: Regulo 1: Memoru ke elfoj kaj gnomoj ne ŝatas esti kune. Regulo 2: la drako volas esti kun oro. Regulo 3: Kiam la tri rasoj kunvenas, la elfo ŝatas esti unua"
+  },
+  "items.pergamino.txt": {
+    "message": "pergameno"
+  },
+  "items.caverna_dragón.desc": {
+    "message": "En la vasta kaverno de la drako. Estas nekredebla kiel ĉi tiu malgranda tavolo de akvo protektas tiun lokon el la ekstera mondo. Ŝanĝi lumo interkonsiliĝoj fari ĉi loko ŝajnis nereala, kiel alia universo."
+  },
+  "items.caverna_dragón.txt": {
+    "message": "Dragon Cave"
+  },
+  "items.escondite.desc": {
+    "message": "Malgranda, malhela kaverno ene"
+  },
+  "items.escondite.txt": {
+    "message": "kaŝejo"
+  },
+  "items.pócima.desc": {
+    "message": "Watching la pocio de rememoro, kiu ŝanĝas koloron, kvazaŭ la ĉielarko estis kaptita ene."
+  },
+  "items.pócima.txt": {
+    "message": "la pocio"
+  },
+  "items.agua_púrpura.desc": {
+    "message": "Purpúrero havas tre strangan koloron."
+  },
+  "items.agua_púrpura.txt": {
+    "message": "Purpura akvo"
+  },
+  "items.agua_naranja.desc": {
+    "message": "La influo de io ruĝa akvo atenúa la odoro de sulfuro."
+  },
+  "items.agua_naranja.txt": {
+    "message": "oranĝo akvo"
+  },
+  "items.flauta.desc": {
+    "message": "Ses-truo fluto, rustika versio vi vidis en la verda figuro."
+  },
+  "items.flauta.txt": {
+    "message": "Fluto"
+  },
+  "items.flauta-mágica.desc": {
+    "message": "Ses-truo fluto, identa al la figuro vestita en verda."
+  },
+  "items.flauta-mágica.txt": {
+    "message": "La Magia Fluto"
+  },
+  "items.anzuelo.desc": {
+    "message": "Granda hoko farita de neoksidebla metalo ŝajne."
+  },
+  "items.anzuelo.txt": {
+    "message": "la hoko"
+  },
+  "items.flautista.txt": {
+    "message": "flutisto"
+  },
+  "items.camisa.desc": {
+    "message": "Rusta ĉemizon."
+  },
+  "items.camisa.txt": {
+    "message": "Ĉemizo"
+  },
+  "items.espejo.txt": {
+    "message": "la spegulo"
+  },
+  "items.onda.desc": {
+    "message": "Ondo de ĉasado."
+  },
+  "items.onda.txt": {
+    "message": "ondo"
+  },
+  "items.cuenco.desc": {
+    "message": "Rusta bovlo."
+  },
+  "items.cuenco.txt": {
+    "message": "bovlo"
+  },
+  "items.diamante.desc": {
+    "message": "Tio estas diamanto de signifa grandeco, Vi devas valoros multe."
+  },
+  "items.diamante.txt": {
+    "message": "Diamanto"
+  },
+  "items.vieja.desc": {
+    "message": "La aĉaj malnova kaverno"
+  },
+  "items.vieja.txt": {
+    "message": "Malnova"
+  },
+  "messages.Introduction.txt": {
+    "message": "Tri fontanoj. % UOn omaĝo al la kanaria insulo de La Palma kaj lia belega akvofalo colores__http: //www.lamoradadelviajero.es/la-cascada-de-colores-un-manantial-de-paz/%. Tie la aventuro de la sekreto de la Tri Fontoj komencas. Se vi havas demandojn pri la ludo, vi povas kontakti la aŭtoron ĉe: %uludi.ludon@gmail.com__mailto: ludi.ludon@gmail.com%."
+  },
+  "actions.play-instrument.txt": {
+    "message": "ludi"
+  },
+  "messages.practicar_flauta_1.txt": {
+    "message": "FIU, FIU, fluto conchambrosa nur faras bruon sen graco, se vi scias nur meti viajn fingrojn en la truoj. <br/>"
+  },
+  "messages.practicar_flauta_2.txt": {
+    "message": "Post multa praktiko, vi ricevas iri asociante sonoj fingradoj fingroj .. <br/>"
+  },
+  "messages.practicar_flauta_3.txt": {
+    "message": "Kun praktiko, oni lernas ludi per orelo iuj konataj melodioj .. <br/>"
+  },
+  "messages.practicar_flauta_4.txt": {
+    "message": "Praktiko estas la patrino de lerteco, vi ne estas justa, sed ĝis nun povus gajni kvaran ludado en la strato .. <br/>"
+  },
+  "messages.al_pasar_delante_figura.txt": {
+    "message": "Pasante de%o1 povas helpi sed observi: "
+  },
+  "messages.cazador_atraviesa_catarata.txt": {
+    "message": "Kun tre penado, vi iras tra la muro de akvo de la akvofalo. <br/>"
+  },
+  "messages.VR_dragona_atraviesa_catarata_1.txt": {
+    "message": "Igita drako, "
+  },
+  "messages.VC_dragona_atraviesa_catarata_2.txt": {
+    "message": "Igita mara monstro, "
+  },
+  "messages.dragona_atraviesa_catarata_2.txt": {
+    "message": "iri tra la muro de akvo de la akvofalo sen malfacilaĵo. <br/>"
+  },
+  "messages.VR_reflejo_catarata.txt": {
+    "message": "Vin vidas reflektita en verda tiparon ... estas vi, sed vi ne ... nur vi rekonas de mem serpento okuloj. Tiu korpo de virino vi ne povis trairi la akvofalo, tiel nun vi ne provos ... sed estas drako en vi. <br/>"
+  },
+  "messages.VC_reflejo_catarata.txt": {
+    "message": "Vi aspektas en la spegulo kaj konfesu viajn fonto verda serpento okuloj. Ĉu vi ne riskus endanĝerigi la vivon de via filo ... ankoraŭ. <br/>"
+  },
+  "messages.cueva_bruja_innaccesible_dragona.txt": {
+    "message": "Lasante grandaj ŝtonoj falis kaj ne plu estas atingebla por iu via grandeco. <br/>"
+  },
+  "messages.cueva_bruja_innaccesible_vagabunda.txt": {
+    "message": "Fendo en la bazo de la monto al la sudo, sugestante eniro en la montojn, sed fortika planto dornaj ne permesas vin. <br/>"
+  },
+  "messages.No_puedes_salir_de_cueva_bruja.txt": {
+    "message": "Vi kreskis multe, kaj ne konvenas tra la fendo eligo kaj ne povas forlasi la kaverno! <br/>"
+  },
+  "messages.no_llevas_portaagua %o1.txt": {
+    "message": "Vi havas nenion por preni%o1"
+  },
+  "messages.recuerdas_regla %s1.txt": {
+    "message": "Memoru regulo numero% s1 al vi la sorĉistino. <br/>"
+  },
+  "messages.contenido_cuenco_no_cambia.txt": {
+    "message": "La enhavo de la bovlo ne ŝanĝas. <br/>"
+  },
+  "messages.regla1.txt": {
+    "message": "La verda likvaĵo simbolas la elfoj kaj rezistas ke vi metis likva sur supro. Kiel la elfoj ĉiam volas esti la lastaj en alveni. <br/>"
+  },
+  "messages.efecto_regla1.txt": {
+    "message": "La likva komencas turni verda en la bovlo. Vi himnotiza, elfo ŝajnas esti formita kaj leviĝas en la aeron, lasante la malplena bovlo. <br/>"
+  },
+  "messages.regla2.txt": {
+    "message": "La verda kaj ora likvaĵo reprezenti arbaro elfoj kaj gnomoj oro. Kiel akvo kaj oleo ne miksas aŭ hazarde. <br/>"
+  },
+  "messages.efecto_regla2.txt": {
+    "message": "La oran likva komencas bobelo kaj varmo kaj vaporiĝi antaŭ vi ricevas por preni la verda akvo. <br/>"
+  },
+  "messages.regla3.txt": {
+    "message": "La verda kaj ora likvaĵo reprezenti arbaro elfoj kaj draka sango. La drakoj ne ŝatas esti rajdita fare elfoj. <br/>"
+  },
+  "messages.efecto_regla3.txt": {
+    "message": "La bovlo komencas movi kiel ĉevalo kiu ne volas esti dresita, kaj la akvo eble falas teren. <br/>"
+  },
+  "messages.liquido_contenido %o1 %o2.txt": {
+    "message": " Ĝi havas %o1 Aŭ %o2. <br/>"
+  },
+  "messages.efecto_desconocido.txt": {
+    "message": "Ial, la likva miksaĵo reagas! <br/>"
+  },
+  "messages.pájaros_no_capturables.txt": {
+    "message": "Birdoj kiuj traboris efika, vi flaras mejlon kaj flugi. <br/>"
+  },
+  "messages.pájaros_son_capturados.txt": {
+    "message": "Ĉu la lancojn kaj du el ili estas kaptitaj en ĝi; La resto iras flugante. <br/>"
+  },
+  "messages.pájaros_no_son_capturados.txt": {
+    "message": "La provo ĉasi, sed estas pli rapida ol vi. Eble ĵetante ion sur ... <br/>"
+  },
+  "messages.pescados_no_capturables.txt": {
+    "message": "La fiŝo estas kvazaŭ vi sentis de malproksime, kaj nenion pli alproksimigi for sen vi ne povas vidi ilin. <br/>"
+  },
+  "messages.pescados_son_capturados.txt": {
+    "message": "Kun la hoko kaj algluita vi faras improvizita fiŝkaptado vergo kaj vi ricevas unu. <br/>"
+  },
+  "messages.pescados_no_son_capturados.txt": {
+    "message": "La provo fiŝkaptado, sed estas pli rapida ol vi. Eble, kun io ... <br/>"
+  },
+  "messages.pájaros_libres.txt": {
+    "message": "Birdoj trinki pace kun ruĝa lageto. <br/>"
+  },
+  "messages.pájaros_capturados.txt": {
+    "message": "Vi kaptis birdojn. <br/>"
+  },
+  "messages.pescados_libres.txt": {
+    "message": "La fiŝoj movas proksime de la riverbordo. <br/>"
+  },
+  "messages.pescados_capturados.txt": {
+    "message": "La fiŝo kaptis vin. <br/>"
+  },
+  "messages.VR_figura_roja.txt": {
+    "message": "La figuro estas formita de du malgrandaj ruĝaj drakoj interplektitaj indikanta la vojon de tiu. Sub surskribo kaj nomoj estas legitaj. Laila kaj Kuko <br/>"
+  },
+  "messages.VC_figura_roja.txt": {
+    "message": "La figuro reprezentas ruĝan drakon alfrontas oriente. <br/>"
+  },
+  "messages.al_examinar_basura_aparece_cuenco.txt": {
+    "message": "Vi veku inter branĉoj kaj polvo, vi malkovras rustigxis meznivela bovlo"
+  },
+  "messages.junto_con_cuenco_aparece_camisa.txt": {
+    "message": " kaj malpuran ĉemizon. <br/>"
+  },
+  "messages.vagabunda_ante_espejo.txt": {
+    "message": "Kiel strange estas vidi vin kun tiu granda ventro. Vi ankoraŭ havas vian serpento okuloj. <br/>"
+  },
+  "messages.vagabunda_ante_espejo_ve_diamante.txt": {
+    "message": "Memorante la anonco flutisto, vi aspektas pli proksime spegulo kaj malkovri, sen scii, estas juvelo en la spegulo. Etendigxis kaj ekpreni la diamanto, atingebla nur al estaĵoj kiel vi. <br/>"
+  },
+  "messages.vagabunda_ante_espejo_no_ve_diamante.txt": {
+    "message": "Momente vi kredas vidi strangan refrejo, sed mi certe estis via imagpovo .. <br/>"
+  },
+  "messages.cazador_ante_espejo.txt": {
+    "message": "Vi aĝa ol vi memoris notoj, kvazaŭ ili jam de multaj jaroj vi venis al la subakva mondo serĉante logaĵo al via frato. <br/>"
+  },
+  "messages.flautista_tocando.txt": {
+    "message": "Flutisto, viglan ludante sian fluton."
+  },
+  "messages.flautista_sin_flauta.txt": {
+    "message": "Kiel flutisto kaj fluto ... Li ne kantas gaje."
+  },
+  "messages.DLG_acepta_petición_porque %o1.txt": {
+    "message": "Konsentite, sed nur ĉar vi donis al mi antaŭ %o1."
+  },
+  "messages.DLG_da_ %o1.txt": {
+    "message": "Ĝi prenas %o1."
+  },
+  "messages.DLG_no_da_ %o1.txt": {
+    "message": "Kial mi donu %o1?"
+  },
+  "messages.DLG_no_da_ %o1_porque_falta_%o2.txt": {
+    "message": "Se vi volas vi konduku min %o1 aŭ %o2."
+  },
+  "messages.DLG_coge_de_ %o1.txt": {
+    "message": "Prenu %o1."
+  },
+  "messages.DLG_damelo.txt": {
+    "message": "Donu ĝin al mi, ĝi estas mia!."
+  },
+  "messages.vieja_quita_diamante.txt": {
+    "message": "La malnova forprenas. <br/>"
+  },
+  "messages.DLG_preguntar_a_cazador_por_onda.txt": {
+    "message": "Danke al ŝi, mi ĉasis sennombraj digoj."
+  },
+  "messages.DLG_preguntar_a_vagabunda_por_anzuelo.txt": {
+    "message": "Mi havas multe alligiteco, memorigas min pri mia malproksima patrujo."
+  },
+  "messages.DLG_necesita_diamante.txt": {
+    "message": "Ni dankos tre multe se mi reakiros la diamanto."
+  },
+  "messages.DLG_pide_agua_púrpura.txt": {
+    "message": "Alportu al mi la purpuran akvon tiel vi povas rompi la sorĉon."
+  },
+  "messages.DLG_examina_pergamino.txt": {
+    "message": "Ekzamenu la skribrulajxo tiel vi scias kiel akiri ĝin."
+  },
+  "messages.DLG_bebe_pócima.txt": {
+    "message": "Trinku la pocio de rememoro, kiam konsideras taŭga."
+  },
+  "messages.DLG_atraviesa_a_catarata.txt": {
+    "message": "Nun vi scias ĉion. Iru al la alia flanko de la akvofalo trovi vian destinon"
+  },
+  "messages.DLG_no_deberías_aquí.txt": {
+    "message": "Kvankam vi ne devus fari ĝin tie."
+  },
+  "messages.undefined_gameParameters.txt": {
+    "message": "Tiu ludo bezonas gameParameters atribuas difinita en la komenca loko de <br/> ludo"
+  },
+  "messages.bienvenida_juego.txt": {
+    "message": "Bonvenon al Las Tres Fuentes, interaga aventuro disvolvita en javascript. Sur la sama bazo mondo, vi povas elekti ludi pli infaneca tono malsupren versio aŭ la plenan version, kiu kontrolas du karakterojn. <br/>"
+  },
+  "messages.chooseVersion.txt": {
+    "message": "Kiun version vi elektas?"
+  },
+  "messages.chooseVersion_simple.txt": {
+    "message": "reduktita versio"
+  },
+  "messages.chooseVersion_long.txt": {
+    "message": "Plena versio"
+  },
+  "messages.elegida_version_reducida.txt": {
+    "message": "Estas bona elekto por fini en malpli tempo, sed la plena versio havas iom pli suko. <br/>"
+  },
+  "messages.intro_reducida_1.txt": {
+    "message": "Laila estas la drako. La sorĉistino estis laca de revolotees ĉirkaŭ kun via frato Kuko brulanta aferoj maldekstra kaj dekstra, kaj Li forpelos sorĉas. <br/>"
+  },
+  "messages.intro_reducida_2.txt": {
+    "message": "Vi fariĝis homa kaj elkondukis vin el la kaverno de la drako, for de Kuko, trans la akvofalon. <br/>"
+  },
+  "messages.intro_reducida_3.txt": {
+    "message": "Vi ne restos kun la brakoj transiritaj. La sorĉistino, kiu scias esti preparita. Kuko ne desfallezcas, mi venas! <br/>"
+  },
+  "messages.chooseVersion_long_echo.txt": {
+    "message": "Vi elektis la versio vi elektas kuraĝa aventuristo. La steloj de ĉi tiu ludo estas du legenda amantoj kiuj elfalis kun diino kontraste al lia amo. Kvankam kontrolas ambaŭ karakteroj, elektu nun: kiu komenci kun la vagabundo, en realo la maro princino, kiu forlasis sian hejmlandon pro amo; aŭ la ĉasisto, parenco de la malbono diino. <br/>"
+  },
+  "messages.choosePC.txt": {
+    "message": "Kio karaktero vi volas komenci ludi, kiom la vagemaj aŭ la ĉasisto?"
+  },
+  "messages.choosePC_woman.txt": {
+    "message": "Vaganto"
+  },
+  "messages.choosePC_man.txt": {
+    "message": "la ĉasisto"
+  },
+  "messages.dejar_flauta.txt": {
+    "message": "Ĝi estas donaco de la flutisto, kiu vi faris por ekzerci antaŭ reveni. <br/>"
+  },
+  "messages.pájaros_vuelan.txt": {
+    "message": "Liberigante la birdoj flugas for al la ruĝa tiparo. <br/>"
+  },
+  "messages.dejar_pájaros.txt": {
+    "message": "Kiam vi liberigas la birdojn reen kie ili estis en la ruĝa tiparo. <br/>"
+  },
+  "messages.dejar_cuenco.txt": {
+    "message": "La enhavo de la rakonto malpleniĝas fali. <br/>"
+  },
+  "messages.agua_dorada_mata_planta.txt": {
+    "message": "Malplenigi la akvo sur la tero, mortigante ŝin kaj plilarĝigante iom la enirejo al la kaverno. <br/>"
+  },
+  "messages.dejar_pócima.txt": {
+    "message": "Forĵetu ion kiu kostos tiel vi ricevis? Mi kredas ke vi pli bone konserviĝis la pocio. <br/>"
+  },
+  "messages.dejar_arma_inicial.txt": {
+    "message": "Ĝi povas esti utila por akiri manĝon aŭ perlabori ies konfidon. Kio konfitas. <br/>"
+  },
+  "messages.bebida_agotada.txt": {
+    "message": "Ne multe por trinki. <br/>"
+  },
+  "messages.beber_verde.txt": {
+    "message": "La verda filamentoj havante ion vi ricevas naŭzita ĉe unua, sed la fina rezulto estas riĉaj kaj ĉiuj. Ĉiuokaze vi ne trinkos plena. <br/>"
+  },
+  "messages.beber_dorada.txt": {
+    "message": "Reeks de sulfuro. Alportante la nazo, instinkte vi detiriĝi kaj ne la beboj. <br/>"
+  },
+  "messages.beber_roja.txt": {
+    "message": "Ruĝa ŝajnas veni simple restas de koto, gustoj aĉa kaj nur provu iom, lasante la resto. <br/>"
+  },
+  "messages.beber_naranja.txt": {
+    "message": "Io ankoraŭ odoras sulfuro, sed la ruĝa ŝajnas esti farita trinkakvo ... sed ne kuraĝis provi. <br/>"
+  },
+  "messages.beber_púrpura.txt": {
+    "message": "Normala homa eble ne povos trinki ĝin, sed vi ne ordinaraj homoj kaj tiu akvo alportas reen memorojn de la groto lageto. [Paŭzo]. Por pruvi vin malĝoja recordatorios de Kuko, estos en la groto?, Kion faras nun?. Tie estas nur vi, vi lasis ĝin por posta. <br/>"
+  },
+  "messages.repetir_pócima.txt": {
+    "message": "Vi jam ebria, rapide lasu perdi tempon. <br/>"
+  },
+  "messages.aviso_pócima_grieta.txt": {
+    "message": "Memoru ke la sorĉistino diris ke se vi trinkos vi ricevos vian vojon ... kaj vi ne povos eliri tra la fendo. <br/>"
+  },
+  "messages.Menu_drinkNow.txt": {
+    "message": "Ĉu vi certas ke vi volas trinki nun?"
+  },
+  "messages.Menu_drinkNow_yes.txt": {
+    "message": "Jes, mi volas reakiri kaj mia formo."
+  },
+  "messages.Menu_drinkNow_no.txt": {
+    "message": "Ne, mi esperos esti ekstere."
+  },
+  "messages.empiezas_a_crecer_dentro_caverna.txt": {
+    "message": "Kvankam interne scias ke vi ne devus fari, Vi ne povas helpi trinkas pocion ... vi komencas kreski ...! <br/>"
+  },
+  "messages.Menu_drinkNow_no_reaction.txt": {
+    "message": "Vi pensus bona kaj ne trinkas la pocion ankoraŭ. <br/>"
+  },
+  "messages.empiezas_recordar.txt": {
+    "message": "Trinki la pocion memoroj komencas emerĝi klare. <br/>"
+  },
+  "messages.vagabunda2_recuerda_1.txt": {
+    "message": "Vi memoras, kiel vi renkontis la ĉasiston, duon-dia naturo, nenio malpli ol la nepo de la diino de la monto, kiam estis via subakva mondo serĉante magian hokon al sia frato Hoderi <br/>"
+  },
+  "messages.vagabunda2_recuerda_2.txt": {
+    "message": "Memoru kiom mi forkuris enamorásteis kaj pro via afabla devas naski surtere. <br/>"
+  },
+  "messages.vagabunda2_recuerda_3.txt": {
+    "message": "Memoru la tago kiam vi konis vin estis graveda kaj la ĉasisto diris ŝia onklino la tago Mi jxuris per sia kano devigi la magio diamanto, ĉe la monto kajuto, via hejmo. <br/>"
+  },
+  "messages.vagabunda2_recuerda_4.txt": {
+    "message": "Kaj vi rememoros vian marina naturo, komencas verŝi malsupren inter viaj kruroj, vi rompigxis akvoj kaj vi scias, kio okazos al vi, via afabla reakiri ilian teruraj naturo al alumnbrar. Vi scias ke mi devos rapidi kaj naski al via filo en sekura loko sur la alia flanko de la akvofalo. <br/>"
+  },
+  "messages.locura_3a_persona.txt": {
+    "message": "La ĉasisto timigita gvatis vin. Vi aspektas en la okuloj, duone transformi vian marina. Vidu kiel via amata kunulo antaŭ PISU kaj diareon supren kaj forkuras, timigita. <br/>"
+  },
+  "messages.transformación_1a_persona.txt": {
+    "message": "Vi konkludas vian transformo. Via grandega figuro kelkaj nomas skvama drako kaj aliaj en malproksimaj landoj, sireno ne lasos vin movi facile. Tio ne kiel vi renkontis la ĉasiston. Ĉi estis gracia mexcla de ambaŭ mondoj; nun vi havas la pure mara, sen spuro de homaro. <br/>"
+  },
+  "messages.alumbramiento_1a_persona.txt": {
+    "message": "Kun eta peno vi liberigas vian valoran ovon. <br/>"
+  },
+  "messages.hechicera_expulsa_dragona_según_vagabunda.txt": {
+    "message": "Post momento, la sorĉistino aperas kaj per sorĉo, ĉifoje unwavering resendos vin al via subakva mondo. Naturo neniam scias se via infano estas homo aŭ maraj, nek vidi kreski, nek scias, kio estos al via amanto ĉasisto. <br/>"
+  },
+  "messages.quien_sabe_si.txt": {
+    "message": "Kiu scias se en paralela mondo de la fino de ĉi tiu historio ne povus esti pli feliĉa. <br/>"
+  },
+  "messages.cazador_recuerda_1.txt": {
+    "message": "Vi memoras, kiel vi renkontis la bela princino de la maro kiam vi falis en la oceanon serĉante la magian hokon kiu estis petinta via frato Hoderi. <br/>"
+  },
+  "messages.cazador_recuerda_2.txt": {
+    "message": "Memoru la tagon kiam vi venis al la ĉeftero, fuĝante la kolero de sxia patro kaj mi instalásteis en la kabano, via hejmo. <br/>"
+  },
+  "messages.cazador_recuerda_3.txt": {
+    "message": "Memoru la fatala tago kiam via parenco kondamnis vin forgesi ke vi vi scias. <br/>"
+  },
+  "messages.cazador_recuerda_4.txt": {
+    "message": "El repende vi konscias ke estas graveda kaj vi bezonas esti kun ili, sed memori la konsilojn de via onklino: - lasi la drakon naskas sole, aŭ vi bedaŭros la resto de via vivo <br/>."
+  },
+  "messages.cazador_recuerda_5.txt": {
+    "message": "Vi scias ŝi iros al la alia flanko de la akvofalo, sed kiam estos la plej bona tempo iri? <br/>"
+  },
+  "messages.vagabunda1_recuerda_1.txt": {
+    "message": "Vi memoru Kuko, sole en la monto de oro, trans la verda tiparo. <br/>"
+  },
+  "messages.empiezas_a_crecer.txt": {
+    "message": "vi komencas kreski ...! <br/>"
+  },
+  "messages.perdona_vida_dragona_encerrada.txt": {
+    "message": "Mesaĝo <br/> verkisto de la ludo: kreski ne devus esti alveninta el: konsiderata kiel vi perdis vivon, sed ni lasas ludi <br/>!"
+  },
+  "messages.deux_ex_machina_saca_dragona.txt": {
+    "message": "Neniu! Vi ne povas lasi lin sola por ĉiuj eterneco! Vi elkuri al la fendo ĉe via nova korpo kaj kreskanta agrandas la fendo kaj eliri el la kaverno de la sorĉistino. <br/>"
+  },
+  "messages.vagabunda_recibe_arma.txt": {
+    "message": "Koran dankon, sinjoro! Mi kredas ke mi povas esti utila. Ĝis nun li rigardis suspekteme sed eble vi povas fidi vin."
+  },
+  "messages.cazador_recibe_arma.txt": {
+    "message": "Koran dankon, plejamaton! Mi kredas ke mi povas esti utila. Ĝis nun li rigardis suspekteme sed mi kredas ke mi povas fidi vin."
+  },
+  "messages.no_acepto_regalos.txt": {
+    "message": "Mi ne akceptas donacojn de fremduloj."
+  },
+  "messages.da_gracias.txt": {
+    "message": "Nu dankon."
+  },
+  "messages.no_gracias.txt": {
+    "message": "Ne zorgu, mi ne bezonas dankon."
+  },
+  "messages.rechaza_comida.txt": {
+    "message": "Dankon pro alporti al mi manĝaĵon. Mi malsatas, sed nur io vi kaptis vin."
+  },
+  "messages.lo_espero_de_otro.txt": {
+    "message": "Dankon, mi havas ankoraŭ malsatas, sed mi esperas ke mi venigu iu alia."
+  },
+  "messages.flautista_hambriento_solo_quiere_comida.txt": {
+    "message": "Mi kredas ke vi havas nenion de intereso al mi, kion mi havas estas malsato."
+  },
+  "messages.flautista_rechaza_flauta_en_fuente_verde.txt": {
+    "message": "Ĉu vi opinias, ke vi praktikis sufiĉas? Llévamela la luna Bluff kiam vi pretas."
+  },
+  "messages.flautista_al_recibir_flauta_en_risco.txt": {
+    "message": "Ĉu vi opinias, ke vi praktikis sufiĉas? Lasu min aŭdi kion ĉi ludas unue."
+  },
+  "messages.gracias_por_traer_piedra.txt": {
+    "message": "Dankon pro alporti la Moonstone!"
+  },
+  "messages. %o1 lo_guarda.txt": {
+    "message": " %o1 savis lin entuziasme. <br/>"
+  },
+  "messages.te_espero_en_risco.txt": {
+    "message": "Vi en la luna kresto."
+  },
+  "messages.ven_con_ %o1.txt": {
+    "message": "Bonvolu veni kun %o1."
+  },
+  "messages.VC_pide_que_practiques.txt": {
+    "message": "Vi devas honori la orelojn per bona muziko, se vi volas ke mi helpu kun via sorĉas."
+  },
+  "messages.VR_pide_que_practiques.txt": {
+    "message": "Vi devas honori la orelojn per bona muziko, se vi volas ke mi helpu kun via sorĉas."
+  },
+  "messages.VC_fin_acto_I.txt": {
+    "message": "<br/> tie finas Act I: aŭ forgesema kiel la du amantoj denove renkontis kaj laboris por pasxti la malsata kaj alporti la flutisto Moonstone <br/>."
+  },
+  "messages.VR_fin_acto_I.txt": {
+    "message": "<br/> tie finas Act I: aŭ kiel Laila nutris malsatulojn kaj flutisto prenis la Moonstone <br/>"
+  },
+  "messages.DLG_no_acepto_agua_no_púrpura.txt": {
+    "message": "Kaj kial mi volas ke vulgara akvo?"
+  },
+  "messages.DLG_dar_agua_púrpura_a_vieja.txt": {
+    "message": "Tio estas tre interesa miksaĵo. Mi ne scias kiel vi lernis akiri ĝin, sed mi ne bezonas ajn."
+  },
+  "messages.DLG_ya_me_lo_habías_dado.txt": {
+    "message": "Ĉar vi donis al mi antaŭe, ne provas tiel forte."
+  },
+  "messages.DLG_hechicera_pide_que_estén_ambos.txt": {
+    "message": "Vi devas esti ambaŭ tie do vi povas fari por rompi kaj fari la pocion liberigo."
+  },
+  "messages.DLG_hechicera_recibe_agua_púrpura.txt": {
+    "message": "La sorĉistino preskaŭ forprenas la kavigitaj manoj kaj versxu ĝian enhavon en la kaldrono."
+  },
+  "messages.hechicera_hace_pócima.txt": {
+    "message": "Donante la purpura akvo, sorĉistino igas vin florido rito farita ĉirkaŭ la kaldrono. Multkolora diamanto brilis radioj, kunfluante en la kaldrono. Purpura akvo turnoj kaj turnoj, ŝanĝante koloron, esti kun eterne ŝanĝiĝanta koloro .... <br/>"
+  },
+  "messages.DLG_VR_al_hacer_pócima_1.txt": {
+    "message": "Kiel rekompenco por alportado de mi antaux la diamanto, mi redonos vian originalan aspekton. Prenu ĉi pocio kaj reiri al via mondo, denove tra la verda fonto"
+  },
+  "messages.DLG_VR_al_hacer_pócima_2.txt": {
+    "message": "Sed memoru, fojo vi trinkas pocion komencas kreski nedeteneble. Nur vi estas sekura en la groto de drakoj, kie vi atendas via amita Kuko."
+  },
+  "messages.DLG_VR_al_hacer_pócima_3.txt": {
+    "message": "Adiaŭ drako, bonŝancon!"
+  },
+  "messages.DLG_VC_al_hacer_pócima_1.txt": {
+    "message": "Kiel rekompenco por habedme alportis antaux la diamanto, mi tuj liberigos mian sorĉas. Mi restos kontraste al via unio: ne vidu natura ke mara estaĵo estas kun princo de la montoj. Sed vi estas granditos kaj vi vidos kion vi faros."
+  },
+  "messages.DLG_VC_al_hacer_pócima_2.txt": {
+    "message": "Princino ilon, kiam vi prenas la pocion, monstra komenci rekuperi via originala formo kaj baldaŭ naski vian infanon. Preskaŭ ne persvadas tra la fendo: vi devus ne trinki ĉi tie. Vi devas iri al la alia flanko de la akvofalo, el vido de mia parenco, kiu povas iri freneza vidi vian superhoman naturo."
+  },
+  "messages.DLG_VC_al_hacer_pócima_3.txt": {
+    "message": "Hoori, eliru el via vojo kaj vi ne iras al ĝi ĝis post transdono. Kiam la tempo venas vi scios."
+  },
+  "messages.DLG_VC_al_hacer_pócima_4.txt": {
+    "message": "Unu lasta afero. Post transiri la akvofalo princino, Mi ne povas helpi ŝin plenumi malgrandan efikon de mia malbeno; la enirejon al la akvofalo estos fermita kaj sigelita ... Sed kion bad'm!, Jua, ha, ha!"
+  },
+  "messages.DLG_VC_al_hacer_pócima_5.txt": {
+    "message": "Adiaŭ, stulta amantoj, via amo estas kondamnita! <br/>"
+  },
+  "messages.hechicera_hace_mutis.txt": {
+    "message": "La diamanto brilas tiel blindigado kaj rekuperi la vizion, vi vidas ke la sorĉistino malaperis, nur la kaldrono de la pocio kaj diamanto turnante innacesible alta kaj lumigante la tutan kavernon. <br/>"
+  },
+  "messages.DLG_no_quiero_eso.txt": {
+    "message": "Kaj kial mi volas tion? Neniu dankon."
+  },
+  "messages.DLG_dame_comida_por_flauta.txt": {
+    "message": "Mi estas tiel malsata, doni al mi ion por manĝi kaj mi vidos se mi donos la fluto aŭ io alia."
+  },
+  "messages.DLG_esperando_comida_de_otro_por_flauta.txt": {
+    "message": "Mi atendas aliulaj gajno."
+  },
+  "messages.DLG_flauta_ya_no_la_tengo.txt": {
+    "message": "Mi ne plu havas."
+  },
+  "messages.DLG_flautista_sobre_vieja_a_cazador.txt": {
+    "message": "Via parenco ke kaverno, kredu ĝin aŭ ne, vundis vin en la pasinteco. Esti zorgema kun ŝi."
+  },
+  "messages.DLG_flautista_sobre_vieja_a_vagabunda.txt": {
+    "message": "Tio estas malnova sorĉistino kaj, kredu ĝin aŭ ne, vundis vin en la pasinteco. Esti zorgema kun ŝi."
+  },
+  "messages.DLG_vieja_sobre_diamante.txt": {
+    "message": "Mi perdis ĝin kaj ne povas trovi, helpu min trovi ĝin, bonvolu."
+  },
+  "messages.DLG_vieja_sobre_flautista.txt": {
+    "message": "Ŝi amas muzikon, sed estas pli ol nur flutisto."
+  },
+  "messages.DLG_hechicera_sobre_diamante.txt": {
+    "message": "Bona afero vi akiris min retrovi."
+  },
+  "messages.DLG_hechicera_sobre_flautista.txt": {
+    "message": "Mi vidas, ke li donis al vi la ŝtono de lumo. Vi vere tre inteligenta."
+  },
+  "messages.DLG_hechicera_sobre_pócima.txt": {
+    "message": "Mi jam diris al vi, venigu al mi la purpuran akvon kaj havas la pocio de memoro."
+  },
+  "messages.fuente_roja_básico.txt": {
+    "message": "La akvo aspektas venena kaj nesanaj"
+  },
+  "messages.fuente_roja_con_pájaros %o1.txt": {
+    "message": "Sed nekredeble %o1 trinkos indiferente <br/>"
+  },
+  "messages.descripcion_fuente_verde_base.txt": {
+    "message": "La verda tiparo! Potenca akvofalo falas de konsiderinda alteco kaj kun granda forto. Litkovrilo de verda musko kaj likeno kreskas ĉie. Vi povas vidi espectacular ĉielarko kaŭzita de akvogutetoj saltante ĉie post karamboli kun la malgranda lago kiu formas ĉe la bazo, kiu ankaŭ havas verdan aspekton. <br/>"
+  },
+  "messages.mencionar_flautista_con_flauta.txt": {
+    "message": "Komprenu juna kultivisto en la ombro de arbo, indiferente ludanta la fluton. <br/>"
+  },
+  "messages.mencionar_flautista_sin_flauta.txt": {
+    "message": "Komprenu sen sia fluto flutisto sidas mallaboreme en la ombro de arbo, kantante. <br/>"
+  },
+  "messages.hay_basura %o1.txt": {
+    "message": "Nenio notinda, nur matorrares %o1 kaj windblown. <br/>"
+  },
+  "messages.flautista_aparece.txt": {
+    "message": "El la arbustoj flutisto aperas. <br/>"
+  },
+  "messages.DLG_flautista_quita_diamante.txt": {
+    "message": "Vi ne kredus, ke vi lasus preni la valora ŝtono malnova antaŭ ekzercanta sian magion por mi."
+  },
+  "messages.flautista_se_va.txt": {
+    "message": "The Pied Piper elprenas diamanto kaj malaperas de via vidpunkto. <br/>"
+  },
+  "messages.en_cueva_oscura.txt": {
+    "message": "En la malhela kaverno, en la malnova domo. <br/>"
+  },
+  "messages.en_cueva_brillante.txt": {
+    "message": "En la brilanta kaverno"
+  },
+  "messages.hechicera_presente %o1.txt": {
+    "message": "Kun O1%"
+  },
+  "messages.DLG_bienvenido_vagabunda.txt": {
+    "message": "Bonvenon al mia humila hejmo, princino."
+  },
+  "messages.DLG_bienvenido_cazador.txt": {
+    "message": "Bonvenon, kara nepo, al mia humila hejmo. Ne, mi ne rigardu tiun vizaĝon. Pri via dometo estis fatala okazaĵo ne volas paroli. Nur scias, ke mi savis vin de serpento kiu vi arestita."
+  },
+  "messages.DLG_bienvenido_cazador_2.txt": {
+    "message": "Vi vidos ke mia apero estis malbrila ekde la lasta tempo vi vidis min. Mi ne havas la bela maniero estis. La tago de via kajuto tiel mi perdis la diamanto retenas iom el mia povo, mi aprezus se mi povus elsxuti."
+  },
+  "messages.DLG_bienvenido_a_cueva_luminosa.txt": {
+    "message": "Ŝatas kiel mia kaverno brilas kun la potenco de lumo enfermita?"
+  },
+  "messages.que_hambre.txt": {
+    "message": "Kiel malsata mi havas! Mi estus dankema se vi donis al mi manĝaĵon."
+  },
+  "messages.DLG_hambre_y_se_que_cazaste.txt": {
+    "message": "Malsato devas havi! Mi scias ke vi kaptis ion, "
+  },
+  "messages.DLG_pregunta_si_das_comida.txt": {
+    "message": "Vi min manĝaĵo?"
+  },
+  "messages.flautista_das_comida_si.txt": {
+    "message": "Trakti!"
+  },
+  "messages.flautista_das_comida_no.txt": {
+    "message": "Ĝi tuj estos neniu."
+  },
+  "messages.DLG_qué_tacaño_eres.txt": {
+    "message": "kiom avara vi estas, vi estas mankanta eksteren. Mi ankoraŭ havas mian, ludi muzikon, kiam mi forgesas la malsato."
+  },
+  "messages.flautista_toca.txt": {
+    "message": "La Piper ludas sian melodion ..."
+  },
+  "messages.DLG_ven_con_comida.txt": {
+    "message": "Revenas kun kion vi kaptis kaj parolis."
+  },
+  "messages.DLG_finito_te_veo_en_risco.txt": {
+    "message": "Mi donis al vi kion vi bezonas. Kiam vi estas preta, vi iras al la kresto de la luno."
+  },
+  "messages.DLG_envía_saludos_a_vieja.txt": {
+    "message": "Donu salutojn al maljuna por mi."
+  },
+  "messages.DLG_ya_bebiste_apurate.txt": {
+    "message": "Kaj vi trinkis la pocion, rapidi kun kion vi devas fari."
+  },
+  "messages.tocas_flauta_si.txt": {
+    "message": "Konsentite, mi provos, sed mi ne scias."
+  },
+  "messages.tocas_flauta_no.txt": {
+    "message": "Pardonu, sed mi ne povas ludi la fluton."
+  },
+  "messages.DLG_anima_música.txt": {
+    "message": "Venu, donu!"
+  },
+  "messages.DLG_tocas_nivel_0.txt": {
+    "message": "Helpo, kion doloro! Foriru el mia vido kaj ne revenos ĝis vi trejnadis pli."
+  },
+  "messages.DLG_tocas_nivel_1.txt": {
+    "message": "Kiel vi aŭdacas fari tiun bruon sen esti praktikitaj preskaŭ nenio?"
+  },
+  "messages.DLG_tocas_nivel_2.txt": {
+    "message": "Vi iras plibonigante, sed ankoraŭ devas ekzerci pli."
+  },
+  "messages.DLG_tocas_nivel_3.txt": {
+    "message": "Gratulon, vi faris virtuozo! Nun vi valoras mi ludas la fluton por vi. Ni honoras al la luno kaj ŝi volas fari ion por vi du."
+  },
+  "messages.flautista_recupera_diamante.txt": {
+    "message": "The Pied Piper forprenas la fluto, kiel oni akiras malnovan trezoron."
+  },
+  "messages.DLG_flautista_sin_oirte.txt": {
+    "message": "Do mi neniam scios se vi lernis suficxe."
+  },
+  "messages.DLG_debes_traerme_diamante.txt": {
+    "message": "Sed por tiu, la Moonstone devas ĉeesti."
+  },
+  "messages.DLG_falta_uno_para_transformación_lunar.txt": {
+    "message": "Ambaŭ devas ĉeesti por honori la luno."
+  },
+  "messages.fluteTransformation.txt": {
+    "message": "La Piper komencas ludi la fluton ... kiu igas viajn manojn sur ora fluto, ŝajnas esti plagita. Teatraĵoj kaj teatraĵoj povis halti ... kaj ili pasas la horojn ... mallumiĝi. Antaŭ vi vidos kiel la Piper iĝas elfo kaj kiel mirakle ankoraŭ rigardante la ĉielarko de verda potenco malgraŭ esti tranokte."
+  },
+  "messages.DLG_VC_toma_diamante.txt": {
+    "message": "Prenu la diamanto vi estas avidaj multaj. Iri kun li al la olda sorĉistino en la kaverno, sed antaŭ ... estas tempo por danci!"
+  },
+  "messages.DLG_VR_toma_diamante.txt": {
+    "message": "Prenu la diamanto kiu ambaŭ avidas. Iri kun li al la olda sorĉistino en la kaverno, sed antaŭ ... estas tempo por danci!"
+  },
+  "messages.VC_transformación_flautista_1.txt": {
+    "message": "La diamanto brilas kun nereala beleco. Vi ankoraŭ restas preskaŭ nekonata, vi prenas vin per la mano kaj vi komencas danci dum horoj. <br/>"
+  },
+  "messages.VC_transformación_flautista_2.txt": {
+    "message": "Kelkaj memoroj reaperos, memoru esti dancis inter koraloj kaj meduzoj. Ĝi kiam similas ke la vualo de forgeso ... Mi lasas la muziko ĉesas kaj kun ĝi tiujn dolĉajn memorojn. <br/>"
+  },
+  "messages.VC_transformación_flautista_3.txt": {
+    "message": "Tardais tempo averti ke ĝi ekbrilis kaj la elfo haltis ludado kaj revenis al la lando reen batalformo flutisto. <br/>"
+  },
+  "messages.VR_transformación_flautista_1.txt": {
+    "message": "La diamanto brilas kun nereala beleco. Dam descontrolada ĝojo, vi komencas ŝpini kaj dancon dum horoj, ĝis la muziko ĉesas kaj ĝi prenas momento por realigi ke ĝi ekbrilis kaj la elfo haltis ludado kaj relevigxis rekapti la formon de lando flutisto . <br/>"
+  },
+  "messages.VR_transformación_flautista_2.txt": {
+    "message": ""
+  },
+  "messages.VR_transformación_flautista_3.txt": {
+    "message": ""
+  },
+  "messages.DLG_VC_id_con_vieja.txt": {
+    "message": "Iri kie la maljuna sorĉistino, ŝi scias ke la sorĉo pardonos vin se vi surportas malbenita diamanto."
+  },
+  "messages.DLG_VR_id_con_vieja.txt": {
+    "message": "Iri kie la maljuna sorĉistino, ŝi scias pardonu la sorĉas ke mi malbenis vin kaj Kuko, se vi alportos la diamanto."
+  },
+  "messages.flaustista_desaparece_tras_árbol.txt": {
+    "message": "Flutisto saltegoj kaj malaperas sen plua malantaŭ arbo. Sekvi liajn paŝojn, vi vidos ke malaperas sen plua malantaŭ la arbo. <br/>"
+  },
+  "messages.VC_fin_acto_2.txt": {
+    "message": "Ĉi tie finiĝas <br/> Akto II: aŭ kiel la elfo dancis la du lovebirds <br/> <br/>"
+  },
+  "messages.VR_fin_acto_2.txt": {
+    "message": "Ĉi tie finiĝas <br/> Akto II: aŭ kiel la elfo dancis Laila ĝis tagiĝo <br/> <br/>"
+  },
+  "messages.DLG_gracias_por_comida_ %o1.txt": {
+    "message": "Bonvolu %o1! Mi preparos kradrostita."
+  },
+  "messages.DLG_toma_flauta.txt": {
+    "message": "Prenu la fluto, praktiki per ĝi. Kiam vi jam atingis sufiĉan mastrado de ĝi, rigardas min kaj montri al mi kion vi scias, se vi volas mian helpon."
+  },
+  "messages.DLG_aviso_espejo.txt": {
+    "message": "Vi scias ke via vizio de serpento povas vidi kion aliaj kaŝita. Rigardu trankvile ĉe la kabano kaj alportu al mi kion vi trovas."
+  },
+  "messages.DLG_me_voy_al_risco.txt": {
+    "message": "Mi planas iri dormeti en la kresto de la luno."
+  },
+  "messages.DLG_te_espero_vagabunda.txt": {
+    "message": "Espereble kiam listo kun mia ŝtono princino. Noktomeze, kun la ĉasisto."
+  },
+  "messages.DLG_te_espero_cazador.txt": {
+    "message": "Mi esperas tie kiam vi pretas doni al mi belan melodion, ĉasisto. Noktomeze, kun la vagabondo."
+  },
+  "messages.DLG_VC_adelanto_baile.txt": {
+    "message": "Se vi kontentigi min, hodiaŭ vespere la Moonstone brilas en speciala maniero kaj reakiri iun kiu vin perdis, se nur por momento."
+  },
+  "messages.DLG_VR_adelanto_baile.txt": {
+    "message": "Mi esperas tie kiam vi estas preta. Noktomeze venis kaj vizitu, sed nur kiam vi atingis majstradon de la fluto kaj havas la Moonstone, kiu brilas ĉinokte speciale."
+  },
+  "messages.DLG_aún_espero_comida_del_otro.txt": {
+    "message": "Mi esperas vian sonĝoj alportos al mi ion por manĝi tro."
+  },
+  "messages.DLG_primer_saludo.txt": {
+    "message": "Bonan matenon, ni renkontis? Via vizaĝo aspektas familiara."
+  },
+  "messages.DLG_No_le_conozco.txt": {
+    "message": "Mi ne scias, mi kredas ke mi devus ne paroli al vi."
+  },
+  "messages.DLG_deberías_ayudar_a_ %o1.txt": {
+    "message": "Ĝi havas nenion por alporti vin al vi ... sed vi estas %o1."
+  },
+  "messages.DLG_yo_confío.txt": {
+    "message": "Mi fidas vin, kion mi povus fari por vi fidas min?"
+  },
+  "messages.DLG_deberíamos_usar_armas.txt": {
+    "message": "Ni devus uzi la armilojn kiuj ni interŝanĝis."
+  },
+  "messages.DLG_deberías_cazar.txt": {
+    "message": "Mi jam ricevis mian parton, Vi devus fari same."
+  },
+  "messages.DLG_deberías_visitar_flautista_1.txt": {
+    "message": "Mi eble devus iri viziti la Piper denove."
+  },
+  "messages.DLG_deberías_visitar_flautista_2.txt": {
+    "message": "flutisto think povus helpi vin."
+  },
+  "messages.DLG_recordar_flautista_en_risco.txt": {
+    "message": "Flutisto citis ni sur la kresto de la luno kun la fluto kaj la Moonstone."
+  },
+  "messages.DLG_no_sé_qué_decir.txt": {
+    "message": "Mi ne scias kion diri."
+  },
+  "messages.DLG_debemos_conseguir_pócima.txt": {
+    "message": "Ni devas akiri la pocion!"
+  },
+  "messages.DLG_debemos_llevar_agua_púrpura.txt": {
+    "message": "Ni devus preni la purpura akvo por alporti ĝin al la sorĉistino."
+  },
+  "messages.DLG_vagabunda_aviso_1.txt": {
+    "message": "Bonvolu resti for de la vojo al la akvofalo, vi ne ŝatas min post mi prenas la pocion, ĝis post la akuŝo."
+  },
+  "messages.DLG_cazador_aviso_1.txt": {
+    "message": "Mi estas tre nervoza, mi ne scias kion okazas kiam vin prenas la pocion; Mi timas, ke mi ne forlasos vin sola."
+  },
+  "messages.DLG_cazador_aviso_2.txt": {
+    "message": "Nun mi memoras ĉion, mielo. Memoru ke antaŭ vi trinki, vi devus lasi min kaŝi."
+  },
+  "messages.DLG_te_avisé.txt": {
+    "message": "Ni estis avertita!, El mia vojo!"
+  },
+  "messages.DLG_vagabunda_aviso_2.txt": {
+    "message": "Mielo, vi memoras ĉion, sed kiam vi prenas la pocion Mi transformos vin en io mi ne volas vin vidi: El mia vojo al la akvofalo aŭ vi bedaŭros en la plej malbonaj manieroj."
+  },
+  "messages.DLG_no_puede_ser.txt": {
+    "message": "Ne povas esti!, Monstro el infero!"
+  },
+  "messages.introWoman_1.txt": {
+    "message": "Vi estas la princino de la maro, vi devus esti naĝado kun aliaj uloj kiel vi ... anstataŭ kiel nun, kun ambaŭ kruroj kaj surtere."
+  },
+  "messages.introWoman_2.txt": {
+    "message": "Konfuza bildoj. Bela viro en via mondo ... tiam, unufoje sur tero, trabkabanon, fajro. Bruo, doloro ... kaj nun tie en la mezo de nenie."
+  },
+  "messages.introWoman_3.txt": {
+    "message": "Vi ellitiĝi kaj peza vin notoj. Ne nur vi estas malliberigita en tiu korpo kaj el via elemento, sed malkovri ke vi estas graveda, kaj vi ne scias kiu la patro estas. <br/>"
+  },
+  "messages.introWoman_4.txt": {
+    "message": "Patro!, Patrino! Mi volas reveni kun vi - vi krias inconsolably."
+  },
+  "messages.introWoman_5.txt": {
+    "message": "Neniu emabargo, vi scias, ke via raso kiam vi estas koncipita de homoj devas naski surtere. Via infano naskiĝos homa ... aux, pli simila al vi, sed ne scias ĝis tiu momento, tre proksima. <br/>"
+  },
+  "messages.introWoman_6.txt": {
+    "message": "Ui! Notoj kuntiriĝo. La tempo tuj estos tre proksime. Vi devas trovi protektita loko kie lumo ... speciale sciante ke tiam reakiri vian veran aspekton, kiu glaciiĝas pro teruro kaj malamo de homoj vidantoj. </ Br>"
+  },
+  "messages.introMan_1.txt": {
+    "message": "Vi are're ĉasisto Ranger de la malmultaj loĝantoj de tiu fora regiono de la insulo. Vivi relative proksime al via onklino, la diino de la monto."
+  },
+  "messages.introMan_2.txt": {
+    "message": "Vi estas en via kajuto ... nu, kio restas de tio: brulo?, Sed kio la infero okazis tie? Vi aspektas ĉirkaŭe kaj trovas ke la fajro estis tre ĵus. Ankoraŭ kelkaj fumantaj cindrojn. <br/>"
+  },
+  "messages.introMan_3.txt": {
+    "message": "Kio kapdoloron! Kio okazis? La lasta afero vi memoras estas ke vi iris al la submara mondo serĉante la magian hokon kiu bezonis via frato Hoderi."
+  },
+  "messages.introMan_4.txt": {
+    "message": "Estis bela knabino, ŝi movis kun la gracio de la delfenoj ... kaj tiam radio lanĉita de la diino de la monto kaj la brulanta barako."
+  },
+  "messages.introMan_5.txt": {
+    "message": "Mia onklino, en sia kaverno preter la sudaj landoj devos helpi min trovi kion okazis. <br/>"
+  },
+  "messages.transfomación_vieja.txt": {
+    "message": "Kiam la malnova preni la diamanton, li tenas ĝin supre, eldiras kelkaj nekompreneblaj frazoj por vi kaj diamanto komencas brili hele lumigi la tutan kavernon. Vi konscias nun kiom grandega estas la kaverno. La malnova transformas antaux viaj okuloj en belega sinjorino vestita en nigra, kiel la figuro de la vojkruciĝo. <br/>"
+  },
+  "messages.VR_vieja_recibe_diamante.txt": {
+    "message": "-Hechicera: Dankon pro revenanta lumo ŝtono havis bruaj elfo. Mi bezonas vin por venigi min la Purpura akvo, vi ricevos miksante akvon Tri fontanoj. Kiam vi kondukos min, mi prononcas sorĉas lumigi la sankta kaj konsekrita akvo por trinki al vi ke vi reakiros la formo kiun vi perdis."
+  },
+  "messages.VC_vieja_recibe_diamante.txt": {
+    "message": "-Hechicera: Dankon por reveni la ŝtono devis Kukonichi lumo, en la formo de lando flutisto. Mi ne demandi kiel li sciis. Ĝi estas pli potenca ol similas kaj ne povis preni ĝin por bono. Mi bezonas vin por venigi min la Purpura akvo, vi ricevos miksante akvon Tri fontanoj. Kiam vi alportos, revenas kun la aliaj kaj auxdigos sorĉas antaŭ la sankta lumo, por pretigi por vi pocio kiu liberigos la sorĉas ke vi faris. Trinkaĵo kiu konsekrita akvo, vi regajni la memoroj kiujn vi ekprenis. <br/>"
+  },
+  "messages.hechicera_da_instrucciones.txt": {
+    "message": "-Hechicera Prenu ĉi tiujn instrukciojn por vi prepari min purpura akvo ĉar iuj akvo miksaĵoj de la Tri Fontoj estas iom speciala <br/> La sorĉistino donas libron kun instrukcioj. <br/>."
+  },
+  "messages. %o1_desconfia.txt": {
+    "message": " %o1 rigardas vi suspekteme, neniu miro sois nekonata."
+  },
+  "messages.DLG_me_voy.txt": {
+    "message": "Pardonu min, ĉu ne oftaj fremduloj."
+  },
+  "messages.pulsa_para_ver_imagen_de_%o1.txt": {
+		"message": "Klaku por vidi bildon el %o1.<br/>"
+  }
+}
