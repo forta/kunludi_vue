@@ -10,9 +10,13 @@
     
   <div class="choices">
     <h2>Choices</h2>
-    <div v-for="choice in choices">
-        <button v-on:click="doGameChoice(choice)">{{choice.actionId}}</button>   
-    </div>
+    <span v-for="choice in choices">
+        <button v-if ="choice.choiceId == 'top' " class='choiceTop' v-on:click="doGameChoice(choice)">Top</button>
+        <button v-if ="choice.choiceId == 'action' " class='choiceAction' v-on:click="doGameChoice(choice)">{{choice.action.actionId}}</button>
+        <button v-if ="choice.choiceId == 'itemGroup'" class='choiceIG' v-on:click="doGameChoice(choice)">{{choice.itemGroup}}</button>
+        <button v-if ="choice.choiceId == 'directActions' " class='choiceDA' v-on:click="doGameChoice(choice)">Direct Actions</button>
+        <button v-if ="choice.choiceId == 'obj1' " class='choiceObj1' v-on:click="doGameChoice(choice)">{{choice.item}}</button>
+    </span>
     
   </div>
 </template>
@@ -21,7 +25,7 @@
 
 
     import store from '../vuex/store'
-    import { getTranslator, getGameId, getGameMsg, getGameItem, getLocale, getHistory, getChoices } from '../vuex/getters'
+    import { getTranslator, getGameId, getLocale, getHistory, getChoices } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
 
@@ -30,23 +34,26 @@ data () {
     return {
     }
   },
+  created: function () {
+    this.showEndOfText()
+  },
   methods: {
+      showEndOfText: function () {
+        setTimeout(function(){ 
+            var elem = document.getElementById("play")
+            if (elem != null) 
+                elem.scrollTop =  elem.scrollHeight	
+            }, 100);  
+      },
       doGameChoice(choice) {
           store.dispatch('PROCESS_CHOICE', choice)
-          setTimeout(function(){ 
-              var elem = document.getElementById("play")
-              if (elem != null) 
-		            elem.scrollTop =  elem.scrollHeight	
-          }, 100);  
-        
+          this.showEndOfText()
       } 
   },
   store: store,
   vuex: {
     getters: {
        gameId: getGameId,
-       gameMsg: getGameMsg,
-       gameItem: getGameItem,
        locale: getLocale,
        history: getHistory,
        choices: getChoices,
@@ -76,6 +83,25 @@ h1 {
    	height: 200px;
 	background-color: #AFC;
  	overflow: scroll;		
+}
+
+.choiceTop {
+	background-color: #DAA;
+}
+
+.choiceAction {
+	background-color: #FCA;
+}
+
+.choiceDA {
+	background-color: #ACA;
+}
+
+.choiceIG {
+	background-color: #DCA;
+}
+.choiceObj1 {
+	background-color: #BFA;
 }
 
 </style>

@@ -22,19 +22,20 @@ exports.dependsOn = function (primitives, reactionList) {
 	this.primitives = primitives
 	this.reactionList = reactionList
 }
-
-exports.processChoice = function  (choice) {
 	
-	console.log ("choice0:" + JSON.stringify (choice)) 
+exports.processAction = function  (action) {
 	
-	if (choice.actionId == "look") {
-		this.reactionList.push ({type:"msg", detail: {msgId: 'You look around'}} )
-	} else if (choice.actionId == "go to d1") {
-		console.log ("choice: " +  JSON.stringify (choice))
-		this.reactionList.push ({type:"msg", detail: {msgId: 'You go to d1', d1:choice.d1}} )
+	if (action.actionId == "look") {
+		this.reactionList.push ({type:"msg", detail: {msgId: 'You can see'}} )
+		return true
+	} else if (action.actionId == "go to d1") {
+		console.log ("action: " +  JSON.stringify (action))
+		this.reactionList.push ({type:"msg", detail: {msgId: 'You go to %d1', d1:action.d1}} )
+		return true
 	} else {
-		this.reactionList.push ({type:"msg", detail: {msgId: 'Not implemented'}} )
+		return false
 	} 
+
 
 }
 

@@ -38,7 +38,7 @@
 <script>
 
     import store from '../vuex/store'
-    import { getGameAbout, getGameId,  getGameMsg, getGameItem, getLocale } from '../vuex/getters'
+    import { getGameAbout, getGameId, getLocale } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
 export default {
@@ -64,8 +64,6 @@ export default {
   vuex: {
     getters: {
        gameId: getGameId,
-       gameMsg: getGameMsg,
-       gameItem: getGameItem,
        locale: getLocale,
        about: getGameAbout
     },

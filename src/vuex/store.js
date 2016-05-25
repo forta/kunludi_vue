@@ -37,54 +37,21 @@ const state = {
 			Username: { message: "Kromnomo" },
 		}	
 	},
-	gameMsg: { // lib + game
-		en: {
-			'You have o1': { message: "You have o1" },
-			'You need o1': { message: "You need o1" },
-			'You go to d1': { message: "You go to d1" },
-			'You look around': { message: "You look around" }
-		}, 
-		es: {
-			'You have o1': { message: "Tienes o1" },
-			'You need o1': { message: "Necesitas o1" },
-			'You go to d1': { message: "Vas al d1" },
-			'You look around': { message: "Miras alrededor" }
-		}, 
-		eo: {
-			'You have o1': { message: "Vi havas o1" },
-			'You need o1': { message: "Vi bezonas o1" },
-			'You go to d1': { message: "Vi iras al d1" },
-			'You look around': { message: "Vi rigardas ĉirkaŭe" }
-		}	
-	},
-	gameItem: { // game
-		en: {
-			'book': { message: "book" },
-			'pencil': { message: "pencil" },
-		}, 
-		es: {
-			'book': { message: "libro" },
-			'pencil': { message: "lápiz" },
-		}, 
-		eo: {
-			'book': { message: "libro" },
-			'pencil': { message: "krajono" },
-		}	
-	},
 	history: [ // game
 		{ 	action: { actionId:'look'}, 
 			reactionList: [
-				{ type: 'msg', detail: {msgId: 'You can see the abby.'} },
-				{ type: 'msg', detail: {msgId: 'You only can go to the west.'} },
-				{ type: 'msg', detail: {msgId: 'You have o1', o1:'book'}  },
-				{ type: 'msg', detail:  {msgId: 'You need o1', o1:'pencil'} }
+				{ type: 'msg', detail: {msgId: 'Introduction'} },
+				{ type: 'msg', detail: {msgId: 'Locked direction'} },
+				{ type: 'msg', detail: {msgId: 'You just jump!'} },
+				{ type: 'msg', detail: {msgId: 'You read %o1', o1:'book'}  },
+				{ type: 'msg', detail:  {msgId: 'You don\'t know where %o1 was', o1:'pencil'} }
 			]
 		},
 		{ action: {actionId:'go west'}, 
 			reactionList: [
-				{ type: 'msg', detail: {msgId: 'You go to d1', d1:'west'} },
-				{ type: 'msg', detail: {msgId: 'You can see the path home.'} },
-				{ type: 'msg', detail: {msgId: 'You only can go to the east.'} }
+				{ type: 'msg', detail: {msgId: 'You go to %d1', d1:'west'} },
+				{ type: 'msg', detail: {msgId: 'Time runs'} },
+				{ type: 'msg', detail: {msgId: 'Locked direction'} }
 			]
 		}  
 	],
@@ -145,18 +112,31 @@ const state = {
 	},
 	translator: function (reaction) {
 		
+		// we suppose that all reactions consist in show texts
+		
 		/*	
 		function itemTranslation(itemId) {
           // return itemId
           return this.gameItem[itemId].message
 		}
 		*/
-
-		if (state.gameMsg[state.locale][reaction.msgId] == undefined) return "[" + reaction.msgId +  "]" 
 		
-		let expanded = this.gameMsg[reaction.msgId].message
 
+		var expanded = ""
+		var longMsgId = "messages." + reaction.msgId + ".txt"
+		
+		if (state.game.messages [state.locale] != undefined) {
+			if (state.game.messages [state.locale][longMsgId] != undefined) expanded = state.game.messages [state.locale][longMsgId].message
+		}
+		if ((expanded == "") && (state.lib.messages [state.locale] != undefined)) {
+			if (state.lib.messages [state.locale][longMsgId] != undefined) expanded = state.lib.messages [state.locale][longMsgId].message
+		}
+		if (expanded == "") {
+			expanded = "[" + reaction.msgId + "]"
+		}
+		
 		return expanded
+		
 		/*	
 		if (expanded.indexOf(" o1") != -1) {
 		if (this.locale == 'en' ) expanded =  expanded.replace ("o1", "a(n)" + this.itemTranslation(reaction.o1))
@@ -261,19 +241,16 @@ const mutations = {
 	// language-independent: reactions
 	// by language: messages, extraMessages
 
-	/*
-	state.game.reactions = require ('../../data/games/' + par + '/gReactions.js');
-
+	
+	//state.game.reactions = require ('../../data/games/' + par + '/gReactions.js');
 	state.game.messages = []
 	state.game.messages [state.locale] = require ('../../data/games/' + par + '/localization/' + state.locale + '/messages.json')
-	// to-do: merge lib and game messages?
 
-	state.game.world =  require ('../../data/games/' + par + '/world.json')
+	//state.game.world =  require ('../../data/games/' + par + '/world.json')
 	
-	state.game.extraMessages = []
-	state.game.extraMessages [state.locale] = require ('../../data/games/' + par + '/localization/' + state.locale + '/extraMessages.json')
+	//state.game.extraMessages = []
+	//state.game.extraMessages [state.locale] = require ('../../data/games/' + par + '/localization/' + state.locale + '/extraMessages.json')
 	
-	*/
 	
 	state.runner = require ('../components/LudiRunner.js');
 
@@ -284,7 +261,7 @@ const mutations = {
 	state.lib.reactions.dependsOn(state.lib.primitives, state.reactionList)
 	//state.game.reactions.dependsOn(state.lib.primitives, state.lib.reactions, state.reactionList )
 
-	state.runner.dependsOn(state.lib.reactions, state.game.reactions)
+	state.runner.dependsOn(state.lib.reactions, state.game.reactions, state.reactionList)
 
 	state.reactionList.push ({type:"msg", detail: {msgId: 'Welcome'}} )
 	mutations.PROCESS_CHOICE(state, {actionId: 'look'}); 
@@ -292,18 +269,35 @@ const mutations = {
   }, 
   PROCESS_CHOICE (state, choice) {
 	
-	state.runner.processChoice (choice)
-
-	let reactionList = state.reactionList.slice()
-	state.reactionList.length = 0
+	console.log ("choice0:" + JSON.stringify (choice)) 
 	
-	state.choices = state.lib.primitives.getChoices()
-
-	state.history.push ( 
-		{	action: choice, 
-			reactionList: reactionList
-		}
-	)
+	if (choice.choiceId == "itemGroup") {
+		state.choices = state.lib.primitives.getChoices(choice)
+	} else if (choice.choiceId == "directActions") {
+		state.choices = state.lib.primitives.getChoices(choice)
+	} else if (choice.choiceId == "action") {
+		
+		state.runner.processAction (choice.action)
+		let reactionList = state.reactionList.slice()
+		state.reactionList.length = 0
+		state.history.push ( 
+			{	action: choice, 
+				reactionList: reactionList
+			}
+		)
+		state.choices = state.lib.primitives.getChoices({choiceId:'top'}) // really?
+		
+	} else if (choice.choiceId == "obj1") {
+		state.choices = state.lib.primitives.getChoices(choice)
+	} else if (choice.choiceId == "obj2") {
+		
+	} else if (choice.choiceId == "dir") {
+		
+	} else if (choice.choiceId == "menu") {
+		
+	} else { // or if (choice.choiceId == "top") 
+		state.choices = state.lib.primitives.getChoices({choiceId:'top'})
+	}
 
   },
   RESETGAMEID (state) {
@@ -323,6 +317,16 @@ const mutations = {
   },
   SETLOCALE (state, locale) {
     state.locale = locale
+	
+	// to-do: not allow if gameId was already selected and the selected language is not allowed (in fact, it must be an external disabling)
+	
+	let libVersion = 'v0_01'
+	state.lib.messages [state.locale] = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
+	
+	// to-do: load game messages if gameId was already selected
+	// state.game.messages [state.locale] = require ('../../data/games/' + par + '/localization/' + state.locale + '/messages.json')
+
+
   }
 }
 

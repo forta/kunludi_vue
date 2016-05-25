@@ -16,8 +16,4 @@ export function getGameAbout (state) { return state.gameAbout }
 
 export function geti18n (state) { return state.i18n[state.locale] }
 
-export function getGameMsg (state) { return state.gameMsg[state.locale] }
-
-export function getGameItem (state) { return state.gameItem[state.locale] }
-
 export function getTranslator (state) { return state.translator }

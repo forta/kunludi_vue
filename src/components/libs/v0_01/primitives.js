@@ -32,10 +32,36 @@ exports.addReaction = function (type, parameters) {
 
 }
 
-exports.getChoices = function () {
+exports.getChoices = function (choice) {
 	// it should be by exploring the world
-	return [
-		{ actionId: 'look' }, 
-		{ actionId: 'go to d1', d1:'east' } 
-	]
+	
+	var choices = []
+	
+	// choices.length = 0
+
+	choices.push ({choiceId:'top'});
+	choices.push ({choiceId:'itemGroup', itemGroup: 'here'});
+	choices.push ({choiceId:'itemGroup', itemGroup: 'carrying'});
+	choices.push ({choiceId:'itemGroup', itemGroup: 'notHere'});
+	choices.push ({choiceId:'directActions'});
+
+	if (choice.choiceId == 'directActions') {
+		choices.push ({choiceId:'action', action:{actionId:'look'}});
+	} else if (choice.choiceId == 'itemGroup') {
+		if (choice.itemGroup == 'here') {
+			choices.push ({choiceId:'obj1', item: 'pájaros'});
+		} else if (choice.itemGroup == 'carrying') {
+			choices.push ({choiceId:'obj1', item: 'camisa'});
+		} else if (choice.itemGroup == 'notHere') {
+			choices.push ({choiceId:'obj1', item: 'espejo'});
+		} 
+		
+	} else if (choice.choiceId == 'obj1') {
+		for (var i=0; i< this.world.actions.length; i++) {
+			choices.push ({choiceId:'action', action: { actionId: this.world.actions[i].id }});
+		}
+	}
+
+
+	return choices;
 }
