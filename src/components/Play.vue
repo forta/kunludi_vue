@@ -15,7 +15,7 @@
         <button v-if ="choice.choiceId == 'action' " class='choiceAction' v-on:click="doGameChoice(choice)">{{choice.action.actionId}}</button>
         <button v-if ="choice.choiceId == 'itemGroup'" class='choiceIG' v-on:click="doGameChoice(choice)">{{choice.itemGroup}}</button>
         <button v-if ="choice.choiceId == 'directActions' " class='choiceDA' v-on:click="doGameChoice(choice)">Direct Actions</button>
-        <button v-if ="choice.choiceId == 'obj1' " class='choiceObj1' v-on:click="doGameChoice(choice)">{{choice.item}}</button>
+        <button v-if ="choice.choiceId == 'obj1' " class='choiceObj1' v-on:click="doGameChoice(choice)">{{tge("item", choice.item1, "txt")}}</button>
     </span>
     
   </div>
@@ -25,7 +25,7 @@
 
 
     import store from '../vuex/store'
-    import { getTranslator, getGameId, getLocale, getHistory, getChoices } from '../vuex/getters'
+    import { getTranslator, translateGameElement, getGameId, getLocale, getHistory, getChoices } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
 
@@ -57,7 +57,8 @@ data () {
        locale: getLocale,
        history: getHistory,
        choices: getChoices,
-       t: getTranslator
+       t: getTranslator,
+       tge: translateGameElement
     },
     actions: actions
   }

@@ -38,8 +38,9 @@ const state = {
 		}	
 	},
 	history: [ // game
+		// hardcoded simulation
 		{ 	action: { actionId:'look'}, 
-			reactionList: [
+			reactionList: [ 
 				{ type: 'msg', detail: {msgId: 'Introduction'} },
 				{ type: 'msg', detail: {msgId: 'Locked direction'} },
 				{ type: 'msg', detail: {msgId: 'You just jump!'} },
@@ -57,49 +58,6 @@ const state = {
 	],
 	choices: [],
 	reactionList: [],
-	actionDef: [ // lib + game
-		{ actionId: 'look'}, 
-		{ actionId: 'go to d1'}, 
-		{ actionId: 'jump'}, 
-		{ actionId: 'take o1'}, 
-		{ actionId: 'write on o1 with o2'}
-	],
-	items: {
-		'book': { 
-			attList: [ ["take o1", "o1"], ["take o1", "o1"], ["write on o1 with o2", "o1"] ]
-		},
-		'pencil': { 
-			attList: [ ["take o1", "o1"], ["write on o1 with o2", "o2"] ]
-		},
-	},
-	itemsGroups: [ // will extracted dynamically from "world"
-		{ type: 'here', items: [ 'book', 'pencil' ] },
-		{ type: 'carrying', items: [ 'bottle' ] },
-		{ type: 'notHere', items: [ 'can' ] }
-	],
-	echoes: { // to-do
-		en: {
-			'look': { message: "look" },
-			'go to d1': { message: "go to d1" },
-			'jump': { message: "jump" },
-			'take o1': { message: "take o1" },
-			'write on o1 with o2': { message: "write on o1 with o2" },
-		}, 
-		es: {
-			'look': { message: "look" },
-			'go to d1': { message: "go to d1" },
-			'jump': { message: "jump" },
-			'take o1': { message: "take o1" },
-			'write on o1 with o2': { message: "write on o1 with o2" },
-		}, 
-		eo: {
-			'look': { message: "look" },
-			'go to d1': { message: "go to d1" },
-			'jump': { message: "jump" },
-			'take o1': { message: "take o1" },
-			'write on o1 with o2': { message: "write on o1 with o2" },
-		}	
-	},
 	gameAbout: {
 		comment: 'not loaded yet...'
 	}, 
@@ -154,7 +112,13 @@ const state = {
 
 		return expanded  
 		*/
-    }
+    }, 	translateGameElement: function (type, index, attribute) {
+
+		return state.language.expandText (type, index, attribute)
+		// return "[" + type + "," + index + "," + attribute + "]"
+		
+	}
+
 }
 
 const mutations = {
@@ -224,6 +188,7 @@ const mutations = {
 	// messages
 	state.lib.messages = []
 	state.lib.messages [state.locale] = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
+	//console.log ("libmsg: " + JSON.stringify(state.lib.messages [state.locale]))
 	
 	// extraMessages
 	state.lib.extraMessages = []
@@ -240,28 +205,32 @@ const mutations = {
 	// load specific game code and texts:
 	// language-independent: reactions
 	// by language: messages, extraMessages
-
 	
 	//state.game.reactions = require ('../../data/games/' + par + '/gReactions.js');
 	state.game.messages = []
 	state.game.messages [state.locale] = require ('../../data/games/' + par + '/localization/' + state.locale + '/messages.json')
+	//console.log ("gamemsg: " + JSON.stringify(state.game.messages [state.locale]))
 
-	//state.game.world =  require ('../../data/games/' + par + '/world.json')
-	
+	state.game.world =  require ('../../data/games/' + par + '/world.json')
+
 	//state.game.extraMessages = []
 	//state.game.extraMessages [state.locale] = require ('../../data/games/' + par + '/localization/' + state.locale + '/extraMessages.json')
 	
-	
 	state.runner = require ('../components/LudiRunner.js');
+	state.runner.createWorld(state.lib.world, state.game.world)
 
+	state.language = require ('../components/LudiLanguage.js');
+
+	
 	// DEPENDENCES -------------------------------
-	state.lib.primitives.setWorld(state.lib.world, state.game.world)
-	state.lib.primitives.dependsOn(state.reactionList )
+	state.lib.primitives.dependsOn(state.runner.world, state.reactionList, state.runner.userState )
 	
 	state.lib.reactions.dependsOn(state.lib.primitives, state.reactionList)
 	//state.game.reactions.dependsOn(state.lib.primitives, state.lib.reactions, state.reactionList )
 
 	state.runner.dependsOn(state.lib.reactions, state.game.reactions, state.reactionList)
+
+	state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
 
 	state.reactionList.push ({type:"msg", detail: {msgId: 'Welcome'}} )
 	mutations.PROCESS_CHOICE(state, {actionId: 'look'}); 
@@ -269,15 +238,13 @@ const mutations = {
   }, 
   PROCESS_CHOICE (state, choice) {
 	
-	console.log ("choice0:" + JSON.stringify (choice)) 
+	state.runner.processChoice (choice)
 	
-	if (choice.choiceId == "itemGroup") {
-		state.choices = state.lib.primitives.getChoices(choice)
-	} else if (choice.choiceId == "directActions") {
-		state.choices = state.lib.primitives.getChoices(choice)
-	} else if (choice.choiceId == "action") {
-		
-		state.runner.processAction (choice.action)
+	// refresh choices
+	state.choices = state.runner.choices 
+	
+	// refresh history
+	if (state.runner.reactionList.length > 0) {
 		let reactionList = state.reactionList.slice()
 		state.reactionList.length = 0
 		state.history.push ( 
@@ -285,18 +252,6 @@ const mutations = {
 				reactionList: reactionList
 			}
 		)
-		state.choices = state.lib.primitives.getChoices({choiceId:'top'}) // really?
-		
-	} else if (choice.choiceId == "obj1") {
-		state.choices = state.lib.primitives.getChoices(choice)
-	} else if (choice.choiceId == "obj2") {
-		
-	} else if (choice.choiceId == "dir") {
-		
-	} else if (choice.choiceId == "menu") {
-		
-	} else { // or if (choice.choiceId == "top") 
-		state.choices = state.lib.primitives.getChoices({choiceId:'top'})
 	}
 
   },
@@ -323,10 +278,14 @@ const mutations = {
 	let libVersion = 'v0_01'
 	state.lib.messages [state.locale] = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
 	
-	// to-do: load game messages if gameId was already selected
-	// state.game.messages [state.locale] = require ('../../data/games/' + par + '/localization/' + state.locale + '/messages.json')
+	if (state.gameId != '') {
+		state.game.messages [state.locale] = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/messages.json');
+	}
 
+	// update links
+	state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
 
+	
   }
 }
 

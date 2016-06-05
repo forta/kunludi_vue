@@ -17,3 +17,6 @@ export function getGameAbout (state) { return state.gameAbout }
 export function geti18n (state) { return state.i18n[state.locale] }
 
 export function getTranslator (state) { return state.translator }
+
+export function translateGameElement (state) { return state.translateGameElement }
+

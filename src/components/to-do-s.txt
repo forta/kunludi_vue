@@ -1,2 +1,0 @@
-- kune debe tener el userId
-- y lo debe pasar como parámetro a Login
