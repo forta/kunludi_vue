@@ -1,6 +1,6 @@
 <template>
   <div class="lingvo">
-	<h2>{{myi18n.Language.message}}: {{locale}}</h2>
+	<h2>{{kt("Language")}}: {{locale}}</h2>
 
 	<h2>Your other languages:</h2>
     <ul>
@@ -31,7 +31,7 @@
 <script>
 
 import store from '../vuex/store'
-import { geti18n, getLocale } from '../vuex/getters'
+import { getKTranslator, getLocale } from '../vuex/getters'
 import * as actions from '../vuex/actions'
 
 // import kunLingvo from './KunLingvo'
@@ -48,7 +48,7 @@ export default {
   vuex: {
     getters: {
        locale: getLocale,
-       myi18n: geti18n,
+       kt: getKTranslator,
     },
     actions: actions
   }

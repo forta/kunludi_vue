@@ -24,8 +24,17 @@ exports.expandText = function  (type, index, attribute) {
 		
 		var longMsgId = "items." + this.world.items[index].id + "." + attribute
 		
-		//console.log ("libmsg: " + JSON.stringify(this.libMessages))
-		//console.log ("gamemsg: " + JSON.stringify(this.gameMessages))
+		if (this.gameMessages != undefined) {
+			if (this.gameMessages[longMsgId] != undefined) return this.gameMessages[longMsgId].message;
+		}
+
+		if (this.libMessages != undefined) {
+			if (this.libMessages[longMsgId] != undefined) return this.libMessages[longMsgId].message;
+		}
+
+		return "[" + longMsgId + "]"
+	} else if (type == 'action') {
+		var longMsgId = "actions." + index + "." +  "txt"
 
 		if (this.gameMessages != undefined) {
 			if (this.gameMessages[longMsgId] != undefined) return this.gameMessages[longMsgId].message;
@@ -36,6 +45,20 @@ exports.expandText = function  (type, index, attribute) {
 		}
 
 		return "[" + longMsgId + "]"
+	} else if (type == 'dir') {
+				
+		var longMsgId = "directions.d" + index + "." +  "desc"
+
+		if (this.gameMessages != undefined) {
+			if (this.gameMessages[longMsgId] != undefined) return this.gameMessages[longMsgId].message;
+		}
+
+		if (this.libMessages != undefined) {
+			if (this.libMessages[longMsgId] != undefined) return this.libMessages[longMsgId].message;
+		}
+
+		return "[" + longMsgId + "]"
+	
 	} 
 	
 	return "missing short name"

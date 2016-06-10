@@ -14,29 +14,10 @@ const state = {
 	games: [
 	],
 	count: 0, // -> game.turns
-	userId: '', // kune
-	locale: 'en', // lingvo
+	userId: '', // kune 
+	locale: '', // lingvo /here!!!
 	gameId: '', // ludi
-	i18n: { // global
-		en: {
-			Play: { message: "Play" },
-			Together: { message: "Together" },
-			Language: { message: "Language" },
-			Username: { message: "User name" }, 
-		}, 
-		es: {
-			Play: { message: "Jugar" },
-			Together: { message: "Juntos" },
-			Language: { message: "Idioma" },
-			Username: { message: "Nombre de usuario" },
-		}, 
-		eo: {
-			Play: { message: "Ludi" },
-			Together: { message: "Kune" },
-			Language: { message: "Lingvo" },
-			Username: { message: "Kromnomo" },
-		}	
-	},
+	i18n:[],
 	history: [ // game
 		// hardcoded simulation
 		{ 	action: { actionId:'look'}, 
@@ -57,6 +38,7 @@ const state = {
 		}  
 	],
 	choices: [],
+	currentChoice: {},
 	reactionList: [],
 	gameAbout: {
 		comment: 'not loaded yet...'
@@ -68,7 +50,23 @@ const state = {
 	game: {
 		
 	},
-	translator: function (reaction) {
+	kTranslator: function (kMsg) {
+		if (state.locale == "") {
+			// set default language and load kernel messages
+			mutations.SETLOCALE(state, 'en'); 
+		}
+		
+		if (state.locale != "") {
+			state.i18n [state.locale]
+			if (state.i18n [state.locale] != undefined) {
+				if (state.i18n[state.locale][kMsg] != undefined) {
+					return state.i18n[state.locale][kMsg].message
+				}
+			}
+		}
+		return "*" + kMsg + "*"
+	},
+	gTranslator: function (reaction) {
 		
 		// we suppose that all reactions consist in show texts
 		
@@ -112,10 +110,16 @@ const state = {
 
 		return expanded  
 		*/
-    }, 	translateGameElement: function (type, index, attribute) {
+    }, 	
+	translateGameElement: function (type, index, attribute) {
 
 		return state.language.expandText (type, index, attribute)
 		// return "[" + type + "," + index + "," + attribute + "]"
+		
+	},
+	getCurrentChoice : function () {
+
+		return state.currentChoice
 		
 	}
 
@@ -238,7 +242,10 @@ const mutations = {
   }, 
   PROCESS_CHOICE (state, choice) {
 	
+	state.currentChoice = choice
 	state.runner.processChoice (choice)
+	
+	// console.log ("current choice: " +  JSON.stringify(state.runner.getCurrentChoice()))
 	
 	// refresh choices
 	state.choices = state.runner.choices 
@@ -273,18 +280,20 @@ const mutations = {
   SETLOCALE (state, locale) {
     state.locale = locale
 	
-	// to-do: not allow if gameId was already selected and the selected language is not allowed (in fact, it must be an external disabling)
+	// load kernel messages
+	state.i18n [state.locale] = require ('../../data/kernel/kernel_' + state.locale + '.json');
 	
 	let libVersion = 'v0_01'
+	state.lib.messages = []
 	state.lib.messages [state.locale] = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
 	
+	state.game.messages = []
 	if (state.gameId != '') {
 		state.game.messages [state.locale] = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/messages.json');
+		
+		// update links
+		state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
 	}
-
-	// update links
-	state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
-
 	
   }
 }

@@ -411,6 +411,7 @@ let initReactions =  function  (reactions, primitives) {
 
 			if (indexItem2==-1) return false;
 			if (indexItem2 == undefined) return false;
+			if (indexItem2==primitives.PC_X()) return false;
 			
 			if ((primitives.IT_GetType(indexItem2) != "npc") && (primitives.IT_GetType(indexItem2) != "pc")) return false;
 			if (primitives.IT_GetLoc (indexItem) != indexItem2) return false;
@@ -431,8 +432,11 @@ let initReactions =  function  (reactions, primitives) {
 		enabled: function (indexItem,indexItem2) {
 			if (indexItem2 == undefined) return false;
 			if (indexItem2==-1) return false;
+			if (indexItem2==primitives.PC_X()) return false;
 
 			if ((primitives.IT_GetType(indexItem2) != "npc") && (primitives.IT_GetType(indexItem2) != "pc")) return false;
+			if (primitives.IT_GetLoc (indexItem) != indexItem2) return false;
+			
 
 			// only if you have it
 			return (primitives.IT_GetLoc(indexItem) == primitives.PC_X());

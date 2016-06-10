@@ -3,7 +3,7 @@
 	<div v-show="userId == ''">
   		
         <!-- <p>Please type your user name and password to logon: </p> -->
-        <label> Your user name and push enter: </label><input v-model="newUserId" v-on:keyup.enter="modifyUserId"><br/>
+        <label> {{kt("Type your user name and push enter")}}: </label><input v-model="newUserId" v-on:keyup.enter="modifyUserId"><br/>
         <!--
   		<label>Password: </label> <input v-model="newUserId2">
         
@@ -22,7 +22,7 @@
 <script>
 
 import store from '../vuex/store'
-import { getUserId } from '../vuex/getters'
+import { getUserId, getKTranslator } from '../vuex/getters'
 import * as actions from '../vuex/actions'
 
 export default {
@@ -59,7 +59,8 @@ export default {
   store: store,
   vuex: {
     getters: {
-       userId: getUserId
+       userId: getUserId,
+       kt: getKTranslator
     },
     actions: actions
   }

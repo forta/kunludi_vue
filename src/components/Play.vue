@@ -1,6 +1,6 @@
 <template>
   <div id= "play" class="play">
-    <h2>History</h2>
+    <h2>{{kt("History")}}</h2>
     <div v-for="hItem in history">
         <p><b> {{$index+1}}. {{hItem.action.actionId}}</b></p>
             <!-- to-do: problem with nested v-for: so, we'll create a new component -->   
@@ -8,14 +8,25 @@
     </div>
   </div>
     
-  <div class="choices">
-    <h2>Choices</h2>
+    
+  <div class="mainChoices">
     <span v-for="choice in choices">
-        <button v-if ="choice.choiceId == 'top' " class='choiceTop' v-on:click="doGameChoice(choice)">Top</button>
-        <button v-if ="choice.choiceId == 'action' " class='choiceAction' v-on:click="doGameChoice(choice)">{{choice.action.actionId}}</button>
         <button v-if ="choice.choiceId == 'itemGroup'" class='choiceIG' v-on:click="doGameChoice(choice)">{{choice.itemGroup}}</button>
         <button v-if ="choice.choiceId == 'directActions' " class='choiceDA' v-on:click="doGameChoice(choice)">Direct Actions</button>
+        <button v-if ="choice.choiceId == 'directionGroup' " class='choiceDirections' v-on:click="doGameChoice(choice)">Directions</button>
+    </span>
+    
+  </div>
+    
+    
+  <div class="choices">
+     <h2>Choices {{theCurrentChoice}} </h2> 
+    
+    <span v-for="choice in choices">
+        <button v-if ="choice.choiceId == 'action' " class='choiceAction' v-on:click="doGameChoice(choice)">{{tge("action", choice.action.actionId)}}</button>
+        <button v-if ="choice.choiceId == 'action2' " class='choiceAction2' v-on:click="doGameChoice(choice)">{{tge("item", choice.action.item1, "txt")}}: {{tge("action", choice.action.actionId)}}  to:{{tge("item", choice.action.item2, "txt")}} </button>
         <button v-if ="choice.choiceId == 'obj1' " class='choiceObj1' v-on:click="doGameChoice(choice)">{{tge("item", choice.item1, "txt")}}</button>
+        <button v-if ="choice.choiceId == 'dir1' " class='choiceDir1' v-on:click="doGameChoice(choice)">{{tge("dir", choice.dir1, "txt")}}</button>
     </span>
     
   </div>
@@ -25,7 +36,7 @@
 
 
     import store from '../vuex/store'
-    import { getTranslator, translateGameElement, getGameId, getLocale, getHistory, getChoices } from '../vuex/getters'
+    import { getGTranslator, getKTranslator, getCurrentChoice, translateGameElement, getGameId, getLocale, getHistory, getChoices } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
 
@@ -37,7 +48,23 @@ data () {
   created: function () {
     this.showEndOfText()
   },
+  computed: {
+      theCurrentChoice: function () {
+        return this.showCurrentChoice()    
+      } 
+  },
   methods: {
+      showCurrentChoice: function () {
+           let choice = this.currentChoice 
+           // console.log ("choice: " + JSON.stringify (choice))
+          // "choiceId": "action2", "isLeafe": true, "action": { "item1": 4, "actionId": "ask_about", "item2": 0 } }
+          if (choice.choiceId == 'itemGroup') return choice.itemGroup
+          else if (choice.choiceId == 'directActions') return choice.choiceId
+          else if (choice.choiceId == 'directionGroup') return choice.choiceId
+          else  if (choice.choiceId == 'obj1') return choice.item1
+          else  if (choice.choiceId == 'action2') return choice.action.item1 + "," + choice.action.actionId + ", " + choice.action.item2 
+          return ""
+      }, 
       showEndOfText: function () {
         setTimeout(function(){ 
             var elem = document.getElementById("play")
@@ -57,8 +84,10 @@ data () {
        locale: getLocale,
        history: getHistory,
        choices: getChoices,
-       t: getTranslator,
-       tge: translateGameElement
+       kt: getKTranslator,
+       t: getGTranslator,
+       tge: translateGameElement,
+       currentChoice: getCurrentChoice
     },
     actions: actions
   }
@@ -94,8 +123,16 @@ h1 {
 	background-color: #FCA;
 }
 
+.choiceAction2 {
+	background-color: #BDA;
+}
+
 .choiceDA {
 	background-color: #ACA;
+}
+
+.choiceDirectios {
+	background-color: #ADA;
 }
 
 .choiceIG {

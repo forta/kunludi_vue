@@ -1,14 +1,14 @@
 <template>
   <div class="ludi-game-detail"  v-show='game.name'>
-    <h3>Details</h3>
+    <h3>{{kt("Details")}}</h3>
     <ul>
-        <li> Name: {{game.name}} </li>
+        <li> {{kt("Name")}}: {{game.name}} </li>
         <!--
          <li> Type: {{game.type}} </li> 
         <li> Group: {{game.group}} </li> 
         <li> Url: {{game.baseurl}} </li>
         -->
-        <li> <label>Language:</label>
+        <li> <label>{{kt("Language")}}:</label>
             <select v-model="languageIndex">
             <option v-for="option in about.translation" v-bind:value="$index">
                 {{ option.language }}
@@ -16,19 +16,19 @@
             </select>
         </li>
         <div v-if="languageIndex >= 0 ">
-            <li> Title: {{about.translation[languageIndex].title}} </li>
-            <li> Description: {{about.translation[languageIndex].desc}} </li>
-            <li> Introduction: {{about.translation[languageIndex].introduction}} </li>
-            <li> Author: {{about.translation[languageIndex].author.name}} 
-                    (ludi account: {{about.translation[languageIndex].author.ludi_account}})
-                (email: {{about.translation[languageIndex].author.email}})</li>
+            <li> {{kt("Title")}}: {{about.translation[languageIndex].title}} </li>
+            <li> {{kt("Description")}}: {{about.translation[languageIndex].desc}} </li>
+            <li> {{kt("Introduction")}}: {{about.translation[languageIndex].introduction}} </li>
+            <li> {{kt("Author")}}: {{about.translation[languageIndex].author.name}} 
+                    ({{kt("ludi account")}}: {{about.translation[languageIndex].author.ludi_account}})
+                ({{kt("email")}}: {{about.translation[languageIndex].author.email}})</li>
          <div>
     </ul>
 
-    <h3>Options</h3>
+    <h3>{{kt("Options")}}</h3>
     <ul>
     <li>
-    <button v-on:click="load(game.name)">Load game</button>   
+    <button v-on:click="load(game.name)">{{kt("Load game")}}</button>   
     </li>
     </ul>
 
@@ -38,7 +38,7 @@
 <script>
 
     import store from '../vuex/store'
-    import { getGameAbout, getGameId, getLocale } from '../vuex/getters'
+    import { getGameAbout, getGameId, getLocale, getKTranslator } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
 export default {
@@ -54,10 +54,12 @@ export default {
         this.languageIndex=0
      }
   },
+  computed: {
+  },
   methods: {
       load: function (id) {
 		  store.dispatch('SETGAMEID', id)
-      },
+      }, 
   },
   props: ['game'],
   store: store,
@@ -65,7 +67,8 @@ export default {
     getters: {
        gameId: getGameId,
        locale: getLocale,
-       about: getGameAbout
+       about: getGameAbout,
+       kt: getKTranslator
     },
     actions: actions
   }

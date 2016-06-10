@@ -1,11 +1,11 @@
 <template>
   <div class="kune">
-  	<h2>{{myi18n.Together.message}}</h2>
+  	<h2>{{kt("Together")}}</h2>
 	<div v-show="userId != ''">
-        <h3>{{myi18n.Username.message}}: {{ userId }}</h3>
+        <h3>{{kt("Username")}}: {{ userId }}</h3>
         <button v-on:click="logout">Logout</button>
-        <a v-show="userId != 'annonymous'"  v-link="{ path: '/kune/messages' }"> Messages | </a>
-        <a v-show="userId != 'annonymous'"  v-link="{ path: '/kune/boards' }"> Boards | </a>
+        <a v-show="userId != 'annonymous'"  v-link="{ path: '/kune/messages' }"> {{kt("Messages")}} | </a>
+        <a v-show="userId != 'annonymous'"  v-link="{ path: '/kune/boards' }"> {{kt("Boards")}} | </a>
 	</div>
     <router-view></router-view>
   </div>
@@ -13,7 +13,7 @@
 <script>
 
 import store from '../vuex/store'
-import { geti18n,  getUserId } from '../vuex/getters'
+import { getUserId, getKTranslator } from '../vuex/getters'
 import * as actions from '../vuex/actions'
 
 export default {
@@ -30,7 +30,7 @@ export default {
   store: store,
   vuex: {
     getters: {
-        myi18n: geti18n,
+        kt: getKTranslator,
        userId: getUserId
     },
     actions: actions

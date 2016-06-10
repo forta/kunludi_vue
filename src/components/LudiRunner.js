@@ -133,6 +133,7 @@ exports.updateChoices = function () {
 	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'here'});
 	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'carrying'});
 	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'notHere'});
+	exports.choices.push ({choiceId:'directionGroup', isLeafe:false, directionGroup: 'fromHere'});
 	exports.choices.push ({choiceId:'directActions', isLeafe:false});
 
 
@@ -140,6 +141,11 @@ exports.updateChoices = function () {
 		
 		exports.choices.push ({choiceId:'action', isLeafe:true, action:{actionId:'look'}});
 		
+	} else if (this.choice.choiceId == 'directionGroup') {
+
+		// to-do
+		exports.choices.push ({choiceId:'dir1', dir1: 0});
+
 	} else if (this.choice.choiceId == 'itemGroup') {
 		
 		
@@ -175,10 +181,17 @@ exports.updateChoices = function () {
 	} else if (this.choice.choiceId == 'obj1') {
 		
 		for (var i=0; i< exports.world.actions.length; i++) {
-			if (exports.actionIsEnabled  (i, this.choice.item1)) {
+			if (exports.actionIsEnabled  (i, this.choice.item1)) { 		// obj1 + action
 				exports.choices.push ({choiceId:'action', isLeafe:true, action: { item1: this.choice.item1, actionId: exports.world.actions[i].id }})
+			} else { 
+				for (var j=0; j< exports.world.items.length; j++) {
+					if (exports.actionIsEnabled  (i, this.choice.item1, j)) { // obj1 + action + obj2
+						exports.choices.push ({choiceId:'action2', isLeafe:true, action: { item1: this.choice.item1, actionId: exports.world.actions[i].id, item2:j }})
+					}
+				}
 			}
 		}
+		
 	} else if (this.choice.choiceId == 'action') {
 		// o1 -> action -> o2
 		

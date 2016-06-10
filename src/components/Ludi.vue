@@ -1,6 +1,6 @@
 <template>
   <div class="ludi">
-  	<h2>{{myi18n.Play.message}}</h2>
+  	<h2>{{kt("Play")}}</h2>
 	<h2 v-show="gameId"> gameId: {{ gameId}} </h2> 
 	<a v-show="gameId==''" v-link="{ path: '/ludi/games' }"> Games | </a>
 	<a v-show="gameId!=''" v-link="{ path: '/ludi/play' }"> Play | </a>
@@ -12,7 +12,7 @@
 <script>
 
 	import store from '../vuex/store'
-	import { geti18n, getGameId } from '../vuex/getters'
+	import { getKTranslator, getGameId } from '../vuex/getters'
 	import * as actions from '../vuex/actions'
 
 export default {
@@ -28,7 +28,7 @@ export default {
   store: store,
   vuex: {
     getters: {
-       myi18n: geti18n,
+       kt: getKTranslator,
        gameId: getGameId,
     },
     actions: actions

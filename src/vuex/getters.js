@@ -14,9 +14,10 @@ export function getGames (state) { return state.games }
 
 export function getGameAbout (state) { return state.gameAbout }
 
-export function geti18n (state) { return state.i18n[state.locale] }
+export function getKTranslator (state) { return state.kTranslator }
 
-export function getTranslator (state) { return state.translator }
+export function getGTranslator (state) { return state.gTranslator }
 
 export function translateGameElement (state) { return state.translateGameElement }
 
+export function getCurrentChoice(state) { return  state.currentChoice }

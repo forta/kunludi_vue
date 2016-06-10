@@ -2,7 +2,7 @@
   <div class="games">
 
 	<div v-if="!gameloaded">
-        <p>Please, choose game to load
+        <p>{{kt("Choose Game")}}</p>
         <ul class="gameList">
             <li v-for="game in games">
                <button v-on:click="currentgame=game"> -> </button> {{game.name}}   
@@ -31,7 +31,7 @@
 <script>
 
 	import store from '../vuex/store'
-	import { getUserId, getGameId, getGames } from '../vuex/getters'
+	import { getKTranslator, getUserId, getGameId, getGames } from '../vuex/getters'
 	import * as actions from '../vuex/actions'
 
 
@@ -67,7 +67,8 @@ export default {
     getters: {
        userId: getUserId,
        gameId: getGameId,
-       games: getGames
+       games: getGames,
+       kt: getKTranslator
     },
     actions: actions
   }

@@ -1,4 +1,12 @@
 ﻿{
+    "Play": {  "message": "Jugar" },
+    "Boards": {  "message": "Foros"  },
+    "Messages": { "message": "Mensajes"  },
+    "Language": {  "message": "Idioma" },
+    "History": { "message": "Historial"  },
+	"Together": { "message": "Juntos" },
+	"Username": { "message": "Nombre de usuario" },
+	"Choose Game": { "message": "Por favor, selecciona un juego" }, 
     "server_welcome": {
         "message": "bienvenido a la red de LUDI"
     },
@@ -28,9 +36,6 @@
     },
     "SwitchOrientation": {
         "message": "Cambiar orientación"
-    },
-    "PlayTab": {
-        "message": "Jugar"
     },
     "SocialTab": {
         "message": "Social"
@@ -152,14 +157,8 @@
     "File": {
         "message": "Archivo"
     },
-    "MsgView": {
-        "message": "Mensajes"
-    },
     "HistoryView": {
         "message": "Histórico"
-    },
-    "BoardView": {
-        "message": "Foros"
     },
     "you": {
         "message": "tú"
@@ -235,12 +234,6 @@
     },
     "All of them": {
         "message": "Todos ellos"
-    },
-    "History": {
-        "message": "Historial"
-    },
-    "Language": {
-        "message": "Idioma"
     },
     "Meeting room": {
         "message": "Lugar de encuentro"

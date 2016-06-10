@@ -1,4 +1,12 @@
 {
+    "Play": { "message": "Ludi" },
+    "Boards": { "message": "Forumoj" },
+    "Messages": { "message": "Mesaĝoj" },
+    "Language": { "message": "Lingvo" },
+    "History": {  "message": "Historio" },
+	"Together": { "message": "Kune" },
+	"Username": { "message": "Kromnomo" },
+	"Choose Game": { "message": "Bonvolu elekti ludon" }, 
     "server_welcome": {
         "message": "bonvenon al la LUDI-a reto."
     },
@@ -28,9 +36,6 @@
     },
     "SwitchOrientation": {
         "message": "Ŝanĝi orientadon"
-    },
-    "PlayTab": {
-        "message": "Ludi"
     },
     "SocialTab": {
         "message": "Socie"
@@ -152,14 +157,8 @@
     "File": {
         "message": "Arĥivo"
     },
-    "MsgView": {
-        "message": "Mesaĝoj"
-    },
     "HistoryView": {
         "message": "Historio"
-    },
-    "BoardView": {
-        "message": "Forumoj"
     },
     "you": {
         "message": "vi"
@@ -235,12 +234,6 @@
     },
     "All of them": {
         "message": "Ĉiuj"
-    },
-    "History": {
-        "message": "Historio"
-    },
-    "Language": {
-        "message": "Lingvo"
     },
     "Meeting room": {
         "message": "Renkontiĝejo"
