@@ -22,18 +22,18 @@ const state = {
 		// hardcoded simulation
 		{ 	action: { actionId:'look'}, 
 			reactionList: [ 
-				{ type: 'msg', detail: {msgId: 'Introduction'} },
-				{ type: 'msg', detail: {msgId: 'Locked direction'} },
-				{ type: 'msg', detail: {msgId: 'You just jump!'} },
-				{ type: 'msg', detail: {msgId: 'You read %o1', o1:'book'}  },
-				{ type: 'msg', detail:  {msgId: 'You don\'t know where %o1 was', o1:'pencil'} }
+				{ type: 'rt_msg', txt: 'Introduction' },
+				{ type: 'rt_msg', txt: 'Locked direction' },
+				{ type: 'rt_msg', txt: 'You just jump!' },
+				{ type: 'rt_msg', txt: 'You read %o1', param: {o1:"5"}  },
+				{ type: 'rt_msg', txt: 'location unknown of %o1', param: {o1:6} }
 			]
 		},
 		{ action: {actionId:'go west'}, 
 			reactionList: [
-				{ type: 'msg', detail: {msgId: 'You go to %d1', d1:'west'} },
-				{ type: 'msg', detail: {msgId: 'Time runs'} },
-				{ type: 'msg', detail: {msgId: 'Locked direction'} }
+				{ type: 'rt_msg', txt: 'You go to %d1', param: {d1:'0'} },
+				{ type: 'rt_msg', txt:  'Time runs' },
+				{ type: 'rt_msg', txt: 'Locked direction' }
 			]
 		}  
 	],
@@ -77,9 +77,21 @@ const state = {
 		}
 		*/
 		
+		// assume reaction.type == "txt"
 
 		var expanded = ""
-		var longMsgId = "messages." + reaction.msgId + ".txt"
+		var longMsgId
+
+		console.log	("gTranslator.reaction: " + JSON.stringify(reaction) )
+		
+		if (reaction.type == "rt_asis") return reaction.txt;
+		else if (reaction.type == "rt_msg") longMsgId = "messages." + reaction.txt + ".txt"
+		else if (reaction.type == "rt_desc") {
+			longMsgId = "items." + state.runner.world.items[reaction.o1].id + ".desc" // to-do: it could be dynamic
+		} else if (reaction.type == "rt_item") {
+			longMsgId = "items." + state.runner.world.items[reaction.o1].id + ".txt" // to-do: it could be dynamic?
+		} else return "gTranslator:[" + JSON.stringify(reaction) + "]"
+
 		
 		if (state.game.messages [state.locale] != undefined) {
 			if (state.game.messages [state.locale][longMsgId] != undefined) expanded = state.game.messages [state.locale][longMsgId].message
@@ -88,29 +100,29 @@ const state = {
 			if (state.lib.messages [state.locale][longMsgId] != undefined) expanded = state.lib.messages [state.locale][longMsgId].message
 		}
 		if (expanded == "") {
-			expanded = "[" + reaction.msgId + "]"
+			expanded = "[" + reaction.txt + "]"
 		}
 		
-		return expanded
-		
-		/*	
-		if (expanded.indexOf(" o1") != -1) {
-		if (this.locale == 'en' ) expanded =  expanded.replace ("o1", "a(n)" + this.itemTranslation(reaction.o1))
-		else if (this.locale == 'es' ) expanded =  expanded.replace ("o1", "un(a)" + this.itemTranslation(reaction.o1))
-		else if (this.locale == 'eo' ) expanded =  expanded.replace ("o1", this.itemTranslation(reaction.o1) +  "n")
-		else expanded = expanded.replace ("o1", this.itemTranslation(reaction.o1))
+		if (expanded.indexOf("%o1") != -1) {
+
+			// by language
+			if (this.locale == 'en' ) expanded =  expanded.replace ("%o1", " a(n) " + state.translateGameElement("items", reaction.param.o1, "txt"))
+			else if (this.locale == 'es' ) expanded =  expanded.replace ("%o1", " un(a) " + state.translateGameElement("items", reaction.param.o1, "txt"))
+			else if (this.locale == 'eo' ) expanded =  expanded.replace ("%o1", " " + state.translateGameElement("items", reaction.param.o1, "txt") +  "n")
+			else expanded = " " + expanded.replace ("%o1", state.translateGameElement("items", reaction.param.o1, "txt") ) 
 		}
 
-		if (expanded.indexOf(" d1") != -1) {  
-		if (this.locale == 'en' ) expanded =  expanded.replace ("d1", reaction.d1) // this.directionTranslation(reaction.d1))
-		else if (this.locale == 'es' ) expanded =  expanded.replace ("d1", reaction.d1) // this.directionTranslation(reaction.d1))
-		else if (this.locale == 'eo' ) expanded =  expanded.replace ("d1", reaction.d1) // this.directionTranslation(reaction.d1))
-		else expanded = expanded.replace ("d1", reaction.d1) // this.directionTranslation(reaction.d1))
+		if (expanded.indexOf("%d1") != -1) {  
+			// by language
+			if (this.locale == 'en' ) expanded =  expanded.replace ("%d1", " " + state.translateGameElement("directions", reaction.param.d1, "txt") )
+			else if (this.locale == 'es' ) expanded =  expanded.replace ("%d1", " " + state.translateGameElement("directions", reaction.param.d1, "txt") )
+			else if (this.locale == 'eo' ) expanded =  expanded.replace ("%d1", " " + state.translateGameElement("directions", reaction.param.d1, "txt") + "n" )
+			else expanded = " " + expanded.replace ("%d1", state.translateGameElement("directions", reaction.param.d1, "txt") )
 		}
 
 		return expanded  
-		*/
-    }, 	
+
+	}, 	
 	translateGameElement: function (type, index, attribute) {
 
 		return state.language.expandText (type, index, attribute)
@@ -236,7 +248,7 @@ const mutations = {
 
 	state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
 
-	state.reactionList.push ({type:"msg", detail: {msgId: 'Welcome'}} )
+	state.reactionList.push ({type:"rt_msg", txt: 'Welcome'} )
 	mutations.PROCESS_CHOICE(state, {actionId: 'look'}); 
 	
   }, 
@@ -260,6 +272,10 @@ const mutations = {
 			}
 		)
 	}
+	
+	// to-do: kill currentChoice?
+	state.currentChoice = state.runner.choice
+
 
   },
   RESETGAMEID (state) {

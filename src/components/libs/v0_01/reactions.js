@@ -31,19 +31,28 @@ export function dependsOn (primitives, reactionList) {
 	
 }
 
-exports.processAction = function  (action) {
-	
-	if (action.actionId == "look") {
-		this.reactionList.push ({type:"msg", detail: {msgId: 'You can see'}} )
-		return true
-	} else if (action.actionId == "go to d1") {
-		// console.log ("action: " +  JSON.stringify (action))
-		this.reactionList.push ({type:"msg", detail: {msgId: 'You go to %d1', d1:action.d1}} )
-		return true
-	} else {
-		return false
-	} 
+function arrayObjectIndexOf(myArray, property, searchTerm) {
+    for(var i = 0, len = myArray.length; i < len; i++) {
+        if (myArray[i][property] === searchTerm) return i;
+    }
+    return -1;
+}
 
+export function processAction (action) {
+	
+	// here!! call initReactions[actionIndex].enabled and .reaction  !!!!
+	let actionIndex = arrayObjectIndexOf (this.reactions, "id", action.actionId)
+	if (actionIndex < 0 ) {
+		this.reactionList.push ({type:"rt_msg", txt: 'Error: missing actionId ' + action.actionId} )
+		return true
+	}
+		
+	// to-do: echo
+	this.reactionList.push ({type:"rt_msg", txt: "echo: " + action.actionId} )
+	console.log ("action: " +  JSON.stringify (action))
+	
+	this.reactions[actionIndex].reaction ({ item1:action.item1, item2:action.item2, loc:this.primitives.PC_GetCurrentLoc (), direction:action.d1 })
+	return true
 
 }
 
@@ -53,6 +62,16 @@ exports.actionIsEnabled = function  (action, item1, item2) {
 	if (this.reactions[action] == undefined) return false
 
 	return this.reactions[action].enabled(item1, item2)
+	
+}
+
+exports.dirIsEnabled = function  (loc, dir1) {
+	
+	var link = this.primitives.getTargetAndLocked ({loc:loc, direction: dir1});
+	
+	if (link.isLocked) return true; // it is shown, though
+	if (link.target == -1) return false;
+	return true;
 	
 }
 
@@ -94,15 +113,24 @@ let initReactions =  function  (reactions, primitives) {
 		enabled: function (indexItem, indexItem2) {
 			return true;
 		},
+
+		dirEnabled: function (dir1) {
+			var link = primitives.getTargetAndLocked ({loc:primitives.PC_GetCurrentLoc (), direction: dir1});
+
+			if (link.isLocked) return true; // it is shown, though
+			if (link.target == -1) return false;
+			return true;
+		},
 		
 		reaction: function (par_c) {
 		
 			// test
-			primitives.CA_ShowMsg("You go to %d1", [par_c.directionId]);
+			//primitives.CA_ShowMsg("You go to %d1", [par_c.directionId]); // old way!!!
+			primitives.CA_ShowMsg("You go to %d1", {d1:par_c.direction}); // to-do:: attention: new format!!!
 			primitives.CA_ShowMsgAsIs("<br/><br/>");
 
 			// preactions when trying to go out from here
-			var link = ludi_lib.getTargetAndLocked (par_c);
+			var link = primitives.getTargetAndLocked (par_c);
 			
 			// if locked, show locked message
 			if (link.isLocked) {
@@ -121,7 +149,29 @@ let initReactions =  function  (reactions, primitives) {
 			// after reaction: by default: standard description
 
 			// transition message (if exist) from both locations (before description)
-			IT_TransitionTo (par_c.loc, link.target);
+				
+			var transtitionState;
+			// error here: ludi_runner.worldIndexes
+			/*
+			var itemWorlIndex = ludi_runner.worldIndexes.items[par_c.loc];
+			
+			if (itemWorlIndex.gameIndex>=0)  { 
+				if (typeof ludi_game.items[itemWorlIndex.gameIndex].transitionTo == 'function') { // exists game item transitionTo()?
+					transtitionState = ludi_game.items[itemWorlIndex.gameIndex].transitionTo(link.target);
+				}
+			}
+			if (((transtitionState == false) || (transtitionState== undefined)) && (typeof ludi_game.transitionTo == 'function')) { // exists game.transitionTo()?
+				transtitionState = ludi_game.transitionTo(par_c.loc, link.target);
+			}
+			*/
+			
+			if ((transtitionState == false) || (transtitionState== undefined)) {
+				// show location name
+				primitives.CA_ShowMsgAsIs ("<br/>");
+				primitives.CA_ShowItem (primitives.PC_GetCurrentLoc());
+				primitives.CA_ShowMsgAsIs ("<br/>");
+			}
+			
 			
 			if (!primitives.IT_GetIsItemKnown (primitives.PC_X(), link.target)) {
 				// set loc as known;
@@ -172,6 +222,10 @@ let initReactions =  function  (reactions, primitives) {
 			
 			primitives.IT_DynDesc (par_c.item1);
 
+			return;
+			
+			// here!!: it must be using primitives!!!!!!!!!!!!!!!!!!!!???????????
+			// to-do: error here: ludi_runner.world
 			for (var idAtt in ludi_runner.world.items[par_c.item1].att) {
 				indexAtt = W_GetAttIndex (idAtt);
 				if (indexAtt<0) {
@@ -180,12 +234,12 @@ let initReactions =  function  (reactions, primitives) {
 				}
 
 				var indexGameAttribute = arrayObjectIndexOf(ludi_game.attribute, "id", idAtt);
-				var indexLibAttribute = arrayObjectIndexOf(ludi_lib.attribute, "id", idAtt);
+				var indexLibAttribute = arrayObjectIndexOf(this.libReactions.attribute, "id", idAtt);
 						
 				if (indexGameAttribute>=0) {
 					ludi_game.attribute[indexGameAttribute].desc(par_c.item1);
 				} else if (indexLibAttribute>=0) {
-					ludi_lib.attribute[indexLibAttribute].desc(par_c.item1);
+					this.libReactions.attribute[indexLibAttribute].desc(par_c.item1);
 				} else {
 					
 					primitives.CA_ATT( indexAtt);
@@ -604,6 +658,7 @@ let initReactions =  function  (reactions, primitives) {
 		reaction: function (par_c) {
 		
 			// if attribute lookDir exists, show it
+			// error here: ludi_runner.world.
 			for(var i = 0, len = ludi_runner.world.items[par_c.loc].address.length; i < len; i++) {
 				
 				if(typeof ludi_runner.world.items[par_c.loc].address[i].lookDir != 'undefined'){ 
@@ -860,7 +915,7 @@ let initReactions =  function  (reactions, primitives) {
 // GENERIC turn **********************************************************************************************
 
 /*
-ludi_lib.turn = function (indexItem) {
+this.libReactions.turn = function (indexItem) {
 
 }
 */
@@ -877,6 +932,7 @@ let initAttributes =  function  (attributes, primitives) {
 		id: 'isContainer',
 		
 		desc: function (indexItem) {
+			// error here: ludi_runner.world
 			var values = ludi_runner.world.items[indexItem].att[this.id];
 			/*
 				values: [Object: maxWeight: "200"]
@@ -930,30 +986,13 @@ let initAttributes =  function  (attributes, primitives) {
 // ----------------------------------------------
 // local functions // to-do: naming
 
-function IT_TransitionTo (source, target) {
-	
-	var itemWorlIndex = ludi_runner.worldIndexes.items[source];
-	
-	var state;
-	if (itemWorlIndex.gameIndex>=0)  { 
-		if (typeof ludi_game.items[itemWorlIndex.gameIndex].transitionTo == 'function') { // exists game item transitionTo()?
-			state = ludi_game.items[itemWorlIndex.gameIndex].transitionTo(target);
-		}
-	}
-	if (((state == false) || (state== undefined)) && (typeof ludi_game.transitionTo == 'function')) { // exists game.transitionTo()?
-		state = ludi_game.transitionTo(source, target);
-	}
-	
-	if ((state == false) || (state== undefined)) {
-		// show location name
-		this.primitives.CA_ShowMsgAsIs ("<br/>");
-		this.primitives.CA_ShowItem (this.primitives.PC_GetCurrentLoc());
-		this.primitives.CA_ShowMsgAsIs ("<br/>");
-	}
-}
 
 function IT_AfterDescription (target) {
 	
+	//vue by now
+	return
+
+
 	var itemWorlIndex = ludi_runner.worldIndexes.items[target];
 	 
 	var state;

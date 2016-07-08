@@ -14,31 +14,39 @@ let world;
 let reactionList;
 let userState;
 
-
-let caEnum = {
- ASIS: {value: 0},
- ATT: {value: 1},
- ITEM: {value: 2},
- MSG: {value: 3},
- DESC: {value: 4},
- REFRESH: {value: 5},
- URL: {value: 6},
- GRAPH: {value:7},
- GRAPH_POPUP: {value:8},
- MSG_POPUP: {value:9},
- PRESS_KEY: {value:10},
- SHOW_MENU: {value:11},
- SOUND: {value:12},
- ACTION: {value: 13},
- END_GAME: {value: 14},
- RESTART_GAME: {value: 15},
- DIR: {value: 16},
- SHOW_ECHO: {value: 17},
- PLAY_AUDIO: {value: 18},
- QUOTE_BEGIN: {value: 19},
- QUOTE_CONTINUES: {value: 20}
-
-};
+export function caMapping (type) {
+	
+	let reactionTypes = [
+		"ASIS",
+		"ATT",
+		"ITEM",
+		"MSG",
+		"DESC",
+ 		"REFRESH",
+ 		"URL",
+ 		"GRAPH",
+ 		"GRAPH_POPUP",
+ 		"MSG_POPUP",
+ 		"PRESS_KEY",
+ 		"SHOW_MENU",
+ 		"SOUND",
+ 		"ACTION",
+ 		"END_GAME",
+ 		"RESTART_GAME",
+ 		"DIR",
+ 		"SHOW_ECHO",
+ 		"PLAY_AUDIO",
+ 		"QUOTE_BEGIN",
+ 		"QUOTE_CONTINUES"
+	]
+	
+	// var pos = reactionTypes.indexOf (type);
+	
+	return "rt_" + type.toLowerCase();
+	
+	
+	
+}
 
 function arrayObjectIndexOf(myArray, property, searchTerm) {
     for(var i = 0, len = myArray.length; i < len; i++) {
@@ -74,6 +82,7 @@ exports.addReaction = function (type, parameters) {
 };
 
 // -----------------------------------
+
 
 
 /*(begin)********************** INSTRUCTION SET *********************
@@ -168,64 +177,64 @@ Categories:
 /* CA: Client Action *****************************************************************/
 
 exports.CA_ShowDesc = function (o1) {
- this.reactionList.push ({type:this.caEnum.DESC.value, o1:o1});
+ this.reactionList.push ({type:this.caMapping("DESC"), o1:o1});
 };
 
 exports.CA_QuoteBegin = function (item, txt, param, last) {
  if (typeof param == "undefined") param = [];
  if (typeof last == "undefined") last = true;
 
- this.reactionList.push ({type:this.caEnum.QUOTE_BEGIN.value, item:item, txt:txt, param:param, last:last});
+ this.reactionList.push ({type:this.caMapping("QUOTE_BEGIN"), item:item, txt:txt, param:param, last:last});
 }
 
 exports.CA_QuoteContinues = function (txt, param, last) {
  if (typeof param == "undefined") param = [];
  if (typeof last == "undefined") last = true;
 
- this.reactionList.push ({type:this.caEnum.QUOTE_CONTINUES.value, txt:txt, param:param, last:last});
+ this.reactionList.push ({type:this.caMapping("QUOTE_CONTINUES"), txt:txt, param:param, last:last});
 }
 
 exports.CA_Refresh = function() {
- this.reactionList.push ({type:this.caEnum.REFRESH.value});
+ this.reactionList.push ({type:this.caMapping("REFRESH")});
 }
 
 exports.CA_URL = function(url, txt, param) {
- this.reactionList.push ({type:this.caEnum.URL.value, url:url, txt:txt, param:param});
+ this.reactionList.push ({type:this.caMapping("URL"), url:url, txt:txt, param:param});
 }
 
-exports.CA_ShowMsg = function(txt, param) {
- this.reactionList.push ({type:this.caEnum.MSG.value, txt:txt, param:param});
+export function CA_ShowMsg (txt, param) {
+ this.reactionList.push ({type:this.caMapping("MSG"), txt:txt, param:param});
 }
 
 exports.CA_ShowMsgAsIs = function(txt) {
- this.reactionList.push ({type:this.caEnum.ASIS.value, txt:txt});
+ this.reactionList.push ({type:this.caMapping("ASIS"), txt:txt});
 }
 
 exports.CA_ATT = function( o1, o2) {
- this.reactionList.push ({type:this.caEnum.ATT.value, o1:o1, o2:o2});
+ this.reactionList.push ({type:this.caMapping("ATT"), o1:o1, o2:o2});
 }
 
 exports.CA_ShowDir = function( dir) {
- this.reactionList.push ({type:this.caEnum.DIR.value, dir:dir});
+ this.reactionList.push ({type:this.caMapping("DIR"), dir:dir});
 }
 
 exports.CA_ShowItem = function( o1) {
- this.reactionList.push ({type:this.caEnum.ITEM.value, o1:o1});
+ this.reactionList.push ({type:this.caMapping("ITEM"), o1:o1});
 }
 
 exports.CA_ShowMenu = function( o1) {
- this.reactionList.push ({type:this.caEnum.SHOW_MENU.value, o1:o1});
+ this.reactionList.push ({type:this.caMapping("SHOW_MENU"), o1:o1});
 }
 
 exports.CA_ShowImg = function(url, isLocal, isLink, txt, param) {
  if (typeof isLocal == "undefined") isLocal = false;
  if (typeof isLink == "undefined") isLink = false;
  
- this.reactionList.push ({type:this.caEnum.GRAPH.value, url:url, isLocal:isLocal, isLink:isLink, txt:txt, param:param});
+ this.reactionList.push ({type:this.caMapping("GRAPH"), url:url, isLocal:isLocal, isLink:isLink, txt:txt, param:param});
 }
 
 exports.CA_PressKey = function(txt) {
- this.reactionList.push ({type:this.caEnum.PRESS_KEY.value, txt:txt});
+ this.reactionList.push ({type:this.caMapping("PRESS_KEY"), txt:txt});
 }
 
 exports.CA_EndGame = function() {
@@ -235,12 +244,12 @@ exports.CA_EndGame = function() {
 }
 
 exports.CA_RestartGame = function() {
- this.reactionList.push ({type:this.caEnum.RESTART_GAME.value});
+ this.reactionList.push ({type:this.caMapping("RESTART_GAME")});
 }
 
 exports.CA_PlayAudio = function(fileName, autoStart, txt, param) {
 
- this.reactionList.push ({type:this.caEnum.PLAY_AUDIO.value, fileName:fileName, autoStart:autoStart, txt:txt, param:param });
+ this.reactionList.push ({type:this.caMapping("PLAY_AUDIO"), fileName:fileName, autoStart:autoStart, txt:txt, param:param });
 
 }
 
@@ -368,11 +377,17 @@ exports.IT_SetIsLocked = function(i, dir, value) {
  }
 }
 
-exports.IT_GetIsItemKnown = function(i1, i2) {
+export function IT_GetIsItemKnown (i1, i2) {
+ // vue by now:
+ return false
+ 
  return (typeof this.world.items[i1].state.itemsMemory[i2] != "undefined");
 }
 
 exports.IT_SetIsItemKnown = function(i1, i2) {
+ // vue by now:
+ return 
+
  this.world.items[i1].state.itemsMemory[i2] = { whereWas:-1, lastTime:-1 };
 }
 
@@ -382,12 +397,15 @@ exports.IT_GetWhereItemWas = function(i1, i2) {
 }
 
 exports.IT_SetWhereItemWas = function(i1, i2, value) {
- if (!IT_GetIsItemKnown (i1, i2)) IT_SetIsItemKnown (i1,i2);
+ if (!IT_GetIsItemKnown (i1, i2)) exports.IT_SetIsItemKnown (i1,i2);
  this.world.items[i1].state.itemsMemory[i2].whereWas = value;
  IT_SetLastTime(i1, i2);
 }
 
 exports.IT_SetLastTime = function (i1, i2) {
+  // vue by now:
+ return 
+
  this.world.items[i1].state.itemsMemory[i2].lastTime = this.userState.profile.turnCounter;
 }
 
@@ -489,8 +507,15 @@ exports.IT_SameLocThan = function(i1, i2) {
 
 exports.IT_DynDesc = function(i) {
 
+	// vue by now
+	this.CA_ShowDesc (i);
+
+	return
+
+
+
  // if dark, do not show the description
- if (IT_ATT(i, "dark")) {
+ if (exports.IT_ATT(i, "dark")) {
   //  to-do: if light available, show the description
   CA_ShowMsg("It is dark");
   return;
@@ -523,6 +548,8 @@ exports.IT_DynDesc = function(i) {
 
 // if returns true, ordinary desc will be needed after it
 exports.IT_FirstTimeDesc = function(indexItem) {
+ // vue by now:
+ return true
 
  var itemWorlIndex = this.worldIndexes.items[indexItem];
 
@@ -564,10 +591,13 @@ exports.GD_CreateMsg = function(indexLang, idMsg, txtMsg) {
 
 // auxiliary functions
 
-
 exports.getTargetAndLocked = function (par_c) { // to-do: internal
 
- connection = {target: -1, isLocked: false};
+
+ var connection = {target: -1, isLocked: false};
+ 
+ 
+ if (this.world.items[par_c.loc].address == undefined) return connection
 
  // target and locked resolution
  var targetId;

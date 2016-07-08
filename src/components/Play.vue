@@ -4,7 +4,7 @@
     <div v-for="hItem in history">
         <p><b> {{$index+1}}. {{hItem.action.actionId}}</b></p>
             <!-- to-do: problem with nested v-for: so, we'll create a new component -->   
-            <span v-for="r in hItem.reactionList"> {{t(r.detail)}} </span>
+            <span v-for="r in hItem.reactionList"> {{{t(r)}}} </span>
     </div>
   </div>
     
@@ -20,13 +20,13 @@
     
     
   <div class="choices">
-     <h2>Choices {{theCurrentChoice}} </h2> 
+     <h2>Choices on {{theCurrentChoice}} </h2> 
     
     <span v-for="choice in choices">
-        <button v-if ="choice.choiceId == 'action' " class='choiceAction' v-on:click="doGameChoice(choice)">{{tge("action", choice.action.actionId)}}</button>
-        <button v-if ="choice.choiceId == 'action2' " class='choiceAction2' v-on:click="doGameChoice(choice)">{{tge("item", choice.action.item1, "txt")}}: {{tge("action", choice.action.actionId)}}  to:{{tge("item", choice.action.item2, "txt")}} </button>
-        <button v-if ="choice.choiceId == 'obj1' " class='choiceObj1' v-on:click="doGameChoice(choice)">{{tge("item", choice.item1, "txt")}}</button>
-        <button v-if ="choice.choiceId == 'dir1' " class='choiceDir1' v-on:click="doGameChoice(choice)">{{tge("dir", choice.dir1, "txt")}}</button>
+        <button v-if ="choice.choiceId == 'action' " class='choiceAction' v-on:click="doGameChoice(choice)">{{tge("actions", choice.action.actionId)}}</button>
+        <button v-if ="choice.choiceId == 'action2' " class='choiceAction2' v-on:click="doGameChoice(choice)">{{tge("items", choice.action.item1, "txt")}}: {{tge("actions", choice.action.actionId)}}  to:{{tge("items", choice.action.item2, "txt")}} </button>
+        <button v-if ="choice.choiceId == 'obj1' " class='choiceObj1' v-on:click="doGameChoice(choice)">{{tge("items", choice.item1, "txt")}}</button>
+        <button v-if ="choice.choiceId == 'dir1' " class='choiceDir1' v-on:click="doGameChoice(choice)">{{tge("directions", choice.action.d1, "txt")}}</button>
     </span>
     
   </div>
@@ -41,9 +41,9 @@
 
 
 export default {
-data () {
-    return {
-    }
+  data () {
+     return {
+      }
   },
   created: function () {
     this.showEndOfText()
@@ -54,7 +54,11 @@ data () {
       } 
   },
   methods: {
-      showCurrentChoice: function () {
+      decodeHtml: function (html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+      }, showCurrentChoice: function () {
            let choice = this.currentChoice 
            // console.log ("choice: " + JSON.stringify (choice))
           // "choiceId": "action2", "isLeafe": true, "action": { "item1": 4, "actionId": "ask_about", "item2": 0 } }
@@ -104,15 +108,20 @@ h1 {
 }
 
 .play {
-   	height: 200px;
-	background-color: #EFC;
+   	height: 400px;
+	background-color:#FFF;
  	overflow: scroll;		
+    text-align: left;
 }		
 
+.mainChoices {
+	background-color: #FFE;
+}
+
 .choices {
-   	height: 200px;
-	background-color: #AFC;
- 	overflow: scroll;		
+   	/*height: 120px;*/
+	background-color: #FFD;
+ 	overflow: scroll;	
 }
 
 .choiceTop {
