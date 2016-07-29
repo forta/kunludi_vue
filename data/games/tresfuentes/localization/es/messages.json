@@ -1966,5 +1966,9 @@
 	},
 	"messages.DLG_me_voy.txt": {
 		"message": "Disculpe que me vaya, no frecuento a desconocidos."
+	},
+	"messages.pulsa_para_ver_imagen_de_%o1.txt": {
+		"message": "Pulsa para ver la imagen de %o1.<br/>"
 	}
+
 }

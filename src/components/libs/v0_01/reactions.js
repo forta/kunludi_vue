@@ -47,11 +47,10 @@ export function processAction (action) {
 		return true
 	}
 		
-	// to-do: echo
-	this.reactionList.push ({type:"rt_msg", txt: "echo: " + action.actionId} )
-	console.log ("action: " +  JSON.stringify (action))
+	console.log ("lib action: " +  JSON.stringify (action))
 	
-	this.reactions[actionIndex].reaction ({ item1:action.item1, item2:action.item2, loc:this.primitives.PC_GetCurrentLoc (), direction:action.d1 })
+	this.reactions[actionIndex].reaction ({ item1:action.item1, item2:action.item2, item1Id:action.item1Id, item2Id:action.item2Id, loc:this.primitives.PC_GetCurrentLoc (), direction:action.d1 })
+	
 	return true
 
 }
@@ -75,6 +74,7 @@ exports.dirIsEnabled = function  (loc, dir1) {
 	
 }
 
+// ============================
 
 /*
 ludi_lib.reactionById = function (actionId) {
@@ -88,7 +88,7 @@ let initReactions =  function  (reactions, primitives) {
 	reactions.push ({
 		id: 'look',
 		
-		enabled: function (indexItem,indexItem2) {
+		enabled: function (indexItem, indexItem2) {
 			return true;
 		},
 		

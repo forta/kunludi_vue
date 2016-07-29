@@ -17,53 +17,39 @@ exports.dependsOn = function (libMessages, gameMessages, world) {
 
 }
 
+
 exports.expandText = function  (type, index, attribute) {
 
+	var longMsgId
+	
 	if (type == 'items') {
-		if (this.world.items[index] == undefined) return "[undefined " + type + "." + index + "." + attribute + "]"
+		if (this.world.items[index] == undefined) 
+			longMsgId  = type + "." + index + "." + attribute
+		else
+			longMsgId = "items." + this.world.items[index].id + "." + attribute	
 		
-		var longMsgId = "items." + this.world.items[index].id + "." + attribute
-		
-		if (this.gameMessages != undefined) {
-			if (this.gameMessages[longMsgId] != undefined) return this.gameMessages[longMsgId].message;
-		}
-
-		if (this.libMessages != undefined) {
-			if (this.libMessages[longMsgId] != undefined) return this.libMessages[longMsgId].message;
-		}
-
-		return "[" + longMsgId + "]"
 	} else if (type == 'actions') {
-		var longMsgId = "actions." + index + "." +  "txt"
+		longMsgId = "actions." + index + "." +  "txt"
 
-		if (this.gameMessages != undefined) {
-			if (this.gameMessages[longMsgId] != undefined) return this.gameMessages[longMsgId].message;
-		}
-
-		if (this.libMessages != undefined) {
-			if (this.libMessages[longMsgId] != undefined) return this.libMessages[longMsgId].message;
-		}
-
-		return "[" + longMsgId + "]"
 	} else if (type == 'directions') {
-				
-		var dirId = this.world.directions [index].id
-		
-		var longMsgId = "directions." + dirId + "." +  "desc"
+		if (this.world.directions[index] == undefined) 
+			longMsgId  = type + "." + index + "." + "desc"
+		else
+			longMsgId = "directions." + this.world.directions [index].id + "." +  "desc"
 
-		if (this.gameMessages != undefined) {
-			if (this.gameMessages[longMsgId] != undefined) return this.gameMessages[longMsgId].message;
-		}
-
-		if (this.libMessages != undefined) {
-			if (this.libMessages[longMsgId] != undefined) return this.libMessages[longMsgId].message;
-		}
-
-		return "[" + longMsgId + "]"
+	} else 
+		longMsgId = type + "." + index + "." + attribute
+			
 	
-	} 
-	
-	return "[missing short name]"
+	if (this.gameMessages != undefined) {
+		if (this.gameMessages[longMsgId] != undefined) return this.gameMessages[longMsgId].message;
+	}
+
+	if (this.libMessages != undefined) {
+		if (this.libMessages[longMsgId] != undefined) return this.libMessages[longMsgId].message;
+	}
+
+	return "[" + longMsgId + "]"
 	
 }
 

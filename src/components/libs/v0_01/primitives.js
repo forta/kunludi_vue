@@ -8,8 +8,6 @@ module that:
 
 "use strict";
 
-exports.reactionList = [];
-
 let world;
 let reactionList;
 let userState;
@@ -56,13 +54,13 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
 }
 
 
-exports.dependsOn = function (world, reactionList, userState) {
+export function dependsOn  (world, reactionList, userState) {
  this.world = world;
  this.reactionList = reactionList;
  this.userState = userState;
 };
 
-exports.executeGameAction = function (type, parameters) {
+export function executeGameAction (type, parameters) {
 
  switch (type) {
   case 'msg':
@@ -75,7 +73,7 @@ exports.executeGameAction = function (type, parameters) {
 };
 
 // direct, simply show text as is.
-exports.addReaction = function (type, parameters) {
+export function addReaction (type, parameters) {
 
  reactionList.add ({type:type, parameters:parameters} );
 
@@ -176,29 +174,29 @@ Categories:
 
 /* CA: Client Action *****************************************************************/
 
-exports.CA_ShowDesc = function (o1) {
+export function CA_ShowDesc  (o1) {
  this.reactionList.push ({type:this.caMapping("DESC"), o1:o1});
 };
 
-exports.CA_QuoteBegin = function (item, txt, param, last) {
+export function CA_QuoteBegin  (item, txt, param, last) {
  if (typeof param == "undefined") param = [];
  if (typeof last == "undefined") last = true;
 
  this.reactionList.push ({type:this.caMapping("QUOTE_BEGIN"), item:item, txt:txt, param:param, last:last});
 }
 
-exports.CA_QuoteContinues = function (txt, param, last) {
+export function CA_QuoteContinues  (txt, param, last) {
  if (typeof param == "undefined") param = [];
  if (typeof last == "undefined") last = true;
 
  this.reactionList.push ({type:this.caMapping("QUOTE_CONTINUES"), txt:txt, param:param, last:last});
 }
 
-exports.CA_Refresh = function() {
+export function CA_Refresh () {
  this.reactionList.push ({type:this.caMapping("REFRESH")});
 }
 
-exports.CA_URL = function(url, txt, param) {
+export function CA_URL (url, txt, param) {
  this.reactionList.push ({type:this.caMapping("URL"), url:url, txt:txt, param:param});
 }
 
@@ -206,48 +204,48 @@ export function CA_ShowMsg (txt, param) {
  this.reactionList.push ({type:this.caMapping("MSG"), txt:txt, param:param});
 }
 
-exports.CA_ShowMsgAsIs = function(txt) {
+export function CA_ShowMsgAsIs (txt) {
  this.reactionList.push ({type:this.caMapping("ASIS"), txt:txt});
 }
 
-exports.CA_ATT = function( o1, o2) {
+export function CA_ATT ( o1, o2) {
  this.reactionList.push ({type:this.caMapping("ATT"), o1:o1, o2:o2});
 }
 
-exports.CA_ShowDir = function( dir) {
+export function CA_ShowDir ( dir) {
  this.reactionList.push ({type:this.caMapping("DIR"), dir:dir});
 }
 
-exports.CA_ShowItem = function( o1) {
+export function CA_ShowItem ( o1) {
  this.reactionList.push ({type:this.caMapping("ITEM"), o1:o1});
 }
 
-exports.CA_ShowMenu = function( o1) {
+export function CA_ShowMenu ( o1) {
  this.reactionList.push ({type:this.caMapping("SHOW_MENU"), o1:o1});
 }
 
-exports.CA_ShowImg = function(url, isLocal, isLink, txt, param) {
+export function CA_ShowImg (url, isLocal, isLink, txt, param) {
  if (typeof isLocal == "undefined") isLocal = false;
  if (typeof isLink == "undefined") isLink = false;
  
  this.reactionList.push ({type:this.caMapping("GRAPH"), url:url, isLocal:isLocal, isLink:isLink, txt:txt, param:param});
 }
 
-exports.CA_PressKey = function(txt) {
+export function CA_PressKey (txt) {
  this.reactionList.push ({type:this.caMapping("PRESS_KEY"), txt:txt});
 }
 
-exports.CA_EndGame = function() {
+export function CA_EndGame () {
  // to-do: block interface
  CA_PressKey("The game is over");
  CA_RestartGame();
 }
 
-exports.CA_RestartGame = function() {
+export function CA_RestartGame () {
  this.reactionList.push ({type:this.caMapping("RESTART_GAME")});
 }
 
-exports.CA_PlayAudio = function(fileName, autoStart, txt, param) {
+export function CA_PlayAudio (fileName, autoStart, txt, param) {
 
  this.reactionList.push ({type:this.caMapping("PLAY_AUDIO"), fileName:fileName, autoStart:autoStart, txt:txt, param:param });
 
@@ -256,11 +254,11 @@ exports.CA_PlayAudio = function(fileName, autoStart, txt, param) {
 
 /* PC: Playing Character *****************************************************************/
 
-exports.PC_X = function() {
+export function PC_X () {
  return this.userState.profile.indexPC;
 }
 
-exports.PC_SetIndex = function(o1) {
+export function PC_SetIndex (o1) {
  this.userState.profile.indexPC = o1;
  if (this.userState.profile.indexPC<0) {
   console.log ("Error in PC_SetIndex(o1): o1(== " +  o1 + ") is < 0");
@@ -268,93 +266,93 @@ exports.PC_SetIndex = function(o1) {
  }
 }
  
-exports.PC_GetCurrentLoc = function() {
+export function PC_GetCurrentLoc () {
  var locId = this.world.items[this.userState.profile.indexPC].loc;
  return this.IT_X (locId);
 }
 
-exports.PC_SetCurrentLoc = function (indexItem) {
+export function PC_SetCurrentLoc  (indexItem) {
  this.world.items[this.userState.profile.indexPC].loc = this.world.items[indexItem].id;
 }
 
-exports.PC_CheckCurrentLocId = function (locId) {
+export function PC_CheckCurrentLocId  (locId) {
 
  return (this.world.items[this.userState.profile.indexPC].loc == locId);
 
 }
 
 // score increment
-exports.PC_Points = function (value) {
+export function PC_Points  (value) {
  // to-do: as att?: var scoreInc = +IT_GetAttPropValue (this.userState.profile.indexPC, "score", "state");
  this.userState.profile.score += value;
 }
 
-exports.PC_GetTurn = function () {
+export function PC_GetTurn  () {
  return this.userState.profile.turnCounter;
 }
 
 /* DIR: directions *****************************************************************/
 
-exports.DIR_GetIndex = function (id) {
+export function DIR_GetIndex  (id) {
  return arrayObjectIndexOf(this.world.directions, "id", id);
 }
 
-exports.DIR_GetId = function (index) {
+export function DIR_GetId  (index) {
  if (index>=0) return this.world.directions[index].id;
 }
 
 /* IT: items *****************************************************************/
 
-exports.IT_X  = function (id){
+export function IT_X   (id){
  return arrayObjectIndexOf(this.world.items, "id", id);
 }
 
-exports.IT_NumberOfItems = function () {
+export function IT_NumberOfItems  () {
  return this.world.items.length;
 }
 
 
-exports.IT_GetId = function (index) {
+export function IT_GetId  (index) {
  if (index>=0) return this.world.items[index].id;
 }
 
-exports.IT_GetGameIndex = function (index) {
+export function IT_GetGameIndex  (index) {
  return this.worldIndexes.items[index].gameIndex;
 }
 
-exports.IT_GetLoc = function (i) {
+export function IT_GetLoc  (i) {
  var locId = this.world.items[i].loc;
  return arrayObjectIndexOf(this.world.items, "id", locId);
 }
 
-exports.IT_SetLocToLimbo = function (i) {
+export function IT_SetLocToLimbo  (i) {
  var value = IT_X ("limbo");
  this.world.items[i].loc = this.world.items[value].id;
 }
 
 //  i2 where i1 was; i1 to limbo
-exports.IT_ReplacedBy = function(i1, i2) {
+export function IT_ReplacedBy (i1, i2) {
  this.world.items[i2].loc = this.world.items[i1].loc;
  this.world.items[i1].loc = "limbo";
 }
 
-exports.IT_BringHere = function(i) {
+export function IT_BringHere (i) {
  this.world.items[i].loc = this.world.items[PC_GetCurrentLoc()].id;
 }
 
-exports.IT_SetLoc = function(i, value) {
+export function IT_SetLoc (i, value) {
  this.world.items[i].loc = this.world.items[value].id;
 }
 
-exports.IT_GetType = function(i) {
+export function IT_GetType (i) {
  return this.world.items[i].type;
 }
 
-exports.IT_SetType = function(i, value) {
+export function IT_SetType (i, value) {
  this.world.items[i].type = value;
 }
 
-exports.IT_GetIsLocked = function(i, dir) {
+export function IT_GetIsLocked (i, dir) {
  for (var d in this.world.items[i].address) {
   if (this.world.items[i].address[d].dir  == dir) {
    if (typeof this.world.items[i].address[d].locked != "undefined") {
@@ -368,7 +366,7 @@ exports.IT_GetIsLocked = function(i, dir) {
  return false;
 }
 
-exports.IT_SetIsLocked = function(i, dir, value) {
+export function IT_SetIsLocked (i, dir, value) {
  for (var d in this.world.items[i].address) {
   if (this.world.items[i].address[d].dir == dir) {
    this.world.items[i].address[d].locked = value;
@@ -378,52 +376,46 @@ exports.IT_SetIsLocked = function(i, dir, value) {
 }
 
 export function IT_GetIsItemKnown (i1, i2) {
- // vue by now:
- return false
  
  return (typeof this.world.items[i1].state.itemsMemory[i2] != "undefined");
 }
 
-exports.IT_SetIsItemKnown = function(i1, i2) {
- // vue by now:
- return 
+export function IT_SetIsItemKnown (i1, i2) {
 
  this.world.items[i1].state.itemsMemory[i2] = { whereWas:-1, lastTime:-1 };
 }
 
-exports.IT_GetWhereItemWas = function(i1, i2) {
- if (IT_GetIsItemKnown (i1, i2)) return this.world.items[i1].state.itemsMemory[i2].whereWas;
+export function IT_GetWhereItemWas (i1, i2) {
+ if (this.IT_GetIsItemKnown (i1, i2)) return this.world.items[i1].state.itemsMemory[i2].whereWas;
  return -1; // ups
 }
 
-exports.IT_SetWhereItemWas = function(i1, i2, value) {
- if (!IT_GetIsItemKnown (i1, i2)) exports.IT_SetIsItemKnown (i1,i2);
+export function IT_SetWhereItemWas (i1, i2, value) {
+ if (!this.IT_GetIsItemKnown (i1, i2)) this.IT_SetIsItemKnown (i1,i2);
  this.world.items[i1].state.itemsMemory[i2].whereWas = value;
- IT_SetLastTime(i1, i2);
+ this.IT_SetLastTime(i1, i2);
 }
 
-exports.IT_SetLastTime = function (i1, i2) {
-  // vue by now:
- return 
+export function IT_SetLastTime (i1, i2) {
 
  this.world.items[i1].state.itemsMemory[i2].lastTime = this.userState.profile.turnCounter;
 }
 
-exports.IT_Here = function (i) {
+export function IT_Here  (i) {
  return (IT_GetLoc(i) == PC_GetCurrentLoc());
 }
 
 // to-do:  IT_CarriedOrHere -> IT_OnCarriedOrHere
-exports.IT_CarriedOrHere = function(i) {
+export function IT_CarriedOrHere (i) {
  return ((this.IT_GetLoc(i)  == this.PC_X()) || (this.IT_GetLoc(i) == this.PC_GetCurrentLoc()));
 }
 
-exports.IT_NumberOfAtts = function(i) {
+export function IT_NumberOfAtts (i) {
  if (typeof this.world.items[i].att == "undefined") return 0;
  return this.world.items[i].att.length;
 }
 
-exports.IT_ATT = function(indexItem, idAttType) { // if exists definition
+export function IT_ATT (indexItem, idAttType) { // if exists definition
 
  if (indexItem<0) return false; // preventive
  var indexAttType = arrayObjectIndexOf(this.world.attributes, "id", idAttType);
@@ -434,7 +426,7 @@ exports.IT_ATT = function(indexItem, idAttType) { // if exists definition
  return true;
 }
 
-exports.IT_AttPropExists = function(indexItem, attId, propId) {
+export function IT_AttPropExists (indexItem, attId, propId) {
  if (typeof this.world.items[indexItem].att == "undefined") return false;
  if (typeof this.world.items[indexItem].att[attId] == "undefined") return false;
 
@@ -442,7 +434,7 @@ exports.IT_AttPropExists = function(indexItem, attId, propId) {
  return (j>=0);
 }
 
-exports.IT_GetAttPropValue = function(indexItem, attId, propId) {
+export function IT_GetAttPropValue (indexItem, attId, propId) {
 
  // find j in this.world.items[indexItem].att[attId][i][propId]
  for (var i=0; i<this.world.items[indexItem].att[attId].length;i++) {
@@ -457,7 +449,7 @@ exports.IT_GetAttPropValue = function(indexItem, attId, propId) {
 
 }
 
-exports.IT_SetAttPropValue = function(indexItem, attId, propId, newValue) {
+export function IT_SetAttPropValue (indexItem, attId, propId, newValue) {
  // find j in this.world.items[indexItem].att[attId][i][propId]
  for (var i=0; i<this.world.items[indexItem].att[attId].length;i++) {
   // to-do: two versions!
@@ -471,7 +463,7 @@ exports.IT_SetAttPropValue = function(indexItem, attId, propId, newValue) {
  }
 }
 
-exports.IT_IncrAttPropValue = function(indexItem, attId, propId, increment) {
+export function IT_IncrAttPropValue (indexItem, attId, propId, increment) {
  var incNumber = +increment;
 
  // find j in this.world.items[indexItem].att[attId][i][propId]
@@ -489,7 +481,7 @@ exports.IT_IncrAttPropValue = function(indexItem, attId, propId, increment) {
  }
 }
 
-exports.IT_GetRandomDirectionFromLoc = function(indexLoc) {
+export function IT_GetRandomDirectionFromLoc (indexLoc) {
  var table = ludi_runner.getCSExits(indexLoc);
 
  if (table.length  == 0) return null;
@@ -498,14 +490,14 @@ exports.IT_GetRandomDirectionFromLoc = function(indexLoc) {
 
 }
 
-exports.IT_SameLocThan = function(i1, i2) {
+export function IT_SameLocThan (i1, i2) {
  if (i1<0) return false;
  if (i2<0) return false;
  return (IT_GetLoc(i1) == IT_GetLoc(i2));
 
 }
 
-exports.IT_DynDesc = function(i) {
+export function IT_DynDesc (i) { // TO-DO: it must be outside, in LudiRunner.js
 
 	// vue by now
 	this.CA_ShowDesc (i);
@@ -515,9 +507,9 @@ exports.IT_DynDesc = function(i) {
 
 
  // if dark, do not show the description
- if (exports.IT_ATT(i, "dark")) {
+ if (this.IT_ATT(i, "dark")) {
   //  to-do: if light available, show the description
-  CA_ShowMsg("It is dark");
+  this.CA_ShowMsg("It is dark");
   return;
  }
 
@@ -527,10 +519,10 @@ exports.IT_DynDesc = function(i) {
   if (typeof ludi_game.items[itemWorlIndex.gameIndex].desc == 'function') { // exists game item desc()?
    ludi_game.items[itemWorlIndex.gameIndex].desc();
   } else {
-   CA_ShowDesc (i);
+   this.CA_ShowDesc (i);
   }
  } else {
-  CA_ShowDesc (i);
+  this.CA_ShowDesc (i);
  }
 
  // game reaction after desc()
@@ -547,7 +539,7 @@ exports.IT_DynDesc = function(i) {
 }
 
 // if returns true, ordinary desc will be needed after it
-exports.IT_FirstTimeDesc = function(indexItem) {
+export function IT_FirstTimeDesc (indexItem) {
  // vue by now:
  return true
 
@@ -568,21 +560,23 @@ exports.IT_FirstTimeDesc = function(indexItem) {
 
 /* W: World *****************************************************************/
 
-exports.W_GetAttIndex = function(id) {
+export function W_GetAttIndex (id) {
  return arrayObjectIndexOf(this.world.attributes, "id", id);
 }
 
 /* GD: Game Definition *****************************************************************/
 
 // note: for use during game development
-exports.GD_CreateMsg = function(indexLang, idMsg, txtMsg) {
- ludi_runner.GD_CreateMsg (indexLang, idMsg, txtMsg);
+export function GD_CreateMsg (indexLang, idMsg, txtMsg) {
+	// console.log("GD_CreateMsg(" + indexLang + "," + idMsg + "," + txtMsg + ")")
+	// ludi_runner.GD_CreateMsg (indexLang, idMsg, txtMsg);
+ 
 }
 
 /* MISC: facilities *****************************************************************/
 
 
- exports.MISC_Random = function(num) {
+ export function MISC_Random (num) {
  return Math.floor((Math.random() * (+num)));
  }
 
@@ -591,7 +585,7 @@ exports.GD_CreateMsg = function(indexLang, idMsg, txtMsg) {
 
 // auxiliary functions
 
-exports.getTargetAndLocked = function (par_c) { // to-do: internal
+export function getTargetAndLocked  (par_c) { // to-do: internal
 
 
  var connection = {target: -1, isLocked: false};

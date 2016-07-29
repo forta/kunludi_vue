@@ -9,6 +9,37 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+function arrayObjectIndexOf(myArray, property, searchTerm) {
+    for(var i = 0, len = myArray.length; i < len; i++) {
+        if (myArray[i][property] === searchTerm) return i;
+    }
+    return -1;
+}
+
+function expandParams (textIn, param) {
+
+	var textOut = textIn
+
+	if (textOut.indexOf("%o1") != -1) {
+
+		// by language
+		if (state.locale == 'en' ) textOut =  textOut.replace ("%o1", " a(n) " + state.translateGameElement("items", param.o1, "txt"))
+		else if (state.locale == 'es' ) textOut =  textOut.replace ("%o1", " un(a) " + state.translateGameElement("items", param.o1, "txt"))
+		else if (state.locale == 'eo' ) textOut =  textOut.replace ("%o1", " " + state.translateGameElement("items", param.o1, "txt") +  "n")
+		else textOut = " " + textOut.replace ("%o1", state.translateGameElement("items", param.o1, "txt") ) 
+	}
+
+	if (textOut.indexOf("%d1") != -1) {  
+		// by language
+		if (state.locale == 'en' ) textOut =  textOut.replace ("%d1", " " + state.translateGameElement("directions", param.d1, "txt") )
+		else if (state.locale == 'es' ) textOut =  textOut.replace ("%d1", " " + state.translateGameElement("directions", param.d1, "txt") )
+		else if (state.locale == 'eo' ) textOut =  textOut.replace ("%d1", " " + state.translateGameElement("directions", param.d1, "txt") + "n" )
+		else textOut = " " + textOut.replace ("%d1", state.translateGameElement("directions", param.d1, "txt") )
+	}
+	
+	return textOut
+
+}		
 
 const state = {
 	games: [
@@ -80,53 +111,88 @@ const state = {
 		// assume reaction.type == "txt"
 
 		var expanded = ""
-		var longMsgId
 
 		console.log	("gTranslator.reaction: " + JSON.stringify(reaction) )
 		
 		if (reaction.type == "rt_asis") return reaction.txt;
-		else if (reaction.type == "rt_msg") longMsgId = "messages." + reaction.txt + ".txt"
-		else if (reaction.type == "rt_desc") {
-			longMsgId = "items." + state.runner.world.items[reaction.o1].id + ".desc" // to-do: it could be dynamic
-		} else if (reaction.type == "rt_item") {
-			longMsgId = "items." + state.runner.world.items[reaction.o1].id + ".txt" // to-do: it could be dynamic?
-		} else return "gTranslator:[" + JSON.stringify(reaction) + "]"
-
+				
+		// if not as is
+		let longMsg = {} 
 		
+		if ((reaction.type == "rt_msg") || (reaction.type == "rt_graph")) {
+			longMsg = {type:'messages', id:reaction.txt, attribute:'txt'}
+		} else if (reaction.type == "rt_desc") {
+			longMsg.type = "items"
+			longMsg.id = state.runner.world.items[reaction.o1].id
+			longMsg.attribute = "desc"
+		} else if (reaction.type == "rt_item") {
+			longMsg.type = "items"
+			longMsg.id = state.runner.world.items[reaction.o1].id
+			longMsg.attribute = "txt"
+		} else {
+			return "gTranslator:[" + JSON.stringify(reaction) + "]"
+		}
+
+		// if static:
+		var longMsgId = longMsg.type + "." + longMsg.id + "." + longMsg.attribute
+	
 		if (state.game.messages [state.locale] != undefined) {
 			if (state.game.messages [state.locale][longMsgId] != undefined) expanded = state.game.messages [state.locale][longMsgId].message
 		}
 		if ((expanded == "") && (state.lib.messages [state.locale] != undefined)) {
 			if (state.lib.messages [state.locale][longMsgId] != undefined) expanded = state.lib.messages [state.locale][longMsgId].message
 		}
+		
 		if (expanded == "") {
-			expanded = "[" + reaction.txt + "]"
+			if (reaction.txt == undefined) 
+				expanded = "[" + longMsgId + "]"
+			else
+				expanded = "[" + reaction.txt + "]"
+
+			// is a dynamic property of a item 
+			// to-think: dynamic calls expands the reaction list which it is being processing!
+			if ((reaction.type == "rt_desc") || (reaction.type == "rt_item") ){
+				// game level
+				let actionGameIndex = arrayObjectIndexOf (state.game.reactions, "id", longMsg.attribute)
+				if ((actionGameIndex>=0) && (typeof state.game.reactions[actionGameIndex].reaction == "function")) {
+					// problem: the new dynamic reactions are added at the end instead of inserted
+					state.game.reactions[actionGameIndex].reaction ({item1: reaction.o1})
+					return expanded + "(by game method)";
+				} 
+
+				// lib level
+				let actionLibIndex = arrayObjectIndexOf (state.lib.reactions, "id", longMsg.attribute)
+				if ((actionLibIndex>=0) && (typeof state.lib.reactions[actionLibIndex].reaction == "function")) {
+					// problem: the new dynamic reactions are added at the end instead of inserted
+					state.lib.reactions[actionLibIndex].reaction ({item1: reaction.o1})
+					return expanded + "(by lib method)";
+				} 
+
+			}
 		}
 		
-		if (expanded.indexOf("%o1") != -1) {
-
-			// by language
-			if (this.locale == 'en' ) expanded =  expanded.replace ("%o1", " a(n) " + state.translateGameElement("items", reaction.param.o1, "txt"))
-			else if (this.locale == 'es' ) expanded =  expanded.replace ("%o1", " un(a) " + state.translateGameElement("items", reaction.param.o1, "txt"))
-			else if (this.locale == 'eo' ) expanded =  expanded.replace ("%o1", " " + state.translateGameElement("items", reaction.param.o1, "txt") +  "n")
-			else expanded = " " + expanded.replace ("%o1", state.translateGameElement("items", reaction.param.o1, "txt") ) 
-		}
-
-		if (expanded.indexOf("%d1") != -1) {  
-			// by language
-			if (this.locale == 'en' ) expanded =  expanded.replace ("%d1", " " + state.translateGameElement("directions", reaction.param.d1, "txt") )
-			else if (this.locale == 'es' ) expanded =  expanded.replace ("%d1", " " + state.translateGameElement("directions", reaction.param.d1, "txt") )
-			else if (this.locale == 'eo' ) expanded =  expanded.replace ("%d1", " " + state.translateGameElement("directions", reaction.param.d1, "txt") + "n" )
-			else expanded = " " + expanded.replace ("%d1", state.translateGameElement("directions", reaction.param.d1, "txt") )
-		}
-
+		if (reaction.type == "rt_graph") {	
+			// dirty trick
+			expanded = expandParams (expanded,  {o1: reaction.param[0]})
+			
+			// to-do, expand parameters, like in {"type":"rt_graph","url":"vagabunda.jpg","isLocal":true,"isLink":true,"txt":"pulsa_para_ver_imagen_de_%o1","param":{o1:"espejo"}}
+			// to-do: show the picture (http)
+			if (reaction.isLink)
+				return "<a href='../data/games/" + state.gameId + "/images/" + reaction.url + "' target='_blank'>" + expanded + "</a><br/>"
+			else 
+				return "<p>" + expanded + "</p><img src='../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
+			
+		} 
+		
+	
+		expanded = expandParams (expanded, reaction.param)
+		
 		return expanded  
 
 	}, 	
 	translateGameElement: function (type, index, attribute) {
 
 		return state.language.expandText (type, index, attribute)
-		// return "[" + type + "," + index + "," + attribute + "]"
 		
 	},
 	getCurrentChoice : function () {
@@ -222,7 +288,7 @@ const mutations = {
 	// language-independent: reactions
 	// by language: messages, extraMessages
 	
-	//state.game.reactions = require ('../../data/games/' + par + '/gReactions.js');
+	state.game.reactions = require ('../../data/games/' + par + '/gReactions.js');
 	state.game.messages = []
 	state.game.messages [state.locale] = require ('../../data/games/' + par + '/localization/' + state.locale + '/messages.json')
 	//console.log ("gamemsg: " + JSON.stringify(state.game.messages [state.locale]))
@@ -242,7 +308,7 @@ const mutations = {
 	state.lib.primitives.dependsOn(state.runner.world, state.reactionList, state.runner.userState )
 	
 	state.lib.reactions.dependsOn(state.lib.primitives, state.reactionList)
-	//state.game.reactions.dependsOn(state.lib.primitives, state.lib.reactions, state.reactionList )
+	state.game.reactions.dependsOn(state.lib.primitives, state.lib.reactions, state.reactionList )
 
 	state.runner.dependsOn(state.lib.reactions, state.game.reactions, state.reactionList)
 

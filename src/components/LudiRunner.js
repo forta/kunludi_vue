@@ -29,10 +29,10 @@ exports.createWorld = function (libWorld, gameWorld) {
 	
 	// to-do
 
-	// import lib items
-	for (let i=0;i<libWorld.items.length;i++) {
-		exports.world.items.push (libWorld.items[i])
-	}
+	// import lib items (in fact, no items in lib)
+	//for (let i=0;i<libWorld.items.length;i++) {
+	//	exports.world.items.push (libWorld.items[i])
+	//}
 
 	// import game items
 	for (let i=0;i<gameWorld.items.length;i++) {
@@ -40,10 +40,22 @@ exports.createWorld = function (libWorld, gameWorld) {
 	}
 
 	// to-do: add items[].state.itemsMemory
+	// if initial states are not defined, default values:
 	for (let i=0;i<exports.world.items.length;i++) {
-		if (exports.world.items[i].state == undefined) exports.world.items[i].state = {}
-		
-		//if (exports.world.items[i].state.itemsMemory == undefined) exports.world.items[i].state.itemsMemory = []
+
+		if ((exports.world.items[i].type == "pc")) {
+			
+			// if state is not defined, it is created now
+			if (typeof exports.world.items[i].state == "undefined") exports.world.items[i].state = {};		
+			
+			// A item i is known if itemsMemory[i] exists.
+			// the last container where item i was seen: itemsMemory[i].whereWas
+			// the time it was seen: itemsMemory[i].lastTime
+			
+			// if itemsMemory is not defined, it is created now
+			if (typeof exports.world.items[i].state.itemsMemory == "undefined")
+				exports.world.items[i].state.itemsMemory = []; 
+		}
 		
 	}
 	
@@ -83,7 +95,6 @@ exports.createWorld = function (libWorld, gameWorld) {
 			loc:  arrayObjectIndexOf (exports.world.items, "id", exports.world.items[0].loc)
 		}
 	}
-
 	
 }
 
@@ -128,8 +139,14 @@ exports.processChoice = function  (choice) {
 exports.processAction = function(action) {
 	var status
 	
+	this.reactionList.push ({type:"rt_asis", txt: "<b>echo: " + action.actionId + "</b><br/>"} )
+		
+	// expanding codes
+	if (action.item1 >= 0) action.item1Id = exports.world.items [action.item1].id
+	if (action.item2 >= 0) action.item2Id = exports.world.items [action.item2].id
+		
 	status = false
-	// status = this.gameReactions.processAction (action)
+	status = this.gameReactions.processAction (action)
 	
 	if (!status) 
 		status = this.libReactions.processAction (action)	
@@ -145,7 +162,8 @@ exports.actionIsEnabled = function(action, item1, item2) {
 	
 	var status = undefined
 
-	// status = this.gameReactions.actionIsEnabled (action, item1, item2)
+	if (typeof this.gameReactions.actionIsEnabled == "function")
+		status = this.gameReactions.actionIsEnabled (action, item1, item2)
 	
 	if (status == undefined) 
 		status = this.libReactions.actionIsEnabled (action, item1, item2)	
