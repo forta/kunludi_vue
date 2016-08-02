@@ -23,10 +23,19 @@ function expandParams (textIn, param) {
 	if (textOut.indexOf("%o1") != -1) {
 
 		// by language
-		if (state.locale == 'en' ) textOut =  textOut.replace ("%o1", " a(n) " + state.translateGameElement("items", param.o1, "txt"))
-		else if (state.locale == 'es' ) textOut =  textOut.replace ("%o1", " un(a) " + state.translateGameElement("items", param.o1, "txt"))
+		if (state.locale == 'en' ) textOut =  textOut.replace ("%o1", " " + state.translateGameElement("items", param.o1, "txt"))
+		else if (state.locale == 'es' ) textOut =  textOut.replace ("%o1", " " + state.translateGameElement("items", param.o1, "txt"))
 		else if (state.locale == 'eo' ) textOut =  textOut.replace ("%o1", " " + state.translateGameElement("items", param.o1, "txt") +  "n")
 		else textOut = " " + textOut.replace ("%o1", state.translateGameElement("items", param.o1, "txt") ) 
+	}
+
+		if (textOut.indexOf("%o2") != -1) {
+
+		// by language
+		if (state.locale == 'en' ) textOut =  textOut.replace ("%o2", " " + state.translateGameElement("items", param.o2, "txt"))
+		else if (state.locale == 'es' ) textOut =  textOut.replace ("%o2", " " + state.translateGameElement("items", param.o2, "txt"))
+		else if (state.locale == 'eo' ) textOut =  textOut.replace ("%o2", " " + state.translateGameElement("items", param.o2, "txt"))
+		else textOut = " " + textOut.replace ("%o2", state.translateGameElement("items", param.o2, "txt") ) 
 	}
 
 	if (textOut.indexOf("%d1") != -1) {  
@@ -56,7 +65,7 @@ const state = {
 				{ type: 'rt_msg', txt: 'Introduction' },
 				{ type: 'rt_msg', txt: 'Locked direction' },
 				{ type: 'rt_msg', txt: 'You just jump!' },
-				{ type: 'rt_msg', txt: 'You read %o1', param: {o1:"5"}  },
+				{ type: 'rt_msg', txt: 'You read %o1', param: {o1:5}  },
 				{ type: 'rt_msg', txt: 'location unknown of %o1', param: {o1:6} }
 			]
 		},
@@ -69,7 +78,7 @@ const state = {
 		}  
 	],
 	choices: [],
-	currentChoice: {},
+	choice: {},
 	reactionList: [],
 	gameAbout: {
 		comment: 'not loaded yet...'
@@ -119,7 +128,9 @@ const state = {
 		// if not as is
 		let longMsg = {} 
 		
-		if ((reaction.type == "rt_msg") || (reaction.type == "rt_graph")) {
+		if ((reaction.type == "rt_msg") || (reaction.type == "rt_graph") || 
+			(reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues") || 
+			(reaction.type == "rt_play_audio") ) {
 			longMsg = {type:'messages', id:reaction.txt, attribute:'txt'}
 		} else if (reaction.type == "rt_desc") {
 			longMsg.type = "items"
@@ -172,18 +183,26 @@ const state = {
 		}
 		
 		if (reaction.type == "rt_graph") {	
-			// dirty trick
+			// dirty trick (to-do)
 			expanded = expandParams (expanded,  {o1: reaction.param[0]})
 			
-			// to-do, expand parameters, like in {"type":"rt_graph","url":"vagabunda.jpg","isLocal":true,"isLink":true,"txt":"pulsa_para_ver_imagen_de_%o1","param":{o1:"espejo"}}
 			// to-do: show the picture (http)
 			if (reaction.isLink)
 				return "<a href='../data/games/" + state.gameId + "/images/" + reaction.url + "' target='_blank'>" + expanded + "</a><br/>"
 			else 
 				return "<p>" + expanded + "</p><img src='../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
 			
-		} 
-		
+		} else if ((reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues")) {
+			// dirty trick (to-do)
+			expanded = expandParams (expanded,  {o1: reaction.param[0]})
+			
+			// to-do: translate item
+			return ((reaction.type == "rt_quote_begin")? "<b>" + reaction.item + "</b>: «": "" ) + expanded + ((reaction.last) ? "»" : "")
+			
+		} else if (reaction.type == "rt_play_audio") {
+			// to-do
+			return expanded + " (play: " + reaction.fileName + " autoStart: " + reaction.autoStart + ")"
+		}
 	
 		expanded = expandParams (expanded, reaction.param)
 		
@@ -193,11 +212,6 @@ const state = {
 	translateGameElement: function (type, index, attribute) {
 
 		return state.language.expandText (type, index, attribute)
-		
-	},
-	getCurrentChoice : function () {
-
-		return state.currentChoice
 		
 	}
 
@@ -320,10 +334,10 @@ const mutations = {
   }, 
   PROCESS_CHOICE (state, choice) {
 	
-	state.currentChoice = choice
+	state.choice = choice
 	state.runner.processChoice (choice)
 	
-	// console.log ("current choice: " +  JSON.stringify(state.runner.getCurrentChoice()))
+	//console.log ("current choice: " +  JSON.stringify(state.runner.choice))
 	
 	// refresh choices
 	state.choices = state.runner.choices 
@@ -338,10 +352,6 @@ const mutations = {
 			}
 		)
 	}
-	
-	// to-do: kill currentChoice?
-	state.currentChoice = state.runner.choice
-
 
   },
   RESETGAMEID (state) {

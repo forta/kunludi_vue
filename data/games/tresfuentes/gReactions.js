@@ -1,9 +1,10 @@
-//Section 1a: gameReaction (lib overwrite)
+"use strict";
+
 //Section 1a: gameReaction (lib overwrite)
 //Section 1b: gameReaction (game actions)
 //Section 2: gameAttribute 
 //Section 3: gameItems
-//Section 4: game functions
+//Section 4: internal functions
 
 // **********************************************
 //Section 1: gameReaction
@@ -13,7 +14,7 @@
 
 Variables consideradas:
 
-primitives.IT_GetAttPropValue (primitives.IT_X("cruce_caminos"), "gameParameters", "version"): dos versiones del juego: completa o reducida (se elige al empezar a jugar)
+primitives.IT_GetAttPropValue (primitives.IT_X("cruce_caminos"), "gameParameters", "internal.version"): dos internal.versiones del juego: completa o reducida (se elige al empezar a jugar)
 primitives.IT_GetAttPropValue (primitives.IT_X("cruce_caminos"), "gameParameters", "firstPC"): jugador elegido para empezar a jugar (sólo si versión completa)
 
 primitives.IT_GetAttPropValue (PC_X(), "generalState", "state") : estado del jugador activo, valores posibles 
@@ -42,6 +43,8 @@ let attributes = []
 let items = [] 
 
 
+let usr = {}
+
 export function dependsOn (primitives, libReactions, reactionList) {
 	this.primitives = primitives
 	this.libReactions = libReactions
@@ -57,6 +60,8 @@ export function dependsOn (primitives, libReactions, reactionList) {
 	this.items = []
 	initItems(this.items, this.primitives)
 	
+	usr.primitives = this.primitives
+	
 }
 
 function arrayObjectIndexOf(myArray, property, searchTerm) {
@@ -66,46 +71,39 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
     return -1;
 }
 
-// copied from reactions.js
+// external interface
 export function processAction (action) {
 	
-	// here!! call initReactions[actionIndex].enabled and .reaction  !!!!
 	let actionIndex = arrayObjectIndexOf (this.reactions, "id", action.actionId)
 	if (actionIndex < 0 ) {
 		this.reactionList.push ({type:"rt_msg", txt: 'Error: missing actionId ' + action.actionId} )
 		return true
 	}
 		
+	// to-do: verify again  if action is enabled
+
 	console.log ("game action: " +  JSON.stringify (action))
 	
-	return this.reactions[actionIndex].reaction ({ item1:action.item1, item2:action.item2, item1Id:action.item1Id, item2Id:action.item2Id, loc:this.primitives.PC_GetCurrentLoc (), direction:action.d1 })
+	return this.reactions[actionIndex].reaction ({ pc:action.pc, item1:action.item1, item2:action.item2, item1Id:action.item1Id, item2Id:action.item2Id, loc:this.primitives.PC_GetCurrentLoc (), direction:action.d1 })
 
 }
 
-
-exports.actionIsEnabled = function  (action, item1, item2) {
+// external interface
+exports.actionIsEnabled = function  (actionId, item1, item2) {
 	
-	if (action == undefined) return undefined
-	if (this.reactions[action] == undefined) return undefined
-	if (this.reactions[action].enabled == undefined) return undefined
+	if (actionId == undefined) return undefined
 
-	return this.reactions[action].enabled(item1, item2)
+	var reactionIndex = arrayObjectIndexOf(this.reactions, "id", actionId)
+	
+	if (this.reactions[reactionIndex] == undefined) return undefined
+	if (this.reactions[reactionIndex].enabled == undefined) return undefined
+
+	return this.reactions[reactionIndex].enabled(item1, item2)
 	
 }
 
-// copied from reactions.js
-exports.dirIsEnabled = function  (loc, dir1) {
-	
-	var link = this.primitives.getTargetAndLocked ({loc:loc, direction: dir1});
-	
-	if (link.isLocked) return true; // it is shown, though
-	if (link.target == -1) return false;
-	return true;
-	
-}
 
 // ============================
-
 
 let initReactions =  function  (reactions, primitives) {
 	
@@ -123,7 +121,7 @@ let initReactions =  function  (reactions, primitives) {
 			
 			// asumimos que la flauta es el único instrumento musical del juego
 			if (primitives.IT_GetLoc (primitives.IT_X("flautista")) == primitives.PC_GetCurrentLoc()) { // flautista aquí
-				examenMusical (par_c);
+				usr.examenMusical (par_c);
 				return true;
 			}
 			
@@ -133,7 +131,7 @@ let initReactions =  function  (reactions, primitives) {
 				primitives.GD_CreateMsg (1, "DLG_no_toques", "En mi presencia, ¡ni se te ocurra tocar ese instrumento del demonio!"); 
 				primitives.CA_QuoteBegin (PNJ, "DLG_no_toques");
 				primitives.GD_CreateMsg (1, "%o1_no_te_deja_tocar", "%o1 te intimida tanto, que ni te atreves a intentarlo.");
-				primitives.CA_ShowMsg ("%o1_no_te_deja_tocar", [PNJ]);
+				primitives.CA_ShowMsg ("%o1_no_te_deja_tocar", {o1:PNJ});
 				return true;
 			}
 			
@@ -172,7 +170,7 @@ let initReactions =  function  (reactions, primitives) {
 			
 			primitives.GD_CreateMsg (1, "cambio_punto_de_vista_a_%o1", "<br/><b>Cambio de protagonista:</b> %o1<br/><br/>"); 
 			primitives.PC_SetIndex (par_c.item1);
-			primitives.CA_ShowMsg ("cambio_punto_de_vista_a_%o1" , [primitives.IT_GetId(primitives.PC_X())]);
+			primitives.CA_ShowMsg ("cambio_punto_de_vista_a_%o1" , {o1:primitives.IT_GetId(primitives.PC_X())});
 
 			// si ambos ya han sido controlados por el jugador, no se muestra intro
 			if (primitives.IT_GetAttPropValue (primitives.IT_X("cruce_caminos"), "gameParameters", "firstPC") == "ambos")  return false;
@@ -180,7 +178,7 @@ let initReactions =  function  (reactions, primitives) {
 			// si es la primera vez que controlas este PJ, mostrar la intro
 			if (par_c.item1Id != primitives.IT_SetAttPropValue (primitives.IT_X("cruce_caminos"), "gameParameters", "firstPC")) {
 				primitives.IT_SetAttPropValue (primitives.IT_X("cruce_caminos"), "gameParameters", "firstPC", par_c.item1Id);
-				intro();
+				usr.intro();
 				primitives.IT_SetAttPropValue (primitives.IT_X("cruce_caminos"), "gameParameters", "firstPC", "ambos"); // se acaban las intros
 			}
 			
@@ -216,7 +214,7 @@ let initReactions =  function  (reactions, primitives) {
 				if (idItem != "") {
 					if (!primitives.IT_GetIsItemKnown (par_c.pc, primitives.IT_X(idItem))) {	
 						primitives.IT_SetIsItemKnown (par_c.pc, primitives.IT_X(idItem));
-						primitives.CA_ShowMsg ("al_pasar_delante_figura", [idItem]);
+						primitives.CA_ShowMsg ("al_pasar_delante_figura", {o1:idItem});
 						primitives.CA_ShowDesc (primitives.IT_X(idItem));
 						primitives.CA_ShowMsgAsIs ("<br/>")
 					}
@@ -239,18 +237,18 @@ let initReactions =  function  (reactions, primitives) {
 
 					primitives.CA_ShowMsg ("cazador_atraviesa_catarata");
 					primitives.IT_SetLoc(primitives.PC_X(), primitives.IT_X("caverna_dragón"));
-					comprobarSiFinDelJuego();
+					usr.comprobarSiFinDelJuego();
 				} else {
 					if (primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "state") == "5") {
 						
-						primitives.CA_ShowMsg (version() + "_dragona_atraviesa_catarata_1");
+						primitives.CA_ShowMsg (usr.getVersion() + "_dragona_atraviesa_catarata_1");
 						primitives.CA_ShowMsg ("dragona_atraviesa_catarata_2");
 						
 						primitives.IT_SetLoc(primitives.PC_X(), primitives.IT_X("caverna_dragón"));
-						comprobarSiFinDelJuego();
+						usr.comprobarSiFinDelJuego();
 					} else {
 						
-						primitives.CA_ShowMsg (version() + "_reflejo_catarata");
+						primitives.CA_ShowMsg (usr.getVersion() + "_reflejo_catarata");
 						return true;
 					}
 				}
@@ -330,16 +328,16 @@ let initReactions =  function  (reactions, primitives) {
 			// if atributo de par_c.obj1 es liquido 
 			if (primitives.IT_ATT(par_c.item1, "isLiquid")) {  // objeto es líquido 
 				if (primitives.IT_GetLoc (primitives.IT_X("cuenco")) != primitives.PC_X()) { // no se tiene el cuenco
-					primitives.CA_ShowMsg("no_llevas_portaagua %o1", [par_c.item1Id]);
+					primitives.CA_ShowMsg("no_llevas_portaagua %o1", {o1:par_c.item1Id});
 					return true;
 				} else {
 					
 					// mensaje definido ya a nivel de librería... 
-					primitives.CA_ShowMsg("You put %o1 into %o2", [par_c.item1Id, "cuenco"]);
+					primitives.CA_ShowMsg("You put %o1 into %o2", {o1:par_c.item1Id, o2:"cuenco"});
 					primitives.CA_ShowMsgAsIs(".");
 					
 					// resultado al meter o1 dentro del cuenco
-					var resultadoLiquido = agregarLiquido (par_c, "cuenco");
+					var resultadoLiquido = usr.agregarLiquido (par_c, "cuenco");
 					
 					if (resultadoLiquido == "idem") {
 						primitives.CA_ShowMsg("contenido_cuenco_no_cambia");
@@ -353,7 +351,7 @@ let initReactions =  function  (reactions, primitives) {
 
 						// si el pergamino ya no lo tiene la hechicera, ya deberías saber las reglas
 						if (primitives.IT_GetLoc(primitives.IT_X("pergamino")) != primitives.IT_X("hechicera")) {
-							primitives.CA_ShowMsg("recuerdas_regla %s1", regla);						
+							primitives.CA_ShowMsg("recuerdas_regla %s1", {s1:regla});
 						} else { 
 							primitives.CA_ShowMsg("efecto_desconocido");
 						}
@@ -365,7 +363,7 @@ let initReactions =  function  (reactions, primitives) {
 					}
 					
 					// actualizar valor del cuenco
-					primitives.CA_ShowMsg("liquido_contenido %o1 %o2", ["cuenco", liquido2String (resultadoLiquido)]);
+					primitives.CA_ShowMsg("liquido_contenido %o1 %o2", {o1:"cuenco", o2:usr.liquido2String (resultadoLiquido)});
 					primitives.IT_SetAttPropValue (primitives.IT_X("cuenco"), "isLiquidContainer", "state", resultadoLiquido);
 					
 					// suponemos que el líquido de origen es abundante y no se acaba
@@ -388,7 +386,7 @@ let initReactions =  function  (reactions, primitives) {
 					return true; 			
 				}
 				if ((primitives.IT_GetLoc (primitives.IT_X("camisa")) == primitives.PC_X()) || (primitives.IT_GetLoc (primitives.IT_X("honda")) == primitives.PC_X())) {
-					primitives.CA_ShowMsg (version() + "_pájaros_son_capturados");
+					primitives.CA_ShowMsg (usr.getVersion() + "_pájaros_son_capturados");
 					primitives.IT_SetAttPropValue (primitives.PC_X(), "generalState", "state", "2");
 					return false; 
 				} else {
@@ -455,7 +453,7 @@ let initReactions =  function  (reactions, primitives) {
 			if (primitives.IT_ATT(par_c.item1, "isLiquidContainer")) {  // objeto contiene un líquido
 				var liquido = primitives.IT_GetAttPropValue (par_c.item1, "isLiquidContainer", "state");
 				if (liquido != "vacío") {
-					primitives.CA_ShowMsg("liquido_contenido %o1 %o2", [par_c.item1Id, liquido2String (liquido)]);
+					primitives.CA_ShowMsg("liquido_contenido %o1 %o2", {o1:par_c.item1Id, o2:usr.liquido2String (liquido)});
 				}
 				return false;
 			}
@@ -482,7 +480,7 @@ let initReactions =  function  (reactions, primitives) {
 			
 			// figura_roja
 			if (par_c.item1Id == "figura_roja") { 
-				primitives.CA_ShowMsg(version() + "_figura_roja");
+				primitives.CA_ShowMsg(usr.getVersion() + "_figura_roja");
 				return true;
 			}
 			
@@ -494,7 +492,7 @@ let initReactions =  function  (reactions, primitives) {
 				primitives.IT_SetLocToLimbo (par_c.item1);
 				primitives.IT_BringHere (primitives.IT_X("cuenco"));
 
-				if (version() == "VR") {
+				if (usr.getVersion() == "VR") {
 					primitives.GD_CreateMsg (1, "junto_con_cuenco_aparece_camisa", " y una camisa sucia.<br/>");
 					primitives.CA_ShowMsg ("junto_con_cuenco_aparece_camisa");
 					primitives.IT_BringHere (primitives.IT_X("camisa"));
@@ -504,7 +502,7 @@ let initReactions =  function  (reactions, primitives) {
 
 				// enlaces para ver imágenes (se podría quitar y que lo miren al examinar; lo dejo como demo de funcionalidad)
 				primitives.CA_ShowImg ("cuenco.jpg", true, true, "pulsa_para_ver_imagen_de_%o1", ["cuenco"] ); // a nivel de juego y representación diferida
-				if (version() == "VR") {
+				if (usr.getVersion() == "VR") {
 					primitives.CA_ShowImg ("camisa.jpg", true, true, "pulsa_para_ver_imagen_de_%o1", ["camisa"] ); // a nivel de juego y representación diferida
 				}
 				
@@ -519,7 +517,7 @@ let initReactions =  function  (reactions, primitives) {
 			primitives.GD_CreateMsg (1, "cazador_ante_espejo", "Te notas más viejo de lo que recordabas, como si hubieran pasado años desde que fuiste al mundo submarino en búsqueda del anzuelo para tu hermano.<br/>");
 			if (par_c.item1Id == "espejo") { 
 				if (par_c.pc == primitives.IT_X("vagabunda")) {
-					primitives.CA_ShowMsg (version() + "_vagabunda_ante_espejo");
+					primitives.CA_ShowMsg (usr.getVersion() + "_vagabunda_ante_espejo");
 					primitives.CA_ShowImg ("espejo.jpg", true, true, "pulsa_para_ver_imagen_de_%o1", {o1:"espejo"} ); // a nivel de juego y representación diferida
 
 					if (primitives.IT_GetLoc (primitives.IT_X("diamante")) == primitives.IT_X("limbo")) {
@@ -569,7 +567,7 @@ let initReactions =  function  (reactions, primitives) {
 			if ( ((par_c.item2Id == "cazador") && (par_c.item1Id == "honda")) ||
 				((par_c.item2Id == "vagabunda") && (par_c.item1Id == "anzuelo")) ) {
 				if (primitives.IT_GetAttPropValue (primitives.IT_X(par_c.item2Id), "generalState", "state") == "1") { // si hay confianza previa (item2 recibió arma)
-					primitives.CA_QuoteBegin (par_c.item2Id, "DLG_acepta_petición_porque %o1", [primitives.IT_GetId(elOtroArma(par_c.item1))]);
+					primitives.CA_QuoteBegin (par_c.item2Id, "DLG_acepta_petición_porque %o1", [primitives.IT_GetId(usr.elOtroArma(par_c.item1))]);
 					primitives.IT_SetLoc (par_c.item1, primitives.PC_X());
 					return true;
 				}
@@ -577,7 +575,7 @@ let initReactions =  function  (reactions, primitives) {
 			
 			// pedir al otro protagonista
 			primitives.GD_CreateMsg (1, "DLG_da_%o1", "Vale, toma %o1.");
-			if (par_c.item2 == elOtroPJ(primitives.PC_X ()))  { 
+			if (par_c.item2 == usr.elOtroPJ(primitives.PC_X ()))  { 
 				if (primitives.IT_GetAttPropValue (primitives.IT_X(par_c.item2Id), "generalState", "state") >= "1") { // si hay confianza previa (item2 recibió arma)
 					if (par_c.item1Id == "cuenco") { // pedir cuenco
 						primitives.CA_QuoteBegin (par_c.item2Id, "DLG_da_%o1", [ par_c.item1Id]);
@@ -617,7 +615,7 @@ let initReactions =  function  (reactions, primitives) {
 	});
 
 	reactions.push ({ // mostrar algo a alguien: lo capamos por ahora
-		id: 'shoprimitives.W_to',
+		id: 'show_to',
 		enabled: function (indexItem,indexItem2) { 	return false; }
 	});
 
@@ -728,7 +726,7 @@ let initReactions =  function  (reactions, primitives) {
 				}
 				primitives.CA_QuoteContinues ("");
 			} else 	if ((par_c.item1Id == "cazador") || (par_c.item1Id == "vagabunda")) { // con el otro PJ: comportamiento casi idéntico
-				return talkPJ (par_c);
+				return usr.talkPJ (par_c);
 			}
 		}
 		
@@ -742,9 +740,9 @@ let initReactions =  function  (reactions, primitives) {
 			
 			primitives.GD_CreateMsg (1, "undefined_gameParameters", "Este juego necesita tener definido el atributo gameParameters en la localidad inicial del juego<br/>"); 
 			primitives.GD_CreateMsg (1, "bienvenida_juego", "Bienvenido a Las Tres Fuentes, aventura interactiva desarrollada en javascript. Sobre el mismo mundo base, puedes elegir entre jugar una versión reducida de tono más infantil o la versión completa, en la que controlas dos personajes.<br/>"); 
-			primitives.GD_CreateMsg (1, "chooseVersion", "¿Qué versión eliges?"); 
-			primitives.GD_CreateMsg (1, "chooseVersion_simple", "versión reducida"); 
-			primitives.GD_CreateMsg (1, "chooseVersion_long", "versión completa"); 
+			primitives.GD_CreateMsg (1, "chooseversion", "¿Qué versión eliges?"); 
+			primitives.GD_CreateMsg (1, "chooseversion_simple", "versión reducida"); 
+			primitives.GD_CreateMsg (1, "chooseversion_long", "versión completa"); 
 			primitives.GD_CreateMsg (1, "elegida_version_reducida", "Es una buena elección para acabarla en menos tiempo, pero la versión completa tiene un poco más de jugo.<br/><br/>");
 			primitives.GD_CreateMsg (1, "intro_reducida_1", "Eres Laila la dragona. La bruja se ha cansado de que revolotees por ahí con tu hermano Kuko quemando cosas a diestro y siniestro y os ha lanzado un hechizo.<br/>");
 			primitives.GD_CreateMsg (1, "intro_reducida_2", "Te ha convertido en humana y te ha sacado de la caverna del dragón, lejos de Kuko, al otro lado de la catarata.<br/>");
@@ -765,9 +763,9 @@ let initReactions =  function  (reactions, primitives) {
 					if (typeof par_c.option == 'undefined') { // phase 1: asking dialog
 					
 						primitives.CA_ShowMsg ("bienvenida_juego");
-						primitives.CA_ShowMsg ("chooseVersion");
+						primitives.CA_ShowMsg ("chooseversion");
 
-						var menu = ["chooseVersion_simple","chooseVersion_long"];
+						var menu = ["chooseversion_simple","chooseversion_long"];
 						primitives.CA_ShowMenu (menu); // continuation in state == 0, phase 2
 
 						return true;
@@ -793,9 +791,9 @@ let initReactions =  function  (reactions, primitives) {
 						} else {
 							primitives.IT_SetAttPropValue (par_c.item1, "gameParameters", "version", "VC");
 							
-							primitives.GD_CreateMsg (1, "chooseVersion_long_echo", "Has elegido la versión que elegiría un aventurero intrépido. Los protagonistas de este juego son dos amantes legendarios que han caído en desgracia ante una diosa opuesta a su amor. Aunque controlarás ambos personajes, elige ahora con quién empiezas, con la vagabunda, en realidad princesa del mar, que abandonó su patria por amor; o bien con el cazador, pariente de la diosa malvada.<br/><br/>"); 
+							primitives.GD_CreateMsg (1, "chooseversion_long_echo", "Has elegido la versión que elegiría un aventurero intrépido. Los protagonistas de este juego son dos amantes legendarios que han caído en desgracia ante una diosa opuesta a su amor. Aunque controlarás ambos personajes, elige ahora con quién empiezas, con la vagabunda, en realidad princesa del mar, que abandonó su patria por amor; o bien con el cazador, pariente de la diosa malvada.<br/><br/>"); 
 
-							primitives.CA_ShowMsg ("chooseVersion_long_echo");
+							primitives.CA_ShowMsg ("chooseversion_long_echo");
 							
 							// importante para menú reentrante
 							par_c.option = undefined; 
@@ -825,7 +823,7 @@ let initReactions =  function  (reactions, primitives) {
 							primitives.IT_SetAttPropValue (par_c.item1, "gameParameters", "firstPC", "cazador");
 							primitives.PC_SetIndex (primitives.IT_X("cazador"));
 						}
-						intro ();
+						usr.intro ();
 						primitives.CA_Refresh ();
 					}	
 				}
@@ -938,7 +936,7 @@ let initReactions =  function  (reactions, primitives) {
 			primitives.GD_CreateMsg (1, "repetir_pócima","Ya habías bebido, apúrate y déjate de perder el tiempo.<br/>");
 			primitives.GD_CreateMsg (1, "aviso_pócima_grieta","Recuerda que la hechicera te dijo que si bebes recuperarás tu forma... y no podrías salir por la grieta.<br/>");
 			primitives.GD_CreateMsg (1, "empiezas_a_crecer_dentro_caverna", "A pesar de que sabes internamente que no deberías hacerlo, no puedes evitar beberte la pócima dentro de la cueva... empiezas a crecer...!<br/>"); 
-			primitives.GD_CreateMsg (1, "Menu_drinkNoprimitives.W_no_reaction", "Te lo piensas mejor y no te bebes la pócima todavía.<br/>");
+			primitives.GD_CreateMsg (1, "Menu_drinkNo_no_reaction", "Te lo piensas mejor y no te bebes la pócima todavía.<br/>");
 			
 			if (liquido == "vacío") {
 				primitives.CA_ShowMsg ("bebida_agotada");
@@ -974,10 +972,10 @@ let initReactions =  function  (reactions, primitives) {
 
 						primitives.GD_CreateMsg (1, "Menu_drinkNow", "¿Estás segura de que quieres beber ahora?"); 
 						primitives.CA_ShowMsg ("Menu_drinkNow");
-						primitives.GD_CreateMsg (1, "Menu_drinkNoprimitives.W_yes", "Sí, quiero recuperar ya mi forma."); 
-						primitives.GD_CreateMsg (1, "Menu_drinkNoprimitives.W_no", "No, esperaré a estar fuera."); 
+						primitives.GD_CreateMsg (1, "Menu_drinkNo_yes", "Sí, quiero recuperar ya mi forma."); 
+						primitives.GD_CreateMsg (1, "Menu_drinkNo_no", "No, esperaré a estar fuera."); 
 
-						var menu = ["Menu_drinkNoprimitives.W_yes","Menu_drinkNoprimitives.W_no"];
+						var menu = ["Menu_drinkNo_yes","Menu_drinkNo_no"];
 						primitives.CA_ShowMenu (menu);
 
 						return true;
@@ -987,7 +985,7 @@ let initReactions =  function  (reactions, primitives) {
 							primitives.CA_ShowMsg ("empiezas_a_crecer_dentro_caverna");
 							
 							// en la versión corta, sacaremos por a la dragona con "calzador" y efectos especiales
-							if (version() == "VR") {
+							if (usr.getVersion() == "VR") {
 					
 								primitives.GD_CreateMsg (1, "VR_dragona_encerrada", "<br/><b>Teórico final del juego:</b> Al final la hechicera se salió con la suya y va a evitar que Kuko y tú hagáis más diabluras...<br/>");
 								primitives.GD_CreateMsg (1, "perdona_vida_dragona_encerrada", "<br/><b>Mensaje del escritor del juego:</b> Al crecer no deberías haber podido salir de la cueva... pero vamos a hacer un poco de trampas y te dejaremos seguir jugando, fuera de la cueva.<br/><br/>");
@@ -1012,7 +1010,7 @@ let initReactions =  function  (reactions, primitives) {
 							
 						} else {
 
-							primitives.CA_ShowMsg ("Menu_drinkNoprimitives.W_no_reaction");
+							primitives.CA_ShowMsg ("Menu_drinkNo_no_reaction");
 							return true;
 							
 						}
@@ -1029,7 +1027,7 @@ let initReactions =  function  (reactions, primitives) {
 				primitives.IT_SetAttPropValue (primitives.PC_X(), "generalState", "state", "5"); // bebió
 				
 				primitives.GD_CreateMsg (1, "empiezas_recordar","Al beberte la pócima los recuerdos comienzan a aflorar con claridad.<br/>");
-				if (version() == "VC") 
+				if (usr.getVersion() == "VC") 
 					primitives.CA_ShowMsg ("empiezas_recordar");
 				
 				// inicio de contador a 5 turnos a la vagabunda para atravesar catarata 
@@ -1046,14 +1044,14 @@ let initReactions =  function  (reactions, primitives) {
 					primitives.GD_CreateMsg (1, "VC_vagabunda2_recuerda_4", "Y te acuerdas de tu naturaleza marina, que se empieza a derramar por entre tus piernas, has roto aguas y ya sabes lo que te ocurrirá, los de tu especie recuperan su horrenda naturaleza al alumbrar. Sabes que debes darte prisa y alumbrar a tu hijo en un lugar seguro, al otro lado de la cascada.<br/>");
 					
 					
-					primitives.CA_ShowMsg (version() + "_vagabunda2_recuerda_1");
-					primitives.CA_ShowMsg (version() + "_vagabunda2_recuerda_2");
-					primitives.CA_ShowMsg (version() + "_vagabunda2_recuerda_3");
-					primitives.CA_ShowMsg (version() + "_vagabunda2_recuerda_4");
+					primitives.CA_ShowMsg (usr.getVersion() + "_vagabunda2_recuerda_1");
+					primitives.CA_ShowMsg (usr.getVersion() + "_vagabunda2_recuerda_2");
+					primitives.CA_ShowMsg (usr.getVersion() + "_vagabunda2_recuerda_3");
+					primitives.CA_ShowMsg (usr.getVersion() + "_vagabunda2_recuerda_4");
 					
 					// si el cazador está presente... mala cosa!
-					if (primitives.IT_GetLoc(primitives.PC_X()) == primitives.IT_GetLoc(elOtroPJ(primitives.PC_X()))) {
-						perdiste_transformacionExterna();
+					if (primitives.IT_GetLoc(primitives.PC_X()) == primitives.IT_GetLoc(usr.elOtroPJ(primitives.PC_X()))) {
+						usr.perdiste_transformacionExterna();
 					}
 					
 				} else {
@@ -1085,7 +1083,7 @@ let initReactions =  function  (reactions, primitives) {
 			primitives.GD_CreateMsg (1, "no_gracias", "No te preocupes, no me hace falta, gracias.");
 
 			// al otro PJ
-			if (par_c.item2 == elOtroPJ(primitives.PC_X ())) { 
+			if (par_c.item2 == usr.elOtroPJ(primitives.PC_X ())) { 
 				// si no se conocen, no aceptan otra cosa que el arma
 				if (primitives.IT_GetAttPropValue	(par_c.item2, "generalState", "state") == "0") {
 					if ( ((par_c.item2Id == "cazador") && (par_c.item1Id == "anzuelo") ) ||
@@ -1122,7 +1120,7 @@ let initReactions =  function  (reactions, primitives) {
 				if (par_c.loc == primitives.IT_X("fuente_verde"))  { // flautista en fuente verde
 				
 					if ((par_c.item1Id == "pájaros") || (par_c.item1Id == "pescados")) { // dar comida al flautista
-						if (darComidaAFlautista(par_c.item1Id)) {
+						if (usr.darComidaAFlautista(par_c.item1Id)) {
 							return true;
 						}
 					} 
@@ -1154,12 +1152,12 @@ let initReactions =  function  (reactions, primitives) {
 					primitives.GD_CreateMsg (1, "%o1 lo_guarda", "%o1 se lo guarda ávidamente.<br/>");
 					
 					primitives.CA_QuoteBegin (par_c.item2Id, "gracias_por_traer_piedra", [], false);
-					primitives.CA_ShowMsg ("%o1 lo_guarda", ["flautista"]);
+					primitives.CA_ShowMsg ("%o1 lo_guarda", {o1:"flautista"});
 					primitives.IT_SetLoc (primitives.IT_X("diamante"), primitives.IT_X("flautista"));
 
 					primitives.GD_CreateMsg (1, "VC_pide_que_practiques", "Debéis honrar mis oidos con buena música si queréis que os ayude con lo de vuestro hechizo.");
 					primitives.GD_CreateMsg (1, "VR_pide_que_practiques", "Debes honrar mis oidos con buena música si quieres que te ayude con lo de tu hechizo.");
-					primitives.CA_QuoteContinues (version() + "_pide_que_practiques");
+					primitives.CA_QuoteContinues (usr.getVersion() + "_pide_que_practiques");
 
 					if (primitives.IT_GetLoc (primitives.IT_X("flautista")) == primitives.IT_X("risco_luna")) { // si ya en risco de la luna
 						return true;
@@ -1169,8 +1167,8 @@ let initReactions =  function  (reactions, primitives) {
 						primitives.GD_CreateMsg (1, "ven_con_%o1", "No olvides venir con %o1.");
 						
 						primitives.CA_QuoteContinues ("te_espero_en_risco");
-						if (version() == "VC") 
-							primitives.CA_QuoteContinues ("ven_con_%o1", [primitives.IT_GetId(elOtroPJ (primitives.PC_X()))]);
+						if (usr.getVersion() == "VC") 
+							primitives.CA_QuoteContinues ("ven_con_%o1", [primitives.IT_GetId(usr.elOtroPJ (primitives.PC_X()))]);
 					}
 					primitives.CA_QuoteContinues ("");
 				
@@ -1183,7 +1181,7 @@ let initReactions =  function  (reactions, primitives) {
 			// dar diamante a la vieja
 			if ((par_c.item1Id == "diamante") && (par_c.item2Id == "vieja")) {
 				
-				transformacionVieja();
+				usr.transformacionVieja();
 				return true;
 			}
 			
@@ -1201,8 +1199,8 @@ let initReactions =  function  (reactions, primitives) {
 							primitives.GD_CreateMsg (1, "DLG_ya_me_lo_habías_dado", "Ya me la habías dado antes, no te esfuerces tanto.");
 							primitives.CA_QuoteBegin (par_c.item2Id, "DLG_ya_me_lo_habías_dado");
 						} else {
-							if (version() == "VC") {
-								if (primitives.IT_GetLoc(primitives.PC_X()) != primitives.IT_GetLoc(elOtroPJ(primitives.PC_X ()))) {
+							if (usr.getVersion() == "VC") {
+								if (primitives.IT_GetLoc(primitives.PC_X()) != primitives.IT_GetLoc(usr.elOtroPJ(primitives.PC_X ()))) {
 									primitives.GD_CreateMsg (1, "DLG_hechicera_pide_que_estén_ambos", "Debéis estar los dos aquí para que pueda hacer romper y fabricar la pócima de liberación.");
 									primitives.CA_QuoteBegin (par_c.item2Id, "DLG_hechicera_pide_que_estén_ambos");
 									return true;
@@ -1218,7 +1216,7 @@ let initReactions =  function  (reactions, primitives) {
 							primitives.CA_ShowMsg ("hechicera_hace_pócima");
 							
 							// aviso al dar la pócima
-							if (version() == "VR") {
+							if (usr.getVersion() == "VR") {
 								primitives.GD_CreateMsg (1, "DLG_VR_al_hacer_pócima_1", "Como recompensa por haberme traído antes el diamante, voy a devolverte tu aspecto original. Toma esta pócima y regresa a tu mundo, atravesando de nuevo la fuente verde");	
 								primitives.GD_CreateMsg (1, "DLG_VR_al_hacer_pócima_2", "Pero recuerda: en cuanto bebas la pócima empezarás a crecer de manera incontenible y tendrás <b>poco tiempo</b> para atravesar la catarata y llegar a salvo en la gruta de los dragones, donde te espera tu amado Kuko. Si te retrasas, <u>volverás a tener tu forma humana</u> y quedarás separada de Kuko para siempre.");
 								primitives.GD_CreateMsg (1, "DLG_VR_al_hacer_pócima_3", "Adiós dragona, ¡buena suerte!");
@@ -1365,8 +1363,6 @@ available methods for each item:
 
 // **********************************************
 
-
-
 let initItems =  function  (items, primitives) {
 	
 	items.push ({
@@ -1382,7 +1378,7 @@ let initItems =  function  (items, primitives) {
 			
 			primitives.CA_ShowMsg ("fuente_roja_básico");	
 			if (primitives.IT_GetLoc(primitives.IT_X("pájaros")) == primitives.IT_X("fuente_roja")) {
-				primitives.CA_ShowMsg ("fuente_roja_con_pájaros %o1", ["pájaros"]);
+				primitives.CA_ShowMsg ("fuente_roja_con_pájaros %o1", {o1:"pájaros"});
 			}
 			primitives.CA_ShowMsgAsIs(".<br/>");
 
@@ -1416,7 +1412,7 @@ let initItems =  function  (items, primitives) {
 		target: function (dirId) {
 			if (dirId == "d90") {
 				
-				if (version() == "VC") 
+				if (usr.getVersion() == "VC") 
 					return "río";
 				else 
 					return "";
@@ -1519,7 +1515,7 @@ let initItems =  function  (items, primitives) {
 			primitives.GD_CreateMsg (1, "VC_cazador_recuerda_cabaña", "Recuerdas cómo era todo antes, antes incluso de ir al mundo marino. ¡Qué hermosa era la cabaña que con tanto esfuerzo construiste!<br/>");
 			primitives.GD_CreateMsg (1, "VR_vagabunda_recuerda_cabaña", "No deberías perder el tiempo tan tontamente.<br/>");
 
-			primitives.CA_ShowMsg (version() + primitives.IT_GetId(primitives.PC_X()) + "_recuerda_cabaña");
+			primitives.CA_ShowMsg (usr.getVersion() + primitives.IT_GetId(primitives.PC_X()) + "_recuerda_cabaña");
 			return true;			
 
 		},
@@ -1543,7 +1539,7 @@ let initItems =  function  (items, primitives) {
 			} else {
 				primitives.CA_ShowMsg ("en_cueva_brillante");
 				if (primitives.IT_GetLoc (primitives.IT_X("hechicera")) == primitives.PC_GetCurrentLoc()) {
-					primitives.CA_ShowMsg ("hechicera_presente %o1", ["hechicera"]);
+					primitives.CA_ShowMsg ("hechicera_presente %o1", {o1:"hechicera"});
 				}
 				primitives.CA_ShowMsgAsIs (".<br/>");
 			}
@@ -1640,7 +1636,7 @@ let initItems =  function  (items, primitives) {
 						primitives.CA_ShowMenu (menu);
 					} else { // respuesta
 						if (par_c.option == "0") { // acepta comida y da algo a cambio
-							flautistaRecibeComida  (comida);
+							usr.flautistaRecibeComida  (comida);
 						} else {
 							primitives.GD_CreateMsg (1, "DLG_qué_tacaño_eres", "qué tacaño eres, tú te lo pierdes. Yo sigo con lo mío, que cuando toco la música se me olvida el hambre.");
 							primitives.CA_QuoteContinues ("DLG_qué_tacaño_eres");
@@ -1687,7 +1683,7 @@ let initItems =  function  (items, primitives) {
 					} else { // respuesta
 						if (par_c.option == "0") { 
 							// aceptas tocar flauta
-							examenMusical(par_c);
+							usr.examenMusical(par_c);
 						} else {
 							primitives.GD_CreateMsg (1, "DLG_flautista_sin_oirte", "Así nunca sabré si has aprendido lo suficiente.");
 							primitives.CA_QuoteBegin ("flautista", "DLG_flautista_sin_oirte");
@@ -1713,60 +1709,198 @@ let initItems =  function  (items, primitives) {
 	});
 }
 
+// GENERIC turn **********************************************************************************************
+
+export function turn (indexItem) {
+
+	if (indexItem == primitives.PC_X()) { // reacción sobre PJ, independiente de la acción elegida
+		
+		// contador total para dar a luz
+		if (usr.getVersion() == "VC")  {
+			// 300 turnos y contracción cada 15
+			if (primitives.PC_GetTurn() == 300) {
+				if (primitives.PC_X() == primitives.IT_X("vagabunda") ) {				
+					primitives.GD_CreateMsg (1, "vagabunda_no_aguanta_más", "<br/>¡No aguantas más! El alumbramiento será ahora mismo.<br/>");
+					primitives.CA_ShowMsg ("vagabunda_no_aguanta_más");
+					usr.perdiste_transformacionExterna();
+				} else if (primitives.IT_GetLoc(primitives.PC_X()) == primitives.IT_GetLoc(usr.elOtroPJ (primitives.PC_X()))) { // misma loc
+					usr.perdiste_transformacionExterna();
+				} else { 
+					usr.perdiste_cazadorAusente ();
+				}
+			}			
+			
+			if (primitives.PC_GetTurn() % 15 == 0) {
+				var contraciones_quedan = (300 - primitives.PC_GetTurn()) / 15;
+				if (primitives.PC_X() == primitives.IT_X("vagabunda")) {
+					primitives.GD_CreateMsg (1, "contracción %s1", "<br/><br/>¡Qué dolor! Te detienes en seco por una contracción.De alguna forma sabes que te quedan %s1 contracciones antes de dar a luz.<br/>");
+
+					primitives.CA_ShowMsg ("contracción %s1" , {s1:contraciones_quedan}); 
+				} else if (primitives.IT_GetLoc(primitives.PC_X()) == primitives.IT_GetLoc(usr.elOtroPJ (primitives.PC_X()))) { // misma loc
+					primitives.GD_CreateMsg (1, "contracción_vista_por_cazador %s1", "<br/><br/>Ves cómo la vagabunda se detiene y se retuerce de dolor. De alguna forma sabes que le quedan %s1 contracciones antes de dar a luz.<br/>");
+
+					primitives.CA_ShowMsg ("contracción_vista_por_cazador %s1" , {s1:contraciones_quedan}); 
+					
+				}
+			}
+		}
+		
+		// si versión larga y PJ en misma loc que el otro cuando dragona...
+		if (usr.getVersion() == "VC") { // versión larga
+			if (primitives.IT_GetLoc(primitives.PC_X()) == primitives.IT_GetLoc(usr.elOtroPJ (primitives.PC_X()))) { // misma loc
+				if (primitives.IT_GetAttPropValue (primitives.IT_X("vagabunda"), "generalState", "state") == "5") { // ya bebió
+					usr.perdiste_transformacionExterna();
+				}
+			} 
+		}		
+						
+		if (primitives.IT_GetAttPropValue (primitives.IT_X("pócima"), "hasDecrementor", "active") == "true" ) {	
+			var counter = +primitives.IT_GetAttPropValue (primitives.IT_X("pócima"), "hasDecrementor", "counter");
+			
+			// decremento manual (to-do: debería ser cosa de la librería)
+			counter--;
+			primitives.IT_SetAttPropValue (primitives.IT_X("pócima"), "hasDecrementor", "counter", counter);
+			
+			if (primitives.PC_X() == primitives.IT_X("vagabunda")) {
+
+				
+
+				if (counter < 4) {
+					
+					primitives.GD_CreateMsg (1, "cada_vez_más_grande", "Cada vez estás más grande!!<br/>");
+					primitives.CA_ShowMsg("cada_vez_más_grande"); 
+					if (counter < 0) {
+						
+						if (usr.getVersion() == "VR") {
+							primitives.GD_CreateMsg (1, "perdona_vida_conversión_externa", "<br/><b>Mensaje del escritor del juego:</b> Te volviste a hacer humana y ya no podrás atravesar la catarata y reunirte con Kuko... pero te perdonamos la vida (no se lo digas a nadie) y te dejamos seguir jugando como dragona...<br/><br/>");
+							primitives.GD_CreateMsg (1, "deux_ex_machina_dragona_vuela", "Cuando completas tu transformación, desplegas tus alas y atraviesas volando la catarata.<br/>");
+
+							primitives.CA_ShowMsg ("perdona_vida_conversión_externa");
+							primitives.CA_ShowMsg("deux_ex_machina_dragona_vuela");
+
+							primitives.IT_SetLoc(primitives.PC_X(), primitives.IT_X("caverna_dragón"));
+							usr.comprobarSiFinDelJuego();
+							
+						} else {
+							usr.perdiste_transformacionExterna()
+						}
+
+					}
+				}
+			  
+				return true;
+				
+			} else if (primitives.PC_X() == primitives.IT_X("cazador")) {
+				// si vagabunda dio a luz mientras controlabas al cazador
+				if ( counter < 0) {
+					usr.perdiste_cazadorAusente ();					
+				}
+				
+			}			
+			
+		}
+		
+	}
+	
+		
+	// turno del PJ no activo (sólo en si versión completa)
+	if (usr.getVersion() == "VC") {
+		if ( (indexItem != primitives.PC_X()) && ((indexItem == primitives.IT_X("cazador")) || (indexItem == primitives.IT_X("vagabunda"))) ) {
+			
+			if (primitives.IT_GetLoc (indexItem) == primitives.PC_GetCurrentLoc()) { // misma localidad
+				
+				// si aún no confía en el PJ activo
+				if (primitives.IT_GetAttPropValue (indexItem, "generalState", "state") == "0") { 
+				
+					if (primitives.IT_GetAttPropValue (indexItem, "generalState", "confianza") == "0") { 
+					
+						primitives.IT_SetAttPropValue (indexItem, "generalState", "confianza", "1");
+						
+						primitives.GD_CreateMsg (1, "%o1_desconfia", "%o1 te mira con desconfianza, no en balde sóis unos desconocidos.");
+						primitives.CA_ShowMsg ("%o1_desconfia", {o1:primitives.IT_GetId(indexItem)} );
+
+					} else if (primitives.IT_GetAttPropValue (indexItem, "generalState", "confianza") == "1") { 
+						// después de coincidir un turno, se va
+					
+						primitives.GD_CreateMsg (1, "DLG_me_voy", "Disculpe que me vaya, no frecuento a desconocidos.");
+						primitives.CA_QuoteBegin (primitives.IT_GetId(indexItem), "DLG_me_voy" );
+
+						// lo resetea para el siguiente encuentro
+						primitives.IT_SetAttPropValue (indexItem, "generalState", "confianza", "2");
+										
+						// se va
+						usr.aOtraLocalidad(indexItem);
+						
+					}
+					return true;
+				}
+			}
+		}
+	} 
+	
+
+}
+
+
 // internal functions ****************************************************************************************************************
 
-function examenMusical (par_c) {
+usr.getVersion = function () { 
+	
+	// "VR" o "VC": versión reducida o versión completa
+	return this.primitives.IT_GetAttPropValue (this.primitives.IT_X("cruce_caminos"), "gameParameters", "version"); 
+}
 
-	primitives.GD_CreateMsg (1, "DLG_anima_música", "¡Venga, dale!");
-	primitives.CA_QuoteBegin ("flautista", "DLG_anima_música", [], false);
+usr.examenMusical = function (par_c) {
+
+	this.primitives.GD_CreateMsg (1, "DLG_anima_música", "¡Venga, dale!");
+	this.primitives.CA_QuoteBegin ("flautista", "DLG_anima_música", [], false);
 
 	// según pericia, más contento y mejor suena la flauta
 	
 	// si en risco lunar y flautista tiene el diamante
-	primitives.GD_CreateMsg (1, "DLG_tocas_nivel_0", "Socorro, qué dolor! Vete de mi vista y no vuelvas hasta que hayas practicado más.");
-	primitives.GD_CreateMsg (1, "DLG_tocas_nivel_1", "¿Cómo te atreves a hacer ese ruido sin haber practicado casi nada?");
-	primitives.GD_CreateMsg (1, "DLG_tocas_nivel_2", "Vas mejorando, pero aún debes practicar algo más.");
-	primitives.GD_CreateMsg (1, "DLG_tocas_nivel_3", "Practica un poco más y lo tendrás controlado.");
-	primitives.GD_CreateMsg (1, "DLG_tocas_nivel_4", "¡Enhorabuena, estás hecho un virtuoso! Ahora ya eres digno de que yo toque la flauta para ti. Honraremos a la luna y ella hará algo por ti.");
+	this.primitives.GD_CreateMsg (1, "DLG_tocas_nivel_0", "Socorro, qué dolor! Vete de mi vista y no vuelvas hasta que hayas practicado más.");
+	this.primitives.GD_CreateMsg (1, "DLG_tocas_nivel_1", "¿Cómo te atreves a hacer ese ruido sin haber practicado casi nada?");
+	this.primitives.GD_CreateMsg (1, "DLG_tocas_nivel_2", "Vas mejorando, pero aún debes practicar algo más.");
+	this.primitives.GD_CreateMsg (1, "DLG_tocas_nivel_3", "Practica un poco más y lo tendrás controlado.");
+	this.primitives.GD_CreateMsg (1, "DLG_tocas_nivel_4", "¡Enhorabuena, estás hecho un virtuoso! Ahora ya eres digno de que yo toque la flauta para ti. Honraremos a la luna y ella hará algo por ti.");
 	
-	if (primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "nivelMusical") == "0") {
-		primitives.CA_PlayAudio ("flauta_nivel0.m4a", true, "DLG_tocas_nivel_0"); 
-	} else 	if (primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "nivelMusical") == "1") {
-		primitives.CA_PlayAudio ("flauta_nivel1.m4a", true, "DLG_tocas_nivel_1"); 
-	} else 	if (primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "nivelMusical") == "2") {
-		primitives.CA_PlayAudio ("flauta_nivel2.m4a", true, "DLG_tocas_nivel_2"); 
-	} else 	if (primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "nivelMusical") == "3") {
-		primitives.CA_PlayAudio ("flauta_nivel3.m4a", true, "DLG_tocas_nivel_3"); 
-	} else 	if (primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "nivelMusical") > "3") {
-		primitives.CA_PlayAudio ("flauta_nivel4.mp3", true, "DLG_tocas_nivel_4"); 
+	if (this.primitives.IT_GetAttPropValue (this.primitives.PC_X(), "generalState", "nivelMusical") == "0") {
+		this.primitives.CA_PlayAudio ("flauta_nivel0.m4a", true, "DLG_tocas_nivel_0"); 
+	} else 	if (this.primitives.IT_GetAttPropValue (this.primitives.PC_X(), "generalState", "nivelMusical") == "1") {
+		this.primitives.CA_PlayAudio ("flauta_nivel1.m4a", true, "DLG_tocas_nivel_1"); 
+	} else 	if (this.primitives.IT_GetAttPropValue (this.primitives.PC_X(), "generalState", "nivelMusical") == "2") {
+		this.primitives.CA_PlayAudio ("flauta_nivel2.m4a", true, "DLG_tocas_nivel_2"); 
+	} else 	if (this.primitives.IT_GetAttPropValue (this.primitives.PC_X(), "generalState", "nivelMusical") == "3") {
+		this.primitives.CA_PlayAudio ("flauta_nivel3.m4a", true, "DLG_tocas_nivel_3"); 
+	} else 	if (this.primitives.IT_GetAttPropValue (this.primitives.PC_X(), "generalState", "nivelMusical") > "3") {
+		this.primitives.CA_PlayAudio ("flauta_nivel4.mp3", true, "DLG_tocas_nivel_4"); 
 		
-		if ( (primitives.IT_GetLoc(primitives.IT_X("diamante")) != primitives.PC_X()) && (primitives.IT_GetLoc(primitives.IT_X("diamante")) != primitives.IT_X("flautista")) ) { // no aquí
-			primitives.GD_CreateMsg (1, "DLG_debes_traerme_diamante", "Pero para ello, la piedra lunar debe estar presente.");
-			primitives.CA_QuoteContinues ("DLG_debes_traerme_diamante");
+		if ( (this.primitives.IT_GetLoc(this.primitives.IT_X("diamante")) != this.primitives.PC_X()) && (this.primitives.IT_GetLoc(this.primitives.IT_X("diamante")) != this.primitives.IT_X("flautista")) ) { // no aquí
+			this.primitives.GD_CreateMsg (1, "DLG_debes_traerme_diamante", "Pero para ello, la piedra lunar debe estar presente.");
+			this.primitives.CA_QuoteContinues ("DLG_debes_traerme_diamante");
 			return;
 		}
 		
-		primitives.CA_QuoteContinues ("");
+		this.primitives.CA_QuoteContinues ("");
 		
-		if (primitives.IT_GetLoc(primitives.IT_X("diamante")) == primitives.PC_X()) {
-			primitives.GD_CreateMsg (1, "flautista_recupera_diamante", "El flautista te quita el diamante, como quien recupera un viejo tesoro.");
-			primitives.CA_ShowMsg ("flautista_recupera_diamante");
-			primitives.IT_SetLoc (primitives.IT_X("diamante"), primitives.IT_X("flautista"));
+		if (this.primitives.IT_GetLoc(this.primitives.IT_X("diamante")) == this.primitives.PC_X()) {
+			this.primitives.GD_CreateMsg (1, "flautista_recupera_diamante", "El flautista te quita el diamante, como quien recupera un viejo tesoro.");
+			this.primitives.CA_ShowMsg ("flautista_recupera_diamante");
+			this.primitives.IT_SetLoc (this.primitives.IT_X("diamante"), this.primitives.IT_X("flautista"));
 		}
 		
-		escenaBaile();
+		usr.escenaBaile();
 	
 	}	
 	
 }
 
-// funciones internas ------------------------------------------------------------------------
 
 // agregar par_c.obj1 sobre objDestino
-function agregarLiquido (par_c, objDestino) {
+usr.agregarLiquido = function (par_c, objDestino) {
 	
-	var liquido1 = primitives.IT_GetAttPropValue (par_c.item1, "isLiquid", "state");
-	var liquido2 = primitives.IT_GetAttPropValue (primitives.IT_X(objDestino), "isLiquidContainer", "state");
+	var liquido1 = this.primitives.IT_GetAttPropValue (par_c.item1, "isLiquid", "state");
+	var liquido2 = this.primitives.IT_GetAttPropValue (this.primitives.IT_X(objDestino), "isLiquidContainer", "state");
 
 	if (liquido2 == "vacío") return liquido1;
 	if (liquido2 == "normal") return liquido1;
@@ -1793,134 +1927,133 @@ function agregarLiquido (par_c, objDestino) {
 	
 }
 
-function liquido2String (color) {
+usr.liquido2String = function(color) {
 	if (color == "pócima") return "pócima";
 	return "agua_" + color;
 }
 
 
-
-function escenaBaile () {
+usr.escenaBaile = function() {
 	
-	if (primitives.IT_GetLoc (primitives.IT_X("diamante")) != primitives.IT_X("flautista")) return; // flautista no tiene el diamante
-	if (version() == "VC") {
-		if (primitives.IT_GetLoc(elOtroPJ(primitives.PC_X ())) != primitives.PC_GetCurrentLoc()) { // si el otro PJ no está presente
-			primitives.GD_CreateMsg (1, "DLG_falta_uno_para_transformación_lunar", "Debéis estar los dos presentes para honrar a la luna.");
-			primitives.CA_QuoteBegin ("flautista", "DLG_falta_uno_para_transformación_lunar");
+	if (this.primitives.IT_GetLoc (this.primitives.IT_X("diamante")) != this.primitives.IT_X("flautista")) return; // flautista no tiene el diamante
+	if (usr.getVersion() == "VC") {
+		if (this.primitives.IT_GetLoc(usr.elOtroPJ(this.primitives.PC_X ())) != this.primitives.PC_GetCurrentLoc()) { // si el otro PJ no está presente
+			this.primitives.GD_CreateMsg (1, "DLG_falta_uno_para_transformación_lunar", "Debéis estar los dos presentes para honrar a la luna.");
+			this.primitives.CA_QuoteBegin ("flautista", "DLG_falta_uno_para_transformación_lunar");
 			return;
 		}
 	}
 	
-	primitives.GD_CreateMsg (1, "fluteTransformation", "El flautista empieza a tocar la flauta... que se transforma en sus manos en una flauta de oro, parece estar embrujada. Toca y toca sin poder parar... y van pasando las horas... hasta hacerse de noche. Ves cómo delante de ti el flautista cambia su aspecto a otra cosa más etérea, casi translúcida, y cómo milagrosamente se sigue observando el arco iris de la fuente verde a pesar de ser de noche."); 
-	primitives.CA_PlayAudio ("flauta2.mp3", true, "fluteTransformation"); 
+	this.primitives.GD_CreateMsg (1, "fluteTransformation", "El flautista empieza a tocar la flauta... que se transforma en sus manos en una flauta de oro, parece estar embrujada. Toca y toca sin poder parar... y van pasando las horas... hasta hacerse de noche. Ves cómo delante de ti el flautista cambia su aspecto a otra cosa más etérea, casi translúcida, y cómo milagrosamente se sigue observando el arco iris de la fuente verde a pesar de ser de noche."); 
+	this.primitives.CA_PlayAudio ("flauta2.mp3", true, "fluteTransformation"); 
 
 	// diamante -> vagabunda, si es que lo tenía el elfo
-	primitives.IT_SetLoc (primitives.IT_X("diamante"), primitives.PC_X ());
+	this.primitives.IT_SetLoc (this.primitives.IT_X("diamante"), this.primitives.PC_X ());
 	
 	// flauta, se la queda el flautista
-	primitives.IT_SetLoc (primitives.IT_X("flauta"), primitives.IT_X("flautista"));
+	this.primitives.IT_SetLoc (this.primitives.IT_X("flauta"), this.primitives.IT_X("flautista"));
 
 	// marcado que bailaste
-	primitives.IT_SetAttPropValue (primitives.PC_X (), "generalState", "state", "4");
+	this.primitives.IT_SetAttPropValue (this.primitives.PC_X (), "generalState", "state", "4");
 	
-	primitives.GD_CreateMsg (1, "VC_transformación_flautista_1", "El diamante brilla con una irreal hermosura. Vosotros, aún siendo casi unos desconocidos, os tomáis de la mano y comenzáis a bailar, horas y horas.<br/>");
-	primitives.GD_CreateMsg (1, "VC_transformación_flautista_2", "Algunos recuerdos reaparecen, recordáis haber bailado entre corales y medusas. Cuando parece que el velo del olvido os abandona... cesa la música y con ella esos dulces recuerdos.<br/>");
-	primitives.GD_CreateMsg (1, "VC_transformación_flautista_3", "Tardáis un momento en daros cuenta de que ha amanecido y el flautista ha dejado de tocar y ha vuelvo a recuperar la forma del flautista campestre.<br/>");
-	primitives.GD_CreateMsg (1, "VR_transformación_flautista_1", "El diamante brilla con una irreal hermosura. Presa de una alegría incontrolada, comienzas a dar vueltas y bailar, horas y horas, hasta que cesa la música y tardas un momento en darte cuenta de que ha amanecido y el elfo ha dejado de tocar y ha vuelvo a recuperar la forma del flautista campestre.<br/>");
-	primitives.GD_CreateMsg (1, "VR_transformación_flautista_2", "");
-	primitives.GD_CreateMsg (1, "VR_transformación_flautista_3", "");
-	primitives.GD_CreateMsg (1, "DLG_VC_id_con_vieja", "Id adonde la vieja bruja, ella sabrá perdonaros el hechizo con que os maldijo si le lleváis el diamante.");
-	primitives.GD_CreateMsg (1, "DLG_VR_id_con_vieja", "Vete adonde la vieja bruja, ella sabrá perdonarte el hechizo con que os maldijo a ti y a Kuko, si le llevas el diamante.");
-	primitives.GD_CreateMsg (1, "flaustista_desaparece_tras_árbol", "El flautista da un brinco y desaparece sin más detrás de un árbol. Al seguir sus huellas, ves que desaparecen sin más detrás del árbol.<br/>");
-	primitives.GD_CreateMsg (1, "VC_fin_acto_2", "<br/><br/>Aquí termina el acto II: o de cómo el flautista hizo bailar a los dos tortolitos.<br/><br/>");
-	primitives.GD_CreateMsg (1, "VR_fin_acto_2", "<br/><br/>Aquí termina el acto II: o de cómo el flautista hizo bailar a Laila hasta el amanecer.<br/><br/>");
+	this.primitives.GD_CreateMsg (1, "VC_transformación_flautista_1", "El diamante brilla con una irreal hermosura. Vosotros, aún siendo casi unos desconocidos, os tomáis de la mano y comenzáis a bailar, horas y horas.<br/>");
+	this.primitives.GD_CreateMsg (1, "VC_transformación_flautista_2", "Algunos recuerdos reaparecen, recordáis haber bailado entre corales y medusas. Cuando parece que el velo del olvido os abandona... cesa la música y con ella esos dulces recuerdos.<br/>");
+	this.primitives.GD_CreateMsg (1, "VC_transformación_flautista_3", "Tardáis un momento en daros cuenta de que ha amanecido y el flautista ha dejado de tocar y ha vuelvo a recuperar la forma del flautista campestre.<br/>");
+	this.primitives.GD_CreateMsg (1, "VR_transformación_flautista_1", "El diamante brilla con una irreal hermosura. Presa de una alegría incontrolada, comienzas a dar vueltas y bailar, horas y horas, hasta que cesa la música y tardas un momento en darte cuenta de que ha amanecido y el elfo ha dejado de tocar y ha vuelvo a recuperar la forma del flautista campestre.<br/>");
+	this.primitives.GD_CreateMsg (1, "VR_transformación_flautista_2", "");
+	this.primitives.GD_CreateMsg (1, "VR_transformación_flautista_3", "");
+	this.primitives.GD_CreateMsg (1, "DLG_VC_id_con_vieja", "Id adonde la vieja bruja, ella sabrá perdonaros el hechizo con que os maldijo si le lleváis el diamante.");
+	this.primitives.GD_CreateMsg (1, "DLG_VR_id_con_vieja", "Vete adonde la vieja bruja, ella sabrá perdonarte el hechizo con que os maldijo a ti y a Kuko, si le llevas el diamante.");
+	this.primitives.GD_CreateMsg (1, "flaustista_desaparece_tras_árbol", "El flautista da un brinco y desaparece sin más detrás de un árbol. Al seguir sus huellas, ves que desaparecen sin más detrás del árbol.<br/>");
+	this.primitives.GD_CreateMsg (1, "VC_fin_acto_2", "<br/><br/>Aquí termina el acto II: o de cómo el flautista hizo bailar a los dos tortolitos.<br/><br/>");
+	this.primitives.GD_CreateMsg (1, "VR_fin_acto_2", "<br/><br/>Aquí termina el acto II: o de cómo el flautista hizo bailar a Laila hasta el amanecer.<br/><br/>");
 	
-	if (version() == "VC") {
+	if (usr.getVersion() == "VC") {
 		// marcamos al otro PJ que también bailó
-		primitives.IT_SetAttPropValue (elOtroPJ(primitives.PC_X ()), "generalState", "state", "4");
+		this.primitives.IT_SetAttPropValue (usr.elOtroPJ(this.primitives.PC_X ()), "generalState", "state", "4");
 	}
 	
-	primitives.GD_CreateMsg (1, "DLG_VC_toma_diamante", "Tomad el diamante que tantos ansiáis. Id con él a la vieja bruja de la cueva.");
-	primitives.GD_CreateMsg (1, "DLG_VR_toma_diamante", "Toma el diamante que tanto ansías. Ve con él a la vieja bruja de la cueva.");
-	primitives.GD_CreateMsg (1, "DLG_VC_busqué_pero_no_encontré_diamante", "El día del maleficio yo vi por una ventana cómo la bruja os maldijo usando la piedra de luz. Vi que después de un rayo terrible, la piedra salió despedida... pero nunca la llegué a encontrar por mucho que busqué entre los restos del incendio.");
-	primitives.GD_CreateMsg (1, "DLG_VR_busqué_pero_no_encontré_diamante", "Por la cabaña, esa que quemaste por accidente jugando con Kuko, vi cómo la bruja te lanzó un hechizo, usando la piedra de luz y te transformó en humana, encerrando a Kuko al otro lado de la catarata. Después de un rayo terrible, la piedra salió despedida... pero nunca la llegué a encontrar.");
-	primitives.GD_CreateMsg (1, "DLG_es_hora_de_bailar", "Pero olvidemos el pasado... ¡hora es tiempo de bailar!");
+	this.primitives.GD_CreateMsg (1, "DLG_VC_toma_diamante", "Tomad el diamante que tantos ansiáis. Id con él a la vieja bruja de la cueva.");
+	this.primitives.GD_CreateMsg (1, "DLG_VR_toma_diamante", "Toma el diamante que tanto ansías. Ve con él a la vieja bruja de la cueva.");
+	this.primitives.GD_CreateMsg (1, "DLG_VC_busqué_pero_no_encontré_diamante", "El día del maleficio yo vi por una ventana cómo la bruja os maldijo usando la piedra de luz. Vi que después de un rayo terrible, la piedra salió despedida... pero nunca la llegué a encontrar por mucho que busqué entre los restos del incendio.");
+	this.primitives.GD_CreateMsg (1, "DLG_VR_busqué_pero_no_encontré_diamante", "Por la cabaña, esa que quemaste por accidente jugando con Kuko, vi cómo la bruja te lanzó un hechizo, usando la piedra de luz y te transformó en humana, encerrando a Kuko al otro lado de la catarata. Después de un rayo terrible, la piedra salió despedida... pero nunca la llegué a encontrar.");
+	this.primitives.GD_CreateMsg (1, "DLG_es_hora_de_bailar", "Pero olvidemos el pasado... ¡hora es tiempo de bailar!");
 	
-	primitives.CA_QuoteBegin ("flautista", "DLG_" + version() + "_toma_diamante", [], false);
-	primitives.CA_QuoteContinues ("DLG_" + version() + "_busqué_pero_no_encontré_diamante", [], false);
-	primitives.CA_QuoteContinues ("DLG_es_hora_de_bailar");
+	this.primitives.CA_QuoteBegin ("flautista", "DLG_" + usr.getVersion() + "_toma_diamante", [], false);
+	this.primitives.CA_QuoteContinues ("DLG_" + usr.getVersion() + "_busqué_pero_no_encontré_diamante", [], false);
+	this.primitives.CA_QuoteContinues ("DLG_es_hora_de_bailar");
 	
 	// escena del baile
-	primitives.CA_ShowMsg (version() + "_transformación_flautista_1");
-	primitives.CA_ShowMsg (version() + "_transformación_flautista_2");
-	primitives.CA_ShowMsg (version() + "_transformación_flautista_3");
+	this.primitives.CA_ShowMsg (usr.getVersion() + "_transformación_flautista_1");
+	this.primitives.CA_ShowMsg (usr.getVersion() + "_transformación_flautista_2");
+	this.primitives.CA_ShowMsg (usr.getVersion() + "_transformación_flautista_3");
 		
-	primitives.CA_QuoteBegin ("flautista", "DLG_" + version() + "_id_con_vieja");
+	this.primitives.CA_QuoteBegin ("flautista", "DLG_" + usr.getVersion() + "_id_con_vieja");
 
-	primitives.CA_ShowMsg ("flaustista_desaparece_tras_árbol");
+	this.primitives.CA_ShowMsg ("flaustista_desaparece_tras_árbol");
 
 	// fin acto 2:
-	primitives.CA_ShowMsg (version() + "_fin_acto_2");
-	primitives.PC_Points (25);
+	this.primitives.CA_ShowMsg (usr.getVersion() + "_fin_acto_2");
+	this.primitives.PC_Points (25);
 	
-	primitives.IT_SetLocToLimbo (primitives.IT_X("flautista"));	
+	this.primitives.IT_SetLocToLimbo (this.primitives.IT_X("flautista"));	
 }
 
 
-function flautistaRecibeComida (comida) {
+usr.flautistaRecibeComida = function(comida) {
 	
-	primitives.IT_SetAttPropValue	(primitives.PC_X(), "generalState", "state", "3");
-	primitives.IT_SetLocToLimbo (primitives.IT_X(comida));
+	this.primitives.IT_SetAttPropValue	(this.primitives.PC_X(), "generalState", "state", "3");
+	this.primitives.IT_SetLocToLimbo (this.primitives.IT_X(comida));
 
 	var regalo = "flauta";
-	if (version() == "VC") {
-		if (primitives.PC_X() == primitives.IT_X("vagabunda")) regalo = "pista";
+	if (usr.getVersion() == "VC") {
+		if (this.primitives.PC_X() == this.primitives.IT_X("vagabunda")) regalo = "pista";
 	}
 
-	primitives.GD_CreateMsg (1, "DLG_gracias_por_o1", "¡Gracias por %o1! Los prepararé a la brasa.");
-	primitives.CA_QuoteBegin ("flautista","DLG_gracias_por_o1",[comida], false);
+	this.primitives.GD_CreateMsg (1, "DLG_gracias_por_o1", "¡Gracias por %o1! Los prepararé a la brasa.");
+	this.primitives.CA_QuoteBegin ("flautista","DLG_gracias_por_o1",[comida], false);
 	
 	if (regalo == "flauta") {
-		primitives.GD_CreateMsg (1, "DLG_toma_flauta", "Toma la flauta, practica con ella. Cuando hayas alcanzado suficiente maestría con ella, búscame y demuéstrame lo que sabes si quieres mi ayuda.");
-		primitives.CA_QuoteContinues ("DLG_toma_flauta", [], false);
-		primitives.IT_SetLoc (primitives.IT_X(regalo), primitives.PC_X());
+		this.primitives.GD_CreateMsg (1, "DLG_toma_flauta", "Toma la flauta, practica con ella. Cuando hayas alcanzado suficiente maestría con ella, búscame y demuéstrame lo que sabes si quieres mi ayuda.");
+		this.primitives.CA_QuoteContinues ("DLG_toma_flauta", [], false);
+		this.primitives.IT_SetLoc (this.primitives.IT_X(regalo), this.primitives.PC_X());
 	} 
 	
-	if ((regalo != "flauta") || (version() == "VR") ) {
-		primitives.GD_CreateMsg (1, "DLG_aviso_espejo", "Debes saber que tu visión de serpiente te permite ver lo que a otros está oculto. Mira con calma <u>en la cabaña</u> y tráeme lo que encuentres.");
-		primitives.CA_QuoteContinues ("DLG_aviso_espejo", [], false);
+	if ((regalo != "flauta") || (usr.getVersion() == "VR") ) {
+		this.primitives.GD_CreateMsg (1, "DLG_aviso_espejo", "Debes saber que tu visión de serpiente te permite ver lo que a otros está oculto. Mira con calma <u>en la cabaña</u> y tráeme lo que encuentres.");
+		this.primitives.CA_QuoteContinues ("DLG_aviso_espejo", [], false);
 	}
 		
 	// si flautista saciado de comer: anochece, se despide y se va al risco lunar
-	primitives.GD_CreateMsg (1, "DLG_me_voy_al_risco", "Creo que me iré a echar una siesta al risco de la luna.");
-	primitives.GD_CreateMsg (1, "DLG_te_espero_vagabunda", "Te espero allí, cuando estés list con mi piedra, princesa. A medianoche, con el cazador.");
-	primitives.GD_CreateMsg (1, "DLG_te_espero_cazador", "Te espero allí, cuando estés listo para regalarme una bella tonada, cazador. A medianoche, con la vagabunda.");
-	primitives.GD_CreateMsg (1, "DLG_VC_adelanto_baile", "Si me complacéis, esta noche la piedra lunar resplandecerá de manera especial y recuperaréis algo que habíais perdido, aunque sólo sea por un rato.");
-	primitives.GD_CreateMsg (1, "DLG_VR_adelanto_baile", "Te espero allí, cuando estés lista. A medianoche ven a visitarme, pero sólo cuando hayas alcanzado maestría con la flauta y tengas la piedra lunar, que resplandecerá esta noche de manera especial.");
-	primitives.GD_CreateMsg (1, "DLG_aún_espero_comida_del_otro", "Espero que tu media naranja me traiga algo de comer también.");
+	this.primitives.GD_CreateMsg (1, "DLG_me_voy_al_risco", "Creo que me iré a echar una siesta al risco de la luna.");
+	this.primitives.GD_CreateMsg (1, "DLG_te_espero_vagabunda", "Te espero allí, cuando estés list con mi piedra, princesa. A medianoche, con el cazador.");
+	this.primitives.GD_CreateMsg (1, "DLG_te_espero_cazador", "Te espero allí, cuando estés listo para regalarme una bella tonada, cazador. A medianoche, con la vagabunda.");
+	this.primitives.GD_CreateMsg (1, "DLG_VC_adelanto_baile", "Si me complacéis, esta noche la piedra lunar resplandecerá de manera especial y recuperaréis algo que habíais perdido, aunque sólo sea por un rato.");
+	this.primitives.GD_CreateMsg (1, "DLG_VR_adelanto_baile", "Te espero allí, cuando estés lista. A medianoche ven a visitarme, pero sólo cuando hayas alcanzado maestría con la flauta y tengas la piedra lunar, que resplandecerá esta noche de manera especial.");
+	this.primitives.GD_CreateMsg (1, "DLG_aún_espero_comida_del_otro", "Espero que tu media naranja me traiga algo de comer también.");
 
-	primitives.CA_QuoteContinues ("DLG_me_voy_al_risco", [], false);
-	if ((version() == "VC") && (primitives.IT_GetAttPropValue (elOtroPJ(primitives.PC_X()), "generalState", "state") == "3")) {
-		primitives.CA_QuoteContinues ("DLG_te_espero_"+ primitives.IT_GetId(primitives.PC_X()), [], false);
-		primitives.IT_SetLoc (primitives.IT_X("flautista"), primitives.IT_X("risco_luna"));
-		primitives.CA_QuoteContinues ("DLG_" + version() + "_adelanto_baile", [], false);
-	} else if (version() == "VR") {
-		primitives.IT_SetLoc (primitives.IT_X("flautista"), primitives.IT_X("risco_luna"));
-		primitives.CA_QuoteContinues ("DLG_" + version() + "_adelanto_baile", [], false);
+	this.primitives.CA_QuoteContinues ("DLG_me_voy_al_risco", [], false);
+	if ((usr.getVersion() == "VC") && (this.primitives.IT_GetAttPropValue (usr.elOtroPJ(this.primitives.PC_X()), "generalState", "state") == "3")) {
+		this.primitives.CA_QuoteContinues ("DLG_te_espero_"+ this.primitives.IT_GetId(this.primitives.PC_X()), [], false);
+		this.primitives.IT_SetLoc (this.primitives.IT_X("flautista"), this.primitives.IT_X("risco_luna"));
+		this.primitives.CA_QuoteContinues ("DLG_" + usr.getVersion() + "_adelanto_baile", [], false);
+	} else if (usr.getVersion() == "VR") {
+		this.primitives.IT_SetLoc (this.primitives.IT_X("flautista"), this.primitives.IT_X("risco_luna"));
+		this.primitives.CA_QuoteContinues ("DLG_" + usr.getVersion() + "_adelanto_baile", [], false);
 	} else { // el otro PJ aun no ha dado comida
-		primitives.CA_QuoteContinues ("DLG_aún_espero_comida_del_otro", [], false);		
+		this.primitives.CA_QuoteContinues ("DLG_aún_espero_comida_del_otro", [], false);		
 	}
-	primitives.CA_QuoteContinues ("");
+	this.primitives.CA_QuoteContinues ("");
 
-	if ( (version() == "VR") ||
-		 ( (version() == "VC") && 
-		   (primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "state") == "3") && 
-		   (primitives.IT_GetAttPropValue (elOtroPJ (primitives.PC_X()), "generalState", "state") == "3") ) ) {
+	if ( (usr.getVersion() == "VR") ||
+		 ( (usr.getVersion() == "VC") && 
+		   (this.primitives.IT_GetAttPropValue (this.primitives.PC_X(), "generalState", "state") == "3") && 
+		   (this.primitives.IT_GetAttPropValue (usr.elOtroPJ (this.primitives.PC_X()), "generalState", "state") == "3") ) ) {
 		// fin acto 1
-		primitives.GD_CreateMsg (1, "VC_fin_acto_1", "<br/><br/>Aquí termina el acto I: o de cómo los dos amantes desmemoriados se reencontraron y colaboraron para dar de comer al hambriento flautista, que les dio una flauta y un consejo.<br/><br/>");
-		primitives.GD_CreateMsg (1, "VR_fin_acto_1", "<br/><br/>Aquí termina el acto I: o de cómo Laila dio de comer al hambriento flautista y a cambio recibió una flauta para practicar música.<br/><br/>");
-		primitives.PC_Points (25);
-		primitives.CA_ShowMsg (version() + "_fin_acto_1");
+		this.primitives.GD_CreateMsg (1, "VC_fin_acto_1", "<br/><br/>Aquí termina el acto I: o de cómo los dos amantes desmemoriados se reencontraron y colaboraron para dar de comer al hambriento flautista, que les dio una flauta y un consejo.<br/><br/>");
+		this.primitives.GD_CreateMsg (1, "VR_fin_acto_1", "<br/><br/>Aquí termina el acto I: o de cómo Laila dio de comer al hambriento flautista y a cambio recibió una flauta para practicar música.<br/><br/>");
+		this.primitives.PC_Points (25);
+		this.primitives.CA_ShowMsg (usr.getVersion() + "_fin_acto_1");
 	}
 	
 }
@@ -1928,179 +2061,175 @@ function flautistaRecibeComida (comida) {
 
 
 // hablar con el otro pc
-function talkPJ (par_c) {
+usr.talkPJ = function (par_c) {
 	
-	primitives.CA_QuoteBegin (par_c.item1Id, "" , [], false ); // inicia diálogo, sin decir nada aún
+	this.primitives.CA_QuoteBegin (par_c.item1Id, "" , [], false ); // inicia diálogo, sin decir nada aún
 
 	// la primera vez que coinciden
-	if (!primitives.IT_GetIsItemKnown (par_c.pc, par_c.item1)) {
-		primitives.GD_CreateMsg (1, "DLG_primer_saludo", "Buenos días, ¿nos conocemos? Su cara me resulta familiar.");
-		primitives.CA_QuoteContinues ("DLG_primer_saludo", [], false );
+	if (!this.primitives.IT_GetIsItemKnown (par_c.pc, par_c.item1)) {
+		this.primitives.GD_CreateMsg (1, "DLG_primer_saludo", "Buenos días, ¿nos conocemos? Su cara me resulta familiar.");
+		this.primitives.CA_QuoteContinues ("DLG_primer_saludo", [], false );
 	} 
 	
 	/* En función de los estados, variará el discurso
 	   Siendo: EPJ el estadodel PJ y EPNJ el estado del PNJ interpelado
 	*/
 	
-	var EPJ = primitives.IT_GetAttPropValue (par_c.pc, "generalState", "state");
-	var EPNJ = primitives.IT_GetAttPropValue (par_c.item1, "generalState", "state");
+	var EPJ = this.primitives.IT_GetAttPropValue (par_c.pc, "generalState", "state");
+	var EPNJ = this.primitives.IT_GetAttPropValue (par_c.item1, "generalState", "state");
 	
 	// episodio 1: antes de que bailen (tanto EPJ como EPNJ < 4)
 	if ((EPJ<4) && (EPNJ<4)) {
 		if (EPNJ == "0") { // PNJ no confía aún en PJ
-			primitives.GD_CreateMsg (1, "DLG_No_le_conozco", "No le conozco, creo que no debería hablar con usted.");
-			primitives.CA_QuoteContinues ("DLG_No_le_conozco", [], false );
+			this.primitives.GD_CreateMsg (1, "DLG_No_le_conozco", "No le conozco, creo que no debería hablar con usted.");
+			this.primitives.CA_QuoteContinues ("DLG_No_le_conozco", [], false );
 		} else if (EPNJ < EPJ) {// PJ más avanzado que el PNJ
-			primitives.GD_CreateMsg (1, "DLG_deberías_ayudar_a_%o1", "No tiene nada que aportarte a ti... pero tú sí a %o1.");
-			primitives.CA_QuoteContinues ("DLG_deberías_ayudar_a_%o1", [par_c.item1Id], false );
+			this.primitives.GD_CreateMsg (1, "DLG_deberías_ayudar_a_%o1", "No tiene nada que aportarte a ti... pero tú sí a %o1.");
+			this.primitives.CA_QuoteContinues ("DLG_deberías_ayudar_a_%o1", [par_c.item1Id], false );
 		} else if (EPNJ >= "1" && EPJ == "0") {  // PNJ confía pero PJ desconfía
-			primitives.GD_CreateMsg (1, "DLG_yo_confío", "Yo confío en ti, ¿qué podría hacer para que confiaras en mí?");
-			primitives.CA_QuoteContinues ("DLG_yo_confío", [], false );
+			this.primitives.GD_CreateMsg (1, "DLG_yo_confío", "Yo confío en ti, ¿qué podría hacer para que confiaras en mí?");
+			this.primitives.CA_QuoteContinues ("DLG_yo_confío", [], false );
 		} else if (EPNJ == EPJ &&  EPJ == "1" ) { // ya intercambiaron armas 
-			primitives.GD_CreateMsg (1, "DLG_deberíamos_usar_armas", "Deberíamos usar las armas que hemos intercambiado.");
-			primitives.CA_QuoteContinues ("DLG_deberíamos_usar_armas", [], false );
+			this.primitives.GD_CreateMsg (1, "DLG_deberíamos_usar_armas", "Deberíamos usar las armas que hemos intercambiado.");
+			this.primitives.CA_QuoteContinues ("DLG_deberíamos_usar_armas", [], false );
 		} else if (EPNJ >= "2" && EPJ == "1" ) { // PNJ cazó, pero PJ aún no 
-			primitives.GD_CreateMsg (1, "DLG_deberías_cazar", "Yo ya me cobré mi pieza, deberías hacer lo propio.");
-			primitives.CA_QuoteContinues ("DLG_deberías_cazar", [], false );
+			this.primitives.GD_CreateMsg (1, "DLG_deberías_cazar", "Yo ya me cobré mi pieza, deberías hacer lo propio.");
+			this.primitives.CA_QuoteContinues ("DLG_deberías_cazar", [], false );
 		} else if (EPNJ == EPJ && EPJ == "2"  ) { //ambos cazaron
-			primitives.GD_CreateMsg (1, "DLG_deberías_visitar_flautista_1", "quizás habría que ir a visitar al flautista de nuevo.");
-			primitives.CA_QuoteContinues ("DLG_deberías_visitar_flautista_1", [], false );
+			this.primitives.GD_CreateMsg (1, "DLG_deberías_visitar_flautista_1", "quizás habría que ir a visitar al flautista de nuevo.");
+			this.primitives.CA_QuoteContinues ("DLG_deberías_visitar_flautista_1", [], false );
 		} else if (EPNJ >= "3" && EPJ == "2"  ) { // /PJN dio regalo al flautista no el PJ
-			primitives.GD_CreateMsg (1, "DLG_deberías_visitar_flautista_2", "creo que el flautista podría ayudarte.");
-			primitives.CA_QuoteContinues ("DLG_deberías_visitar_flautista_2", [], false );
+			this.primitives.GD_CreateMsg (1, "DLG_deberías_visitar_flautista_2", "creo que el flautista podría ayudarte.");
+			this.primitives.CA_QuoteContinues ("DLG_deberías_visitar_flautista_2", [], false );
 		} else if (EPNJ == EPJ && EPJ == "3" ) { 
-			primitives.GD_CreateMsg (1, "DLG_recordar_flautista_en_risco", "El flautista nos citó en el risco de la luna con la flauta y la piedra lunar.");
-			primitives.CA_QuoteContinues ("DLG_recordar_flautista_en_risco", [], false );
+			this.primitives.GD_CreateMsg (1, "DLG_recordar_flautista_en_risco", "El flautista nos citó en el risco de la luna con la flauta y la piedra lunar.");
+			this.primitives.CA_QuoteContinues ("DLG_recordar_flautista_en_risco", [], false );
 		} else {
-			primitives.GD_CreateMsg (1, "DLG_no_sé_qué_decir", "No sé qué decirte.");
-			primitives.CA_QuoteContinues ("DLG_no_sé_qué_decir", [], false );
+			this.primitives.GD_CreateMsg (1, "DLG_no_sé_qué_decir", "No sé qué decirte.");
+			this.primitives.CA_QuoteContinues ("DLG_no_sé_qué_decir", [], false );
 		}
 		
-		primitives.CA_QuoteContinues ("");
+		this.primitives.CA_QuoteContinues ("");
 		
 		return true;
 	}
 	
 	// episodio 2: antes de que ninguno haya bebido pócima
-	primitives.GD_CreateMsg (1, "DLG_debemos_conseguir_pócima", "¡Tenemos que conseguir la pócima!");
-	primitives.GD_CreateMsg (1, "DLG_debemos_llevar_agua_púrpura", "Deberíamos llevar el agua púrpura para llevársela a la hechicera.");
-	primitives.GD_CreateMsg (1, "DLG_vagabunda_aviso_1", "Por favor, aléjate del camino que lleva a la catarata, no te gustará verme después de que tome la pócima, hasta después del parto.");
-	primitives.GD_CreateMsg (1, "DLG_cazador_aviso_1", "Estoy muy nervioso, no sé qué ocurrirá cuando tomes la pócima; tengo miedo, no quiero dejarte sola.");
+	this.primitives.GD_CreateMsg (1, "DLG_debemos_conseguir_pócima", "¡Tenemos que conseguir la pócima!");
+	this.primitives.GD_CreateMsg (1, "DLG_debemos_llevar_agua_púrpura", "Deberíamos llevar el agua púrpura para llevársela a la hechicera.");
+	this.primitives.GD_CreateMsg (1, "DLG_vagabunda_aviso_1", "Por favor, aléjate del camino que lleva a la catarata, no te gustará verme después de que tome la pócima, hasta después del parto.");
+	this.primitives.GD_CreateMsg (1, "DLG_cazador_aviso_1", "Estoy muy nervioso, no sé qué ocurrirá cuando tomes la pócima; tengo miedo, no quiero dejarte sola.");
 	if ((EPJ ==4) && (EPNJ == 4)) { // (ya bailaron y el elfo les dijo que visitaran a la bruja y le dieran el diamante)
-		if (!primitives.IT_GetIsItemKnown (par_c.item1, primitives.IT_X("hechicera"))) { // PNJ no conoce a la hechicera como tal
-			primitives.CA_QuoteContinues ("DLG_debemos_conseguir_pócima", [], false );
+		if (!this.primitives.IT_GetIsItemKnown (par_c.item1, this.primitives.IT_X("hechicera"))) { // PNJ no conoce a la hechicera como tal
+			this.primitives.CA_QuoteContinues ("DLG_debemos_conseguir_pócima", [], false );
 		} else { //PNJ conoce a la hechicera como tal
 			// PNJ: deberíamos visitar a la bruja/tu pariente lejana para que nos retire el hechizo a cambio del diamante
-			if (primitives.IT_GetAttPropValue (primitives.IT_X("caldero"), "isLiquidContainer", "state") == "vacío") {  // no pócima en caldero
-				primitives.CA_QuoteContinues ("DLG_debemos_llevar_agua_púrpura", [], false );
+			if (this.primitives.IT_GetAttPropValue (this.primitives.IT_X("caldero"), "isLiquidContainer", "state") == "vacío") {  // no pócima en caldero
+				this.primitives.CA_QuoteContinues ("DLG_debemos_llevar_agua_púrpura", [], false );
 			} else { // PNJ conoce a la hechicera y existe pócima en caldero
 				// reforzar avisos ya dados por hechicera
-				primitives.CA_QuoteContinues ("DLG_" + par_c.item1Id + "_aviso_1", [], false );
+				this.primitives.CA_QuoteContinues ("DLG_" + par_c.item1Id + "_aviso_1", [], false );
 			}
 		}
-		primitives.CA_QuoteContinues ("");
+		this.primitives.CA_QuoteContinues ("");
 		return true;
 	}
 	
 	// episodio 3: uno de los dos ya bebió la pócima (estado 5)
-	primitives.GD_CreateMsg (1, "DLG_cazador_aviso_2", "Ya lo recuerdo todo, cariño. Recuerda que antes de beber tú, deberías dejar que me esconda.");
-	if ((primitives.PC_X() == primitives.IT_X("vagabunda")) && (EPJ == 4)) { // vagabunda habla con cazador (quien ha bebido pócima)
-		primitives.CA_QuoteContinues ("DLG_cazador_aviso_2", [], false );
-	} else if ((primitives.PC_X() == primitives.IT_X("vagabunda")) && (EPJ == 5)) { // dragona es quien habla (no debería producirse)
+	this.primitives.GD_CreateMsg (1, "DLG_cazador_aviso_2", "Ya lo recuerdo todo, cariño. Recuerda que antes de beber tú, deberías dejar que me esconda.");
+	if ((this.primitives.PC_X() == this.primitives.IT_X("vagabunda")) && (EPJ == 4)) { // vagabunda habla con cazador (quien ha bebido pócima)
+		this.primitives.CA_QuoteContinues ("DLG_cazador_aviso_2", [], false );
+	} else if ((this.primitives.PC_X() == this.primitives.IT_X("vagabunda")) && (EPJ == 5)) { // dragona es quien habla (no debería producirse)
 		// ya habría acabado el juego, al ver visto a la dragona
-		primitives.GD_CreateMsg (1, "DLG_te_avisé", "¡Te había avisado!, ¡aparta de mi camino!");
-		primitives.CA_QuoteContinues ("DLG_te_avisé", [], false );
-		comprobarSiFinDelJuego ();
-	} else if ((primitives.PC_X() == primitives.IT_X("cazador")) && (EPJ == 5)) { // habla cazador, que ya bebió pócima
-		primitives.GD_CreateMsg (1, "DLG_vagabunda_aviso_2", "Cariño, ya lo recuerdas todo, pero yo cuando tome la pócima me transformaré en algo que no quiero que veas: aparta de mi camino a la catarata o lo lamentarás de la peor de las maneras.");
-		primitives.CA_QuoteContinues ("DLG_vagabunda_aviso_2", [], false );
-	} else if ((primitives.PC_X() == primitives.IT_X("cazador")) && (EPJ == 4)) { // habla cazador, sin haber bebido pócima, con la dragona
+		this.primitives.GD_CreateMsg (1, "DLG_te_avisé", "¡Te había avisado!, ¡aparta de mi camino!");
+		this.primitives.CA_QuoteContinues ("DLG_te_avisé", [], false );
+		usr.comprobarSiFinDelJuego ();
+	} else if ((this.primitives.PC_X() == this.primitives.IT_X("cazador")) && (EPJ == 5)) { // habla cazador, que ya bebió pócima
+		this.primitives.GD_CreateMsg (1, "DLG_vagabunda_aviso_2", "Cariño, ya lo recuerdas todo, pero yo cuando tome la pócima me transformaré en algo que no quiero que veas: aparta de mi camino a la catarata o lo lamentarás de la peor de las maneras.");
+		this.primitives.CA_QuoteContinues ("DLG_vagabunda_aviso_2", [], false );
+	} else if ((this.primitives.PC_X() == this.primitives.IT_X("cazador")) && (EPJ == 4)) { // habla cazador, sin haber bebido pócima, con la dragona
 		// ya habría acabado el juego, al ver visto a la dragona
-		primitives.GD_CreateMsg (1, "DLG_no_puede_ser", "¡No puede ser!, ¡monstruo del infierno!");
-		primitives.CA_QuoteContinues ("DLG_no_puede_ser", [], false );
-		comprobarSiFinDelJuego ();
+		this.primitives.GD_CreateMsg (1, "DLG_no_puede_ser", "¡No puede ser!, ¡monstruo del infierno!");
+		this.primitives.CA_QuoteContinues ("DLG_no_puede_ser", [], false );
+		usr.comprobarSiFinDelJuego ();
 	}
 	
-	primitives.CA_QuoteContinues ("");
+	this.primitives.CA_QuoteContinues ("");
 	return true;
 }
 
-// para facilitar legibilidad del código
-function version () { 
-	return primitives.IT_GetAttPropValue (primitives.IT_X("cruce_caminos"), "gameParameters", "version"); // "VR" o "VC": versión reducida o versión completa
-}
 
-function comprobarSiFinDelJuego () {
+usr.comprobarSiFinDelJuego = function() {
 
-	if (primitives.IT_GetLoc (primitives.PC_X()) != primitives.IT_X("caverna_dragón")) return;
+	if (this.primitives.IT_GetLoc (this.primitives.PC_X()) != this.primitives.IT_X("caverna_dragón")) return;
 
-	if (version() == "VR") {
+	if (usr.getVersion() == "VR") {
 		
-		primitives.GD_CreateMsg (1, "VR_ganaste", "Atraviesas la cascada verde y entras en tu cueva, tu hogar. Después de avanzar por un túnel llegas a una inmensa cueva repleta de monedas de oro y diamantes. Sobre ella reposa Kuko el dragón, que al verte lanza un fuego de alegría al aire y vuela hacia ti y te da un gran abrazo dragoniano con sus escamosas alas. Has vuelto al hogar, ¡¡HAS GANADO!!<br/>");
-		primitives.CA_ShowMsg ("VR_ganaste");
+		this.primitives.GD_CreateMsg (1, "VR_ganaste", "Atraviesas la cascada verde y entras en tu cueva, tu hogar. Después de avanzar por un túnel llegas a una inmensa cueva repleta de monedas de oro y diamantes. Sobre ella reposa Kuko el dragón, que al verte lanza un fuego de alegría al aire y vuela hacia ti y te da un gran abrazo dragoniano con sus escamosas alas. Has vuelto al hogar, ¡¡HAS GANADO!!<br/>");
+		this.primitives.CA_ShowMsg ("VR_ganaste");
 		
-		primitives.CA_ShowImg ("dos_dragones.jpg", true); 
+		this.primitives.CA_ShowImg ("dos_dragones.jpg", true); 
 
 		// fin acto 4 (ganando)
-		primitives.GD_CreateMsg (1, "VR_fin_acto_4", "<br/><br/>Aquí termina el acto IV y último: o de cómo los dragones se reunieron y fueron buenos... por un tiempo.<br/><br/>");
-		primitives.CA_ShowMsg ("VR_fin_acto_4");
-		primitives.PC_Points (25);
+		this.primitives.GD_CreateMsg (1, "VR_fin_acto_4", "<br/><br/>Aquí termina el acto IV y último: o de cómo los dragones se reunieron y fueron buenos... por un tiempo.<br/><br/>");
+		this.primitives.CA_ShowMsg ("VR_fin_acto_4");
+		this.primitives.PC_Points (25);
 		
-		primitives.CA_EndGame ("Ganaste!");
-		creditos();
+		this.primitives.CA_EndGame ("Ganaste!");
+		usr.creditos();
 		
 	} else {
 		
-		if (primitives.PC_X() == primitives.IT_X("vagabunda")) {
+		if (this.primitives.PC_X() == this.primitives.IT_X("vagabunda")) {
 												
-			primitives.GD_CreateMsg (1, "dragona_en_cueva", "Atraviesas la cascada verde y entras en tu cueva. Tras de ti, como profetizó la hechicera, rocas enormes caen y la catarata queda inaccesible desde el exterior.<br/>");
-			primitives.CA_ShowMsg ("dragona_en_cueva");
+			this.primitives.GD_CreateMsg (1, "dragona_en_cueva", "Atraviesas la cascada verde y entras en tu cueva. Tras de ti, como profetizó la hechicera, rocas enormes caen y la catarata queda inaccesible desde el exterior.<br/>");
+			this.primitives.CA_ShowMsg ("dragona_en_cueva");
 
 			// si dragona atraviesa catarata y cazador no está en el escondite: fin del juego
-			if (primitives.IT_GetLoc (primitives.IT_X("cazador")) == primitives.IT_X("caverna_dragón")) {
+			if (this.primitives.IT_GetLoc (this.primitives.IT_X("cazador")) == this.primitives.IT_X("caverna_dragón")) {
 				// cazador ve llegar a la dragona: ui qué miedo!
 				
-				primitives.GD_CreateMsg (1, "dragona_en_cueva_pero_cazador_presente", "Al entrar en el que debería haber sido tu refugio... tu dicha se torna drama. El cazador está presente y te ve llegar.<br/>");
-				primitives.CA_ShowMsg ("dragona_en_cueva_pero_cazador_presente");
+				this.primitives.GD_CreateMsg (1, "dragona_en_cueva_pero_cazador_presente", "Al entrar en el que debería haber sido tu refugio... tu dicha se torna drama. El cazador está presente y te ve llegar.<br/>");
+				this.primitives.CA_ShowMsg ("dragona_en_cueva_pero_cazador_presente");
 				
-				perdiste_transformacionExterna();
+				usr.perdiste_transformacionExterna();
 				
 			} else {
 				
-				primitives.CA_ShowMsg ("transformación_1a_persona");
-				primitives.CA_ShowMsg ("alumbramiento_1a_persona");
+				this.primitives.CA_ShowMsg ("transformación_1a_persona");
+				this.primitives.CA_ShowMsg ("alumbramiento_1a_persona");
 				
-				primitives.GD_CreateMsg (1, "sale_bebé_del_huevo", "Mientras te recuperas, observas cómo unas manitas rompen el huevo desde dentro. El huevo se desmorona dejando a la vista un bebé que rompe a llorar.<br/>");
-				primitives.CA_ShowMsg ("sale_bebé_del_huevo");
+				this.primitives.GD_CreateMsg (1, "sale_bebé_del_huevo", "Mientras te recuperas, observas cómo unas manitas rompen el huevo desde dentro. El huevo se desmorona dejando a la vista un bebé que rompe a llorar.<br/>");
+				this.primitives.CA_ShowMsg ("sale_bebé_del_huevo");
 				
-				if (primitives.IT_GetLoc (primitives.IT_X("cazador")) == primitives.IT_X("escondite")) { // cazador la siente llegar... pero no la ve siendo dragona
+				if (this.primitives.IT_GetLoc (this.primitives.IT_X("cazador")) == this.primitives.IT_X("escondite")) { // cazador la siente llegar... pero no la ve siendo dragona
 
 					// final ok 
 
-					primitives.GD_CreateMsg (1, "cazador_coge_bebé", "Una vez has recuperado tu forma humana, el cazador aparece de entre las sombras. Te abriga con una manta y coge al bebé en sus brazos, observando que, como su madre, tiene ojos de serpiente. Sois una extraña familia, pero una familia al fin y al cabo. Vuestro hijo, al que llamáis Ugayafukiaezu, está destinado a ser el padre del primer emperador del Japón.<br/>");
-					primitives.CA_ShowMsg ("cazador_coge_bebé");
+					this.primitives.GD_CreateMsg (1, "cazador_coge_bebé", "Una vez has recuperado tu forma humana, el cazador aparece de entre las sombras. Te abriga con una manta y coge al bebé en sus brazos, observando que, como su madre, tiene ojos de serpiente. Sois una extraña familia, pero una familia al fin y al cabo. Vuestro hijo, al que llamáis Ugayafukiaezu, está destinado a ser el padre del primer emperador del Japón.<br/>");
+					this.primitives.CA_ShowMsg ("cazador_coge_bebé");
 										
-					primitives.GD_CreateMsg (1, "VC_fin_acto_4", "<br/><br/>Aquí termina el acto IV y último: o de cómo la feliz familia se reunió y el maleficio superó.<br/><br/>");
-					primitives.CA_ShowMsg ("VC_fin_acto_4");
-					primitives.PC_Points (25);
+					this.primitives.GD_CreateMsg (1, "VC_fin_acto_4", "<br/><br/>Aquí termina el acto IV y último: o de cómo la feliz familia se reunió y el maleficio superó.<br/><br/>");
+					this.primitives.CA_ShowMsg ("VC_fin_acto_4");
+					this.primitives.PC_Points (25);
 					
 					// fin acto 4 (ganando)
-					creditos();
+					usr.creditos();
 
-					primitives.CA_EndGame ("¡Ganaste!");
+					this.primitives.CA_EndGame ("¡Ganaste!");
 					
 				} else  { // dramón, el cazador se quedó fuera de la caverna y se queda fuera
 					
-					primitives.GD_CreateMsg  (1, "dragona_recupera_forma_encerrada", "Recuperas tu forma y quedas con tu hijo en brazos. No hay salida posible para tu hijo. Por aquí corre un río subterráneo. Con lágrimas en los ojos, lo abandonas y sigues el curso del río, hacia tu patria subterránea.<br/>");
-					primitives.CA_ShowMsg ("dragona_recupera_forma_encerrada");
+					this.primitives.GD_CreateMsg  (1, "dragona_recupera_forma_encerrada", "Recuperas tu forma y quedas con tu hijo en brazos. No hay salida posible para tu hijo. Por aquí corre un río subterráneo. Con lágrimas en los ojos, lo abandonas y sigues el curso del río, hacia tu patria subterránea.<br/>");
+					this.primitives.CA_ShowMsg ("dragona_recupera_forma_encerrada");
 					
-					primitives.GD_CreateMsg (1, "VC_fin_acto_4_niño_a_solas", "<br/><br/>Aquí termina el acto IV y último: o de cómo el maleficio no fue superado y el niño-dragón, quedó abandonado.<br/><br/>");
-					primitives.CA_ShowMsg ("VC_fin_acto_4_niño_a_solas");
+					this.primitives.GD_CreateMsg (1, "VC_fin_acto_4_niño_a_solas", "<br/><br/>Aquí termina el acto IV y último: o de cómo el maleficio no fue superado y el niño-dragón, quedó abandonado.<br/><br/>");
+					this.primitives.CA_ShowMsg ("VC_fin_acto_4_niño_a_solas");
 
-					epilogoAbandono();
+					usr.epilogoAbandono();
 
 					// fin acto 4 (perdiendo)
-					primitives.CA_EndGame ("Perdiste");
+					this.primitives.CA_EndGame ("Perdiste");
 			
 				}
 				
@@ -2110,214 +2239,214 @@ function comprobarSiFinDelJuego () {
 	}
 }
 
-function epilogoAbandono () {
-	primitives.GD_CreateMsg (1, "VC_fin_acto_4_niño_a_solas_epílogo", "<br/><br/><b>Epílogo:</b> Una vez que la princesa del mar abandona a su vástago, aparece la hechicera.<br/><br/>");
-	primitives.CA_ShowMsg ("VC_fin_acto_4_niño_a_solas_epílogo");
+usr.epilogoAbandono = function() {
+	this.primitives.GD_CreateMsg (1, "VC_fin_acto_4_niño_a_solas_epílogo", "<br/><br/><b>Epílogo:</b> Una vez que la princesa del mar abandona a su vástago, aparece la hechicera.<br/><br/>");
+	this.primitives.CA_ShowMsg ("VC_fin_acto_4_niño_a_solas_epílogo");
 	
-	primitives.GD_CreateMsg (1, "DLG_no_tienes_culpa_dragoncito", "Tú no tienes culpa de nada, niño dragón. Te llamaré Ugayafukiaezu. Con tu naturaleza y mis poderes serás poderoso.");
-	primitives.CA_QuoteBegin ("hechicera", "DLG_no_tienes_culpa_dragoncito");
+	this.primitives.GD_CreateMsg (1, "DLG_no_tienes_culpa_dragoncito", "Tú no tienes culpa de nada, niño dragón. Te llamaré Ugayafukiaezu. Con tu naturaleza y mis poderes serás poderoso.");
+	this.primitives.CA_QuoteBegin ("hechicera", "DLG_no_tienes_culpa_dragoncito");
 }
 
-function epilogoCazadorAusente () {
-	primitives.GD_CreateMsg (1, "VC_fin_acto_4_cazador_ausente", "<br/><br/><b>Epílogo:</b> Una vez que el cazador huye desconosolado del lugar, aparece la hechicera.<br/><br/>");
-	primitives.CA_ShowMsg ("VC_fin_acto_4_cazador_ausente");
+usr.epilogoCazadorAusente = function() {
+	this.primitives.GD_CreateMsg (1, "VC_fin_acto_4_cazador_ausente", "<br/><br/><b>Epílogo:</b> Una vez que el cazador huye desconosolado del lugar, aparece la hechicera.<br/><br/>");
+	this.primitives.CA_ShowMsg ("VC_fin_acto_4_cazador_ausente");
 	
-	primitives.GD_CreateMsg (1, "DLG_no_tienes_culpa_dragoncito", "Tú no tienes culpa de nada, niño dragón. Te llamaré Ugayafukiaezu. Con tu naturaleza y mis poderes serás poderoso.");
-	primitives.CA_QuoteBegin ("hechicera", "DLG_no_tienes_culpa_dragoncito");
+	this.primitives.GD_CreateMsg (1, "DLG_no_tienes_culpa_dragoncito", "Tú no tienes culpa de nada, niño dragón. Te llamaré Ugayafukiaezu. Con tu naturaleza y mis poderes serás poderoso.");
+	this.primitives.CA_QuoteBegin ("hechicera", "DLG_no_tienes_culpa_dragoncito");
 }
 
-function creditos () {
+usr.creditos = function() {
 	
-	primitives.GD_CreateMsg (1, "gracias_por_jugar", "Gracias por jugar. Si no jugaste a la otra versión, te animamos a que lo hagas y veas las diferencias, se trata de una historia ligeramente diferente.<br/>");
-	primitives.CA_ShowMsg ("gracias_por_jugar");
-	primitives.GD_CreateMsg (1, "disclaimer", "Disculpa los bugs y fallos con los que probablemente te has encontrado en el juego. No dudes en hacernos llegar tus comentarios a %uludi.ludon@gmail.com__mailto:ludi.ludon@gmail.com%<br/>");
-	primitives.CA_ShowMsg ("disclaimer");
-	primitives.GD_CreateMsg (1, "próximas_versiones", "En próximas versiones del motor del juego, mejoraremos la jugabilidad y la parte colaborativa en red.<br/>");
-	primitives.CA_ShowMsg ("próximas_versiones");
+	this.primitives.GD_CreateMsg (1, "gracias_por_jugar", "Gracias por jugar. Si no jugaste a la otra versión, te animamos a que lo hagas y veas las diferencias, se trata de una historia ligeramente diferente.<br/>");
+	this.primitives.CA_ShowMsg ("gracias_por_jugar");
+	this.primitives.GD_CreateMsg (1, "disclaimer", "Disculpa los bugs y fallos con los que probablemente te has encontrado en el juego. No dudes en hacernos llegar tus comentarios a %uludi.ludon@gmail.com__mailto:ludi.ludon@gmail.com%<br/>");
+	this.primitives.CA_ShowMsg ("disclaimer");
+	this.primitives.GD_CreateMsg (1, "próximas_versiones", "En próximas versiones del motor del juego, mejoraremos la jugabilidad y la parte colaborativa en red.<br/>");
+	this.primitives.CA_ShowMsg ("próximas_versiones");
 	
-	primitives.GD_CreateMsg (1, "making_of_0", "<br/><b>The making of Las Tres Fuentes</b><br/><br/>");
-	primitives.CA_ShowMsg ("making_of_0");
+	this.primitives.GD_CreateMsg (1, "making_of_0", "<br/><b>The making of Las Tres Fuentes</b><br/><br/>");
+	this.primitives.CA_ShowMsg ("making_of_0");
 
-	primitives.GD_CreateMsg (1, "making_of_1", "La idea inicial del juego partió de la cascada de colores, en la isla de La Palma, islas Canarias, en el Parque Nacional de La Caldera de Taburiente. Si puedes ir alguna vez, disfrutarás mucho tanto de la cascada como de la caminata hasta llegar a ella.<br/>");
-	primitives.CA_ShowMsg ("making_of_1");
+	this.primitives.GD_CreateMsg (1, "making_of_1", "La idea inicial del juego partió de la cascada de colores, en la isla de La Palma, islas Canarias, en el Parque Nacional de La Caldera de Taburiente. Si puedes ir alguna vez, disfrutarás mucho tanto de la cascada como de la caminata hasta llegar a ella.<br/>");
+	this.primitives.CA_ShowMsg ("making_of_1");
 
-	if (version() == "VC") {
-		primitives.GD_CreateMsg (1, "making_of_2", "La idea del embarazo de la criatura marina, procede de la mitología japonesa: tira del hilo en %uhttps://es.wikipedia.org/wiki/Toyotama-hime__https://es.wikipedia.org/wiki/Toyotama-hime%, o buscando por Toyotama-hime (vagabunda), Hoori (cazador), Ōyamatsumi (bruja, diosa de las montañas) y Ugayafukiaezu (el niño dragón), que supuestamente sería el padre del emperador Jinmu, legendario primer emperador del Japón.<br/>");
-		primitives.CA_ShowMsg ("making_of_2");
+	if (usr.getVersion() == "VC") {
+		this.primitives.GD_CreateMsg (1, "making_of_2", "La idea del embarazo de la criatura marina, procede de la mitología japonesa: tira del hilo en %uhttps://es.wikipedia.org/wiki/Toyotama-hime__https://es.wikipedia.org/wiki/Toyotama-hime%, o buscando por Toyotama-hime (vagabunda), Hoori (cazador), Ōyamatsumi (bruja, diosa de las montañas) y Ugayafukiaezu (el niño dragón), que supuestamente sería el padre del emperador Jinmu, legendario primer emperador del Japón.<br/>");
+		this.primitives.CA_ShowMsg ("making_of_2");
 	}
 	
 }
 
-function perdiste_cazadorAusente () {
-	primitives.GD_CreateMsg (1, "presentimiento_del_cazador", "Un presentimiento te hiela la sangre. Algo ha sucedido. De alguna manera, sabes que la vagabunda ha dado a luz. Vas corriendo a la catarata, pero el acceso es imposible. ¿Qué habrá sido de la princesa?, ¿habrá nacido sano tu hijo? Vivirás para siempre con estas dudas.<br/>");
-	primitives.CA_ShowMsg("presentimiento_del_cazador");
+usr.perdiste_cazadorAusente = function() {
+	this.primitives.GD_CreateMsg (1, "presentimiento_del_cazador", "Un presentimiento te hiela la sangre. Algo ha sucedido. De alguna manera, sabes que la vagabunda ha dado a luz. Vas corriendo a la catarata, pero el acceso es imposible. ¿Qué habrá sido de la princesa?, ¿habrá nacido sano tu hijo? Vivirás para siempre con estas dudas.<br/>");
+	this.primitives.CA_ShowMsg("presentimiento_del_cazador");
 	
-	primitives.GD_CreateMsg (1, "VR_fin_acto_4_presentimiento", "<br/><br/>Aquí termina el acto IV y último: o de cómo el hechizo no pudo ser superado y el cazador quedó sumido en sombra.<br/><br/>");
-	primitives.CA_ShowMsg ("VR_fin_acto_4_presentimiento");
+	this.primitives.GD_CreateMsg (1, "VR_fin_acto_4_presentimiento", "<br/><br/>Aquí termina el acto IV y último: o de cómo el hechizo no pudo ser superado y el cazador quedó sumido en sombra.<br/><br/>");
+	this.primitives.CA_ShowMsg ("VR_fin_acto_4_presentimiento");
 
-	epilogoCazadorAusente();
+	usr.epilogoCazadorAusente();
 	
 	// fin acto 4 (perdiendo)
-	primitives.CA_EndGame ("Has pedido");
+	this.primitives.CA_EndGame ("Has pedido");
 	
 }
 
-function perdiste_transformacionExterna () {
+usr.perdiste_transformacionExterna = function() {
 	
-	if (primitives.PC_X() == primitives.IT_X("cazador")) {
-		primitives.GD_CreateMsg (1, "cambio_punto_de_vista_a_%o1", "<br/><b>Cambio de protagonista:</b> %o1<br/><br/>"); 
+	if (this.primitives.PC_X() == this.primitives.IT_X("cazador")) {
+		this.primitives.GD_CreateMsg (1, "cambio_punto_de_vista_a_%o1", "<br/><b>Cambio de protagonista:</b> %o1<br/><br/>"); 
 		
-		primitives.PC_SetIndex (par_c.item1); // bug in previous version
+		this.primitives.PC_SetIndex (par_c.item1); // bug in previous version
 		
-		primitives.PC_SetIndex (primitives.IT_X("vagabunda")); 
-		primitives.CA_ShowMsg ("cambio_punto_de_vista_a_%o1" , [primitives.IT_GetId(primitives.PC_X())]);
+		this.primitives.PC_SetIndex (this.primitives.IT_X("vagabunda")); 
+		this.primitives.CA_ShowMsg ("cambio_punto_de_vista_a_%o1" , [this.primitives.IT_GetId(this.primitives.PC_X())]);
 		
 	}
 	
-	var cazadorPresente = (primitives.IT_GetLoc(primitives.PC_X()) == primitives.IT_GetLoc(elOtroPJ(primitives.PC_X ())));
+	var cazadorPresente = (this.primitives.IT_GetLoc(this.primitives.PC_X()) == this.primitives.IT_GetLoc(usr.elOtroPJ(this.primitives.PC_X ())));
 					
-	primitives.GD_CreateMsg (1, "locura_3a_persona", "El cazador te observa espantado. Te ves reflejada en sus ojos, a medio transformar en tu forma marina. Ves cómo tu antes amado compañero se mea y caga encima y se va corriendo, espantado.<br/>"); 
-	if (cazadorPresente) primitives.CA_ShowMsg ("locura_3a_persona");
+	this.primitives.GD_CreateMsg (1, "locura_3a_persona", "El cazador te observa espantado. Te ves reflejada en sus ojos, a medio transformar en tu forma marina. Ves cómo tu antes amado compañero se mea y caga encima y se va corriendo, espantado.<br/>"); 
+	if (cazadorPresente) this.primitives.CA_ShowMsg ("locura_3a_persona");
 	
-	primitives.GD_CreateMsg (1, "transformación_1a_persona", "Concluyes tu transformación. Tu inmensa figura escamosa que algunos llaman dragón y otros, en lejanas tierras, sirena, no te deja moverte con facilidad. No es esta la forma en la que te conoció el cazador. Aquella era una mexcla grácil de ambos mundos; ahora tienes la forma puramente marina, sin rastro de humanidad.<br/>");
-	primitives.GD_CreateMsg (1, "alumbramiento_1a_persona", "Con un ligero esfuerzo, de tu cuerpo sale un gran huevo rodeado de viscosidades varias.<br/>");
-	primitives.GD_CreateMsg (1, "hechicera_expulsa_dragona_según_vagabunda", "Al rato, aparece la hechicera y con un sortilegio, esta vez inquebrantable, te envía de vuelta a tu mundo submarino. Nunca sabrás si la naturaleza de tu hijo será humana o marina, ni lo verás crecer, ni sabrás qué será de tu amante cazador.<br/>");
-	primitives.GD_CreateMsg (1, "quien_sabe_si", "Quién sabe si en otro mundo paralelo el final de esta historia podría haber sido más feliz.<br/>");
+	this.primitives.GD_CreateMsg (1, "transformación_1a_persona", "Concluyes tu transformación. Tu inmensa figura escamosa que algunos llaman dragón y otros, en lejanas tierras, sirena, no te deja moverte con facilidad. No es esta la forma en la que te conoció el cazador. Aquella era una mexcla grácil de ambos mundos; ahora tienes la forma puramente marina, sin rastro de humanidad.<br/>");
+	this.primitives.GD_CreateMsg (1, "alumbramiento_1a_persona", "Con un ligero esfuerzo, de tu cuerpo sale un gran huevo rodeado de viscosidades varias.<br/>");
+	this.primitives.GD_CreateMsg (1, "hechicera_expulsa_dragona_según_vagabunda", "Al rato, aparece la hechicera y con un sortilegio, esta vez inquebrantable, te envía de vuelta a tu mundo submarino. Nunca sabrás si la naturaleza de tu hijo será humana o marina, ni lo verás crecer, ni sabrás qué será de tu amante cazador.<br/>");
+	this.primitives.GD_CreateMsg (1, "quien_sabe_si", "Quién sabe si en otro mundo paralelo el final de esta historia podría haber sido más feliz.<br/>");
 
-	primitives.CA_ShowMsg ("transformación_1a_persona");
-	primitives.CA_ShowMsg ("alumbramiento_1a_persona");
-	primitives.CA_ShowMsg ("hechicera_expulsa_dragona_según_vagabunda");
-	primitives.CA_ShowMsg ("quien_sabe_si");
+	this.primitives.CA_ShowMsg ("transformación_1a_persona");
+	this.primitives.CA_ShowMsg ("alumbramiento_1a_persona");
+	this.primitives.CA_ShowMsg ("hechicera_expulsa_dragona_según_vagabunda");
+	this.primitives.CA_ShowMsg ("quien_sabe_si");
 	
 	// fin acto 4 (perdiendo)
-	primitives.GD_CreateMsg (1, "fin_acto_4_conversión_externa_sin_cazador", "<br/><br/>Aquí termina el acto IV y último: o de cómo la dragona parió y a su hijo abandonó.<br/><br/>");
-	primitives.GD_CreateMsg (1, "fin_acto_4_conversión_externa_con_cazador", "<br/><br/>Aquí termina el acto IV y último: o de cómo el cazador enloqueció, la dragona parió y a su hijo abandonó.<br/><br/>");
+	this.primitives.GD_CreateMsg (1, "fin_acto_4_conversión_externa_sin_cazador", "<br/><br/>Aquí termina el acto IV y último: o de cómo la dragona parió y a su hijo abandonó.<br/><br/>");
+	this.primitives.GD_CreateMsg (1, "fin_acto_4_conversión_externa_con_cazador", "<br/><br/>Aquí termina el acto IV y último: o de cómo el cazador enloqueció, la dragona parió y a su hijo abandonó.<br/><br/>");
 	if (cazadorPresente) 
-		primitives.CA_ShowMsg("fin_acto_4_conversión_externa_con_cazador"); 
+		this.primitives.CA_ShowMsg("fin_acto_4_conversión_externa_con_cazador"); 
 	else
-		primitives.CA_ShowMsg("fin_acto_4_conversión_externa_sin_cazador"); 
+		this.primitives.CA_ShowMsg("fin_acto_4_conversión_externa_sin_cazador"); 
 	
-	epilogoAbandono();
+	usr.epilogoAbandono();
 					
-	primitives.CA_EndGame ("Has perdido");
+	this.primitives.CA_EndGame ("Has perdido");
 	
 } 
 
-function aOtraLocalidad (indexItem) {
+usr.aOtraLocalidad = function(indexItem) {
 
 // 	simplemente,  lo enviamos de manera determinista a oro sitio cercano
 	
 	var nuevaLoc;
 	
-	if (primitives.IT_GetLoc (indexItem) == primitives.IT_X("cruce_caminos")) {
+	if (this.primitives.IT_GetLoc (indexItem) == this.primitives.IT_X("cruce_caminos")) {
 		nuevaLoc = "tierras_sur"; 
-	} else if (primitives.IT_GetLoc (indexItem) == primitives.IT_X("risco_luna")) {
+	} else if (this.primitives.IT_GetLoc (indexItem) == this.primitives.IT_X("risco_luna")) {
 		nuevaLoc = "fuente_verde";
-	} else if (primitives.IT_GetLoc (indexItem) == primitives.IT_X("río")) {
+	} else if (this.primitives.IT_GetLoc (indexItem) == this.primitives.IT_X("río")) {
 		nuevaLoc = "fuente_verde";
-	} else if (primitives.IT_GetLoc (indexItem) == primitives.IT_X("cabaña")) {
+	} else if (this.primitives.IT_GetLoc (indexItem) == this.primitives.IT_X("cabaña")) {
 		nuevaLoc = "tierras_sur";
-	} else if (primitives.IT_GetLoc (indexItem) == primitives.IT_X("cueva_bruja")) {
+	} else if (this.primitives.IT_GetLoc (indexItem) == this.primitives.IT_X("cueva_bruja")) {
 		nuevaLoc = "tierras_sur";
 	} else
 		nuevaLoc = "cruce_caminos";
 	
-	primitives.GD_CreateMsg (1, "o1_se_va_a_o2", "<br/>%o1 se va a %o2.<br/>");
-	primitives.CA_ShowMsg("o1_se_va_a_o2", [primitives.IT_GetId(indexItem), nuevaLoc] );
-	primitives.IT_SetLoc (indexItem, primitives.IT_X(nuevaLoc));
+	this.primitives.GD_CreateMsg (1, "o1_se_va_a_o2", "<br/>%o1 se va a %o2.<br/>");
+	this.primitives.CA_ShowMsg("o1_se_va_a_o2", {o1:this.primitives.IT_GetId(indexItem), o2:nuevaLoc} );
+	this.primitives.IT_SetLoc (indexItem, this.primitives.IT_X(nuevaLoc));
 	
 }
 
-function elOtroPJ (index) {
-	return (index == primitives.IT_X("cazador"))?  primitives.IT_X("vagabunda") : primitives.IT_X("cazador");
+usr.elOtroPJ = function(index) {
+	return (index == this.primitives.IT_X("cazador"))?  this.primitives.IT_X("vagabunda") : this.primitives.IT_X("cazador");
 }
 
 
-function elOtroArma (index) {
-	return (index == primitives.IT_X("honda"))?  primitives.IT_X("anzuelo") : primitives.IT_X("honda");
+usr.elOtroArma = function(index) {
+	return (index == this.primitives.IT_X("honda"))?  this.primitives.IT_X("anzuelo") : this.primitives.IT_X("honda");
 }
 
 // la primera vez que pilotas un PJ
-function intro () {
+usr.intro = function() {
 	
-	if (primitives.IT_GetAttPropValue (primitives.IT_X("cruce_caminos"), "gameParameters", "firstPC") == "vagabunda") {
+	if (this.primitives.IT_GetAttPropValue (this.primitives.IT_X("cruce_caminos"), "gameParameters", "firstPC") == "vagabunda") {
 
-		primitives.GD_CreateMsg (1, "introWoman_1", "Eres la princesa del mar, deberías estar nadando con otras criaturas como tú... en vez de estar como ahora, con dos piernas y en tierra firme."); 
-		primitives.GD_CreateMsg (1, "introWoman_2", "Imágenes confusas. Un guapo humano en tu mundo... luego, ya en tierra, una cabaña de madera, un incendio. Ruido, dolor... y ahora aquí, en mitad de ninguna parte."); 
-		primitives.GD_CreateMsg (1, "introWoman_3", "Te levantas y te notas pesada. No sólo estás presa en este cuerpo humano y fuera de tu elemento, sino que descubres que estás embarazada y no sabes ni quién es el padre.<br/>"); 
-		primitives.GD_CreateMsg (1, "introWoman_4", "-¡Padre!, ¡madre!, ¡quiero volver con vosotros!- gritas desconsoladamente."); 
-		primitives.GD_CreateMsg (1, "introWoman_5", "Sin emabargo, sabes que las de tu raza cuando son concebidas por humanos deben dar a luz en tierra. Tu hijo podrá nacer humano u... otra cosa, más afín a ti, pero no lo sabrás hasta que llegue ese momento, muy cercano.<br/>"); 
-		primitives.GD_CreateMsg (1, "introWoman_6", "¡Ui! Notas una contracción. El momento va a ser muy próximo. Debes encontrar un lugar protegido donde alumbrar... más aún sabiendo que en ese momento recuperarás tu verdadera apariencia, que helará de horror y odio a los humanos que te vean.</br>"); 
+		this.primitives.GD_CreateMsg (1, "introWoman_1", "Eres la princesa del mar, deberías estar nadando con otras criaturas como tú... en vez de estar como ahora, con dos piernas y en tierra firme."); 
+		this.primitives.GD_CreateMsg (1, "introWoman_2", "Imágenes confusas. Un guapo humano en tu mundo... luego, ya en tierra, una cabaña de madera, un incendio. Ruido, dolor... y ahora aquí, en mitad de ninguna parte."); 
+		this.primitives.GD_CreateMsg (1, "introWoman_3", "Te levantas y te notas pesada. No sólo estás presa en este cuerpo humano y fuera de tu elemento, sino que descubres que estás embarazada y no sabes ni quién es el padre.<br/>"); 
+		this.primitives.GD_CreateMsg (1, "introWoman_4", "-¡Padre!, ¡madre!, ¡quiero volver con vosotros!- gritas desconsoladamente."); 
+		this.primitives.GD_CreateMsg (1, "introWoman_5", "Sin emabargo, sabes que las de tu raza cuando son concebidas por humanos deben dar a luz en tierra. Tu hijo podrá nacer humano u... otra cosa, más afín a ti, pero no lo sabrás hasta que llegue ese momento, muy cercano.<br/>"); 
+		this.primitives.GD_CreateMsg (1, "introWoman_6", "¡Ui! Notas una contracción. El momento va a ser muy próximo. Debes encontrar un lugar protegido donde alumbrar... más aún sabiendo que en ese momento recuperarás tu verdadera apariencia, que helará de horror y odio a los humanos que te vean.</br>"); 
 
-		primitives.CA_ShowMsg ("introWoman_1");
-		primitives.CA_ShowMsg ("introWoman_2");
-		primitives.CA_ShowMsg ("introWoman_3");
-		primitives.CA_ShowMsg ("introWoman_4");
-		primitives.CA_ShowMsg ("introWoman_5");
-		primitives.CA_ShowMsg ("introWoman_6");	
+		this.primitives.CA_ShowMsg ("introWoman_1");
+		this.primitives.CA_ShowMsg ("introWoman_2");
+		this.primitives.CA_ShowMsg ("introWoman_3");
+		this.primitives.CA_ShowMsg ("introWoman_4");
+		this.primitives.CA_ShowMsg ("introWoman_5");
+		this.primitives.CA_ShowMsg ("introWoman_6");	
 	} else {
-		primitives.GD_CreateMsg (1, "introMan_1", "Eres eres un cazador montaraz, de los pocos habitantes de esta recóndita región de la isla. Vives relativamente cerca de tu pariente lejana, la diosa de la montaña.");
-		primitives.GD_CreateMsg (1, "introMan_2", "Te encuentras en tu cabaña... bueno, en lo que queda de ella: ¿quemada?, ¿pero qué diablos ha sucedido aquí? Miras a tu alrededor y descubres que el incendio fue hace muy poco. Aún queda algún rescoldo humeante.<br/>"); 
-		primitives.GD_CreateMsg (1, "introMan_3", "¡Qué dolor de cabeza! ¿Qué habrá pasado? Lo último que recuerdas es que fuiste al mundo submarino en búsqueda del anzuelo mágico que necesitaba tu hermano, Hoderi."); 
-		primitives.GD_CreateMsg (1, "introMan_4", "Había una bella joven, que se movía con la gracia de los delfines... y luego un rayo lanzado por la diosa de la montaña y la cabaña quemándose."); 
-		primitives.GD_CreateMsg (1, "introMan_5", "Mi pariente lejana, en su cueva más allá de las tierras del sur, me tiene que ayudar a descubrir qué pasó.<br/>"); 
+		this.primitives.GD_CreateMsg (1, "introMan_1", "Eres eres un cazador montaraz, de los pocos habitantes de esta recóndita región de la isla. Vives relativamente cerca de tu pariente lejana, la diosa de la montaña.");
+		this.primitives.GD_CreateMsg (1, "introMan_2", "Te encuentras en tu cabaña... bueno, en lo que queda de ella: ¿quemada?, ¿pero qué diablos ha sucedido aquí? Miras a tu alrededor y descubres que el incendio fue hace muy poco. Aún queda algún rescoldo humeante.<br/>"); 
+		this.primitives.GD_CreateMsg (1, "introMan_3", "¡Qué dolor de cabeza! ¿Qué habrá pasado? Lo último que recuerdas es que fuiste al mundo submarino en búsqueda del anzuelo mágico que necesitaba tu hermano, Hoderi."); 
+		this.primitives.GD_CreateMsg (1, "introMan_4", "Había una bella joven, que se movía con la gracia de los delfines... y luego un rayo lanzado por la diosa de la montaña y la cabaña quemándose."); 
+		this.primitives.GD_CreateMsg (1, "introMan_5", "Mi pariente lejana, en su cueva más allá de las tierras del sur, me tiene que ayudar a descubrir qué pasó.<br/>"); 
 
-		primitives.CA_ShowMsg ("introMan_1");
-		primitives.CA_ShowMsg ("introMan_2");
-		primitives.CA_ShowMsg ("introMan_3");
-		primitives.CA_ShowMsg ("introMan_4");
-		primitives.CA_ShowMsg ("introMan_5");
+		this.primitives.CA_ShowMsg ("introMan_1");
+		this.primitives.CA_ShowMsg ("introMan_2");
+		this.primitives.CA_ShowMsg ("introMan_3");
+		this.primitives.CA_ShowMsg ("introMan_4");
+		this.primitives.CA_ShowMsg ("introMan_5");
 	}
 	
 }
 
-function transformacionVieja () {
-	primitives.GD_CreateMsg (1, "transfomación_vieja", "Cuando la vieja toma el diamante, lo sostiene en alto, pronuncia unas frases ininteligibles para ti y el diamante comienza a brillar con fuerza iluminando toda la cueva. Te das cuenta ahora de lo inmensa que es la cueva. La vieja misma se transforma ante tus ojos en una bella dama vestida de negro, como la figura del cruce de caminos.<br/>");
-	primitives.GD_CreateMsg (1, "DLG_VR_vieja_recibe_diamante", "Gracias por devolverme la piedra de luz que tenía elfo ruidoso. Necesito que me traigas el água púrpura, que conseguirás mezclando las aguas de las Tres Fuentes. Cuando me la traigas, pronunciaré un hechizo ante la luz sagrada y al beberte esa agua consagrada, recuperarás la forma que habías perdido.");
-	primitives.GD_CreateMsg (1, "DLG_VC_vieja_recibe_diamante", "Gracias por devolverme la piedra de luz que tenía Kukonichi, bajo la forma de flautista campestre. No me preguntes cómo lo sabía. Es un ser más poderoso de lo que parece y no podía quitárselo por las buenas. Necesito que me traigas el água púrpura, que conseguirás mezclando las aguas de las Tres Fuentes. Cuando la traigas, vuelve con el otro y pronunciaré un hechizo ante la luz sagrada, para preparáos la pócima que os libere del hechizo que os hice. A beber esa agua consagrada, recuperaréis los recuerdos que os arrebaté.");
-	primitives.GD_CreateMsg (1, "DLG_hechicera_da_instrucciones", "Toma estas instrucciones para que me prepares el agua púrpura, pues algunas mezclas de aguas de las Tres Fuentes son un tanto especiales.<br/>La hechicera te da un pergamino con instrucciones.");
+usr.transformacionVieja = function() {
+	this.primitives.GD_CreateMsg (1, "transfomación_vieja", "Cuando la vieja toma el diamante, lo sostiene en alto, pronuncia unas frases ininteligibles para ti y el diamante comienza a brillar con fuerza iluminando toda la cueva. Te das cuenta ahora de lo inmensa que es la cueva. La vieja misma se transforma ante tus ojos en una bella dama vestida de negro, como la figura del cruce de caminos.<br/>");
+	this.primitives.GD_CreateMsg (1, "DLG_VR_vieja_recibe_diamante", "Gracias por devolverme la piedra de luz que tenía elfo ruidoso. Necesito que me traigas el água púrpura, que conseguirás mezclando las aguas de las Tres Fuentes. Cuando me la traigas, pronunciaré un hechizo ante la luz sagrada y al beberte esa agua consagrada, recuperarás la forma que habías perdido.");
+	this.primitives.GD_CreateMsg (1, "DLG_VC_vieja_recibe_diamante", "Gracias por devolverme la piedra de luz que tenía Kukonichi, bajo la forma de flautista campestre. No me preguntes cómo lo sabía. Es un ser más poderoso de lo que parece y no podía quitárselo por las buenas. Necesito que me traigas el água púrpura, que conseguirás mezclando las aguas de las Tres Fuentes. Cuando la traigas, vuelve con el otro y pronunciaré un hechizo ante la luz sagrada, para preparáos la pócima que os libere del hechizo que os hice. A beber esa agua consagrada, recuperaréis los recuerdos que os arrebaté.");
+	this.primitives.GD_CreateMsg (1, "DLG_hechicera_da_instrucciones", "Toma estas instrucciones para que me prepares el agua púrpura, pues algunas mezclas de aguas de las Tres Fuentes son un tanto especiales.<br/>La hechicera te da un pergamino con instrucciones.");
 	
-	primitives.IT_SetLoc (primitives.IT_X("diamante"), primitives.IT_X("hechicera"));
-	primitives.IT_BringHere (primitives.IT_X("hechicera"));
-	primitives.IT_SetLocToLimbo (primitives.IT_X("vieja"));
-	primitives.IT_SetLoc (primitives.IT_X("pergamino"), primitives.PC_X());
+	this.primitives.IT_SetLoc (this.primitives.IT_X("diamante"), this.primitives.IT_X("hechicera"));
+	this.primitives.IT_BringHere (this.primitives.IT_X("hechicera"));
+	this.primitives.IT_SetLocToLimbo (this.primitives.IT_X("vieja"));
+	this.primitives.IT_SetLoc (this.primitives.IT_X("pergamino"), this.primitives.PC_X());
 	
-	primitives.CA_ShowMsg ("transfomación_vieja");
-	primitives.CA_QuoteBegin ("hechicera", "DLG_" + version() + "_vieja_recibe_diamante", [], false);
-	primitives.CA_QuoteContinues ("DLG_hechicera_da_instrucciones");
+	this.primitives.CA_ShowMsg ("transfomación_vieja");
+	this.primitives.CA_QuoteBegin ("hechicera", "DLG_" + usr.getVersion() + "_vieja_recibe_diamante", [], false);
+	this.primitives.CA_QuoteContinues ("DLG_hechicera_da_instrucciones");
 }
 
-function darComidaAFlautista (item1Id) {
+usr.darComidaAFlautista = function(item1Id) {
 	
-	primitives.GD_CreateMsg (1, "rechaza_comida", "Gracias por traerme algo de comer. Tengo hambre, pero sólo de algo hayas cazado tú.");
-	primitives.GD_CreateMsg (1, "lo_espero_de_otro", "Gracias, aún tengo hambre, pero espero que me lo traiga otra persona.");
+	this.primitives.GD_CreateMsg (1, "rechaza_comida", "Gracias por traerme algo de comer. Tengo hambre, pero sólo de algo hayas cazado tú.");
+	this.primitives.GD_CreateMsg (1, "lo_espero_de_otro", "Gracias, aún tengo hambre, pero espero que me lo traiga otra persona.");
 	var comida_esperada = "";
 
-	if (primitives.PC_X() == primitives.IT_X("vagabunda")) comida_esperada = "pájaros";
-	else if (primitives.PC_X() == primitives.IT_X("cazador")) comida_esperada = "pescados";
+	if (this.primitives.PC_X() == this.primitives.IT_X("vagabunda")) comida_esperada = "pájaros";
+	else if (this.primitives.PC_X() == this.primitives.IT_X("cazador")) comida_esperada = "pescados";
 	
-	if ( primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "state") <= "2")  {
+	if ( this.primitives.IT_GetAttPropValue (this.primitives.PC_X(), "generalState", "state") <= "2")  {
 		if (comida_esperada == item1Id) {
-			flautistaRecibeComida (item1Id);
+			usr.flautistaRecibeComida (item1Id);
 			return true;
 		} else {
-			primitives.CA_QuoteBegin ("flautista", "rechaza_comida");
+			this.primitives.CA_QuoteBegin ("flautista", "rechaza_comida");
 			return true;
 		}
 	}
 	
-	if (primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "state") == "3") {	// tú ya diste comida: ergo la comida que ofreces es la del otro personaje
-		primitives.CA_QuoteBegin ("flautista", "lo_espero_de_otro");
+	if (this.primitives.IT_GetAttPropValue (this.primitives.PC_X(), "generalState", "state") == "3") {	// tú ya diste comida: ergo la comida que ofreces es la del otro personaje
+		this.primitives.CA_QuoteBegin ("flautista", "lo_espero_de_otro");
 		return true;
 	}
 	return false;
 }
 
-function aceptasPropuesta 	(option, superMsg, superParam, isDialog) {
+usr.aceptasPropuesta = function(option, superMsg, superParam, isDialog) {
 	
 	/*
 		// plantilla de uso, donde "pregunta" es id de mensaje existente
-		if (aceptasPropuesta(par_c.option, ["pregunta"], []) == -1) return true; // fase 1
+		if (usr.aceptasPropuesta(par_c.option, ["pregunta"], []) == -1) return true; // fase 1
 		if (par_c.option == 0) { // en fase 2 elegiste "sí"
 			// ...
 		} else { // elegiste "no"
@@ -2331,154 +2460,22 @@ function aceptasPropuesta 	(option, superMsg, superParam, isDialog) {
 	if (typeof option == 'undefined') { // fase 1
 	
 		for (var i=0;i<superMsg.length;i++) {
-			if (isDialog) primitives.CA_QuoteContinues (superMsg[i], superParam[i], false);	
-			else primitives.CA_ShowMsg (superMsg[i], superParam[i]);
+			if (isDialog) this.primitives.CA_QuoteContinues (superMsg[i], superParam[i], false);	
+			else this.primitives.CA_ShowMsg (superMsg[i], superParam[i]);
 		}
 		
-		primitives.GD_CreateMsg (1, "aceptas_S_N", "¿Aceptas?");
-		primitives.GD_CreateMsg (1, "eliges_si", "Sí");
-		primitives.GD_CreateMsg (1, "eliges_no", "No");
+		this.primitives.GD_CreateMsg (1, "aceptas_S_N", "¿Aceptas?");
+		this.primitives.GD_CreateMsg (1, "eliges_si", "Sí");
+		this.primitives.GD_CreateMsg (1, "eliges_no", "No");
 
-		primitives.CA_ShowMsg ("aceptas_S_N");
+		this.primitives.CA_ShowMsg ("aceptas_S_N");
 
 		var menu = ["eliges_si","eliges_no"];
-		primitives.CA_ShowMenu (menu); // continuation in state == 0, phase 2
+		this.primitives.CA_ShowMenu (menu); // continuation in state == 0, phase 2
 		return -1;
 
 	} else return option; // fase 2
 					
 }
 						
-// GENERIC turn **********************************************************************************************
-
-export function turn (indexItem) {
-
-	if (indexItem == primitives.PC_X()) { // reacción sobre PJ, independiente de la acción elegida
-		
-		// contador total para dar a luz
-		if (version() == "VC")  {
-			// 300 turnos y contracción cada 15
-			if (primitives.PC_GetTurn() == 300) {
-				if (primitives.PC_X() == primitives.IT_X("vagabunda") ) {				
-					primitives.GD_CreateMsg (1, "vagabunda_no_aguanta_más", "<br/>¡No aguantas más! El alumbramiento será ahora mismo.<br/>");
-					primitives.CA_ShowMsg ("vagabunda_no_aguanta_más");
-					perdiste_transformacionExterna();
-				} else if (primitives.IT_GetLoc(primitives.PC_X()) == primitives.IT_GetLoc(elOtroPJ (primitives.PC_X()))) { // misma loc
-					perdiste_transformacionExterna();
-				} else { 
-					perdiste_cazadorAusente ();
-				}
-			}			
-			
-			if (primitives.PC_GetTurn() % 15 == 0) {
-				var contraciones_quedan = (300 - primitives.PC_GetTurn()) / 15;
-				if (primitives.PC_X() == primitives.IT_X("vagabunda")) {
-					primitives.GD_CreateMsg (1, "contracción %s1", "<br/><br/>¡Qué dolor! Te detienes en seco por una contracción.De alguna forma sabes que te quedan %s1 contracciones antes de dar a luz.<br/>");
-
-					primitives.CA_ShowMsg ("contracción %s1" , [contraciones_quedan]); 
-				} else if (primitives.IT_GetLoc(primitives.PC_X()) == primitives.IT_GetLoc(elOtroPJ (primitives.PC_X()))) { // misma loc
-					primitives.GD_CreateMsg (1, "contracción_vista_por_cazador %s1", "<br/><br/>Ves cómo la vagabunda se detiene y se retuerce de dolor. De alguna forma sabes que le quedan %s1 contracciones antes de dar a luz.<br/>");
-
-					primitives.CA_ShowMsg ("contracción_vista_por_cazador %s1" , [contraciones_quedan]); 
-					
-				}
-			}
-		}
-		
-		// si versión larga y PJ en misma loc que el otro cuando dragona...
-		if (version() == "VC") { // versión larga
-			if (primitives.IT_GetLoc(primitives.PC_X()) == primitives.IT_GetLoc(elOtroPJ (primitives.PC_X()))) { // misma loc
-				if (primitives.IT_GetAttPropValue (primitives.IT_X("vagabunda"), "generalState", "state") == "5") { // ya bebió
-					perdiste_transformacionExterna();
-				}
-			} 
-		}		
-						
-		if (primitives.IT_GetAttPropValue (primitives.IT_X("pócima"), "hasDecrementor", "active") == "true" ) {	
-			var counter = +primitives.IT_GetAttPropValue (primitives.IT_X("pócima"), "hasDecrementor", "counter");
-			
-			// decremento manual (to-do: debería ser cosa de la librería)
-			counter--;
-			primitives.IT_SetAttPropValue (primitives.IT_X("pócima"), "hasDecrementor", "counter", counter);
-			
-			if (primitives.PC_X() == primitives.IT_X("vagabunda")) {
-
-				
-
-				if (counter < 4) {
-					
-					primitives.GD_CreateMsg (1, "cada_vez_más_grande", "Cada vez estás más grande!!<br/>");
-					primitives.CA_ShowMsg("cada_vez_más_grande"); 
-					if (counter < 0) {
-						
-						if (version() == "VR") {
-							primitives.GD_CreateMsg (1, "perdona_vida_conversión_externa", "<br/><b>Mensaje del escritor del juego:</b> Te volviste a hacer humana y ya no podrás atravesar la catarata y reunirte con Kuko... pero te perdonamos la vida (no se lo digas a nadie) y te dejamos seguir jugando como dragona...<br/><br/>");
-							primitives.GD_CreateMsg (1, "deux_ex_machina_dragona_vuela", "Cuando completas tu transformación, desplegas tus alas y atraviesas volando la catarata.<br/>");
-
-							primitives.CA_ShowMsg ("perdona_vida_conversión_externa");
-							primitives.CA_ShowMsg("deux_ex_machina_dragona_vuela");
-
-							primitives.IT_SetLoc(primitives.PC_X(), primitives.IT_X("caverna_dragón"));
-							comprobarSiFinDelJuego();
-							
-						} else {
-							perdiste_transformacionExterna()
-						}
-
-					}
-				}
-			  
-				return true;
-				
-			} else if (primitives.PC_X() == primitives.IT_X("cazador")) {
-				// si vagabunda dio a luz mientras controlabas al cazador
-				if ( counter < 0) {
-					perdiste_cazadorAusente ();					
-				}
-				
-			}			
-			
-		}
-		
-	}
-	
-		
-	// turno del PJ no activo (sólo en si versión completa)
-	if (version() == "VC") {
-		if ( (indexItem != primitives.PC_X()) && ((indexItem == primitives.IT_X("cazador")) || (indexItem == primitives.IT_X("vagabunda"))) ) {
-			
-			if (primitives.IT_GetLoc (indexItem) == primitives.PC_GetCurrentLoc()) { // misma localidad
-				
-				// si aún no confía en el PJ activo
-				if (primitives.IT_GetAttPropValue (indexItem, "generalState", "state") == "0") { 
-				
-					if (primitives.IT_GetAttPropValue (indexItem, "generalState", "confianza") == "0") { 
-					
-						primitives.IT_SetAttPropValue (indexItem, "generalState", "confianza", "1");
-						
-						primitives.GD_CreateMsg (1, "%o1_desconfia", "%o1 te mira con desconfianza, no en balde sóis unos desconocidos.");
-						primitives.CA_ShowMsg ("%o1_desconfia", [primitives.IT_GetId(indexItem)] );
-
-					} else if (primitives.IT_GetAttPropValue (indexItem, "generalState", "confianza") == "1") { 
-						// después de coincidir un turno, se va
-					
-						primitives.GD_CreateMsg (1, "DLG_me_voy", "Disculpe que me vaya, no frecuento a desconocidos.");
-						primitives.CA_QuoteBegin (primitives.IT_GetId(indexItem), "DLG_me_voy" );
-
-						// lo resetea para el siguiente encuentro
-						primitives.IT_SetAttPropValue (indexItem, "generalState", "confianza", "2");
-										
-						// se va
-						aOtraLocalidad(indexItem);
-						
-					}
-					return true;
-				}
-			}
-		}
-	} 
-	
-
-}
-
 

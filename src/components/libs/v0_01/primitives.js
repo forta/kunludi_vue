@@ -117,6 +117,7 @@ Categories:
  
   DIR_GetIndex (id)
   DIR_GetId (index)
+  DIR_GetTarget (loc, direction)
   
  IT: items
 
@@ -301,6 +302,37 @@ export function DIR_GetId  (index) {
  if (index>=0) return this.world.directions[index].id;
 }
 
+export function DIR_GetTarget  (loc, direction) {
+	var connection = {target: -1, isLocked: false};
+
+	if (this.world.items[loc].address == undefined) return connection
+
+	// target and locked resolution
+	var targetId;
+	var dirId = this.world.directions[direction].id;
+	var internalDirIndex =  0; // look for dirIndex (direction) in this.world.items[loc].address[] {dir, target, locked}
+	for (var i=0;i<this.world.items[loc].address.length;i++) {
+		if (this.world.items[loc].address[i].dir == dirId) {
+			// get target
+			if (typeof this.world.items[loc].address[i].target != 'undefined') {
+				targetId = this.world.items[loc].address[i].target;
+				connection.target = arrayObjectIndexOf(this.world.items, "id", targetId);
+			} 
+
+			// get isLocked
+			if (!connection.isLocked) { // if not statically locked
+				if (typeof this.world.items[loc].address[i].locked != 'undefined') {
+					connection.isLocked = (this.world.items[loc].address[i].locked == "true");
+				}
+			}
+			break;
+		}
+	}
+	return connection;
+		
+}
+
+
 /* IT: items *****************************************************************/
 
 export function IT_X   (id){
@@ -326,7 +358,7 @@ export function IT_GetLoc  (i) {
 }
 
 export function IT_SetLocToLimbo  (i) {
- var value = IT_X ("limbo");
+ var value = this.IT_X ("limbo");
  this.world.items[i].loc = this.world.items[value].id;
 }
 
@@ -337,7 +369,7 @@ export function IT_ReplacedBy (i1, i2) {
 }
 
 export function IT_BringHere (i) {
- this.world.items[i].loc = this.world.items[PC_GetCurrentLoc()].id;
+ this.world.items[i].loc = this.world.items[this.PC_GetCurrentLoc()].id;
 }
 
 export function IT_SetLoc (i, value) {
@@ -583,49 +615,4 @@ export function GD_CreateMsg (indexLang, idMsg, txtMsg) {
 /*(end)********************** INSTRUCTION SET *********************/
 
 
-// auxiliary functions
 
-export function getTargetAndLocked  (par_c) { // to-do: internal
-
-
- var connection = {target: -1, isLocked: false};
- 
- 
- if (this.world.items[par_c.loc].address == undefined) return connection
-
- // target and locked resolution
- var targetId;
- var dirId = this.world.directions[par_c.direction].id;
- var internalDirIndex =  0; // look for dirIndex (par_c.direction) in this.world.items[par_c.loc].address[] {dir, target, locked}
- for (var i=0;i<this.world.items[par_c.loc].address.length;i++) {
-  if (this.world.items[par_c.loc].address[i].dir == dirId) {
-   // get target
-   if (typeof this.world.items[par_c.loc].address[i].target != 'undefined') {
-    targetId = this.world.items[par_c.loc].address[i].target;
-    connection.target = arrayObjectIndexOf(this.world.items, "id", targetId);
-   } else { // check dynamic target
-  
-    var gameIndex = this.worldIndexes.items[par_c.loc].gameIndex;
-    if (gameIndex>=0) {
-     if (typeof ludi_game.items[gameIndex].target == 'function'){
-      targetId = ludi_game.items[gameIndex].target (dirId);
-      if (targetId == "locked")
-       connection.isLocked = true;
-      else
-       connection.target = arrayObjectIndexOf(this.world.items, "id", targetId);
-     }
-    }
-   }
-
-   // get isLocked
-   if (!connection.isLocked) { // if not statically locked
-    if (typeof this.world.items[par_c.loc].address[i].locked != 'undefined') {
-     connection.isLocked = (this.world.items[par_c.loc].address[i].locked == "true");
-    }
-   }
-   break;
-  }
- }
- return connection;
-
-}

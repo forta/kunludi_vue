@@ -20,4 +20,4 @@ export function getGTranslator (state) { return state.gTranslator }
 
 export function translateGameElement (state) { return state.translateGameElement }
 
-export function getCurrentChoice(state) { return  state.currentChoice }
+export function getCurrentChoice (state) { return state.choice }

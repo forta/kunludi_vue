@@ -4,13 +4,116 @@ exports.userState
 export let choice = {choiceId:'top', isLeafe:false} // current under construction choice
 
 exports.choices = []
-exports.world=[]
+exports.world =[]
 
 function arrayObjectIndexOf(myArray, property, searchTerm) {
     for(var i = 0, len = myArray.length; i < len; i++) {
         if (myArray[i][property] === searchTerm) return i;
     }
     return -1;
+}
+
+export function getCurrentChoice () {
+	return this.choice	
+}
+
+// to-do: pending to check
+export function itemWithAttException (indexItem, attId_def) {
+			
+	var indexException = arrayObjectIndexOf(exports.world.attExceptions, "id", attId_def);
+	if (indexException >= 0) { // exists exception for this attribute?
+		// look item in exceptionLinst
+		for (var i=0; i< exports.world.attExceptions[indexException].exceptionList.length; i++) {
+			if (exports.world.attExceptions[indexException].exceptionList[i] == exports.world.items[indexItem].id)  return true;
+		}
+	}
+	return false;
+}
+
+// assign attributes to items (from: exports.world.items[indexItem].att[attIndex])
+function setDefaultAttributeProperties (context, indexItem) {
+	
+	/*	where exports.world.items[indexItem].att[attIndex]):
+			"id": "isTakeAble",
+			"properties": [
+                {  "id": "weight", "value": "1" },
+				{  "id": "size", "value": "1" }
+			],
+			"asignedTo": ["obj"]
+	*/
+
+	var attId_def; // attribute definition
+	for (var indexAtt = 0; indexAtt < context.world.attributes.length; indexAtt++) { 
+		// elements like {id: "isDark", restrictedTo: Array[1], properties: Array[1], asignedTo: Array[1], enabledActions: Array[6]}
+		attId_def = context.world.attributes[indexAtt].id;
+		var isException = context.itemWithAttException(indexItem, attId_def);
+		
+		if (typeof context.world.items[indexItem].att == 'undefined') 
+			context.world.items[indexItem].att ={}; // item without any attribute
+		
+		var attOnItem = false;
+		// each attribute in item definition
+		for (var attId_item in context.world.items[indexItem].att) {
+			if (attId_item == attId_def) {
+				attOnItem = true;
+				break;
+			}
+		}
+		
+		var attToBeImported = false;
+		
+		if (attOnItem) { 
+		
+			if (isException) { // remove it
+				delete context.world.items[indexItem].att[attId_def];
+			}
+		
+			attToBeImported = true;
+		} else {
+			if ((context.world.attributes[indexAtt].asignedTo != 'undefined')  // att mandatory to item (global rule)
+				 && !isException ) {  // not an exception
+				for (var aTo in context.world.attributes[indexAtt].asignedTo) {
+					if (context.world.items[indexItem].type == context.world.attributes[indexAtt].asignedTo[aTo]) { 
+						// item must have this attribute
+						attToBeImported = true;
+						break;
+					}
+				}			
+			} 
+		}
+
+		if (attToBeImported) {
+			// get properties from attribute definition (at least: some of them) 
+			var propAlready;
+			for (var pDef in context.world.attributes[indexAtt].properties) {
+				propAlready = false;
+				var proId = context.world.attributes[indexAtt].properties[pDef].id;
+				for (var pItem in context.world.items[indexItem].att[attId_def]) {
+					// if match; do not import
+					if (typeof context.world.items[indexItem].att[attId_def][pItem][proId] != 'undefined') {
+						propAlready = true;
+						break;
+					}
+				}
+				if (!propAlready) { // new property from definition
+					if (typeof context.world.items[indexItem].att[attId_def] == 'undefined')
+						context.world.items[indexItem].att[attId_def] = [];
+					var isOptional = true;  // by default property is optional
+					if (typeof context.world.attributes[indexAtt].properties[pDef].use != 'undefined') {
+						if (context.world.attributes[indexAtt].properties[pDef].use == 'mandatory') {
+							isOptional = false;
+						}
+					}
+					// only add mandatory properties
+					if (!isOptional) {
+						context.world.items[indexItem].att[attId_def].push (context.world.attributes[indexAtt].properties[pDef]);
+					}
+				}
+			}
+		}
+		
+	}
+
 }
 
 
@@ -25,21 +128,12 @@ exports.createWorld = function (libWorld, gameWorld) {
 
 	// merging libWorld and gameWorld into world and generating indexes (ref: ludi_runner.compileIndexes)
 	
-	// attributes
-	
-	// to-do
-
-	// import lib items (in fact, no items in lib)
-	//for (let i=0;i<libWorld.items.length;i++) {
-	//	exports.world.items.push (libWorld.items[i])
-	//}
-
-	// import game items
+	// import game items (no items in lib)
 	for (let i=0;i<gameWorld.items.length;i++) {
 		exports.world.items.push (gameWorld.items[i])
 	}
 
-	// to-do: add items[].state.itemsMemory
+	// adding items[].state.itemsMemory
 	// if initial states are not defined, default values:
 	for (let i=0;i<exports.world.items.length;i++) {
 
@@ -59,35 +153,48 @@ exports.createWorld = function (libWorld, gameWorld) {
 		
 	}
 	
-	
 	// import lib directions
 	for (let i=0;i<libWorld.directions.length;i++) {
 		exports.world.directions.push (libWorld.directions[i])
 	}
 
-	// import game directions
+	// import game directions (only add more directions)
 	for (let i=0;i<gameWorld.directions.length;i++) {
 		exports.world.directions.push (gameWorld.directions[i])
 	}
-
-	// to-do
 
 	// import lib actions
 	for (let i=0;i<libWorld.actions.length;i++) {
 		exports.world.actions.push (libWorld.actions[i])
 	}
 
-	// import game actions: only add action
+	// import game actions: (only add more actions)
 	for (let i=0;i<gameWorld.actions.length;i++) {
 		exports.world.actions.push (gameWorld.actions[i])
 	}
 	
-	// indexes ---------
-	
-	// items[].locIndex
-	for (let i=0;i<exports.world.items.length;i++) {
-		exports.world.items[i].locIndex = arrayObjectIndexOf(exports.world.items, "id", exports.world.items[i].loc);
+	// adding attExceptions (no items in lib)
+	exports.world.attExceptions = []
+	for (let i=0;i<gameWorld.attExceptions.length;i++) {
+		exports.world.attExceptions.push (gameWorld.attExceptions[i])
 	}
+
+	// import lib attributes
+	for (let i=0;i<libWorld.attributes.length;i++) {
+		exports.world.attributes.push (libWorld.attributes[i])
+	}
+
+	// import game attributes (by now: only add more attributes: what about overwriting?)
+	for (let i=0;i<gameWorld.attributes.length;i++) {
+		exports.world.attributes.push (gameWorld.attributes[i])
+	}
+	
+	// assign attributes to items 
+	for (let i=0;i<exports.world.items.length;i++) {
+		setDefaultAttributeProperties (this, i)
+	}
+		
+	// indexes ---------
 	
 	exports.userState = {
 		profile: {
@@ -107,7 +214,7 @@ exports.dependsOn = function (libReactions, gameReactions, reactionList) {
 
 exports.processChoice = function  (choice) {
 	
-	console.log("choice input: " + JSON.stringify (choice))
+	// console.log("choice input: " + JSON.stringify (choice))
 
 	let previousChoice = this.choice
 	
@@ -138,6 +245,8 @@ exports.processChoice = function  (choice) {
 
 exports.processAction = function(action) {
 	var status
+
+	action.pc = exports.userState.profile.indexPC
 	
 	this.reactionList.push ({type:"rt_asis", txt: "<b>echo: " + action.actionId + "</b><br/>"} )
 		
@@ -154,33 +263,74 @@ exports.processAction = function(action) {
 	if (!status)
 		this.reactionList.push ({type:"rt_msg", txt: 'You cannot:' + JSON.stringify (action)} )
 	
+	// updating exports.userState.profile.loc
+	if (exports.world.items[exports.userState.profile.loc].id != exports.world.items[exports.userState.profile.indexPC].loc) {
+		let newLoc = arrayObjectIndexOf (exports.world.items, "id", exports.world.items[exports.userState.profile.indexPC].loc)
+		exports.userState.profile.loc = newLoc
+		
+	}
+	
 	console.log("reactionList: " + JSON.stringify (this.reactionList))
 
 }
 
-exports.actionIsEnabled = function(action, item1, item2) {
+exports.actionIsEnabled = function(actionId, item1, item2) {
 	
 	var status = undefined
 
 	if (typeof this.gameReactions.actionIsEnabled == "function")
-		status = this.gameReactions.actionIsEnabled (action, item1, item2)
+		status = this.gameReactions.actionIsEnabled (actionId, item1, item2)
 	
 	if (status == undefined) 
-		status = this.libReactions.actionIsEnabled (action, item1, item2)	
+		status = this.libReactions.actionIsEnabled (actionId, item1, item2)	
 	
 	return status
 }
 
-exports.dirEnabled = function (loc, dir1) {
 
-	var status = undefined
+exports.getTargetAndLocked = function (loc, direction) {
 
-	// status = this.gameReactions.dirIsEnabled (loc, dir1)
+	var connection = {target: -1, isLocked: false};
+
+
+	if (exports.world.items[loc].address == undefined) return connection
+
+	// target and locked resolution
+	var targetId;
+	var dirId = exports.world.directions[direction].id;
+	var internalDirIndex =  0; // look for dirIndex (direction) in exports.world.items[loc].address[] {dir, target, locked}
+	for (var i=0;i<exports.world.items[loc].address.length;i++) {
+		if (exports.world.items[loc].address[i].dir == dirId) {
+			// get target
+			if (typeof exports.world.items[loc].address[i].target != 'undefined') {
+				targetId = exports.world.items[loc].address[i].target;
+				connection.target = arrayObjectIndexOf(exports.world.items, "id", targetId);
+			} else { // check dynamic target
+
+				var gameIndex = arrayObjectIndexOf(this.gameReactions.items, "id", exports.world.items[loc].id);
+
+				if (gameIndex>=0) {
+					if (typeof this.gameReactions.items[gameIndex].target == 'function'){
+						targetId = this.gameReactions.items[gameIndex].target (dirId);
+						if (targetId == "locked")
+							connection.isLocked = true;
+						else
+							connection.target = arrayObjectIndexOf(exports.world.items, "id", targetId);
+					}
+				}
+			}
+
+			// get isLocked
+			if (!connection.isLocked) { // if not statically locked
+				if (typeof exports.world.items[loc].address[i].locked != 'undefined') {
+					connection.isLocked = (exports.world.items[loc].address[i].locked == "true");
+				}
+			}
+			break;
+		}
+	}
 	
-	if (status == undefined) 
-		status = this.libReactions.dirIsEnabled (loc, dir1)	
-	
-	return status
+	return connection;
 
 }
 
@@ -204,20 +354,22 @@ exports.updateChoices = function () {
 		exports.choices.push ({choiceId:'action', isLeafe:true, action:{actionId:'look'}});
 
 	} else if (this.choice.choiceId == 'directionGroup') {
-
+		
 		// explore all directions
 		for (let d=0;d<exports.world.directions.length;d++) {
-			if (exports.dirEnabled (exports.userState.profile.loc, d)) {
-				exports.choices.push ({choiceId:'dir1', isLeafe:true, action: {actionId:'go', d1: d}})
+			
+			var link = exports.getTargetAndLocked (exports.userState.profile.loc, d)
+			if (link.target >= 0) {
+				exports.choices.push ({choiceId:'dir1', isLeafe:true, action: {actionId:'go', d1: d, target:link.target}})
 			}
 		}
 
 	} else if (this.choice.choiceId == 'itemGroup') {
 		
-		
 		if (this.choice.itemGroup == 'here') {
 			
 			for (let i=0;i<exports.world.items.length;i++) {
+				if (i == exports.userState.profile.indexPC) continue;
 				if (exports.world.items[i].type == "loc") continue;
 				
 				if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].loc) {
@@ -230,9 +382,10 @@ exports.updateChoices = function () {
 		} else if (this.choice.itemGroup == 'carrying') {
 			
 			for (let i=0;i<exports.world.items.length;i++) {
+				if (i == exports.userState.profile.indexPC) continue;
 				if (exports.world.items[i].type == "loc") continue;
 				
-				if (exports.world.items[i].locIndex == exports.userState.profile.indexPC) {
+				if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].id) {
 					exports.choices.push ({choiceId:'obj1', item1: i});
 				}
 				
@@ -247,12 +400,16 @@ exports.updateChoices = function () {
 	} else if (this.choice.choiceId == 'obj1') {
 		
 		for (var i=0; i< exports.world.actions.length; i++) {
-			if (exports.actionIsEnabled  (i, this.choice.item1)) { 		// obj1 + action
-				exports.choices.push ({choiceId:'action', isLeafe:true, action: { item1: this.choice.item1, actionId: exports.world.actions[i].id }})
+			var actionId = exports.world.actions[i].id
+			if (exports.actionIsEnabled  (actionId, this.choice.item1)) { 		// obj1 + action
+				exports.choices.push ({choiceId:'action', isLeafe:true, action: { item1: this.choice.item1, actionId: actionId }})
 			} else { 
 				for (var j=0; j< exports.world.items.length; j++) {
-					if (exports.actionIsEnabled  (i, this.choice.item1, j)) { // obj1 + action + obj2
-						exports.choices.push ({choiceId:'action2', isLeafe:true, action: { item1: this.choice.item1, actionId: exports.world.actions[i].id, item2:j }})
+					if (j == this.choice.item1) continue; // item1 on item1
+					if (j == this.userState.profile.indexPC) continue; // self action with item1
+
+					if (exports.actionIsEnabled  (actionId, this.choice.item1, j)) { // obj1 + action + obj2
+						exports.choices.push ({choiceId:'action2', isLeafe:true, action: { item1: this.choice.item1, actionId: actionId, item2:j }})
 					}
 				}
 			}

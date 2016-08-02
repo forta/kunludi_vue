@@ -1,8 +1,11 @@
 <template>
-  <div class="lingvo">
-	<h2>{{kt("Language")}}: {{locale}}</h2>
+  <h2> <a v-link="{ path: '/kune' }"> {{kt("Together")}} | </a>
+  <a v-link="{ path: '/ludi' }"> {{kt("Play")}} | </a>
+  {{kt("Language")}}</h2>
 
-	<h2>Your other languages:</h2>
+  <div class="lingvo">
+
+	<h2>{{kt("Your other languages")}}:</h2>
     <ul>
         <li v-show="locale != 'en'"> 
             <button @click='setLocale("en")'>choose</button>
@@ -16,7 +19,7 @@
         </li>
     </ul>
 
-	<h2>Other languages:</h2>
+	<h2>{{kt("Other languages")}}:</h2>
     <ul>
         <li>
             <button @click='setLocale("es")'>choose</button>
@@ -56,5 +59,21 @@ export default {
 </script>
 
 <style scoped>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+ 
+li:last-child {
+  border: none;
+}
+ 
 
 </style>

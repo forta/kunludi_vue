@@ -49,28 +49,21 @@ export function processAction (action) {
 		
 	console.log ("lib action: " +  JSON.stringify (action))
 	
-	this.reactions[actionIndex].reaction ({ item1:action.item1, item2:action.item2, item1Id:action.item1Id, item2Id:action.item2Id, loc:this.primitives.PC_GetCurrentLoc (), direction:action.d1 })
+	this.reactions[actionIndex].reaction ({  pc:action.pc, item1:action.item1, item2:action.item2, item1Id:action.item1Id, item2Id:action.item2Id, loc:this.primitives.PC_GetCurrentLoc (), direction:action.d1 })
 	
 	return true
 
 }
 
-exports.actionIsEnabled = function  (action, item1, item2) {
+exports.actionIsEnabled = function  (actionId, item1, item2) {
 	
-	if (action == undefined) return false
-	if (this.reactions[action] == undefined) return false
-
-	return this.reactions[action].enabled(item1, item2)
+	if (actionId == undefined) return false
 	
-}
-
-exports.dirIsEnabled = function  (loc, dir1) {
+	var reactionIndex = arrayObjectIndexOf(this.reactions, "id", actionId)
 	
-	var link = this.primitives.getTargetAndLocked ({loc:loc, direction: dir1});
+	if (this.reactions[reactionIndex] == undefined) return false
 	
-	if (link.isLocked) return true; // it is shown, though
-	if (link.target == -1) return false;
-	return true;
+	return this.reactions[reactionIndex].enabled(item1, item2)
 	
 }
 
@@ -114,23 +107,13 @@ let initReactions =  function  (reactions, primitives) {
 			return true;
 		},
 
-		dirEnabled: function (dir1) {
-			var link = primitives.getTargetAndLocked ({loc:primitives.PC_GetCurrentLoc (), direction: dir1});
-
-			if (link.isLocked) return true; // it is shown, though
-			if (link.target == -1) return false;
-			return true;
-		},
-		
 		reaction: function (par_c) {
 		
-			// test
-			//primitives.CA_ShowMsg("You go to %d1", [par_c.directionId]); // old way!!!
-			primitives.CA_ShowMsg("You go to %d1", {d1:par_c.direction}); // to-do:: attention: new format!!!
+			primitives.CA_ShowMsg("You go to %d1", {d1:par_c.direction});
 			primitives.CA_ShowMsgAsIs("<br/><br/>");
 
 			// preactions when trying to go out from here
-			var link = primitives.getTargetAndLocked (par_c);
+			var link = primitives.DIR_GetTarget (par_c.loc, par_c.direction);
 			
 			// if locked, show locked message
 			if (link.isLocked) {
@@ -269,7 +252,7 @@ let initReactions =  function  (reactions, primitives) {
 			if (primitives.IT_GetLoc(par_c.item1) == primitives.PC_X())
 				primitives.CA_ShowMsg("You just have it!");
 			else {
-				primitives.CA_ShowMsg("You take %o1", [par_c.item1Id]);
+				primitives.CA_ShowMsg("You take %o1", {o1:par_c.item1Id});
 				primitives.IT_SetLoc(par_c.item1, primitives.PC_X());
 			}
 			
@@ -290,7 +273,7 @@ let initReactions =  function  (reactions, primitives) {
 			if (primitives.IT_GetLoc(par_c.item1) != primitives.PC_X())
 				primitives.CA_ShowMsg("You don't have it!"); // to-do: pronoun
 			else {
-				primitives.CA_ShowMsg("You drop it on %o1", [primitives.IT_GetId(primitives.PC_GetCurrentLoc())]);
+				primitives.CA_ShowMsg("You drop it on %o1", {o1:primitives.IT_GetId(primitives.PC_GetCurrentLoc())});
 				
 				primitives.IT_SetLoc(par_c.item1, primitives.PC_GetCurrentLoc()); 
 				
@@ -314,7 +297,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("You talk with %o1", [par_c.item1]); // to-do: pronoun
+			primitives.CA_ShowMsg("You talk with %o1", {o1:par_c.item1Id}); // to-do: pronoun
 			primitives.CA_ShowMsgAsIs (" ... ");
 			primitives.CA_ShowMsg("but without any reaction");
 		},
@@ -324,15 +307,16 @@ let initReactions =  function  (reactions, primitives) {
 	reactions.push ({
 		id: 'become',
 		
-		enabled: function (indexItem,indexItem2) {
-			if (!primitives.IT_ATT(indexItem, "isBecomeAble")) return false;
+		enabled: function (indexItem, indexItem2) {
+			if (primitives.IT_GetType(indexItem) != "pc") return false;
+			// if (!primitives.IT_ATT(indexItem, "isBecomeAble")) return false;
 			return true;
 		},
 		
 		reaction: function (par_c) {
 			
 			primitives.CA_ShowMsgAsIs("<br/>");
-			primitives.CA_ShowMsg("You become %o1", [par_c.item1Id]);
+			primitives.CA_ShowMsg("You become %o1", {o1:par_c.item1Id});
 			primitives.CA_ShowMsgAsIs("<br/>");
 			primitives.PC_SetIndex(par_c.item1);
 			primitives.IT_DynDesc (primitives.PC_GetCurrentLoc());
@@ -350,6 +334,7 @@ let initReactions =  function  (reactions, primitives) {
 		enabled: function (indexItem,indexItem2) {
 					
 			if (!primitives.IT_ATT(indexItem, "isTakeAble")) return false;
+			if (indexItem2 == undefined) return false;
 			if (indexItem2 == -1) return false;
 			if (indexItem2 == indexItem) return false;
 			if (!primitives.IT_ATT(indexItem2, "isContainer")) return false;
@@ -369,7 +354,7 @@ let initReactions =  function  (reactions, primitives) {
 					if (!primitives.IT_ATT(par_c.item2, "isContainer")) {
 						primitives.CA_ShowMsg("The marked object must be a container");
 					} else {
-						primitives.CA_ShowMsg("You put %o1 into %o2", [par_c.item1 , par_c.item2]);
+						primitives.CA_ShowMsg("You put %o1 into %o2", {o1:par_c.item1Id , o2:par_c.item2Id});
 
 						primitives.IT_SetLoc(par_c.item1, par_c.item2);
 					}
@@ -385,6 +370,7 @@ let initReactions =  function  (reactions, primitives) {
 		id: 'give',
 		
 		enabled: function (indexItem, indexItem2) {
+			if (indexItem2 == undefined)  return false;
 			if (indexItem == indexItem2) return false;
 			if (!primitives.IT_ATT(indexItem, "isTakeAble")) return false;
 			if (primitives.IT_GetType(indexItem2) == "loc") return false;
@@ -402,8 +388,7 @@ let initReactions =  function  (reactions, primitives) {
 			if (par_c.item2==-1) return false;
 			if ((primitives.IT_GetType(par_c.item2) != "npc") && (primitives.IT_GetType(par_c.item2) != "pc")) return false;
 			
-			// to-translate: 
-			primitives.CA_ShowMsg("You try to give o1 to o2", [par_c.item1Id, par_c.item2Id]);
+			primitives.CA_ShowMsg("You try to give o1 to o2", {o1:par_c.item1Id, o2:par_c.item2Id});
 			return true;		
 		},
 		
@@ -415,6 +400,7 @@ let initReactions =  function  (reactions, primitives) {
 		
 		enabled: function (indexItem,indexItem2) {
 			if (!primitives.IT_ATT(indexItem, "isTakeAble")) return false;
+			if (indexItem2 == undefined)  return false;
 			if (indexItem2==-1) return false;
 			if (indexItem2 == indexItem) return false;
 			if (!primitives.IT_ATT(indexItem2, "isContainer")) return false;
@@ -424,7 +410,7 @@ let initReactions =  function  (reactions, primitives) {
 		
 		reaction: function (par_c) {
 
-			primitives.CA_ShowMsg("You take %o1 from %o2", [par_c.item1Id, par_c.item2Id]);
+			primitives.CA_ShowMsg("You take %o1 from %o2", {o1:par_c.item1Id, o2:par_c.item2Id});
 			primitives.IT_SetLoc(par_c.item1, primitives.PC_X());
 		},
 		
@@ -451,7 +437,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("%o1 does not react when you ask about %o2", [par_c.item2Id, par_c.item1Id]);		
+			primitives.CA_ShowMsg("%o1 does not react when you ask about %o2", {o1:par_c.item1Id, o2:par_c.item2Id});
 		},
 		
 	});
@@ -475,7 +461,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("%o1 does not react when you ask for %o2", [par_c.item2Id, par_c.item1Id]);
+			primitives.CA_ShowMsg("%o1 does not react when you ask for %o2", {o1:par_c.item1Id, o2:par_c.item2Id});
 		},
 		
 	});
@@ -498,7 +484,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("%o1 does not react when you show %o2", [par_c.item2Id, par_c.item1Id]);
+			primitives.CA_ShowMsg("%o1 does not react when you show %o2", {o1:par_c.item1Id, o2:par_c.item2Id});
 			
 		},
 		
@@ -513,7 +499,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("You read %o1", [par_c.item1Id]);
+			primitives.CA_ShowMsg("You read %o1", {o1:par_c.item1Id});
 			primitives.CA_ShowMsgAsIs(".");
 			primitives.CA_ShowMsg(primitives.IT_GetAttPropValue (par_c.item1, "isReadAble", "msgId")); 
 			
@@ -530,7 +516,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("You turn on %o1", [par_c.item1]);
+			primitives.CA_ShowMsg("You turn on %o1", {o1:par_c.item1Id});
 			primitives.IT_SetAttPropValue (par_c.item1, "isSwitchAble", "state", "on");		
 		},
 		
@@ -545,7 +531,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("You turn off %o1", [par_c.item1]);
+			primitives.CA_ShowMsg("You turn off %o1", {o1:par_c.item1Id});
 			primitives.IT_SetAttPropValue (par_c.item1, "isSwitchAble", "state", "off");		
 		},
 		
@@ -577,11 +563,11 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("where %o1 was?", [par_c.item1Id]);
+			primitives.CA_ShowMsg("where %o1 was?", {o1:par_c.item1Id});
 			var whereWas = primitives.IT_GetWhereItemWas(primitives.PC_X(),par_c.item1);
 
-			if (whereWas == -1) primitives.CA_ShowMsg ("location unknown of %o1", [par_c.item1Id]);
-			else if (primitives.IT_GetId(whereWas)== "limbo") primitives.CA_ShowMsg ("location unknown of %o1", [par_c.item1Id]);
+			if (whereWas == -1) primitives.CA_ShowMsg ("location unknown of %o1", {o1:par_c.item1Id});
+			else if (primitives.IT_GetId(whereWas)== "limbo") primitives.CA_ShowMsg ("location unknown of %o1", {o1:par_c.item1Id});
 			else primitives.CA_ShowItem (whereWas);
 			primitives.CA_ShowMsgAsIs ("<br/>");
 		},
@@ -597,7 +583,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("You open %o1", [par_c.item1Id]);
+			primitives.CA_ShowMsg("You open %o1", {o1:par_c.item1Id});
 			primitives.IT_SetAttPropValue (par_c.item1, "isOpen", "state", "open");
 		},
 		
@@ -612,7 +598,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("You close %o1", [par_c.item1]);
+			primitives.CA_ShowMsg("You close %o1", {o1:par_c.item1Id});
 			primitives.IT_SetAttPropValue (par_c.item1, "isOpen", "state", "close");
 		},
 		
@@ -628,7 +614,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("You unlock %o1", [par_c.item1]);
+			primitives.CA_ShowMsg("You unlock %o1", {o1:par_c.item1Id});
 		},
 		
 	});
@@ -643,7 +629,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("You lock %o1", [par_c.item1]);
+			primitives.CA_ShowMsg("You lock %o1", {o1:par_c.item1Id});
 		},
 		
 	});
@@ -669,7 +655,7 @@ let initReactions =  function  (reactions, primitives) {
 			}
 			
 			// default reaction
-			primitives.CA_ShowMsg("You look to %d1", [par_c.direction]);
+			primitives.CA_ShowMsg("You look to %d1", {d1:par_c.direction});
 		},
 		
 	});
@@ -701,7 +687,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		reaction: function (par_c) {
 			// primitives.CA_ShowMsg("You cannot climb"); 
-			primitives.CA_ShowMsg("You cannot %v1", [this.index]); // just testing
+			primitives.CA_ShowMsg("You cannot %v1", {v1:this.index}); // just testing
 		}
 	});
 
@@ -754,7 +740,7 @@ let initReactions =  function  (reactions, primitives) {
 		reaction: function (par_c, fromDown) {
 			fromDown = (fromDown === false);
 			if (!fromDown)
-				primitives.CA_ShowMsg("You drink %o1", [par_c.item1])
+				primitives.CA_ShowMsg("You drink %o1", {o1:par_c.item1Id})
 			primitives.IT_SetLoc (par_c.item1, primitives.IT_X("limbo"));
 			return true;
 		}
@@ -769,7 +755,7 @@ let initReactions =  function  (reactions, primitives) {
 		
 		reaction: function (par_c) {
 		
-			primitives.CA_ShowMsg("You eat %o1", [par_c.item1]);
+			primitives.CA_ShowMsg("You eat %o1", {o1:par_c.item1Id});
 			primitives.IT_SetLoc (par_c.item1, primitives.IT_X("limbo"));
 			return true;
 		}	
@@ -903,7 +889,7 @@ let initReactions =  function  (reactions, primitives) {
 				primitives.CA_ShowMsg("You shouldn't attack with that.");
 				return true;
 			}
-			primitives.CA_ShowMsg("You attack %o2 with %o1.", [par_c.item2, par_c.item1]);
+			primitives.CA_ShowMsg("You attack %o2 with %o1.", {o2:par_c.item2Id, o1:par_c.item1Id});
 			primitives.CA_ShowMsg("With any result.");
 			return true;		
 		},

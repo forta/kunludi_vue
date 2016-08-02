@@ -498,5 +498,23 @@
     },
     "Select what you choose": {
         "message": "Elektu kion vi preferas"
-   }
+    },
+    "Playing": {
+        "message": "Ludas"
+	}, 
+    "itemGroup.here": {
+        "message": "Ĉeestantaj eroj"
+    }, 
+    "itemGroup.carrying": {
+        "message": "Kunportitaj eroj"
+    }, 
+    "itemGroup.notHere": {
+        "message": "Foraj eroj"
+    }, 
+    "directActions": {
+        "message": "Directaj Agoj"
+    }, 
+    "directionGroup": {
+        "message": "Direktoj"
+    }
 }

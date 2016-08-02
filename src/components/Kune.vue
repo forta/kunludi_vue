@@ -1,6 +1,9 @@
 <template>
+  <h2> {{kt("Together")}} | 
+  <a v-link="{ path: '/ludi' }"> {{kt("Play")}} | </a>
+  <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a></h2>
+
   <div class="kune">
-  	<h2>{{kt("Together")}}</h2>
 	<div v-show="userId != ''">
         <h3>{{kt("Username")}}: {{ userId }}</h3>
         <button v-on:click="logout">Logout</button>

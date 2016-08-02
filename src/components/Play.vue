@@ -8,7 +8,7 @@
     </div>
   </div>
     
-    
+  <!-- Groups of choices -->
   <div class="mainChoices">
     <span v-for="choice in choices">
         <button v-if ="choice.choiceId == 'itemGroup'" class='choiceIG' v-on:click="doGameChoice(choice)">{{choice.itemGroup}}</button>
@@ -18,15 +18,16 @@
     
   </div>
     
-    
+  <!-- choices -->
   <div class="choices">
-     <h2>Choices on {{theCurrentChoice}} </h2> 
+     <h2>{{showCurrentChoice()}}</h2> 
+     <!--<h2>{{currentChoice | json}}</h2>-->
     
     <span v-for="choice in choices">
         <button v-if ="choice.choiceId == 'action' " class='choiceAction' v-on:click="doGameChoice(choice)">{{tge("actions", choice.action.actionId)}}</button>
         <button v-if ="choice.choiceId == 'action2' " class='choiceAction2' v-on:click="doGameChoice(choice)">{{tge("items", choice.action.item1, "txt")}}: {{tge("actions", choice.action.actionId)}}  to:{{tge("items", choice.action.item2, "txt")}} </button>
         <button v-if ="choice.choiceId == 'obj1' " class='choiceObj1' v-on:click="doGameChoice(choice)">{{tge("items", choice.item1, "txt")}}</button>
-        <button v-if ="choice.choiceId == 'dir1' " class='choiceDir1' v-on:click="doGameChoice(choice)">{{tge("directions", choice.action.d1, "txt")}}</button>
+        <button v-if ="choice.choiceId == 'dir1' " class='choiceDir1' v-on:click="doGameChoice(choice)">{{tge("directions", choice.action.d1, "txt")}}: {{tge("items", choice.action.target, "txt")}}</button>
     </span>
     
   </div>
@@ -48,11 +49,6 @@ export default {
   created: function () {
     this.showEndOfText()
   },
-  computed: {
-      theCurrentChoice: function () {
-        return this.showCurrentChoice()    
-      } 
-  },
   methods: {
       decodeHtml: function (html) {
         var txt = document.createElement("textarea");
@@ -60,14 +56,16 @@ export default {
         return txt.value;
       }, showCurrentChoice: function () {
            let choice = this.currentChoice 
-           // console.log ("choice: " + JSON.stringify (choice))
-          // "choiceId": "action2", "isLeafe": true, "action": { "item1": 4, "actionId": "ask_about", "item2": 0 } }
-          if (choice.choiceId == 'itemGroup') return choice.itemGroup
-          else if (choice.choiceId == 'directActions') return choice.choiceId
-          else if (choice.choiceId == 'directionGroup') return choice.choiceId
-          else  if (choice.choiceId == 'obj1') return choice.item1
-          else  if (choice.choiceId == 'action2') return choice.action.item1 + "," + choice.action.actionId + ", " + choice.action.item2 
-          return ""
+		   
+           //console.log ("current choice on play.vue: " + JSON.stringify (choice))
+
+		   if (choice.choiceId == 'itemGroup') return this.kt(choice.choiceId + "." + choice.itemGroup)
+          else if (choice.choiceId == 'directActions') return this.kt(choice.choiceId)
+          else if (choice.choiceId == 'directionGroup') return this.kt(choice.choiceId)
+          else if (choice.choiceId == 'obj1') return this.tge("items", choice.item1, "txt")
+          else if (choice.choiceId == 'action2') return this.tge("items", choice.action.item1, "txt") + ": " + this.tge("actions", choice.action.actionId, "txt") + " -> " + this.tge("items", choice.action.item2, "txt") 
+          else if (choice.choiceId == 'dir1') return this.tge("directions", choice.action.d1, "txt")
+          return "" // to-do
       }, 
       showEndOfText: function () {
         setTimeout(function(){ 

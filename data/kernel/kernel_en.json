@@ -498,5 +498,23 @@
     },
     "Select what you choose": {
         "message": "Select what you choose"
-   }
+    },
+    "Playing": {
+        "message": "Playing"
+    }, 
+    "itemGroup.here": {
+        "message": "Present items"
+    }, 
+    "itemGroup.carrying": {
+        "message": "Items on"
+    }, 
+    "itemGroup.notHere": {
+        "message": "Absent items"
+    }, 
+    "directActions": {
+        "message": "Direct Actions"
+    }, 
+    "directionGroup": {
+        "message": "Directions"
+    }
 }

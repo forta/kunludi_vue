@@ -495,8 +495,26 @@
     },
     "private": {
         "message": "privado"
-   },
+    },
     "Select what you choose": {
         "message": "Selecciona qué eliges"
-   }
+    },
+    "Playing": {
+        "message": "Jugando"
+    }, 
+    "itemGroup.here": {
+        "message": "Items presentes"
+    }, 
+    "itemGroup.carrying": {
+        "message": "Items encima"
+    }, 
+    "itemGroup.notHere": {
+        "message": "Items ausentes"
+    }, 
+    "directActions": {
+        "message": "Acciones Directas"
+    }, 
+    "directionGroup": {
+        "message": "Direcciones"
+    }
 }
