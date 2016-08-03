@@ -502,19 +502,30 @@
     "Playing": {
         "message": "Ludas"
 	}, 
-    "itemGroup.here": {
+    "mainChoices_top": {
+        "message": "Todos"
+    }, 
+    "mainChoices_here": {
         "message": "Ĉeestantaj eroj"
     }, 
-    "itemGroup.carrying": {
+    "mainChoices_carrying": {
         "message": "Kunportitaj eroj"
     }, 
-    "itemGroup.notHere": {
+    "mainChoices_notHere": {
         "message": "Foraj eroj"
     }, 
-    "directActions": {
+    "mainChoices_directActions": {
         "message": "Directaj Agoj"
     }, 
-    "directionGroup": {
+    "mainChoices_directionGroup": {
         "message": "Direktoj"
+    }, 
+    "Your languages": {
+        "message": "Viaj lingvoj"
+    }, 
+    "Additional languages": {
+        "message": "Aliaj lingvoj"
     }
+	
+	
 }

@@ -62,23 +62,12 @@ const state = {
 		// hardcoded simulation
 		{ 	action: { actionId:'look'}, 
 			reactionList: [ 
-				{ type: 'rt_msg', txt: 'Introduction' },
-				{ type: 'rt_msg', txt: 'Locked direction' },
-				{ type: 'rt_msg', txt: 'You just jump!' },
-				{ type: 'rt_msg', txt: 'You read %o1', param: {o1:5}  },
-				{ type: 'rt_msg', txt: 'location unknown of %o1', param: {o1:6} }
-			]
-		},
-		{ action: {actionId:'go west'}, 
-			reactionList: [
-				{ type: 'rt_msg', txt: 'You go to %d1', param: {d1:'0'} },
-				{ type: 'rt_msg', txt:  'Time runs' },
-				{ type: 'rt_msg', txt: 'Locked direction' }
+				{ type: 'rt_msg', txt: 'Introduction' }
 			]
 		}  
 	],
 	choices: [],
-	choice: {},
+	choice: {choiceId:'top', isLeafe:false} ,
 	reactionList: [],
 	gameAbout: {
 		comment: 'not loaded yet...'
@@ -93,7 +82,11 @@ const state = {
 	kTranslator: function (kMsg) {
 		if (state.locale == "") {
 			// set default language and load kernel messages
-			mutations.SETLOCALE(state, 'en'); 
+			// attention: using window object
+			if (["es", "en", "eo"].indexOf(window.navigator.language) >=0) 
+				mutations.SETLOCALE(state, window.navigator.language); 
+			else
+				mutations.SETLOCALE(state, 'en'); 
 		}
 		
 		if (state.locale != "") {
@@ -352,6 +345,8 @@ const mutations = {
 			}
 		)
 	}
+	
+	state.choice = state.runner.getCurrentChoice()
 
   },
   RESETGAMEID (state) {

@@ -288,9 +288,12 @@
         "message": "Where %o1 was?"
     },
     "messages.location unknown of %o1.txt": {
-        "message": "You don't know where %o1 was"
+        "message": "You don't know where %o1 is"
     },
-    "messages.The game is over.txt": {
+    "messages.%o1 was there: %o2.txt": {
+        "message": "%o1 was there: %o2"
+    },
+	"messages.The game is over.txt": {
         "message": "The game is over"
     },
     "messages.Introduction.txt": {

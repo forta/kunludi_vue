@@ -2,7 +2,8 @@
   <div id= "play" class="play">
     <h2>{{kt("History")}}</h2>
     <div v-for="hItem in history">
-        <p><b> {{$index+1}}. {{hItem.action.actionId}}</b></p>
+        <!-- echo -->
+        <p><b> {{$index+1}}. {{choiceToShow(hItem.action)}}</b></p>
             <!-- to-do: problem with nested v-for: so, we'll create a new component -->   
             <span v-for="r in hItem.reactionList"> {{{t(r)}}} </span>
     </div>
@@ -11,23 +12,21 @@
   <!-- Groups of choices -->
   <div class="mainChoices">
     <span v-for="choice in choices">
-        <button v-if ="choice.choiceId == 'itemGroup'" class='choiceIG' v-on:click="doGameChoice(choice)">{{choice.itemGroup}}</button>
-        <button v-if ="choice.choiceId == 'directActions' " class='choiceDA' v-on:click="doGameChoice(choice)">Direct Actions</button>
-        <button v-if ="choice.choiceId == 'directionGroup' " class='choiceDirections' v-on:click="doGameChoice(choice)">Directions</button>
+        <button v-if ="choice.choiceId == 'top'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice)}} </button>
+        <button v-if ="choice.choiceId == 'itemGroup'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice)}} </button>
+        <button v-if ="choice.choiceId == 'directActions' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice)}}</button>
+        <button v-if ="choice.choiceId == 'directionGroup' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice)}}</button>
     </span>
     
   </div>
     
   <!-- choices -->
   <div class="choices">
-     <h2>{{showCurrentChoice()}}</h2> 
+     <h3> <!-- <button class={{getChoiceClass(currentChoice.parent)}} v-on:click="doGameChoice(currentChoice.parent)"> {{kt("Back")}} </button>--> {{showCurrentChoice()}}</h3> 
      <!--<h2>{{currentChoice | json}}</h2>-->
     
     <span v-for="choice in choices">
-        <button v-if ="choice.choiceId == 'action' " class='choiceAction' v-on:click="doGameChoice(choice)">{{tge("actions", choice.action.actionId)}}</button>
-        <button v-if ="choice.choiceId == 'action2' " class='choiceAction2' v-on:click="doGameChoice(choice)">{{tge("items", choice.action.item1, "txt")}}: {{tge("actions", choice.action.actionId)}}  to:{{tge("items", choice.action.item2, "txt")}} </button>
-        <button v-if ="choice.choiceId == 'obj1' " class='choiceObj1' v-on:click="doGameChoice(choice)">{{tge("items", choice.item1, "txt")}}</button>
-        <button v-if ="choice.choiceId == 'dir1' " class='choiceDir1' v-on:click="doGameChoice(choice)">{{tge("directions", choice.action.d1, "txt")}}: {{tge("items", choice.action.target, "txt")}}</button>
+        <button v-if = isMiddleChoice(choice) class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice)}}</button>
     </span>
     
   </div>
@@ -50,22 +49,45 @@ export default {
     this.showEndOfText()
   },
   methods: {
+      isMiddleChoice: function (choice) {
+         return ((choice.choiceId == 'action') ||(choice.choiceId == 'action2') || (choice.choiceId == 'obj1') || (choice.choiceId == 'dir1'))
+      },           
+      getChoiceClass: function (choice) {
+
+          if (choice.choiceId == 'action') return (choice.parent == "directActions")?"choiceDA":"choiceAction"  
+          else if (choice.choiceId == 'action2')  return "choiceAction2"
+          else if (choice.choiceId == 'obj1') return "choiceObj1" + "_" + choice.parent
+          else if (choice.choiceId == 'dir1') return "choiceDir1"
+          else if (choice.choiceId == 'itemGroup') return 'choiceIG' + "_" + choice.itemGroup
+          else if (choice.choiceId == 'directActions') return 'choiceDA'
+          else if (choice.choiceId == 'directionGroup') return 'choiceDirections'
+          return ""
+      },
+      choiceToShow: function (choice) { // it shoud be an vuex function
+          if (choice.choiceId == 'action') return  this.tge("actions", choice.action.actionId)
+          else if (choice.choiceId == 'action2') return this.tge("actions", choice.action.actionId) + " -> " + this.tge("items", choice.action.item1, "txt")
+          else if (choice.choiceId == 'obj1') return this.tge("items", choice.item1, "txt")
+          
+          // to-do: target only if known
+          else if (choice.choiceId == 'dir1') return this.tge("directions", choice.action.d1, "txt") + " -> " + this.tge("items", choice.action.target, "txt")
+          
+          else if (choice.choiceId == 'itemGroup') return this.kt("mainChoices_" +  choice.itemGroup)
+          else if (choice.choiceId == 'directActions') return this.kt("mainChoices_" + choice.choiceId)
+          else if (choice.choiceId == 'directionGroup') return this.kt("mainChoices_" + choice.choiceId)
+          else if (choice.choiceId == 'top') return this.kt("mainChoices_" + choice.choiceId)
+          return ""
+
+      },
       decodeHtml: function (html) {
         var txt = document.createElement("textarea");
         txt.innerHTML = html;
         return txt.value;
-      }, showCurrentChoice: function () {
-           let choice = this.currentChoice 
-		   
-           //console.log ("current choice on play.vue: " + JSON.stringify (choice))
-
-		   if (choice.choiceId == 'itemGroup') return this.kt(choice.choiceId + "." + choice.itemGroup)
-          else if (choice.choiceId == 'directActions') return this.kt(choice.choiceId)
-          else if (choice.choiceId == 'directionGroup') return this.kt(choice.choiceId)
-          else if (choice.choiceId == 'obj1') return this.tge("items", choice.item1, "txt")
-          else if (choice.choiceId == 'action2') return this.tge("items", choice.action.item1, "txt") + ": " + this.tge("actions", choice.action.actionId, "txt") + " -> " + this.tge("items", choice.action.item2, "txt") 
-          else if (choice.choiceId == 'dir1') return this.tge("directions", choice.action.d1, "txt")
-          return "" // to-do
+      },
+      showCurrentChoice: function () {
+           console.log ("current choice on play.vue: " + JSON.stringify (this.currentChoice))
+           
+           return this.choiceToShow (this.currentChoice)
+	   
       }, 
       showEndOfText: function () {
         setTimeout(function(){ 
@@ -126,27 +148,43 @@ h1 {
 	background-color: #DAA;
 }
 
+.choiceIG_here {
+	background-color: #40FF00;
+}
+.choiceObj1_here {
+	background-color: #40FF00;
+}
+.choiceIG_carrying {
+	background-color: #FFFF00;
+}
+.choiceObj1_carrying {
+	background-color: #FFFF00;
+}
+.choiceIG_notHere {
+	background-color: #FF0000;
+}
+.choiceObj1_notHere {
+	background-color: #FF0000;
+}
+
+.choiceDA {
+	background-color: #DF7400;
+}
+
+.choiceDirections {
+	background-color: #2EFEF7;
+}
+.choiceDir1 {
+	background-color: #2EFEF7;
+}
+
 .choiceAction {
 	background-color: #FCA;
 }
 
 .choiceAction2 {
-	background-color: #BDA;
+	background-color: #FE2E64;
 }
 
-.choiceDA {
-	background-color: #ACA;
-}
-
-.choiceDirectios {
-	background-color: #ADA;
-}
-
-.choiceIG {
-	background-color: #DCA;
-}
-.choiceObj1 {
-	background-color: #BFA;
-}
 
 </style>

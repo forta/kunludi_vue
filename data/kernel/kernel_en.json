@@ -502,19 +502,28 @@
     "Playing": {
         "message": "Playing"
     }, 
-    "itemGroup.here": {
+    "mainChoices_top": {
+        "message": "All"
+    }, 
+    "mainChoices_here": {
         "message": "Present items"
     }, 
-    "itemGroup.carrying": {
+    "mainChoices_carrying": {
         "message": "Items on"
     }, 
-    "itemGroup.notHere": {
+    "mainChoices_notHere": {
         "message": "Absent items"
     }, 
-    "directActions": {
+    "mainChoices_directActions": {
         "message": "Direct Actions"
     }, 
-    "directionGroup": {
+    "mainChoices_directionGroup": {
         "message": "Directions"
+     }, 
+    "Your languages": {
+        "message": "Your languages"
+    }, 
+    "Additional languages": {
+        "message": "Additional languages"
     }
 }

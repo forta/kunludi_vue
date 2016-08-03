@@ -40,7 +40,6 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
 
 export function processAction (action) {
 	
-	// here!! call initReactions[actionIndex].enabled and .reaction  !!!!
 	let actionIndex = arrayObjectIndexOf (this.reactions, "id", action.actionId)
 	if (actionIndex < 0 ) {
 		this.reactionList.push ({type:"rt_msg", txt: 'Error: missing actionId ' + action.actionId} )
@@ -566,9 +565,9 @@ let initReactions =  function  (reactions, primitives) {
 			primitives.CA_ShowMsg("where %o1 was?", {o1:par_c.item1Id});
 			var whereWas = primitives.IT_GetWhereItemWas(primitives.PC_X(),par_c.item1);
 
-			if (whereWas == -1) primitives.CA_ShowMsg ("location unknown of %o1", {o1:par_c.item1Id});
-			else if (primitives.IT_GetId(whereWas)== "limbo") primitives.CA_ShowMsg ("location unknown of %o1", {o1:par_c.item1Id});
-			else primitives.CA_ShowItem (whereWas);
+			if (whereWas == "limbo") primitives.CA_ShowMsg ("location unknown of %o1", {o1:par_c.item1Id});
+			else primitives.CA_ShowMsg ("%o1 was there: %o2", {o1:par_c.item1Id, o2:whereWas});
+			
 			primitives.CA_ShowMsgAsIs ("<br/>");
 		},
 

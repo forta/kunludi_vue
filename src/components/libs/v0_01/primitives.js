@@ -419,7 +419,7 @@ export function IT_SetIsItemKnown (i1, i2) {
 
 export function IT_GetWhereItemWas (i1, i2) {
  if (this.IT_GetIsItemKnown (i1, i2)) return this.world.items[i1].state.itemsMemory[i2].whereWas;
- return -1; // ups
+ return "limbo"; // it could be undefined
 }
 
 export function IT_SetWhereItemWas (i1, i2, value) {

@@ -32,15 +32,6 @@ export function itemWithAttException (indexItem, attId_def) {
 
 // assign attributes to items (from: exports.world.items[indexItem].att[attIndex])
 function setDefaultAttributeProperties (context, indexItem) {
-	
-	/*	where exports.world.items[indexItem].att[attIndex]):
-			"id": "isTakeAble",
-			"properties": [
-                {  "id": "weight", "value": "1" },
-				{  "id": "size", "value": "1" }
-			],
-			"asignedTo": ["obj"]
-	*/
 
 	var attId_def; // attribute definition
 	for (var indexAtt = 0; indexAtt < context.world.attributes.length; indexAtt++) { 
@@ -216,27 +207,26 @@ exports.processChoice = function  (choice) {
 	
 	// console.log("choice input: " + JSON.stringify (choice))
 
-	let previousChoice = this.choice
+	// parent
+	let previousChoice = this.choice 
 	
 	this.choice = choice
-	
+
 	if (choice.choiceId == 'top') this.choice.action = undefined
-	// else if (choice.choiceId == 'obj1') this.choice.item1 = previousChoice.item1 // to-do: provisional
 	
+	if (choice.choiceId == 'obj1') choice.parent = previousChoice
 				
 	if (choice.isLeafe) { // execution
+			
 		exports.processAction (choice.action)
 		
-		// after execution, change the current choice 
-		if (this.choice.choiceId == "dir1" ) {
-			// to-do: if known place, show directionGroup insted of itemGroup here
-			this.choice = {choiceId:'itemGroup', isLeafe:false, itemGroup: 'here'};
-			//this.choice = {choiceId:'directionGroup', isLeafe:false, directionGroup: 'fromHere'};
-		} else if (this.choice.choiceId == "action" ) {
-			this.choice = {choiceId:'itemGroup', isLeafe:false, itemGroup: 'here'};
-		} 
-
-	}
+		// after execution, show the parent
+		if (previousChoice.choiceId == 'top') 
+			this.choice = {choiceId:'top', isLeafe:false};
+		else {
+			exports.processChoice (previousChoice)
+		}
+	} 
 
 	exports.updateChoices()
 	
@@ -248,7 +238,7 @@ exports.processAction = function(action) {
 
 	action.pc = exports.userState.profile.indexPC
 	
-	this.reactionList.push ({type:"rt_asis", txt: "<b>echo: " + action.actionId + "</b><br/>"} )
+	// this.reactionList.push ({type:"rt_asis", txt: "<b>echo: " + action.actionId + "</b><br/>"} )
 		
 	// expanding codes
 	if (action.item1 >= 0) action.item1Id = exports.world.items [action.item1].id
@@ -262,6 +252,19 @@ exports.processAction = function(action) {
 	
 	if (!status)
 		this.reactionList.push ({type:"rt_msg", txt: 'You cannot:' + JSON.stringify (action)} )
+	
+	// update memory
+	if (action.item1 >= 0) {
+		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1] == undefined)
+			exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1] = {}
+		exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1].whereWas = exports.world.items[action.item1].loc
+	}
+
+	if (action.item2 >= 0) {
+		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item2] == undefined)
+			exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item2] = {}
+		exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1].whereWas = exports.world.items[action.item2].loc
+	}
 	
 	// updating exports.userState.profile.loc
 	if (exports.world.items[exports.userState.profile.loc].id != exports.world.items[exports.userState.profile.indexPC].loc) {
@@ -338,8 +341,6 @@ exports.getTargetAndLocked = function (loc, direction) {
 exports.updateChoices = function () {
 	
 	exports.choices = []
-	
-	// exports.choices.length = 0
 
 	exports.choices.push ({choiceId:'top', isLeafe:false});
 	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'here'});
@@ -349,80 +350,89 @@ exports.updateChoices = function () {
 	exports.choices.push ({choiceId:'directActions', isLeafe:false});
 
 
-	if (this.choice.choiceId == 'directActions') {
-
-		exports.choices.push ({choiceId:'action', isLeafe:true, action:{actionId:'look'}});
-
-	} else if (this.choice.choiceId == 'directionGroup') {
+	if ((this.choice.choiceId == 'top') || (this.choice.choiceId == 'directActions')) {
+		exports.choices.push ({choiceId:'action', isLeafe:true, parent:"directActions", action:{actionId:'look'}});
+	} 
+	
+	if ((this.choice.choiceId == 'top') ||(this.choice.choiceId == 'directionGroup')) {
 		
 		// explore all directions
 		for (let d=0;d<exports.world.directions.length;d++) {
 			
 			var link = exports.getTargetAndLocked (exports.userState.profile.loc, d)
 			if (link.target >= 0) {
-				exports.choices.push ({choiceId:'dir1', isLeafe:true, action: {actionId:'go', d1: d, target:link.target}})
+				exports.choices.push ({choiceId:'dir1', isLeafe:true, parent:"directionGroup", action: {actionId:'go', d1: d, target:link.target}})
 			}
 		}
 
-	} else if (this.choice.choiceId == 'itemGroup') {
+	} 
+	
+	if ((this.choice.choiceId == 'top') || (this.choice.choiceId == 'itemGroup')) {
 		
-		if (this.choice.itemGroup == 'here') {
+		if ((this.choice.choiceId == 'top') || (this.choice.itemGroup == 'here')) {
 			
 			for (let i=0;i<exports.world.items.length;i++) {
 				if (i == exports.userState.profile.indexPC) continue;
 				if (exports.world.items[i].type == "loc") continue;
 				
 				if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].loc) {
-					exports.choices.push ({choiceId:'obj1', item1: i});
+					exports.choices.push ({choiceId:'obj1', item1: i, parent:"here"});
 				}
-				
 			}
-			
-			
-		} else if (this.choice.itemGroup == 'carrying') {
+		} 
+		
+		if ((this.choice.choiceId == 'top') || (this.choice.itemGroup == 'carrying')) {
 			
 			for (let i=0;i<exports.world.items.length;i++) {
 				if (i == exports.userState.profile.indexPC) continue;
 				if (exports.world.items[i].type == "loc") continue;
 				
 				if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].id) {
-					exports.choices.push ({choiceId:'obj1', item1: i});
+					exports.choices.push ({choiceId:'obj1', item1: i, parent:"carrying"});
 				}
-				
 			}
-			
-			
-		} else if (this.choice.itemGroup == 'notHere') {
-			// to-do
-			
 		} 
 		
-	} else if (this.choice.choiceId == 'obj1') {
+		if ((this.choice.choiceId == 'top') || (this.choice.itemGroup == 'notHere')) {
+			for (let i=0;i<exports.world.items.length;i++) {
+				if (i == exports.userState.profile.indexPC) continue;
+				if (exports.world.items[i].type == "loc") continue;
+				if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].loc) continue;
+				if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].id) continue;
+
+				// item known
+				if (typeof exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[i] != "undefined") 
+					exports.choices.push ({choiceId:'obj1', item1: i, parent:"notHere"});
+			}
+			
+		} 
+	} 
+	
+	if (this.choice.choiceId == 'obj1') {
 		
 		for (var i=0; i< exports.world.actions.length; i++) {
 			var actionId = exports.world.actions[i].id
 			if (exports.actionIsEnabled  (actionId, this.choice.item1)) { 		// obj1 + action
-				exports.choices.push ({choiceId:'action', isLeafe:true, action: { item1: this.choice.item1, actionId: actionId }})
+				exports.choices.push ({choiceId:'action', isLeafe:true, parent:"obj1", action: { item1: this.choice.item1, actionId: actionId }})
 			} else { 
 				for (var j=0; j< exports.world.items.length; j++) {
 					if (j == this.choice.item1) continue; // item1 on item1
 					if (j == this.userState.profile.indexPC) continue; // self action with item1
 
 					if (exports.actionIsEnabled  (actionId, this.choice.item1, j)) { // obj1 + action + obj2
-						exports.choices.push ({choiceId:'action2', isLeafe:true, action: { item1: this.choice.item1, actionId: actionId, item2:j }})
+						exports.choices.push ({choiceId:'action2', isLeafe:true, parent:"action2", action: { item2: this.choice.item1, actionId: actionId, item1:j }})
 					}
 				}
 			}
 		}
+
+		// specially for absent items
+		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[this.choice.item1] != undefined) {
+			exports.choices.push ({choiceId:'action', isLeafe:true, parent:"obj1", action: { item1: this.choice.item1, actionId: "where" }})
+		} 
 		
-	} else if (this.choice.choiceId == 'action') {
-		// o1 -> action -> o2
-		
-		for (var i=0; i< exports.world.items.length; i++) {
-			exports.choices.push ({choiceId:'obj2', action: { item1: this.choice.item1, actionId: this.choice.actionId, item2: i }});
-		}
 	}
-	
+		
 }
 
 

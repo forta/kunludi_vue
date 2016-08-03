@@ -5,7 +5,7 @@
 
   <div class="lingvo">
 
-	<h2>{{kt("Your other languages")}}:</h2>
+	<h2>{{kt("Your languages")}}:</h2>
     <ul>
         <li v-show="locale != 'en'"> 
             <button @click='setLocale("en")'>choose</button>
@@ -19,7 +19,7 @@
         </li>
     </ul>
 
-	<h2>{{kt("Other languages")}}:</h2>
+	<h2>{{kt("Additional languages")}}:</h2>
     <ul>
         <li>
             <button @click='setLocale("es")'>choose</button>

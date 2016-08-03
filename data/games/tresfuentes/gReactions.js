@@ -76,8 +76,8 @@ export function processAction (action) {
 	
 	let actionIndex = arrayObjectIndexOf (this.reactions, "id", action.actionId)
 	if (actionIndex < 0 ) {
-		this.reactionList.push ({type:"rt_msg", txt: 'Error: missing actionId ' + action.actionId} )
-		return true
+		// this.reactionList.push ({type:"rt_msg", txt: 'Error: missing actionId on gReactions: ' + action.actionId} )
+		return undefined
 	}
 		
 	// to-do: verify again  if action is enabled

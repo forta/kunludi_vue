@@ -290,6 +290,9 @@
     "messages.location unknown of %o1.txt": {
         "message": "No sabes donde estaba %o1"
     },
+    "messages.%o1 was there: %o2.txt": {
+        "message": "%o1 estaba ahí: %o2"
+    },
     "messages.The game is over.txt": {
         "message": "El juego terminó"
     },
