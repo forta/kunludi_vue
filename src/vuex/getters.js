@@ -10,6 +10,10 @@ export function getHistory (state) { return state.history }
 
 export function getChoices (state) { return state.choices }
 
+export function getMenu (state) { return state.menu }
+
+export function getPendingChoice (state) { return state.pendingChoice }
+
 export function getGames (state) { return state.games }
 
 export function getGameAbout (state) { return state.gameAbout }

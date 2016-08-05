@@ -35,7 +35,10 @@ export function caMapping (type) {
  		"SHOW_ECHO",
  		"PLAY_AUDIO",
  		"QUOTE_BEGIN",
- 		"QUOTE_CONTINUES"
+ 		"QUOTE_CONTINUES",
+		"DEV_MSG",
+		"KERNEL_MSG",
+		
 	]
 	
 	// var pos = reactionTypes.indexOf (type);
@@ -117,7 +120,6 @@ Categories:
  
   DIR_GetIndex (id)
   DIR_GetId (index)
-  DIR_GetTarget (loc, direction)
   
  IT: items
 
@@ -301,37 +303,6 @@ export function DIR_GetIndex  (id) {
 export function DIR_GetId  (index) {
  if (index>=0) return this.world.directions[index].id;
 }
-
-export function DIR_GetTarget  (loc, direction) {
-	var connection = {target: -1, isLocked: false};
-
-	if (this.world.items[loc].address == undefined) return connection
-
-	// target and locked resolution
-	var targetId;
-	var dirId = this.world.directions[direction].id;
-	var internalDirIndex =  0; // look for dirIndex (direction) in this.world.items[loc].address[] {dir, target, locked}
-	for (var i=0;i<this.world.items[loc].address.length;i++) {
-		if (this.world.items[loc].address[i].dir == dirId) {
-			// get target
-			if (typeof this.world.items[loc].address[i].target != 'undefined') {
-				targetId = this.world.items[loc].address[i].target;
-				connection.target = arrayObjectIndexOf(this.world.items, "id", targetId);
-			} 
-
-			// get isLocked
-			if (!connection.isLocked) { // if not statically locked
-				if (typeof this.world.items[loc].address[i].locked != 'undefined') {
-					connection.isLocked = (this.world.items[loc].address[i].locked == "true");
-				}
-			}
-			break;
-		}
-	}
-	return connection;
-		
-}
-
 
 /* IT: items *****************************************************************/
 
@@ -600,9 +571,9 @@ export function W_GetAttIndex (id) {
 
 // note: for use during game development
 export function GD_CreateMsg (indexLang, idMsg, txtMsg) {
-	// console.log("GD_CreateMsg(" + indexLang + "," + idMsg + "," + txtMsg + ")")
-	// ludi_runner.GD_CreateMsg (indexLang, idMsg, txtMsg);
- 
+	
+	this.reactionList.push ({type:this.caMapping("DEV_MSG"), lang:indexLang, txt:idMsg, detail:txtMsg});
+
 }
 
 /* MISC: facilities *****************************************************************/

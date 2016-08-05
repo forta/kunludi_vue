@@ -5,6 +5,7 @@
 
     <div class="ludi">
     
+	<a v-link="{ path: '/ludi/about' }"> {{kt("About")}} | </a>
 	<a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} | </a>
     
 	<h2 v-show="gameId"> {{kt("Playing")}}: {{gameId}} </h2> 

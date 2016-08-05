@@ -59,15 +59,17 @@ const state = {
 	gameId: '', // ludi
 	i18n:[],
 	history: [ // game
-		// hardcoded simulation
-		{ 	action: { actionId:'look'}, 
+		// introduction
+		{ 	action: { choiceId:'action', actionId:'look'}, 
 			reactionList: [ 
 				{ type: 'rt_msg', txt: 'Introduction' }
 			]
-		}  
+		} 
 	],
 	choices: [],
 	choice: {choiceId:'top', isLeafe:false} ,
+	pendingChoice: {},
+	menu: [],
 	reactionList: [],
 	gameAbout: {
 		comment: 'not loaded yet...'
@@ -101,17 +103,10 @@ const state = {
 	},
 	gTranslator: function (reaction) {
 		
-		// we suppose that all reactions consist in show texts
+		if (reaction.type == "rt_kernel_msg") return state.kTranslator (reaction.txt)
 		
-		/*	
-		function itemTranslation(itemId) {
-          // return itemId
-          return this.gameItem[itemId].message
-		}
-		*/
+		state.menu = []
 		
-		// assume reaction.type == "txt"
-
 		var expanded = ""
 
 		console.log	("gTranslator.reaction: " + JSON.stringify(reaction) )
@@ -123,7 +118,8 @@ const state = {
 		
 		if ((reaction.type == "rt_msg") || (reaction.type == "rt_graph") || 
 			(reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues") || 
-			(reaction.type == "rt_play_audio") ) {
+			(reaction.type == "rt_play_audio") || 
+			(reaction.type == "rt_dev_msg") ) {
 			longMsg = {type:'messages', id:reaction.txt, attribute:'txt'}
 		} else if (reaction.type == "rt_desc") {
 			longMsg.type = "items"
@@ -133,6 +129,9 @@ const state = {
 			longMsg.type = "items"
 			longMsg.id = state.runner.world.items[reaction.o1].id
 			longMsg.attribute = "txt"
+		} else if (reaction.type == "rt_show_menu") {
+			state.menu = reaction.o1
+			return ""
 		} else {
 			return "gTranslator:[" + JSON.stringify(reaction) + "]"
 		}
@@ -140,11 +139,30 @@ const state = {
 		// if static:
 		var longMsgId = longMsg.type + "." + longMsg.id + "." + longMsg.attribute
 	
+		// to-do: this code should be in a function
+		// ---------- (begin msg resolution)
 		if (state.game.messages [state.locale] != undefined) {
 			if (state.game.messages [state.locale][longMsgId] != undefined) expanded = state.game.messages [state.locale][longMsgId].message
 		}
 		if ((expanded == "") && (state.lib.messages [state.locale] != undefined)) {
 			if (state.lib.messages [state.locale][longMsgId] != undefined) expanded = state.lib.messages [state.locale][longMsgId].message
+		}
+		// ---------- (end msg resolution)
+		
+		// if dev msg not exists, show json line to add in the console
+		if (reaction.type == "rt_dev_msg") {
+			if (expanded == "") {
+				var line = "<p>DEV MSG<br/>" ;
+				line += "\t\"" + "messages."+ reaction.txt + ".txt\": {<br/>" ;
+				line += "\t\t\"" + "message\": \"" + reaction.detail + "\"<br/>" ;
+				line += "\t},</p>";
+				console.log(line);
+			
+				// to-do: add in memory (state.language)
+			
+				return line
+			}
+			return ""
 		}
 		
 		if (expanded == "") {
@@ -175,27 +193,33 @@ const state = {
 			}
 		}
 		
+		if (expanded == "[]") expanded = ""
+		
 		if (reaction.type == "rt_graph") {	
 			// dirty trick (to-do)
 			expanded = expandParams (expanded,  {o1: reaction.param[0]})
 			
 			// to-do: show the picture (http)
-			if (reaction.isLink)
-				return "<a href='../data/games/" + state.gameId + "/images/" + reaction.url + "' target='_blank'>" + expanded + "</a><br/>"
-			else 
-				return "<p>" + expanded + "</p><img src='../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
+			//if (reaction.isLink)
+			//	return "<a href='../data/games/" + state.gameId + "/images/" + reaction.url + "' target='_blank'>" + expanded + "</a><br/>"
+			//else 
+			//	return "<p>" + expanded + "</p><img src='../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
+			return "<img src=\"./../../data/icons/languages.jpg\"/>"
+
+			return "<p>" + expanded + "</p><img src='./../../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
 			
 		} else if ((reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues")) {
 			// dirty trick (to-do)
 			expanded = expandParams (expanded,  {o1: reaction.param[0]})
 			
 			// to-do: translate item
-			return ((reaction.type == "rt_quote_begin")? "<b>" + reaction.item + "</b>: «": "" ) + expanded + ((reaction.last) ? "»" : "")
+			return ((reaction.type == "rt_quote_begin")? "<br/><b>" + reaction.item + "</b>: «": "" ) + expanded + ((reaction.last) ? "»" : "")
 			
 		} else if (reaction.type == "rt_play_audio") {
 			// to-do
 			return expanded + " (play: " + reaction.fileName + " autoStart: " + reaction.autoStart + ")"
-		}
+			
+		} 
 	
 		expanded = expandParams (expanded, reaction.param)
 		
@@ -321,16 +345,34 @@ const mutations = {
 
 	state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
 
-	state.reactionList.push ({type:"rt_msg", txt: 'Welcome'} )
-	mutations.PROCESS_CHOICE(state, {actionId: 'look'}); 
+	mutations.PROCESS_CHOICE(state, { choiceId:'action', action: {actionId:'look'}, isLeafe:true}); 
+	
 	
   }, 
+  SET_PENDING_CHOICE (state, choice) {
+	  state.menu = [] // reset 
+	  mutations.PROCESS_CHOICE (state, choice)
+  },
   PROCESS_CHOICE (state, choice) {
 	
 	state.choice = choice
+	state.menu = []
+
+	console.log ("current choice: " +  JSON.stringify(state.runner.choice))
+
+	var option
+	if (choice.isLeafe) {
+		state.pendingChoice = choice
+		option = choice.action.option
+	}
+
 	state.runner.processChoice (choice)
-	
-	//console.log ("current choice: " +  JSON.stringify(state.runner.choice))
+
+	// to-do: send parameters to kernel messages
+	if (option != undefined) {
+		state.reactionList.unshift ({type:"rt_asis", txt: ": " + option + "<br/><br/>"} )
+		state.reactionList.unshift ({type:"rt_kernel_msg", txt: "Chosen option"} )
+	}
 	
 	// refresh choices
 	state.choices = state.runner.choices 

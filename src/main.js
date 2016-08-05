@@ -21,6 +21,7 @@ Vue.http.options.emulateHTTP = true;
 var Ludi  = require('./components/Ludi.vue')
 var Login  = require('./components/Login.vue')
 var Kune  = require('./components/Kune.vue')
+var About = require('./components/About.vue')
 var Games = require('./components/Games.vue')
 var Play = require('./components/Play.vue')
 var Lingvo = require('./components/Lingvo.vue')
@@ -38,6 +39,9 @@ router.map({
 		subRoutes: {
 			'/': {
 				component: Games
+			},
+			'/about': {
+				component: About
 			},
 			'/games': {
 				component: Games 

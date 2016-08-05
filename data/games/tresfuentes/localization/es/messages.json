@@ -1969,6 +1969,59 @@
 	},
 	"messages.pulsa_para_ver_imagen_de_%o1.txt": {
 		"message": "Pulsa para ver la imagen de %o1.<br/>"
+	},
+	"messages.bienvenida_juego.txt": {
+		"message": "Bienvenido a Las Tres Fuentes, aventura interactiva desarrollada en javascript. Sobre el mismo mundo base, puedes elegir entre jugar una versión reducida de tono más infantil o la versión completa, en la que controlas dos personajes.<br/>"
+	},
+	"messages.chooseversion.txt": {
+		"message": "¿Qué versión eliges?"
+	},
+	"messages.chooseversion_simple.txt": {
+		"message": "versión reducida"
+	},
+	"messages.chooseversion_long.txt": {
+		"message": "versión completa"
+	},
+	"messages.elegida_version_reducida.txt": {
+		"message": "Es una buena elección para acabarla en menos tiempo, pero la versión completa tiene un poco más de jugo.<br/>"
+	},
+	"messages.intro_reducida_1.txt": {
+		"message": "Eres Laila la dragona. La bruja se ha cansado de que revolotees por ahí con tu hermano Kuko quemando cosas a diestro y siniestro y os ha lanzado un hechizo."
+	},
+	"messages.intro_reducida_2.txt": {
+		"message": "Te ha convertido en humana y te ha sacado de la caverna del dragón, lejos de Kuko, al otro lado de la catarata.<br/>"
+	},
+	"messages.intro_reducida_3.txt": {
+		"message": "No vas a quedarte con los brazos cruzados. Que se prepare la bruja, que se va a enterar. Kuko, no desfallezcas, ¡ya voy!<br/>"
+	},
+	"messages.undefined_gameParameters.txt": {
+		"message": "Este juego necesita tener definido el atributo gameParameters en la localidad inicial del juego.<br/>"
+	},
+	"messages.chooseversion_long_echo.txt": {
+		"message": "Has elegido la versión que elegiría un aventurero intrépido. Los protagonistas de este juego son dos amantes legendarios que han caído en desgracia ante una diosa opuesta a su amor. Aunque controlarás ambos personajes, elige ahora con quién empiezas, con la vagabunda, en realidad princesa del mar, que abandonó su patria por amor; o bien con el cazador, pariente de la diosa malvada.<br/>"
+	},
+	"messages.chooseprimitives.PC_woman.txt": {
+		"message": "la vagabunda"
+	},
+	"messages.chooseprimitives.PC_man.txt": {
+		"message": "el cazador"
+	},
+	"messages.VC_dragona_atraviesa_catarata_1.txt": {
+		"message": "Convertida en mostruo marino, "
+	},
+	"messages.DLG_tocas_nivel_4.txt": {
+		"message": "¡Enhorabuena, estás hecho un virtuoso! Ahora ya eres digno de que yo toque la flauta para ti. Honraremos a la luna y ella hará algo por ti."
+	},
+	"messages.VR_transformación_flautista_2.txt": {
+		"message": ""
+	},
+	"messages.VR_transformación_flautista_3.txt": {
+		"message": ""
+	},
+	"messages.Menu_drinkNo_no_reaction.txt": {
+		"message": "Te lo piensas mejor y no te bebes la pócima todavía.<br/>"
+	},
+	"messages.practicar_flauta_0.txt": {
+		"message": "fiu, fiu, la conchambrosa flauta sólo hace un ruido sin gracia, apenas si sabes colocar los dedos en los agujeros.<br/>"
 	}
-
 }

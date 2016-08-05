@@ -106,8 +106,8 @@
     "Stable games": {
         "message": "Stabilaj ludoj"
     },
-    "Under contruction games": {
-        "message": "Konstruataj ludoj"
+    "Under construction": {
+        "message": "Konstruata"
     },
     "QuitGame": {
         "message": "Forlasu ludon"
@@ -525,7 +525,11 @@
     }, 
     "Additional languages": {
         "message": "Aliaj lingvoj"
+    }, 
+    "Chosen option": {
+        "message": "Elektita ebleco"
+    },
+	"Type your user name and push enter": {
+        "message": "Bonvolu tajpi vian kromnomon kaj puŝi"
     }
-	
-	
 }

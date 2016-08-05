@@ -1,0 +1,39 @@
+{
+	"ludi_id": "2", 
+	"name": "tresfuentes", 
+	"translation": [
+		{
+			"language": "es",
+			"title": "El secreto de las tres fuentes",
+			"desc": "Sencillo juego para LUDI",
+			"introduction": "Una hechicera te separó de tu amor. Rompe el hechizo y vuelve a reunirte con él.",	
+			"author": {
+				"name": "Francisco Orta", 
+				"ludi_account": "forta", 
+				"email": "ludi.ludon@gmail.com"
+			}
+		} ,
+		{
+			"language": "en",
+			"title": "The Secret of the Three Fountains",
+			"desc": "Simple game for LUDI",
+			"introduction": "A witch separates you from your love. He breaks the spell and return to meet him.",	
+			"author": {
+				"name": "Francisco Orta", 
+				"ludi_account": "forta", 
+				"email": "ludi.ludon@gmail.com"
+			}
+		} ,
+		{
+			"language": "eo",
+			"title": "La Sekreto de la Tri Fontoj",
+			"desc": "Simpla ludo por LUDI",
+			"introduction": "Sorĉistino disigas vin de via amo. Li rompas la sorĉon kaj redoni al li renkonte.",	
+			"author": {
+				"name": "Francisco Orta", 
+				"ludi_account": "forta", 
+				"email": "ludi.ludon@gmail.com"
+			}
+		} 		
+	]
+}

@@ -1,0 +1,1516 @@
+{
+    "items": [
+        {
+            "id": "pc_harry",
+            "type": "pc",
+            "loc": "loc_dunvojo",
+            "att": {
+ 				"hasEnergy": [
+					{"energy": "75"},
+					{"atako": "10"},
+					{"protekto": "10"}
+				]
+            },
+            "state": {
+                "turns": 0,
+                "score": 0,
+                "items": []
+            }
+        },
+        {
+            "id": "limbo",
+            "type": "loc"
+        },
+        {
+            "id": "loc_dunvojo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d180",
+                    "target": "loc_urbo",
+					"lookDir":"EL_duonvojo_AL_urbo"
+                },
+                {
+                    "dir": "d0",
+                    "target": "loc_dunoj"
+                }
+            ]
+        },
+        {
+            "id": "loc_urbo",
+			"att": {  
+				"endGame" : []
+			}
+        },
+        {
+            "id": "loc_dunoj",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_strando"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_orientaj_dunoj"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_dunvojo"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_okcidentaj_dunoj"
+                }
+            ],
+			"att": { 
+				"givesPoints": [{"points":"1"}]
+			}
+        },
+		{
+            "id": "loc_dunoj_2",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_strando_2"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_orientaj_dunoj_2"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_sur_la_vojo"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_okcidentaj_dunoj_2"
+                },
+                {
+                    "dir": "shipo",
+                    "target": "loc_al_la_shipo",
+					"lookDir":"EL_dunoj_2_AL_al_la_shipo"
+                }
+            ]
+        },
+        {
+            "id": "loc_orientaj_dunoj",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_orienta_strando"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_orientegaj_dunoj"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_orientegaj_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_dunoj"
+                }				
+            ]
+        },
+        {
+            "id": "loc_orientaj_dunoj_2",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_orienta_strando_2"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_orientegaj_dunoj_2"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_orientegaj_dunoj_2"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_dunoj_2"
+                }				
+            ]
+        },
+        {
+            "id": "loc_orientegaj_dunoj",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_orientega_strando"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_perdita_en_dunoj"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_perdita_en_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_orientaj_dunoj"
+                }
+            ]
+        },
+        {
+            "id": "loc_orientegaj_dunoj_2",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_orientega_strando_2"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_perdita_en_dunoj"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_perdita_en_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_orientaj_dunoj_2"
+                }
+            ]
+        },
+        {
+            "id": "loc_okcidentaj_dunoj",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_okcidenta_strando"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_dunoj"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_okcidentegaj_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_okcidentegaj_dunoj"
+                },
+                {
+                    "dir": "up",
+                    "target": "loc_supra_duno",
+					"lookDir":"EL_okcidentaj_dunoj_AL_supra_duno"
+                }
+            ]
+        },
+        {
+            "id": "loc_okcidentaj_dunoj_2",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_okcidenta_strando_2"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_dunoj_2"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_okcidentegaj_dunoj_2"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_okcidentegaj_dunoj_2"
+                }
+            ]
+        },
+        {
+            "id": "loc_okcidentegaj_dunoj",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_okcidentega_strando"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_okcidentaj_dunoj"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_perdita_en_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_perdita_en_dunoj"
+                }
+            ]
+        },
+        {
+            "id": "loc_okcidentegaj_dunoj_2",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_okcidentega_strando_2"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_okcidentaj_dunoj_2"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_perdita_en_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_perdita_en_dunoj"
+                }
+            ]
+        },
+        {
+            "id": "loc_perdita_en_dunoj",
+            "type": "loc",
+			"att": {
+				"isEndGame": []
+			}
+        },
+        {
+            "id": "loc_supra_duno",
+            "type": "loc",
+            "address": [
+				{
+					"dir": "down",
+					"target": "loc_okcidentaj_dunoj"
+				}
+			]
+        },
+        {
+            "id": "loc_strando",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_orienta_strando"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_okcidenta_strando"
+                }
+            ]
+        },
+        {
+            "id": "loc_strando_2",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_al_la_shipo",
+					"lookDir":"EL_strando_2_AL_al_la_shipo"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_orienta_strando_2"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_dunoj_2"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_okcidenta_strando_2"
+                },
+                {
+                    "dir": "down",
+                    "target": "loc_en_la_kavo_2"
+                }
+            ]
+        },
+        {
+            "id": "loc_orienta_strando",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_orientega_strando"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_orientaj_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_strando"
+                }
+            ]
+        },
+        {
+            "id": "loc_orienta_strando_2",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_orientega_strando_2"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_orientaj_dunoj_2"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_strando_2"
+                }
+            ]
+        },
+        {
+            "id": "loc_orientega_strando",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_orientegaj_dunoj"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_orientaj_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_orienta_strando"
+                }				
+            ]
+        },
+        {
+            "id": "loc_orientega_strando_2",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_orientegaj_dunoj_2"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_orientaj_dunoj_2"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_orienta_strando_2"
+                }
+            ]
+        },
+        {
+            "id": "loc_okcidenta_strando",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_strando"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_okcidentaj_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_okcidentega_strando"
+                },
+                {
+                    "dir": "down",
+                    "target": "loc_en_la_kavo",
+					"lookDir":"EL_okcidenta_strando_AL_en_la_kavo"  
+                }
+            ]
+        },
+        {
+            "id": "loc_okcidenta_strando_2",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_strando_2"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_okcidentaj_dunoj_2"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_okcidentega_strando_2"
+                }
+            ]
+        },
+        {
+            "id": "loc_okcidentega_strando",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_okcidenta_strando"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_okcidentaj_dunoj"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_okcidentegaj_dunoj"
+                }
+            ]
+        },
+        {
+            "id": "loc_okcidentega_strando_2",
+            "type": "loc",
+            "address": [
+                {
+                    "id": "d90",
+                    "target": "loc_okcidenta_strando_2"
+                },
+                {
+                    "id": "d180",
+                    "target": "loc_okcidentaj_dunoj_2"
+                },
+                {
+                    "id": "d270",
+                    "target": "loc_okcidentegaj_dunoj_2"
+                }
+            ]
+        },
+        {
+            "id": "loc_post_eksplodo",
+            "type": "loc",
+			"att": {
+				"isEndGame": []
+			}
+        },
+        {
+            "id": "loc_en_la_kavo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "up",
+                    "target": "loc_okcidenta_strando"
+                }
+            ]
+        },
+        {
+            "id": "loc_en_la_kavo_2",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "up",
+                    "target": "loc_strando_2"
+                }
+            ],
+            "att": {
+				"givesPoints": [{"points":"1"}]
+			}
+        },
+        {
+            "id": "loc_sur_la_vojo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_dunoj_2"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_al_la_vilaĝo",
+					"lookDir":"EL_sur_la_vojo_AL_al_la_vilagho"
+                },
+                {
+                    "dir": "vilagho",
+                    "target": "loc_al_la_vilaĝo",
+					"lookDir":"EL_sur_la_vojo_AL_al_la_vilagho"
+                }
+            ]
+        },
+        {
+            "id": "loc_al_la_vilaĝo",
+            "type": "loc"
+        },
+       {
+            "id": "loc_al_la_shipo",
+            "type": "loc",
+            "address": [
+				{
+					"dir": "d180",
+					"target": "loc_strando_2"
+				}
+			] ,
+            "att": {
+                "score": [{"state":"1"}]
+            }
+        },
+        {
+            "id": "loc_naĝi_en_maro",
+            "type": "loc"
+        },
+        {
+            "id": "loc_sur_la_shipo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "down",
+                    "target": "loc_al_la_shipo"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_baborda_antawshipo"
+                },
+                {
+                    "dir": "d0",
+                    "target": "loc_ĉe_la_masto"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_baborda_malantawshipo"
+                },
+                {
+                    "dir": "tribordo",
+                    "target": "loc_triborda_mezshipo"
+                }
+            ],
+            "att": {
+                "score": [{"state":"2"}]
+            }
+        },
+        {
+            "id": "loc_baborda_mezshipo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_baborda_malantawshipo"
+                },
+                {
+                    "dir": "d0",
+                    "target": "loc_ĉe_la_masto"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_baborda_antawshipo"
+                },
+                {
+                    "dir": "tribordo",
+                    "target": "loc_triborda_mezshipo"
+                }
+            ]
+        },
+        {
+            "id": "loc_salti_de_la_shipo",
+            "type": "loc"
+        },
+        {
+            "id": "loc_baborda_antawshipo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_baborda_mezshipo"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_antaŭŝipo"
+                },
+                {
+                    "dir": "d0",
+                    "target": "loc_antaŭŝipo"
+                },
+                {
+                    "dir": "tribordo",
+                    "target": "loc_triborda_mezshipo"
+                }
+            ]
+        },
+        {
+            "id": "loc_baborda_malantawshipo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d270",
+                    "target": "loc_baborda_mezshipo"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_malantaŭŝipo"
+                },
+                {
+                    "dir": "d0",
+                    "target": "loc_malantaŭŝipo"
+                },
+                {
+                    "dir": "tribordo",
+                    "target": "loc_triborda_malantawshipo"
+                }
+            ]
+        },
+        {
+            "id": "loc_ĉe_la_masto",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d180",
+                    "target": "loc_baborda_mezshipo"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_antaŭŝipo"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_malantaŭŝipo"
+                },
+                {
+                    "dir": "d0",
+                    "target": "loc_triborda_mezshipo"
+                },
+                {
+                    "dir": "up",
+                    "target": "loc_en_la_observejo"
+                }
+            ]
+        },
+        {
+            "id": "loc_en_la_observejo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "down",
+                    "target": "loc_ĉe_la_masto"
+                },
+                {
+                    "dir": "jardoj",
+                    "target": "loc_iri_al_jardoj",
+					"lookDir":"EL_en_la_observejo_AL_iri_al_la_jaroj"
+                }
+            ]
+        },
+        {
+            "id": "loc_iri_al_jardoj",
+            "type": "loc"
+        },
+        {
+            "id": "loc_triborda_mezshipo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d270",
+                    "target": "loc_triborda_antawshipo"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_triborda_malantawshipo"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_ĉe_la_masto"
+                },
+                {
+                    "dir": "babordo",
+                    "target": "loc_baborda_mezshipo"
+                }
+            ]
+        },
+        {
+            "id": "loc_triborda_antawshipo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_triborda_mezshipo"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_antaŭŝipo"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_antaŭŝipo"
+                },
+                {
+                    "dir": "babordo",
+                    "target": "loc_baborda_antawshipo"
+                }
+            ]
+        },
+        {
+            "id": "loc_triborda_malantawshipo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d270",
+                    "target": "loc_triborda_mezshipo"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_malantaŭŝipo"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_malantaŭŝipo"
+                },
+                {
+                    "dir": "babordo",
+                    "target": "loc_baborda_malantawshipo"
+                }
+            ]
+        },
+        {
+            "id": "loc_nova_insulo",
+            "type": "loc"
+        },
+        {
+            "id": "loc_antaŭŝipo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_triborda_antawshipo"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_baborda_antawshipo"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_ĉe_la_masto"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_antaŭa_kajuto"
+                },
+                {
+                    "dir": "down",
+                    "target": "loc_antaŭsubŝipo"
+                }
+            ],
+			"att": {
+				"isDark": []
+			}
+        },
+        {
+            "id": "loc_antaŭa_kajuto",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d90",
+                    "target": "loc_antaŭŝipo"
+                },
+                {
+                    "dir": "out",
+                    "target": "loc_antaŭŝipo"
+                }
+            ],
+			"att": {
+				"isDark": []
+			}
+        },
+        {
+            "id": "loc_ŝipo_en_fajro",
+            "type": "loc"
+        },
+        {
+            "id": "loc_subŝipo",
+            "type": "loc",
+            "address": [
+				{
+					"dir": "d270",
+					"target": "loc_antaŭsubŝipo"
+				}
+			],
+			"att": {
+				"isDrk": []
+			}
+        },
+        {
+            "id": "loc_fino",
+            "type": "loc",
+            "att": {
+                "score": [{"state":"5"}]
+            }
+        },
+        {
+            "id": "loc_malantaŭŝipo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d0",
+                    "target": "loc_triborda_malantawshipo"
+                },
+                {
+                    "dir": "d180",
+                    "target": "loc_baborda_malantawshipo"
+                },
+                {
+                    "dir": "d270",
+                    "target": "loc_ĉe_la_masto"
+                },
+                {
+                    "dir": "kajuto",
+                    "target": "loc_kajuto",
+					"lookDir":"EL_malantaw_shipo_AL_kajuto"
+                }
+            ]
+        },
+        {
+            "id": "loc_kajuto",
+            "type": "loc",
+            "address": [
+				{
+					"dir": "out",
+					"target": "loc_malantaŭŝipo"
+				}
+			],
+			"att": {
+				"isDark": []
+			}
+        },
+        {
+            "id": "loc_antaŭsubŝipo",
+            "type": "loc",
+            "address": [
+                {
+                    "dir": "d270",
+                    "target": "loc_antaŭŝipo"
+                },
+                {
+                    "dir": "up",
+                    "target": "loc_antaŭŝipo"
+                },
+                {
+                    "dir": "d90",
+                    "target": "loc_subŝipo"
+                }
+            ],
+			"att": {
+				"isDark": []
+			}
+        },
+        {
+            "id": "loc_mortas",
+            "type": "loc"
+        },
+        {
+            "id": "obj_buterita_pano",
+            "type": "obj",
+            "loc": "pc_harry",
+            "att": {
+				"isTakeAble": [{"weight":"4"},{"size":"4"}],
+				"isEatAble": [{"energy":"70"}]
+			}
+        },
+        {
+            "id": "obj_ligna_bastono",
+            "type": "obj",
+            "loc": "loc_dunoj",
+            "att": {
+				"isTakeAble": [{"weight":"4"},{"size":"9"}],
+				"isWeapon": [{"maxDamage": "15"}],
+				"isBurnAble": [{}]
+			}
+        },
+        {
+            "id": "obj_malnova_ŝuo",
+            "type": "obj",
+            "loc": "loc_orientaj_dunoj",
+            "att": {
+                "isTakeAble": [{"weight":"2"},{"size":"3"}]
+            }
+        },
+        {
+            "id": "obj_verda_pomo",
+            "type": "obj",
+            "loc": "loc_orientaj_dunoj",
+            "att": {
+                "isTakeAble": [{"weight":"2"}],
+				"isEatAble": [{"energy":"15"}]
+            }
+        },
+        {
+            "id": "obj_malplena_bierladskatolo",
+            "type": "obj",
+            "loc": "loc_okcidentaj_dunoj",
+            "att": {
+                "isTakeAble": [{"size":"2"}]
+            }
+        },
+        {
+            "id": "obj_plena_bierbotelo",
+            "type": "obj",
+            "loc": "npc_indiĝena_knabo",
+            "att": {
+                "isTakeAble": [{"weight":"10"},{"size":"8"}],
+				"givesPoints": [{"points":"2"}],
+				"isDrinkAble": [{"energy":"100"},{"newObj":"obj_malplena_bierbotelo"}]
+            }
+        },
+        {
+            "id": "obj_malplena_bierbotelo",
+            "type": "obj",
+            "att": {
+                "isTakeAble": [{"weight":"3"},{"size":"8"}]
+            }
+        },
+        {
+            "id": "obj_plastika_poŝlanterno",
+            "type": "obj",
+            "loc": "loc_supra_duno",
+            "att": {
+                "isTakeAble": [{"weight":"4"},{"size":"4"}],
+				"givesPoints": [{"points":"1"}],
+				"isLightSource": []
+            }
+        },
+        {
+            "id": "obj_kokakolaa_boteleto",
+            "type": "obj",
+            "loc": "loc_strando",
+            "att": {
+                "isTakeAble": [{"weight":"10"},{"size":"5"}],
+				"isDrinkAble": [{"energy":"20"},{"newObj":"obj_malplena_boteleto"}]
+            }
+        },
+        {
+            "id": "obj_malplena_boteleto",
+            "type": "obj",
+            "att": {
+                "isTakeAble": [{"size":"5"}]
+            }
+        },
+        {
+            "id": "obj_dormanta_matroso",
+            "type": "obj",
+            "att": {
+                "isTakeAble": [{"weight":"200"}]
+            }
+        },
+        {
+            "id": "obj_malplena_viskibotelo",
+            "type": "obj",
+            "att": {
+                "isTakeAble": [{"weight":"4"},{"size":"8"}]
+            }
+        },
+        {
+            "id": "obj_malnova_sako",
+            "type": "obj",
+            "loc": "loc_okcidentega_strando"
+        },
+        {
+            "id": "obj_malnova_sako_2",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+            "id": "obj_metala_aĵo",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+                "isTakeAble": [{"weight":"10"},{"size":"3"}],
+				"Fino": [{"state":"5"}],
+                "hasDecrementor": [{"active":"false"},{"counter":"5"}]
+            }
+        },
+        {
+            "id": "obj_ligna_kesto",
+            "type": "obj",
+            "loc": "loc_en_la_kavo",
+            "att": {
+				"isOpen": [],
+                "isTakeAble": [{"weight":"200"}]
+            }
+        },
+        {
+            "id": "obj_ligna_kesto_2",
+            "type": "obj",
+            "loc": "loc_en_la_kavo_2",
+            "att": {
+				"isOpen": [{"state":"open"}],
+				"isContainer": [{"maxWeight": "200"}],
+                "isTakeAble": [{"weight":"95"},{"size":"95"}]
+            }
+        },
+        {
+            "id": "obj_volvita_pergameno",
+            "type": "obj",
+            "loc": "obj_ligna_kesto_2",
+            "att": {
+				"isTakeAble": [{"size":"5"}],
+				"isBurnAble": [],
+				"isReadAble": [{"msgId":"volvita_pergameno_read"}]
+            }
+        },
+        {
+            "id": "obj_ora_kolĉeno",
+            "type": "obj",
+            "loc": "obj_ligna_kesto_2",
+            "att": {
+				"isTakeAble": [{"weight":"8"},{"size":"2"}],
+                "givesPoints": [{"points":"1"}]
+            }
+        },
+        {
+            "id": "obj_sisala_ŝnuro",
+            "type": "obj",
+            "loc": "loc_orienta_strando_2",
+            "att": {
+				"isTakeAble": [{"weight":"5"},{"size":"5"}],
+				"isWeapon": [{"maxDamage":"5"}],
+                "givesPoints": [{"points":"1"}],
+				"isBurnAble": [{}]
+            }
+        },
+        {
+            "id": "obj_metala_hoko",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isTakeAble": [{"weight":"3"}],
+				"PerPiki": [{"state":"4"}],
+				"isWeapon": [{"maxDamage":"4"}]		
+            }
+        },
+        {
+            "id": "obj_vraka_ligno",
+            "type": "obj",
+            "loc": "loc_okcidenta_strando_2",
+            "att": {
+				"isTakeAble": [{"weight":"10"},{"size":"10"}]
+            }
+        },
+        {
+            "id": "obj_pirata_ŝipo",
+            "type": "obj",
+            "loc": "loc_al_la_shipo"
+        },
+        {
+            "id": "obj_pirata_ŝipo_2",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+            "id": "obj_pendanta_ŝnuro",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+            "id": "obj_rompita_ŝnuro",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isTakeAble": [{"weight":"2"},{"size":"2"}],
+				"isBurnAble": []
+            }
+        },
+        {
+            "id": "obj_pendanta_ŝnuro_2",
+            "type": "obj",
+            "loc": "loc_sur_la_shipo",
+			"isBurnAble": []
+        },
+        {
+            "id": "obj_plastika_kolĉeno",
+            "type": "obj",
+            "loc": "loc_baborda_antawshipo",
+            "att": {
+				"isTakeAble": [{"weight":"4"},{"size":"2"}],
+                "givesPoints": [{"points":"1"}]
+            }
+        },
+        {
+            "id": "obj_pirata_flago",
+            "type": "obj",
+            "loc": "loc_en_la_observejo",
+            "att": {
+				"isTakeAble": [{"size":"3"}],
+                "givesPoints": [{"points":"1"}],
+				"isBurnAble": []
+            }
+        },
+        {
+            "id": "obj_akra_ponardo",
+            "type": "obj",
+            "loc": "loc_en_la_observejo",
+            "att": {
+				"isTakeAble": [{"weight":"5"},{"size":"6"}],
+				"isWeapon": [{"maxDamage":"40"}]
+            }
+        },
+        {
+            "id": "obj_fera_ankraĉeno",
+            "type": "obj",
+            "loc": "loc_triborda_malantawshipo"
+        },
+        {
+            "id": "obj_malseka_fojno", 
+            "type": "obj",
+            "loc": "loc_antaŭa_kajuto",
+            "att": {
+				"isBurnAble": []
+            }
+        },
+        {
+            "id": "obj_ora_monero",
+            "type": "obj",
+            "loc": "obj_malseka_fojno",
+            "att": {
+                "givesPoints": [{"points":"1"}],
+				"isReadAble": [{"msgId":"ora_monero_read"}]		
+            }
+        },
+        {
+            "id": "obj_malgranda_infano",
+            "type": "obj",
+            "loc": "loc_subŝipo"
+        },
+        {
+            "id": "obj_ligna_trabo",
+            "type": "obj",
+            "loc": "loc_subŝipo"
+        },
+        {
+            "id": "obj_ligita_ŝnuro",
+            "type": "obj",
+            "loc": "loc_subŝipo"
+        },
+        {
+            "id": "obj_pendanta_hamako",
+            "type": "obj",
+            "loc": "loc_subŝipo"
+        },
+        {
+            "id": "obj_ligna_kesto_3",
+            "type": "obj",
+            "loc": "loc_subŝipo"
+        },
+        {
+            "id": "obj_granda_mapo",
+            "type": "obj",
+            "loc": "loc_kajuto",
+            "att": {
+				"isTakeAble": [{"size":"5"}],
+				"isReadAble": [{"msgId":"granda_mapo_read"}],
+				"isBurnAble": []
+            }
+        },
+        {
+            "id": "obj_grasa_kolbaso",
+            "type": "obj",
+            "loc": "loc_kajuto",
+            "att": {
+				"isTakeAble": [{"weight":"15"},{"size":"10"}],
+                "isEatAble": [{"energy":"100"}]
+            }
+        },
+        {
+            "id": "obj_irlanda_viskio",
+            "type": "obj",
+            "loc": "loc_kajuto",
+            "att": {
+				"isTakeAble": [{"weight":"15"},{"size":"8"}],
+                "isDrinkAble": [{"energy":"10"}],
+                "givesPoints": [{"points":"1"}]
+            }
+        },
+        {
+            "id": "obj_magneta_kompaso",
+            "type": "obj",
+            "loc": "loc_kajuto",
+            "att": {
+				"isTakeAble": [{"weight":"5"},{"size":"5"}],
+                "score": [{"state":"1"}],
+                "givesPoints": [{"points":"1"}]
+            }
+        },
+        {
+            "id": "obj_roza_konko",
+            "type": "obj",
+            "loc": "loc_orienta_strando"
+        },
+        {
+            "id": "obj_sunbrula_kremo",
+            "type": "obj",
+            "loc": "loc_orienta_strando",
+            "att": {
+                "isTakeAble": [{"weight":"2"},{"size":"2"}]
+            }
+        },
+        {
+            "id": "obj_ruĝa_bantuko",
+            "type": "obj",
+            "loc": "loc_orienta_strando",
+            "att": {
+                "isTakeAble": [{"size":"8"}],
+				"isBurnAble": []
+            }
+        },
+        {
+            "id": "obj_blua_saketo",
+            "type": "obj",
+            "loc": "loc_orientega_strando",
+            "att": {
+				"isContainer": [{"maxWeight": "1"}],
+				"isBurnAble": []
+            }
+        },
+        {
+            "id": "obj_malgranda_alumetskatolo",
+            "type": "obj",
+            "loc": "obj_blua_saketo",
+			"att": {
+				"isReadAble": [{"msgId": "malgranda_alumetskatolo_read"}],
+				"canBurn": []
+			}
+        },
+        {
+            "id": "obj_plastika_sitelo",
+            "type": "obj",
+            "loc": "loc_okcidenta_strando",
+            "att": {
+                "isTakeAble": [{"weight":"2"},{"size":"10"}],
+				"isContainer": [{"maxWeight": "12"}]
+            }
+        },
+        {
+            "id": "obj_stranda_kavo",
+            "type": "obj",
+            "loc": "loc_okcidenta_strando",
+            "att": {}
+        },
+        {
+            "id": "obj_kunikla_fekaĵo",
+            "type": "obj",
+            "loc": "loc_okcidentaj_dunoj_2"
+        },
+        {
+            "id": "obj_plastika_ŝovelilo",
+            "type": "obj",
+            "loc": "obj_plastika_sitelo",
+            "att": {
+                "isTakeAble": [{"weight":"1"},{"size":"2"}],
+				"PerBati": [{"state":"5"}]
+            }
+        },
+		{
+            "id": "obj_mortinta_knabo",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isTakeAble": [{"weight":"50"},{"size":"70"}]
+            }
+        },
+		{
+            "id": "obj_morta_kapitano",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isTakeAble": [{"weight":"99"}]
+            }
+        },       
+		{
+            "id": "obj_morta_muso",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isTakeAble": [{"weight":"20"},{"size":"20"}]
+            }
+        },	
+		{
+            "id": "obj_morta_pirato",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isTakeAble": [{"weight":"99"},{"size":"99"}]
+            }
+        },        
+		{
+            "id": "obj_morta_matroso",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isTakeAble": [{"weight":"200"}]
+            }
+        },
+		{
+            "id": "obj_morta_kuniklo",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isTakeAble": [{"weight":"16"},{"size":"8"}],
+				"isEatAble": [{"energy":"30"},{"poison":"true"}]
+            }
+        },
+		{
+            "id": "obj_morta_rato",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isTakeAble": [{"weight":"10"},{"size":"5"}],
+				"isEatAble": [{"energy":"10"}]
+            }
+        },
+		{
+            "id": "npc_indiĝena_knabo",
+            "type": "npc",
+            "loc": "loc_okcidentegaj_dunoj",
+            "att": {
+ 				"hasEnergy": [
+					{"energy": "10"},
+					{"newObj": "obj_mortinta_knabo"},
+					{"manghemo":"30"}, 
+					{"agreso":"20"},
+					{"atako": "40"},
+					{"protekto": "10"}
+				]
+            }
+        },
+        {
+            "id": "npc_pirata_kapitano",
+            "type": "npc",
+            "att": {
+				"hasEnergy": [
+					{"energy": "10"}, 
+					{"newObj": "obj_morta_kapitano"},
+					{"agreso":"25"},
+					{"atako": "30"},
+					{"protekto": "20"}					
+				]
+            }
+        },
+        {
+            "id": "npc_griza_muso",
+            "type": "npc",
+            "loc": "loc_triborda_malantawshipo",
+            "att": {
+				"hasEnergy": [
+					{"energy": "3"}, 
+					{"newObj": "obj_morta_muso"},
+					{"agreso":"10"},
+					{"atako": "5"},
+					{"protekto": "10"},
+					{"fughemo":"80"},
+					{"manghemo": "20"},
+					{"vagemo": "20"}					
+				]
+			}
+        },
+        {
+            "id": "npc_forta_pirato",
+            "type": "npc",
+            "loc": "loc_triborda_malantawshipo",
+			"att": {
+				"hasEnergy": [
+					{"energy": "20"}, 
+					{"newObj": "obj_morta_pirato"},
+					{"agreso":"60"},
+					{"atako": "90"},
+					{"protekto": "20"},
+					{"vagemo": "30"}					
+				]
+			}
+        },
+		{
+            "id": "npc_ebria_matroso",
+            "type": "npc",
+            "loc": "loc_antaŭsubŝipo",
+            "att": {
+				"hasEnergy": [
+					{"energy": "50"}, 
+					{"newObj": "obj_morta_matroso"},
+					{"agreso":"80"},
+					{"atako": "80"},
+					{"protekto": "20"},
+					{"trinkemo":"1"}
+				]
+            }
+        },
+		{
+            "id": "npc_longorela_kuniklo",
+            "type": "npc",
+            "loc": "loc_okcidentaj_dunoj_2",
+            "att": {
+				"hasEnergy": [
+					{"energy": "3"}, 
+					{"newObj": "obj_morta_kuniklo"},
+					{"protekto": "20"},
+					{"fughemo":"50"}
+				]
+            }
+        },
+        {
+            "id": "npc_bruna_rato",
+            "type": "npc",
+            "loc": "loc_orientaj_dunoj_2",
+            "att": {
+				"hasEnergy": [
+					{"energy": "12"}, 
+					{"newObj": "obj_morta_rato"},
+					{"agreso":"40"},
+					{"atako": "35"},
+					{"protekto": "6"},
+					{"manghemo":"10"}					
+				]
+            }
+        }
+    ],
+    "attributes": [
+		{
+            "id": "hasEnergy",
+			"properties": [
+                {  "id": "energy", "value": "75", "use":"mandatory" },
+				{  "id": "newObj", "value": "undefined", "use":"mandatory" },
+				{  "id": "manghemo", "value": "0" },
+				{  "id": "agreso", "value": "0" },
+				{  "id": "atako", "value": "0" },
+				{  "id": "protekto", "value": "0" },
+				{  "id": "fughemo", "value": "0" },
+				{  "id": "vagemo", "value": "0" },
+				{  "id": "trinkemo", "value": "0" }
+            ],
+			"asignedTo": ["pc", "npc"]
+        },
+		{
+			"id": "isEatAble",
+			"properties": [
+				{  "id": "newObj", "value": "undefined", "use":"mandatory" },
+                {"id": "energy", "value": "5", "use":"mandatory"},
+				{"id": "poison", "value": "false"}
+            ]
+        },
+		{
+            "id": "isDrinkAble",
+			"properties": [
+				{"id": "newObj", "value": "undefined", "use":"mandatory" },
+                {"id": "energy", "value": "5", "use":"mandatory"},
+				{"id": "poison", "value": "false"}
+            ]
+        }		
+    ],
+	"actions": [],
+	"directions": [
+	    { "id": "duno" }, 
+        { "id": "piratshipo" }, 
+        { "id": "vilagho"}, 
+        { "id": "jardoj"}, 
+        { "id": "babordo"}, 
+        { "id": "kajuto"} 
+	],
+	"attExceptions":[
+	  {  
+         "id":"isTakeAble",
+         "exceptionList": ["obj_stranda_kavo", "obj_pirata_ŝipo","obj_pirata_ŝipo_2","obj_ligna_kesto","obj_ligna_kesto_2", "obj_pendanta_ŝnuro", "obj_pendanta_ŝnuro_2","obj_malseka_fojno", "obj_malgranda_infano", "obj_ligna_trabo", "obj_ligita_ŝnuro", "obj_pendanta_hamako", "obj_ligna_kesto_3", "obj_fera_ankraĉeno"]
+	  } 	  
+   ]
+}

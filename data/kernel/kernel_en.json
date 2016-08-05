@@ -106,8 +106,8 @@
     "Stable games": {
         "message": "Stable games"
     },
-    "Under construction games": {
-        "message": "Under construction games"
+    "Under construction": {
+        "message": "Under construction"
     },
     "QuitGame": {
         "message": "Quit game"
@@ -525,5 +525,11 @@
     }, 
     "Additional languages": {
         "message": "Additional languages"
-    }
+    }, 
+    "Chosen option": {
+        "message": "Chosen option"
+     },
+	"Type your user name and push enter": {
+        "message": "Please, type your user name and push enter"
+   }
 }

@@ -1,0 +1,529 @@
+{
+    "Play": { "message": "Play" },
+    "Boards": { "message": "Boards" },
+    "Messages": { "message": "Messages" },
+    "Language": { "message": "Language" },
+    "History": { "message": "History"},
+	"Together": { "message": "Together" },
+	"Username": { "message": "User name" }, 
+	"Choose Game": { "message": "Please, choose game to load" }, 
+    "server_welcome": {
+        "message": "welcome to the LUDI network."
+    },
+    "server_invalidRequireName": {
+        "message": "sorry, you need to tell me your name first."
+    },
+    "server_invalidNameChange": {
+        "message": "not sure what you did, but please do not change your username during the session."
+    },
+    "server_filtersChanged": {
+        "message": "filters changed"
+    },
+    "server_leftChatroom": {
+        "message": "{{id}} has left the LUDI network."
+    },
+    "server_haveFun": {
+        "message": "have fun, {{id}}."
+    },
+    "server_hasJoinedRoom": {
+        "message": "{{id}} has joined the LUDI network."
+    },
+    "server_invalidName": {
+        "message": "sorry, {{id}} is an invalid username. make sure there are no spaces or bizarre characters in your name (underscores are okay). disconnecting."
+    },
+    "Input": {
+        "message": "Action!"
+    },
+    "SwitchOrientation": {
+        "message": "Switch orientation"
+    },
+    "SocialTab": {
+        "message": "Social"
+    },
+    "Panels": {
+        "message": "Panels"
+    },
+    "Send message": {
+        "message": "Send message"
+    },
+    "Offline Players": {
+        "message": "Offline"
+    },
+    "Online Players": {
+        "message": "Online"
+    },
+    "Game Players": {
+        "message": "Game"
+    },
+    "Players Here": {
+        "message": "Here"
+    },
+    "All Messages": {
+        "message": "All"
+    },
+    "Global Messages": {
+        "message": "Global"
+    },
+    "Game Messages": {
+        "message": "Game"
+    },
+    "Score": {
+        "message": "Score"
+    },
+    "Turns": {
+        "message": "Turns"
+    },
+    "Scope": {
+        "message": "Scope"
+    },
+    "Text": {
+        "message": "Text"
+    },
+    "Location": {
+        "message": "Location"
+    },
+    "Here": {
+        "message": "Here"
+    },
+    "Location Messages": {
+        "message": "Location"
+    },
+    "Private Messages": {
+        "message": "Private"
+    },
+    "Global Board": {
+        "message": "Global"
+    },
+    "Game Board": {
+        "message": "Game"
+    },
+    "Location Board": {
+        "message": "Location"
+    },
+    "Private Board": {
+        "message": "Private"
+    },
+    "Stable games": {
+        "message": "Stable games"
+    },
+    "Under construction games": {
+        "message": "Under construction games"
+    },
+    "QuitGame": {
+        "message": "Quit game"
+    },
+    "Save game": {
+        "message": "Save game"
+    },
+    "Saved games": {
+        "message": "Saved games"
+    },
+    "Load game ": {
+        "message": "Load game"
+    },
+    "Load game from start": {
+        "message": "Load game from start"
+    },
+    "Load saved game": {
+        "message": "Load saved game"
+    },
+    "Refresh": {
+        "message": "Refresh"
+    },
+    "Redescribe": {
+        "message": "Redescribe"
+    },
+    "PlayerView": {
+        "message": "Players"
+    },
+    "PlayingView": {
+        "message": "Game Zone"
+    },
+    "LocationView": {
+        "message": "Location"
+    },
+    "GamesView": {
+        "message": "Games"
+    },
+    "ActivityView": {
+        "message": "Activity"
+    },
+    "ChatView": {
+        "message": "Chat"
+    },
+    "HelpView": {
+        "message": "Help"
+    },
+    "File": {
+        "message": "File"
+    },
+    "HistoryView": {
+        "message": "History"
+    },
+    "you": {
+        "message": "you"
+    },
+    "Your settings": {
+        "message": "Your settings"
+    },
+    "Marked item is o1": {
+        "message": "Item(2) is %o1"
+    },
+    "You unmark o1": {
+        "message": "You unmark %o1"
+    },
+    "You mark o1 for 2-object actions": {
+        "message": "You mark %o1 for 2-object actions"
+    },
+    "nowhere": {
+        "message": "nowhere"
+    },
+    "Actions on o1": {
+        "message": "Actions on %o1"
+    },
+    "Current playing character is o1": {
+        "message": "The current playing character is %o1"
+    },
+    "Switch Language": {
+        "message": "Switch Language"
+    },
+    "SwitchView": {
+        "message": "Switch View"
+    },
+    "Start": {
+        "message": "Start"
+    },
+    "Restart": {
+        "message": "Restart"
+    },
+    "Undo": {
+        "message": "Undo"
+    },
+    "ClearHistory": {
+        "message": "Clear history"
+    },
+    "Direct actions": {
+        "message": "Direct actions"
+    },
+    "From here": {
+        "message": "From here"
+    },
+    "Items here": {
+        "message": "Items here"
+    },
+    "Items carried": {
+        "message": "Items carried"
+    },
+    "Inside marked": {
+        "message": "Inside marked"
+    },
+    "Carried by marked": {
+        "message": "Carried by marked"
+    },
+    "Items not here": {
+        "message": "Items not here"
+    },
+    "Players": {
+        "message": "Players"
+    },
+    "Player": {
+        "message": "Player"
+    },
+    "Games": {
+        "message": "Games"
+    },
+    "All of them": {
+        "message": "All of them"
+    },
+    "Meeting room": {
+        "message": "Meeting room"
+    },
+    "Game": {
+        "message": "Game"
+    },
+    "Filter panel": {
+        "message": "Filter panel"
+    },
+    "About": {
+        "message": "About LUDI"
+    },
+    "Instructions": {
+        "message": "Instructions"
+    },
+    "about game": {
+        "message": "about game"
+    },
+    "about in its original language": {
+        "message": "about in its original language"
+    },
+    "game": {
+        "message": "game"
+    },
+    "title": {
+        "message": "title"
+    },
+    "desc": {
+        "message": "description"
+    },
+    "translations": {
+        "message": "translations"
+    },
+    "original language": {
+        "message": "original language"
+    },
+    "author": {
+        "message": "author"
+    },
+    "name": {
+        "message": "name"
+    },
+    "account": {
+        "message": "account"
+    },
+    "mail": {
+        "message": "mail"
+    },
+    "Your profile": {
+        "message": "Your profile"
+    },
+    "Profile": {
+        "message": "Profile"
+    },
+    "nick": {
+        "message": "nick"
+    },
+    "Set nick": {
+        "message": "Set nick"
+    },
+    "Login": {
+        "message": "Login"
+    },
+    "Log out": {
+        "message": "Log out"
+    },
+    "status": {
+        "message": "status"
+    },
+    "Change your nick": {
+        "message": "Change your nick"
+    },
+    "Get your profile": {
+        "message": "Get your profile"
+    },
+    "Set your profile email": {
+        "message": "Set your profile email"
+    },
+    "Set your profile status": {
+        "message": "Set your profile status"
+    },
+    "About game": {
+        "message": "About game"
+    },
+    "Who are playing now": {
+        "message": "Who are playing now?"
+    },
+    "MyLanguages": {
+        "message": "My languages"
+    },
+    "Message filters": {
+        "message": "Message filters"
+    },
+    "Display preferences": {
+        "message": "Display preferences"
+    },
+    "Apply changes": {
+        "message": "Apply changes"
+    },
+    "Language changed to s1": {
+        "message": "Language changed to %s1"
+    },
+    "MessagesHidden": {
+        "message": "Messages hidden"
+    },
+    "ActivityHidden": {
+        "message": "Activity hidden"
+    },
+    "SpeechOn": {
+        "message": "Speech"
+    },
+    "Are you sure": {
+        "message": "Are you sure?"
+    },
+    "Number of Items": {
+        "message": "Number of items"
+    },
+    "GameHelp": {
+        "message": "Game help"
+    },
+    "ShowAbout": {
+        "message": "About"
+    },
+    "SaveGame": {
+        "message": "Save the game"
+    },
+    "LoadGameFromStart": {
+        "message": "Load initial game state"
+    },
+    "Mark": {
+        "message": "Mark as item(2)"
+    },
+    "Unmark": {
+        "message": "Unmark"
+    },
+    "Back": {
+        "message": "Back"
+    },
+    "4-buttons input": {
+        "message": "Extra buttons"
+    },
+    "NewInput": {
+        "message": "Fast Input"
+    },
+    "Filter options": {
+        "message": "Filter options"
+    },
+    "Icons": {
+        "message": "Icons"
+    },
+    "Options": {
+        "message": "Options"
+    },
+    "Select": {
+        "message": "Select"
+    },
+    "Shortcuts": {
+        "message": "Shortcuts"
+    },
+    "external source": {
+        "message": "external source"
+    },
+    "Direct Actions": {
+        "message": "Direct Actions"
+    },
+    "Item Groups": {
+        "message": "Item Groups"
+    },
+    "IncomingLanguages": {
+        "message": "Incoming languages"
+    },
+    "BroadcastFrom": {
+        "message": "Broadcast from"
+    },
+    "ActivityFrom": {
+        "message": "Activity from"
+    },
+    "ActivityTo": {
+        "message": "Activity to"
+    },
+    "GeneralSettings": {
+        "message": "General settings"
+    },
+    "Logout": {
+        "message": "Logout"
+    },
+    "Available languages": {
+        "message": "Available languages"
+    },
+    "remove": {
+        "message": "remove"
+    },
+    "down": {
+        "message": "down"
+    },
+    "up": {
+        "message": "up"
+    },
+    "add": {
+        "message": "add"
+    },
+    "ChatGlobal": {
+        "message": "Global chat"
+    },
+    "ChatGame": {
+        "message": "Game chat"
+    },
+    "ChatLocation": {
+        "message": "Loc chat"
+    },
+    "ChatPrivate": {
+        "message": "Private chat"
+    },
+    "Number of known items": {
+        "message": "Number of known items"
+    },
+    "LoadGame": {
+        "message": "Load Game"
+    },
+    "LoadSavedGame": {
+        "message": "Load saved game"
+    },
+    "true": {
+        "message": "true"
+    },
+    "preferedLanguages": {
+        "message": "Prefered languages"
+    },
+    "myGame": {
+        "message": "my game"
+    },
+    "myLocation": {
+        "message": "my location"
+    },
+    "none": {
+        "message": "none"
+    },
+    "System Messages": {
+        "message": "System Messages"
+    },
+    "To": {
+        "message": "To"
+    },
+    "loc": {
+        "message": "loc"
+    },
+    "false": {
+        "message": "false"
+    },
+    "everywhere": {
+        "message": "everywhere"
+    },
+    "global": {
+        "message": "global"
+    },
+    "all": {
+        "message": "all"
+    },
+    "private": {
+        "message": "private"
+    },
+    "Select what you choose": {
+        "message": "Select what you choose"
+    },
+    "Playing": {
+        "message": "Playing"
+    }, 
+    "mainChoices_top": {
+        "message": "All"
+    }, 
+    "mainChoices_here": {
+        "message": "Present items"
+    }, 
+    "mainChoices_carrying": {
+        "message": "Items on"
+    }, 
+    "mainChoices_notHere": {
+        "message": "Absent items"
+    }, 
+    "mainChoices_directActions": {
+        "message": "Direct Actions"
+    }, 
+    "mainChoices_directionGroup": {
+        "message": "Directions"
+     }, 
+    "Your languages": {
+        "message": "Your languages"
+    }, 
+    "Additional languages": {
+        "message": "Additional languages"
+    }
+}

@@ -84,9 +84,18 @@ export function processAction (action) {
 
 	console.log ("game action: " +  JSON.stringify (action))
 	
-	return this.reactions[actionIndex].reaction ({ pc:action.pc, item1:action.item1, item2:action.item2, item1Id:action.item1Id, item2Id:action.item2Id, loc:this.primitives.PC_GetCurrentLoc (), direction:action.d1 })
+	return this.reactions[actionIndex].reaction (action)
 
 }
+
+export function itemMethod (itemId, methodName, params) {
+
+	var localIndex = arrayObjectIndexOf(this.items, "id", itemId) 	
+	
+	return this.items[localIndex][methodName](params)
+	
+}
+
 
 // external interface
 exports.actionIsEnabled = function  (actionId, item1, item2) {
@@ -263,14 +272,19 @@ let initReactions =  function  (reactions, primitives) {
 			
 			if (par_c.loc == primitives.IT_X("tierras_sur") && (par_c.directionId == "in")) {
 				if (primitives.PC_X() == primitives.IT_X("vagabunda")) {
-					if (primitives.IT_GetAttPropValue (primitives.IT_X("tierras_sur"), "generalState", "state") == "0") {
+					if (primitives.IT_GetAttPropValue (primitives.IT_X("tierras_sur"), "generalState", "state") == "0") { // bloqueada la entrada
 						primitives.GD_CreateMsg (1, "cueva_bruja_innaccesible_vagabunda", "Una grieta en la base de la montaña, al sur, parece indicar una entrada en la montaña, pero una robusta planta llena de espinas no te permite entrar. Desistes.<br/>");
 						primitives.CA_ShowMsg ("cueva_bruja_innaccesible_vagabunda");
 						return true;
-					} else if (primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "state") == "5") { // dragona no puede volver a la cueva de la bruja
-						primitives.GD_CreateMsg (1, "dragona_no_pasa", "Miras la grieta... miras cómo ha crecido tu cuerpo... y desistes sin intentarlo.<br/>");
-						primitives.CA_ShowMsg ("dragona_no_pasa");
-						return true;
+					} else { // debloqueada la entrada con el agua amarilla
+						if (primitives.IT_GetAttPropValue (primitives.PC_X(), "generalState", "state") == "5") { // 5: bebió pócima: dragona no puede volver a la cueva de la bruja
+							primitives.GD_CreateMsg (1, "dragona_no_pasa", "Miras la grieta... miras cómo ha crecido tu cuerpo... y desistes sin intentarlo.<br/>");
+							primitives.CA_ShowMsg ("dragona_no_pasa");
+							return true;
+						} else {
+							return
+							// undefined, resolved by lib
+						}
 					}
 				}
 
@@ -738,7 +752,9 @@ let initReactions =  function  (reactions, primitives) {
 		
 		reaction: function (par_c) {
 			
-			primitives.GD_CreateMsg (1, "undefined_gameParameters", "Este juego necesita tener definido el atributo gameParameters en la localidad inicial del juego<br/>"); 
+			var currentLoc = primitives.PC_GetCurrentLoc()
+			
+			primitives.GD_CreateMsg (1, "undefined_gameParameters", "Este juego necesita tener definido el atributo gameParameters en la localidad inicial del juego.<br/>"); 
 			primitives.GD_CreateMsg (1, "bienvenida_juego", "Bienvenido a Las Tres Fuentes, aventura interactiva desarrollada en javascript. Sobre el mismo mundo base, puedes elegir entre jugar una versión reducida de tono más infantil o la versión completa, en la que controlas dos personajes.<br/>"); 
 			primitives.GD_CreateMsg (1, "chooseversion", "¿Qué versión eliges?"); 
 			primitives.GD_CreateMsg (1, "chooseversion_simple", "versión reducida"); 
@@ -749,16 +765,16 @@ let initReactions =  function  (reactions, primitives) {
 			primitives.GD_CreateMsg (1, "intro_reducida_3", "No vas a quedarte con los brazos cruzados. Que se prepare la bruja, que se va a enterar. Kuko, no desfallezcas, ¡ya voy!<br/>");
 			primitives.GD_CreateMsg (1, "pulsa_para_ver_imagen_de_%o1", "Pulsa para ver imagen de %o1.<br/>");
 
-			if (par_c.item1Id== "cruce_caminos") {
-				if (!primitives.IT_ATT(par_c.item1, "gameParameters")) {
+			if (currentLoc == primitives.IT_X("cruce_caminos")) {
+				if (!primitives.IT_ATT(currentLoc, "gameParameters")) {
 					primitives.CA_ShowMsg ("undefined_gameParameters");
 					primitives.CA_EndGame("Error");
 					return true;
 				}
 				
-				var gameParameters_FIRSTPC = primitives.IT_GetAttPropValue (par_c.item1, "gameParameters", "firstPC");
+				var gameParameters_FIRSTPC = primitives.IT_GetAttPropValue (currentLoc, "gameParameters", "firstPC");
 
-				if (primitives.IT_GetAttPropValue (par_c.item1, "gameParameters", "version") == "") {
+				if (primitives.IT_GetAttPropValue (currentLoc, "gameParameters", "version") == "") {
 					
 					if (typeof par_c.option == 'undefined') { // phase 1: asking dialog
 					
@@ -773,7 +789,7 @@ let initReactions =  function  (reactions, primitives) {
 					} else { // getting answer
 						if (par_c.option == 0) { // versión reducida
 						
-							primitives.IT_SetAttPropValue (par_c.item1, "gameParameters", "version","VR");
+							primitives.IT_SetAttPropValue (currentLoc, "gameParameters", "version","VR");
 
 							primitives.CA_ShowMsg ("elegida_version_reducida");
 							primitives.CA_ShowMsg ("intro_reducida_1");
@@ -789,7 +805,7 @@ let initReactions =  function  (reactions, primitives) {
 							return true;
 							
 						} else {
-							primitives.IT_SetAttPropValue (par_c.item1, "gameParameters", "version", "VC");
+							primitives.IT_SetAttPropValue (currentLoc, "gameParameters", "version", "VC");
 							
 							primitives.GD_CreateMsg (1, "chooseversion_long_echo", "Has elegido la versión que elegiría un aventurero intrépido. Los protagonistas de este juego son dos amantes legendarios que han caído en desgracia ante una diosa opuesta a su amor. Aunque controlarás ambos personajes, elige ahora con quién empiezas, con la vagabunda, en realidad princesa del mar, que abandonó su patria por amor; o bien con el cazador, pariente de la diosa malvada.<br/><br/>"); 
 
@@ -802,7 +818,7 @@ let initReactions =  function  (reactions, primitives) {
 						
 				} 
 
-				if ((primitives.IT_GetAttPropValue (par_c.item1, "gameParameters", "version") == "VC") && (gameParameters_FIRSTPC == "")) {
+				if ((primitives.IT_GetAttPropValue (currentLoc, "gameParameters", "version") == "VC") && (gameParameters_FIRSTPC == "")) {
 					
 					if (typeof par_c.option == 'undefined') { // phase 1: asking dialog
 					
@@ -818,9 +834,9 @@ let initReactions =  function  (reactions, primitives) {
 					
 					} else { // getting answer
 						if (par_c.option == 0) {  // vagabunda
-							primitives.IT_SetAttPropValue (par_c.item1, "gameParameters", "firstPC", "vagabunda");
+							primitives.IT_SetAttPropValue (currentLoc, "gameParameters", "firstPC", "vagabunda");
 						} else {
-							primitives.IT_SetAttPropValue (par_c.item1, "gameParameters", "firstPC", "cazador");
+							primitives.IT_SetAttPropValue (currentLoc, "gameParameters", "firstPC", "cazador");
 							primitives.PC_SetIndex (primitives.IT_X("cazador"));
 						}
 						usr.intro ();

@@ -48,7 +48,7 @@ export function processAction (action) {
 		
 	console.log ("lib action: " +  JSON.stringify (action))
 	
-	this.reactions[actionIndex].reaction ({  pc:action.pc, item1:action.item1, item2:action.item2, item1Id:action.item1Id, item2Id:action.item2Id, loc:this.primitives.PC_GetCurrentLoc (), direction:action.d1 })
+	this.reactions[actionIndex].reaction (action)
 	
 	return true
 
@@ -112,21 +112,20 @@ let initReactions =  function  (reactions, primitives) {
 			primitives.CA_ShowMsgAsIs("<br/><br/>");
 
 			// preactions when trying to go out from here
-			var link = primitives.DIR_GetTarget (par_c.loc, par_c.direction);
 			
 			// if locked, show locked message
-			if (link.isLocked) {
+			if (par_c.link.isLocked) {
 				primitives.CA_ShowMsg("Locked direction" );
 				return;
 			}
 					
-			if (link.target == -1) {
+			if (par_c.link.target == -1) {
 				primitives.CA_ShowMsg("It is not possible to go there." );
 				return;
 			}		
 					
 			// reaction kernel: change of location
-			primitives.PC_SetCurrentLoc(link.target);
+			primitives.PC_SetCurrentLoc(par_c.link.target);
 			
 			// after reaction: by default: standard description
 
@@ -135,7 +134,7 @@ let initReactions =  function  (reactions, primitives) {
 			var transtitionState;
 			// error here: ludi_runner.worldIndexes
 			/*
-			var itemWorlIndex = ludi_runner.worldIndexes.items[par_c.loc];
+			var itemWorlIndex = ludi_runner.worldIndexes.items[par_c.link.loc];
 			
 			if (itemWorlIndex.gameIndex>=0)  { 
 				if (typeof ludi_game.items[itemWorlIndex.gameIndex].transitionTo == 'function') { // exists game item transitionTo()?
@@ -143,7 +142,7 @@ let initReactions =  function  (reactions, primitives) {
 				}
 			}
 			if (((transtitionState == false) || (transtitionState== undefined)) && (typeof ludi_game.transitionTo == 'function')) { // exists game.transitionTo()?
-				transtitionState = ludi_game.transitionTo(par_c.loc, link.target);
+				transtitionState = ludi_game.transitionTo(par_c.link.loc, link.target);
 			}
 			*/
 			
@@ -155,15 +154,15 @@ let initReactions =  function  (reactions, primitives) {
 			}
 			
 			
-			if (!primitives.IT_GetIsItemKnown (primitives.PC_X(), link.target)) {
+			if (!primitives.IT_GetIsItemKnown (primitives.PC_X(), par_c.link.target)) {
 				// set loc as known;
-				primitives.IT_SetIsItemKnown(primitives.PC_X(), link.target, true);
-				// primitives.IT_SetWhereItemWas (primitives.PC_X(), link.target, primitives.IT_GetLoc(link.target));
-				primitives.IT_SetLastTime (primitives.PC_X(), link.target, primitives.IT_GetLoc(link.target));
+				primitives.IT_SetIsItemKnown(primitives.PC_X(), par_c.link.target, true);
+				// primitives.IT_SetWhereItemWas (primitives.PC_X(), par_c.link.target, primitives.IT_GetLoc(par_c.link.target));
+				primitives.IT_SetLastTime (primitives.PC_X(), par_c.link.target, primitives.IT_GetLoc(par_c.link.target));
 					
-				if (primitives.IT_ATT(link.target, "score")) {
+				if (primitives.IT_ATT(par_c.link.target, "score")) {
 					// increments PC.score
-					var scoreInc = +primitives.IT_GetAttPropValue (link.target, "score", "state");
+					var scoreInc = +primitives.IT_GetAttPropValue (par_c.link.target, "score", "state");
 					
 					ludi_runner.userState.profile.score += scoreInc;
 					
@@ -172,19 +171,19 @@ let initReactions =  function  (reactions, primitives) {
 				} 
 
 				// first time message
-				if (primitives.IT_FirstTimeDesc(link.target)) {
-					primitives.IT_DynDesc(link.target);
+				if (primitives.IT_FirstTimeDesc(par_c.link.target)) {
+					primitives.IT_DynDesc(par_c.link.target);
 				}
 				
 			} else {
-				primitives.IT_DynDesc(link.target);
+				primitives.IT_DynDesc(par_c.link.target);
 			}
 				
 			// transition message (if exist) from both locations (after description)
-			IT_AfterDescription (link.target);
+			IT_AfterDescription (par_c.link.target);
 			
 			// endGame locations
-			if (primitives.IT_ATT(link.target, "endGame")) {
+			if (primitives.IT_ATT(par_c.link.target, "endGame")) {
 				primitives.CA_EndGame();
 				return;
 			}		 
@@ -436,7 +435,7 @@ let initReactions =  function  (reactions, primitives) {
 		},
 		
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("%o1 does not react when you ask about %o2", {o1:par_c.item1Id, o2:par_c.item2Id});
+			primitives.CA_ShowMsg("%o1 does not react when you ask about %o2", {o1:par_c.item2Id, o2:par_c.item1Id}); // tricky
 		},
 		
 	});

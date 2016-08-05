@@ -3,6 +3,10 @@
   <a v-link="{ path: '/ludi' }"> {{kt("Play")}} | </a>
   <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a></h2>
 
+  <h3> {{kt("Under construction")}}</h2>
+
+  <img src="./../../data/icons/social.jpg">
+  
   <div class="kune">
 	<div v-show="userId != ''">
         <h3>{{kt("Username")}}: {{ userId }}</h3>

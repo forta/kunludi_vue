@@ -1,0 +1,358 @@
+{
+    "items": [
+        {
+            "id": "vagabunda",
+            "type": "pc",
+            "loc": "cruce_caminos",
+            "att": {
+ 				"generalState": [
+					{"state":"0"}, 
+					{"confianza":"0"}, 
+					{"nivelMusical":"0"}
+				]
+            }
+        },
+        {
+            "id": "limbo",
+            "type": "loc"
+        },
+		{
+            "id": "cazador",
+            "type": "pc",
+            "loc": "cabaña",
+            "att": {
+ 				"generalState": [
+					{"state":"0"}, 
+					{"confianza":"0"}, 
+					{"nivelMusical":"0"}
+				]
+            }
+        },		
+        {
+			"id": "cruce_caminos",
+            "type": "loc",
+			"address":[  
+				{  
+					"dir":"d0",
+					"target":"fuente_verde"
+				},
+				{  
+					"dir":"d90",
+					"target":"fuente_roja"
+			   },
+				{  
+					"dir":"d180",
+					"target":"tierras_sur"
+			   },
+				{  
+					"dir":"d270",
+					"target":"fuente_dorada"
+			   }
+			],
+            "att": {
+				"gameParameters": []
+            }
+        },
+        {
+			"id": "figura_verde",
+            "type": "obj",
+            "loc": "cruce_caminos"
+        },
+        {
+			"id": "figura_roja",
+            "type": "obj",
+            "loc": "cruce_caminos"
+        },
+        {
+			"id": "figura_dorada",
+            "type": "obj",
+            "loc": "cruce_caminos"
+        },
+        {
+			"id": "figura_negra",
+            "type": "obj",
+            "loc": "cruce_caminos"
+        },
+        {
+			"id": "fuente_roja",
+            "type": "loc",
+			"address":[  
+				{  
+					"dir":"d270",
+					"target":"cruce_caminos"
+			   }
+			]
+        },
+        {
+			"id": "pájaros",
+            "type": "obj",
+            "loc": "fuente_roja",
+			"att": {
+				"cazado": [{"state":"0"}]
+			}
+        },
+        {
+			"id": "pescados",
+            "type": "obj",
+            "loc": "río",
+			"att": {
+				"cazado": [{"state":"0"}]
+			}
+        },
+        {
+			"id": "agua_roja",
+            "type": "obj",
+            "loc": "fuente_roja",
+            "att": {
+ 				"isLiquid": [{"state":"roja"}]				
+           }
+        },
+        {
+			"id": "tierras_sur",
+            "type": "loc",
+			"address":[  
+				{  "dir":"d0", "target":"cruce_caminos"  },
+				{  "dir":"in"},
+				{  "dir":"d270", "target":"cabaña"}
+			],
+            "att": {
+ 				"generalState": [{"state":"0"}]			
+           }
+        },
+        {
+			"id": "cabaña",
+            "type": "loc",
+			"address":[  
+				{  "dir":"d90", "target":"tierras_sur"  }
+			]
+        },
+        {
+			"id": "espejo",
+            "type": "obj",
+            "loc": "cabaña"
+        },
+        {
+			"id": "camisa",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "honda",
+            "type": "obj",
+            "loc": "cazador"
+        },
+        {
+			"id": "anzuelo",
+            "type": "obj",
+            "loc": "vagabunda"
+        },
+        {
+			"id": "basura",
+            "type": "obj",
+            "loc": "tierras_sur"
+        },
+        {
+			"id": "cuenco",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+ 				"isLiquidContainer": [{"state":"vacío"}]				
+            }
+        },
+        {
+			"id": "fuente_verde",
+            "type": "loc",
+			"address":[  
+				{  	"dir":"d90"  },
+				{  "dir":"d180", "target":"cruce_caminos"   },
+				{  "dir":"d270", "target":"risco_luna"   },
+				{  	"dir":"in"  }
+			]
+        },
+		{
+			"id": "risco_luna",
+            "type": "loc",
+			"address":[  
+				{  	"dir":"d90", "target":"fuente_verde"  }
+			]
+        },
+		{
+			"id": "río",
+            "type": "loc",
+			"address":[  
+				{  	"dir":"d270", "target":"fuente_verde"  }
+			]
+        },
+        {
+			"id": "flautista",
+            "type": "npc",
+            "loc": "fuente_verde",
+			"att": {
+				"generalState": [{"state":"hambre1"}]
+			}
+        },
+        {
+			"id": "flauta",
+            "type": "obj",
+            "loc": "flautista",
+            "att": {
+				"isMusicInstrument": []	
+            }
+        },
+        {
+			"id": "flauta2",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isMusicInstrument": []	
+            }
+        },
+        {
+			"id": "diamante",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "agua_verde",
+            "type": "obj",
+            "loc": "fuente_verde",
+            "att": {
+ 				"isLiquid": [{"state":"verde"}]				
+			}
+        },
+        {
+			"id": "fuente_dorada",
+            "type": "loc",
+			"address":[  
+				{  	"dir":"d90", "target":"cruce_caminos"  }
+			]
+        },
+        {
+			"id": "agua_dorada",
+            "type": "obj",
+            "loc": "fuente_dorada",
+            "att": {
+ 				"isLiquid": [{"state":"dorada"}]				
+			}
+        },
+        {
+			"id": "cueva_bruja",
+            "type": "loc",
+			"address":[  
+				{  "dir":"out" }
+			]
+        },
+        {
+			"id": "vieja",
+            "type": "npc",
+            "loc": "cueva_bruja"
+        },
+        {
+			"id": "hechicera",
+            "type": "npc",
+            "loc": "limbo"
+        },
+        {
+			"id": "caldero",
+            "type": "obj",
+            "loc": "cueva_bruja",
+            "att": {
+ 				"isLiquidContainer": [{"state":"vacío"}]				
+            }
+        },
+        {
+			"id": "pergamino",
+            "type": "obj",
+            "loc": "hechicera"
+        },
+        {
+			"id": "caverna_dragón",
+            "type": "loc",
+			"address":[  
+				{ "dir":"d270"  },
+				{ "dir":"out" }
+			]
+        },
+		{
+			"id": "escondite",
+            "type": "loc",
+			"address":[  
+				{  "dir":"d90", "target":"caverna_dragón"   }
+			]
+        },
+        {
+			"id": "pócima",
+            "type": "obj",
+            "loc": "hechicera",
+            "att": {
+ 				"isLiquid": [{"state":"pócima"}],
+				"hasDecrementor": [{"active": "false" }, {"counter": "5" }]
+            }
+        },
+        {
+			"id": "agua_púrpura",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isLiquid": [{"state":"púrpura"}]				
+            }
+        },
+        {
+			"id": "agua_naranja",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+				"isLiquid": [{"state":"naranja"}]				
+            }
+        }
+    ],
+	"attributes":[  
+      {  
+         "id":"isLiquid",
+		 "properties": [
+			{ "id": "state", "value": "normal", "use":"mandatory" }
+		]
+      },
+      {  
+         "id":"isLiquidContainer",
+		 "properties": [
+			{ "id": "state", "value": "vacío", "use":"mandatory" }
+		 ]
+      },
+	  {  
+         "id":"generalState",
+		 "properties": [
+                { "id": "state", "value": "0", "use":"mandatory" },
+                { "id": "confianza", "value": "0", "use":"mandatory" },
+                { "id": "nivelMusical", "value": "0", "use":"mandatory" }
+          ]		 
+      },
+	  {  
+         "id":"gameParameters",
+		 "properties": [
+                { "id": "version", "value": "", "use":"mandatory" }	,		
+                { "id": "firstPC", "value": "", "use":"mandatory" }	
+          ]		 
+      },
+	  {  
+         "id":"isMusicInstrument",
+		 "properties": [{}]
+      }	  
+    ],
+	"actions": [
+		{  
+         "id":"play-instrument",
+         "numpar":"1",
+         "on":[  
+            "obj"
+         ]
+      }
+	],
+	"directions": [	],
+	"attExceptions":[
+	  {  
+         "id":"isTakeAble",
+         "exceptionList": ["figura_verde", "figura_roja","figura_negra","figura_dorada","caldero","basura","espejo"]
+	  } 	  
+   ]   
+}

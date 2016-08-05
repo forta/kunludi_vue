@@ -5,6 +5,8 @@
 
   <div class="lingvo">
 
+	<img src="./../../data/icons/languages.jpg">
+
 	<h2>{{kt("Your languages")}}:</h2>
     <ul>
         <li v-show="locale != 'en'"> 

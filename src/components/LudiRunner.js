@@ -218,14 +218,26 @@ exports.processChoice = function  (choice) {
 				
 	if (choice.isLeafe) { // execution
 			
+		// saving its previous location
+		var locBefore 
+		if (((choice.choiceId == 'action') || (choice.choiceId == 'action2')) && (choice.action.item1 != undefined) ){
+			locBefore = exports.world.items[choice.action.item1].loc 
+		}
+		
+		var indexPCBefore = exports.userState.profile.indexPC
+		
+		// game action execution
 		exports.processAction (choice.action)
 		
 		// after execution, show the parent
-		if (previousChoice.choiceId == 'top') 
-			this.choice = {choiceId:'top', isLeafe:false};
-		else {
+		if ( (((choice.choiceId == 'action') || (choice.choiceId == 'action2')) && (choice.action.item1 != undefined)) && // only after game actions
+			 (locBefore == exports.world.items[choice.action.item1].loc) && // item is still accesible
+			 (indexPCBefore == exports.userState.profile.indexPC) ) // same pc
+		{
 			exports.processChoice (previousChoice)
-		}
+		} else 
+			this.choice = {choiceId:'top', isLeafe:false};
+
 	} 
 
 	exports.updateChoices()
@@ -238,12 +250,19 @@ exports.processAction = function(action) {
 
 	action.pc = exports.userState.profile.indexPC
 	
-	// this.reactionList.push ({type:"rt_asis", txt: "<b>echo: " + action.actionId + "</b><br/>"} )
-		
 	// expanding codes
 	if (action.item1 >= 0) action.item1Id = exports.world.items [action.item1].id
 	if (action.item2 >= 0) action.item2Id = exports.world.items [action.item2].id
-		
+
+	action.loc = arrayObjectIndexOf (exports.world.items, "id", exports.world.items[exports.userState.profile.indexPC].loc)
+	
+	action.direction = action.d1
+	if (action.direction != undefined) {
+		action.directionId = exports.world.directions [action.d1].id
+		// it must be resolved here
+		action.link = exports.getTargetAndLocked (action.loc, action.direction) 
+	}
+	
 	status = false
 	status = this.gameReactions.processAction (action)
 	
@@ -393,7 +412,8 @@ exports.updateChoices = function () {
 			}
 		} 
 		
-		if ((this.choice.choiceId == 'top') || (this.choice.itemGroup == 'notHere')) {
+		// without (this.choice.choiceId == 'top') because it is better explicit user selection
+		if ( (this.choice.itemGroup == 'notHere')) {
 			for (let i=0;i<exports.world.items.length;i++) {
 				if (i == exports.userState.profile.indexPC) continue;
 				if (exports.world.items[i].type == "loc") continue;
@@ -420,7 +440,7 @@ exports.updateChoices = function () {
 					if (j == this.userState.profile.indexPC) continue; // self action with item1
 
 					if (exports.actionIsEnabled  (actionId, this.choice.item1, j)) { // obj1 + action + obj2
-						exports.choices.push ({choiceId:'action2', isLeafe:true, parent:"action2", action: { item2: this.choice.item1, actionId: actionId, item1:j }})
+						exports.choices.push ({choiceId:'action2', isLeafe:true, parent:"action2", action: { item1: this.choice.item1, actionId: actionId, item2:j }})
 					}
 				}
 			}

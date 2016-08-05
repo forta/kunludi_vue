@@ -1,0 +1,19 @@
+{
+	"games": [
+		{
+			"name": "tresfuentes",
+			"type": "0",
+			"group": "0"
+		},
+		{
+			"name": "texel",
+			"type": "0",
+			"group": "1"
+		},
+		{
+			"name": "vampiro",
+			"type": "0",
+			"group": "0"
+		}
+	]
+}
