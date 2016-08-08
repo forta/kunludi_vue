@@ -81,6 +81,7 @@ let initReactions =  function  (reactions, primitives) {
 		id: 'look',
 		
 		enabled: function (indexItem, indexItem2) {
+			if (indexItem != undefined) return false
 			return true;
 		},
 		
@@ -103,6 +104,8 @@ let initReactions =  function  (reactions, primitives) {
 		id: 'go',
 		
 		enabled: function (indexItem, indexItem2) {
+			if (indexItem != undefined) return false
+
 			return true;
 		},
 
@@ -196,7 +199,8 @@ let initReactions =  function  (reactions, primitives) {
 		id: 'ex',
 		
 		enabled: function (indexItem,indexItem2) {
-			return true;
+			if ( (primitives.IT_GetLoc(indexItem) == primitives.PC_GetCurrentLoc ()) ||
+			     (primitives.IT_GetLoc(indexItem) == primitives.PC_X()) ) return true
 		},
 		
 		reaction: function (par_c) {
@@ -286,11 +290,12 @@ let initReactions =  function  (reactions, primitives) {
 		
 	});
 
-	// to-do: create attribute isTalkAble?
 	reactions.push ({
 		id: 'talk',
 		
 		enabled: function (indexItem,indexItem2) {
+			// to-do: create attribute isTalkAble?
+			if (primitives.IT_GetType(indexItem) == "obj") return false;
 			return true;
 		},
 		
@@ -539,6 +544,7 @@ let initReactions =  function  (reactions, primitives) {
 		id: 'sing',
 		
 		enabled: function (indexItem,indexItem2) {
+			if (indexItem != undefined) return false
 			return true;
 		},
 		
@@ -864,6 +870,7 @@ let initReactions =  function  (reactions, primitives) {
 	reactions.push ({
 		id: 'wait',
 		enabled: function (indexItem,indexItem2) {
+			if (indexItem != undefined) return false
 			return true;
 		},
 		reaction: function (par_c) {

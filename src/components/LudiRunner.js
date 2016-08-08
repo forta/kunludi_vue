@@ -205,6 +205,8 @@ exports.dependsOn = function (libReactions, gameReactions, reactionList) {
 
 exports.processChoice = function  (choice) {
 	
+	if (this.choice.choiceId == 'quit') return
+
 	// console.log("choice input: " + JSON.stringify (choice))
 
 	// parent
@@ -220,7 +222,7 @@ exports.processChoice = function  (choice) {
 			
 		// saving its previous location
 		var locBefore 
-		if (((choice.choiceId == 'action') || (choice.choiceId == 'action2')) && (choice.action.item1 != undefined) ){
+		if (((choice.choiceId == 'action0') || (choice.choiceId == 'action') || (choice.choiceId == 'action2')) && (choice.action.item1 != undefined) ){
 			locBefore = exports.world.items[choice.action.item1].loc 
 		}
 		
@@ -230,7 +232,7 @@ exports.processChoice = function  (choice) {
 		exports.processAction (choice.action)
 		
 		// after execution, show the parent
-		if ( (((choice.choiceId == 'action') || (choice.choiceId == 'action2')) && (choice.action.item1 != undefined)) && // only after game actions
+		if ( (((choice.choiceId == 'action0') ||(choice.choiceId == 'action') || (choice.choiceId == 'action2')) && (choice.action.item1 != undefined)) && // only after game actions
 			 (locBefore == exports.world.items[choice.action.item1].loc) && // item is still accesible
 			 (indexPCBefore == exports.userState.profile.indexPC) ) // same pc
 		{
@@ -359,6 +361,8 @@ exports.getTargetAndLocked = function (loc, direction) {
 		
 exports.updateChoices = function () {
 	
+	if (this.choice.choiceId == 'quit') return
+
 	exports.choices = []
 
 	exports.choices.push ({choiceId:'top', isLeafe:false});
@@ -370,7 +374,7 @@ exports.updateChoices = function () {
 
 
 	if ((this.choice.choiceId == 'top') || (this.choice.choiceId == 'directActions')) {
-		exports.choices.push ({choiceId:'action', isLeafe:true, parent:"directActions", action:{actionId:'look'}});
+		exports.choices.push ({choiceId:'action0', isLeafe:true, parent:"directActions", action:{actionId:'look'}});
 	} 
 	
 	if ((this.choice.choiceId == 'top') ||(this.choice.choiceId == 'directionGroup')) {
@@ -446,10 +450,12 @@ exports.updateChoices = function () {
 			}
 		}
 
-		// specially for absent items
-		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[this.choice.item1] != undefined) {
-			exports.choices.push ({choiceId:'action', isLeafe:true, parent:"obj1", action: { item1: this.choice.item1, actionId: "where" }})
-		} 
+		if (this.choice.itemGroup == 'notHere') { 
+			// specially for absent items
+			if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[this.choice.item1] != undefined) {
+				exports.choices.push ({choiceId:'action', isLeafe:true, parent:"obj1", action: { item1: this.choice.item1, actionId: "where" }})
+			} 
+		}
 		
 	}
 		

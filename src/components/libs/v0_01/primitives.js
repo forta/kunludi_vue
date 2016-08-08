@@ -30,7 +30,6 @@ export function caMapping (type) {
  		"SOUND",
  		"ACTION",
  		"END_GAME",
- 		"RESTART_GAME",
  		"DIR",
  		"SHOW_ECHO",
  		"PLAY_AUDIO",
@@ -238,14 +237,8 @@ export function CA_PressKey (txt) {
  this.reactionList.push ({type:this.caMapping("PRESS_KEY"), txt:txt});
 }
 
-export function CA_EndGame () {
- // to-do: block interface
- CA_PressKey("The game is over");
- CA_RestartGame();
-}
-
-export function CA_RestartGame () {
- this.reactionList.push ({type:this.caMapping("RESTART_GAME")});
+export function CA_EndGame (txt) {
+ this.reactionList.push ({type:this.caMapping("END_GAME"), txt:txt});
 }
 
 export function CA_PlayAudio (fileName, autoStart, txt, param) {

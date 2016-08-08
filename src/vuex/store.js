@@ -60,7 +60,7 @@ const state = {
 	i18n:[],
 	history: [ // game
 		// introduction
-		{ 	action: { choiceId:'action', actionId:'look'}, 
+		{ 	action: { choiceId:'action0', actionId:'look'}, 
 			reactionList: [ 
 				{ type: 'rt_msg', txt: 'Introduction' }
 			]
@@ -104,22 +104,26 @@ const state = {
 	gTranslator: function (reaction) {
 		
 		if (reaction.type == "rt_kernel_msg") return state.kTranslator (reaction.txt)
-		
+			
 		state.menu = []
 		
 		var expanded = ""
 
-		console.log	("gTranslator.reaction: " + JSON.stringify(reaction) )
+		// console.log	("gTranslator.reaction: " + JSON.stringify(reaction) )
 		
 		if (reaction.type == "rt_asis") return reaction.txt;
 				
 		// if not as is
 		let longMsg = {} 
 		
-		if ((reaction.type == "rt_msg") || (reaction.type == "rt_graph") || 
+		if (
+			(reaction.type == "rt_msg") || (reaction.type == "rt_graph") || 
 			(reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues") || 
 			(reaction.type == "rt_play_audio") || 
-			(reaction.type == "rt_dev_msg") ) {
+			(reaction.type == "rt_dev_msg") || 
+			(reaction.type == "rt_end_game") || 
+			(reaction.type == "rt_press_key") 
+		) {
 			longMsg = {type:'messages', id:reaction.txt, attribute:'txt'}
 		} else if (reaction.type == "rt_desc") {
 			longMsg.type = "items"
@@ -152,15 +156,14 @@ const state = {
 		// if dev msg not exists, show json line to add in the console
 		if (reaction.type == "rt_dev_msg") {
 			if (expanded == "") {
-				var line = "<p>DEV MSG<br/>" ;
-				line += "\t\"" + "messages."+ reaction.txt + ".txt\": {<br/>" ;
-				line += "\t\t\"" + "message\": \"" + reaction.detail + "\"<br/>" ;
-				line += "\t},</p>";
+				var line = "DEV MSG:,\n" ;
+				line += "\t{\"" + "messages."+ reaction.txt + ".txt\": {\n" ;
+				line += "\t\t\"" + "message\": \"" + reaction.detail + "\"\n" ;
+				line += "\t}";
 				console.log(line);
-			
-				// to-do: add in memory (state.language)
-			
-				return line
+				
+				// add in memory
+				state.game.messages [state.locale]["messages." + reaction.txt + ".txt"] = {message:reaction.detail}
 			}
 			return ""
 		}
@@ -219,7 +222,14 @@ const state = {
 			// to-do
 			return expanded + " (play: " + reaction.fileName + " autoStart: " + reaction.autoStart + ")"
 			
-		} 
+		} else if (reaction.type == "rt_end_game") {
+			if (expanded == "") expanded = "End of game"
+			state.choice = {choiceId:'quit', action:{actionId:''}, isLeafe:true} 
+		} else if (reaction.type == "rt_press_key")  { 
+			if (expanded == "") expanded = "Press a key"
+			// deactivate buttons
+			state.menu = ['Press a key']
+		}
 	
 		expanded = expandParams (expanded, reaction.param)
 		
@@ -345,7 +355,7 @@ const mutations = {
 
 	state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
 
-	mutations.PROCESS_CHOICE(state, { choiceId:'action', action: {actionId:'look'}, isLeafe:true}); 
+	mutations.PROCESS_CHOICE(state, { choiceId:'action0', action: {actionId:'look'}, isLeafe:true}); 
 	
 	
   }, 
@@ -355,11 +365,14 @@ const mutations = {
   },
   PROCESS_CHOICE (state, choice) {
 	
+	if (state.choice.choiceId == 'quit') return
+	
 	state.choice = choice
+
 	state.menu = []
 
 	console.log ("current choice: " +  JSON.stringify(state.runner.choice))
-
+	
 	var option
 	if (choice.isLeafe) {
 		state.pendingChoice = choice
@@ -367,7 +380,7 @@ const mutations = {
 	}
 
 	state.runner.processChoice (choice)
-
+	
 	// to-do: send parameters to kernel messages
 	if (option != undefined) {
 		state.reactionList.unshift ({type:"rt_asis", txt: ": " + option + "<br/><br/>"} )

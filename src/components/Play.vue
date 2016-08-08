@@ -1,9 +1,9 @@
-<template>
+isEcho<template>
   <div id= "play" class="play">
     <h2>{{kt("History")}}</h2>
     <div v-for="hItem in history">
         <!-- echo -->
-        <p><b> {{$index+1}}. {{choiceToShow(hItem.action)}}</b></p>
+        <p><b> {{$index+1}}. {{choiceToShow(hItem.action, true)}}</b></p>
             <!-- to-do: problem with nested v-for: so, we'll create a new component -->   
         <span v-for="r in hItem.reactionList"> {{{t(r)}}} </span>
     </div>
@@ -12,23 +12,23 @@
   </div>
 
   <!-- Groups of choices -->
-  <div class="mainChoices"  v-if = "menu.length == 0">
+  <div class="mainChoices"  v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'">
     <span v-for="choice in choices">
-        <button v-if ="choice.choiceId == 'top'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice)}} </button>
-        <button v-if ="choice.choiceId == 'itemGroup'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice)}} </button>
-        <button v-if ="choice.choiceId == 'directActions' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice)}}</button>
-        <button v-if ="choice.choiceId == 'directionGroup' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice)}}</button>
+        <button v-if ="choice.choiceId == 'top'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
+        <button v-if ="choice.choiceId == 'itemGroup'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
+        <button v-if ="choice.choiceId == 'directActions' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}}</button>
+        <button v-if ="choice.choiceId == 'directionGroup' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
     </span>
     
   </div>
     
   <!-- choices -->
-  <div class="choices" v-if = "menu.length == 0"> 
+  <div class="choices" v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'"> 
      <h3> <!-- <button class={{getChoiceClass(currentChoice.parent)}} v-on:click="doGameChoice(currentChoice.parent)"> {{kt("Back")}} </button>--> {{showCurrentChoice()}}</h3> 
      <!--<h2>{{currentChoice | json}}</h2>-->
     
     <span v-for="choice in choices">
-        <button v-if = isMiddleChoice(choice) class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice)}}</button>
+        <button v-if = isMiddleChoice(choice) class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
     </span>
 
   </div>
@@ -63,11 +63,12 @@ export default {
   },
   methods: {
       isMiddleChoice: function (choice) {
-         return ((choice.choiceId == 'action') ||(choice.choiceId == 'action2') || (choice.choiceId == 'obj1') || (choice.choiceId == 'dir1'))
+         return ((choice.choiceId == 'action0') ||(choice.choiceId == 'action') ||(choice.choiceId == 'action2') || (choice.choiceId == 'obj1') || (choice.choiceId == 'dir1'))
       },           
       getChoiceClass: function (choice) {
 
-          if (choice.choiceId == 'action') return (choice.parent == "directActions")?"choiceDA":"choiceAction"  
+          if (choice.choiceId == 'action0') return "choiceDA"  
+          if (choice.choiceId == 'action') return "choiceAction"  
           else if (choice.choiceId == 'action2')  return "choiceAction2"
           else if (choice.choiceId == 'obj1') return "choiceObj1" + "_" + choice.parent
           else if (choice.choiceId == 'dir1') return "choiceDir1"
@@ -76,9 +77,11 @@ export default {
           else if (choice.choiceId == 'directionGroup') return 'choiceDirections'
           return ""
       },
-      choiceToShow: function (choice) { // it shoud be an vuex function
-          if (choice.choiceId == 'action') return  this.tge("actions", choice.action.actionId)
-          else if (choice.choiceId == 'action2') return this.tge("actions", choice.action.actionId) + " -> " + this.tge("items", choice.action.item2, "txt")
+      choiceToShow: function (choice, isEcho) { // it shoud be an vuex function
+      
+          if (choice.choiceId == 'action0') return  this.tge("actions", choice.action.actionId)
+          if (choice.choiceId == 'action') return  this.tge("actions", choice.action.actionId) + ((isEcho) ?" " +  this.tge("items", choice.action.item1, "txt"):"")
+          else if (choice.choiceId == 'action2') return this.tge("actions", choice.action.actionId)  + ((isEcho) ?" " +  this.tge("items", choice.action.item1, "txt"):"") + " -> " + this.tge("items", choice.action.item2, "txt")
           else if (choice.choiceId == 'obj1') return this.tge("items", choice.item1, "txt")
           
           // to-do: target only if known
