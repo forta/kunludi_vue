@@ -153,7 +153,6 @@ Categories:
   IT_GetRandomDirectionFromLoc(indexLoc)
   IT_SameLocThan(i1,i2)
 
-  IT_DynDesc (i)
   IT_FirstTimeDesc(indexItem) // no IT_
 
  W: world ??
@@ -495,43 +494,30 @@ export function IT_SameLocThan (i1, i2) {
 
 export function IT_DynDesc (i) { // TO-DO: it must be outside, in LudiRunner.js
 
-	// vue by now
+	// if dark, do not show the description
+	if (this.IT_ATT(i, "dark")) {
+		//  to-do: if light available, show the description
+		this.CA_ShowMsg("It is dark");
+		return;
+	}
+
 	this.CA_ShowDesc (i);
 
-	return
+	// to-do
+	/*
+	// game reaction after desc()
+	var indexAction = arrayObjectIndexOf (ludi_game.reactions, "id", "desc");
+	if (indexAction >=0) {
+		ludi_game.reactions[indexAction].reaction();
+		return;
+	}
 
+	// lib reaction after desc()
+	indexAction = arrayObjectIndexOf (ludi_lib.reactions, "id", "desc");
+	if(indexAction >=0)
+		ludi_lib.reactions[indexAction].reaction();
+	*/
 
-
- // if dark, do not show the description
- if (this.IT_ATT(i, "dark")) {
-  //  to-do: if light available, show the description
-  this.CA_ShowMsg("It is dark");
-  return;
- }
-
- var itemWorlIndex = this.worldIndexes.items[i];
-
- if (itemWorlIndex.gameIndex>=0)  {
-  if (typeof ludi_game.items[itemWorlIndex.gameIndex].desc == 'function') { // exists game item desc()?
-   ludi_game.items[itemWorlIndex.gameIndex].desc();
-  } else {
-   this.CA_ShowDesc (i);
-  }
- } else {
-  this.CA_ShowDesc (i);
- }
-
- // game reaction after desc()
- var indexAction = arrayObjectIndexOf (ludi_game.reactions, "id", "desc");
- if (indexAction >=0) {
-  ludi_game.reactions[indexAction].reaction();
-  return;
- }
-
- // lib reaction after desc()
- indexAction = arrayObjectIndexOf (ludi_lib.reactions, "id", "desc");
- if(indexAction >=0)
-  ludi_lib.reactions[indexAction].reaction();
 }
 
 // if returns true, ordinary desc will be needed after it

@@ -13,6 +13,7 @@ isEcho<template>
 
   <!-- Groups of choices -->
   <div class="mainChoices"  v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'">
+    <h3> {{kt("Location")}}: {{this.tge("items", currentChoice.loc, "txt")}} </h3>
     <span v-for="choice in choices">
         <button v-if ="choice.choiceId == 'top'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
         <button v-if ="choice.choiceId == 'itemGroup'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
@@ -24,8 +25,8 @@ isEcho<template>
     
   <!-- choices -->
   <div class="choices" v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'"> 
-     <h3> <!-- <button class={{getChoiceClass(currentChoice.parent)}} v-on:click="doGameChoice(currentChoice.parent)"> {{kt("Back")}} </button>--> {{showCurrentChoice()}}</h3> 
-     <!--<h2>{{currentChoice | json}}</h2>-->
+    <h3> <!-- <button class={{getChoiceClass(currentChoice.parent)}} v-on:click="doGameChoice(currentChoice.parent)"> {{kt("Back")}} </button>--> {{showCurrentChoice()}}</h3> 
+    <!--<h2>{{currentChoice | json}}</h2>-->
     
     <span v-for="choice in choices">
         <button v-if = isMiddleChoice(choice) class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
@@ -34,7 +35,6 @@ isEcho<template>
   </div>
   
   <div class="menu" v-if = "menu.length > 0"> 
-     <h3> {{kt("Menú")}}</h3>
      <h3> {{kt("Action")}}: {{choiceToShow(pendingChoice)}}</h3>
      <ul>
         <span v-for="m in menu">

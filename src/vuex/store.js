@@ -67,7 +67,7 @@ const state = {
 		} 
 	],
 	choices: [],
-	choice: {choiceId:'top', isLeafe:false} ,
+	choice: {choiceId:'top', isLeafe:false, parent:''} ,
 	pendingChoice: {},
 	menu: [],
 	reactionList: [],
@@ -156,8 +156,8 @@ const state = {
 		// if dev msg not exists, show json line to add in the console
 		if (reaction.type == "rt_dev_msg") {
 			if (expanded == "") {
-				var line = "DEV MSG:,\n" ;
-				line += "\t{\"" + "messages."+ reaction.txt + ".txt\": {\n" ;
+				var line = "DEV MSG:\n," ;
+				line += "\t\"" + "messages."+ reaction.txt + ".txt\": {\n" ;
 				line += "\t\t\"" + "message\": \"" + reaction.detail + "\"\n" ;
 				line += "\t}";
 				console.log(line);
@@ -174,7 +174,7 @@ const state = {
 			else
 				expanded = "[" + reaction.txt + "]"
 
-			// is a dynamic property of a item 
+			// might be dynamic: 1) a global game method; or 2) a item property
 			// to-think: dynamic calls expands the reaction list which it is being processing!
 			if ((reaction.type == "rt_desc") || (reaction.type == "rt_item") ){
 				// game level
@@ -193,6 +193,12 @@ const state = {
 					return expanded + "(by lib method)";
 				} 
 
+				// item level
+				let itemGamelevel = arrayObjectIndexOf (state.game.reactions.items, "id", state.runner.world.items[reaction.o1].id)
+				
+				// longMsg.attribute: mainly desc()
+				state.game.reactions.items[itemGamelevel][longMsg.attribute]()
+				return "" // dynamic function do the job
 			}
 		}
 		

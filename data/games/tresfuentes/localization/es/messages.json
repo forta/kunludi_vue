@@ -579,7 +579,7 @@
 		"message": "<br/><br/>Aquí termina el acto I: o de cómo los dos amantes desmemoriados se reencontraron y colaboraron para dar de comer al hambriento flautista y llevarle la piedra de la luna.<br/><br/>"
 	},
 	"messages.VR_fin_acto_1.txt": {
-		"message": "<br/><br/>Aquí termina el acto I: o de cómo Laila dio de comer al hambriento flautista y le llevó la  piedra de la luna<br/><br/>"
+		"message": "<br/><br/>Aquí termina el acto I: o de cómo Laila dio de comer al hambriento flautista.<br/><br/>"
 	},
 	"messages.DLG_no_acepto_agua_no_púrpura.txt": {
 		"message": "¿Y para qué quiero yo esa vulgar agua?"
@@ -2023,5 +2023,23 @@
 	},
 	"messages.practicar_flauta_0.txt": {
 		"message": "fiu, fiu, la conchambrosa flauta sólo hace un ruido sin gracia, apenas si sabes colocar los dedos en los agujeros.<br/>"
+	},
+	"messages.chooseversion.txt": {
+		"message": "¿Qué versión eliges?"
+	},
+	"messages.chooseversion_simple.txt": {
+		"message": "versión reducida"
+	},
+	"messages.chooseversion_long.txt": {
+		"message": "versión completa"
+	},
+	"messages.VC_dragona_atraviesa_catarata_1.txt": {
+		"message": "Convertida en mostruo marino, "
+	},
+	"messages.VC_pájaros_son_capturados.txt": {
+		"message": "Lanzas la honda y dos de ellos quedan atrapados en ella; el resto sale volando.<br/>"
+	},
+	"messages.VR_pájaros_son_capturados.txt": {
+		"message": "Lanzas la camisa y dos de ellos quedan atrapados en ella; el resto sale volando.<br/>"
 	}
 }

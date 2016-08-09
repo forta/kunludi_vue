@@ -1,7 +1,7 @@
 // references to external modules
 let libReactions, gameReactions, reactionList
 exports.userState
-export let choice = {choiceId:'top', isLeafe:false} // current under construction choice
+export let choice = {choiceId:'top', isLeafe:false, parent:''} // current under construction choice
 
 exports.choices = []
 exports.world =[]
@@ -238,9 +238,11 @@ exports.processChoice = function  (choice) {
 		{
 			exports.processChoice (previousChoice)
 		} else 
-			this.choice = {choiceId:'top', isLeafe:false};
+			this.choice = {choiceId:'top', isLeafe:false, parent:''};
 
 	} 
+
+	this.choice.loc = exports.world.items[exports.userState.profile.indexPC].loc 
 
 	exports.updateChoices()
 	
@@ -311,7 +313,6 @@ exports.actionIsEnabled = function(actionId, item1, item2) {
 	return status
 }
 
-
 exports.getTargetAndLocked = function (loc, direction) {
 
 	var connection = {target: -1, isLocked: false};
@@ -365,16 +366,16 @@ exports.updateChoices = function () {
 
 	exports.choices = []
 
-	exports.choices.push ({choiceId:'top', isLeafe:false});
-	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'here'});
-	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'carrying'});
-	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'notHere'});
-	exports.choices.push ({choiceId:'directionGroup', isLeafe:false, directionGroup: 'fromHere'});
-	exports.choices.push ({choiceId:'directActions', isLeafe:false});
+	exports.choices.push ({choiceId:'top', isLeafe:false, parent:""});
+	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'here', parent:"top"});
+	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'carrying', parent:"top"});
+	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'notHere', parent:"top"});
+	exports.choices.push ({choiceId:'directionGroup', isLeafe:false, directionGroup: 'fromHere', parent:"top"});
+	exports.choices.push ({choiceId:'directActions', isLeafe:false, parent:"top"});
 
 
 	if ((this.choice.choiceId == 'top') || (this.choice.choiceId == 'directActions')) {
-		exports.choices.push ({choiceId:'action0', isLeafe:true, parent:"directActions", action:{actionId:'look'}});
+		exports.choices.push ({choiceId:'action0', isLeafe:true, parent:"directActions", action:{actionId:'look', parent:"top"}});
 	} 
 	
 	if ((this.choice.choiceId == 'top') ||(this.choice.choiceId == 'directionGroup')) {
@@ -384,7 +385,7 @@ exports.updateChoices = function () {
 			
 			var link = exports.getTargetAndLocked (exports.userState.profile.loc, d)
 			if (link.target >= 0) {
-				exports.choices.push ({choiceId:'dir1', isLeafe:true, parent:"directionGroup", action: {actionId:'go', d1: d, target:link.target}})
+				exports.choices.push ({choiceId:'dir1', isLeafe:true, parent:"directionGroup", parent:"directActions", action: {actionId:'go', d1: d, target:link.target}})
 			}
 		}
 
@@ -417,7 +418,7 @@ exports.updateChoices = function () {
 		} 
 		
 		// without (this.choice.choiceId == 'top') because it is better explicit user selection
-		if ( (this.choice.itemGroup == 'notHere')) {
+		if ( (this.choice.parent == 'notHere')) {
 			for (let i=0;i<exports.world.items.length;i++) {
 				if (i == exports.userState.profile.indexPC) continue;
 				if (exports.world.items[i].type == "loc") continue;
@@ -450,7 +451,7 @@ exports.updateChoices = function () {
 			}
 		}
 
-		if (this.choice.itemGroup == 'notHere') { 
+		if (this.choice.parent == 'notHere') { 
 			// specially for absent items
 			if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[this.choice.item1] != undefined) {
 				exports.choices.push ({choiceId:'action', isLeafe:true, parent:"obj1", action: { item1: this.choice.item1, actionId: "where" }})
