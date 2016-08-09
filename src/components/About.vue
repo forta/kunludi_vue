@@ -4,55 +4,41 @@
     
     <div v-show="locale == 'en'">
 
-        <h4>     Welcome to LUDI!     </h4>  
+        <h4>Welcome to LUDI!</h4>  
         <p>LUDI means to play in Esperanto, games in Latin and people in Russian... so it's an under-construction environment to play multilingual interactive fiction games in a tiny collaborative network.</p>  
         <p>You can contact us (mail: ludi.ludon at gmail.com). if you want to collaborate somehow.</p>  
 
         <p>With LUDI you will be able to play offline or login to interact with another players. You will also be able to share your game actions and see what the other people do in the game.</p>  
 
-        <h3>  Instructions  </h3>
+        <h3>Instructions</h3>
 
-        <p>Modify your preferred languages: Profile / Set your language preferences / Apply changes</p>
+        <p>1. Choose your preferred language .</p>
 
-        <p>Choose your game: Games / Stable games / tresfuentes / Load game from start / add or remove languages / Apply changes</p>
+        <p>2. Choose your game</p>
+        
+        <p><b>Note: </b>The games "tres fuentes" and <a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">&quot;vampiro&quot;</a> were originally written in Spanish with rude machine traslation into English and Esperanto; the game <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> was originally written in Esperanto but it is under development.</p>
 
-        <p>Online interaction with another players: Profile / Set nick name / write your nick name and push intro</p>		
-        <p>When you log on with a nick name you can send public or private messages to the other players, share your actions with them and see their actions. You can read and write messages on boards as well. At any moment, you can log out from the server.</p>
-
-        <p>Playability</p>
-        <ul>
-        <li>For two-item actions, you must first mark the second item, generally a container or a character.</li>
-        <li>For instance, to put X into Y: first mark Y and when you click on X, you\'ll be able to choose \'put into\'</li>
-        <li>Similarly, to use X on Y: first mark Y and when you click on X, you\'ll be able to choose \'use on\'</li>
-        <li>When you choose to talk to a character, a list of senteces will be shown. You\'ll have to choose one of them.</li>
         </ul>		
     
     </div> 
 
     <div v-show="locale == 'es'">
     
-        <h4>     ¡Bienvenido a LUDI!     </h4>  
-        <p>LUDI significa jugar en esperanto, juegos en latín y gente en ruso... se trata de un entorno en desarrollo para jugar aventuras  multilingües de ficción interactiva en una pequeña red colaborativa.</p>  
+        <h4>¡Bienvenido a kun-ludi!</h4> 
+         
+        <p>"ludi" significa jugar en esperanto, juegos en latín y gente en ruso... se trata de un entorno en desarrollo para jugar aventuras  multilingües de ficción interactiva en una pequeña red colaborativa.</p>  
         <p>Nos puedes escribir (mail: ludi.ludon at gmail.com) si quieres colaborar de alguna manera.</p>  
 
         <p>LUDI permitirá jugar de manera aislada o bien conectarte e interactuar con otros jugadores. También podrás hacer público qué acciones realizas en el juego y ver qué hacen los otros jugadores.</p>  
 
-     	<h3> Instrucciones </h3>
+     	<h3>Instrucciones</h3>
 
-        <p>Modifica tus idiomas preferidos: Perfil / Elige tus idiomas preferidos / Aplica cambios</p>
+        <p>1. Elige el idioma que quieres usar</p>
+        
+        <p>2. Elige tu juego</p>
+        
+        <p><b>Nota: </b>Los juegos "tres fuentes" y <a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">&quot;vampiro&quot;</a> fueron escritos originalmente en español pero tienen traducciones máquina sin pulir a inglés y esperanto; el juego <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto y aún está en desarrollo.</p>
 
-        <p>Elige tu juego: Juegos / Juegos estables / tresfuentes / Carga juego desde cero</p>
-
-        <p>Para interactuar con otros jugadores: Perfil / Ponte un apodo / escribir tu apodo y aceptar.</p>
-        <p>Cuando se inicia sesión con un apodo se puede enviar mensajes públicos o privados a los otros jugadores, compartir tus acciones con ellos y ver sus acciones. También podrás leer y escribir mensajes en los foros. En cualquier momento, puedes cerrar la sesión con el servidor.</p>
-
-        <p>Jugabilidad</p>
-        <ul>
-        <li>Para acciones con dos objetos, hay que marcar uno de ellos, generalmente un contenedor o un personaje.</li>
-        <li>Por ejemplo, para meter X en Y: primero se marca Y y luego al pulsar en X aparecerá disponible la acción 'meter dentro de'.</li>
-        <li>De igual manera, para usar X en Y: primero se marca Y y luego al pulsar en X aparecerá disponible la acción 'usar en'.</li>
-        <li>Al seleccionar la acción hablar con un personaje aparecerá una lista de frases entre las que elegir.</li>
-        </ul>			
 
     </div> 
 
@@ -69,22 +55,11 @@
 
         <h3> Instrukcioj </h3>
 
-        <p>Elektu viajn preferatajn lingvojn: Profilo / Elektu viajn preferatajn lingvojn / Efektivigu ŝanĝojn </p>
+        <p>1. Elektu viajn preferatan lingvon</p>
 
-        <p>Elektu vian ludo: Ludoj / Stabilaj ludoj / tresfuentes / Rekuperi ludon ekde nulo </p>
+        <p>2. Elektu vian ludon.</p>
 
-        <p>Por interagado kun alia ludantoj: Profilo / Elektu vian komnomon / skribu vian komnomon kaj konfirmu.</p>
-        <p>Kiam vi ensalutas kun komnomo vi povas sendi publikajn aŭ privatajn mesaĝojn al la aliaj ludantoj, havebligi viajn agojn kun ili kaj vidi iliajn agojn. Vi ankaŭ povos legi kaj skribi mesaĝojn en forumoj. Ĉiumomente, vi povos elsaluti el la servilo. </p>
-
-        <p>Ludeco</p>
-        <ul>
-        <li>Por agoj kun du objektoj, vi devas unue marki la duan objekton, ĝenerale ujo aŭ gravulo.</li>
-        <li>Ekzemple, por meti X en Y: unue marku Y-on kaj kiam vi klaku sur X, vi povos elekti \'enmeti en\'</li>
-        <li>Simile, uzi X sur Y: unue marku Y-on kaj kiam vi klaku sur X, vi povos elekti 'uzi sur'.</li>
-        <li>Kiam vi elektas paroli al iu karaktero, estos montrita listo de eblecoj. Vi devos elekti unu el ili.</li>
-        </ul>		
-
-
+        <p><b>Rimarko: </b>La ludoj  "tres fuentes" kaj <a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">&quot;vampiro&quot;</a> estis origine verkitaj en la hispana sed kun aŭtomataj tradukoj en la angla kaj esperanto; la ludo <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> estis verkita en esperanto per <a hred ="https://eo.wikipedia.org/wiki/Aventuro_(tekstaventuro)"  target="_blank">alia sistemo</a> sed ankoraŭ ne estis portita al LUDI.</p>
 
     </div> 
     
