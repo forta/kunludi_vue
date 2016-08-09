@@ -416,21 +416,19 @@ exports.updateChoices = function () {
 				}
 			}
 		} 
+	}	
 		
-		// without (this.choice.choiceId == 'top') because it is better explicit user selection
-		if ( (this.choice.parent == 'notHere')) {
-			for (let i=0;i<exports.world.items.length;i++) {
-				if (i == exports.userState.profile.indexPC) continue;
-				if (exports.world.items[i].type == "loc") continue;
-				if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].loc) continue;
-				if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].id) continue;
+	if ( (this.choice.choiceId == 'itemGroup') && (this.choice.itemGroup == 'notHere')) {
+		for (let i=0;i<exports.world.items.length;i++) {
+			if (i == exports.userState.profile.indexPC) continue;
+			if (exports.world.items[i].type == "loc") continue;
+			if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].loc) continue;
+			if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].id) continue;
 
-				// item known
-				if (typeof exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[i] != "undefined") 
-					exports.choices.push ({choiceId:'obj1', item1: i, parent:"notHere"});
-			}
-			
-		} 
+			// item known
+			if (typeof exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[i] != "undefined") 
+				exports.choices.push ({choiceId:'obj1', item1: i, parent:"notHere"});
+		}
 	} 
 	
 	if (this.choice.choiceId == 'obj1') {
