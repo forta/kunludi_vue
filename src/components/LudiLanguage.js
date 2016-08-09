@@ -17,7 +17,6 @@ exports.dependsOn = function (libMessages, gameMessages, world) {
 
 }
 
-
 exports.expandText = function  (type, index, attribute) {
 
 	var longMsgId

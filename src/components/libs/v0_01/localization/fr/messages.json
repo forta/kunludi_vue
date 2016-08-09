@@ -1,0 +1,341 @@
+{
+  "actions.look.txt": {
+    "message": "regarder"
+  },
+  "actions.go.txt": {
+    "message": "aller"
+  },
+  "actions.ex.txt": {
+    "message": "examiner"
+  },
+  "actions.take.txt": {
+    "message": "prendre"
+  },
+  "actions.drop.txt": {
+    "message": "laisser"
+  },
+  "actions.talk.txt": {
+    "message": "parler"
+  },
+  "actions.become.txt": {
+    "message": "se convertir en"
+  },
+  "actions.put_into.txt": {
+    "message": "mettre à l'intérieur"
+  },
+  "actions.give.txt": {
+    "message": "donner"
+  },
+  "actions.take_from.txt": {
+    "message": "de"
+  },
+  "actions.ask_about.txt": {
+    "message": "demander de"
+  },
+  "actions.ask_from.txt": {
+    "message": "demander"
+  },
+  "actions.show_to.txt": {
+    "message": "show"
+  },
+  "actions.read.txt": {
+    "message": "lisez"
+  },
+  "actions.turnon.txt": {
+    "message": "allumer"
+  },
+  "actions.turnoff.txt": {
+    "message": "éteindre"
+  },
+  "actions.sing.txt": {
+    "message": "chanter"
+  },
+  "actions.where.txt": {
+    "message": "où"
+  },
+  "actions.open.txt": {
+    "message": "ouvert"
+  },
+  "actions.close.txt": {
+    "message": "fermer"
+  },
+  "actions.unlock.txt": {
+    "message": "ouvrir"
+  },
+  "actions.lock.txt": {
+    "message": "bloquer"
+  },
+  "actions.look_dir.txt": {
+    "message": "look-dir"
+  },
+  "actions.investigate.txt": {
+    "message": "enquêter"
+  },
+  "actions.dig_with.txt": {
+    "message": "dig-avec"
+  },
+  "actions.climb.txt": {
+    "message": "montée"
+  },
+  "actions.swim.txt": {
+    "message": "nager"
+  },
+  "actions.jump.txt": {
+    "message": "sauter"
+  },
+  "actions.tie.txt": {
+    "message": "cravate"
+  },
+  "actions.untie.txt": {
+    "message": "délier"
+  },
+  "actions.drink.txt": {
+    "message": "boire"
+  },
+  "actions.eat.txt": {
+    "message": "manger"
+  },
+  "actions.listen.txt": {
+    "message": "écouter"
+  },
+  "actions.smell.txt": {
+    "message": "odeur"
+  },
+  "actions.wakeup.txt": {
+    "message": "réveiller"
+  },
+  "actions.attack.txt": {
+    "message": "attaque"
+  },
+  "actions.strike.txt": {
+    "message": "frapper"
+  },
+  "actions.stop.txt": {
+    "message": "arrêter"
+  },
+  "actions.burn.txt": {
+    "message": "brûler"
+  },
+  "actions.throwAction.txt": {
+    "message": "lancer"
+  },
+  "actions.pull.txt": {
+    "message": "tirer"
+  },
+  "actions.raise.txt": {
+    "message": "en haut"
+  },
+  "actions.wait.txt": {
+    "message": "attendre"
+  },
+  "actions.attack-with.txt": {
+    "message": "attaque-avec"
+  },
+  "attributes.container.txt": {
+    "message": " %o1 est un récipient"
+  },
+  "attributes.openclose.txt": {
+    "message": "Vous pouvez ouvrir et fermer"
+  },
+  "attributes.turnonoff.txt": {
+    "message": "Vous pouvez activer et désactiver"
+  },
+  "attributes.readable.txt": {
+    "message": "Vous pouvez lire %o1"
+  },
+  "attributes.wearable.txt": {
+    "message": "Vous pouvez mettre et à enlever"
+  },
+  "attributes.notTakeAble.txt": {
+    "message": "(Vous pouvez attraper)"
+  },
+  "directions.d0.txt": {
+    "message": "n"
+  },
+  "directions.d45.txt": {
+    "message": "ne"
+  },
+  "directions.d90.txt": {
+    "message": "et"
+  },
+  "directions.d135.txt": {
+    "message": "est"
+  },
+  "directions.d180.txt": {
+    "message": "s"
+  },
+  "directions.d225.txt": {
+    "message": "SW"
+  },
+  "directions.d270.txt": {
+    "message": "ou"
+  },
+  "directions.d315.txt": {
+    "message": "aucun"
+  },
+  "directions.in.txt": {
+    "message": "dans"
+  },
+  "directions.out.txt": {
+    "message": "dehors"
+  },
+  "directions.up.txt": {
+    "message": "dessus"
+  },
+  "directions.down.txt": {
+    "message": "vers le bas"
+  },
+  "directions.d0.desc": {
+    "message": "nord"
+  },
+  "directions.d45.desc": {
+    "message": "nord-est"
+  },
+  "directions.d90.desc": {
+    "message": "cette"
+  },
+  "directions.d135.desc": {
+    "message": "au sud-est"
+  },
+  "directions.d180.desc": {
+    "message": "sud"
+  },
+  "directions.d225.desc": {
+    "message": "sud-ouest"
+  },
+  "directions.d270.desc": {
+    "message": "ouest"
+  },
+  "directions.d315.desc": {
+    "message": "nord-ouest"
+  },
+  "directions.in.desc": {
+    "message": "dans"
+  },
+  "directions.out.desc": {
+    "message": "dehors"
+  },
+  "directions.up.desc": {
+    "message": "dessus"
+  },
+  "directions.down.desc": {
+    "message": "vers le bas"
+  },
+  "messages.with objects inside.txt": {
+    "message": "objets à l'intérieur"
+  },
+  "messages.You just have it!.txt": {
+    "message": "Vous avez déjà!"
+  },
+  "messages.You take %o1.txt": {
+    "message": "Vous prenez %o1"
+  },
+  "messages.You don't have it!.txt": {
+    "message": "On ne va pas!"
+  },
+  "messages.You drop it on %o1.txt": {
+    "message": "Vous laissez tomber dans %o1"
+  },
+  "messages.You talk with %o1.txt": {
+    "message": "Vous parlez avec %o1"
+  },
+  "messages.but without any reaction.txt": {
+    "message": "mais sans obtenir de réaction"
+  },
+  "messages.You become %o1.txt": {
+    "message": "Vous deviendrez %o1!"
+  },
+  "messages.You shoud mark a container first.txt": {
+    "message": "Vous devez marquer un premier récipient"
+  },
+  "messages.You cannot %v1.txt": {
+    "message": "Vous ne pouvez pas %v1"
+  },
+  "messages.You cannot put a object into itself.txt": {
+    "message": "Vous ne pouvez pas mettre un objet en lui-même"
+  },
+  "messages.The marked object must be a container.txt": {
+    "message": "L'objet de marquage doit être un récipient"
+  },
+  "messages.You put %o1 into %o2.txt": {
+    "message": "Metes %en %o2 %o1"
+  },
+  "messages.You take %o1 from %o2.txt": {
+    "message": "Prenez %o1 %o2"
+  },
+  "messages.You examine %o1.txt": {
+    "message": "Parcourant %o1."
+  },
+  "messages.You read %o1.txt": {
+    "message": "Lees %o1"
+  },
+  "messages.You turn on %o1.txt": {
+    "message": "Vous tournez %o1"
+  },
+  "messages.You turn off %o1.txt": {
+    "message": "Eteignez %o1"
+  },
+  "messages.Default book.txt": {
+    "message": "Il semble un peu de lecture ennuyeuse"
+  },
+  "messages.You sing.txt": {
+    "message": "Vous chantez"
+  },
+  "messages.You selected.txt": {
+    "message": "Vous avez choisi"
+  },
+  "messages.where %o1 was?.txt": {
+    "message": "Où était %o1?"
+  },
+  "messages.location unknown of %o1.txt": {
+    "message": "Vous ne savez pas où il était %o1"
+  },
+  "messages.%o1 was there: %o2.txt": {
+    "message": " %O1 était là: %o2"
+  },
+  "messages.The game is over.txt": {
+    "message": "Le jeu est fini"
+  },
+  "messages.Introduction.txt": {
+    "message": "introduction"
+  },
+  "messages.You eat %o1.txt": {
+    "message": "Livré %o1"
+  },
+  "messages.You go to %d1.txt": {
+    "message": "Vous allez à %d1"
+  },
+  "messages.Game Instructions.txt": {
+    "message": "Instructions de jeu"
+  },
+  "messages.There is %o1.txt": {
+    "message": "Il %o1"
+  },
+  "messages.To %d1 there is %o2.txt": {
+    "message": "Il à %d1 %o2"
+  },
+  "messages.You can see.txt": {
+    "message": "Tu peux voir"
+  },
+  "messages.%o1 does not react when you ask about %o2.txt": {
+    "message": " %o1 ne réagit pas aux questions posées par %o2"
+  },
+  "messages.%o1 does not react when you ask for %o2.txt": {
+    "message": " %o1 ne réagit pas lorsque vous demandez %o2"
+  },
+  "messages.%o1 does not react when you show %o2.txt": {
+    "message": " %o1 ne réagit pas lorsque les échantillons %o2"
+  },
+  "messages.You try to give o1 to o2.txt": {
+    "message": "Vous essayez de donner %o1 %o2 en vain."
+  },
+  "messages.You just jump!.txt": {
+    "message": "Juste ... vous sautez!"
+  },
+  "messages.Time runs.txt": {
+    "message": "Le temps passe"
+  },
+  "messages.Locked direction.txt": {
+    "message": "direction bloquée."
+  }
+}

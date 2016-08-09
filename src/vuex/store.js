@@ -85,7 +85,7 @@ const state = {
 		if (state.locale == "") {
 			// set default language and load kernel messages
 			// attention: using window object
-			if (["es", "en", "eo"].indexOf(window.navigator.language) >=0) 
+			if (["es", "en", "eo", "fr"].indexOf(window.navigator.language) >=0) 
 				mutations.SETLOCALE(state, window.navigator.language); 
 			else
 				mutations.SETLOCALE(state, 'en'); 

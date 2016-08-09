@@ -37,6 +37,18 @@
 				"ludi_account": "forta", 
 				"email": "ludi.ludon@gmail.com"
 			}
+		},		
+		{
+			"language": "fr",
+			"title": "Vampire",
+			"desc": "LUDI adaptation du jeu Vampire",
+			"introduction": "Vampiro",	
+			"author": {
+				"name": "Jaume Alcazo Castellarnau", 
+				"adaptor": "Francisco Orta", 			
+				"ludi_account": "forta", 
+				"email": "ludi.ludon@gmail.com"
+			}
 		}		
 	]
 }

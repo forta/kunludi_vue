@@ -28,6 +28,11 @@
             es
             <button @click='addAsFavouriteLanguage("es")'> add </button>
         </li>
+        <li>
+            <button @click='setLocale("fr")'>choose</button>
+            fr
+            <button @click='addAsFavouriteLanguage("fr")'> add </button>
+        </li>
     </ul>
 
   </div>

@@ -1,0 +1,260 @@
+﻿{
+    "items.prota.desc": {
+        "message": "Vous êtes la star de Vampire."
+    },
+    "items.prota.txt": {
+        "message": "personnage principal"
+    },
+	"items.vestibulo.desc": {
+			"message": "Vous êtes dans la salle du château. L'atmosphère est très humide et froid. Vous êtes dans un couloir qui se prolonge vers le nord. Au sud est la porte d'entrée du château."
+		},
+	"items.vestibulo.txt": {
+			"message": "lobby"
+		},
+	"items.pasillo.desc": {
+			"message": "Vous êtes au milieu de la salle principale de cet étage. A l'ouest se trouve la cuisine et de la bibliothèque. Le couloir continue vers le nord."
+		},
+	"items.pasillo.txt": {
+			"message": "corridor"
+		},
+	"items.escaleras.desc": {
+			"message": "Vous vous trouvez à la fin de la salle. En face de vous, vous voyez quelques marches à monter et descendre les autres. A l'ouest se trouve la chambre de l'est et le salon."
+		},
+	"items.escaleras.txt": {
+			"message": "escalier"
+		},
+	"items.biblioteca.desc": {
+			"message": "Vous vous trouvez dans la bibliothèque du château. De toute évidence, il est rempli de livres intéressants, mais malheureusement, ne pas avoir le temps de les lire. "
+		},
+	"items.biblioteca.txt": {
+			"message": "bibliothèque"
+		},
+	"items.cocina.desc": {
+			"message": "Vous êtes dans la cuisine du château. Ceci est pleine de pots et des casseroles pour la cuisson. Il y a un four, un évier et un petit placard."
+		},
+	"items.cocina.txt": {
+			"message": "cuisine"
+		},
+	"items.escaleras_superiores.desc": {
+			"message": "Vous êtes au dernier étage du château. Cela rend encore plus cool que vers le bas. Derrière vous sont les escaliers vers le bas et à l'ouest, il est la chambre du vampire."
+		},
+	"items.escaleras_superiores.txt": {
+			"message": "les escaliers au-dessus"
+		},
+	"items.sotano.desc": {
+			"message": "Dans ce petit sous-sol est très chaud, vous vous sentez un sentiment de recueillement. Tout cela est très sale. Il y a un baril ici, il y a aussi un escalier d'escalade."
+		},
+	"items.sotano.txt": {
+			"message": "sous-sol"
+		},
+	"items.dormitorio.desc": {
+			"message": "Vous n'êtes pas trop grand, ni trop petite chambre. Il est assez austère. Seul un lit et une armoire."
+		},
+	"items.dormitorio.txt": {
+			"message": "chambre"
+		},
+	"items.sala_estar.desc": {
+			"message": "Ceci est le salon le plus confortable autour du château. Dans la cheminée les derniers restes d'un feu crépitent gaiement. Il y a une grande table avec une chaise à côté. Tenture de nombreux trophées de chasse et de divers ornements."
+		},
+	"items.sala_estar.txt": {
+			"message": "salon"
+		},
+	"items.escaleras.desc": {
+			"message": "Vous vous trouvez à la fin de la salle. En face de vous, vous voyez quelques marches à monter et descendre les autres. A l'ouest se trouve la chambre de l'est et le salon."
+		},
+	"items.escaleras.txt": {
+			"message": "escalier"
+		},
+	"items.final.desc": {
+			"message": "Vous êtes dans une pièce nue. Il y a seulement un autel au centre. Au-dessus de l'autel, vous pouvez voir un cercueil. "
+		},
+	"items.final.txt": {
+			"message": "vampire vivant"
+		},
+	"items.traje.desc": {
+			"message": "Il est un costume pas cher acheté en vente."
+		},
+	"items.traje.txt": {
+			"message": "costume pas cher"
+		},
+	"items.cacerolas.desc": {
+			"message": "casseroles et poêles de cuisson simples."
+		},
+	"items.cacerolas.txt": {
+			"message": "casseroles"
+		},
+	"items.horno.desc": {
+			"message": "Un four simple, n'a pas d'importance."
+		},
+	"items.horno.txt": {
+			"message": "four"
+		},
+	"items.fregadero.desc": {
+			"message": "Il est un évier en pierre. L'évier est vide. "
+		},
+	"items.fregadero.txt": {
+			"message": "couler"
+		},
+	"items.armario_pequeño.txt": {
+			"message": "petit placard"
+		},
+	"items.cuchillo.desc": {
+			"message": "Un couteau de cuisine simple. Cliquez sur. "
+		},
+	"items.cuchillo.txt": {
+			"message": "couteau"
+		},
+	"items.cama.desc": {
+			"message": "Il est recouvert de feuilles."
+		},
+	"items.cama.txt": {
+			"message": "lit"
+		},
+	"items.sábanas.desc": {
+			"message": "Feuilles actuels et molientes. Parmi eux, vous trouverez un petit peu la clé. "
+		},
+	"items.sábanas.txt": {
+			"message": "feuilles"
+		},
+	"items.llave.desc": {
+			"message": "Ce petit peu de touche a les caractéristiques d'ouverture d'un placard ou quelque chose."
+		},
+	"items.llave.txt": {
+			"message": "petite clef"
+		},
+	"items.armario.desc": {
+			"message": "Le placard est vide."
+		},
+	"items.armario.txt": {
+			"message": "placard"
+		},
+	"items.ajos.desc": {
+			"message": "Il y a toute une chaîne d'ail qui expulsent une odeur légèrement fétide. Il est l'un des quatre éléments qui me serviront à vaincre le vampire."
+		},
+	"items.ajos.txt": {
+			"message": "chaîne d'ail"
+		},
+	"items.chimenea.txt": {
+			"message": "cheminée"
+		},
+	"items.madera.desc": {
+			"message": "Un morceau de bois, rectangulaire et allongée."
+		},
+	"items.madera.txt": {
+			"message": "morceau de bois"
+		},
+	"items.mesa.desc": {
+			"message": "Une table d'acajou assez grand."
+		},
+	"items.mesa.txt": {
+			"message": "table"
+		},
+	"items.silla.desc": {
+			"message": "Un fauteuil confortable."
+		},
+	"items.silla.txt": {
+			"message": "chaise"
+		},
+	"items.trofeos.desc": {
+			"message": "trophées Insignificant."
+		},
+	"items.trofeos.txt": {
+			"message": "trophées de chasse"
+		},
+	"items.adornos.desc": {
+			"message": "Adorn."
+		},
+	"items.adornos.txt": {
+			"message": "ornements"
+		},
+	"items.barril.desc": {
+			"message": "tonneau"
+		},
+	"items.barril.txt": {
+			"message": "tonneau"
+		},
+	"items.estaca.desc": {
+			"message": "Une pièce rectangulaire allongée de bois, dont une extrémité est affûtée avec soin."
+		},
+	"items.estaca.txt": {
+			"message": "participation"
+		},
+	"items.martillo.desc": {
+			"message": "Un gros marteau. Il est l'un des éléments qui me permettent de tuer le vampire."
+		},
+	"items.martillo.txt": {
+			"message": "marteau"
+		},
+	"items.cruz.desc": {
+			"message": "Il est un petit crucifix d'argent. Il est l'un des quatre éléments qui serviront à vaincre le vampire."
+		},
+	"items.cruz.txt": {
+			"message": "crucifix d'argent"
+		},
+	"items.palanca.desc": {
+			"message": "Il est un levier en acier Toledo. Il est de forcer les choses."
+		},
+	"items.palanca.txt": {
+			"message": "levier"
+		},
+	"items.ataud.desc": {
+			"message": "Une boîte de pin simple."
+		},
+	"items.ataud.txt": {
+			"message": "cercueil"
+		},
+	"actions.afilar.txt": {
+			"message": "affiner"
+		},
+	"messages.ganaste.txt": {
+			"message": "Vous ouvrez le cercueil. A l'intérieur vous contempler le visage horrible du vampire. Protégé par l'ail et crucifix commencer votre tâche laid. Vous tenez le pieu dans la poitrine et un terrible marteau sombrer dans les profondeurs de son être. Avec un cri de poudre agonie se fond et que vous venez de votre mission ici. <br/> Pour l'instant ... "
+		},
+	"messages.undefined_gameParameters.txt": {
+	"message": "Ce jeu doit avoir défini les gameParameters attribuent à l'emplacement initial de <br/> jeu"
+	},
+	"messages.bienvenida_juego_1.txt": {
+	"message": "Le projet Vampire (http://wiki.caad.es/Proyecto_Vampiro)) est de recréer d'une simple aventure dans une nouvelle langue. Dans ce cas, l'objectif est de démontrer les possibilités de LUDI. version Twine à base de no2nsence, qui à son tour est basé sur les versions fi.js (par baltasarq) et Inform 7 (pour Sarganar). <br/> "
+	},
+	"messages.bienvenida_juego_2.txt": {
+	"message": "Vous vous réveillez groggy. Après quelques secondes, vous intégrez dans le sol de pierre froide et vous voyez que vous êtes dans un château. Maintenant, vous vous souvenez! Vous vous reXXe et votre mission est de tuer le vampire. Vous devez tuer le vampire qui vit sur le sommet du château ... <br/> "
+	},
+	"messages.afilas_madera.txt": {
+	"message": "bois sans feuilles avec un couteau et obtenir un jeu!<br/> "
+	},
+	"messages.Xnecesitas_afilador.txt ": {
+	"message": "Vous avez besoin de quelque chose pour aiguiser <br/>"
+	},
+	"messages.aparece_martillo.txt": {
+	"message": "-¡Clack - Gérer Pry ouvrir le canon <br/> intérieur est un marteau."
+	},
+	"messages.aparecen_ajos.txt": {
+	"message": "Vous ouvrez le placard avec la petite clef examiner <br/> Lorsque vous déposez jusqu'à une chaîne d'ail qui était à l'intérieur <br/> .."
+	},
+	"messages.Xno_abres_o1.txt ": {
+	"message": "Vous ne recevez pas ouvert <br/>% o1."
+	},
+	"messages.Xo1_ya_abierto.txt ": {
+	"message": "% o1 est maintenant <br/> ouvert."
+	},
+	"messages.no_se_puede_abrir_ataúd.txt": {
+	"message": "Je besoin de quatre choses avant la fin de la« vie »du vampire. A savoir: un crucifix, une chaîne d'ail, une participation et d'un marteau <br/> forte."
+	},
+	"messages.desc_chimenea.txt": {
+	"message": "Il est une cheminée en brique et très élégant."
+	},
+	"messages.hay_madera.txt": {
+	"message": "Parmi les restes du feu, vous trouverez un morceau de bois."
+	},
+	"messages.desc_sábanas.txt": {
+	"message": "Feuilles actuels et molientes."
+	},
+	"messages.hay_llavecita.txt": {
+	"message": "Parmi eux, vous trouverez un petit peu la clé."
+	},
+	"messages.armario_abierto.txt": {
+	"message": "Le placard est ouvert."
+	},
+	"messages.armario_cerrado.txt": {
+	"message": "Il est verrouillé."
+	}
+}
