@@ -206,8 +206,11 @@
   "actions.afilar.txt": {
     "message": "sharpen"
   },
-  "messages.ganaste.txt": {
+  "messages.final.txt": {
     "message": "Open the coffin. Inside you contemplate the hideous face of the vampire. Protected by the garlic and the crucifix start your gruesome task. You stick the stake on the chest and a terrible hammer the sink deeper in your being. With a cry of agony powder melts and you end your mission here.<br/><br/>By now ..."
+  },
+  "messages.ganaste.txt": {
+    "message": "You win!"
   },
   "messages.undefined_gameParameters.txt": {
     "message": "This game need gameParameters attribute defined in the initial location of <br/> game"

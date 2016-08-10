@@ -138,26 +138,26 @@ let initReactions =  function  (reactions, primitives) {
 			
 			primitives.GD_CreateMsg (1, "bienvenida_juego_2", "Despiertas aturdido. Después de unos segundos te incorporas en el frío suelo de piedra y ves que estás en un castillo. ¡Ahora recuerdas! Eres reXXe y tu misión es la de matar al vampiro. TIENES que matar al vampiro que vive en la parte superior del castillo...<br/><br/>"); 
 
-			if (par_c.item1Id== "vestibulo") {
-				if (!primitives.IT_ATT(par_c.item1, "gameParameters")) {
+			if (par_c.loc == primitives.IT_X("vestibulo")) {
+				if (!primitives.IT_ATT(par_c.loc, "gameParameters")) {
 					primitives.CA_ShowMsg ("undefined_gameParameters");
 					primitives.CA_EndGame("Error");
 					return true;
 				}
 
-				if (primitives.IT_GetAttPropValue (par_c.item1, "gameParameters", "version") == "") {
+				if (primitives.IT_GetAttPropValue (par_c.loc, "gameParameters", "version") == "") {
 					primitives.CA_ShowImg ("portada_vampiro.jpg", true);
 					
 					primitives.CA_ShowMsg ("bienvenida_juego_1");
 					primitives.CA_ShowMsg ("bienvenida_juego_2");
 
-					primitives.IT_SetAttPropValue (par_c.item1, "gameParameters", "version","iniciado");
+					primitives.IT_SetAttPropValue (par_c.loc, "gameParameters", "version","iniciado");
 						
 				} 
 			}
 			
 			// to-do: imágenes de las localidades (porque el kernel no lo pemite)
-			primitives.CA_ShowImg (par_c.item1Id + ".jpg", true);
+			primitives.CA_ShowImg (primitives.IT_GetId (par_c.loc) + ".jpg", true);
 
 			return false;
 		}
@@ -221,8 +221,8 @@ let initReactions =  function  (reactions, primitives) {
 					primitives.CA_ShowMsg ("no_se_puede_abrir_ataúd");
 				} else {
 					primitives.CA_ShowImg ("fin.png", true);
-					primitives.CA_ShowMsg ("ganaste");
-					primitives.CA_EndGame ("Ganaste!");
+					primitives.CA_ShowMsg ("final");
+					primitives.CA_EndGame ("ganaste");
 				}
 				return true;
 			}

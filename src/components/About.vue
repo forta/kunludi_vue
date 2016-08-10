@@ -17,8 +17,7 @@
         <p>2. Choose your game</p>
         
         <p><b>Note: </b>The games "tres fuentes" and <a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">&quot;vampiro&quot;</a> were originally written in Spanish with rude machine traslation into English and Esperanto; the game <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> was originally written in Esperanto but it is under development.</p>
-
-        </ul>		
+	
     
     </div> 
 
@@ -63,6 +62,24 @@
 
     </div> 
     
+    <div v-show="locale == 'fr'">
+        <h4> Bienvenue à LUDI! </h4>
+        
+        <p> LUDI signifie jouer en espéranto, jeux en latin et des personnes en russe ... il est donc un environnement multilingue en construction à jouer à des jeux de fiction interactive dans un petit réseau de collaboration.</p>
+        <p> Vous pouvez nous contacter (mail: ludi.ludon at gmail.com) si vous voulez collaborer en quelque sorte. </p>
+
+        <p> Avec LUDI vous serez en mesure de jouer hors ligne ou vous connecter à interagir avec un autre joueur. Vous serez également fiable pour partager votre jeu et de voir quelles actions les autres font dans le jeu.</p>
+
+        <h3> Instructions </h3>
+
+        <p> 1. Choisissez votre langue préférée. </p>
+
+        <p> 2. Choisissez votre jeu </p>
+        
+        <p><b>Remarque:</b> Les jeux «trois sources» et <a href = "http://wiki.caad.es/Proyecto_Vampiro" target="_blank">&quot;Vampire&quot;</a> ont été écrit à l'origine en espagnol avec la machine traslation grossière en Inglés et Esperanto;<a href = "https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank"> &quot;texel&quot;</a> a été écrit en espéranto, mais il est en cours de développement </p>.
+        
+    </div> 
+
   </div>
 </template>
 

@@ -206,8 +206,11 @@
 	"actions.afilar.txt": {
         "message": "afilar"
     },
-	"messages.ganaste.txt": {
+	"messages.final.txt": {
         "message": "Abres el ataúd. Dentro contemplas la horrible cara del vampiro. Protegido por los ajos y el crucifijo empiezas tu horrible tarea. Le clavas la estaca en el pecho y de un terrible golpe de martillo la hundes en lo más profundo de su ser. Con un grito de agonía se deshace en polvo y tú acabas tu misión aquí.<br/><br/>Por ahora..."
+    },
+	"messages.ganaste.txt": {
+        "message": "¡Ganaste!"
     },
 	"messages.undefined_gameParameters.txt": {
 		"message": "Este juego necesita tener definido el atributo gameParameters en la localidad inicial del juego<br/>"

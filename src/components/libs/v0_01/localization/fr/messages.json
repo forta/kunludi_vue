@@ -156,22 +156,22 @@
     "message": "ne"
   },
   "directions.d90.txt": {
-    "message": "et"
+    "message": "e"
   },
   "directions.d135.txt": {
-    "message": "est"
+    "message": "se"
   },
   "directions.d180.txt": {
     "message": "s"
   },
   "directions.d225.txt": {
-    "message": "SW"
+    "message": "sou"
   },
   "directions.d270.txt": {
     "message": "ou"
   },
   "directions.d315.txt": {
-    "message": "aucun"
+    "message": "nou"
   },
   "directions.in.txt": {
     "message": "dans"
@@ -180,10 +180,10 @@
     "message": "dehors"
   },
   "directions.up.txt": {
-    "message": "dessus"
+    "message": "monter"
   },
   "directions.down.txt": {
-    "message": "vers le bas"
+    "message": "descendre"
   },
   "directions.d0.desc": {
     "message": "nord"
@@ -192,10 +192,10 @@
     "message": "nord-est"
   },
   "directions.d90.desc": {
-    "message": "cette"
+    "message": "est"
   },
   "directions.d135.desc": {
-    "message": "au sud-est"
+    "message": "sud-est"
   },
   "directions.d180.desc": {
     "message": "sud"
@@ -216,10 +216,10 @@
     "message": "dehors"
   },
   "directions.up.desc": {
-    "message": "dessus"
+    "message": "monter"
   },
   "directions.down.desc": {
-    "message": "vers le bas"
+    "message": "descendre"
   },
   "messages.with objects inside.txt": {
     "message": "objets à l'intérieur"

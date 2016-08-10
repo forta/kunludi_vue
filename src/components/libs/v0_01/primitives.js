@@ -226,6 +226,7 @@ export function CA_ShowMenu ( o1) {
 }
 
 export function CA_ShowImg (url, isLocal, isLink, txt, param) {
+ if (typeof txt == "undefined") txt = "";
  if (typeof isLocal == "undefined") isLocal = false;
  if (typeof isLink == "undefined") isLink = false;
  

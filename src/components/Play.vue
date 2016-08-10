@@ -4,8 +4,11 @@ isEcho<template>
     <div v-for="hItem in history">
         <!-- echo -->
         <p><b> {{$index+1}}. {{choiceToShow(hItem.action, true)}}</b></p>
-            <!-- to-do: problem with nested v-for: so, we'll create a new component -->   
-        <span v-for="r in hItem.reactionList"> {{{t(r)}}} </span>
+            <!-- to-do: problem with nested v-for: so, we'll create a new component -->  
+          
+        <span v-for="r in hItem.reactionList">
+            <span>{{{formatReaction(r)}}}</span> 
+        </span>
     </div>
     <!--<h3> menu: {{menu | json}}</h3> 
     <h3> pendingChoice: {{pendingChoice | json}}</h3> -->
@@ -62,6 +65,20 @@ export default {
     this.showEndOfText()
   },
   methods: {
+      formatReaction: function (r) {
+          var piece = this.t(r)
+          if (piece == undefined) return ""
+          console.log ('piece: ' + JSON.stringify (piece))
+     	  if (piece.isLink) 
+		      return "<a href='" + require("./../../data/games/" + this.gameId + "/images/" + piece.src) + "' target='_blank'>" + piece.txt + "</a><br/>"
+            // piece.isLocal, 
+            // piece.param)
+                    
+          if (piece.type == "img")
+              return  "<p>" + piece.txt + "</p><img src='" + require("./../../data/games/" + this.gameId + "/images/" + piece.src) + "'/><br/>"
+          
+          return piece.txt
+      },           
       isMiddleChoice: function (choice) {
          return ((choice.choiceId == 'action0') ||(choice.choiceId == 'action') ||(choice.choiceId == 'action2') || (choice.choiceId == 'obj1') || (choice.choiceId == 'dir1'))
       },           

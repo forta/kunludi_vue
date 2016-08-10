@@ -206,8 +206,11 @@
 	"actions.afilar.txt": {
 			"message": "affiner"
 		},
-	"messages.ganaste.txt": {
+	"messages.final.txt": {
 			"message": "Vous ouvrez le cercueil. A l'intérieur vous contempler le visage horrible du vampire. Protégé par l'ail et crucifix commencer votre tâche laid. Vous tenez le pieu dans la poitrine et un terrible marteau sombrer dans les profondeurs de son être. Avec un cri de poudre agonie se fond et que vous venez de votre mission ici. <br/> Pour l'instant ... "
+		},
+	"messages.ganaste.txt": {
+			"message": "Vous avez gagné!"
 		},
 	"messages.undefined_gameParameters.txt": {
 	"message": "Ce jeu doit avoir défini les gameParameters attribuent à l'emplacement initial de <br/> jeu"
@@ -256,5 +259,8 @@
 	},
 	"messages.armario_cerrado.txt": {
 	"message": "Il est verrouillé."
+	},
+	"messages.Xnecesitas_afilador.txt": {
+		"message": "Vous avez besoin de quelque chose pour aiguiser<br/>"
 	}
 }

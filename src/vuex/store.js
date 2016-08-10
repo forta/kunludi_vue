@@ -101,9 +101,13 @@ const state = {
 		}
 		return "*" + kMsg + "*"
 	},
+	
 	gTranslator: function (reaction) {
 		
-		if (reaction.type == "rt_kernel_msg") return state.kTranslator (reaction.txt)
+	
+		if (reaction.type == "rt_kernel_msg") {
+			return {type:'text', txt:state.kTranslator (reaction.txt)}
+		}
 			
 		state.menu = []
 		
@@ -111,7 +115,9 @@ const state = {
 
 		// console.log	("gTranslator.reaction: " + JSON.stringify(reaction) )
 		
-		if (reaction.type == "rt_asis") return reaction.txt;
+		if (reaction.type == "rt_asis") {
+			return {type:'text', txt:reaction.txt}
+		}
 				
 		// if not as is
 		let longMsg = {} 
@@ -135,9 +141,9 @@ const state = {
 			longMsg.attribute = "txt"
 		} else if (reaction.type == "rt_show_menu") {
 			state.menu = reaction.o1
-			return ""
+			return
 		} else {
-			return "gTranslator:[" + JSON.stringify(reaction) + "]"
+			return {type:'text', txt: "gTranslator:[" + JSON.stringify(reaction) + "]"}
 		}
 
 		// if static:
@@ -165,7 +171,7 @@ const state = {
 				// add in memory
 				state.game.messages [state.locale]["messages." + reaction.txt + ".txt"] = {message:reaction.detail}
 			}
-			return ""
+			return
 		}
 		
 		if (expanded == "") {
@@ -182,7 +188,7 @@ const state = {
 				if ((actionGameIndex>=0) && (typeof state.game.reactions[actionGameIndex].reaction == "function")) {
 					// problem: the new dynamic reactions are added at the end instead of inserted
 					state.game.reactions[actionGameIndex].reaction ({item1: reaction.o1})
-					return expanded + "(by game method)";
+					return {type:'text', txt: expanded + "(by game method)"}
 				} 
 
 				// lib level
@@ -190,7 +196,7 @@ const state = {
 				if ((actionLibIndex>=0) && (typeof state.lib.reactions[actionLibIndex].reaction == "function")) {
 					// problem: the new dynamic reactions are added at the end instead of inserted
 					state.lib.reactions[actionLibIndex].reaction ({item1: reaction.o1})
-					return expanded + "(by lib method)";
+					return {type:'text', txt:expanded + "(by lib method)"}
 				} 
 
 				// item level
@@ -198,7 +204,7 @@ const state = {
 				
 				// longMsg.attribute: mainly desc()
 				state.game.reactions.items[itemGamelevel][longMsg.attribute]()
-				return "" // dynamic function do the job
+				return // dynamic function do the job
 			}
 		}
 		
@@ -206,27 +212,32 @@ const state = {
 		
 		if (reaction.type == "rt_graph") {	
 			// dirty trick (to-do)
-			expanded = expandParams (expanded,  {o1: reaction.param[0]})
+			// expanded = expandParams (expanded,  {o1: reaction.param[0]})
 			
 			// to-do: show the picture (http)
 			//if (reaction.isLink)
 			//	return "<a href='../data/games/" + state.gameId + "/images/" + reaction.url + "' target='_blank'>" + expanded + "</a><br/>"
 			//else 
 			//	return "<p>" + expanded + "</p><img src='../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
-			return "<img src=\"./../../data/icons/languages.jpg\"/>"
+			// var src = require("./../../data/games/" + state.gameId + "/images/" + reaction.url + "'")
+			//var imgPath = "./../../data/games/tresfuentes/images/diamante.jpg"
+			//var src = require("./../../data/games/tresfuentes/images/diamante.jpg")
+			//var src = require("../../data/games/tresfuentes/images/diamante.jpg")
 
-			return "<p>" + expanded + "</p><img src='./../../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
+			return {type:'img', txt: expanded, src:reaction.url, isLink:reaction.isLink}
+			//return {type:'img', txt: expanded, src:"./../../data/games/" + state.gameId + "/images/" + reaction.url}
+
+			//return "<p>" + expanded + "</p><img src='./../../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
 			
 		} else if ((reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues")) {
 			// dirty trick (to-do)
 			expanded = expandParams (expanded,  {o1: reaction.param[0]})
 			
 			// to-do: translate item
-			return ((reaction.type == "rt_quote_begin")? "<br/><b>" + reaction.item + "</b>: «": "" ) + expanded + ((reaction.last) ? "»" : "")
-			
+			return {type:'text', txt: ((reaction.type == "rt_quote_begin")? "<br/><b>" + reaction.item + "</b>: «": "" ) + expanded + ((reaction.last) ? "»" : "") }
 		} else if (reaction.type == "rt_play_audio") {
 			// to-do
-			return expanded + " (play: " + reaction.fileName + " autoStart: " + reaction.autoStart + ")"
+			return {type:'text', txt: expanded + " (play: " + reaction.fileName + " autoStart: " + reaction.autoStart + ")"}
 			
 		} else if (reaction.type == "rt_end_game") {
 			if (expanded == "") expanded = "End of game"
@@ -239,9 +250,9 @@ const state = {
 	
 		expanded = expandParams (expanded, reaction.param)
 		
-		return expanded  
-
+		return {type:'text', txt: expanded  }
 	}, 	
+	
 	translateGameElement: function (type, index, attribute) {
 
 		return state.language.expandText (type, index, attribute)

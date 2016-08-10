@@ -206,8 +206,11 @@
   "actions.afilar.txt": {
     "message": "akrigi"
   },
-  "messages.ganaste.txt": {
+  "messages.final.txt": {
     "message": "Malfermu la ĉerkon. Ene vi kontempli la malbelega vizaĝo de la vampiro. Protektataj de la ajlo kaj la krucifikson komenci vian hororiga taskon. Vi algluita la paliso sur la brusto kaj terura martelo la profundiĝi pli profunde en via estaĵo. Kun krio de agonio pulvoro degelas kaj vi finas vian taskon ĉi tie.<br/><br/>Ĝis nun..."
+  },
+  "messages.ganaste.txt": {
+    "message": "Vi venkis!"
   },
   "messages.undefined_gameParameters.txt": {
     "message": "Tiu ludo bezonas gameParameters atribuas difinita en la komenca loko de <br/> ludo"
