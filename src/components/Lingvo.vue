@@ -1,39 +1,35 @@
 <template>
   <h2> <a v-link="{ path: '/kune' }"> {{kt("Together")}} | </a>
   <a v-link="{ path: '/ludi' }"> {{kt("Play")}} | </a>
-  {{kt("Language")}}</h2>
+  {{kt("Language")}}: {{locale}}</h2>
 
   <div class="lingvo">
 
-	<img src="./../../data/icons/languages.jpg">
+  <img src="./../../data/icons/languages.jpg">
 
 	<h2>{{kt("Your languages")}}:</h2>
     <ul>
-        <li v-show="locale != 'en'"> 
-            <button @click='setLocale("en")'>choose</button>
-            en
-            <button @click='removeAsFavouriteLanguage("en")'> remove </button>
+        <li v-for="l in languages.pref">
+            <span v-if ="langIsValid (l)"> 
+            <button @click='setLocale(l)'>{{kt("choose")}}</button>
+            {{l}} 
+            <!-- <button @click='removeAsFavouriteLanguage("en")'> remove </button> -->
+            </span>
         </li>
-        <li v-show="locale != 'eo'"> 
-            <button @click='setLocale("eo")'>choose</button>
-            eo
-            <button @click='removeAsFavouriteLanguage("eo")'> remove </button>
-        </li>
+        
     </ul>
 
 	<h2>{{kt("Additional languages")}}:</h2>
     <ul>
-        <li>
-            <button @click='setLocale("es")'>choose</button>
-            es
-            <button @click='addAsFavouriteLanguage("es")'> add </button>
-        </li>
-        <li>
-            <button @click='setLocale("fr")'>choose</button>
-            fr
-            <button @click='addAsFavouriteLanguage("fr")'> add </button>
+        <li v-for="l in languages.other">
+            <span v-if ="langIsValid (l)"> 
+                <button @click='setLocale(l)'>{{kt("choose")}}</button>
+                {{l}} 
+                <!-- <button @click='removeAsFavouriteLanguage("en")'> remove </button> -->
+            </span>
         </li>
     </ul>
+    
 
   </div>
 </template>
@@ -41,7 +37,7 @@
 <script>
 
 import store from '../vuex/store'
-import { getKTranslator, getLocale } from '../vuex/getters'
+import { getKTranslator, getLocale, getLanguages} from '../vuex/getters'
 import * as actions from '../vuex/actions'
 
 // import kunLingvo from './KunLingvo'
@@ -52,12 +48,19 @@ export default {
     }
   },
   methods: {
-      
+     langIsValid: function (lang) {
+         if (this.languages.inGame == undefined) return true
+         for (var l=0; l<this.languages.inGame.length;l++ ) {
+             if (this.languages.inGame.indexOf (lang) >= 0) return true
+         }
+         return false
+     }
   },
   store: store,
   vuex: {
     getters: {
        locale: getLocale,
+       languages: getLanguages,
        kt: getKTranslator,
     },
     actions: actions

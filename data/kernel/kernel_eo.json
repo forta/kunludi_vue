@@ -531,5 +531,8 @@
     },
 	"Type your user name and push enter": {
         "message": "Bonvolu tajpi vian kromnomon kaj puŝi"
-    }
+      },
+	"choose": {
+        "message": "elektu"
+   }
 }

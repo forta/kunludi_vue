@@ -531,5 +531,8 @@
      },
 	"Type your user name and push enter": {
         "message": "Please, type your user name and push enter"
-   }
+     },
+	"choose": {
+        "message": "choose"
+    }
 }

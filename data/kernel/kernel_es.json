@@ -531,5 +531,8 @@
       },
 	"Type your user name and push enter": {
         "message": "Por favor, teclea tu nombre de usuario y pulsa enter"
-   }
+      },
+	"choose": {
+        "message": "elige"
+  }
 }

@@ -547,5 +547,8 @@
   },
   "Type your user name and push enter": {
     "message": "S'il vous plaît taper votre nom d'utilisateur et appuyez sur Entrée"
-  }
+      },
+	"choose": {
+        "message": "choisissez"
+    }
 }

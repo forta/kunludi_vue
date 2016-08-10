@@ -71,9 +71,8 @@ const state = {
 	pendingChoice: {},
 	menu: [],
 	reactionList: [],
-	gameAbout: {
-		comment: 'not loaded yet...'
-	}, 
+	gameAbout: {}, 
+	languages: { all: [], pref: [], other: []},
 	lib: { 
 		primitives: {}, 
 		reactions:{}
@@ -212,7 +211,8 @@ const state = {
 		
 		if (reaction.type == "rt_graph") {	
 			// dirty trick (to-do)
-			// expanded = expandParams (expanded,  {o1: reaction.param[0]})
+			if (reaction.param != undefined)
+				expanded = expandParams (expanded,  {o1: reaction.param[0]})
 			
 			// to-do: show the picture (http)
 			//if (reaction.isLink)
@@ -279,16 +279,7 @@ const mutations = {
   }, 
   SETGAMEID (state, par) {
 	  
-	// to-do: check if language available in current language
 	console.log ("state.locale: " + state.locale) 
-	
-	/*
-	if (state.gameAbout.translation[0].language != state.locale) {
-		alert ('By now, the current language must be the principal language of the game') 
-		return
-	} 
-		
-	*/
 	
 	let l;
 	let t = state.gameAbout.translation;
@@ -300,8 +291,18 @@ const mutations = {
 		return;
 	}
 	
-	  
     state.gameId = par
+	
+	let gameAbout = require ('../../data/games/' + par + '/about.json');
+	state.gameAbout = gameAbout
+	// languages in the game
+	let oldLanguages = state.languages
+	let languagesInGame = []
+	for (let i=0;i<state.gameAbout.translation.length;i++) {
+		languagesInGame.push (state.gameAbout.translation[i].language)
+	}
+	state.languages = oldLanguages 
+	state.languages.inGame = languagesInGame
 	
 	// LIB SCOPE -------------------------------
 	// load generic libraries and texts: 
@@ -423,6 +424,17 @@ const mutations = {
   },
   RESETGAMEID (state) {
     state.gameId= ''
+    state.about= {}
+	mutations.SETLOCALE (state, state.locale)
+
+	// force change
+	let oldLanguages = state.languages
+	state.languages = oldLanguages 
+	state.languages.inGame = undefined
+	
+	// to-do: reset more data
+	
+	
   },
   LOADGAMES (state, par) { // par: filter
 	  
@@ -432,11 +444,30 @@ const mutations = {
 	
   },
   LOAD_GAME_ABOUT (state, par) { 
-	// to-do: capture error
+	
 	let gameAbout = require ('../../data/games/' + par + '/about.json');
 	state.gameAbout = gameAbout
   },
   SETLOCALE (state, locale) {
+	  
+	if (state.gameId == '') {
+		state.languages.all = ['en', 'eo', 'es', 'fr']
+		state.languages.pref = [locale]
+		state.languages.other = []
+		for (let i=0;i<state.languages.all.length;i++) {
+			if (state.languages.all[i] != locale) {
+				state.languages.other.push (state.languages.all[i])
+			}
+		}
+	} else {
+		for (let i=0;i<state.gameAbout.translation.length;i++) {
+			if (state.languages.all.indexOf (state.gameAbout.translation[i].language) >= 0) {
+				state.languages.inGame.push (state.gameAbout.translation[i].language)
+			}
+		}
+		
+	}
+	  
     state.locale = locale
 	
 	// load kernel messages

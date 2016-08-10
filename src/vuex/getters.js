@@ -6,6 +6,8 @@ export function getGameId (state) { return state.gameId }
 
 export function getLocale (state) { return state.locale }
 
+export function getLanguages (state) { return state.languages }
+
 export function getHistory (state) { return state.history }
 
 export function getChoices (state) { return state.choices }

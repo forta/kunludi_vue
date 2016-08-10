@@ -5,11 +5,12 @@
 
     <div class="ludi">
     
-	<a v-link="{ path: '/ludi/about' }"> {{kt("About")}} | </a>
 	<a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} | </a>
+	<a v-link="{ path: '/ludi/about' }"> {{kt("About")}} | </a>
     
 	<h2 v-show="gameId"> {{kt("Playing")}}: {{gameId}} </h2> 
 	<a v-show="gameId" v-link="{ path: '/ludi/play' }"> {{kt("Play")}} | </a>
+	<a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}} | </a>
 	<a v-show="gameId" v-on:click="quit">  {{kt("Quit")}} | </a>
 
 	<router-view></router-view>
