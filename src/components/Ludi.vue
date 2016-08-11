@@ -1,20 +1,51 @@
 <template>
-    <h2> <a v-link="{ path: '/kune' }"> {{kt("Together")}} | </a>
-    {{kt("Play")}} |
-    <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a></h2>
+    <div class="ludi" id="ludi">
 
-    <div class="ludi">
-    
-	<a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} | </a>
-	<a v-link="{ path: '/ludi/about' }"> {{kt("About")}} | </a>
-    
-	<h2 v-show="gameId"> {{kt("Playing")}}: {{gameId}} </h2> 
-	<a v-show="gameId" v-link="{ path: '/ludi/play' }"> {{kt("Play")}} | </a>
-	<a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}} | </a>
-	<a v-show="gameId" v-on:click="quit">  {{kt("Quit")}} | </a>
+        <div class="ludi_top1">
 
-	<router-view></router-view>
+            <h2> <a v-link="{ path: '/kune' }"> {{kt("Together")}} | </a>
+            {{kt("Play")}} |
+            <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a></h2>
+
+            
+            <a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} | </a>
+            <a v-link="{ path: '/ludi/about' }"> {{kt("About")}} | </a>
+            
+            <h2 v-show="gameId"> {{kt("Playing")}}: {{gameId}} </h2> 
+            <a v-show="gameId" v-link="{ path: '/ludi/play' }"> {{kt("Play")}} | </a>
+            <a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}} | </a>
+            <a v-show="gameId" v-on:click="quit">  {{kt("Quit")}} | </a>
+            
+        </div>
+
+       <div class="ludi_bottom" id="ludi_bottom">
+
+            <router-view></router-view>
+        
+        </div>
+        
+        
+        <div class="ludi_top2">
+
+            <h4> <a v-link="{ path: '/kune' }"> {{kt("Together")}} | </a>
+            {{kt("Play")}} |
+            <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a></h4>
+
+            
+            <a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} | </a>
+            <a v-link="{ path: '/ludi/about' }"> {{kt("About")}} | </a>
+            
+            <h4 v-show="gameId"> {{kt("Playing")}}: {{gameId}} </h4> 
+            <a v-show="gameId" v-link="{ path: '/ludi/play' }"> {{kt("Play")}} | </a>
+            <a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}} | </a>
+            <a v-show="gameId" v-on:click="quit">  {{kt("Quit")}} | </a>
+            
+        </div>
+
+       
+        
   </div>
+
 </template>
 
 <script>
@@ -48,7 +79,7 @@ export default {
 <style>
 
 html {
-  height: 100%;
+ // height: 100%;
 }
 
 body {
@@ -69,9 +100,29 @@ body {
   text-decoration: none;
 }
 
-.logo {
-  width: 100px;
-  height: 100px
+div.ludi {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    //border: 1px solid gray;    
 }
+
+div.ludi_top1 {
+   left: 0px; 
+   top: 0px;
+   width: 100%;
+   border: 1px solid red;
+}		
+
+div.ludi_top2 {
+    position: relative;
+    border: 1px solid red;
+}		
+
+div.ludi_bottom {
+    position: relative;
+    //border: 1px solid yellow;
+}		
+		
 
 </style>

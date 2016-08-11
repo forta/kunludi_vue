@@ -1,50 +1,65 @@
-isEcho<template>
+<template>
+
   <div id= "play" class="play">
-    <h2>{{kt("History")}}</h2>
-    <div v-for="hItem in history">
-        <!-- echo -->
-        <p><b> {{$index+1}}. {{choiceToShow(hItem.action, true)}}</b></p>
-            <!-- to-do: problem with nested v-for: so, we'll create a new component -->  
-          
-        <span v-for="r in hItem.reactionList">
-            <span>{{{formatReaction(r)}}}</span> 
-        </span>
+  
+  <div id= "play_top" class="play_top">
+  
+        <h2>{{kt("History")}}</h2>
+        <div v-for="hItem in history">
+            <!-- echo -->
+            <p><b> {{$index+1}}. {{choiceToShow(hItem.action, true)}}</b></p>
+                <!-- to-do: problem with nested v-for: so, we'll create a new component -->  
+            
+            <span v-for="r in hItem.reactionList">
+                <span>{{{formatReaction(r)}}}</span> 
+            </span>
+        </div>
+        <!--<h3> menu: {{menu | json}}</h3> 
+        <h3> pendingChoice: {{pendingChoice | json}}</h3> -->
     </div>
-    <!--<h3> menu: {{menu | json}}</h3> 
-    <h3> pendingChoice: {{pendingChoice | json}}</h3> -->
+
   </div>
 
-  <!-- Groups of choices -->
-  <div class="mainChoices"  v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'">
-    <h3> {{kt("Location")}}: {{this.tge("items", currentChoice.loc, "txt")}} </h3>
-    <span v-for="choice in choices">
-        <button v-if ="choice.choiceId == 'top'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
-        <button v-if ="choice.choiceId == 'itemGroup'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
-        <button v-if ="choice.choiceId == 'directActions' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}}</button>
-        <button v-if ="choice.choiceId == 'directionGroup' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
-    </span>
+  <div  id="play_buttom" class="play_buttom">
+  
+    <!-- Groups of choices -->
+    <div class="mainChoices"  v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'">
+        <h3> {{kt("Location")}}: {{this.tge("items", currentChoice.loc, "txt")}} </h3>
+        <span v-for="choice in choices">
+            <button v-if ="choice.choiceId == 'top'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
+            <button v-if ="choice.choiceId == 'itemGroup'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
+            <button v-if ="choice.choiceId == 'directActions' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}}</button>
+            <button v-if ="choice.choiceId == 'directionGroup' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
+        </span>
+        
+    </div>
+  
     
-  </div>
-    
-  <!-- choices -->
-  <div class="choices" v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'"> 
-    <h3> <!-- <button class={{getChoiceClass(currentChoice.parent)}} v-on:click="doGameChoice(currentChoice.parent)"> {{kt("Back")}} </button>--> {{showCurrentChoice()}}</h3> 
-    <!--<h2>{{currentChoice | json}}</h2>-->
-    
-    <span v-for="choice in choices">
-        <button v-if = isMiddleChoice(choice) class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
-    </span>
+    <!-- choices -->
+    <div class="choices" v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'"> 
+        <h3> <!-- <button class={{getChoiceClass(currentChoice.parent)}} v-on:click="doGameChoice(currentChoice.parent)"> {{kt("Back")}} </button>--> {{showCurrentChoice()}}</h3> 
+        <!--<h2>{{currentChoice | json}}</h2>-->
+        
+        <span v-for="choice in choices">
+            <button v-if = isMiddleChoice(choice) class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
+        </span>
 
+    </div>
+    
+    <div class="menu" v-if = "menu.length > 0"> 
+        <h3> {{kt("Action")}}: {{choiceToShow(pendingChoice)}}</h3>
+        <ul>
+            <span v-for="m in menu">
+            <li><button v-on:click="menuOption($index)">  {{ $index + 1}} {{tge("messages",m,"txt")}}</button></li>
+            </span>
+        </ul>
+        
+    </div>
+  
   </div>
   
-  <div class="menu" v-if = "menu.length > 0"> 
-     <h3> {{kt("Action")}}: {{choiceToShow(pendingChoice)}}</h3>
-     <ul>
-        <span v-for="m in menu">
-           <li><button v-on:click="menuOption($index)">  {{ $index + 1}} {{tge("messages",m,"txt")}}</button></li>
-        </span>
-    </ul>
   </div>
+
 
 </template>
 
@@ -124,7 +139,7 @@ export default {
       }, 
       showEndOfText: function () {
         setTimeout(function(){ 
-            var elem = document.getElementById("play")
+            var elem = document.getElementById("ludi_bottom")
             if (elem != null) 
                 elem.scrollTop =  elem.scrollHeight	
             }, 100);  
@@ -166,23 +181,6 @@ export default {
 
 h1 {
   color: #42b983;
-}
-
-.play {
-   	height: 400px;
-	background-color:#FFF;
- 	overflow: scroll;		
-    text-align: left;
-}		
-
-.mainChoices {
-	background-color: #FFE;
-}
-
-.choices {
-   	/*height: 120px;*/
-	background-color: #FFD;
- 	overflow: scroll;	
 }
 
 .choiceTop {
@@ -241,6 +239,42 @@ li {
 li:last-child {
   border: none;
 }
+
+div.play {
+    overflow: hidden;
+    height:100%
+}
+
+div.play_top {
+
+    //border: 1px solid green;
+    position: relative; 
+    top: 0;
+    right: 0;
+ 	overflow: scroll;		
+
+	background-color:#FFF;
+}		
+
+div.play_buttom {
+    position: relative; 
+    //border: 1px solid gray;
+    buttom: 0;
+    right: 0;
+    // border: 3px solid #73AD21;
+}
+
+
+div.mainChoices {
+	background-color: #FFE;
+}
+
+div.choices {
+       	/*height: 120px;*/
+	background-color: #FFD;
+    text-align: center;
+}
+
  
  
 
