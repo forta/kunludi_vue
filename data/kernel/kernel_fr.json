@@ -577,5 +577,8 @@
      },
 	"email": {
         "message": "email"
-   }
+      },
+	"Load game": {
+        "message": "Charger le jeu"
+  }
 }

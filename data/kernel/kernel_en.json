@@ -561,5 +561,8 @@
      },
 	"email": {
         "message": "email"
+     },
+	"Load game": {
+        "message": "Load game"
     }
 }

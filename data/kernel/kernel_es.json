@@ -561,5 +561,8 @@
      },
 	"email": {
         "message": "correo"
-    }
+      },
+	"Load game": {
+        "message": "Cargar juego"
+   }
 }

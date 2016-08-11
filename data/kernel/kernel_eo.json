@@ -561,5 +561,8 @@
      },
 	"email": {
         "message": "retadreso"
-    }
+      },
+	"Load game": {
+        "message": "Ŝargi ludon"
+   }
 }
