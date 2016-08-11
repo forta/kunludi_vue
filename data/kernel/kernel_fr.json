@@ -550,5 +550,32 @@
       },
 	"choose": {
         "message": "choisissez"
-    }
+      },
+	"More": {
+        "message": "Plus"
+     },
+	"Quit": {
+        "message": "Quitter"
+     },
+	"Details": {
+        "message": "Détails"
+     },
+	"Title": {
+        "message": "Titre"
+     },
+	"Description": {
+        "message": "Description"
+     },
+	"Introduction": {
+        "message": "Introduction"
+     },
+	"Author": {
+        "message": "Auteur"
+     },
+	"ludi account": {
+        "message": "compte ludi"
+     },
+	"email": {
+        "message": "email"
+   }
 }

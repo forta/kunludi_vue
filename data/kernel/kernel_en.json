@@ -534,5 +534,32 @@
      },
 	"choose": {
         "message": "choose"
+     },
+	"More": {
+        "message": "More"
+     },
+	"Quit": {
+        "message": "Quit"
+     },
+	"Details": {
+        "message": "Details"
+     },
+	"Title": {
+        "message": "Title"
+     },
+	"Description": {
+        "message": "Description"
+     },
+	"Introduction": {
+        "message": "Introduction"
+     },
+	"Author": {
+        "message": "Author"
+     },
+	"ludi account": {
+        "message": "ludi account"
+     },
+	"email": {
+        "message": "email"
     }
 }

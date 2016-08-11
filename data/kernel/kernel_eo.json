@@ -534,5 +534,32 @@
       },
 	"choose": {
         "message": "elektu"
-   }
+    },
+	"More": {
+        "message": "Pli"
+     },
+	"Quit": {
+        "message": "Adiaŭi"
+     },
+	"Details": {
+        "message": "Detaloj"
+     },
+	"Title": {
+        "message": "Titolo"
+     },
+	"Description": {
+        "message": "Priskribo"
+     },
+	"Introduction": {
+        "message": "Enkonduko"
+     },
+	"Author": {
+        "message": "Aŭtoro"
+     },
+	"ludi account": {
+        "message": "ludi-a konto"
+     },
+	"email": {
+        "message": "retadreso"
+    }
 }
