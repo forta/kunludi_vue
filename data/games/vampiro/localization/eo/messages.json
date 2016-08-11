@@ -1,263 +1,263 @@
-{
-  "items.prota.desc": {
-    "message": "Vi estas la ĉefa rolulo de Vampiro."
-  },
-  "items.prota.txt": {
-    "message": "prota"
-  },
-  "items.vestibulo.desc": {
-    "message": "Vi estas en la halo de la kastelo. La atmosfero estas tre malseka kaj malvarma. Vi estas en koridoro kiu etendas norde. Sude estas la enirejo al la kastelo."
-  },
-  "items.vestibulo.txt": {
-    "message": "halo"
-  },
-  "items.pasillo.desc": {
-    "message": "Vi estas en la mezo de la ĉefa halo de tiu etaĝo. Okcidente estas la kuirejo kaj la biblioteko. La koridoro daŭrigas norde."
-  },
-  "items.pasillo.txt": {
-    "message": "koridoro"
-  },
-  "items.escaleras.desc": {
-    "message": "Vi trovas vin je la fino de la halo. Antaŭ vi vi vidas iuj ŝtuparoj suprenirantaj kaj aliaj malsupren. Okcidente estas la dormoĉambro kaj la salono."
-  },
-  "items.escaleras.txt": {
-    "message": "ŝtuparo"
-  },
-  "items.biblioteca.desc": {
-    "message": "Vi trovas vin mem en la kastelo biblioteko. Evidente ĝi estas plena de interesaj libroj, sed bedaŭrinde ne havas tempon por legi ilin."
-  },
-  "items.biblioteca.txt": {
-    "message": "biblioteko"
-  },
-  "items.cocina.desc": {
-    "message": "Vi estas en la kastelo kuirejo. Tiu estas plena de potoj kaj patojn por kuirado. Estas bakforno, lavujo kaj malgranda ŝranko."
-  },
-  "items.cocina.txt": {
-    "message": "kuirado"
-  },
-  "items.escaleras_superiores.desc": {
-    "message": "Vi estas en la supra etaĝo de la kastelo. Jen ĝi faras eĉ pli malvarmaj ol malsupren. Estn malantaŭ vi malsupren la ŝtuparon kaj okcidente estas la ĉambro de la vampiro."
-  },
-  "items.escaleras_superiores.txt": {
-    "message": "ŝtuparo altaj"
-  },
-  "items.sotano.desc": {
-    "message": "En ĉi pequeostano estas tre varma, vi sentas senton de rememoro. Ĉio estas tre malpura. Estas barelo tie, tie ankaŭ grimpado ŝtuparoj."
-  },
-  "items.sotano.txt": {
-    "message": "keletaĝo"
-  },
-  "items.dormitorio.desc": {
-    "message": "Vi estas en la ne tro granda nek tro malgranda dormoĉambro. Estas sufiĉe aŭstera. Nur unu lito kaj ŝranko."
-  },
-  "items.dormitorio.txt": {
-    "message": "dormoĉambro"
-  },
-   "items.sala_estar.desc": {
-    "message": "Ĝi estas la plej komforta vivantaj ĉirkaŭ la kastelo. En la pasinteco la restaĵoj de kamentubo fajro sb Sizzling gaje. Estas granda tablo kun seĝo sekva. Muro pendis multaj ĉasado trofeoj kaj diversaj ornamaĵoj."
-  },
-  "items.sala_estar.txt": {
-    "message": "loĝoĉambro"
-  },
-  "items.escaleras.desc": {
-    "message": "Vi trovas vin je la fino de la halo. Antaŭ vi vi vidas iuj ŝtuparoj suprenirantaj kaj aliaj malsupren. Okcidente estas la dormoĉambro kaj la salono."
-  },
-  "items.escaleras.txt": {
-    "message": "ŝtuparo"
-  },
-  "items.final.desc": {
-    "message": "Vi estas en nudan ĉambron. Ekzistas nur unu sola altaro en la centro. Super la altaro oni povas vidi ĉerkon."
-  },
-  "items.final.txt": {
-    "message": "Vampiro habitacin"
-  },
-  "items.traje.desc": {
-    "message": "Ĝi estas malmultekosta kostumo aĉetis sur vendo."
-  },
-  "items.traje.txt": {
-    "message": "malmultekosta kostumo"
-  },
-  "items.cacerolas.desc": {
-    "message": "Simpla kuirpotoj kaj patoj."
-  },
-  "items.cacerolas.txt": {
-    "message": "kaseroloj"
-  },
-  "items.horno.desc": {
-    "message": "Simpla forno, ne gravas."
-  },
-  "items.horno.txt": {
-    "message": "forno"
-  },
-  "items.fregadero.desc": {
-    "message": "Estas ŝtono profundiĝi. La profundiĝi estas malplena."
-  },
-  "items.fregadero.txt": {
-    "message": "lavujo"
-  },
-  "items.armario_pequeño.txt": {
-    "message": "eta ŝranko"
-  },
-  "items.cuchillo.desc": {
-    "message": "Simpla kuirejo tranĉilo. Klaku."
-  },
-  "items.cuchillo.txt": {
-    "message": "tranĉilo"
-  },
-  "items.cama.desc": {
-    "message": "Lito Lino estas kovrita."
-  },
-  "items.cama.txt": {
-    "message": "lito"
-  },
-  "items.sábanas.desc": {
-    "message": "Lito Lino nuna-muelilo. Inter ili vi trovos malgrandan ŝlosileto."
-  },
-  "items.sábanas.txt": {
-    "message": "Lito Lino"
-  },
-  "items.llave.desc": {
-    "message": "Tiu malgranda malgranda ŝlosilo havas pentru malfermi ŝrankon aŭ io."
-  },
-  "items.llave.txt": {
-    "message": "iom ŝlosilo"
-  },
-  "items.armario.desc": {
-    "message": "La ŝranko estas malplena."
-  },
-  "items.armario.txt": {
-    "message": "ŝranko"
-  },
-  "items.ajos.desc": {
-    "message": "Ĝi estas tuta ŝnuro de ajlo forpeli iom da fiodoro. Ĝi estas unu el la kvar elementoj kiuj servirn min venki la vampiron."
-  },
-  "items.ajos.txt": {
-    "message": "kordo de ajlo"
-  },
-  "items.chimenea.txt": {
-    "message": "fajrejo"
-  },
-  "items.madera.desc": {
-    "message": "Peco de ligno, rektangula kaj plilongigita."
-  },
-  "items.madera.txt": {
-    "message": "lignopecon"
-  },
-  "items.mesa.desc": {
-    "message": "Mahagona tablo sufiĉe granda."
-  },
-  "items.mesa.txt": {
-    "message": "tablo"
-  },
-  "items.silla.desc": {
-    "message": "Al komodo seĝo."
-  },
-  "items.silla.txt": {
-    "message": "seĝo"
-  },
-  "items.trofeos.desc": {
-    "message": "Bagatelaj trofeoj."
-  },
-  "items.trofeos.txt": {
-    "message": "ĉasado trofeoj"
-  },
-  "items.adornos.desc": {
-    "message": "Ornamas."
-  },
-  "items.adornos.txt": {
-    "message": "ornamajxoj"
-  },
-  "items.barril.desc": {
-    "message": "barelo"
-  },
-  "items.barril.txt": {
-    "message": "barelo"
-  },
-  "items.estaca.desc": {
-    "message": "Longforma rektangula lignopeco, unu fino estas zorgeme akraj."
-  },
-  "items.estaca.txt": {
-    "message": "paliso"
-  },
-  "items.martillo.desc": {
-    "message": "Granda martelo. Ĝi estas unu el la elementoj kiuj mi permitirn fini la vampiro."
-  },
-  "items.martillo.txt": {
-    "message": "martelo"
-  },
-  "items.cruz.desc": {
-    "message": "Ĝi estas malgranda arĝenta krucifikso. Ĝi estas unu el la kvar elementoj kiuj servirn nin venki la vampiron."
-  },
-  "items.cruz.txt": {
-    "message": "arĝenta krucifikso"
-  },
-  "items.palanca.desc": {
-    "message": "Estas levilo de Toledo ŝtalo. Ĝi estas devigi aferojn."
-  },
-  "items.palanca.txt": {
-    "message": "levilo"
-  },
-  "items.ataud.desc": {
-    "message": "Simpla pino skatolo."
-  },
-  "items.ataud.txt": {
-    "message": "atad"
-  },
-  "actions.afilar.txt": {
-    "message": "akrigi"
-  },
-  "messages.final.txt": {
-    "message": "Malfermu la ĉerkon. Ene vi kontempli la malbelega vizaĝo de la vampiro. Protektataj de la ajlo kaj la krucifikson komenci vian hororiga taskon. Vi algluita la paliso sur la brusto kaj terura martelo la profundiĝi pli profunde en via estaĵo. Kun krio de agonio pulvoro degelas kaj vi finas vian taskon ĉi tie.<br/><br/>Ĝis nun..."
-  },
-  "messages.ganaste.txt": {
-    "message": "Vi venkis!"
-  },
-  "messages.undefined_gameParameters.txt": {
-    "message": "Tiu ludo bezonas gameParameters atribuas difinita en la komenca loko de <br/> ludo"
-  },
-  "messages.bienvenida_juego_1.txt": {
-    "message": "La Vampiro Projekto (http://wiki.caad.es/Proyecto_Vampiro)) estas amuzi simpla aventuro en nova lingvo. En tiu kazo, la objektivo estas pruvi la ebloj de ludi. Twine bazita versio de no2nsence, kiu siavice baziĝas sur fi.js versioj (por baltasarq) kaj Inform 7 (por Sarganar). <br/>"
-  },
-  "messages.bienvenida_juego_2.txt": {
-    "message": "Vekiĝu malsobre. Post kelkaj sekundoj vi korpigi en la malvarma ŝtona planko kaj vin vidos denove en kastelo. Nun vi memoros! Vi reXXe vin kaj via misio estas mortigi la vampiron. Vi devas mortigi la vampiron kiu vivas supre de la kastelo ... <br/>"
-  },
-  "messages.afilas_madera.txt": {
-    "message": "Ligno akrigi la tranĉilon kaj akiri paliso! <br/>"
-  },
-  "messages.Xnecesitas_afilador.txt": {
-    "message": "Vi bezonas iun por akrigi kion <br/>"
-  },
-  "messages.aparece_martillo.txt": {
-    "message": "-Clack! - Vi sukcesos pry malfermi la barelo <br/> Ene estas martelo. <br/>."
-  },
-  "messages.aparecen_ajos.txt": {
-    "message": "Vi malfermas la ŝrankon kun la malgranda ŝlosilo. <br/> An ekzamenon vi gutigas kordo de ajlo estis ene. <br/>"
-  },
-  "messages.Xno_abres_o1.txt": {
-    "message": "Vi malsukcesos malfermi% O1. <br/>"
-  },
-  "messages.Xo1_ya_abierto.txt": {
-    "message": "% O1 estas jam malfermitaj. <br/>"
-  },
-  "messages.no_se_puede_abrir_ata�d.txt": {
-    "message": "Mi bezonas kvar aferoj antaŭ finanta la 'vivo' de la vampiro. Nome. Krucifikso, ŝnuro de ajlo, akrigitan kolonon kaj martelo <br/>"
-  },
-  "messages.desc_chimenea.txt": {
-    "message": "Estas briko kamentubo kaj tre eleganta."
-  },
-  "messages.hay_madera.txt": {
-    "message": "Inter la restaĵoj de la fajro vin trovi lignopecon."
-  },
-  "messages.desc_s�banas.txt": {
-    "message": "Lito Lino nuna-muelilo."
-  },
-  "messages.hay_llavecita.txt": {
-    "message": "Inter ili vi trovos malgrandan ŝlosileto."
-  },
-  "messages.armario_abierto.txt": {
-    "message": "La ŝranko estas malfermita."
-  },
-  "messages.armario_cerrado.txt": {
-    "message": "Mi estas ŝlosita."
-  }
+﻿{
+    "items.prota.desc": {
+        "message": "Vi estas la ĉefrolulo de Vampiro."
+    },
+    "items.prota.txt": {
+        "message": "ĉefrolulo"
+    },
+	"items.vestibulo.desc": {
+			"message": "Vi estas en la kastela halo. La atmosfero estas tre malseka kaj malvarma. Vi estas en koridoro kiu etendiĝas norden. Sude estas la la kastela enirejo."
+		},
+	"items.vestibulo.txt": {
+			"message": "halo"
+		},
+	"items.pasillo.desc": {
+			"message": "Vi estas en la mezo de la ĉefa halo de ĉi tiu etaĝo. Okcidente estas la kuirejo kaj oriente la biblioteko. La koridoro daŭrigas norden. "
+		},
+	"items.pasillo.txt": {
+			"message": "koridoro"
+		},
+	"items.escaleras.desc": {
+			"message": "Vi troviĝas je la fino de la koridoro. Antaŭ vi vi vidas ŝtuparojn irantajn supren kaj aliajn malsupren. Okcidente troviĝas dormoĉambro kaj oriente la salono. "
+		},
+	"items.escaleras.txt": {
+			"message": "ŝtuparoj"
+		},
+	"items.biblioteca.desc": {
+			"message": "Vi trovas vin en la kastela biblioteko. Evidente ĝi estas plena da interesaj libroj, sed bedaŭrinde vi ne havas tempon por legi ilin."
+		},
+	"items.biblioteca.txt": {
+			"message": "biblioteko"
+		},
+	"items.cocina.desc": {
+			"message": "Vi estas en la kastela kuirejo. Tiu estas plena de potoj kaj patoj por kuiri. Estas forno, lavujo kaj malgranda ŝranko."
+		},
+	"items.cocina.txt": {
+			"message": "kuirejo"
+		},
+	"items.escaleras_superiores.desc": {
+			"message": "Vi estas sur la supra etaĝo de la kastelo. Ĉi tie estas eĉ pli malvarme ol malsupre. Malantaŭ vi estas la malsupreniranta ŝtuparo kaj okcidente estas la vampira ĉambro."
+		},
+	"items.escaleras_superiores.txt": {
+			"message": "supra ŝtuparo"
+		},
+	"items.sotano.desc": {
+			"message": "En ĉi tiu malgranda kelo estas tre varme, vi sentas vin ete. Ĉio estas tre malpura. Ĉi tie estas barelo kaj supreniranta ŝtuparo."
+		},
+	"items.sotano.txt": {
+			"message": "kelo"
+		},
+	"items.dormitorio.desc": {
+			"message": "Vi estas en ne tro granda nek malgranda dormoĉambro. Estas sufiĉe senorname. Estas nur unu lito kaj unu ŝranko."
+		},
+	"items.dormitorio.txt": {
+			"message": "dormoĉambro"
+		},
+	"items.sala_estar.desc": {
+			"message": "Ĉi tiu estas la plej komforta ĉambro el la tuta kastelo. En la kameno, la lastaj fajro-restaĵoj kraketadas gaje. Estas granda tablo kun apuda seĝo. Mure pendas multaj ĉas-trofeoj kaj diversaj ornamaĵoj. "
+		},
+	"items.sala_estar.txt": {
+			"message": "salono"
+		},
+	"items.escaleras.desc": {
+			"message": "Vi troviĝas je la fino de la halo. Vi rigardas du ŝtuparojn: supren- kaj malsupren-irantan. Okcidente estas la dormoĉambro kaj oriente la salono."
+		},
+	"items.escaleras.txt": {
+			"message": "ŝtuparo"
+		},
+	"items.final.desc": {
+			"message": "Vi estas en nuda ĉambro. Estas nur altaro meze. Sur la altaro vi povas vidi ĉerkon. "
+		},
+	"items.final.txt": {
+			"message": "vampira ĉambro"
+		},
+	"items.traje.desc": {
+			"message": "Ĝi estas malmultekosta kostumo aĉetita dum la rabat-sezono."
+		},
+	"items.traje.txt": {
+			"message": "malmultekosta kostumo"
+		},
+	"items.cacerolas.desc": {
+			"message": "Simple kaseroloj kaj kuir-potoj."
+		},
+	"items.cacerolas.txt": {
+			"message": "kaseroloj"
+		},
+	"items.horno.desc": {
+			"message": "Simpla forno, sen graveco."
+		},
+	"items.horno.txt": {
+			"message": "forno"
+		},
+	"items.fregadero.desc": {
+			"message": "Estas ŝtona lavujo. La lavujo estas malplena."
+		},
+	"items.fregadero.txt": {
+			"message": "lavujo"
+		},
+	"items.armario_pequeño.txt": {
+			"message": "malgranda ŝranko"
+		},
+	"items.cuchillo.desc": {
+			"message": "Simpla kuir-tranĉilo. Pikas."
+		},
+	"items.cuchillo.txt": {
+			"message": "tranĉilo"
+		},
+	"items.cama.desc": {
+			"message": "Ĝi estas kovrita per littukoj."
+		},
+	"items.cama.txt": {
+			"message": "lito"
+		},
+	"items.sábanas.desc": {
+			"message": "Ordinaraj littukoj. Inter ili troviĝas malgranda ŝlosilo."
+		},
+	"items.sábanas.txt": {
+			"message": "littukoj"
+		},
+	"items.llave.desc": {
+			"message": "Ĉi tiu malgranda ŝlosilo ŝajnas malfermi ŝrankon aŭ simile."
+		},
+	"items.llave.txt": {
+			"message": "ŝlosileto"
+		},
+	"items.armario.desc": {
+			"message": "La ŝranko estas malplena."
+		},
+	"items.armario.txt": {
+			"message": "ŝranko"
+		},
+	"items.ajos.desc": {
+			"message": "Ĝi estas tuta ĉeno da ajloj kiuj eligas iom da fiodoro. Ĝi estas unu el la kvar elementoj kiuj utilos al mi por venki la vampiron."
+		},
+	"items.ajos.txt": {
+			"message": "ĉeno da ajloj"
+		},
+	"items.chimenea.txt": {
+			"message": "kameno"
+		},
+	"items.madera.desc": {
+			"message": "Peco da ligno, rektangula kaj longa."
+		},
+	"items.madera.txt": {
+			"message": "peco da ligno"
+		},
+	"items.mesa.desc": {
+			"message": "A mahagona tablo sufiĉe granda."
+		},
+	"items.mesa.txt": {
+			"message": "tablo"
+		},
+	"items.silla.desc": {
+			"message": "Komforta seĝo."
+		},
+	"items.silla.txt": {
+			"message": "seĝo"
+		},
+	"items.trofeos.desc": {
+			"message": "senvaloraj trofeoj."
+		},
+	"items.trofeos.txt": {
+			"message": "ĉas-trofeoj"
+		},
+	"items.adornos.desc": {
+			"message": "Ornamaĵoj."
+		},
+	"items.adornos.txt": {
+			"message": "ornamaĵoj"
+		},
+	"items.barril.desc": {
+			"message": "barelo"
+		},
+	"items.barril.txt": {
+			"message": "barelo"
+		},
+	"items.estaca.desc": {
+			"message": "Longa rektangula peco da ligno, kies unu fino estis akrigita atente."
+		},
+	"items.estaca.txt": {
+			"message": "paliso"
+		},
+	"items.martillo.desc": {
+			"message": "Granda martelo. Ĝi estas unu el la elementoj kiuj permesos al mi mortigi la vampiron. "
+		},
+	"items.martillo.txt": {
+			"message": "martelo"
+		},
+	"items.cruz.desc": {
+			"message": "Ĝi estas malgranda arĝenta krucifikso. Ĝi estas unu el la kvar elemenelementj utilos por venki la vampiron. "
+		},
+	"items.cruz.txt": {
+			"message": "arĝenta krucifikso"
+		},
+	"items.palanca.desc": {
+			"message": "Estas el-Toleda ŝtala levilo. Utilas por perfortigi objektojn. "
+		},
+	"items.palanca.txt": {
+			"message": "levilo"
+		},
+	"items.ataud.desc": {
+			"message": "Simpla pina skatolo."
+		},
+	"items.ataud.txt": {
+			"message": "ĉerko"
+		},
+	"actions.afilar.txt": {
+			"message": "akrigi"
+		},
+	"messages.final.txt": {
+  		"message": "Vi malfermas la ĉerkon. Interne vi kontemplas la abomenindan vizaĝon de la vampiro. Protektita de la ajlo kaj krucifikso komenci vian malbela tasko. Vi algluita la paliso en la brusto kaj terura martelo enprofundigas en la profundoj de sia estaĵo. Kun krio de agonio pulvoro degelas kaj vi nur vian mision tie. <br/> Nuntempe ... "
+	},
+	"messages.ganaste.txt": {
+		"message": "Vi venkis!"
+	},
+	"messages.undefined_gameParameters.txt": {
+		"message": "Ĉi tiu ludo bezonas ke la atributo gameParameters estu difinita en la unua loko.<br/> ludo"
+	},
+	"messages.bienvenida_juego_1.txt": {
+		"message": "La Projekto Vampiro (http://wiki.caad.es/Proyecto_Vampiro)) konsistiĝas je reskribado de la sama simpla aventuro per malsimilaj komputilaj lingvoj. Ĉi tie, la objektivo estas pruvi la kapablojn de LUDI. Ĉi ludo baziĝas sur la Twine-a versio far no2nsence, kiu siavice baziĝas sur la versioj fi.js (far baltasarq) kaj Inform 7 (far Sarganar).<br/><br/>"
+	},
+	"messages.bienvenida_juego_2.txt": {
+		"message": "Vi vekiĝas konsternita. Post kelkaj sekundoj vi leviĝas el la malvarma ŝtona planko kaj vi vidas ke vi troviĝas en kastelo. Nun vi memoras! Vi estas reXXe kaj via misio estas mortigi la vampiron. Vi devas mortigi la vampiron kiu vivas en la supro de la kastelo ... <br/> "
+	},
+	"messages.afilas_madera.txt": {
+		"message": "Vi akrigas la tabulon per la tranĉilo kaj akiras palison!<br/> "
+	},
+	"messages.Xnecesitas_afilador.txt ": {
+		"message": "Vi bezonas ion por akrigi ĝin<br/>"
+	},
+	"messages.aparece_martillo.txt": {
+		"message": "Klak! Vi sukcesis rompe malfermi la barelon <br/> <br/> Ene estas martelo."
+	},
+	"messages.aparecen_ajos.txt": {
+		"message": "Vi malfermas la ŝrankon per la malgranda ŝlosilo. <br/> Kiam vi ekzamenas ĝin ĉeno da ajloj kiu estis ene falas planken. <br/> .."
+	},
+	"messages.Xno_abres_o1.txt ": {
+		"message": "Vi ne sukcesas malfermi% Aŭ1 <br/>."
+	},
+	"messages.Xo1_ya_abierto.txt ": {
+		"message": "% Aŭ1 estas nun malfermita <br/>."
+	},
+	"messages.no_se_puede_abrir_ataúd.txt": {
+		"message": "Mi bezonas kvar aferojn antaŭ mi povas ĉesigi la 'vivon' de la vampiro. Tio estas: krucifikson, ĉenon da ajloj, akran palison kaj martelon.<br/>"
+	},
+	"messages.desc_chimenea.txt": {
+		"message": "Ĝi estas brika, tre eleganta kameno."
+	},
+	"messages.hay_madera.txt": {
+		"message": "Inter la restaĵoj de la fajro vi trovas pecon da ligno."
+	},
+	"messages.desc_sábanas.txt": {
+		"message": "Normalaj littukoj"
+	},
+	"messages.hay_llavecita.txt": {
+		"message": "Inter ili vi trovas malgrandan ŝlosileton."
+	},
+	"messages.armario_abierto.txt": {
+		"message": "La ŝranko estas malfermita."
+	},
+	"messages.armario_cerrado.txt": {
+		"message": "Ĝi estas ŝlosita."
+	}
 }
