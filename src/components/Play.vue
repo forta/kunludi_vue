@@ -67,7 +67,7 @@
 
 
     import store from '../vuex/store'
-    import { getGTranslator, getKTranslator, getCurrentChoice, translateGameElement, getGameId, getLocale, getHistory, getMenu, getPendingChoice, getChoices } from '../vuex/getters'
+    import { getEcho, getGTranslator, getKTranslator, getCurrentChoice, translateGameElement, getGameId, getLocale, getHistory, getMenu, getPendingChoice, getChoices } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
 
@@ -109,21 +109,8 @@ export default {
           else if (choice.choiceId == 'directionGroup') return 'choiceDirections'
           return ""
       },
-      choiceToShow: function (choice, isEcho) { // it shoud be an vuex function
-      
-          if (choice.choiceId == 'action0') return  this.tge("actions", choice.action.actionId)
-          if (choice.choiceId == 'action') return  this.tge("actions", choice.action.actionId) + ((isEcho) ?" " +  this.tge("items", choice.action.item1, "txt"):"")
-          else if (choice.choiceId == 'action2') return this.tge("actions", choice.action.actionId)  + ((isEcho) ?" " +  this.tge("items", choice.action.item1, "txt"):"") + " -> " + this.tge("items", choice.action.item2, "txt")
-          else if (choice.choiceId == 'obj1') return this.tge("items", choice.item1, "txt")
-          
-          // to-do: target only if known
-          else if (choice.choiceId == 'dir1') return this.tge("directions", choice.action.d1, "txt") + " -> " + this.tge("items", choice.action.target, "txt")
-          
-          else if (choice.choiceId == 'itemGroup') return this.kt("mainChoices_" +  choice.itemGroup)
-          else if (choice.choiceId == 'directActions') return this.kt("mainChoices_" + choice.choiceId)
-          else if (choice.choiceId == 'directionGroup') return this.kt("mainChoices_" + choice.choiceId)
-          else if (choice.choiceId == 'top') return this.kt("mainChoices_" + choice.choiceId)
-          return ""
+      choiceToShow: function (choice, isEcho) { 
+          return this.echo (choice, isEcho)
 
       },
       decodeHtml: function (html) {
@@ -167,7 +154,8 @@ export default {
        kt: getKTranslator,
        t: getGTranslator,
        tge: translateGameElement,
-       currentChoice: getCurrentChoice
+       currentChoice: getCurrentChoice,
+        echo: getEcho
     },
     actions: actions
   }

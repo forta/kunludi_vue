@@ -18,7 +18,7 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
 
 function expandParams (textIn, param) {
 
-	let availableParams = ["o1", "o2", "d1"]
+	let availableParams = ["a1", "o1", "o2", "d1"]
 	let expandedParams = [], numParms = 0
 
 	for (let i=0; i<availableParams.length;i++) {
@@ -27,7 +27,14 @@ function expandParams (textIn, param) {
 		
 		if ((p1 = textIn.indexOf("%" + availableParams[i])) >= 0) {   // parámeters like "%o1" and so on
 			expandedParams[numParms] = {code: availableParams[i]}
-			expandedParams[numParms].text = state.translateGameElement("items", param[availableParams[i]], "txt") 
+
+			let type = "undefined!"
+			if (availableParams[i][0] == "o") type = "items"
+			else if (availableParams[i][0] == "d") type = "directions"
+			else if (availableParams[i][0] == "a") type = "actions"
+			
+			expandedParams[numParms].text = state.translateGameElement(type, param[availableParams[i]], "txt") 
+			
 			if ((p2 = textIn.indexOf("_" + availableParams[i] +  "%")) >= 0) {
 				expandedParams[numParms].modifiers = textIn.substring (p1+availableParams[i].length + 2,p2)
 				// to-do: get language-dependent properties!
@@ -92,6 +99,55 @@ const state = {
 		return "*" + kMsg + "*"
 	},
 	
+	getEcho: function (choice, isEcho) {
+		// general kernel messages
+		if (choice.choiceId == 'top') return state.kTranslator("mainChoices_" + choice.choiceId)
+		else if (choice.choiceId == 'itemGroup') return state.kTranslator("mainChoices_" +  choice.itemGroup)
+		else if (choice.choiceId == 'directActions') return state.kTranslator("mainChoices_" + choice.choiceId)
+		else if (choice.choiceId == 'directionGroup') return state.kTranslator("mainChoices_" + choice.choiceId)
+			
+		// game elements
+
+		else if (choice.choiceId == 'action0') return  (isEcho?"#" : "") + state.translateGameElement("actions", choice.action.actionId)
+			
+		else if ((choice.choiceId == 'action') || (choice.choiceId == 'action2')) {
+			
+			// to-do: each action must have an echo statement in each language!
+
+			
+			
+			if (isEcho) { // echo message
+				if (choice.choiceId == 'action') {
+					let msg = state.language.expandText  ("messages", "Echo: %a1 %o1", "txt")
+					return expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1})
+				} else {
+					let msg = state.language.expandText  ("messages", "Echo: %a1 %o1 -> %o2", "txt")
+					return expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1, o2: choice.action.item2})
+				}
+					
+			} else { // button 
+			
+				// to-do?: modified as in the Echo?
+				if (choice.choiceId == 'action') 
+					return state.translateGameElement("actions", choice.action.actionId)
+				else
+					return state.translateGameElement("actions", choice.action.actionId) + " -> " + state.translateGameElement("items", choice.action.item2, "txt")
+			}
+			
+		}
+		else if (choice.choiceId == 'obj1') return (isEcho?"#" : "") + state.translateGameElement("items", choice.item1, "txt")
+			
+		else if (choice.choiceId == 'dir1') {
+			// to-do: decide if the target is shown or not
+			
+			return (isEcho?"#" : "") + state.translateGameElement("directions", choice.action.d1, "txt") + 
+					" -> " + state.translateGameElement("items", choice.action.target, "txt")
+			
+		}
+
+		return ""
+	},
+		
 	gTranslator: function (reaction) {
 		
 	

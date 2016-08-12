@@ -75,7 +75,7 @@ export function buildSentence (textIn, expandedParams) {
 		let textOut = ""
 		let endings = ["a", "aj", "o", "oj"]
 		let prepositions = ["de", "el", "da"]
-		let pronomoj = ["mi", "vi", "li", "ŝi", "ĝi", "ci", "ni", "ili"]
+		let pronomoj = ["mi", "vi", "li", "ŝi", "ĝi", "ci", "ni", "ili"] 
 		
 		let noMore = false
 		
@@ -85,6 +85,7 @@ export function buildSentence (textIn, expandedParams) {
 			if (!noMore) {
 				for (let e in endings) {
 					if (endsWith(words[w], endings[e])) {
+						if (words[w] == "la") continue
 						doIt = true
 						break
 					} 
