@@ -18,35 +18,26 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
 
 function expandParams (textIn, param) {
 
-	var textOut = textIn
+	let availableParams = ["o1", "o2", "d1"]
+	let expandedParams = [], numParms = 0
 
-	if (textOut.indexOf("%o1") != -1) {
-
-		// by language
-		if (state.locale == 'en' ) textOut =  textOut.replace ("%o1", " " + state.translateGameElement("items", param.o1, "txt"))
-		else if (state.locale == 'es' ) textOut =  textOut.replace ("%o1", " " + state.translateGameElement("items", param.o1, "txt"))
-		else if (state.locale == 'eo' ) textOut =  textOut.replace ("%o1", " " + state.translateGameElement("items", param.o1, "txt") +  "n")
-		else textOut = " " + textOut.replace ("%o1", state.translateGameElement("items", param.o1, "txt") ) 
+	for (let i=0; i<availableParams.length;i++) {
+		
+		let p1, p2
+		
+		if ((p1 = textIn.indexOf("%" + availableParams[i])) >= 0) {   // parámeters like "%o1" and so on
+			expandedParams[numParms] = {code: availableParams[i]}
+			expandedParams[numParms].text = state.translateGameElement("items", param[availableParams[i]], "txt") 
+			if ((p2 = textIn.indexOf("_" + availableParams[i] +  "%")) >= 0) {
+				expandedParams[numParms].modifiers = textIn.substring (p1+availableParams[i].length + 2,p2)
+				// to-do: get language-dependent properties!
+				expandedParams[numParms].properties = {artikolo:true}
+			}
+			numParms++
+		}
 	}
 
-		if (textOut.indexOf("%o2") != -1) {
-
-		// by language
-		if (state.locale == 'en' ) textOut =  textOut.replace ("%o2", " " + state.translateGameElement("items", param.o2, "txt"))
-		else if (state.locale == 'es' ) textOut =  textOut.replace ("%o2", " " + state.translateGameElement("items", param.o2, "txt"))
-		else if (state.locale == 'eo' ) textOut =  textOut.replace ("%o2", " " + state.translateGameElement("items", param.o2, "txt"))
-		else textOut = " " + textOut.replace ("%o2", state.translateGameElement("items", param.o2, "txt") ) 
-	}
-
-	if (textOut.indexOf("%d1") != -1) {  
-		// by language
-		if (state.locale == 'en' ) textOut =  textOut.replace ("%d1", " " + state.translateGameElement("directions", param.d1, "txt") )
-		else if (state.locale == 'es' ) textOut =  textOut.replace ("%d1", " " + state.translateGameElement("directions", param.d1, "txt") )
-		else if (state.locale == 'eo' ) textOut =  textOut.replace ("%d1", " " + state.translateGameElement("directions", param.d1, "txt") + "n" )
-		else textOut = " " + textOut.replace ("%d1", state.translateGameElement("directions", param.d1, "txt") )
-	}
-	
-	return textOut
+	return state.language.buildSentence (textIn, expandedParams)
 
 }		
 
@@ -361,7 +352,7 @@ const mutations = {
 	state.runner.createWorld(state.lib.world, state.game.world)
 
 	state.language = require ('../components/LudiLanguage.js');
-
+	state.language.setLocale (state.locale)
 	
 	// DEPENDENCES -------------------------------
 	state.lib.primitives.dependsOn(state.runner.world, state.reactionList, state.runner.userState )
@@ -483,6 +474,7 @@ const mutations = {
 		
 		// update links
 		state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
+		
 	}
 	
   }

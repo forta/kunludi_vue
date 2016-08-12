@@ -228,7 +228,7 @@
         "message": "Vi jam havas ĝin!"
     },
     "messages.You take %o1.txt": {
-        "message": "Vi prenas %o1"
+        "message": "Vi prenas %o1_p;n_o1%"
     },
     "messages.You don't have it!.txt": {
         "message": "Vi ne havas ĝin!"
@@ -258,22 +258,22 @@
         "message": "La markita objekto devas esti ujo"
     },
     "messages.You put %o1 into %o2.txt": {
-        "message": "Vi metas %o1 ene de %o2"
+        "message": "Vi metas %o1_p;n_o1% ene de %o2"
     },
     "messages.You take %o1 from %o2.txt": {
-        "message": "Vi prenas %o1 el %o2"
+        "message": "Vi prenas %o1_p;n_o1% el %o2"
     },
     "messages.You examine %o1.txt": {
-        "message": "Vi ekzamenas %o1."
+        "message": "Vi ekzamenas %o1_p;n_o1%."
     },
     "messages.You read %o1.txt": {
-        "message": "Vi legas %o1"
+        "message": "Vi legas %o1_p;n_o1%"
     },
     "messages.You turn on %o1.txt": {
-        "message": "Vi ŝaltas %o1"
+        "message": "Vi ŝaltas %o1_p;n_o1%"
     },
     "messages.You turn off %o1.txt": {
-        "message": "Vi malŝaltas %o1"
+        "message": "Vi malŝaltas %o1_p;n_o1%"
     },
     "messages.Default book.txt": {
         "message": "Aspektas enuige"
@@ -300,7 +300,7 @@
         "message": "Enkonduko"
     },
     "messages.You eat %o1.txt": {
-        "message": "Vi manĝas %o1"
+        "message": "Vi manĝas %o1_p;n_o1%"
     },
     "messages.You go to %d1.txt": {
         "message": "Vi iras %d1"
@@ -321,13 +321,13 @@
         "message": "%o1 ne reagas kiam vi demandas pri %o2"
     },
     "messages.%o1 does not react when you ask for %o2.txt": {
-        "message": "%o1  ne reagas kiam vi petas %o2"
+        "message": "%o1 ne reagas kiam vi petas %o2"
     },
     "messages.%o1 does not react when you show %o2.txt": {
-        "message": "%o1 e reagas kiam vi montras %o2"
+        "message": "%o1 ne reagas kiam vi montras %o2"
     },
     "messages.You try to give o1 to o2.txt": {
-        "message": "Vi provas doni %o1 al %o2, senrezulte."
+        "message": "Vi provas doni %o1_p;n_o1% al %o2, senrezulte."
     }, 
     "messages.You just jump!.txt": {
         "message": "Vi simple saltas!"

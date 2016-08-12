@@ -252,7 +252,7 @@ div.play_top {
     top: 0;
     right: 0;
  	overflow: scroll;		
-
+    text-align: left;
 	background-color:#FFF;
 }		
 

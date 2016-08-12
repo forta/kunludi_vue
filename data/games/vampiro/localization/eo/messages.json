@@ -144,7 +144,7 @@
 			"message": "peco da ligno"
 		},
 	"items.mesa.desc": {
-			"message": "A mahagona tablo sufiĉe granda."
+			"message": "La mahagona tablo estas sufiĉe granda."
 		},
 	"items.mesa.txt": {
 			"message": "tablo"
@@ -186,7 +186,7 @@
 			"message": "martelo"
 		},
 	"items.cruz.desc": {
-			"message": "Ĝi estas malgranda arĝenta krucifikso. Ĝi estas unu el la kvar elemenelementj utilos por venki la vampiron. "
+			"message": "Ĝi estas malgranda arĝenta krucifikso. Ĝi estas unu el la kvar elementoj kiuj utilos por venki la vampiron. "
 		},
 	"items.cruz.txt": {
 			"message": "arĝenta krucifikso"
@@ -207,7 +207,7 @@
 			"message": "akrigi"
 		},
 	"messages.final.txt": {
-  		"message": "Vi malfermas la ĉerkon. Interne vi kontemplas la abomenindan vizaĝon de la vampiro. Protektita de la ajlo kaj krucifikso komenci vian malbela tasko. Vi algluita la paliso en la brusto kaj terura martelo enprofundigas en la profundoj de sia estaĵo. Kun krio de agonio pulvoro degelas kaj vi nur vian mision tie. <br/> Nuntempe ... "
+  		"message": "Vi malfermas la ĉerkon. Interne vi kontemplas la abomenindan vizaĝon de la vampiro. Protektita de la ajlo kaj krucifikso vi komencas vian malbelan taskon. Vi enbatas la palison en lian bruston kaj per terura martela bato vi enprofundigas la palison en la estaĵa koro. Per krio de agonio li disfariĝas pulvore kaj via misio finiĝas ĉi tie.<br/><br/>Provizore... "
 	},
 	"messages.ganaste.txt": {
 		"message": "Vi venkis!"
