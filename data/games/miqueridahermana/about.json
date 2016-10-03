@@ -1,0 +1,17 @@
+{
+	"ludi_id": "5", 
+	"name": "miqueridahermana", 
+	"translation": [
+		{
+			"language": "es",
+			"title": "Mi Querida Hermana",
+			"desc": "Juego participante en 'más alla de la Comp'",
+			"introduction": "Mi Querida Hermana. La pérdida de tu querida hermana gemela te ha dejado trastornado desde tu infancia, pero ¿está ella tan lejos de ti cómo crees?",	
+			"author": {
+				"name": "Tekas", 
+				"ludi_account": "tekas", 
+				"email": "sinmail@notengo.com"
+			}
+		} 		
+	]
+}

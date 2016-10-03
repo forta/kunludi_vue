@@ -1,0 +1,296 @@
+{
+    "items": [
+        {
+            "id": "escritor",
+            "type": "pc",
+            "loc": "estudio",
+            "att": {
+ 				"generalState": [
+					{"state":"0"}
+				]
+            }
+        },
+        {
+            "id": "limbo",
+            "type": "loc"
+        },
+        {
+			"id": "estudio",
+            "type": "loc",
+			"address":[  
+				{  "dir":"out", 	"target":"delante_casa"	}
+			],
+            "att": {
+				"gameParameters": []
+            }
+        },
+        {
+			"id": "delante_casa",
+            "type": "loc",
+			"address":[  
+				{   "dir":"in", "target":"salón_comedor"  },
+				{   "dir":"d180", "target":"camino_residencial"  }
+			]
+        },
+        {
+			"id": "salón_comedor",
+            "type": "loc",
+			"address":[  
+				{   "dir":"out", "target":"delante_casa"  },
+				{   "dir":"up", "target":"pasillo"  },
+				{   "dir":"d0", "target":"cocina"  }
+			]
+        },
+        {
+			"id": "cocina",
+            "type": "loc",
+			"address":[  
+				{   "dir":"d180", "target":"salón_comedor"  },
+				{   "dir":"d0", "target":"camino_playa"  }
+
+			]
+        },
+        {
+			"id": "pasillo",
+            "type": "loc",
+			"address":[  
+				{   "dir":"d90", "target":"habitación_gemelos"  },
+				{   "dir":"d270", "target":"habitación_madre"  }
+
+			]
+        },
+        {
+			"id": "camino_playa",
+            "type": "loc",
+			"address":[  
+				{   "dir":"d180", "target":"cocina"  },
+				{   "dir":"up", "target":"promontorio"  },
+				{   "dir":"d90", "target":"caleta"  }
+			]
+        },
+        {
+			"id": "caleta",
+            "type": "loc",
+			"address":[  
+				{   "dir":"d270", "target":"camino_playa"  },
+				{   "dir":"in", "target":"cuevita"  }
+			]
+        },
+        {
+			"id": "cuevita",
+            "type": "loc",
+			"address":[  
+				{   "dir":"out", "target":"caleta"  }
+			]
+        },
+        {
+			"id": "promontorio",
+            "type": "loc",
+			"address":[  
+				{   "dir":"down", "target":"camino_playa"  }
+			]
+        },
+        {
+			"id": "habitación_madre",
+            "type": "loc",
+			"address":[  
+				{   "dir":"d90", "target":"pasillo"  }
+			]
+        },
+        {
+			"id": "habitación_gemelos",
+            "type": "loc",
+			"address":[  
+				{   "dir":"d270", "target":"pasillo"  }
+			]
+        },
+        {
+			"id": "camino_residencial",
+            "type": "loc",
+			"address":[  
+				{   "dir":"d0", "target":"delante_casa"  },
+				{   "dir":"d90", "target":"portal_vecino_hippie"  },
+				{   "dir":"d270", "target":"portal_vecina_embarazada"  }
+			]
+        },
+        {
+			"id": "portal_vecina_embarazada",
+            "type": "loc",
+			"address":[  
+				{   "dir":"d90", "target":"camino_residencial"  }
+			]
+        },
+        {
+			"id": "portal_vecino_hippie",
+            "type": "loc",
+			"address":[  
+				{   "dir":"d270", "target":"camino_residencial"  }
+			]
+        },
+        {
+			"id": "vecina_embarazada",
+            "type": "npc",
+            "loc": "portal_vecina_embarazada"
+        },
+        {
+			"id": "vecino_hippie",
+            "type": "npc",
+            "loc": "portal_vecino_hippie"
+        },
+        {
+			"id": "maleta",
+            "type": "obj",
+            "loc": "estudio",
+            "att": {
+ 				"isContainer": []				
+            }
+        },
+		{
+			"id": "estantería",
+            "type": "obj",
+            "loc": "estudio"
+        },
+		{
+			"id": "libro_magia",
+            "type": "obj",
+            "loc": "estudio"
+        },
+		{
+			"id": "manuscrito",
+            "type": "obj",
+            "loc": "estudio"
+        },
+		{
+			"id": "tijeras",
+            "type": "obj",
+            "loc": "cocina"
+        },
+		{
+			"id": "setas",
+            "type": "obj",
+            "loc": "vecino_hippie"
+        },
+		{
+			"id": "servilleta",
+            "type": "obj",
+            "loc": "limbo"
+        },
+		{
+			"id": "cerillas",
+            "type": "obj",
+            "loc": "cocina"
+        },
+		{
+			"id": "collar",
+            "type": "obj",
+            "loc": "limbo"
+        },
+		{
+			"id": "móvil",
+            "type": "obj",
+            "loc": "escritor"
+        },
+		{
+			"id": "foto",
+            "type": "obj",
+            "loc": "estantería"
+        },
+		{
+			"id": "cuerda_enterrada",
+            "type": "obj",
+            "loc": "cuevita"
+        },
+		{
+			"id": "planta",
+            "type": "obj",
+            "loc": "estudio"
+        },
+		{
+			"id": "chimenea",
+            "type": "obj",
+            "loc": "salón_comedor",
+            "att": {
+ 				"isContainer": []				
+            }
+        },
+		{
+			"id": "atizador",
+            "type": "obj",
+            "loc": "chimenea"
+        },
+		{
+			"id": "panfleto",
+            "type": "obj",
+            "loc": "salón_comedor"
+        },
+		{
+			"id": "lápida1",
+            "type": "obj",
+            "loc": "promontorio"
+        },
+		{
+			"id": "lápida2",
+            "type": "obj",
+            "loc": "promontorio"
+        },
+		{
+			"id": "cama",
+            "type": "obj",
+            "loc": "habitación_madre"
+        },
+		{
+			"id": "diario",
+            "type": "obj",
+            "loc": "limbo"
+        },
+		{
+			"id": "espejo",
+            "type": "obj",
+            "loc": "habitación_madre"
+        },
+		{
+			"id": "litera",
+            "type": "obj",
+            "loc": "habitación_gemelos"
+        },
+		{
+			"id": "escritorio",
+            "type": "obj",
+            "loc": "habitación_gemelos"
+        },
+		{
+			"id": "armario_madre",
+            "type": "obj",
+            "loc": "habitación_madre"
+        },
+		{
+			"id": "armario_gemelos",
+            "type": "obj",
+            "loc": "habitación_gemelos"
+        },
+		{
+			"id": "cinturón",
+            "type": "obj",
+            "loc": "armario_madre"
+        }			
+    ],
+	"attributes":[  
+    ],
+	"actions": [
+		{  
+         "id":"atar",
+         "numpar":"2",
+         "on":[  
+            "obj",
+			"obj"
+         ]
+      }
+	],
+	"directions": [	],
+	"attExceptions":[
+	  {  
+         "id":"isTakeAble",
+         "exceptionList": ["chimenea", "estantería", "lápida1", "lápida2", "cama", "espejo", "escritorio", "armario_madre", "armario_gemelos"]
+	  } 	  
+   ]   
+}

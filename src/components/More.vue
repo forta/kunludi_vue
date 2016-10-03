@@ -1,14 +1,23 @@
 <template>
-  <div class="about">
-	<h3>{{kt("Details")}} {{gameId}} </h3>
-    
+  <div class="more">
+
+	<h3>{{kt("Details")}}</h3>
+
     <ul>
         <li> <b>{{kt("Title")}}:</b> {{about.translation[languageIndex].title}} </li>
         <li> <b>{{kt("Description")}}:</b> {{about.translation[languageIndex].desc}} </li>
         <li> <b>{{kt("Introduction")}}:</b> {{about.translation[languageIndex].introduction}} </li>
-        <li> <b>{{kt("Author")}}:</b> {{about.translation[languageIndex].author.name}} 
+        <li> <b>{{kt("Author")}}:</b> {{about.translation[languageIndex].author.name}}
                 (<b>{{kt("ludi account")}}:</b> {{about.translation[languageIndex].author.ludi_account}})
             (<b>{{kt("email")}}:</b> {{about.translation[languageIndex].author.email}})</li>
+     </ul>
+
+     <h3>{{kt("File")}} </h3>
+     <ul>
+         <li> <button @click='saveGame()'>{{kt("SaveGame")}}</button></li>
+         <li> <button @click='saveGame()'>{{kt("LoadGame")}}</button></li>
+         <li> <button @click='loadGameFromStart()'>{{kt("LoadGameFromStart")}}</button></li>
+         <!-- <li> <b>{{kt("SeeHistory")}}</b></li> -->
      </ul>
 
   </div>
@@ -32,13 +41,17 @@ export default {
       for (var l=0; l<this.about.translation.length;l++) if (this.about.translation[l].language == this.locale) languageIndex = l
       this.languageIndex = languageIndex
   },
-  
   methods: {
-      
+     saveGame: function () {
+     },
+     loadGame: function () {
+     },
+     loadGameFromStart: function () {
+     }
   },
   route: {
     activate: function () {
-        
+
     }
   },
   store: store,

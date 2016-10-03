@@ -6,6 +6,11 @@
 			"group": "0"
 		},
 		{
+			"name": "miqueridahermana",
+			"type": "0",
+			"group": "1"
+		},
+		{
 			"name": "texel",
 			"type": "0",
 			"group": "1"
