@@ -16,6 +16,23 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
     return -1;
 }
 
+function msgResolution (longMsg) {
+	
+	var longMsgId = longMsg.type + "." + longMsg.id + "." + longMsg.attribute
+	var expanded = ""
+	
+	if (state.game.messages [state.locale] != undefined) {
+		if (state.game.messages [state.locale][longMsgId] != undefined) expanded = state.game.messages [state.locale][longMsgId].message
+	}
+	if ((expanded == "") && (state.lib.messages [state.locale] != undefined)) {
+		if (state.lib.messages [state.locale][longMsgId] != undefined) expanded = state.lib.messages [state.locale][longMsgId].message
+	}
+	
+	return (expanded == ""? "[" + longMsgId + "]" : expanded)
+	
+}
+
+
 function expandParams (textIn, param) {
 
 	let availableParams = ["a1", "o1", "o2", "d1"]
@@ -188,7 +205,7 @@ const state = {
 			longMsg.id = state.runner.world.items[reaction.o1].id
 			longMsg.attribute = "txt"
 		} else if (reaction.type == "rt_show_menu") {
-			state.menu = reaction.o1
+			state.menu = reaction.menu
 			return
 		} else {
 			return {type:'text', txt: "gTranslator:[" + JSON.stringify(reaction) + "]"}
@@ -197,7 +214,8 @@ const state = {
 		// if static:
 		var longMsgId = longMsg.type + "." + longMsg.id + "." + longMsg.attribute
 
-		// to-do: this code should be in a function
+		// expanded = msgResolution (longMsg)
+		
 		// ---------- (begin msg resolution)
 		if (state.game.messages [state.locale] != undefined) {
 			if (state.game.messages [state.locale][longMsgId] != undefined) expanded = state.game.messages [state.locale][longMsgId].message
@@ -205,7 +223,6 @@ const state = {
 		if ((expanded == "") && (state.lib.messages [state.locale] != undefined)) {
 			if (state.lib.messages [state.locale][longMsgId] != undefined) expanded = state.lib.messages [state.locale][longMsgId].message
 		}
-		// ---------- (end msg resolution)
 
 
 		// if dev msg not exists, show json line to add in the console
@@ -436,23 +453,33 @@ const mutations = {
 	if (state.choice.choiceId == 'quit') return
 
 	state.choice = choice
-
 	state.menu = []
 
 	console.log ("current choice: " +  JSON.stringify(state.runner.choice))
 
-	var option
+	var optionMsg
 	if (choice.isLeafe) {
 		state.pendingChoice = choice
-		option = choice.action.option
+		optionMsg = choice.action.msg
 	}
 
 	state.runner.processChoice (choice)
 
+	// show chosen option
 	// to-do: send parameters to kernel messages
-	if (option != undefined) {
-		state.reactionList.unshift ({type:"rt_asis", txt: ": " + option + "<br/><br/>"} )
+	if (optionMsg != undefined) {
+		// option echo
+		state.reactionList.unshift ({type:"rt_asis", txt: "<br/><br/>"} )
+		state.reactionList.unshift ({type:"rt_msg", txt:  optionMsg } )
+		state.reactionList.unshift ({type:"rt_asis", txt: ": " } )
 		state.reactionList.unshift ({type:"rt_kernel_msg", txt: "Chosen option"} )
+		// menu echo
+		for (var i=choice.action.menu.length-1;i>=0;i--) {
+			state.reactionList.unshift ({type:"rt_asis", txt: "<br/>" } )
+			state.reactionList.unshift ({type:"rt_msg", txt: choice.action.menu[i].msg } )
+			state.reactionList.unshift ({type:"rt_asis", txt: "- " } )
+		}
+		state.reactionList.unshift ({type:"rt_asis", txt: "<b>Menu:</b><br/><br/>"} )
 	}
 
 	// refresh choices

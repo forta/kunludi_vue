@@ -221,8 +221,8 @@ export function CA_ShowItem ( o1) {
  this.reactionList.push ({type:this.caMapping("ITEM"), o1:o1});
 }
 
-export function CA_ShowMenu ( o1) {
- this.reactionList.push ({type:this.caMapping("SHOW_MENU"), o1:o1});
+export function CA_ShowMenu ( menu) {
+ this.reactionList.push ({type:this.caMapping("SHOW_MENU"), menu:menu});
 }
 
 export function CA_ShowImg (url, isLocal, isLink, txt, param) {

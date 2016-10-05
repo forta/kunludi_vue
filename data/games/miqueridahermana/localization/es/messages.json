@@ -54,13 +54,13 @@
         "message": "cuevita"
     },
     "items.promontorio.desc": {
-        "message": "En un terreno a mitad de camino de la casa y la playa, en un pequeño promontorio, están las lápidas de Ana y tu madre."
+        "message": "En un terreno a mitad de camino de la casa y la playa, en un pequeño promontorio, están las lápidas de Ana y tu madre.Un escalofrío te recorre siempre que estás aquí, pues sabes que tu madre murió al caer desde cerca de aquí al mar, que se puede ver desde esta altura."
     },
     "items.promontorio.txt": {
         "message": "promontorio"
     },
     "items.habitación_madre.desc": {
-        "message": "Aquí dormía mamá. Casi que aún hueles su aroma. En la cabecera de la cama aún sigue la foto de cuando se casó con papá. El armario, con su **espejo** central, es tan feo y barroco como recordabas."
+        "message": "Aquí dormía mamá. Casi que aún hueles su aroma. En la cabecera de la cama aún sigue la foto de cuando se casó con papá. El armario, con su espejo central, es tan feo y barroco como recordabas."
     },
     "items.habitación_madre.txt": {
         "message": "habitación de tu madre"
@@ -156,7 +156,7 @@
         "message": "collar"
     },
     "items.móvil.desc": {
-        "message": "Tu viejo móvil. Una antigualla no-inteligente que sólo permite llamadas y mensajes básicos de texto. El último mensaje que enviaste fue a tu vecino, dándole las gracias por aceptar venir a regarte la planta un par de veces a la semana. Tu agenda de teléfonos rebosa de teléfonos, pero la lista de llamadas entrantes o salientes es todo un desierto de comunicación social. De todos ellos, el único que te interesa ahora es el de tu vecino, por si se te olvidara algo importante que llevarte a la vieja casa."
+        "message": "Tu viejo móvil. Una antigualla no-inteligente que sólo permite llamadas y mensajes básicos de texto. El último mensaje que enviaste fue a tu vecino, dándole las gracias por aceptar venir a regarte la planta un par de veces a la semana. La lista de llamadas entrantes o salientes es todo un desierto de comunicación social. La agenda tiene unos cuantos números de teléfonos; entre ellos, el de tu vecino."
     },
     "items.móvil.txt": {
         "message": "móvil"
@@ -166,6 +166,12 @@
     },
     "items.foto.txt": {
         "message": "foto"
+    },
+    "items.barrotes.desc": {
+        "message": "Los barrotes que colocaron entonces para impedir que volviera a suceder una desgracia ahora están muy oxidados y parecen muy endebles."
+    },
+    "items.barrotes.txt": {
+        "message": "barrotes"
     },
     "items.cuerda_enterrada.desc": {
         "message": "Semienterrada en la arena, ves un trocito de cuerda que sobresale a la superficie."
@@ -260,7 +266,7 @@
     "messages.Introduction.txt": {
         "message": "Mi Querida Hermana. La pérdida de tu querida hermana gemela te ha dejado trastornado desde tu infancia, pero ¿está ella tan lejos de ti cómo crees?"
     },
-    "actions.atar.txt": {
-        "message": "atar"
+    "actions.telefonear.txt": {
+        "message": "llamar"
     }
 }

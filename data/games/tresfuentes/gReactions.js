@@ -781,13 +781,13 @@ let initReactions =  function  (reactions, primitives) {
 						primitives.CA_ShowMsg ("bienvenida_juego");
 						primitives.CA_ShowMsg ("chooseversion");
 
-						var menu = ["chooseversion_simple","chooseversion_long"];
+						var menu = [{id:"simple",msg:"chooseversion_simple"}, {id:"long", msg:"chooseversion_long"}];
 						primitives.CA_ShowMenu (menu); // continuation in state == 0, phase 2
 
 						return true;
 
 					} else { // getting answer
-						if (par_c.option == 0) { // versión reducida
+						if (par_c.option == "simple") { // versión reducida
 						
 							primitives.IT_SetAttPropValue (currentLoc, "gameParameters", "version","VR");
 
@@ -828,12 +828,12 @@ let initReactions =  function  (reactions, primitives) {
 					
 						primitives.CA_ShowMsg ("choosePC");
 					
-						var menu = ["chooseprimitives.PC_woman","chooseprimitives.PC_man"];
+						var menu = [{id:"woman", msg:"chooseprimitives.PC_woman"},{id:"man", msg:"chooseprimitives.PC_man"}];
 						primitives.CA_ShowMenu (menu); // continuation in state == 0, phase 2
 						return true;
 					
 					} else { // getting answer
-						if (par_c.option == 0) {  // vagabunda
+						if (par_c.option == "woman") {  // vagabunda
 							primitives.IT_SetAttPropValue (currentLoc, "gameParameters", "firstPC", "vagabunda");
 						} else {
 							primitives.IT_SetAttPropValue (currentLoc, "gameParameters", "firstPC", "cazador");
@@ -991,13 +991,13 @@ let initReactions =  function  (reactions, primitives) {
 						primitives.GD_CreateMsg (1, "Menu_drinkNo_yes", "Sí, quiero recuperar ya mi forma."); 
 						primitives.GD_CreateMsg (1, "Menu_drinkNo_no", "No, esperaré a estar fuera."); 
 
-						var menu = ["Menu_drinkNo_yes","Menu_drinkNo_no"];
+						var menu = [{id:"drink_yes", msg:"Menu_drinkNo_yes"} , {id:"drink_no", msg:"Menu_drinkNo_no"}];
 						primitives.CA_ShowMenu (menu);
 
 						return true;
 
 					} else { // fase 2: obtiene respuesta
-						if (par_c.option == 0) { // bebes y no "deberías" poder salir
+						if (par_c.option == "drink_yes") { // bebes y no "deberías" poder salir
 							primitives.CA_ShowMsg ("empiezas_a_crecer_dentro_caverna");
 							
 							// en la versión corta, sacaremos por a la dragona con "calzador" y efectos especiales
@@ -1648,10 +1648,10 @@ let initItems =  function  (items, primitives) {
 						primitives.GD_CreateMsg (1, "flautista_das_comida_si", "Trato hecho!");
 						primitives.GD_CreateMsg (1, "flautista_das_comida_no", "Va a ser que no.");
 
-						var menu = ["flautista_das_comida_si","flautista_das_comida_no"];
+						var menu = [{id:"give_food_yes", msg:"flautista_das_comida_si"}, {id:"give_food_no", msg:"flautista_das_comida_no"}];
 						primitives.CA_ShowMenu (menu);
 					} else { // respuesta
-						if (par_c.option == "0") { // acepta comida y da algo a cambio
+						if (par_c.option == "give_food_yes") { // acepta comida y da algo a cambio
 							usr.flautistaRecibeComida  (comida);
 						} else {
 							primitives.GD_CreateMsg (1, "DLG_qué_tacaño_eres", "qué tacaño eres, tú te lo pierdes. Yo sigo con lo mío, que cuando toco la música se me olvida el hambre.");
@@ -1694,10 +1694,10 @@ let initItems =  function  (items, primitives) {
 						primitives.GD_CreateMsg (1, "tocas_flauta_si", "Vale, voy a probar, pero no creo que sepa.");
 						primitives.GD_CreateMsg (1, "tocas_flauta_no", "Lo siento, pero no sé tocar la flauta.");
 
-						var menu = ["tocas_flauta_si","tocas_flauta_no"];
+						var menu = [{id:"play_flute_yes", msg:"tocas_flauta_si"}, {id:"play_flute_no", msg:"tocas_flauta_no"}];
 						primitives.CA_ShowMenu (menu);
 					} else { // respuesta
-						if (par_c.option == "0") { 
+						if (par_c.option == "play_flute_yes") { 
 							// aceptas tocar flauta
 							usr.examenMusical(par_c);
 						} else {
@@ -2486,7 +2486,8 @@ usr.aceptasPropuesta = function(option, superMsg, superParam, isDialog) {
 
 		this.primitives.CA_ShowMsg ("aceptas_S_N");
 
-		var menu = ["eliges_si","eliges_no"];
+		var menu = [{id:"choose_yes", msg:"eliges_si"}, {id:"choose_no", msg:"eliges_no"}];
+		
 		this.primitives.CA_ShowMenu (menu); // continuation in state == 0, phase 2
 		return -1;
 

@@ -5,9 +5,7 @@
             "type": "pc",
             "loc": "estudio",
             "att": {
- 				"generalState": [
-					{"state":"0"}
-				]
+ 				"generalState": [ {"state":"0"}	]
             }
         },
         {
@@ -21,7 +19,7 @@
 				{  "dir":"out", 	"target":"delante_casa"	}
 			],
             "att": {
-				"gameParameters": []
+ 				"generalState": [ {"state":"0"}	]
             }
         },
         {
@@ -39,7 +37,10 @@
 				{   "dir":"out", "target":"delante_casa"  },
 				{   "dir":"up", "target":"pasillo"  },
 				{   "dir":"d0", "target":"cocina"  }
-			]
+			],
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
         {
 			"id": "cocina",
@@ -54,6 +55,7 @@
 			"id": "pasillo",
             "type": "loc",
 			"address":[  
+				{   "dir":"down", "target":"salón_comedor"  },
 				{   "dir":"d90", "target":"habitación_gemelos"  },
 				{   "dir":"d270", "target":"habitación_madre"  }
 
@@ -81,7 +83,10 @@
             "type": "loc",
 			"address":[  
 				{   "dir":"out", "target":"caleta"  }
-			]
+			],
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
         {
 			"id": "promontorio",
@@ -196,6 +201,14 @@
             "loc": "estantería"
         },
 		{
+			"id": "barrotes",
+            "type": "obj",
+            "loc": "caleta",
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
+        },
+		{
 			"id": "cuerda_enterrada",
             "type": "obj",
             "loc": "cuevita"
@@ -221,7 +234,10 @@
 		{
 			"id": "panfleto",
             "type": "obj",
-            "loc": "salón_comedor"
+            "loc": "salón_comedor",
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
 		{
 			"id": "lápida1",
@@ -275,22 +291,25 @@
         }			
     ],
 	"attributes":[  
-    ],
+ 	  {  
+         "id":"generalState",
+		 "properties": [
+                { "id": "state", "value": "0", "use":"mandatory" }
+          ]		 
+      }
+   ],
 	"actions": [
 		{  
-         "id":"atar",
-         "numpar":"2",
-         "on":[  
-            "obj",
-			"obj"
-         ]
-      }
+         "id":"telefonear",
+         "numpar":"1",
+         "on":["obj"]
+       }   
 	],
 	"directions": [	],
 	"attExceptions":[
 	  {  
          "id":"isTakeAble",
-         "exceptionList": ["chimenea", "estantería", "lápida1", "lápida2", "cama", "espejo", "escritorio", "armario_madre", "armario_gemelos"]
+         "exceptionList": ["barrotes", "chimenea", "estantería", "lápida1", "lápida2", "cama", "espejo", "escritorio", "armario_madre", "armario_gemelos"]
 	  } 	  
    ]   
 }

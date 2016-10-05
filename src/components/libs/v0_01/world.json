@@ -2,10 +2,7 @@
     "actions": [
         {
             "id": "look",
-            "numpar": "1",
-            "on": [
-                "loc"
-            ]
+            "numpar": "0"
         },
         {
             "id": "go",

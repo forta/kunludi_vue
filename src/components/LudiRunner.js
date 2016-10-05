@@ -390,9 +390,22 @@ exports.updateChoices = function () {
     }
   }
 
-	if ((this.choice.choiceId == 'top') || (this.choice.choiceId == 'directActions')) {
+	// direct action look always present
+	if (this.choice.choiceId == 'top') {
 		exports.choices.push ({choiceId:'action0', isLeafe:true, parent:"directActions", action:{actionId:'look', parent:"top"}});
-
+	}
+	
+	// rest of direct actions
+	if (this.choice.choiceId == 'directActions') {
+		
+		for (var i=0; i< exports.world.actions.length; i++) {
+			if (exports.world.actions[i].numpar == 0) {
+				var actionId = exports.world.actions[i].id
+				if (exports.actionIsEnabled  (actionId)) { 	
+					exports.choices.push ({choiceId:'action0', isLeafe:true, parent:"directActions", action: { actionId: actionId, parent:"top"}})
+				}
+			}
+		}
 	}
 
 	if ((this.choice.choiceId == 'top') ||(this.choice.choiceId == 'directionGroup')) {
@@ -462,6 +475,8 @@ exports.updateChoices = function () {
 
 		for (var i=0; i< exports.world.actions.length; i++) {
 			var actionId = exports.world.actions[i].id
+			if (exports.world.actions[i].numpar == 0) continue;
+
 			if (exports.actionIsEnabled  (actionId, this.choice.item1)) { 		// obj1 + action
 				exports.choices.push ({choiceId:'action', isLeafe:true, parent:"obj1", action: { item1: this.choice.item1, actionId: actionId }})
 			} else {

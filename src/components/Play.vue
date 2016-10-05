@@ -50,7 +50,7 @@
         <h3> {{kt("Action")}}: {{choiceToShow(pendingChoice)}}</h3>
         <ul>
             <span v-for="m in menu">
-            <li><button v-on:click="menuOption($index)">  {{ $index + 1}} {{tge("messages",m,"txt")}}</button></li>
+            <li><button v-on:click="menuOption(menu, m)">  {{ $index + 1}} - {{tge("messages",m.msg,"txt")}}</button></li>
             </span>
         </ul>
         
@@ -135,9 +135,11 @@ export default {
           store.dispatch('PROCESS_CHOICE', choice)
           this.showEndOfText()
       },
-      menuOption(option) {
+      menuOption(menu, m) {
           var choice = this.pendingChoice
-          choice.action.option = option 
+          choice.action.option = m.id 
+          choice.action.msg = m.msg
+          choice.action.menu = menu
           store.dispatch('SET_PENDING_CHOICE', choice)
           this.showEndOfText()
       }  
@@ -171,13 +173,28 @@ h1 {
   color: #42b983;
 }
 
+button {
+    border-radius: 10px;
+    font-size: 16px;
+
+}
+
+button:hover {
+    background-color: #4CAF50; /* Green */
+    border-radius: 10px;
+    color: white;
+}
+
 .choiceTop {
 	background-color: #DAA;
 }
 
 .choiceIG_here {
+    
 	background-color: #40FF00;
 }
+
+
 .choiceObj1_here {
 	background-color: #40FF00;
 }
