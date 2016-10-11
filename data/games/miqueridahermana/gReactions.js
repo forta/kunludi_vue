@@ -19,6 +19,45 @@ panfleto.state: 0 no leído; 1: leído
 salón_comedor.state: 0: primera vez; 1: siguientes
 barrotes.state: 0: entrada bloqueada; 1: entrada abierta
 cuevita.state: 0: primera vez; 1: siguientes
+---
+embarazada.state: 0: no la conoces aún; 1: ya la conoces pero no sabes que va a tener gemelos; 2: sabes que tiene gemelos y que quiere chocolate; 3: ya comió chocolate
+
+
+
+hippie.state: 0: no lo conoces aún; 1: ya lo conoces y quiere marcha; 2: ya tuviste fiesta con él
+libro_magia.state: 0: muy bonito; 1:página del hechizo 1; 2:página del hechizo 2
+cinturón.state: 0: sin atar a ningún sitio; 1: atado a los barrotes (en caleta o en cuevita): no deja que te vayas de la caleta al paseo;
+móvil.state: carga inicial del móvil (minutos que quedan). Valor inicial: 1440 (100%). Cambios: pierde 15 puntos por turno en modo normal; pierde 120 puntos por turno en modo linterna; gana 75 puntos por turno en modo carga; pierde 45 puntos si llamas.
+app_reloj.state: hora del día (empieza con 1020 al llegar a la casa; se incrementa 15 por turno; a las 1380 vas a dormir; te levantas a las 420)
+app_linterna.state:  0: apagado; 1: encendido
+cargador_móvil.state:  0: no conectado; 1: conectado: no te puedes mover de la habitación mientras se carga (aprovecha para escribir!)
+(enchufes en las dos habitaciones, en la cocina y en el salón_comedor)
+app_marea.siguiente_marea: hora de la siguiente marea (inicialmente 1200 = 20:00) (al llegar, app_marea.marea_baja se pone a 6)
+app_marea.marea_baja: contador decremental de marea baja (se pone a 6 y va bajando: al llegar a cero, se da valor al siguiente app_marea.siguiente_marea)
+manuscrito.state: tiempo que has escrito hoy (cada día se pone a 0 y debes llegar a 360)
+diario.state:?
+
+objetos por crear:
+paquete_vecino: contiene los objetos que se solicitan; al coger el paquete, se deshace y tienes los objetos que contiene.
+paquete_telepapeo: contiene el pedido que son cosas del tipo:
+	pedido_ya_usado_hoy: 0 
+	pedido_num_personas: 1
+	pedido_postre_chocolate: 0
+	pedido_tipo_bebidas: 0,1,2 (refresco, cerveza, whisky)
+
+---
+?:
+día/noche: día (entre las 8:30 y las 19:00) ?
+
+---
+
+Problemas de integridad:
+- te quedas sin batería de noche y fuera de casa -> en modo automático: te quedas tirado esperando a que amanezca. Al amanecer, vas a tu habitación a dormir, enchufando el móvil a cargar. Cuando te despiertas, a mediodía, continúas el juego.
+- se te queda el cargador en el estudio y se te acaban la batería: ¿cómo le dices a Freddie que te lo envíe?
+- instalación de aplicaciones en el móvil: reloj (ya instalada); linterna; mareas
+	- uso de las aplicaciones:
+
+
 
 */
 
@@ -105,17 +144,57 @@ exports.actionIsEnabled = function  (actionId, item1, item2) {
 let initReactions =  function  (reactions, primitives) {
 	
 	reactions.push ({ 
+	
+		id: 'push',
+		
+		enabled: function (indexItem, indexItem2) {
+			if ( (indexItem ==  primitives.IT_X("timbre_hippie")) || (indexItem ==  primitives.IT_X("timbre_embarazada")) ) return true;
+				
+			return false
+		},
+
+		reaction: function (par_c) {
+			
+			var PNJIndex  = -1
+			if (par_c.item1 ==  primitives.IT_X("timbre_hippie")) PNJIndex = primitives.IT_X("hippie")
+			else PNJIndex = primitives.IT_X("embarazada")
+
+			if (primitives.IT_GetLoc(PNJIndex) ==  primitives.PC_GetCurrentLoc()) {
+				primitives.CA_QuoteBegin (primitives.IT_GetId(PNJIndex), "" , [], false ); 
+				primitives.GD_CreateMsg (1, "DLG_ya_estoy_aquí", "Ya estoy aquí, ¿para qué me llamas?");
+				primitives.CA_QuoteContinues ("DLG_ya_estoy_aquí", [], true );
+				return true
+			} else {
+				// si no están en casa, simplemente salen y reaccionan como "talk"
+				primitives.IT_SetLoc(PNJIndex, primitives.PC_GetCurrentLoc());
+				primitives.GD_CreateMsg (1, "%o1_aparece", "%o1 aparece.");
+				primitives.CA_ShowMsg ("%o1_aparece", {o1:primitives.IT_GetId(PNJIndex)});
+				
+				// primitives.GD_CreateMsg (1, "no_aparece_nadie", "No aparece nadie.<br/>");
+				// primitives.CA_ShowMsg ("no_aparece_nadie");
+			}
+			
+			
+			// igual que talk
+			usr.hablarConPNJ (PNJIndex)
+
+
+			return true
+			
+		}
+		
+	});
+	
+	reactions.push ({ 
 		id: 'look',
 		
 		reaction: function (par_c) {
 			
-			var currentLoc = primitives.PC_GetCurrentLoc()
-			
-			if (currentLoc == primitives.IT_X("estudio")) {
-				if (primitives.IT_GetAttPropValue (currentLoc, "generalState", "state") == "0") {
+			if (par_c.loc == primitives.IT_X("estudio")) {
+				if (primitives.IT_GetAttPropValue (par_c.loc, "generalState", "state") == "0") {
 					primitives.GD_CreateMsg (1, "sueño", "No puedes respirar, estás encerrado en la cueva de la playa y no puedes escapar. De repente, un corrimiento de arena de la playa entra en la cueva y te cubre hasta la cintura y no puedes moverte. En tus manos tienes el collar de conchas marinas que has hecho para regalárselas a tu querido hermano...<br/>Pero no, no puede ser, estos no son recuerdos tuyos, sólo pueden ser los últimos recuerdos de ella, del día en que...<br/>Despiertas, mojado en sudor.<br/><br/>Te levantas, no crees que vayas a poder reconciliar el sueño. De hecho, temes volver a dormir y volver a vivir esa horrible experiencia.<br/>Tienes la maleta casi preparada para el viaje de vuelta a la vieja casa familiar, en la costa. Sólo te hace falta meter un par de cosas más y podrás emprender ese viaje que llevas retrasando ya quince años.<br/>Has terminado el primer borrador de tu nueva novela y crees que la vieja casa te dará la tranquilidad necesaria para terminarla, lejos del ruido y las obligaciones de la ciudad."); 
 					primitives.CA_ShowMsg ("sueño");
-					primitives.IT_SetAttPropValue (currentLoc, "generalState", "state", 1)
+					primitives.IT_SetAttPropValue (par_c.loc, "generalState", "state", 1)
 					
 					return true;
 				}
@@ -125,7 +204,18 @@ let initReactions =  function  (reactions, primitives) {
 		
 	});
 	
-					
+	
+	
+	reactions.push ({
+		id: 'talk',
+		
+		reaction: function (par_c) {
+		
+			return usr.hablarConPNJ (par_c.item1)
+			
+		}
+		
+	});
 	
 	reactions.push ({  // acción específica de esta juego, así que debe tener definido enabled() y reaction() acabar con true o falsa explícito.
 
@@ -164,62 +254,197 @@ let initReactions =  function  (reactions, primitives) {
 	});
 	
 	reactions.push ({ 
+		id: 'drop', 
+		
+		reaction: function (par_c) {
 
-		id: 'telefonear', 
+			if (par_c.item1Id  == "móvil") {
+				primitives.GD_CreateMsg (1, "nomobofia", "Cuando vas a dejarlo, te entra tu habitual ataque de nomobofia y no lo sueltas.<br/>"); 
+				primitives.CA_ShowMsg ("nomobofia");
+
+				return true
+			}
+		}
+		
+	});
+
+	reactions.push ({ 
+
+		id: 'móvil_llamar', 
 		
 		enabled: function (indexItem, indexItem2) {
 			
-			if (indexItem == primitives.IT_X("móvil")) return true;
+			if (indexItem != primitives.IT_X("móvil")) return false;
 			
-			return false;
+			return true;
 		},
 		
 		reaction: function (par_c) {
 
-			primitives.GD_CreateMsg (1, "llamar_a_quien", "¿A quién quieres llamar?<br/>"); 
-			primitives.CA_ShowMsg ("llamar_a_quien");
 			
 			if (typeof par_c.option == 'undefined') { // phase 1: asking dialog
 			
-				primitives.GD_CreateMsg (1, "llamar_a_telepapeo", "TelePapeo"); 
-				primitives.GD_CreateMsg (1, "llamar_a_vecino_estudio", "Freddie"); 
-				primitives.GD_CreateMsg (1, "llamar_a_vecino_playa", "Charlie"); 
-				primitives.GD_CreateMsg (1, "llamar_a_vecina_playa", "Vicky"); 
+				primitives.GD_CreateMsg (1, "llamar_a_quien", "¿A quién quieres llamar?<br/>"); 
+				primitives.CA_ShowMsg ("llamar_a_quien");
 
 				var menu = []
 				
+				primitives.GD_CreateMsg (1, "cancelar_acción", "Cancelar la acción"); 
+				menu.push ({id:"cancelar", msg:"cancelar_acción"})
+
+				primitives.GD_CreateMsg (1, "llamar_a_estudio", "Freddie"); 
+				menu.push ({id:"estudio", msg:"llamar_a_estudio"})
+
 				if (primitives.IT_GetAttPropValue (primitives.IT_X("panfleto"), "generalState", "state") != "0") {
+					primitives.GD_CreateMsg (1, "llamar_a_telepapeo", "TelePapeo"); 
 					menu.push ({id:"telepapeo", msg:"llamar_a_telepapeo"})
 				}
 				
-				menu.push ({id:"estudio", msg:"llamar_a_vecino_estudio"})
-				menu.push ({id:"hippie", msg:"llamar_a_vecino_playa"})
-				menu.push ({id:"embarazada", msg:"llamar_a_vecina_playa"})
+				if (primitives.IT_GetAttPropValue (primitives.IT_X("hippie"), "generalState", "state") != "0") {
+					primitives.GD_CreateMsg (1, "llamar_a_playa", "Charlie"); 
+					menu.push ({id:"hippie", msg:"llamar_a_playa"})
+				}
+
+				if (primitives.IT_GetAttPropValue (primitives.IT_X("embarazada"), "generalState", "state") != "0") {
+					primitives.GD_CreateMsg (1, "llamar_a_playa", "Vicky"); 
+					menu.push ({id:"embarazada", msg:"llamar_a_playa"})
+				}
+
 	
 				primitives.CA_ShowMenu (menu); // continuation in state == 0, phase 2
 
 				return true;
 
 			} else { // getting answer
-				if (par_c.option == 0) {
-					primitives.GD_CreateMsg (1, "llamas_a_vecino_estudio", "Llamas a Freddie"); 
-					primitives.CA_ShowMsg ("llamas_a_vecino_estudio");
-				} else if (par_c.option == 1) {
-					primitives.GD_CreateMsg (1, "llamas_a_vecino_playa", "Llamas a Charlie"); 
-					primitives.CA_ShowMsg ("llamas_a_vecino_playa");
-				} else if (par_c.option == 2) {
-					primitives.GD_CreateMsg (1, "llamas_a_vecina_playa", "Llamas a Vicky"); 
-					primitives.CA_ShowMsg ("llamas_a_vecina_playa");
-				} else {
+			
+			
+				if (par_c.option == "cancelar") {
 					primitives.GD_CreateMsg (1, "no_llamas", "Al final no llamas a nadie"); 
 					primitives.CA_ShowMsg ("no_llamas");
+				} else if (par_c.option == "estudio") {
+					primitives.GD_CreateMsg (1, "llamas_a_estudio", "Llamas a Freddie"); 
+					primitives.CA_ShowMsg ("llamas_a_estudio");
+				} else if (par_c.option == "telepapeo") {
+					primitives.GD_CreateMsg (1, "llamas_a_playa", "Llamas a Charlie"); 
+					primitives.CA_ShowMsg ("llamas_a_playa");
+				} else if (par_c.option == "hippie") {
+					primitives.GD_CreateMsg (1, "llamas_a_playa", "Llamas a Charlie"); 
+					primitives.CA_ShowMsg ("llamas_a_playa");
+				} else if (par_c.option == "embarazada") {
+					primitives.GD_CreateMsg (1, "llamas_a_playa", "Llamas a Vicky"); 
+					primitives.CA_ShowMsg ("llamas_a_playa");
 				}
+				
+				// to-do: se inicia la conversación telefónica
 			}
 
 			return true;
 		}
 		
 	});
+	
+	reactions.push ({ 
+
+		id: 'móvil_estado', 
+		
+		enabled: function (indexItem, indexItem2) {
+			
+			if (indexItem != primitives.IT_X("móvil")) return false;
+			
+			return true;
+		},
+		
+		reaction: function (par_c) {
+			
+			// si aún en estudio: es muy tarde, vas a perder el avión
+			if (primitives.PC_GetCurrentLoc() == primitives.IT_X("estudio")) {
+				primitives.GD_CreateMsg (1, "es_muy_tarde", "¡Es muy tarde! Deberías salir ya para el aeropuerto o perderás el avión que te lleva a la costa.<br/>"); 
+				primitives.CA_ShowMsg ("es_muy_tarde");
+				return true;
+			}
+			
+			// calcular hora en función de app_reloj.state
+			var estado_hora = +primitives.IT_GetAttPropValue (primitives.IT_X("app_reloj"), "generalState", "state") 
+			var hora = Math.floor(estado_hora / 60)
+			var minutos = (estado_hora - hora * 60) 
+			
+			// to-do: %s parameter!
+			// primitives.GD_CreateMsg (1, "son_las_s1_s2", "Son las %s1:%s2<br/>"); 
+			// primitives.CA_ShowMsg ("son_las_s1_s2", {s1: hora, s2: minutos });
+			primitives.CA_ShowMsgAsIs ("Son las " + hora + ":" + minutos + ".<br/>");
+
+			// estado baterías
+			estado_hora = +primitives.IT_GetAttPropValue (primitives.IT_X("app_batería"), "generalState", "state") 
+			hora = Math.floor(estado_hora / 60)
+			minutos = (estado_hora - hora * 60)
+
+			// to-do: %s parameter!		
+			// primitives.GD_CreateMsg (1, "batería_restante_s1_s2", "A la batería le quedan %s1 horas y %s2 minutos.<br/>"); 
+			// primitives.CA_ShowMsg ("batería_restante_s1_s2", {s1: hora, s2: minutos });
+			primitives.CA_ShowMsgAsIs ("A la batería le quedan " + hora + " horas y " + minutos + " minutos.<br/>");
+
+			return true;
+			
+		}
+		
+	});
+
+	reactions.push ({ 
+
+		id: 'móvil_linterna', 
+		
+		enabled: function (indexItem, indexItem2) {
+			
+			if (indexItem != primitives.IT_X("móvil")) return false;
+			
+			return true;
+		},
+		
+		reaction: function (par_c) {
+			
+			// si aún en estudio: no te hace falta
+			if (primitives.PC_GetCurrentLoc() == primitives.IT_X("estudio")) {
+				primitives.GD_CreateMsg (1, "linterna_en_estudio", "Miras a tu alrededor y ves que no te hace falta usarla."); 
+				primitives.CA_ShowMsg ("linterna_en_estudio");
+				
+				return true;
+			}
+			
+			// to-do: switch on/off (debería controlarse por atributo de librería)
+			if (primitives.IT_GetAttPropValue (primitives.IT_X("app_linterna"), "generalState", "state") == "0") {
+				primitives.GD_CreateMsg (1, "linterna_encendida", "Enciendes la linterna del móvil.<br/>"); 
+				primitives.CA_ShowMsg ("linterna_encendida");
+				primitives.IT_SetAttPropValue (primitives.IT_X("app_linterna"), "generalState", "state", "1")
+			} else {
+				primitives.GD_CreateMsg (1, "linterna_apagada", "Apagas linterna del móvil<br/>"); 
+				primitives.CA_ShowMsg ("linterna_apagada");
+				primitives.IT_SetAttPropValue (primitives.IT_X("app_linterna"), "generalState", "state", "0")		
+			}
+			
+			return true;
+			
+		}
+		
+	});
+			
+	reactions.push ({ 
+
+		id: 'móvil_mareas', 
+		
+		enabled: function (indexItem, indexItem2) {
+			
+			if (indexItem != primitives.IT_X("móvil")) return false;
+			if (primitives.IT_GetAttPropValue (primitives.IT_X("hippie"), "generalState", "state") == "0") return false
+			
+			return true;
+		},
+		
+		reaction: function (par_c) {
+			return true;
+			
+		}
+		
+	});	
 	
 	reactions.push ({
 		id: 'go',
@@ -416,13 +641,65 @@ let initItems =  function  (items, primitives) {
 
 export function turn (indexItem) {
 	
+	var  primitives = this.primitives // tricky
 
+	if (indexItem == primitives.IT_X("app_reloj")) usr.incementar_hora()
+	if (indexItem == primitives.IT_X("app_batería")) usr.gastar_bateria()
+	
+	if (indexItem == primitives.IT_X("hippie")) usr.turnoHippie()
+	if (indexItem == primitives.IT_X("embarazada")) usr.turnoEmbarazada()
+	
+		
 }
 
 
 // internal functions ****************************************************************************************************************
 
+usr.incementar_hora = function() {
+	
+	var  primitives = this.primitives // tricky
+
+	var incremento = 15
+
+	if (primitives.PC_GetCurrentLoc() == primitives.IT_X("estudio")) return;
+
+	var estado = +primitives.IT_GetAttPropValue (primitives.IT_X("app_reloj"), "generalState", "state") + incremento
+	
+    // to-do: si después de las 23:00 (1380 minutos): a dormir
+	if (estado >= 1380) {
+		primitives.GD_CreateMsg (1, "a_dormir", "El sueño te vence y te arrastras a la cama. Mañana será otro día.<br/>");
+		primitives.CA_ShowMsg ("a_dormir");
+		estado = 450 // 7:30 de la mañana
+	}
+
+	primitives.IT_SetAttPropValue (primitives.IT_X("app_reloj"), "generalState", "state", estado)	
+	
+	// to_do: de manera similar, recalcular estado mareas
+
+}
+
+usr.gastar_bateria = function() {
+	
+	var  primitives = this.primitives // tricky
+
+	var decremento = (primitives.IT_GetAttPropValue (primitives.IT_X("app_linterna"), "generalState", "state") == "0")? 15: 60
+
+	if (primitives.PC_GetCurrentLoc() == primitives.IT_X("estudio")) return;
+
+	var estado = +primitives.IT_GetAttPropValue (primitives.IT_X("app_batería"), "generalState", "state") - decremento
+	
+	primitives.IT_SetAttPropValue (primitives.IT_X("app_batería"), "generalState", "state", estado)	
+	
+	if (estado <= 120) {
+		primitives.GD_CreateMsg (1, "te_quedas_sin_batería", "Te estás quedando sin baterías. Menos de dos horas a ritmo normal.<br/>");
+		primitives.CA_ShowMsg ("te_quedas_sin_batería");
+	}
+
+}
+
 usr.poema = function() {
+	var  primitives = this.primitives // tricky
+
 	primitives.GD_CreateMsg (1, "estrofa1", "De niño pasaba con mi familia<br/>los veranos en una casa junto al mar.<br/>Tenía yo una guapa vecina<br/>cuyo nombre no voy a mencionar<br/>de la que era novio infantil en verano<br/>y a quien el resto del año sólo podía añorar.<br/><br/>");
 	primitives.CA_ShowMsg ("estrofa1");
 	primitives.GD_CreateMsg (1, "estrofa2", "Un desgraciado verano,<br/>mi querido amor me fue arrebatado por un golpe de mar<br/>y quedé profundamente conmocionado.<br/>Su tumba iba a visitar <br/>todos los días, ese verano y los siguientes,<br/>en un promontorio junto al mar.<br/><br/>");
@@ -438,6 +715,93 @@ usr.poema = function() {
 	
 }
 	
-
+usr.hablarConPNJ = function(PNJIndex) {
 	
+	var  primitives = this.primitives // tricky
+		
+	if (PNJIndex == primitives.IT_X("hippie")) {
+		
+		if (primitives.IT_GetAttPropValue (PNJIndex, "generalState", "state") == "0") {
+
+			primitives.CA_QuoteBegin (primitives.IT_GetId(PNJIndex), "" , [], false ); 
+			primitives.GD_CreateMsg (1, "DLG_hippie_se_presenta", "¡Hola!, ¿qué puedo hacer por usted?... pero espera, ¡tú eres Al, mi viejo amigo de aventuras veraniegas! ¡Cómo me alegro de verte después de tantos años! Yo sigo aquí, con mi surf (a propósito, mira que app más guapa para saber a qué hora son las mareas)», te coge tu móvil y te la instala sin más, «y mi música. Vente un día a comer a casa. Tú pones el alcohol y yo me encargo del resto. Tengo género de buena calidad.")
+			primitives.CA_QuoteContinues ("DLG_hippie_se_presenta", [], true );
+			
+			primitives.GD_CreateMsg (1, "hippie_se_despide", "<br/>Sin darte mucho margen, tu amigo Charlie se mete en casa ('a dormir la mona', dice), no sin antes dejarte su número de móvil"); 
+			primitives.CA_ShowMsg ("hippie_se_despide");
+
+			primitives.IT_SetAttPropValue (PNJIndex, "generalState", "state", 1) // Charlie pasa a ser conocido
+			primitives.IT_SetLocToLimbo (PNJIndex);
+
+			return true
+		}
+
+	}
+
+	if (PNJIndex == primitives.IT_X("embarazada")) {
+		
+		if (primitives.IT_GetAttPropValue (PNJIndex, "generalState", "state") == "0") {
+
+			primitives.CA_QuoteBegin (primitives.IT_GetId(PNJIndex), "" , [], false ); 
+			primitives.GD_CreateMsg (1, "DLG_embarazada_se_presenta", "¡Al!» Sin darte tiempo a reaccionar una corpulenta mujer embarazada se abalanza encima tuya y te da cuatro besos.«¡Qué alegría más grande! ¿Vas a estar mucho?, ¿unas semanas tal vez?, ¡qué bueeeno! Paso mucho tiempo sola en casa por las mañanas, con mi marido Marcos casi todo el tiempo trabajando en la ciudad. Apunta mi número de móvil: llámame e invítame a tu casa a comerme un helado de chocolate. ¡Estos días sólo pienso en comer chocolate!")
+			primitives.CA_QuoteContinues ("DLG_embarazada_se_presenta", [], true );
+			
+			primitives.GD_CreateMsg (1, "embarazada_se_despide", "<br/><br/>Vicky hace gestos de sentir náuseas y sin previo aviso entra en casa.<br/>"); 
+			primitives.CA_ShowMsg ("embarazada_se_despide");
+
+			primitives.GD_CreateMsg (1, "recuerdas_libro", "<br/>De repente... te acuerdas de tu viejo libro comprado en el mercado de Marrakech. Te viene a la memoria una página en concreto, con unas ilustraciones de una mujer embarazada de gemelos. ¿Por qué te habrá venido ese recuerdo ahora? Seguro que es una tontería, pero no te vas a quedar tranquilo hasta que consultes el libro.<br/>"); 
+			primitives.CA_ShowMsg ("recuerdas_libro");
+			
+			// si no lo traiste
+			if ( (primitives.IT_GetLoc(primitives.IT_X("libro_magia")) == primitives.IT_X("estudio")) || 
+				 (primitives.IT_GetLoc(primitives.IT_X("libro_magia")) == primitives.IT_X("estantería")) ) {
+				primitives.GD_CreateMsg (1, "libro_en_estudio", "«¡Mierda!», recuerdas que no metiste el libro en la maleta; «quizás el bueno de Freddie me lo pueda enviar por mensajería.»<br/>"); 
+				primitives.CA_ShowMsg ("libro_en_estudio");
+
+			 }
+
+			primitives.IT_SetAttPropValue (PNJIndex, "generalState", "state", 1) // Vicky pasa a ser conocida
+			primitives.IT_SetLocToLimbo (PNJIndex);
+
+			return true
+		}
+
+	}	
+	
+	return false
+
+
+}
+
+usr.turnoHippie = function () {
+	
+	var  primitives = this.primitives // tricky
+	var PNJIndex = primitives.IT_X("hippie")
+
+	if (primitives.IT_GetLoc(PNJIndex) ==  primitives.PC_GetCurrentLoc()) {
+		// nada que decir
+		primitives.CA_QuoteBegin (primitives.IT_GetId(PNJIndex), "" , [], false ); 
+		primitives.GD_CreateMsg (1, "DLG_saluda", "¿Qué tal?")
+		primitives.CA_QuoteContinues ("DLG_saluda", [], true );
+	}
+	
+	// to-do: si no interactúas con el PNJ -> se va
+	
+}
+
+usr.turnoEmbarazada = function () {
+	
+	var  primitives = this.primitives // tricky
+	var PNJIndex = primitives.IT_X("embarazada")
+
+	if (primitives.IT_GetLoc(PNJIndex) ==  primitives.PC_GetCurrentLoc()) {
+		// nada que decir
+		primitives.CA_QuoteBegin (primitives.IT_GetId(PNJIndex), "" , [], false ); 
+		primitives.GD_CreateMsg (1, "DLG_saluda", "¿Qué tal?")
+		primitives.CA_QuoteContinues ("DLG_saluda", [], true );
+	}
+	
+	// to-do: si no interactúas con el PNJ -> se va
+	
+}
 

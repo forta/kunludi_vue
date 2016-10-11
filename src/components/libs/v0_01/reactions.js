@@ -847,12 +847,22 @@ let initReactions =  function  (reactions, primitives) {
 	});
 
 	reactions.push ({
+		id: 'push',
+		enabled: function (indexItem,indexItem2) {
+			return false;
+		},
+		reaction: function (par_c) {
+			primitives.CA_ShowMsg("Nothing happens when you push");
+		}
+	});
+
+	reactions.push ({
 		id: 'pull',
 		enabled: function (indexItem,indexItem2) {
 			return false;
 		},
 		reaction: function (par_c) {
-			primitives.CA_ShowMsg("Nothing to pull.");
+			primitives.CA_ShowMsg("Nothing happens when you pull");
 		}
 	});
 

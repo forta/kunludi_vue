@@ -114,38 +114,44 @@
             "type": "loc",
 			"address":[  
 				{   "dir":"d0", "target":"delante_casa"  },
-				{   "dir":"d90", "target":"portal_vecino_hippie"  },
-				{   "dir":"d270", "target":"portal_vecina_embarazada"  }
+				{   "dir":"d90", "target":"portal_hippie"  },
+				{   "dir":"d270", "target":"portal_embarazada"  }
 			]
         },
         {
-			"id": "portal_vecina_embarazada",
+			"id": "portal_embarazada",
             "type": "loc",
 			"address":[  
 				{   "dir":"d90", "target":"camino_residencial"  }
 			]
         },
         {
-			"id": "portal_vecino_hippie",
+			"id": "portal_hippie",
             "type": "loc",
 			"address":[  
 				{   "dir":"d270", "target":"camino_residencial"  }
 			]
         },
         {
-			"id": "vecina_embarazada",
+			"id": "embarazada",
             "type": "npc",
-            "loc": "portal_vecina_embarazada"
+            "loc": "limbo",
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
         {
-			"id": "vecino_hippie",
+			"id": "hippie",
             "type": "npc",
-            "loc": "portal_vecino_hippie"
+            "loc": "limbo",
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
         {
 			"id": "maleta",
             "type": "obj",
-            "loc": "estudio",
+            "loc": "escritor",
             "att": {
  				"isContainer": []				
             }
@@ -158,12 +164,12 @@
 		{
 			"id": "libro_magia",
             "type": "obj",
-            "loc": "estudio"
+            "loc": "maleta"
         },
 		{
 			"id": "manuscrito",
             "type": "obj",
-            "loc": "estudio"
+            "loc": "maleta"
         },
 		{
 			"id": "tijeras",
@@ -173,7 +179,7 @@
 		{
 			"id": "setas",
             "type": "obj",
-            "loc": "vecino_hippie"
+            "loc": "hippie"
         },
 		{
 			"id": "servilleta",
@@ -240,6 +246,16 @@
             }
         },
 		{
+			"id": "timbre_embarazada",
+            "type": "obj",
+            "loc": "portal_embarazada"
+        },
+		{
+			"id": "timbre_hippie",
+            "type": "obj",
+            "loc": "portal_hippie"
+        },
+		{
 			"id": "lápida1",
             "type": "obj",
             "loc": "promontorio"
@@ -288,7 +304,39 @@
 			"id": "cinturón",
             "type": "obj",
             "loc": "armario_madre"
-        }			
+        },
+		{
+			"id": "app_reloj",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+ 				"generalState": [ {"state":"1020"}	]
+            }
+        },
+		{
+			"id": "app_linterna",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
+        },
+		{
+			"id": "app_mareas",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+ 				"generalState": [ {"state":"1200"}	]
+            }
+        },
+		{
+			"id": "app_batería",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+ 				"generalState": [ {"state":"720"}	]
+            }
+        }		
     ],
 	"attributes":[  
  	  {  
@@ -300,16 +348,32 @@
    ],
 	"actions": [
 		{  
-         "id":"telefonear",
+         "id":"móvil_llamar",
+         "numpar":"1",
+         "on":["obj"]
+       },
+		{  
+         "id":"móvil_estado",
+         "numpar":"1",
+         "on":["obj"]
+       },
+		{  
+         "id":"móvil_linterna",
+         "numpar":"1",
+         "on":["obj"]
+       },
+		{  
+         "id":"móvil_mareas",
          "numpar":"1",
          "on":["obj"]
        }   
+	   
 	],
 	"directions": [	],
 	"attExceptions":[
 	  {  
          "id":"isTakeAble",
-         "exceptionList": ["barrotes", "chimenea", "estantería", "lápida1", "lápida2", "cama", "espejo", "escritorio", "armario_madre", "armario_gemelos"]
+         "exceptionList": ["timbre_embarazada", "timbre_hippie", "barrotes", "chimenea", "estantería", "lápida1", "lápida2", "cama", "espejo", "escritorio", "armario_madre", "armario_gemelos"]
 	  } 	  
    ]   
 }

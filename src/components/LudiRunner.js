@@ -277,6 +277,9 @@ exports.processAction = function(action) {
 	if (!status)
 		this.reactionList.push ({type:"rt_msg", txt: 'You cannot:' + JSON.stringify (action)} )
 
+	// NPC turns
+	exports.worldTurn ()
+	
 	// update memory
 	if (action.item1 >= 0) {
 		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1] == undefined)
@@ -299,7 +302,24 @@ exports.processAction = function(action) {
 
 	console.log("reactionList: " + JSON.stringify (this.reactionList))
 
+
 }
+
+exports.worldTurn = function() {
+
+	for (var i=0;i<exports.world.items.length;i++) {
+
+		// attention! currently items[i].turn() are not called
+		
+		if (typeof this.gameReactions.turn == 'function') {
+			// game level
+			status = this.gameReactions.turn (i)
+			if (status == true) continue;
+			// by now: no lib turn
+		}
+    }
+}
+
 
 exports.actionIsEnabled = function(actionId, item1, item2) {
 

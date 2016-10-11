@@ -119,6 +119,9 @@
 	"actions.throwAction.txt": {
         "message": "jheti"
     },
+	"actions.push.txt": {
+        "message": "puŝi"
+    },
 	"actions.pull.txt": {
         "message": "tiri"
     },
@@ -316,6 +319,12 @@
     },
     "messages.You can see.txt": {
         "message": "Vi povas vidi"
+    },
+    "messages.Nothing happens when you push.txt": {
+        "message": "Nenio okazas kiam vi puŝas."
+    },
+    "messages.Nothing happens when you pull.txt": {
+        "message": "Nenio okazas kiam vi eltiras."
     },
     "messages.%o1 does not react when you ask about %o2.txt": {
         "message": "%o1 ne reagas kiam vi demandas pri %o2"

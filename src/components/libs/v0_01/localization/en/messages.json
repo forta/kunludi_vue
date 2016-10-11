@@ -119,6 +119,9 @@
 	"actions.throwAction.txt": {
         "message": "throw"
     },
+	"actions.push.txt": {
+        "message": "push"
+    },
 	"actions.pull.txt": {
         "message": "pull"
     },
@@ -316,6 +319,12 @@
     },
     "messages.You can see.txt": {
         "message": "You can see"
+    },
+    "messages.Nothing happens when you push.txt": {
+        "message": "Nothing happens when you push."
+    },
+    "messages.Nothing happens when you pull.txt": {
+        "message": "Nothing happens when you pull."
     },
     "messages.%o1 does not react when you ask about %o2.txt": {
         "message": "%o1 does not react when you ask about %o2"

@@ -6,6 +6,11 @@
 			"group": "0"
 		},
 		{
+			"name": "miqueridahermana",
+			"type": "0",
+			"group": "1"
+		},
+		{
 			"name": "vampiro",
 			"type": "0",
 			"group": "0"
@@ -14,6 +19,11 @@
 	"games_on_development": [
 		{
 			"name": "miqueridahermana",
+			"type": "0",
+			"group": "1"
+		},
+		{
+			"name": "texel",
 			"type": "0",
 			"group": "1"
 		}

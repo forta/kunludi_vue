@@ -119,6 +119,9 @@
 	"actions.throwAction.txt": {
         "message": "lanzar"
     },
+	"actions.push.txt": {
+        "message": "apretar"
+    },
 	"actions.pull.txt": {
         "message": "halar"
     },
@@ -316,6 +319,12 @@
     },
     "messages.You can see.txt": {
         "message": "Puedes ver"
+    },
+    "messages.Nothing happens when you push.txt": {
+        "message": "No pasa nada cuando empujas."
+    },
+    "messages.Nothing happens when you pull.txt": {
+        "message": "No pasa nada cuando tiras."
     },
     "messages.%o1 does not react when you ask about %o2.txt": {
         "message": "%o1 no reacciona cuando preguntas por %o2"

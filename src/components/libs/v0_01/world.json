@@ -278,21 +278,31 @@
 			 ]
 		},
 		{  
+			 "id":"push",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
+		},  
+		{  
 			 "id":"pull",
 			 "numpar":"1",
 			 "on":[  
 				"obj"
 			 ]
-		},{  
+		},
+		{  
 			 "id":"raise",
 			 "numpar":"1",
 			 "on":[  
 				"obj"
 			 ]
-		},{  
+		},
+		{  
 			 "id":"wait",
 			 "numpar":"0"
-		},{  
+		},
+		{  
 			 "id":"attack-with",
 			 "numpar":"2",
 			 "on":[  

@@ -16,9 +16,8 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
     return -1;
 }
 
-function msgResolution (longMsg) {
+function msgResolution (longMsgId) {
 	
-	var longMsgId = longMsg.type + "." + longMsg.id + "." + longMsg.attribute
 	var expanded = ""
 	
 	if (state.game.messages [state.locale] != undefined) {
@@ -28,8 +27,7 @@ function msgResolution (longMsg) {
 		if (state.lib.messages [state.locale][longMsgId] != undefined) expanded = state.lib.messages [state.locale][longMsgId].message
 	}
 	
-	return (expanded == ""? "[" + longMsgId + "]" : expanded)
-	
+	return expanded
 }
 
 
@@ -214,8 +212,9 @@ const state = {
 		// if static:
 		var longMsgId = longMsg.type + "." + longMsg.id + "." + longMsg.attribute
 
-		// expanded = msgResolution (longMsg)
-		
+		expanded = msgResolution (longMsgId)
+	
+		/*
 		// ---------- (begin msg resolution)
 		if (state.game.messages [state.locale] != undefined) {
 			if (state.game.messages [state.locale][longMsgId] != undefined) expanded = state.game.messages [state.locale][longMsgId].message
@@ -223,7 +222,7 @@ const state = {
 		if ((expanded == "") && (state.lib.messages [state.locale] != undefined)) {
 			if (state.lib.messages [state.locale][longMsgId] != undefined) expanded = state.lib.messages [state.locale][longMsgId].message
 		}
-
+		*/
 
 		// if dev msg not exists, show json line to add in the console
 		if (reaction.type == "rt_dev_msg") {
@@ -297,11 +296,14 @@ const state = {
 			//return "<p>" + expanded + "</p><img src='./../../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
 
 		} else if ((reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues")) {
+			
 			// dirty trick (to-do)
 			expanded = expandParams (expanded,  {o1: reaction.param[0]})
-
-			// to-do: translate item
-			return {type:'text', txt: ((reaction.type == "rt_quote_begin")? "<br/><b>" + reaction.item + "</b>: «": "" ) + expanded + ((reaction.last) ? "»" : "") }
+			
+			var itemExpanded = msgResolution ("items." + reaction.item + ".txt") 
+			if (itemExpanded == "") itemExpanded = reaction.item // in case of not defined
+						
+			return {type:'text', txt: ((reaction.type == "rt_quote_begin")? "<br/><b>" + itemExpanded + "</b>: «": "" ) + expanded + ((reaction.last) ? "»" : "") }
 		} else if (reaction.type == "rt_play_audio") {
 			// to-do
 			return {type:'text', txt: expanded + " (play: " + reaction.fileName + " autoStart: " + reaction.autoStart + ")"}

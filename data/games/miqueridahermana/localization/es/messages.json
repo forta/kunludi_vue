@@ -77,28 +77,40 @@
     "items.camino_residencial.txt": {
         "message": "camino residencial"
     },
-    "items.portal_vecina_embarazada.desc": {
+    "items.portal_embarazada.desc": {
         "message": "Aquí vivía Vicky, tu amor infantil."
     },
-    "items.portal_vecina_embarazada.txt": {
-        "message": "portal #2"
+    "items.portal_embarazada.txt": {
+        "message": "portal de Vicky"
     },
-    "items.portal_vecino_hippie.desc": {
+    "items.portal_hippie.desc": {
         "message": "Aquí vivía Charlie, tu amigo surfero."
     },
-    "items.portal_vecino_hippie.txt": {
-        "message": "portal #1"
+    "items.portal_hippie.txt": {
+        "message": "portal de Charlie"
     },
-    "items.vecina_embarazada.desc": {
+    "items.timbre_hippie.desc": {
+        "message": "El timbre del portal de Charlie. Está lleno de chicles pegados, y pintadas de hojas de marihuana. Se ve que los amigos de Charlie son muy 'simpáticos'."
+    },
+    "items.timbre_hippie.txt": {
+        "message": "timbre del portal de Charlie"
+    },
+    "items.timbre_embarazada.desc": {
+        "message": "¡Qué mono el timbre! Tiene unos dibujitos en forma de flores. Vicky siempre fue muy detallista."
+    },
+    "items.timbre_embarazada.txt": {
+        "message": "timbre del portal de Vicky"
+    },
+    "items.embarazada.desc": {
         "message": "Está tan guapa como siempre. Está embarazada."
     },
-    "items.vecina_embarazada.txt": {
+    "items.embarazada.txt": {
         "message": "Vicky"
     },
-    "items.vecino_hippie.desc": {
+    "items.hippie.desc": {
         "message": "Charlie, tu antiguo amigo infantil."
     },
-    "items.vecino_hippie.txt": {
+    "items.hippie.txt": {
         "message": "Charlie"
     },
     "items.maleta.desc": {
@@ -266,7 +278,16 @@
     "messages.Introduction.txt": {
         "message": "Mi Querida Hermana. La pérdida de tu querida hermana gemela te ha dejado trastornado desde tu infancia, pero ¿está ella tan lejos de ti cómo crees?"
     },
-    "actions.telefonear.txt": {
+    "actions.móvil_llamar.txt": {
         "message": "llamar"
+    },
+    "actions.móvil_estado.txt": {
+        "message": "estado"
+    },
+    "actions.móvil_linterna.txt": {
+        "message": "modo linterna"
+    },
+    "actions.móvil_mareas.txt": {
+        "message": "estado de las mareas"
     }
 }
