@@ -66,6 +66,7 @@ exports.actionIsEnabled = function  (actionId, item1, item2) {
 	
 }
 
+
 // ============================
 
 /*
@@ -85,17 +86,8 @@ let initReactions =  function  (reactions, primitives) {
 			return true;
 		},
 		
-		reaction: function (par_c) {
-		
-			if (par_c.item2 != -1) { 
-				// to-do: show debug message
-				
-				console.log ("Debug: look with two parameters!")
-			
-				//return;
-			} 
-			
-			primitives.IT_DynDesc(primitives.PC_GetCurrentLoc ());
+		reaction: function (par_c) {	
+			primitives.CA_ShowDesc (primitives.PC_GetCurrentLoc ());
 		},
 		
 	});
@@ -175,11 +167,11 @@ let initReactions =  function  (reactions, primitives) {
 
 				// first time message
 				if (primitives.IT_FirstTimeDesc(par_c.link.target)) {
-					primitives.IT_DynDesc(par_c.link.target);
+					primitives.CA_ShowDesc(par_c.link.target);
 				}
 				
 			} else {
-				primitives.IT_DynDesc(par_c.link.target);
+				primitives.CA_ShowDesc(par_c.link.target);
 			}
 				
 			// transition message (if exist) from both locations (after description)
@@ -205,33 +197,8 @@ let initReactions =  function  (reactions, primitives) {
 		
 		reaction: function (par_c) {
 			
-			primitives.IT_DynDesc (par_c.item1);
+			primitives.CA_ShowDesc (par_c.item1);
 
-			return;
-			
-			// here!!: it must be using primitives!!!!!!!!!!!!!!!!!!!!???????????
-			// to-do: error here: ludi_runner.world
-			for (var idAtt in ludi_runner.world.items[par_c.item1].att) {
-				indexAtt = W_GetAttIndex (idAtt);
-				if (indexAtt<0) {
-					console.log ("Undefined attribute " + idAtt);
-					continue;
-				}
-
-				var indexGameAttribute = arrayObjectIndexOf(ludi_game.attribute, "id", idAtt);
-				var indexLibAttribute = arrayObjectIndexOf(this.libReactions.attribute, "id", idAtt);
-						
-				if (indexGameAttribute>=0) {
-					ludi_game.attribute[indexGameAttribute].desc(par_c.item1);
-				} else if (indexLibAttribute>=0) {
-					this.libReactions.attribute[indexLibAttribute].desc(par_c.item1);
-				} else {
-					
-					primitives.CA_ATT( indexAtt);
-				}
-
-			}
-			
 		},
 		
 	});
@@ -322,7 +289,7 @@ let initReactions =  function  (reactions, primitives) {
 			primitives.CA_ShowMsg("You become %o1", {o1:par_c.item1Id});
 			primitives.CA_ShowMsgAsIs("<br/>");
 			primitives.PC_SetIndex(par_c.item1);
-			primitives.IT_DynDesc (primitives.PC_GetCurrentLoc());
+			primitives.CA_ShowDesc (primitives.PC_GetCurrentLoc());
 			primitives.CA_Refresh ();
 			
 		},
@@ -1026,4 +993,4 @@ function IT_AfterDescription (target) {
 		
 }
 
-
+ 

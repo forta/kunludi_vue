@@ -132,7 +132,7 @@
         "message": "libro arcano"
     },
     "items.manuscrito.desc": {
-        "message": "El manuscrito de tu novela. Es todo un tesoro para ti, ya que por un error perdiste el archivo de ordenador, poco después de imprimirla para hacer correcciones a boli, que es como te gusta corregir el primer borrador."
+        "message": "El manuscrito de tu novela. Es todo un tesoro para ti, ya que por un error perdiste el archivo de ordenador, poco después de imprimirla para hacer correcciones a boli, que es como te gusta corregir el primer borrador. Llueva o truene te has impuesto dedicarle como mínimo seis horas al día."
     },
     "items.manuscrito.txt": {
         "message": "manuscrito"
@@ -168,10 +168,16 @@
         "message": "collar"
     },
     "items.móvil.desc": {
-        "message": "Tu viejo móvil. Una antigualla no-inteligente que sólo permite llamadas y mensajes básicos de texto. El último mensaje que enviaste fue a tu vecino, dándole las gracias por aceptar venir a regarte la planta un par de veces a la semana. La lista de llamadas entrantes o salientes es todo un desierto de comunicación social. La agenda tiene unos cuantos números de teléfonos; entre ellos, el de tu vecino."
+        "message": "Tu smartphone. Un android algo desfasado pero al que tampoco exiges mucho. Estás un poco desfasado y prefieres llamar a enviar mensajes de texto. Tampoco has instalado ninguna app adicional a las que venían de fábrica. El último mensaje que enviaste fue a tu vecino, dándole las gracias por aceptar venir a regarte tu 'planta de la inspiración' un par de veces a la semana. La lista de llamadas entrantes o salientes es todo un desierto de comunicación social. La agenda tiene unos cuantos números de teléfonos; entre ellos, el de tu vecino. A pesar de todo, estás atado al móvil como un imán y tienes un pánico irracional a no llevarlo contigo. Igual piensas que te van a llamar en algún momento para darte algún premio literario por tu última novela publicada."
     },
     "items.móvil.txt": {
         "message": "móvil"
+    },
+    "items.cargador.desc": {
+        "message": "El cargador de tu móvil. Imprescindible para un nomobófico urbanita como tú."
+    },
+    "items.cargador.txt": {
+        "message": "cargador de móvil"
     },
     "items.foto.desc": {
         "message": "Esta vieja foto casi te hace llorar. Apareces tú y tu hermana jugando en la playa. También se ve la sombra de vuestra madre tomando la foto."
@@ -192,7 +198,7 @@
         "message": "cuerda semienterrada"
     },
     "items.planta.desc": {
-        "message": "Una fea planta sin flores. No sabes cómo ha conseguido sobrevivir así, pero el hecho es que lleva contigo ya tres años y es un asunto personal que la planta sobreviva y prospere. Todo un símbolo de que las cosas que van mal en algún momento se pueden arreglar."
+        "message": "Aún no sabes cómo puede sobrevivir con lo mal que la tratas. Desprende un fuerte aroma que cualquier dia hará que la policía eche la puerta abajo y no le valdrán tus explicaciones de que te ayuda a inspirarte para escribir. Le has encomendado al bueno de Freddie que venga un par de veces por semana a regarla, pero no estaría mal recordárselo cada par de días por lo despistado que es."
     },
     "items.planta.txt": {
         "message": "planta"
@@ -275,6 +281,18 @@
     "items.cinturón.txt": {
         "message": "cinturón"
     },
+    "items.cesta_Freddie.desc": {
+        "message": "El paquete express de Freddie."
+    },
+    "items.cesta_Freddie.txt": {
+        "message": "paquete de Freddie"
+    },
+    "items.cesta_TelePapeo.desc": {
+        "message": "La cesta de TelePapeo con tu pedido express."
+    },
+    "items.cesta_TelePapeo.txt": {
+        "message": "cesta de TelePapeo"
+    },
     "messages.Introduction.txt": {
         "message": "Mi Querida Hermana. La pérdida de tu querida hermana gemela te ha dejado trastornado desde tu infancia, pero ¿está ella tan lejos de ti cómo crees?"
     },
@@ -289,5 +307,14 @@
     },
     "actions.móvil_mareas.txt": {
         "message": "estado de las mareas"
+    },
+    "actions.conectar_cargador.txt": {
+        "message": "conectar al móvil"
+    },
+    "actions.desconectar_cargador.txt": {
+        "message": "desconectar del móvil"
+    },
+    "actions.write.txt": {
+        "message": "escribir"
     }
 }

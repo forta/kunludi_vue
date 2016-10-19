@@ -16,6 +16,78 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
     return -1;
 }
 
+function expandDynReactions (state, reactionList) {
+	
+	function arrayObjectIndexOf(myArray, property, searchTerm) {
+		for(var i = 0, len = myArray.length; i < len; i++) {
+			if (myArray[i][property] === searchTerm) return i;
+		}
+		return -1;
+		}
+
+
+	// expand each dyn reaction into static ones
+
+	let sourceReactionList = reactionList.slice()
+	console.log("----------------------------------\noriginal reactionList: " + JSON.stringify (sourceReactionList))
+	
+	let targetReactionList = []
+
+	for (let sReaction in sourceReactionList) {
+		
+		if (sourceReactionList[sReaction].type == "rt_dyn_desc") { // dynamic reaction
+			var attribute = "desc"
+			
+			// getting a new state.reactionList
+			
+			// converte rt_dyn_desc into rt_desc
+			sourceReactionList[sReaction].type = "rt_desc"
+			targetReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[sReaction])) )
+			
+			var item1 = sourceReactionList[sReaction].o1
+			
+			// to-do: insertion of expanded reactions
+			
+			let actionGameIndex = -1 // arrayObjectIndexOf (state.game.reactions, "id", attribute)
+			let actionLibIndex = -1 // arrayObjectIndexOf (state.lib.reactions, "id", attribute)
+			let itemGamelevel = arrayObjectIndexOf (state.game.reactions.items, "id", state.runner.world.items[item1].id)
+
+			/*
+			if ((actionGameIndex>=0) && (typeof state.game.reactions[actionGameIndex].reaction == "function")) {
+				// game level -> add reactions into state.reactionList
+				state.game.reactions[actionGameIndex].reaction ({item1: item1})
+			} else if ((actionLibIndex>=0) && (typeof state.lib.reactions[actionLibIndex].reaction == "function")) {
+				// lib level -> add reactions into state.reactionList
+				state.lib.reactions[actionLibIndex].reaction ({item1: item1})
+			} else if (itemGamelevel>=0) {
+				// item level -> add reactions into state.reactionList
+				state.game.reactions.items[itemGamelevel][attribute]()
+			}
+			
+			for (let newReaction in state.reactionList) {
+				if (state.reactionList[newReaction].type == "rt_dyn_desc") 
+					continue // jump it
+				
+				targetReactionList.push (JSON.parse(JSON.stringify(state.reactionList[newReaction])))
+			}
+			state.reactionList = []
+			state.reactionList.length = 0
+			
+			*/
+			
+		} else { // static reaction
+			targetReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[sReaction])) )
+		}
+	}
+		
+	console.log("----------------------------------\nexpanded reactionList: " + JSON.stringify (targetReactionList))
+
+	return targetReactionList.slice()
+	
+	
+}
+
+
 function msgResolution (longMsgId) {
 	
 	var expanded = ""
@@ -33,7 +105,7 @@ function msgResolution (longMsgId) {
 
 function expandParams (textIn, param) {
 
-	let availableParams = ["a1", "o1", "o2", "d1"]
+	let availableParams = ["a1", "o1", "o2", "d1", "s1", "s2", "s3", "s4", "s5", "s6"] // yeah, clearly improvable
 	let expandedParams = [], numParms = 0
 
 	for (let i=0; i<availableParams.length;i++) {
@@ -47,8 +119,12 @@ function expandParams (textIn, param) {
 			if (availableParams[i][0] == "o") type = "items"
 			else if (availableParams[i][0] == "d") type = "directions"
 			else if (availableParams[i][0] == "a") type = "actions"
+			else if (availableParams[i][0] == "s") type = "string"
 
-			expandedParams[numParms].text = state.translateGameElement(type, param[availableParams[i]], "txt")
+			if (type == "string") 
+				expandedParams[numParms].text = param[availableParams[i]] // as is
+			else
+				expandedParams[numParms].text = state.translateGameElement(type, param[availableParams[i]], "txt")
 
 			if ((p2 = textIn.indexOf("_" + availableParams[i] +  "%")) >= 0) {
 				expandedParams[numParms].modifiers = textIn.substring (p1+availableParams[i].length + 2,p2)
@@ -58,6 +134,7 @@ function expandParams (textIn, param) {
 			numParms++
 		}
 	}
+	
 
 	return state.language.buildSentence (textIn, expandedParams)
 
@@ -164,7 +241,7 @@ const state = {
 
 		return ""
 	},
-
+	
 	gTranslator: function (reaction) {
 
 
@@ -244,33 +321,6 @@ const state = {
 				expanded = "[" + longMsgId + "]"
 			else
 				expanded = "[" + reaction.txt + "]"
-
-			// might be dynamic: 1) a global game method; or 2) a item property
-			// to-think: dynamic calls expands the reaction list which it is being processing!
-			if ((reaction.type == "rt_desc") || (reaction.type == "rt_item") ){
-				// game level
-				let actionGameIndex = arrayObjectIndexOf (state.game.reactions, "id", longMsg.attribute)
-				if ((actionGameIndex>=0) && (typeof state.game.reactions[actionGameIndex].reaction == "function")) {
-					// problem: the new dynamic reactions are added at the end instead of inserted
-					state.game.reactions[actionGameIndex].reaction ({item1: reaction.o1})
-					return {type:'text', txt: expanded + "(by game method)"}
-				}
-
-				// lib level
-				let actionLibIndex = arrayObjectIndexOf (state.lib.reactions, "id", longMsg.attribute)
-				if ((actionLibIndex>=0) && (typeof state.lib.reactions[actionLibIndex].reaction == "function")) {
-					// problem: the new dynamic reactions are added at the end instead of inserted
-					state.lib.reactions[actionLibIndex].reaction ({item1: reaction.o1})
-					return {type:'text', txt:expanded + "(by lib method)"}
-				}
-
-				// item level
-				let itemGamelevel = arrayObjectIndexOf (state.game.reactions.items, "id", state.runner.world.items[reaction.o1].id)
-
-				// longMsg.attribute: mainly desc()
-				state.game.reactions.items[itemGamelevel][longMsg.attribute]()
-				return // dynamic function do the job
-			}
 		}
 
 		if (expanded == "[]") expanded = ""
@@ -315,7 +365,7 @@ const state = {
 			if (expanded == "") expanded = "Press a key"
 			// deactivate buttons
 			state.menu = ['Press a key']
-		}
+		} 
 
 		expanded = expandParams (expanded, reaction.param)
 
@@ -466,7 +516,7 @@ const mutations = {
 	}
 
 	state.runner.processChoice (choice)
-
+	
 	// show chosen option
 	// to-do: send parameters to kernel messages
 	if (optionMsg != undefined) {
@@ -475,7 +525,7 @@ const mutations = {
 		state.reactionList.unshift ({type:"rt_msg", txt:  optionMsg } )
 		state.reactionList.unshift ({type:"rt_asis", txt: ": " } )
 		state.reactionList.unshift ({type:"rt_kernel_msg", txt: "Chosen option"} )
-		// menu echo
+		// game menu echo
 		for (var i=choice.action.menu.length-1;i>=0;i--) {
 			state.reactionList.unshift ({type:"rt_asis", txt: "<br/>" } )
 			state.reactionList.unshift ({type:"rt_msg", txt: choice.action.menu[i].msg } )
@@ -489,8 +539,13 @@ const mutations = {
 
 	// refresh history
 	if (state.runner.reactionList.length > 0) {
+
 		let reactionList = state.reactionList.slice()
 		state.reactionList.length = 0
+				
+		// expand dyn reactions
+		reactionList = expandDynReactions(state, reactionList)
+		
 		state.history.push (
 			{	action: choice,
 				reactionList: reactionList

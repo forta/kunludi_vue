@@ -83,7 +83,7 @@ export default {
       formatReaction: function (r) {
           var piece = this.t(r)
           if (piece == undefined) return ""
-          console.log ('piece: ' + JSON.stringify (piece))
+          // console.log ('piece: ' + JSON.stringify (piece))
      	  if (piece.isLink) 
 		      return "<a href='" + require("./../../data/games/" + this.gameId + "/images/" + piece.src) + "' target='_blank'>" + piece.txt + "</a><br/>"
             // piece.isLocal, 

@@ -16,25 +16,17 @@
 			"id": "estudio",
             "type": "loc",
 			"address":[  
-				{  "dir":"out", 	"target":"delante_casa"	}
+				{  "dir":"out", 	"target":"salón_comedor"	}
 			],
             "att": {
  				"generalState": [ {"state":"0"}	]
             }
         },
         {
-			"id": "delante_casa",
-            "type": "loc",
-			"address":[  
-				{   "dir":"in", "target":"salón_comedor"  },
-				{   "dir":"d180", "target":"camino_residencial"  }
-			]
-        },
-        {
 			"id": "salón_comedor",
             "type": "loc",
 			"address":[  
-				{   "dir":"out", "target":"delante_casa"  },
+				{   "dir":"out", "target":"camino_residencial"  },
 				{   "dir":"up", "target":"pasillo"  },
 				{   "dir":"d0", "target":"cocina"  }
 			],
@@ -113,7 +105,7 @@
 			"id": "camino_residencial",
             "type": "loc",
 			"address":[  
-				{   "dir":"d0", "target":"delante_casa"  },
+				{   "dir":"in", "target":"salón_comedor"  },
 				{   "dir":"d90", "target":"portal_hippie"  },
 				{   "dir":"d270", "target":"portal_embarazada"  }
 			]
@@ -164,12 +156,18 @@
 		{
 			"id": "libro_magia",
             "type": "obj",
-            "loc": "maleta"
+            "loc": "estantería",
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
 		{
 			"id": "manuscrito",
             "type": "obj",
-            "loc": "maleta"
+            "loc": "maleta",
+            "att": {
+ 				"generalState": [ {"state":"360"}	]
+            }
         },
 		{
 			"id": "tijeras",
@@ -199,7 +197,18 @@
 		{
 			"id": "móvil",
             "type": "obj",
-            "loc": "escritor"
+            "loc": "escritor",
+			"att": {
+ 				"generalState": [ {"state":""}	]
+            }
+        },
+		{
+			"id": "cargador",
+            "type": "obj",
+            "loc": "estantería",
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
 		{
 			"id": "foto",
@@ -310,7 +319,7 @@
             "type": "obj",
             "loc": "limbo",
             "att": {
- 				"generalState": [ {"state":"1020"}	]
+ 				"generalState": [ {"state":"450"}	]
             }
         },
 		{
@@ -326,7 +335,7 @@
             "type": "obj",
             "loc": "limbo",
             "att": {
- 				"generalState": [ {"state":"1200"}	]
+ 				"generalState": [ {"state":"1260"}	]
             }
         },
 		{
@@ -334,9 +343,25 @@
             "type": "obj",
             "loc": "limbo",
             "att": {
- 				"generalState": [ {"state":"720"}	]
+ 				"generalState": [ {"state":"1440"}	]
             }
-        }		
+        },
+		{
+			"id": "cesta_Freddie",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+ 				"generalState": [ {"state":"[]"}	]
+            }
+        },
+		{
+			"id": "cesta_TelePapeo",
+            "type": "obj",
+            "loc": "limbo",
+            "att": {
+ 				"generalState": [ {"state":"[]"}	]
+            }
+        }	
     ],
 	"attributes":[  
  	  {  
@@ -364,6 +389,21 @@
        },
 		{  
          "id":"móvil_mareas",
+         "numpar":"1",
+         "on":["obj"]
+       },
+		{  
+         "id":"conectar_cargador",
+         "numpar":"1",
+         "on":["obj"]
+       },
+		{  
+         "id":"desconectar_cargador",
+         "numpar":"1",
+         "on":["obj"]
+       },
+		{  
+         "id":"write",
          "numpar":"1",
          "on":["obj"]
        }   

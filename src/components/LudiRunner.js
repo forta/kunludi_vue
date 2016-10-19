@@ -107,7 +107,6 @@ function setDefaultAttributeProperties (context, indexItem) {
 
 }
 
-
 exports.createWorld = function (libWorld, gameWorld) {
 
 	exports.world = {
@@ -229,7 +228,7 @@ exports.processChoice = function  (choice) {
 		var indexPCBefore = exports.userState.profile.indexPC
 
 		// game action execution
-		exports.processAction (choice.action)
+		exports.processAction (choice.action)	
 
 		// after execution, show the parent
 		if ( (((choice.choiceId == 'action0') ||(choice.choiceId == 'action') || (choice.choiceId == 'action2')) &&
@@ -248,7 +247,6 @@ exports.processChoice = function  (choice) {
 	exports.updateChoices()
 
 }
-
 
 exports.processAction = function(action) {
 	var status
@@ -279,7 +277,7 @@ exports.processAction = function(action) {
 
 	// NPC turns
 	exports.worldTurn ()
-	
+		
 	// update memory
 	if (action.item1 >= 0) {
 		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1] == undefined)
@@ -299,11 +297,9 @@ exports.processAction = function(action) {
 		exports.userState.profile.loc = newLoc
 
 	}
-
-	console.log("reactionList: " + JSON.stringify (this.reactionList))
-
-
+	
 }
+
 
 exports.worldTurn = function() {
 

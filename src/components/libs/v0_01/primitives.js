@@ -91,6 +91,7 @@ Categories:
  CA: Client Action
 
   CA_ShowDesc (o1)
+  CA_ShowDynDesc (o1)
   CA_QuoteBegin (i)
   CA_QuoteContinues ()
   CA_Refresh ()
@@ -114,6 +115,7 @@ Categories:
   PC_CheckCurrentLocId (locId)
   PC_Points (value)
   PC_GetTurn()
+  PC_IsAt (i)
 
  DIR: Directions
  
@@ -141,7 +143,9 @@ Categories:
   IT_GetWhereItemWas(i1, i2)
   IT_SetWhereItemWas(i1, i2, value)
   IT_SetLastTime(i1, i2)
+  IT_IsAt (i, l)
   IT_Here (i)
+  IT_Carried(i)
   IT_CarriedOrHere(i)
   IT_NumberOfAtts(i)
   IT_ATT (indexItem, idAttType)
@@ -177,6 +181,10 @@ Categories:
 
 export function CA_ShowDesc  (o1) {
  this.reactionList.push ({type:this.caMapping("DESC"), o1:o1});
+};
+
+export function CA_ShowDesc  (o1) {
+ this.reactionList.push ({type:this.caMapping("DYN_DESC"), o1:o1});
 };
 
 export function CA_QuoteBegin  (item, txt, param, last) {
@@ -271,9 +279,9 @@ export function PC_SetCurrentLoc  (indexItem) {
  this.world.items[this.userState.profile.indexPC].loc = this.world.items[indexItem].id;
 }
 
-export function PC_CheckCurrentLocId  (locId) {
+export function PC_CheckCurrentLocId  (i) {
 
- return (this.world.items[this.userState.profile.indexPC].loc == locId);
+ return ((this.IT_GetLoc(i)  == this.PC_X()) || (this.IT_GetLoc(i) == this.PC_GetCurrentLoc()));
 
 }
 
@@ -286,6 +294,11 @@ export function PC_Points  (value) {
 export function PC_GetTurn  () {
  return this.userState.profile.turnCounter;
 }
+
+export function PC_IsAt  (i) {
+	return (this.IT_X (this.world.items[this.userState.profile.indexPC].loc) == i)
+}
+
 
 /* DIR: directions *****************************************************************/
 
@@ -397,8 +410,16 @@ export function IT_SetLastTime (i1, i2) {
  this.world.items[i1].state.itemsMemory[i2].lastTime = this.userState.profile.turnCounter;
 }
 
+export function IT_IsAt  (i, l) {
+ return (IT_GetLoc(i) == l);
+}
+
 export function IT_Here  (i) {
  return (IT_GetLoc(i) == PC_GetCurrentLoc());
+}
+
+export function IT_Carried (i) {
+ return (this.IT_GetLoc(i)  == this.PC_X());
 }
 
 // to-do:  IT_CarriedOrHere -> IT_OnCarriedOrHere
@@ -478,6 +499,9 @@ export function IT_IncrAttPropValue (indexItem, attId, propId, increment) {
 }
 
 export function IT_GetRandomDirectionFromLoc (indexLoc) {
+	
+ // to-do: pending to repare
+ return
  var table = ludi_runner.getCSExits(indexLoc);
 
  if (table.length  == 0) return null;
@@ -490,34 +514,6 @@ export function IT_SameLocThan (i1, i2) {
  if (i1<0) return false;
  if (i2<0) return false;
  return (IT_GetLoc(i1) == IT_GetLoc(i2));
-
-}
-
-export function IT_DynDesc (i) { // TO-DO: it must be outside, in LudiRunner.js
-
-	// if dark, do not show the description
-	if (this.IT_ATT(i, "dark")) {
-		//  to-do: if light available, show the description
-		this.CA_ShowMsg("It is dark");
-		return;
-	}
-
-	this.CA_ShowDesc (i);
-
-	// to-do
-	/*
-	// game reaction after desc()
-	var indexAction = arrayObjectIndexOf (ludi_game.reactions, "id", "desc");
-	if (indexAction >=0) {
-		ludi_game.reactions[indexAction].reaction();
-		return;
-	}
-
-	// lib reaction after desc()
-	indexAction = arrayObjectIndexOf (ludi_lib.reactions, "id", "desc");
-	if(indexAction >=0)
-		ludi_lib.reactions[indexAction].reaction();
-	*/
 
 }
 
