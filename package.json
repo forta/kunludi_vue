@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "babel-runtime": "^5.8.0",
+    "null-loader": "",
     "vue": "^1.0.18",
     "vue-resource": "^0.7.0",
-	"vuex": "",
-	"vuex-router-sync": ""
+    "vuex": "^1.0.0",
+    "vuex-router-sync": "",
+	"vue-router": "^0.7.13"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

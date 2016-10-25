@@ -87,6 +87,17 @@ function expandDynReactions (state, reactionList) {
 	
 }
 
+function reactionListContainsMenu (reactionList) {
+	for (let r in reactionList) {
+		if (reactionList[r].type == "rt_show_menu") return true
+	}
+
+	return false
+	
+	
+}
+
+
 
 function msgResolution (longMsgId) {
 	
@@ -140,10 +151,84 @@ function expandParams (textIn, param) {
 
 }
 
+function processChoice (state, choice) {
+	if (state.choice.choiceId == 'quit') return
+
+	state.choice = choice
+	state.menu = []
+
+	console.log ("current choice: " +  JSON.stringify(state.runner.choice))
+
+	var optionMsg
+	if (choice.isLeafe) {
+		state.pendingChoice = choice
+		optionMsg = choice.action.msg
+	}
+	
+	// precessing as much menu choices as game actions (leave choices)
+	state.runner.processChoice (choice)
+	
+	if (choice.isLeafe) {
+		if (reactionListContainsMenu (state.reactionList)) state.menuDepth++
+		else {
+			// to-do: in the future, if we allow actions after show_menu: if (state.menuDepth > 0) state.menuDepth--
+			state.menuDepth = 0
+		}
+		
+		if (state.menuDepth == 0) {
+			state.gameTurn++
+			state.runner.worldTurn ()	
+		}
+	}
+		
+
+	// show chosen option
+	// to-do: send parameters to kernel messages
+	if (optionMsg != undefined) {
+		// option echo
+		state.reactionList.unshift ({type:"rt_asis", txt: "<br/><br/>"} )
+		state.reactionList.unshift ({type:"rt_msg", txt:  optionMsg } )
+		state.reactionList.unshift ({type:"rt_asis", txt: ": " } )
+		state.reactionList.unshift ({type:"rt_kernel_msg", txt: "Chosen option"} )
+		// game menu echo
+		for (var i=choice.action.menu.length-1;i>=0;i--) {
+			state.reactionList.unshift ({type:"rt_asis", txt: "<br/>" } )
+			state.reactionList.unshift ({type:"rt_msg", txt: choice.action.menu[i].msg } )
+			state.reactionList.unshift ({type:"rt_asis", txt: "- " } )
+		}
+		state.reactionList.unshift ({type:"rt_asis", txt: "<b>Menu:</b><br/><br/>"} )
+	}
+
+	// refresh choices
+	state.choices = state.runner.choices
+
+	// add reactions to history
+	if (choice.isLeafe) {
+
+		let reactionList = state.reactionList.slice()
+		state.reactionList.length = 0
+				
+		// expand dyn reactions
+		reactionList = expandDynReactions(state, reactionList)
+				
+		state.history.push (
+			{	gameTurn: state.gameTurn,
+				action: choice,
+				reactionList: reactionList
+			}
+		)
+	}
+
+	state.choice = state.runner.getCurrentChoice()	
+	
+}
+
+
 const state = {
 	games: [
 	],
-	count: 0, // -> game.turns
+	gameTurn: 0, 
+	menuDepth: 0,
 	userId: '', // kune
 	locale: '', // lingvo /here!!!
 	gameId: '', // ludi
@@ -192,6 +277,7 @@ const state = {
 	},
 
 	getEcho: function (choice, isEcho) {
+		
 		// general kernel messages
 		if (choice.choiceId == 'top') return state.kTranslator("mainChoices_" + choice.choiceId)
 		else if (choice.choiceId == 'itemGroup') return state.kTranslator("mainChoices_" +  choice.itemGroup)
@@ -200,13 +286,11 @@ const state = {
 
 		// game elements
 
-		else if (choice.choiceId == 'action0') return  (isEcho?"#" : "") + state.translateGameElement("actions", choice.action.actionId)
+		else if (choice.choiceId == 'action0') return state.translateGameElement("actions", choice.action.actionId)
 
 		else if ((choice.choiceId == 'action') || (choice.choiceId == 'action2')) {
 
 			// to-do: each action must have an echo statement in each language!
-
-
 
 			if (isEcho) { // echo message
 				if (choice.choiceId == 'action') {
@@ -227,15 +311,15 @@ const state = {
 			}
 
 		}
-		else if (choice.choiceId == 'obj1') return (isEcho?"#" : "") + state.translateGameElement("items", choice.item1, "txt")
+		else if (choice.choiceId == 'obj1') return state.translateGameElement("items", choice.item1, "txt")
 
 		else if (choice.choiceId == 'dir1') {
 			// show the target only ii it is known
-      console.log	("choice.action??: " + JSON.stringify(choice.action) )
-      
-      var txt = (isEcho?"#" : "") + state.translateGameElement("directions", choice.action.d1, "txt")
-      if (choice.action.isKnown) txt += " -> " + state.translateGameElement("items", choice.action.target, "txt")
-      return txt
+			console.log	("choice.action??: " + JSON.stringify(choice.action) )
+
+			var txt = state.translateGameElement("directions", choice.action.d1, "txt")
+			if (choice.action.isKnown) txt += " -> " + state.translateGameElement("items", choice.action.target, "txt")
+			return txt
 
 		}
 
@@ -381,15 +465,6 @@ const state = {
 }
 
 const mutations = {
-  INCREMENT (state) {
-    state.count++
-  },
-  INCREMENTBY (state, par) {
-    state.count+=par
-  },
-  DECREMENT (state) {
-    state.count--
-  },
   RESETUSERID (state) {
     state.userId= ''
   },
@@ -497,64 +572,11 @@ const mutations = {
 
   },
   SET_PENDING_CHOICE (state, choice) {
-	  state.menu = [] // reset
-	  mutations.PROCESS_CHOICE (state, choice)
+	state.menu = [] // reset
+	processChoice (state, choice)
   },
   PROCESS_CHOICE (state, choice) {
-
-	if (state.choice.choiceId == 'quit') return
-
-	state.choice = choice
-	state.menu = []
-
-	console.log ("current choice: " +  JSON.stringify(state.runner.choice))
-
-	var optionMsg
-	if (choice.isLeafe) {
-		state.pendingChoice = choice
-		optionMsg = choice.action.msg
-	}
-
-	state.runner.processChoice (choice)
-	
-	// show chosen option
-	// to-do: send parameters to kernel messages
-	if (optionMsg != undefined) {
-		// option echo
-		state.reactionList.unshift ({type:"rt_asis", txt: "<br/><br/>"} )
-		state.reactionList.unshift ({type:"rt_msg", txt:  optionMsg } )
-		state.reactionList.unshift ({type:"rt_asis", txt: ": " } )
-		state.reactionList.unshift ({type:"rt_kernel_msg", txt: "Chosen option"} )
-		// game menu echo
-		for (var i=choice.action.menu.length-1;i>=0;i--) {
-			state.reactionList.unshift ({type:"rt_asis", txt: "<br/>" } )
-			state.reactionList.unshift ({type:"rt_msg", txt: choice.action.menu[i].msg } )
-			state.reactionList.unshift ({type:"rt_asis", txt: "- " } )
-		}
-		state.reactionList.unshift ({type:"rt_asis", txt: "<b>Menu:</b><br/><br/>"} )
-	}
-
-	// refresh choices
-	state.choices = state.runner.choices
-
-	// refresh history
-	if (state.runner.reactionList.length > 0) {
-
-		let reactionList = state.reactionList.slice()
-		state.reactionList.length = 0
-				
-		// expand dyn reactions
-		reactionList = expandDynReactions(state, reactionList)
-		
-		state.history.push (
-			{	action: choice,
-				reactionList: reactionList
-			}
-		)
-	}
-
-	state.choice = state.runner.getCurrentChoice()
-
+	processChoice (state, choice)
   },
   RESETGAMEID (state) {
     state.gameId= ''
@@ -575,6 +597,21 @@ const mutations = {
 	let gamesData = require ('../../data/games.json');
 
 	state.games = gamesData.games
+
+  },
+  SAVE_GAME_STATE (state) { 
+
+	// to-do: what to save?
+	// state.gameAbout
+	// if state hadn't code, it would be simple: just save the state!
+  
+	console.log ("Game saved!")
+  
+  },
+  LOAD_GAME_STATE (state) { 
+	// to-do: how to load and what to reset?
+
+	console.log ("Game loaded!")
 
   },
   LOAD_GAME_ABOUT (state, par) {

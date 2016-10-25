@@ -144,9 +144,9 @@ Categories:
   IT_SetWhereItemWas(i1, i2, value)
   IT_SetLastTime(i1, i2)
   IT_IsAt (i, l)
-  IT_Here (i)
-  IT_Carried(i)
-  IT_CarriedOrHere(i)
+  IT_IsHere (i)
+  IT_IsCarried(i)
+  IT_IsCarriedOrHere(i)
   IT_NumberOfAtts(i)
   IT_ATT (indexItem, idAttType)
   IT_AttPropExists (indexItem, attId, propId)
@@ -411,19 +411,19 @@ export function IT_SetLastTime (i1, i2) {
 }
 
 export function IT_IsAt  (i, l) {
- return (IT_GetLoc(i) == l);
+ return (this.IT_GetLoc(i) == l);
 }
 
-export function IT_Here  (i) {
- return (IT_GetLoc(i) == PC_GetCurrentLoc());
+export function IT_IsHere  (i) {
+ return (this.IT_GetLoc(i) == this.PC_GetCurrentLoc());
 }
 
-export function IT_Carried (i) {
+export function IT_IsCarried (i) {
  return (this.IT_GetLoc(i)  == this.PC_X());
 }
 
-// to-do:  IT_CarriedOrHere -> IT_OnCarriedOrHere
-export function IT_CarriedOrHere (i) {
+// to-do:  IT_IsCarriedOrHere -> IT_OnCarriedOrHere
+export function IT_IsCarriedOrHere (i) {
  return ((this.IT_GetLoc(i)  == this.PC_X()) || (this.IT_GetLoc(i) == this.PC_GetCurrentLoc()));
 }
 

@@ -1,5 +1,3 @@
-//export const increment = function (store) {  store.dispatch('INCREMENT') }
-
 export const setLocale = function (store, par) {  store.dispatch('SETLOCALE', par) }
 
 export const resetUserId = ({ dispatch }) => dispatch('RESETUSERID')
@@ -18,25 +16,6 @@ export const loadGames = function (store, par) {  store.dispatch('LOADGAMES', pa
 
 export const loadGameAbout = function (store, par) {  store.dispatch('LOAD_GAME_ABOUT', par) }
 
-export const increment = ({ dispatch }) => dispatch('INCREMENT')
+export const saveGameState = function (store) {  store.dispatch('SAVE_GAME_STATE') }
 
-export const incrementBy = function (store, par) {  store.dispatch('INCREMENTBY', par) }
-
-/*
-export const decrement = ({ dispatch }) => dispatch('DECREMENT')
-
-
-
-export const incrementIfOdd = ({ dispatch, state }) => {
-  if ((state.count + 1) % 2 === 0) {
-    dispatch('INCREMENT')
-  }
-}
-
-export const incrementAsync = ({ dispatch }) => {
-  setTimeout(() => {
-    dispatch('INCREMENT')
-  }, 1000)
-}
-
-*/
+export const loadGameState = function (store) {  store.dispatch('LOAD_GAME_STATE') }

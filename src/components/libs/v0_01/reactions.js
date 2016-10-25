@@ -308,6 +308,7 @@ let initReactions =  function  (reactions, primitives) {
 			if (indexItem2 == -1) return false;
 			if (indexItem2 == indexItem) return false;
 			if (!primitives.IT_ATT(indexItem2, "isContainer")) return false;
+			if (!primitives.IT_ATT(indexItem, "isTakeAble")) return false; 
 			if (primitives.IT_GetLoc(indexItem) == indexItem2) return false;
 			
 			return true;
@@ -527,7 +528,7 @@ let initReactions =  function  (reactions, primitives) {
 		
 		enabled: function (indexItem,indexItem2) {
 			// here
-			if (primitives.IT_CarriedOrHere(indexItem)) return false;
+			if (primitives.IT_IsCarriedOrHere(indexItem)) return false;
 			// if in limbo, not shown
 			// if (primitives.IT_GetId(primitives.IT_GetLoc(indexItem))== "limbo") return false; // really?
 			return true; // not here

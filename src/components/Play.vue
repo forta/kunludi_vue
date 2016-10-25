@@ -7,7 +7,7 @@
         <h2>{{kt("History")}}</h2>
         <div v-for="hItem in history">
             <!-- echo -->
-            <p><b> {{$index+1}}. {{choiceToShow(hItem.action, true)}}</b></p>
+            <p><b><span v-if ="hItem.gameTurn > 0"> {{hItem.gameTurn}} #</span>{{choiceToShow(hItem.action, true)}}</b></p>
                 <!-- to-do: problem with nested v-for: so, we'll create a new component -->  
             
             <span v-for="r in hItem.reactionList">

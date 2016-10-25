@@ -151,7 +151,10 @@
 		{
 			"id": "estantería",
             "type": "obj",
-            "loc": "estudio"
+            "loc": "estudio",
+            "att": {
+ 				"isContainer": []				
+            }
         },
 		{
 			"id": "libro_magia",
@@ -211,7 +214,7 @@
             }
         },
 		{
-			"id": "foto",
+			"id": "foto2",
             "type": "obj",
             "loc": "estantería"
         },
@@ -257,12 +260,18 @@
 		{
 			"id": "timbre_embarazada",
             "type": "obj",
-            "loc": "portal_embarazada"
+            "loc": "portal_embarazada",
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
 		{
 			"id": "timbre_hippie",
             "type": "obj",
-            "loc": "portal_hippie"
+            "loc": "portal_hippie",
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
 		{
 			"id": "lápida1",
@@ -285,6 +294,11 @@
             "loc": "limbo"
         },
 		{
+			"id": "foto3",
+            "type": "obj",
+            "loc": "limbo"
+        },
+		{
 			"id": "espejo",
             "type": "obj",
             "loc": "habitación_madre"
@@ -302,7 +316,10 @@
 		{
 			"id": "armario_madre",
             "type": "obj",
-            "loc": "habitación_madre"
+            "loc": "habitación_madre",
+            "att": {
+ 				"isContainer": []				
+            }
         },
 		{
 			"id": "armario_gemelos",
@@ -413,7 +430,7 @@
 	"attExceptions":[
 	  {  
          "id":"isTakeAble",
-         "exceptionList": ["timbre_embarazada", "timbre_hippie", "barrotes", "chimenea", "estantería", "lápida1", "lápida2", "cama", "espejo", "escritorio", "armario_madre", "armario_gemelos"]
+         "exceptionList": ["timbre_embarazada", "timbre_hippie", "barrotes", "chimenea", "estantería", "lápida1", "lápida2", "cama", "litera", "espejo", "escritorio", "armario_madre", "armario_gemelos"]
 	  } 	  
    ]   
 }

@@ -240,9 +240,9 @@ exports.processChoice = function  (choice) {
 		} else
 			this.choice = {choiceId:'top', isLeafe:false, parent:''};
 
+		this.choice.loc = exports.world.items[exports.userState.profile.indexPC].loc
+		
 	}
-
-	this.choice.loc = exports.world.items[exports.userState.profile.indexPC].loc
 
 	exports.updateChoices()
 
@@ -274,10 +274,7 @@ exports.processAction = function(action) {
 
 	if (!status)
 		this.reactionList.push ({type:"rt_msg", txt: 'You cannot:' + JSON.stringify (action)} )
-
-	// NPC turns
-	exports.worldTurn ()
-		
+	
 	// update memory
 	if (action.item1 >= 0) {
 		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1] == undefined)
@@ -302,6 +299,8 @@ exports.processAction = function(action) {
 
 
 exports.worldTurn = function() {
+
+	// to-do: if pendingChoice do nothing
 
 	for (var i=0;i<exports.world.items.length;i++) {
 

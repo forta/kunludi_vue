@@ -16,7 +16,7 @@
      <ul>
          <li> <button @click='saveGame()'>{{kt("SaveGame")}}</button></li>
          <li> <button @click='saveGame()'>{{kt("LoadGame")}}</button></li>
-         <li> <button @click='loadGameFromStart()'>{{kt("LoadGameFromStart")}}</button></li>
+         <!-- <li> <button @click='loadGameFromStart()'>{{kt("LoadGameFromStart")}}</button></li> -->
          <!-- <li> <b>{{kt("SeeHistory")}}</b></li> -->
      </ul>
 
@@ -43,8 +43,14 @@ export default {
   },
   methods: {
      saveGame: function () {
+         store.dispatch('SAVE_GAME_STATE')
+         // go back playing:  path:  /ludi/more -> /ludi/play
+         this.$router.go('/ludi/play') 
      },
      loadGame: function () {
+         store.dispatch('LOAD_GAME_STATE')
+         // go back playing:  path:  /ludi/more -> /ludi/play
+         this.$router.go('/ludi/play') 
      },
      loadGameFromStart: function () {
      }

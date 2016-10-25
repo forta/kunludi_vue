@@ -60,7 +60,7 @@
         "message": "promontorio"
     },
     "items.habitación_madre.desc": {
-        "message": "Aquí dormía mamá. Casi que aún hueles su aroma. En la cabecera de la cama aún sigue la foto de cuando se casó con papá. El armario, con su espejo central, es tan feo y barroco como recordabas."
+        "message": "Aquí dormía mamá. Casi que aún hueles su aroma. Duele. El armario, con su espejo central, es tan feo y barroco como recordabas."
     },
     "items.habitación_madre.txt": {
         "message": "habitación de tu madre"
@@ -156,7 +156,7 @@
         "message": "servilleta con sangre de Vicky"
     },
     "items.cerillas.desc": {
-        "message": "Unas pocas cerillas"
+        "message": "Unas pocas cerillas en una cajita de cartón. Dudas de si servirán para algo."
     },
     "items.cerillas.txt": {
         "message": "cerillas"
@@ -179,11 +179,17 @@
     "items.cargador.txt": {
         "message": "cargador de móvil"
     },
-    "items.foto.desc": {
+    "items.foto2.desc": {
         "message": "Esta vieja foto casi te hace llorar. Apareces tú y tu hermana jugando en la playa. También se ve la sombra de vuestra madre tomando la foto."
+    },   
+    "items.foto2.txt": {
+        "message": "foto de Ana y tú"
     },
-    "items.foto.txt": {
-        "message": "foto"
+    "items.foto3.desc": {
+        "message": "En esta foto aparecéis tú y tu querida hermana a ambos lados de tu madre. Los tres sonreís y parecéis muy felices, ¿quién iba a decir que sólo unas semanas después sucedaría la tragedia?"
+    },
+    "items.foto3.txt": {
+        "message": "foto familiar"
     },
     "items.barrotes.desc": {
         "message": "Los barrotes que colocaron entonces para impedir que volviera a suceder una desgracia ahora están muy oxidados y parecen muy endebles."
@@ -240,7 +246,7 @@
         "message": "cama"
     },
     "items.diario.desc": {
-        "message": "El diario de tu madre. Además de sus anotaciones, también hay intercaladas fotos y dibujos."
+        "message": "En el diario de tu madre, además de sus anotaciones, también hay intercaladas fotos y dibujos. Ves que el diario se empezó a escribir poco muerte de la muerte de Ana y termina días antes de la muerte de tu madre. La lectura te desgarra. Cuenta lo responsable que se siente de la muerte de Ana y que no tiene fuerzas para cuidar de ti, y por eso te había enviado al internado en la ciudad. También cuenta que se está volviendo loca y que ha creído ver a Ana varias veces en la casa y rondando la tumba. La útima última anotación reza: 'Las paredes de la casa se me caen encima, iré a ponerle flores frescas a la tumba de Ana y a pasear un poco por la playa'. Ese mismo día su cuerpo fue encontrado ahogado en la playa tras caer desde el promontorio donde está la tumba de Ana."
     },
     "items.diario.txt": {
         "message": "diario"
@@ -264,16 +270,16 @@
         "message": "escritorio"
     },
     "items.armario_madre.desc": {
-        "message": "Aún queda algo de ropa de tu madre."
+        "message": "El viejo armario de tu madre, medio roído por las polillas."
     },
     "items.armario_madre.txt": {
-        "message": "armario_madre"
+        "message": "armario de tu madre"
     },
     "items.armario_gemelos.desc": {
         "message": "Ahí sigue el armario con las cosas de ella. Las tuyas viajaron contigo cuando dejaste la casa para ir a vivir al internado."
     },
     "items.armario_gemelos.txt": {
-        "message": "armario_gemelos"
+        "message": "armario de los gemelos"
     },
     "items.cinturón.desc": {
         "message": "Un viejo cinturón de cuero de tu madre."

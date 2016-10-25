@@ -104,7 +104,7 @@ let initReactions =  function  (reactions, primitives) {
 		reaction: function (par_c) {
 		
 			if ( (primitives.PC_GetCurrentLoc() == primitives.IT_X("loc_al_la_shipo")) &&
-				 (primitives.IT_CarriedOrHere (primitives.IT_X("obj_pendanta_ŝnuro"))) ) {
+				 (primitives.IT_IsCarriedOrHere (primitives.IT_X("obj_pendanta_ŝnuro"))) ) {
 				// fakte, nue se sxnuro jam jetita
 				primitives.CA_ShowMsg ("Vi grimpas en la pendanta ŝnuro,$D kelkfoje ĝi preskaŭ rompiĝas, $D sed vi sukcesas grimpi ĝis la rando.$D");
 				primitives.PC_SetCurrentLoc (primitives.IT_X("loc_sur_la_shipo"));
@@ -489,7 +489,7 @@ let initItems =  function  (items, primitives) {
 				primitives.IT_SetAttPropValue (this.index, "hasDecrementor", "active", "false");
 				
 				// monstroj_fugxas_el_cxi_tie();
-				if (primitives.IT_CarriedOrHere(this.index)) {
+				if (primitives.IT_IsCarriedOrHere(this.index)) {
 					primitives.CA_ShowMsg("La bombo eksplodas.");
 					primitives.PC_SetCurrentLoc (primitives.IT_X("loc_post_eksplodo"));
 					primitives.CA_ShowDesc (primitives.PC_GetCurrentLoc());
@@ -529,7 +529,7 @@ let initItems =  function  (items, primitives) {
 	items.push ({
 		id: 'obj_pendanta_ŝnuro',
 		burn: function() {
-			if (primitives.IT_Here(primitives.IT_X("obj_pirata_ŝipo_2"))) {
+			if (primitives.IT_IsHere(primitives.IT_X("obj_pirata_ŝipo_2"))) {
 				primitives.CA_ShowMsg("La ŝnuro forbrulis.");
 				primitives.IT_SetLocToLimbo(this.index);
 				primitives.IT_ReplacedBy (primitives.IT_X("obj_pirata_ŝipo_2"), primitives.IT_X("obj_pirata_ŝipo"));
@@ -538,7 +538,7 @@ let initItems =  function  (items, primitives) {
 			return false; // nothing done in item scope
 		}, 
 		pull: function () {
-			if (primitives.IT_Here(primitives.IT_X("obj_pirata_ŝipo"))) {
+			if (primitives.IT_IsHere(primitives.IT_X("obj_pirata_ŝipo"))) {
 				primitives.CA_ShowMsg("Kiam vi tiras al la ŝnuro, vi tiras iomete tro forte por la foruzita ŝnuro,$D ĝi rompiĝas.");
 				primitives.IT_ReplacedBy (primitives.IT_X("obj_pendanta_ŝnuro"), primitives.IT_X("obj_rompita_ŝnuro")); 
 				primitives.IT_ReplacedBy(primitives.IT_X("obj_pirata_ŝipo_2"), primitives.IT_X("obj_pirata_ŝipo"));
