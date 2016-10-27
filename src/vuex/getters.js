@@ -10,6 +10,8 @@ export function getLanguages (state) { return state.languages }
 
 export function getHistory (state) { return state.history }
 
+export function getGameSlots (state) { return state.gameSlots }
+
 export function getChoices (state) { return state.choices }
 
 export function getMenu (state) { return state.menu }

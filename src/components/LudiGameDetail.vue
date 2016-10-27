@@ -27,9 +27,14 @@
 
     <h3>{{kt("Options")}}</h3>
     <ul>
-    <li>
-    <button v-on:click="load(game.name)">{{kt("Load game")}}</button>   
-    </li>
+        <!-- <li> <button v-on:click="load(game.name)">{{kt("Load game")}}</button> </li> -->
+
+         <li><button v-on:click="loadGame(game.name, 'default')"> {{kt("LoadGameFromStart")}}  </button></li>     
+
+         <li v-for="gameSlot in gameSlots">
+           <button v-on:click="loadGame(game.name, gameSlot.id)"> {{kt("LoadGame")}}  </button> {{gameSlot.id}}     
+         </li>
+         
     </ul>
 
   </div>
@@ -38,7 +43,7 @@
 <script>
 
     import store from '../vuex/store'
-    import { getGameAbout, getGameId, getLocale, getKTranslator } from '../vuex/getters'
+    import { getGameAbout, getGameId, getLocale, getKTranslator, getGameSlots } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
 export default {
@@ -51,14 +56,15 @@ export default {
   watch: {
      'game': function (val, oldVal) {
         store.dispatch('LOAD_GAME_ABOUT', val.name)
+        store.dispatch('LOAD_GAME_SLOTS', val.name)
         this.languageIndex=0
      }
   },
   computed: {
   },
   methods: {
-      load: function (id) {
-		  store.dispatch('SETGAMEID', id)
+      loadGame: function (id, slotId) {
+		  store.dispatch('SETGAMEID', id, slotId)
       }, 
   },
   props: ['game'],
@@ -68,7 +74,8 @@ export default {
        gameId: getGameId,
        locale: getLocale,
        about: getGameAbout,
-       kt: getKTranslator
+       kt: getKTranslator,
+       gameSlots: getGameSlots
     },
     actions: actions
   }

@@ -241,6 +241,7 @@ const state = {
 			]
 		}
 	],
+	gameSlots: [],
 	choices: [],
 	choice: {choiceId:'top', isLeafe:false, parent:''} ,
 	pendingChoice: {},
@@ -467,13 +468,16 @@ const state = {
 const mutations = {
   RESETUSERID (state) {
     state.userId= ''
+	localStorage.removeItem("ludi_userId")
   },
   SETUSERID (state, par) {
-    state.userId= par
+    state.userId = par
+	localStorage.ludi_userId = par
   },
-  SETGAMEID (state, par) {
+  SETGAMEID (state, gameId, slotId) {
 
 	console.log ("state.locale: " + state.locale)
+	console.log ("Slot: " + slotId)
 
 	let l;
 	let t = state.gameAbout.translation;
@@ -485,9 +489,9 @@ const mutations = {
 		return;
 	}
 
-    state.gameId = par
+    state.gameId = gameId
 
-	let gameAbout = require ('../../data/games/' + par + '/about.json');
+	let gameAbout = require ('../../data/games/' + gameId + '/about.json');
 	state.gameAbout = gameAbout
 	// languages in the game
 	let oldLanguages = state.languages
@@ -535,21 +539,21 @@ const mutations = {
 
 	// GAME SCOPE -------------------------------
 	state.game = {reactions: {}}
-	let gamePath = '../../data/games/' + par + '/'
+	let gamePath = '../../data/games/' + gameId + '/'
 
 	// load specific game code and texts:
 	// language-independent: reactions
 	// by language: messages, extraMessages
 
-	state.game.reactions = require ('../../data/games/' + par + '/gReactions.js');
+	state.game.reactions = require ('../../data/games/' + gameId + '/gReactions.js');
 	state.game.messages = []
-	state.game.messages [state.locale] = require ('../../data/games/' + par + '/localization/' + state.locale + '/messages.json')
+	state.game.messages [state.locale] = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/messages.json')
 	//console.log ("gamemsg: " + JSON.stringify(state.game.messages [state.locale]))
 
-	state.game.world =  require ('../../data/games/' + par + '/world.json')
+	state.game.world =  require ('../../data/games/' + gameId + '/world.json')
 
 	//state.game.extraMessages = []
-	//state.game.extraMessages [state.locale] = require ('../../data/games/' + par + '/localization/' + state.locale + '/extraMessages.json')
+	//state.game.extraMessages [state.locale] = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/extraMessages.json')
 
 	state.runner = require ('../components/LudiRunner.js');
 	state.runner.createWorld(state.lib.world, state.game.world)
@@ -567,9 +571,33 @@ const mutations = {
 
 	state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
 
+	// LOAD game slot (begin) ---------------------
+	for (var i=0;i<state.gameSlots.length;i++) {
+		if (state.gameSlots[i].id == slotId) break
+	}
+	if (i < state.gameSlots.length) {
+		state.runner.world.items = state.gameSlots[i].items
+		state.history = state.gameSlots[i].history
+		state.gameTurn = state.gameSlots[i].gameTurn
+	}
+	// LOAD game slot (end) ---------------------
+	
 	mutations.PROCESS_CHOICE(state, { choiceId:'action0', action: {actionId:'look'}, isLeafe:true});
 
 
+  },
+  LOAD_GAME_SLOTS (state, gameId) {
+	  
+    if (localStorage.ludi_games == undefined) localStorage.setItem("ludi_games", JSON.stringify([]));
+    var ludi_games = JSON.parse (localStorage.ludi_games)
+	for (var i=0;i<ludi_games.length;i++) {
+		if (ludi_games[i].gameId == gameId) break
+	}
+	if (i == ludi_games.length) {
+		ludi_games.push ({gameId: gameId, gameSlots:[]})
+	}
+	state.gameSlots = ludi_games[i].gameSlots
+	  
   },
   SET_PENDING_CHOICE (state, choice) {
 	state.menu = [] // reset
@@ -601,17 +629,30 @@ const mutations = {
   },
   SAVE_GAME_STATE (state) { 
 
-	// to-do: what to save?
-	// state.gameAbout
-	// if state hadn't code, it would be simple: just save the state!
-  
+    if (localStorage.ludi_games == undefined) localStorage.setItem("ludi_games", JSON.stringify([]));
+    var ludi_games = JSON.parse (localStorage.ludi_games)
+
+	// look for gameId
+	for (var i=0;i<ludi_games.length;i++) {
+		if (ludi_games[i].gameId == state.gameId) break
+	}
+	
+	if (i == ludi_games.length) {
+		ludi_games.push ({gameId: state.gameId, gameSlots:[]})
+	}
+	
+	ludi_games[i].gameSlots.push ({id: 'slot' + ludi_games[i].gameSlots.length , date: +new Date, items: state.runner.world.items, history: state.history, gameTurn: state.gameTurn })
+	state.gameSlots = ludi_games[i].gameSlots
+
+	localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
+	 
 	console.log ("Game saved!")
   
   },
-  LOAD_GAME_STATE (state) { 
+  LOAD_GAME_STATE (state, slotId) { 
 	// to-do: how to load and what to reset?
 
-	console.log ("Game loaded!")
+	console.log ("Game loaded!. Slot: " + slotId)
 
   },
   LOAD_GAME_ABOUT (state, par) {
@@ -640,6 +681,7 @@ const mutations = {
 	}
 
     state.locale = locale
+	localStorage.ludi_locale = locale
 
 	// load kernel messages
 	state.i18n [state.locale] = require ('../../data/kernel/kernel_' + state.locale + '.json');

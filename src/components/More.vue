@@ -15,8 +15,13 @@
      <h3>{{kt("File")}} </h3>
      <ul>
          <li> <button @click='saveGame()'>{{kt("SaveGame")}}</button></li>
-         <li> <button @click='saveGame()'>{{kt("LoadGame")}}</button></li>
-         <!-- <li> <button @click='loadGameFromStart()'>{{kt("LoadGameFromStart")}}</button></li> -->
+         
+         <li> <button v-on:click="loadGame('default')"> {{kt("LoadGameFromStart")}}  </button> <br/> </li>
+           
+         <li v-for="gameSlot in gameSlots">
+           <button v-on:click="loadGame(gameSlot.id)"> {{kt("LoadGame")}}  </button> {{gameSlot.id}}   <br/>  
+         </li>
+         
          <!-- <li> <b>{{kt("SeeHistory")}}</b></li> -->
      </ul>
 
@@ -26,7 +31,7 @@
 <script>
 
 import store from '../vuex/store'
-import {getKTranslator, getLocale, getGameAbout, getGameId } from '../vuex/getters'
+import {getKTranslator, getLocale, getGameAbout, getGameId, getGameSlots} from '../vuex/getters'
 import * as actions from '../vuex/actions'
 
 export default {
@@ -47,12 +52,15 @@ export default {
          // go back playing:  path:  /ludi/more -> /ludi/play
          this.$router.go('/ludi/play') 
      },
-     loadGame: function () {
-         store.dispatch('LOAD_GAME_STATE')
+     loadGame: function (slotId) {
+         store.dispatch('LOAD_GAME_STATE', slotId)
          // go back playing:  path:  /ludi/more -> /ludi/play
          this.$router.go('/ludi/play') 
      },
-     loadGameFromStart: function () {
+     loadGameState2: function (slotId) {
+         store.dispatch('LOAD_GAME_STATE', slotId)
+         // go back playing:  path:  /ludi/more -> /ludi/play
+         this.$router.go('/ludi/play') 
      }
   },
   route: {
@@ -66,7 +74,8 @@ export default {
        locale: getLocale,
        about: getGameAbout,
        gameId: getGameId,
-       kt: getKTranslator
+       kt: getKTranslator,
+       gameSlots: getGameSlots
     },
     actions: actions
   }

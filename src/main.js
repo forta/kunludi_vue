@@ -30,6 +30,11 @@ var Lingvo = require('./components/Lingvo.vue')
 // create App instance
 var App = Vue.extend({})
 
+
+// load data from localStorage
+if (localStorage.ludi_userId  != undefined) store.default._mutations.SETUSERID (store.default.state, localStorage.ludi_userId)
+if (localStorage.ludi_locale  != undefined) store.default._mutations.SETLOCALE (store.default.state, localStorage.ludi_locale)
+	
 //add your routes and their components
 router.map({
     '/': {
