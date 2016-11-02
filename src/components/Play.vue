@@ -4,6 +4,8 @@
   
   <div id= "play_top" class="play_top">
   
+        <button v-on:click="seeGamePanel()"> {{kt("bottom")}}  </button>
+
         <h2>{{kt("History")}}</h2>
         <div v-for="hItem in history">
             <!-- echo -->
@@ -20,11 +22,13 @@
 
   </div>
 
-  <div  id="play_buttom" class="play_buttom">
+
+
+  <div  id="play_bottom" class="play_bottom">
   
     <!-- Groups of choices -->
     <div class="mainChoices"  v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'">
-        <h3> {{kt("Location")}}: {{this.tge("items", currentChoice.loc, "txt")}} </h3>
+        <h3> {{kt("Location")}}: {{this.tge("items", gameState.userState.loc, "txt")}} </h3>
         <span v-for="choice in choices">
             <button v-if ="choice.choiceId == 'top'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
             <button v-if ="choice.choiceId == 'itemGroup'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
@@ -67,7 +71,7 @@
 
 
     import store from '../vuex/store'
-    import { getEcho, getGTranslator, getKTranslator, getCurrentChoice, translateGameElement, getGameId, getLocale, getHistory, getMenu, getPendingChoice, getChoices } from '../vuex/getters'
+    import { getEcho, getGTranslator, getKTranslator, getCurrentChoice, getGameState, translateGameElement, getGameId, getLocale, getHistory, getMenu, getPendingChoice, getChoices } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
 
@@ -125,11 +129,17 @@ export default {
 	   
       }, 
       showEndOfText: function () {
-        setTimeout(function(){ 
-            var elem = document.getElementById("ludi_bottom")
+            //var elem = document.getElementById("play_bottom")
+            // elem.scrollIntoView(true)
+            
+            setTimeout(function(){ 
+            var elem = document.getElementById("play_bottom")
             if (elem != null) 
-                elem.scrollTop =  elem.scrollHeight	
-            }, 100);  
+                //elem.scrollTop =  elem.scrollHeight
+                elem.scrollIntoView(true)
+            	
+            }, 100);
+             
       },
       doGameChoice(choice) {
           store.dispatch('PROCESS_CHOICE', choice)
@@ -141,6 +151,9 @@ export default {
           choice.action.msg = m.msg
           choice.action.menu = menu
           store.dispatch('SET_PENDING_CHOICE', choice)
+          this.showEndOfText()
+      },
+      seeGamePanel() {
           this.showEndOfText()
       }  
   },
@@ -157,7 +170,8 @@ export default {
        t: getGTranslator,
        tge: translateGameElement,
        currentChoice: getCurrentChoice,
-        echo: getEcho
+       gameState: getGameState,
+       echo: getEcho
     },
     actions: actions
   }
@@ -173,10 +187,25 @@ h1 {
   color: #42b983;
 }
 
+/*
 button {
     border-radius: 10px;
     font-size: 16px;
 
+}
+*/
+
+button {
+    border-radius: 10px;
+    font-size: 16px;
+
+}
+
+@media screen and (max-width: 1000px) {
+    button {
+        border-radius: 10px;
+        font-size: 32px;
+    }
 }
 
 button:hover {
@@ -261,7 +290,7 @@ div.play_top {
 	background-color:#FFF;
 }		
 
-div.play_buttom {
+div.play_bottom {
     position: relative; 
     //border: 1px solid gray;
     buttom: 0;

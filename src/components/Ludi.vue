@@ -25,20 +25,13 @@
         </div>
         
         
-        <div class="ludi_top2">
+        <div class="ludi_top2" v-if = "gameId">
 
             <h4> <a v-link="{ path: '/kune' }"> {{kt("Together")}} | </a>
-            {{kt("Play")}} |
-            <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a></h4>
-
-            
-            <a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} | </a>
-            <a v-link="{ path: '/ludi/about' }"> {{kt("About")}} | </a>
-            
-            <h4 v-show="gameId"> {{kt("Playing")}}: {{gameId}} </h4> 
+            <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a> |  
             <a v-show="gameId" v-link="{ path: '/ludi/play' }"> {{kt("Play")}} | </a>
-            <a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}} | </a>
-            <a v-show="gameId" v-on:click="quit">  {{kt("Quit")}} | </a>
+            <a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}} </a>
+            </h4>
             
         </div>
 

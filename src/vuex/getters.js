@@ -31,3 +31,5 @@ export function translateGameElement (state) { return state.translateGameElement
 export function getEcho (state) { return state.getEcho }
 
 export function getCurrentChoice (state) { return state.choice }
+
+export function getGameState (state) { 	return state.gameState  }

@@ -23,6 +23,7 @@
   "Choose Game": {
     "message": "S'il vous plaît sélectionner un jeu"
   },
+  "bottom": { "message": "bas" }, 
   "server_welcome": {
     "message": "bienvenue à la LUDI réseau"
   },

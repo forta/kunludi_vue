@@ -7,6 +7,7 @@
 	"Together": { "message": "Together" },
 	"Username": { "message": "User name" }, 
 	"Choose Game": { "message": "Please, choose game to load" }, 
+	"bottom": { "message": "bottom" }, 
     "server_welcome": {
         "message": "welcome to the LUDI network."
     },

@@ -19,9 +19,9 @@
          <li> <button v-on:click="loadGame('default')"> {{kt("LoadGameFromStart")}}  </button> <br/> </li>
            
          <li v-for="gameSlot in gameSlots">
-           <button v-on:click="loadGame(gameSlot.id)"> {{kt("LoadGame")}}  </button> {{gameSlot.id}}   <br/>  
+           <button v-on:click="loadGame(gameSlot.id)"> {{kt("LoadGame")}}  </button> {{gameSlot.id}} - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}   <button v-on:click="deleteGameSlot(gameSlot.id)"> {{kt("Delete")}} </button>   <br/>  
          </li>
-         
+                    
          <!-- <li> <b>{{kt("SeeHistory")}}</b></li> -->
      </ul>
 
@@ -61,7 +61,14 @@ export default {
          store.dispatch('LOAD_GAME_STATE', slotId)
          // go back playing:  path:  /ludi/more -> /ludi/play
          this.$router.go('/ludi/play') 
-     }
+     },
+      deleteGameSlot: function (id, slotId) {
+		  store.dispatch('DELETE_GAME_SLOT', id, slotId)
+      }, 
+      convertDate: function (dateJSON) {
+          var d = new Date (JSON.parse (dateJSON))
+		  return d.toLocaleString()
+      }, 
   },
   route: {
     activate: function () {

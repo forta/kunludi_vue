@@ -134,6 +134,9 @@
 	"actions.attack-with.txt": {
         "message": "atacar-con"
     },
+	"actions.break.txt": {
+        "message": "romper"
+    },
 	"attributes.container.txt": {
         "message": "%o1 es un contenedor"
     },
@@ -244,6 +247,12 @@
     },
     "messages.but without any reaction.txt": {
         "message": "pero sin conseguir ninguna reacción"
+    },
+    "messages.You attack o2 with o1.txt": {
+        "message": "Atacas a %o2 con %o1."
+    },
+    "messages.Why do you try to break o1.txt": {
+        "message": "¿Por qué intentas romper %o1?"
     },
     "messages.You become %o1.txt": {
         "message": "¡Te conviertes en %o1!"

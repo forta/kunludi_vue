@@ -308,6 +308,13 @@
 			 "on":[  
 				"obj"
 			 ]
+		},
+		{  
+			 "id":"break",
+			 "numpar":"1",
+			 "on":[  
+				"obj"
+			 ]
 		}
     ],
     "attributes": [

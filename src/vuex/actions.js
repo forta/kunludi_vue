@@ -21,3 +21,5 @@ export const loadGameAbout = function (store, par) {  store.dispatch('LOAD_GAME_
 export const saveGameState = function (store) {  store.dispatch('SAVE_GAME_STATE') }
 
 export const loadGameState = function (store, slotId) {  store.dispatch('LOAD_GAME_STATE', slotId) }
+
+export const deleteGameState = function (store, slotId) {  store.dispatch('DELETE_GAME_STATE', slotId) }

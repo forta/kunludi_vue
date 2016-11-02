@@ -76,6 +76,59 @@ ludi_lib.reactionById = function (actionId) {
 }
 */
 
+/*
+
+	Actions in this lib:
+
+	look
+	go
+	ex
+	take
+	drop
+	talk
+	become
+	put_into
+	give
+	take_from
+	ask_about
+	ask_from
+	show_to
+	read
+	turnon
+	turnoff
+	sing
+	where
+	open
+	close
+	unlock
+	lock
+	look_dir
+	investigate
+	dig_with
+	climb
+	swim
+	jump
+	tie
+	untie
+	drink
+	eat
+	listen
+	smell
+	wakeup
+	attack
+	strike
+	stop
+	burn
+	throwAction
+	push
+	pull
+	raise
+	wait
+	attack-with
+	break
+
+*/
+
 let initReactions =  function  (reactions, primitives) {
 
 	reactions.push ({
@@ -816,8 +869,7 @@ let initReactions =  function  (reactions, primitives) {
 
 	reactions.push ({
 		id: 'push',
-		enabled: function (indexItem,indexItem2) {
-			return false;
+		enabled: function (indexItem,indexItem2) {return false;
 		},
 		reaction: function (par_c) {
 			primitives.CA_ShowMsg("Nothing happens when you push");
@@ -872,8 +924,22 @@ let initReactions =  function  (reactions, primitives) {
 				primitives.CA_ShowMsg("You shouldn't attack with that.");
 				return true;
 			}
-			primitives.CA_ShowMsg("You attack %o2 with %o1.", {o2:par_c.item2Id, o1:par_c.item1Id});
+			primitives.CA_ShowMsg("You attack o2 with o1", {o2:par_c.item2Id, o1:par_c.item1Id});
 			primitives.CA_ShowMsg("With any result.");
+			return true;		
+		},
+		
+	});
+
+	reactions.push ({
+		id: 'break',
+		
+		enabled: function (indexItem,indexItem2) {
+			return false
+		},
+		
+		reaction: function (par_c) {
+			primitives.CA_ShowMsg("Why do you try to break o1", {o1:par_c.item1Id});
 			return true;		
 		},
 		

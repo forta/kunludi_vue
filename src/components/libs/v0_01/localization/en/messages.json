@@ -137,6 +137,9 @@
 	"actions.attack-with.txt": {
         "message": "attack-with"
     },
+	"actions.break.txt": {
+        "message": "break"
+    },
     "attributes.openclose.txt": {
         "message": "It can be opened and closed"
     },
@@ -245,6 +248,12 @@
     "messages.but without any reaction.txt": {
         "message": "but without any reaction"
     },
+    "messages.You attack o2 with o1.txt": {
+        "message": "You attack %o2 with %o1."
+    },
+    "messages.Why do you try to break o1.txt": {
+        "message": "Why do you try to break %o1?"
+    },	
     "messages.You become %o1.txt": {
         "message": "You become %o1!"
     },

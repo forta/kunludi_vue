@@ -7,6 +7,7 @@
 	"Together": { "message": "Kune" },
 	"Username": { "message": "Kromnomo" },
 	"Choose Game": { "message": "Bonvolu elekti ludon" }, 
+	"bottom": { "message": "malsupren" }, 
     "server_welcome": {
         "message": "bonvenon al la LUDI-a reto."
     },

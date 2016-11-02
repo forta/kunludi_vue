@@ -31,10 +31,21 @@ var Lingvo = require('./components/Lingvo.vue')
 var App = Vue.extend({})
 
 
+function storageON() {
+    try {
+        localStorage.setItem("__test", "data");
+    } catch (e) {
+        return false;
+    } 
+    return true;
+}
+
 // load data from localStorage
-if (localStorage.ludi_userId  != undefined) store.default._mutations.SETUSERID (store.default.state, localStorage.ludi_userId)
-if (localStorage.ludi_locale  != undefined) store.default._mutations.SETLOCALE (store.default.state, localStorage.ludi_locale)
-	
+if (storageON()) {
+	if (localStorage.ludi_userId  != undefined) store.default._mutations.SETUSERID (store.default.state, localStorage.ludi_userId)
+	if (localStorage.ludi_locale  != undefined) store.default._mutations.SETLOCALE (store.default.state, localStorage.ludi_locale)
+}
+		
 //add your routes and their components
 router.map({
     '/': {

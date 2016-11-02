@@ -32,7 +32,7 @@
          <li><button v-on:click="loadGame(game.name, 'default')"> {{kt("LoadGameFromStart")}}  </button></li>     
 
          <li v-for="gameSlot in gameSlots">
-           <button v-on:click="loadGame(game.name, gameSlot.id)"> {{kt("LoadGame")}}  </button> {{gameSlot.id}}     
+           <button v-on:click="loadGame(game.name, gameSlot.id)"> {{kt("LoadGame")}} </button> {{kt("Game")}} {{$index}} - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}      
          </li>
          
     </ul>
@@ -66,6 +66,10 @@ export default {
       loadGame: function (id, slotId) {
 		  store.dispatch('SETGAMEID', id, slotId)
       }, 
+      convertDate: function (dateJSON) {
+          var d = new Date (JSON.parse (dateJSON))
+		  return d.toLocaleString()
+      }
   },
   props: ['game'],
   store: store,

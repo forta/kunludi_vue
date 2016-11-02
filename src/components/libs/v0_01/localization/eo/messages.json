@@ -134,6 +134,9 @@
 	"actions.attack-with.txt": {
         "message": "ataki-kun"
     },	
+	"actions.break.txt": {
+        "message": "rompi"
+    },
      "attributes.container.txt": {
         "message": "%o1 estas ujo"
     },
@@ -244,6 +247,12 @@
     },
     "messages.but without any reaction.txt": {
         "message": "sed sen atingi ian reagon"
+    },
+    "messages.You attack o2 with o1.txt": {
+        "message": "Vi atakas %o2 kun %o1."
+    },
+    "messages.Why do you try to break o1.txt": {
+        "message": "Kial vi provas rompi %o1?"
     },
     "messages.You become %o1.txt": {
         "message": "Vi konvertiĝas en %o1!"
