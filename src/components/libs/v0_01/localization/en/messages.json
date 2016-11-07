@@ -357,9 +357,9 @@
         "message": "Locked direction."
     },
     "messages.Echo: %a1 %o1.txt": {
-        "message": "# %a1 %o1"
+        "message": "%a1 %o1"
    },
     "messages.Echo: %a1 %o1 -> %o2.txt": {
-        "message": "# %a1 %o1 -> %o2"
+        "message": "%a1 %o1 -> %o2"
     }
 }

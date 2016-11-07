@@ -1,3 +1,4 @@
+
 {
     "Play": { "message": "Ludi" },
     "Boards": { "message": "Forumoj" },
@@ -8,6 +9,9 @@
 	"Username": { "message": "Kromnomo" },
 	"Choose Game": { "message": "Bonvolu elekti ludon" }, 
 	"bottom": { "message": "malsupren" }, 
+    "Delete": { "message": "Elimini" }, 
+    "Date": { "message": "Dato" }, 
+    "Id": { "message": "Id" }, 
     "server_welcome": {
         "message": "bonvenon al la LUDI-a reto."
     },

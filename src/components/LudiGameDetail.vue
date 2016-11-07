@@ -2,7 +2,7 @@
   <div class="ludi-game-detail"  v-show='game.name'>
     <h3>{{kt("Details")}}</h3>
     <ul>
-        <li> {{kt("Name")}}: {{game.name}} </li>
+        <li> {{kt("Id")}}: {{game.name}} </li> 
         <!--
          <li> Type: {{game.type}} </li> 
         <li> Group: {{game.group}} </li> 
@@ -29,10 +29,10 @@
     <ul>
         <!-- <li> <button v-on:click="load(game.name)">{{kt("Load game")}}</button> </li> -->
 
-         <li><button v-on:click="loadGame(game.name, 'default')"> {{kt("LoadGameFromStart")}}  </button></li>     
+         <li><button v-on:click="loadGame(game.name, 'default', about.translation[languageIndex].language)"> {{kt("LoadGameFromStart")}}  </button></li>     
 
          <li v-for="gameSlot in gameSlots">
-           <button v-on:click="loadGame(game.name, gameSlot.id)"> {{kt("LoadGame")}} </button> {{kt("Game")}} {{$index}} - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}      
+           <button v-on:click="loadGame(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("LoadGame")}} </button> {{kt("Game")}} {{$index}} - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}      
          </li>
          
     </ul>
@@ -57,14 +57,23 @@ export default {
      'game': function (val, oldVal) {
         store.dispatch('LOAD_GAME_ABOUT', val.name)
         store.dispatch('LOAD_GAME_SLOTS', val.name)
-        this.languageIndex=0
+        // show current local in the language combobox
+        var i=0
+        for (; i<this.about.translation.length;i++) {
+            if (this.about.translation[i].language == this.locale) {
+                this.languageIndex=i
+                break            
+            }
+        }
+        // not necessary, but...
+        if ( i==this.about.translation.length) this.languageIndex=0
      }
   },
   computed: {
   },
   methods: {
-      loadGame: function (id, slotId) {
-		  store.dispatch('SETGAMEID', id, slotId)
+      loadGame: function (id, slotId, newLocal) {
+		  store.dispatch('SETGAMEID', id, slotId, newLocal)
       }, 
       convertDate: function (dateJSON) {
           var d = new Date (JSON.parse (dateJSON))

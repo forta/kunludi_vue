@@ -8,6 +8,9 @@
 	"Username": { "message": "User name" }, 
 	"Choose Game": { "message": "Please, choose game to load" }, 
 	"bottom": { "message": "bottom" }, 
+    "Delete": { "message": "Delete" }, 
+    "Date": { "message": "Date" }, 
+    "Id": { "message": "Id" }, 
     "server_welcome": {
         "message": "welcome to the LUDI network."
     },

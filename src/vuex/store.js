@@ -39,67 +39,76 @@ function expandDynReactions (state, reactionList) {
 	// expand each dyn reaction into static ones
 
 	let sourceReactionList = reactionList.slice()
-	console.log("----------------------------------\noriginal reactionList: " + JSON.stringify (sourceReactionList))
+	//console.log("----------------------------------original reactionList:\n" + JSON.stringify (sourceReactionList))
 	
 	let targetReactionList = []
 
 	for (let sReaction in sourceReactionList) {
 		
-		if (sourceReactionList[sReaction].type == "rt_dyn_desc") { // dynamic reaction
+		if (sourceReactionList[sReaction].type == "rt_desc") { 
+			// if static message does not exist, look for dynamic method
 			var attribute = "desc"
 			
 			// getting a new state.reactionList
 			
 			// converte rt_dyn_desc into rt_desc
-			sourceReactionList[sReaction].type = "rt_desc"
-			targetReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[sReaction])) )
-			
 			var item1 = sourceReactionList[sReaction].o1
+			var longMsgId = "items." + state.runner.world.items[item1].id + "." + attribute
 			
-			// to-do: insertion of expanded reactions
-			
-			let actionGameIndex = -1 // arrayObjectIndexOf (state.game.reactions, "id", attribute)
-			let actionLibIndex = -1 // arrayObjectIndexOf (state.lib.reactions, "id", attribute)
-			let itemGamelevel = arrayObjectIndexOf (state.game.reactions.items, "id", state.runner.world.items[item1].id)
-
-			/*
-			if ((actionGameIndex>=0) && (typeof state.game.reactions[actionGameIndex].reaction == "function")) {
-				// game level -> add reactions into state.reactionList
-				state.game.reactions[actionGameIndex].reaction ({item1: item1})
-			} else if ((actionLibIndex>=0) && (typeof state.lib.reactions[actionLibIndex].reaction == "function")) {
-				// lib level -> add reactions into state.reactionList
-				state.lib.reactions[actionLibIndex].reaction ({item1: item1})
-			} else if (itemGamelevel>=0) {
-				// item level -> add reactions into state.reactionList
-				state.game.reactions.items[itemGamelevel][attribute]()
+			if (msgResolution (longMsgId) != "") {
+				// confirmed that it was a static desc
+				targetReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[sReaction])) )
+				continue 	
 			}
 			
+			
+			
+			
+			// insertion of expanded reactions
+			let itemReaction = arrayObjectIndexOf (state.game.reactions.items, "id", state.runner.world.items[item1].id)
+
+			// for debug:
+			//if (false) {
+			if (itemReaction>=0) {
+				// item level -> add reactions into state.reactionList
+				state.game.reactions.items[itemReaction][attribute]()
+			} else {
+				// not static nor dynamic desc, the missing longMsgId will be shown
+				sourceReactionList[sReaction].type = "rt_asis"
+				sourceReactionList[sReaction].txt = "[" + longMsgId + "]"
+	
+				targetReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[sReaction])) )
+				continue
+			}
+			
+			// catch up reactions of state.reactionlist and insert them in targetReactionList
 			for (let newReaction in state.reactionList) {
-				if (state.reactionList[newReaction].type == "rt_dyn_desc") 
-					continue // jump it
-				
+				//if (state.reactionList[newReaction].type == "rt_desc") 
+				// by now: item.desc() cannot call another item.desc()
 				targetReactionList.push (JSON.parse(JSON.stringify(state.reactionList[newReaction])))
 			}
-			state.reactionList = []
-			state.reactionList.length = 0
+			state.reactionList.splice(0,state.reactionList.length)
+			// state.reactionList = []
+			// state.reactionList.length = 0
 			
-			*/
 			
-		} else { // static reaction
+		} else { // standard static reaction
 			targetReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[sReaction])) )
 		}
 	}
 		
-	console.log("----------------------------------\nexpanded reactionList: " + JSON.stringify (targetReactionList))
+	// console.log("----------------------------------Expanded reactionList:\n" + JSON.stringify (targetReactionList))
 
 	return targetReactionList.slice()
 	
 	
 }
 
-function reactionListContainsMenu (reactionList) {
+
+function reactionListContains_Type (reactionList, type) {
+	
 	for (let r in reactionList) {
-		if (reactionList[r].type == "rt_show_menu") return true
+		if (reactionList[r].type == type) return true
 	}
 
 	return false
@@ -175,17 +184,21 @@ function processChoice (state, choice) {
 		optionMsg = choice.action.msg
 	}
 	
-	// precessing as much menu choices as game actions (leave choices)
+	// processing as much menu choices as game actions (leave choices)
 	state.runner.processChoice (choice)
 	
+	
 	if (choice.isLeafe) {
-		if (reactionListContainsMenu (state.reactionList)) state.menuDepth++
+		// is game over?
+		state.gameIsOver = reactionListContains_Type (state.reactionList, "rt_end_game")
+
+		if (reactionListContains_Type (state.reactionList, "rt_show_menu")) state.menuDepth++
 		else {
 			// to-do: in the future, if we allow actions after show_menu: if (state.menuDepth > 0) state.menuDepth--
 			state.menuDepth = 0
 		}
 		
-		if (state.menuDepth == 0) {
+		if ((!state.gameIsOver) && (state.menuDepth == 0)) {
 			state.gameTurn++
 			state.runner.worldTurn ()	
 		}
@@ -243,6 +256,7 @@ const state = {
 	userId: '', // kune
 	locale: '', // lingvo /here!!!
 	gameId: '', // ludi
+	gameIsOver: false,
 	i18n:[],
 	history: [ ],
 	gameSlots: [],
@@ -333,7 +347,11 @@ const state = {
 	
 	gTranslator: function (reaction) {
 
-
+		if (reaction.type == "rt_refresh") {
+			// do nothing
+			return {type:'text', txt:""}
+		}
+		
 		if (reaction.type == "rt_kernel_msg") {
 			return {type:'text', txt:state.kTranslator (reaction.txt)}
 		}
@@ -478,7 +496,7 @@ const mutations = {
     state.userId = par
 	if (storageON()) localStorage.ludi_userId = par
   },
-  SETGAMEID (state, gameId, slotId) {
+  SETGAMEID (state, gameId, slotId, newlocale) {
 
 	console.log ("state.locale: " + state.locale)
 	console.log ("Slot: " + slotId)
@@ -488,17 +506,18 @@ const mutations = {
 	for (l=0; l < t.length; l++) {
 		if (t[l].language == state.locale) break;
 	}
-	if 	(l == t.length) {
-		alert ('Game not available for current language')
-		return;
+	if 	(newlocale != state.locale) {
+		// load new locale
+		mutations.SETLOCALE (state, newlocale)
 	}
 
     state.gameId = gameId
 
 	mutations.LOAD_GAME_SLOTS (state, gameId)
 	
-	let gameAbout = require ('../../data/games/' + gameId + '/about.json');
-	state.gameAbout = gameAbout
+	var gameIndex = arrayObjectIndexOf (state.games, "name", gameId)
+	state.gameAbout = state.games[gameIndex].about
+	
 	// languages in the game
 	let oldLanguages = state.languages
 	let languagesInGame = []
@@ -580,7 +599,7 @@ const mutations = {
 	if ((slotId != undefined) && (slotId!='default')) 
 		mutations.LOAD_GAME_STATE (state, slotId)
 	else 
-		mutations.GAME_RESET (state)
+		mutations.GAME_STATE_RESET (state)
 	
 	mutations.PROCESS_CHOICE(state, { choiceId:'action0', action: {actionId:'look'}, isLeafe:true});
 
@@ -623,25 +642,32 @@ const mutations = {
 	state.languages = oldLanguages
 	state.languages.inGame = undefined
 
-	mutations.GAME_RESET (state)
+	mutations.GAME_STATE_RESET (state)
 
   },
-  GAME_RESET (state) {
+  GAME_STATE_RESET (state) {
   
 	state.history = []
 	state.history.push ( { 
-			action: { choiceId:'action0', actionId:'look'},
+			action: { choiceId:'action0', action : {actionId:'look'}},
 			reactionList: [
 				{ type: 'rt_msg', txt: 'Introduction' }
 			]
 	})
 	state.gameTurn = 0
+	state.gameIsOver = false
+	
   },
   LOADGAMES (state, par) { // par: filter
 
 	let gamesData = require ('../../data/games.json');
 
 	state.games = gamesData.games
+	
+	// load all about files from all games
+	for (let i=0; i<state.games.length;i++) {
+		state.games[i].about = require ('../../data/games/' + state.games[i].name + '/about.json');
+	}
 
   },
   SAVE_GAME_STATE (state) { 
@@ -713,8 +739,10 @@ const mutations = {
   },
   LOAD_GAME_ABOUT (state, par) {
 
-	let gameAbout = require ('../../data/games/' + par + '/about.json');
-	state.gameAbout = gameAbout
+	for (var i=0;i<state.games.length;i++) {
+		if (state.games[i].name == par) {state.gameAbout = state.games[i].about; break; }
+	}
+	
   },
   SETLOCALE (state, locale) {
 
@@ -736,6 +764,9 @@ const mutations = {
 
 	}
 
+	// prevention
+	if (state.locale == undefined || state.locale == "") state.locale == "en"
+	
     state.locale = locale
 	if (storageON()) localStorage.ludi_locale = locale
 

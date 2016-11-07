@@ -19,7 +19,7 @@
          <li> <button v-on:click="loadGame('default')"> {{kt("LoadGameFromStart")}}  </button> <br/> </li>
            
          <li v-for="gameSlot in gameSlots">
-           <button v-on:click="loadGame(gameSlot.id)"> {{kt("LoadGame")}}  </button> {{gameSlot.id}} - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}   <button v-on:click="deleteGameSlot(gameSlot.id)"> {{kt("Delete")}} </button>   <br/>  
+           <button v-on:click="loadGame(gameSlot.id)"> {{kt("LoadGame")}}  </button>  {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}   <button v-on:click="deleteGameSlot(gameSlot.id)"> {{kt("Delete")}} </button>   <br/>  
          </li>
                     
          <!-- <li> <b>{{kt("SeeHistory")}}</b></li> -->

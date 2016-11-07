@@ -1,0 +1,827 @@
+
+Mi Querida Hermana. La pérdida de tu querida hermana gemela te ha dejado trastornado desde tu infancia, pero ¿está ella tan lejos de ti cómo crees?
+1 > mirar
+
+No puedes respirar, estás encerrado en la cueva de la playa y no puedes escapar. De repente, un corrimiento de arena de la playa entra en la cueva y te cubre hasta la cintura y no puedes moverte. En tus manos tienes el collar de conchas marinas que has hecho para regalárselas a tu querido hermano...
+Pero no, no puede ser, estos no son recuerdos tuyos, sólo pueden ser los últimos recuerdos de ella, del día en que...
+Despiertas, mojado en sudor.
+
+Te levantas, no crees que vayas a poder reconciliar el sueño. De hecho, temes volver a dormir y volver a vivir esa horrible experiencia.
+
+Tienes la maleta casi preparada para el viaje de vuelta a la vieja casa familiar, en la costa. Sólo te hace falta meter un par de cosas más y podrás emprender ese viaje que llevas retrasando ya quince años.
+Deberías salir de casa antes de las 13:00 para no perder el avión.
+Has terminado el primer borrador de tu nueva novela y crees que la vieja casa te dará la tranquilidad necesaria para terminarla, lejos del ruido y las obligaciones de la ciudad.
+
+2 > meter dentro libro arcano -> maleta
+
+Metes libro arcano en maleta
+3 > meter dentro cargador de móvil -> maleta
+
+Metes cargador de móvil en maleta
+4 > meter dentro foto de Ana y tú -> maleta
+
+Metes foto de Ana y tú en maleta
+5 > fuera
+
+Cierras la maleta y sales del estudio.
+
+El viaje transcurre como en un sueño. Un momento atrás estabas en tu estudio...y ahora, ahí estás delante de la puerta de la casa de la playa. Los trayectos de taxi, el bullicio del aeropuerto, el ronquido del pasajero de al lado... a nada de eso le has prestado demasiada atención. En tu cabeza sólo había una idea 'en un rato volveré a estar allí donde todo ocurrió, después de hace tantos años'. Al supuesto motivo por el que vas, acabar las correcciones de tu última novela, tampoco le has dedicado ni un pensamiento.
+
+Sólo puedes pensar en cómo eran las cosas antes de la muerte de Ana, tu querida hermana gemela, la niña de tus ojos. Recuerdas en especial lo felices que fuisteis juntos aquel último verano. Pasabais casi más tiempo en la caleta de detrás de la casa que dentro de la misma. Vuestra madre siempre tenía que ir a buscaros cuando empezaba a oscurecer. Esa misma caleta infame donde ocurrió la tragedia.
+
+Entras.
+
+El salón comedor está casi igual que hace quince años, si exceptuamos el polvo acumulado. Retiras las sábanas y las sacudes fuera. Ahora sí luce casi como antes. Entre diversos planfletos bajo la puerta, te llama la atención uno reciente de servicio de comida a domicilio, que no te vendrá mal estos días.
+Vas al fuera 
+
+
+salón comedor 
+El salón siempre fue muy sencillo, como corresponde al su uso como residencia de verano. Sólo hay unos viejos sofás, la mesa y unas estanterías cerradas. Desde aquí se accede a la cocina y a la planta superior, donde están las habitaciones.
+6 > mirar
+
+El salón siempre fue muy sencillo, como corresponde al su uso como residencia de verano. Sólo hay unos viejos sofás, la mesa y unas estanterías cerradas. Desde aquí se accede a la cocina y a la planta superior, donde están las habitaciones.
+7 > examinar panfleto
+
+Añades el teléfono de la tienda TelePapeo en tu agenda del móvil.
+Un panfleto publicitario de comida para llevar.
+8 > mirar
+
+El salón siempre fue muy sencillo, como corresponde al su uso como residencia de verano. Sólo hay unos viejos sofás, la mesa y unas estanterías cerradas. Desde aquí se accede a la cocina y a la planta superior, donde están las habitaciones.
+9 > examinar panfleto
+
+Un panfleto publicitario de comida para llevar.
+10 > fuera -> camino residencial
+
+Cuando te diriges afuera, te sientes un poco ridículo llevando la maleta contigo, así que la dejas antes de salir.
+Vas al fuera 
+
+
+camino residencial 
+Este camino comunica con otras casas vecinas, es el que solían recorrer para visitar a tus amigos de verano.
+11 > este -> portal de Charlie
+
+Vas al este 
+
+
+portal de Charlie 
+Aquí vivía Charlie, tu amigo surfero.
+12 > apretar timbre del portal de Charlie
+
+Charlie aparece. 
+Charlie: « ¡Hola!, ¿qué puedo hacer por usted?... pero espera, ¡tú eres Al, mi viejo amigo de aventuras veraniegas! ¡Cómo me alegro de verte después de tantos años! Yo sigo aquí, con mi música y mi surf... a propósito, mira que app más guapa para saber a qué hora son las mareas» Te coge tu móvil y te la instala sin más.
+
+Charlie: « Colega, pásate por casa a partir de las 7 de le noche. Casi siempre hay gente, sexo, drogas y rockandroll a partir de esa hora. Ja, ja, ja. Tráete algo de bebida y yo me encargo del resto. Tengo género de buena calidad.» 
+Sin darte mucho margen, tu amigo de la infancia se mete en casa («a dormir la mona», dice), no sin antes dejarte su número de móvil.
+
+Una oscura reflexión te nubla la mente. Te acabas de acordar de la época del año en la que estamos, aproximadamente la misma en que ella... ¿Como no te habías dado cuenta antes? Las mareas surferas de Charlie te lo acaban de recordar. Es época de mareas largas, permitiendo que la fatídica cuevita de la playa quede al descubierto cuando está baja. El resto del año la cueva queda siempre bajo el nivel del mar, sin riesgo de que a ningún niño le pueda pasar lo que a ella.
+13 > oeste -> camino residencial
+
+Vas al oeste 
+
+
+camino residencial 
+Este camino comunica con otras casas vecinas, es el que solían recorrer para visitar a tus amigos de verano.
+14 > oeste -> portal de Vicky
+
+Vas al oeste 
+
+
+portal de Vicky 
+Aquí vivía Vicky, tu amor infantil.
+15 > apretar timbre del portal de Vicky
+
+Vicky aparece. 
+Vicky: « ¡Al!» Sin darte tiempo a reaccionar una corpulenta mujer embarazada se abalanza encima tuya y te da cuatro besos.«¡Qué alegría más grande! ¿Vas a estar mucho?, ¿unas semanas tal vez?, ¡qué bueeeno! Paso mucho tiempo sola en casa por las mañanas, hasta eso de la hora del té, que es cuando regresa de trabajar mi marido. Apunta mi número de móvil: llámame e invítame a tu casa a comerme un helado de chocolate. ¡Estos días sólo pienso en comer chocolate!» 
+
+Vicky hace gestos de sentir náuseas y sin previo aviso entra en casa.
+
+De repente... te acuerdas de tu viejo libro comprado en el mercado de Marrakech. Te viene a la memoria una página en concreto, con unas ilustraciones de una mujer embarazada de gemelos. ¿Por qué te habrá venido ese recuerdo ahora? Seguro que es una tontería, pero no te vas a quedar tranquilo hasta que consultes el libro.
+16 > estado móvil
+
+Son las 22:45. Tiempo restante de batería: 03h15m. 
+La próxima marea baja será a las 11:05.
+
+De repente, te das cuenta de qué hora es. Eres muy escrupuloso con tus horarios y a las 23:00 te retiras a casa a dormir, sí o sí. El sueño te vence y te arrastras a la cama. Mañana será otro día.
+
+Antes de dormir, estiras el brazo, pero el cargador no está... bueno, ya lo buscarás mañana.
+No puedes respirar, estás encerrado en la cueva de la playa y no puedes escapar. De repente, un corrimiento de arena de la playa entra en la cueva y te cubre hasta la cintura y no puedes moverte. En tus manos tienes el collar de conchas marinas que has hecho para regalárselas a tu querido hermano...
+Pero no, no puede ser, estos no son recuerdos tuyos, sólo pueden ser los últimos recuerdos de ella, del día en que...
+Despiertas, mojado en sudor.
+
+Te levantas, no crees que vayas a poder reconciliar el sueño. De hecho, temes volver a dormir y volver a vivir esa horrible experiencia.
+
+
+Con energías renovadas comienzas la jornada 2 desde que tuviste la pesadilla por primera vez.
+
+17 > este -> camino residencial
+
+Vas al este 
+
+[It is not possible to go there.]
+18 > oeste -> pasillo
+
+Vas al oeste 
+
+
+pasillo 
+El pasillo del piso superior comunicaba la habitación de tu madre y la que compartías con tu querida hermana.
+19 > abajo -> salón comedor
+
+Vas al abajo 
+
+
+salón comedor 
+El salón siempre fue muy sencillo, como corresponde al su uso como residencia de verano. Sólo hay unos viejos sofás, la mesa y unas estanterías cerradas. Desde aquí se accede a la cocina y a la planta superior, donde están las habitaciones.
+20 > coger maleta
+
+Coges maleta
+21 > arriba -> pasillo
+
+Vas al arriba 
+
+
+pasillo 
+El pasillo del piso superior comunicaba la habitación de tu madre y la que compartías con tu querida hermana.
+22 > este -> habitación de los gemelos
+
+Vas al este 
+
+
+habitación de los gemelos 
+La litera! Tu sitio era el de arriba. Subías y bajabas casi como un mono incluso cuando no había luz. Delante de la litera está el escritorio doble donde vuestra madre os obligaba a hacer tareas en verano, pero donde al final acababais inventando algún juego que al ser jugado con papel y lápiz aparecía oculto a los ojos de vuestra madre. Es en este escritorio donde tienes pensado hacer las correcciones de tu novela. Ahí sigue el armario donde teníais vuesta ropa y los juguetes desordenados. No sabes qué habrá sido de las cosas de ella; las tuyas viajaron contigo cuando dejaste la casa para ir a vivir al internado.
+23 > sacar de cargador de móvil -> maleta
+
+Coger cargador de móvil de maleta
+24 > dejar cargador de móvil
+
+Lo dejas caer en habitación de los gemelos
+25 > conectar al móvil cargador de móvil
+
+Pones el móvil a cargar, a ver si no tarda mucho.
+26 > sacar de manuscrito -> maleta
+
+Coger manuscrito de maleta
+27 > escribir manuscrito
+
+Te sientas en el escritorio y después de unos momentos de duda, coges carrerilla y cuando te das cuentas ha pasado más de una hora, tiempo en el que reescribes algunas partes de tu nueva novela.
+28 > escribir manuscrito
+
+Te sientas en el escritorio y después de unos momentos de duda, coges carrerilla y cuando te das cuentas ha pasado más de una hora, tiempo en el que reescribes algunas partes de tu nueva novela.
+29 > escribir manuscrito
+
+Te sientas en el escritorio y después de unos momentos de duda, coges carrerilla y cuando te das cuentas ha pasado más de una hora, tiempo en el que reescribes algunas partes de tu nueva novela.
+30 > escribir manuscrito
+
+Ya dedicaste tu ración diaria de escritura. Como tu conciencia está libre para hacer otras cosas, apartas el manuscrito a un lado.
+31 > sacar de libro arcano -> maleta
+
+Coger libro arcano de maleta
+32 > dejar maleta
+
+Lo dejas caer en habitación de los gemelos
+33 > desconectar del móvil cargador de móvil
+
+Retiras el cargador del móvil.
+34 > oeste -> pasillo
+
+Vas al oeste 
+
+
+pasillo 
+El pasillo del piso superior comunicaba la habitación de tu madre y la que compartías con tu querida hermana.
+35 > oeste -> habitación de tu madre
+
+Vas al oeste 
+
+
+habitación de tu madre 
+Aquí dormía mamá. Casi que aún hueles su aroma. Duele. El armario, con su espejo central, es tan feo y barroco como recordabas.
+36 > examinar cama
+
+Al apoyarte en el colchón para ver cómo está la cama, oyes un ruido de algo que cae al suelo debajo de la cama.
+La destartalada cama de tu madre.
+37 > examinar diario
+
+Entre otras cosas, aparece una foto de tu madre con tu hermana y contigo.
+En el diario de tu madre, además de sus anotaciones, también hay intercaladas fotos y dibujos. Ves que el diario se empezó a escribir poco muerte de la muerte de Ana y termina días antes de la muerte de tu madre. La lectura te desgarra. Cuenta lo responsable que se siente de la muerte de Ana y que no tiene fuerzas para cuidar de ti, y por eso te había enviado al internado en la ciudad. También cuenta que se está volviendo loca y que ha creído ver a Ana varias veces en la casa y rondando la tumba. La útima última anotación reza: 'Las paredes de la casa se me caen encima, iré a ponerle flores frescas a la tumba de Ana y a pasear un poco por la playa'. Ese mismo día su cuerpo fue encontrado ahogado en la playa tras caer desde el promontorio donde está la tumba de Ana.
+38 > examinar foto familiar
+
+En esta foto aparecéis tú y tu querida hermana a ambos lados de tu madre. Los tres sonreís y parecéis muy felices, ¿quién iba a decir que sólo unas semanas después sucedaría la tragedia?
+39 > coger foto familiar
+
+Coges foto familiar
+40 > examinar espejo
+
+Cómo ha pasado el tiempo. Recuerdas como si fuera ayer cuando la figura reflejada era la de un niño pequeño, siempre con su querida hermana al lado.
+41 > este -> pasillo
+
+Vas al este 
+
+
+pasillo 
+El pasillo del piso superior comunicaba la habitación de tu madre y la que compartías con tu querida hermana.
+42 > abajo -> salón comedor
+
+Vas al abajo 
+
+
+salón comedor 
+El salón siempre fue muy sencillo, como corresponde al su uso como residencia de verano. Sólo hay unos viejos sofás, la mesa y unas estanterías cerradas. Desde aquí se accede a la cocina y a la planta superior, donde están las habitaciones.
+42 > llamar móvil
+
+¿A quién quieres llamar?
+43 > llamar móvil
+
+Menu:
+
+- Cancelar la acción 
+- Freddie 
+- TelePapeo 
+- Charlie 
+- Vicky 
+Opción elegida : Cancelar la acción 
+
+Al final no llamas a nadie
+44 > examinar libro arcano
+
+Ahí está la ilustración que buscabas. Parece ser un ritual para que dos almas separadas por la muerte vuelvan a encontrarse en el cuerpo de una mujer embarazada de gemelos. Ves cómo el gemelo difunto le da un regalo al superviviente, que lo sujeta en una mano mientras que con otra prende fuego a una tela con la sangre de la mujer embarazada y a una ofrenda valiosa del gemelo vivo. Como colofón, se ve al gemelo vivo comiendo algo parecido a setas alucinógenas mientras ver arder el fuego ante él.
+Un sombío presentimiento te viene a la cabeza: ¿estará Vicky embarazada de gemelos?
+44 > llamar móvil
+
+¿A quién quieres llamar?
+45 > llamar móvil
+
+Menu:
+
+- Cancelar la acción 
+- Freddie 
+- TelePapeo 
+- Charlie 
+- Vicky 
+Opción elegida : Vicky 
+
+
+Vicky: « Ahora no te puedo atender, lo siento. Estaré libre de 10:00 a 17:00. Llamame entonces. Besos. » Y cuelga
+46 > estado móvil
+
+Son las 19:15. Tiempo restante de batería: 20h45m. 
+La próxima marea baja será a las 23:30.
+46 > llamar móvil
+
+¿A quién quieres llamar?
+46 > llamar móvil
+
+Menu:
+
+- Cancelar la acción 
+- Freddie 
+- TelePapeo 
+- Charlie 
+- Vicky 
+Opción elegida : TelePapeo 
+
+46 > llamar móvil
+
+Menu:
+
+- Te lo piensas mejor, y al final no pides nada. 
+- Añadir agua al pedido 
+- Añadir cocacola al pedido 
+- Añadir cerveza al pedido 
+- Añadir chocolate al pedido 
+- Añadir whisky al pedido 
+- Añadir bocadillo al pedido 
+- Añadir pizza al pedido 
+- Añadir patatas fritas al pedido 
+Opción elegida : Añadir whisky al pedido 
+
+Lo añades al pedido
+47 > llamar móvil
+
+Menu:
+
+- Te lo piensas mejor, y al final no pides nada. 
+- Cierras el pedido, que recibirás en la puerta de la casa. 
+- Añadir agua al pedido 
+- Añadir cocacola al pedido 
+- Añadir cerveza al pedido 
+- Añadir chocolate al pedido 
+- Añadir whisky al pedido 
+- Añadir bocadillo al pedido 
+- Añadir pizza al pedido 
+- Añadir patatas fritas al pedido 
+Opción elegida : Cierras el pedido, que recibirás en la puerta de la casa. 
+
+Cierras el pedido, que recibirás en la puerta de la casa.
+48 > fuera -> camino residencial
+
+Vas al fuera 
+
+
+camino residencial 
+Este camino comunica con otras casas vecinas, es el que solían recorrer para visitar a tus amigos de verano.
+49 > este -> portal de Charlie
+
+Vas al este 
+
+
+portal de Charlie 
+Aquí vivía Charlie, tu amigo surfero.
+50 > oeste -> camino residencial
+
+Vas al oeste 
+
+
+camino residencial 
+Este camino comunica con otras casas vecinas, es el que solían recorrer para visitar a tus amigos de verano.
+51 > coger cesta de TelePapeo
+
+Coges cesta de TelePapeo
+52 > este -> portal de Charlie
+
+Vas al este 
+
+
+portal de Charlie 
+Aquí vivía Charlie, tu amigo surfero.
+53 > apretar timbre del portal de Charlie
+
+Notas cómo se enciende la luz de la cámara de seguridad y te observan unos segundos. Al final escuchas:
+
+Charlie: « ¡Mi hermano!, ¡qué bueno que vienes con provisiones! Entra, muchacho, bienvenido a nuestra humilde morada.» 
+
+¿En qué momento se te ocurrió meterte en este lío? Al pasar por la puerta, el olor a marihuana te hace sentirte en casa y te acuerdas de tu plantita del estudio. Música a todo meter, gente guapa y mucha alegría. Con una sonrisa de oreja a oreja hablas entre gritos acerca tu nueva novela con unos perfectos desconocidos que te han adoptado como parte de su grupo. Uno de ellos te habla de ruidos y sucesos misteriosos ocurridos en tu casa: 'solemos entrar de okupas en las casas abandonadas durante mucho tiempo, ¿por qué crees que hemos respetado la tuya?'
+
+De madrugada te atreves a lanzar tu pregunta sobre si hay alguien que tenga setas alucinógenas, para 'documentarte' en una cosa que escribes. El colega de un colega llama a un colega y a la media hora estás probando las setas. Menos mal que alcanzas a esconder unas en tu chaqueta antes de... perder la conciencia. Vagamente sientes que alguien te lleva a tu casa, pero es casi más un sueño que algo de lo que estés seguro.
+
+Antes de dormir, estiras el brazo y pones el móvil a cargar.
+No puedes respirar, estás encerrado en la cueva de la playa y no puedes escapar. De repente, un corrimiento de arena de la playa entra en la cueva y te cubre hasta la cintura y no puedes moverte. En tus manos tienes el collar de conchas marinas que has hecho para regalárselas a tu querido hermano...
+Pero no, no puede ser, estos no son recuerdos tuyos, sólo pueden ser los últimos recuerdos de ella, del día en que...
+Despiertas, mojado en sudor.
+
+Te levantas, no crees que vayas a poder reconciliar el sueño. De hecho, temes volver a dormir y volver a vivir esa horrible experiencia.
+
+
+Con energías renovadas comienzas la jornada 3 desde que tuviste la pesadilla por primera vez.
+
+54 > estado móvil
+
+Son las 07:45. Tiempo restante de batería: 23h45m. 
+La próxima marea baja será a las 11:55.
+55 > oeste -> pasillo
+
+Vas al oeste 
+
+
+pasillo 
+El pasillo del piso superior comunicaba la habitación de tu madre y la que compartías con tu querida hermana.
+56 > abajo -> salón comedor
+
+Vas al abajo 
+
+
+salón comedor 
+El salón siempre fue muy sencillo, como corresponde al su uso como residencia de verano. Sólo hay unos viejos sofás, la mesa y unas estanterías cerradas. Desde aquí se accede a la cocina y a la planta superior, donde están las habitaciones.
+57 > sacar de atizador -> chimenea
+
+Coger atizador de chimenea
+58 > norte -> cocina
+
+Vas al norte 
+
+
+cocina 
+Casi que ni le prestas atención. No piensas perder el tiempo cocinando, has venido a terminar tu novela. En la cocina hay una puerta trasera que lleva al paseo marítimo y a las playas, un escalofrío te recorre el cuerpo de sólo pensar en volver a la playa donde Ana se ahogó
+59 > coger cerillas
+
+Coges cerillas
+60 > norte -> Camino costero
+
+Vas al norte 
+
+
+Camino costero 
+Desde aquí parte el camino fácil que lleva a las playas conocidas, y el camino escarpado que lleva a la cala secreta donde vosotros dos solíais jugar. El camino ya no es tan transitable como antes pero seguramente hippies y surferos lo siguen usando hoy en día, como delatan las colillas tiradas.
+61 > este -> caleta
+
+Vas al este 
+
+
+caleta 
+Avanzas casi arrastrando los pies. No quieres ir, pero no puedes evitarlo. Llegas hasta hasta la altura del agua y, no puedes creerlo, la marea está tan baja hoy como aquel fatídico día. Los barrotes de seguridad que se pusieron a la entrada de la pequeña cueva para evitar que la tragedia se repitiera están muy oxidados y parecen ser fáciles de romper. La marea cubre la entrada a la cueva donde toco ocurrió.
+
+62 > examinar barrotes
+
+Con la marea alta apenas ves unos hierros oxidados bajo el agua. Se pusieron para sellar la entrada a la cueva donde Ana..., cuando la marea está baja.
+La marea cubre la entrada a la cueva donde toco ocurrió.
+
+63 > estado móvil
+
+Son las 10:00. Tiempo restante de batería: 21h30m. 
+La próxima marea baja será a las 11:55.
+La marea cubre la entrada a la cueva donde toco ocurrió.
+
+64 > esperar
+
+La cosa no está como para derrochar el tiempo, pero una cabezadita nunca viene mal... ZZZ.
+La marea está muy baja y permite ver la entrada a la cueva donde toco ocurrió.
+
+65 > estado móvil
+
+Son las 11:30. Tiempo restante de batería: 20h45m. 
+La máxima marea baja está siendo ahora y acabará dentro de 85 minutos.
+La marea está muy baja y permite ver la entrada a la cueva donde toco ocurrió.
+
+66 > golpear barrotes
+
+Gracias al atizador, rompes los barrotes con facilidad, pudiendo ahora entrar en la cuevita.
+La marea está muy baja y permite ver la entrada a la cueva donde toco ocurrió.
+
+67 > dentro -> cuevita
+
+La pequeña cueva ahora está cubierta por el mar. Tendrás que esperar a la próxima marea baja.
+La marea cubre la entrada a la cueva donde toco ocurrió.
+
+68 > encender linterna móvil
+
+Enciendes la linterna del móvil.
+La marea está muy baja y permite ver la entrada a la cueva donde toco ocurrió.
+
+69 > dentro -> cuevita
+
+Te cuesta respirar, aquí fue donde ella murió ahogada. Nadie sabe muy bien porqué permaneció tanto tiempo dentro y fue sorprendida por la marea y el corrimiento de tierra y precipitó la area de la pequeña duna dentro de la cueva.
+En el suelo puedes ver lo que parece ser una cuerda semienterrada
+Vas al dentro 
+
+
+cuevita 
+Aquí fue donde todo ocurrió. La marea sube y cada ves oyes el mar más cerca. Puede ser peligroso permanecer mucho tiempo aquí.
+70 > coger cuerda semienterrada
+
+Aparece un collar de conchas como el de tu sueño. No puedes evitar llorar mientras lo acaricias. No puedes explicarlo, pero notas a Ana cerca de ti, como si ella estuviera contigo ahora.
+La marea sube y cada ves oyes el mar más cerca. Puede ser peligroso permanecer mucho tiempo aquí.
+71 > fuera -> caleta
+
+Vas al fuera 
+
+
+caleta 
+Avanzas casi arrastrando los pies. No quieres ir, pero no puedes evitarlo. Llegas hasta hasta la altura del agua y, no puedes creerlo, la marea está tan baja hoy como aquel fatídico día. Los barrotes de seguridad que se pusieron a la entrada de la pequeña cueva para evitar que la tragedia se repitiera están muy oxidados y parecen ser fáciles de romper. La marea cubre la entrada a la cueva donde toco ocurrió.
+
+72 > apagar linterna móvil
+
+Apagas linterna del móvil
+La marea está muy baja y permite ver la entrada a la cueva donde toco ocurrió.
+
+72 > llamar móvil
+
+¿A quién quieres llamar?
+72 > llamar móvil
+
+Menu:
+
+- Cancelar la acción 
+- Freddie 
+- TelePapeo 
+- Charlie 
+- Vicky 
+Opción elegida : Vicky 
+
+
+Vicky: « Hola, querido Al, ¿qué puedo hacer por ti? »
+73 > llamar móvil
+
+Menu:
+
+- ¿Qué tal estás Vicky?
+
+- Preguntar a Vicky por embarazo 
+Opción elegida : Preguntar a Vicky por embarazo 
+
+Con mucho tacto masculino, le preguntas a Vicky si está embarazada de gemelos. 
+Vicky: « ¿Tan gorda estoy? Sí, de gemelos. Te iba a decir que tengo un antojito de chocolate y tenías algo, pero como veo que me ves como una foca, casi que me abstengo» Vicky cuelga el teléfono.
+La marea está muy baja y permite ver la entrada a la cueva donde toco ocurrió.
+
+74 > oeste -> Camino costero
+
+Vas al oeste 
+
+
+Camino costero 
+Desde aquí parte el camino fácil que lleva a las playas conocidas, y el camino escarpado que lleva a la cala secreta donde vosotros dos solíais jugar. El camino ya no es tan transitable como antes pero seguramente hippies y surferos lo siguen usando hoy en día, como delatan las colillas tiradas.
+75 > sur -> cocina
+
+Vas al sur 
+
+
+cocina 
+Casi que ni le prestas atención. No piensas perder el tiempo cocinando, has venido a terminar tu novela. En la cocina hay una puerta trasera que lleva al paseo marítimo y a las playas, un escalofrío te recorre el cuerpo de sólo pensar en volver a la playa donde Ana se ahogó
+76 > sur -> salón comedor
+
+Vas al sur 
+
+
+salón comedor 
+El salón siempre fue muy sencillo, como corresponde al su uso como residencia de verano. Sólo hay unos viejos sofás, la mesa y unas estanterías cerradas. Desde aquí se accede a la cocina y a la planta superior, donde están las habitaciones.
+76 > llamar móvil
+
+¿A quién quieres llamar?
+76 > llamar móvil
+
+Menu:
+
+- Cancelar la acción 
+- Freddie 
+- TelePapeo 
+- Charlie 
+- Vicky 
+Opción elegida : TelePapeo 
+
+76 > llamar móvil
+
+Menu:
+
+- Te lo piensas mejor, y al final no pides nada. 
+- Cierras el pedido, que recibirás en la puerta de la casa. 
+- Añadir agua al pedido 
+- Añadir cocacola al pedido 
+- Añadir cerveza al pedido 
+- Añadir chocolate al pedido 
+- Añadir whisky al pedido 
+- Añadir bocadillo al pedido 
+- Añadir pizza al pedido 
+- Añadir patatas fritas al pedido 
+Opción elegida : Añadir chocolate al pedido 
+
+Lo añades al pedido
+77 > llamar móvil
+
+Menu:
+
+- Te lo piensas mejor, y al final no pides nada. 
+- Cierras el pedido, que recibirás en la puerta de la casa. 
+- Añadir agua al pedido 
+- Añadir cocacola al pedido 
+- Añadir cerveza al pedido 
+- Añadir chocolate al pedido 
+- Añadir whisky al pedido 
+- Añadir bocadillo al pedido 
+- Añadir pizza al pedido 
+- Añadir patatas fritas al pedido 
+Opción elegida : Cierras el pedido, que recibirás en la puerta de la casa. 
+
+Cierras el pedido, que recibirás en la puerta de la casa.
+78 > fuera -> camino residencial
+
+Vas al fuera 
+
+
+camino residencial 
+Este camino comunica con otras casas vecinas, es el que solían recorrer para visitar a tus amigos de verano.
+79 > coger cesta de TelePapeo
+
+Coges cesta de TelePapeo
+79 > llamar móvil
+
+¿A quién quieres llamar?
+79 > llamar móvil
+
+Menu:
+
+- Cancelar la acción 
+- Freddie 
+- TelePapeo 
+- Charlie 
+- Vicky 
+Opción elegida : Vicky 
+
+
+Vicky: « Hola, querido Al, ¿qué puedo hacer por ti? »
+80 > llamar móvil
+
+Menu:
+
+- ¿Qué tal estás Vicky?
+
+- Te invito a un helado de chocolate 
+Opción elegida : Te invito a un helado de chocolate 
+
+A los pocos minutos, tienes a Vicky en casa. Durante unas horas os ponéis al día sobre vuestras vidas. Te habla sobre la aburrida vida de la villa costera y cómo te ha echado de menos.
+DLG_embarazada_habla: « Querido Al, ¡qué raro se me hace verte sin tu querida hermana al lado! Después de aquello, tu madre te ennvió lejos y casi no tuvimos tiempo ni despedirnos. Pensarás que estoy loca, pero cuando he ido a dejar flores en la tumba de tu hermana y tu malograda madre, las brumas de la costa siempre parecen tomar su forma, como llamándome a reunirme con ella. Una vez casi me despeño en el promontorio.» Vicky da buena cuenta del helado de chocolate. De alguna manera, te las ingenias para que se haga un pequeño corte y en su servilleta caen unas gotas de su sangre. Poco después, Vicky regresa a su casa y tú sigues con tus rutinas.
+
+Te das cuenta de que no has cumplido con tu compromiso de seis horas diarias de revisión diaria de tu novela. Lo dejas todo y te diriges a tu habitación a cumplir con tu deber.
+Acabas exhausto después de la sesión de revisión de tu novela. Comes algo y te acuestas.
+Antes de dormir, estiras el brazo y pones el móvil a cargar.
+No puedes respirar, estás encerrado en la cueva de la playa y no puedes escapar. De repente, un corrimiento de arena de la playa entra en la cueva y te cubre hasta la cintura y no puedes moverte. En tus manos tienes el collar de conchas marinas que has hecho para regalárselas a tu querido hermano...
+Pero no, no puede ser, estos no son recuerdos tuyos, sólo pueden ser los últimos recuerdos de ella, del día en que...
+Despiertas, mojado en sudor.
+
+Te levantas, no crees que vayas a poder reconciliar el sueño. De hecho, temes volver a dormir y volver a vivir esa horrible experiencia.
+
+
+Con energías renovadas comienzas la jornada 4 desde que tuviste la pesadilla por primera vez.
+
+Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+81 > oeste -> pasillo
+
+Vas al oeste 
+
+
+pasillo 
+El pasillo del piso superior comunicaba la habitación de tu madre y la que compartías con tu querida hermana. Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+82 > abajo -> salón comedor
+
+Vas al abajo 
+
+
+salón comedor 
+El salón siempre fue muy sencillo, como corresponde al su uso como residencia de verano. Sólo hay unos viejos sofás, la mesa y unas estanterías cerradas. Desde aquí se accede a la cocina y a la planta superior, donde están las habitaciones. Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+83 > examinar libro arcano
+
+Ahí está la ilustración que buscabas. Parece ser un ritual para que dos almas separadas por la muerte vuelvan a encontrarse en el cuerpo de una mujer embarazada de gemelos. Ves cómo el gemelo difunto le da un regalo al superviviente, que lo sujeta en una mano mientras que con otra prende fuego a una tela con la sangre de la mujer embarazada y a una ofrenda valiosa del gemelo vivo. Como colofón, se ve al gemelo vivo comiendo algo parecido a setas alucinógenas mientras ver arder el fuego ante él.
+Algo irrefrenable te anima a seguir adelante con el hechizo, aunque sólo sea para confirmar que no son más que supersticiones sin sentido.
+Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+84 > arriba -> pasillo
+
+Vas al arriba 
+
+
+pasillo 
+El pasillo del piso superior comunicaba la habitación de tu madre y la que compartías con tu querida hermana. Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+85 > este -> habitación de los gemelos
+
+Vas al este 
+
+
+habitación de los gemelos 
+La litera! Tu sitio era el de arriba. Subías y bajabas casi como un mono incluso cuando no había luz. Delante de la litera está el escritorio doble donde vuestra madre os obligaba a hacer tareas en verano, pero donde al final acababais inventando algún juego que al ser jugado con papel y lápiz aparecía oculto a los ojos de vuestra madre. Es en este escritorio donde tienes pensado hacer las correcciones de tu novela. Ahí sigue el armario donde teníais vuesta ropa y los juguetes desordenados. No sabes qué habrá sido de las cosas de ella; las tuyas viajaron contigo cuando dejaste la casa para ir a vivir al internado. Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+86 > coger manuscrito
+
+Coges manuscrito Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+87 > oeste -> pasillo
+
+Vas al oeste 
+
+
+pasillo 
+El pasillo del piso superior comunicaba la habitación de tu madre y la que compartías con tu querida hermana. Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+88 > abajo -> salón comedor
+
+Vas al abajo 
+
+
+salón comedor 
+El salón siempre fue muy sencillo, como corresponde al su uso como residencia de verano. Sólo hay unos viejos sofás, la mesa y unas estanterías cerradas. Desde aquí se accede a la cocina y a la planta superior, donde están las habitaciones. Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+89 > meter dentro manuscrito -> chimenea
+
+Una espantosa voz que viene de todos lados y ninguno grita un '¡sí!'.
+Metes manuscrito en chimenea Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+90 > meter dentro libro arcano -> chimenea
+
+Podría ser interesante hacer que arda... pero no en esta ocasión.
+Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+91 > meter dentro foto familiar -> chimenea
+
+Una espantosa voz que viene de todos lados y ninguno grita un '¡sí!'.
+Metes foto familiar en chimenea Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+92 > quemar chimenea
+
+Enciendes una cerilla, y cuando vas a prender fuego a la chimenea, notas una corriente de aire extraña que la apaga. Se te herizan los pelos al escuchar una corriente de aire que te recuerda a tu querida hermana cuando jugaba a ser un fantasma.
+Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+93 > romper collar
+
+¿Cómo romper algo tan bello que te hizo tu querida hermana el día de su muerte? El sólo hecho de pensarlo te entistrece y te hace soltar lágimas de dolor y pena.
+Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+94 > meter dentro servilleta con sangre de Vicky -> chimenea
+
+Una espantosa voz que viene de todos lados y ninguno grita un '¡sí!'.
+Metes servilleta con sangre de Vicky en chimenea Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'
+94 > quemar chimenea
+
+Te comes las setas y con mano temblorosa enciendes la cerilla y la acercas a la chimenea. Ahí descansan las páginas del manuscrito de tu novela, que te ha llevado cuatro años de tu vid: ¿qué mayor sacrificio que este para realizar el hechizo del libro arcano? Te sientes muy estúpido, ¿y si todo esto es una tontería y simplemente estás quemando tu trabajo por nada?
+
+Pero no puedes resistirte, notas como las setas te han dejado la conciencia alterada y una sombra de la habitación adquiere la forma de tu hermana, que se acerca a ti y te hace un gesto para que acabes de acercar la cerilla a la chimenea.
+
+Te has tenido que volver loco, porque ahora ves volando por el aire las tijeras de la cocina. Ahora sabes qué va a pasar, el hechizo exigirá tu muerte para que puedas renacer con tu querida hermana en el vientre de Vicky.
+Tienes muchas ganas de completar el hechizo y reunirte con tu querida hermana, pero... ¡tienes tantas cosas que hacer aún en esta vida!: publicar tu novela, ser padre, viajar... Antes de acercar irremisiblemente la cerilla a la chimenea el apego a la vida te da la oportunidad de no seguir el camino que te marca tu querida hermana.
+95 > quemar chimenea
+
+Menu:
+
+- Apagar la cerilla 
+- Encender la hoguera y completar el hechizo 
+Opción elegida : Apagar la cerilla 
+
+Con apenas fuerzas, soplas la cerilla. La figura de tu querida hermana baja la vista, como llorando de pena... pero cuando la levanta, no son lágrimas lo que ves sino una mirada de rabia. Su mirada se dirige a las tijeras, que selen disparadas hacia ti y sólo esquivas por los pelos.
+
+De repente, la puerta que va a la cocina se abre con estrépito y tu querida hermana, que se sitúa entre la entrada de la casa y las escalera bloqueando tu salida, te señala a esa dirección.
+De manera instintiva intentas sacar tu manuscrito de las llamas, pero ya es demasiado tarde.
+
+Tu osadía enfuerece aún más a tu hermana que vuelve a lanzarte las tijeras, que dan de pleno en tu pecho... justo donde llevabas tu flamante móvil. Nunca creíste que llegaras alegrarte de sentir cómo se rompía su pantalla en mil pedazos.
+Tu querida hermana brilla en la noche y te señala el camino.
+96 > fuera -> camino residencial
+
+Tu querida hermana no te permite ir en esa dirección.
+Tu querida hermana brilla en la noche y te señala el camino.
+97 > norte -> cocina
+
+Vas al norte 
+
+
+cocina 
+Casi que ni le prestas atención. No piensas perder el tiempo cocinando, has venido a terminar tu novela. En la cocina hay una puerta trasera que lleva al paseo marítimo y a las playas, un escalofrío te recorre el cuerpo de sólo pensar en volver a la playa donde Ana se ahogó Tu querida hermana brilla en la noche y te señala el camino.
+98 > sur -> salón comedor
+
+Tu querida hermana no te permite ir en esa dirección.
+Tu querida hermana brilla en la noche y te señala el camino.
+99 > norte -> Camino costero
+
+Vas al norte 
+
+
+Camino costero 
+Desde aquí parte el camino fácil que lleva a las playas conocidas, y el camino escarpado que lleva a la cala secreta donde vosotros dos solíais jugar. El camino ya no es tan transitable como antes pero seguramente hippies y surferos lo siguen usando hoy en día, como delatan las colillas tiradas. Tu querida hermana brilla en la noche y te señala el camino. Con cada mano apunta dos direcciones, como preguntándote dónde quieres morir y reunirte con ella: si en el promontorio o en la cueva de la caleta.
+100 > dejar collar
+
+No te sientes capaz de soltar el collar que te hizo tu querida hermana antes de morir.
+Tu querida hermana brilla en la noche y te señala el camino. Con cada mano apunta dos direcciones, como preguntándote dónde quieres morir y reunirte con ella: si en el promontorio o en la cueva de la caleta.
+101 > este -> caleta
+
+Vas al este 
+
+
+caleta 
+Avanzas casi arrastrando los pies. No quieres ir, pero no puedes evitarlo. Llegas hasta hasta la altura del agua y, no puedes creerlo, la marea está tan baja hoy como aquel fatídico día. Los barrotes de seguridad que se pusieron a la entrada de la pequeña cueva para evitar que la tragedia se repitiera están muy oxidados y parecen ser fáciles de romper. La marea cubre la entrada a la cueva donde toco ocurrió.
+
+Tu querida hermana brilla en la noche y te señala el camino.
+102 > dentro -> cuevita
+
+Con un inefable sensación de fatídica desgracia entras en la cueva, seguido por tu querida hermana.
+Vas al dentro 
+
+
+cuevita 
+Aquí fue donde todo ocurrió. La marea sube irremediablemente. El agua te cubre y empiezas a experimentar la misma asfixia que tu querida hermana el día en que murió. Tu querida hermana te mira complacida, pronto te reunirás con ella.
+103 > romper collar
+
+Tus lágimas se diluyen en el mar que te cubre por completo. Cuando ya casi no puedes seguir respirando pones todas tus energías en romper el collar, en un intento desesperado de romper tu nexo con tu querida hermana. Te hieres las manos, pero al final rompes la cuerda y las conchas que formaban el collar se dispersan por la corriente en todas direcciones.
+Entonces sucede lo inesperado. Ese collar parece que contenía un poder que mantenía encadenada a tu hermana a ti y al mundo de los mortales. Una vez roto el collar, toda la rabia de tu querida hermana desaparece y es sustituida por una gran paz y una sonrisa. Su cuerpo respandece y te guía en la oscuridad hasta la salida de la cueva.
+Apareces de noche en la pequeña caleta. Tu querida hermana se despide de ti y se diríge a un círculo de luz.
+
+Has necesitado 3 días y 13:15 horas para liberarte de tu querida hermana.
+
+Epílogo
+
+Días después, organizas una fiesta en la casa de la playa. Asisten Freddie, Vicky con su marido, así como Charlie con varios amigos suyos. Después de comer, beber (y, algunos, fumarse lo que queda de tu planta que ha traído Freddie) en abundancia, les anuncias que estos días en la casa te han hecho renacer, que has quemado tu novela casi acabada y has empezado a escribir una nueva novela.
+
+
+escritor: « Amigos, permitidme leeros este poemita que se me ocurrió ayer, que es en esencia una continuación del poema de Edgan Allan Poe 'Annabelle Lee' y que creo que va a jugar un papel importante en mi nueva novela:» 
+
+De niño pasaba con mi familia
+los veranos en una casa junto al mar.
+Tenía yo una guapa vecina
+cuyo nombre no voy a mencionar
+de la que era novio infantil en verano
+y a quien el resto del año sólo podía añorar.
+
+Un desgraciado verano,
+mi querido amor me fue arrebatado por un golpe de mar
+y quedé profundamente conmocionado.
+Su tumba iba a visitar 
+todos los días, ese verano y los siguientes,
+en un promontorio junto al mar.
+
+Quince años sin ella
+no me pudieron calmar.
+Entonces algo sucedió
+y me dejaron de mirar
+sus ojos reflejados en las estrellas.
+Sólo escribir me podía aliviar
+y con letras y más letras
+no la dejaba de llamar.
+
+En otros ojos y cuerpos
+la quise buscar
+tanto de ángeles como de demonios.
+Pero nunca la pude encontrar
+Tanta fue mi desesperación
+que casi la llegué a olvidar.
+
+Un día alguien tuvo a bien
+una bonita carta quererme enviar.
+Era una admiradora a quien en edad podría yo doblar.
+Había leído algo mío
+que de ella y de mí parecía hablar.
+Pero nunca pudimos vernos.
+Porque vivía ella lejos de mi casa junto al mar.
+
+Un día, mientras firmaba libros en la ciudad,
+A una dulce voz oí rogar
+'Me firma, por favor.'
+Y al la vista levantar,
+los ojos de ella reencontré
+Aquellos mismos a quienes tanto amé.
+Y fui afortunado de nunca más volverme a separar
+de aquellos ojos de más allá de cielo y del mar.
+
+El juego ha terminado

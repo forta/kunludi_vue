@@ -14,14 +14,14 @@
 			"name": "vampiro",
 			"type": "0",
 			"group": "0"
+		},
+		{
+			"name": "texel",
+			"type": "0",
+			"group": "1"
 		}
 	],
 	"games_on_development": [
-		{
-			"name": "miqueridahermana",
-			"type": "0",
-			"group": "1"
-		},
 		{
 			"name": "texel",
 			"type": "0",

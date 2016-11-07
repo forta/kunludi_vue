@@ -66,7 +66,7 @@
         "message": "habitación de tu madre"
     },
     "items.habitación_gemelos.desc": {
-        "message": "La litera! Tu sitio era el de arriba. Subías y bajabas casi como un mono incluso cuando no había luz. Delante de la litera está el escritorio doble donde vuestra madre os obligaba a hacer tareas en verano, pero donde al final acababais inventando algún juego que al ser jugado con papel y lápiz aparecía oculto a los ojos de vuestra madre. Es en este escritorio donde tienes pensado hacer las correcciones de tu novela. Ahí sigue el armario con las cosas de ella. Las tuyas viajaron contigo cuando dejaste la casa para ir a vivir al internado."
+        "message": "La litera! Tu sitio era el de arriba. Subías y bajabas casi como un mono incluso cuando no había luz. Delante de la litera está el escritorio doble donde vuestra madre os obligaba a hacer tareas en verano, pero donde al final acababais inventando algún juego que al ser jugado con papel y lápiz aparecía oculto a los ojos de vuestra madre. Es en este escritorio donde tienes pensado hacer las correcciones de tu novela. Ahí sigue el armario donde teníais vuesta ropa y los juguetes desordenados. No sabes qué habrá sido de las cosas de ella; las tuyas viajaron contigo cuando dejaste la casa para ir a vivir al internado."
 	},
     "items.habitación_gemelos.txt": {
         "message": "habitación de los gemelos"
@@ -252,16 +252,10 @@
         "message": "diario"
     },
     "items.espejo.desc": {
-        "message": "Cómo ha pasado el tiempo. Recuerdas como si fuera ayer cuando la figura reflejada era la de un niño pequeño, siempre con su querida hermana al lado."
+        "message": "El viejo espejo barroco ejercía una gran fascinación en tu querida hermana y tú."
     },
     "items.espejo.txt": {
         "message": "espejo"
-    },
-    "items.litera.desc": {
-        "message": "La litera! Tu sitio era el de arriba. Subías y bajabas casi como un mono incluso cuando no había luz."
-    },
-    "items.litera.txt": {
-        "message": "litera"
     },
     "items.escritorio.desc": {
         "message": "Delante de la litera está el escritorio doble donde vuestra madre os obligaba a hacer tareas en verano, pero donde al final acababais inventando algún juego que al ser jugado con papel y lápiz aparecía oculto a los ojos de vuestra madre. Es en este escritorio donde tienes pensado hacer las correcciones de tu novela."
@@ -275,28 +269,22 @@
     "items.armario_madre.txt": {
         "message": "armario de tu madre"
     },
-    "items.armario_gemelos.desc": {
-        "message": "Ahí sigue el armario con las cosas de ella. Las tuyas viajaron contigo cuando dejaste la casa para ir a vivir al internado."
-    },
-    "items.armario_gemelos.txt": {
-        "message": "armario de los gemelos"
-    },
     "items.cinturón.desc": {
         "message": "Un viejo cinturón de cuero de tu madre."
     },
     "items.cinturón.txt": {
         "message": "cinturón"
     },
-    "items.cesta_Freddie.desc": {
+    "items.cestaFreddie.desc": {
         "message": "El paquete express de Freddie."
     },
-    "items.cesta_Freddie.txt": {
+    "items.cestaFreddie.txt": {
         "message": "paquete de Freddie"
     },
-    "items.cesta_TelePapeo.desc": {
+    "items.cestaTelePapeo.desc": {
         "message": "La cesta de TelePapeo con tu pedido express."
     },
-    "items.cesta_TelePapeo.txt": {
+    "items.cestaTelePapeo.txt": {
         "message": "cesta de TelePapeo"
     },
     "messages.Introduction.txt": {
@@ -308,11 +296,11 @@
     "actions.móvil_estado.txt": {
         "message": "estado"
     },
-    "actions.móvil_linterna.txt": {
-        "message": "modo linterna"
+    "actions.encender_linterna.txt": {
+        "message": "encender linterna"
     },
-    "actions.móvil_mareas.txt": {
-        "message": "estado de las mareas"
+    "actions.apagar_linterna.txt": {
+        "message": "apagar linterna"
     },
     "actions.conectar_cargador.txt": {
         "message": "conectar al móvil"

@@ -57,7 +57,9 @@ export function processAction (action) {
 
 	console.log ("game action: " +  JSON.stringify (action))
 	
-	return this.reactions[actionIndex].reaction (action)
+	if (typeof this.reactions[actionIndex].reaction == 'function') {
+		return this.reactions[actionIndex].reaction (action)
+	}
 
 }
 
@@ -623,6 +625,8 @@ export function statusArray () {
 
 export function turn (indexItem) {
 
+	var  primitives = this.primitives // tricky
+
 	if (indexItem == primitives.PC_X()) {
 		// PC losses energy each time
 		primitives.IT_IncrAttPropValue (primitives.PC_X(), "hasEnergy", "energy", -1);
@@ -643,6 +647,8 @@ export function turn (indexItem) {
 
  
 usr.monstruaVico = function (itemIndex) {
+
+	var  primitives = this.primitives // tricky
 
 	var agreso = primitives.IT_GetAttPropValue (itemIndex, "hasEnergy", "agreso");
 		var atako = primitives.IT_GetAttPropValue (itemIndex, "hasEnergy", "atako");
@@ -707,6 +713,9 @@ usr.monstruaVico = function (itemIndex) {
 
 // komuna kodo por mangxi kaj trinki
 usr.reactionManghi_Trinki = function (actionId, libIndex, par_c, fromDown) { // interna
+
+	var  primitives = this.primitives // tricky
+
 	var attId;
 	
 	if (actionId == "drink") attId = "isDrinkAble";
@@ -751,6 +760,7 @@ usr.reactionManghi_Trinki = function (actionId, libIndex, par_c, fromDown) { // 
 // complex RPG combat
 
 usr.combat = function (source, target, weapon) {
+	var  primitives = this.primitives // tricky
 	
 	if (source == primitives.PC_X()) {
 		primitives.CA_ShowMsg("Vi atakas %o1", [target]);

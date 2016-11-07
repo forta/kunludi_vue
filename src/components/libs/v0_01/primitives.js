@@ -91,7 +91,6 @@ Categories:
  CA: Client Action
 
   CA_ShowDesc (o1)
-  CA_ShowDynDesc (o1)
   CA_QuoteBegin (i)
   CA_QuoteContinues ()
   CA_Refresh ()
@@ -181,10 +180,6 @@ Categories:
 
 export function CA_ShowDesc  (o1) {
  this.reactionList.push ({type:this.caMapping("DESC"), o1:o1});
-};
-
-export function CA_ShowDesc  (o1) {
- this.reactionList.push ({type:this.caMapping("DYN_DESC"), o1:o1});
 };
 
 export function CA_QuoteBegin  (item, txt, param, last) {
@@ -279,7 +274,8 @@ export function PC_SetCurrentLoc  (indexItem) {
  this.world.items[this.userState.profile.indexPC].loc = this.world.items[indexItem].id;
 }
 
-export function PC_CheckCurrentLocId  (i) {
+export function PC_CheckCurrentLocId  (locId) {
+ var i =  this.IT_X (locId)
 
  return ((this.IT_GetLoc(i)  == this.PC_X()) || (this.IT_GetLoc(i) == this.PC_GetCurrentLoc()));
 
@@ -467,6 +463,9 @@ export function IT_GetAttPropValue (indexItem, attId, propId) {
 }
 
 export function IT_SetAttPropValue (indexItem, attId, propId, newValue) {
+	
+	// console.log ("IT_SetAttPropValue. indexItem: " + indexItem + ",attId: " + attId + ",propId: " + propId + ", newValue: " + newValue)
+	
  // find j in this.world.items[indexItem].att[attId][i][propId]
  for (var i=0; i<this.world.items[indexItem].att[attId].length;i++) {
   // to-do: two versions!

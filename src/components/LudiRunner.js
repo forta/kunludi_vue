@@ -226,19 +226,34 @@ exports.processChoice = function  (choice) {
 		}
 
 		var indexPCBefore = exports.userState.profile.indexPC
-
+		
 		// game action execution
 		exports.processAction (choice.action)	
+		
+		// check whether is at least one refresh action in the reaction list
+		var pendingRefresh = false
+		for (var i=0;i<this.reactionList.length;i++) {
+			if (this.reactionList[i].type == "rt_refresh") {
+				pendingRefresh = true
+				break
+			}
+		}
 
 		// after execution, show the parent
-		if ( (((choice.choiceId == 'action0') ||(choice.choiceId == 'action') || (choice.choiceId == 'action2')) &&
-			 (choice.action.item1 != undefined)) && // only after game actions
-			 (locBefore == exports.world.items[choice.action.item1].loc) && // item is still accesible
-			 (indexPCBefore == exports.userState.profile.indexPC) ) // same pc
+		if ( 	!pendingRefresh && 
+		
+				// only after game actions
+				( ((choice.choiceId == 'action0') ||(choice.choiceId == 'action') || (choice.choiceId == 'action2')) &&
+				  (choice.action.item1 != undefined)) && 
+			 
+				(locBefore == exports.world.items[choice.action.item1].loc) && // item is still accesible
+				(indexPCBefore == exports.userState.profile.indexPC) ) // same pc
 		{
 			exports.processChoice (previousChoice)
-		} else
+		} else {
+			// top level of game choices
 			this.choice = {choiceId:'top', isLeafe:false, parent:''};
+		}
 
 		this.choice.loc = exports.world.items[exports.userState.profile.indexPC].loc
 		
@@ -495,10 +510,11 @@ exports.updateChoices = function () {
 			if (exports.actionIsEnabled  (actionId, this.choice.item1)) { 		// obj1 + action
 				exports.choices.push ({choiceId:'action', isLeafe:true, parent:"obj1", action: { item1: this.choice.item1, actionId: actionId }})
 			} else {
-				for (var j=0; j< exports.world.items.length; j++) {
+				var j=0
+				for (; j< exports.world.items.length; j++) {
 					if (j == this.choice.item1) continue; // item1 on item1
 					if (j == this.userState.profile.indexPC) continue; // self action with item1
-
+					
 					// j must be carried or here
 					if ( (exports.world.items[j].loc != exports.world.items[this.userState.profile.indexPC].id) &&  // not carried
 						 (exports.world.items[j].loc != exports.world.items[this.userState.profile.indexPC].loc) )  // not here

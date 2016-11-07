@@ -24,6 +24,9 @@
     "message": "S'il vous plaît sélectionner un jeu"
   },
   "bottom": { "message": "bas" }, 
+  "Delete": { "message": "Eliminer" }, 
+  "Date": { "message": "Date" }, 
+  "Id": { "message": "Id" }, 
   "server_welcome": {
     "message": "bienvenue à la LUDI réseau"
   },

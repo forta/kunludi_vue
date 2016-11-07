@@ -9,7 +9,7 @@
         <h2>{{kt("History")}}</h2>
         <div v-for="hItem in history">
             <!-- echo -->
-            <p><b><span v-if ="hItem.gameTurn > 0"> {{hItem.gameTurn}} #</span>{{choiceToShow(hItem.action, true)}}</b></p>
+            <p><b><span v-if ="hItem.gameTurn > 0"> {{hItem.gameTurn}} &gt; </span>{{choiceToShow(hItem.action, true)}}</b></p>
                 <!-- to-do: problem with nested v-for: so, we'll create a new component -->  
             
             <span v-for="r in hItem.reactionList">
@@ -24,10 +24,10 @@
 
 
 
-  <div  id="play_bottom" class="play_bottom">
+  <div  id="play_bottom" class="play_bottom" &&  v-if ="!gameIsOver">
   
     <!-- Groups of choices -->
-    <div class="mainChoices"  v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'">
+    <div class="mainChoices"  v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'" >
         <h3> {{kt("Location")}}: {{this.tge("items", gameState.userState.loc, "txt")}} </h3>
         <span v-for="choice in choices">
             <button v-if ="choice.choiceId == 'top'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
@@ -71,7 +71,7 @@
 
 
     import store from '../vuex/store'
-    import { getEcho, getGTranslator, getKTranslator, getCurrentChoice, getGameState, translateGameElement, getGameId, getLocale, getHistory, getMenu, getPendingChoice, getChoices } from '../vuex/getters'
+    import { getEcho, getGTranslator, getKTranslator, getCurrentChoice, getGameState, translateGameElement, getGameId, getGameIsOver, getLocale, getHistory, getMenu, getPendingChoice, getChoices } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
 
@@ -161,6 +161,7 @@ export default {
   vuex: {
     getters: {
        gameId: getGameId,
+       gameIsOver: getGameIsOver,
        locale: getLocale,
        history: getHistory,
        choices: getChoices,

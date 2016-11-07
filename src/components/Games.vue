@@ -5,7 +5,7 @@
         <p>{{kt("Choose Game")}}</p>
         <ul class="gameList">
             <li v-for="game in games">
-               <button v-on:click="currentgame=game"> -> </button> {{game.name}}   
+               <button v-on:click="currentgame=game"> -> </button> {{translatedGameName (game.name)}}   
             </li>
         </ul>
 
@@ -31,7 +31,7 @@
 <script>
 
 	import store from '../vuex/store'
-	import { getKTranslator, getUserId, getGameId, getGames } from '../vuex/getters'
+	import { getKTranslator, getUserId, getGameId, getGames, getLocale } from '../vuex/getters'
 	import * as actions from '../vuex/actions'
 
 
@@ -61,10 +61,32 @@ export default {
     if (!this.gameloaded)  store.dispatch('LOADGAMES')
   },
   methods: {
+      gameIsInLocale: function (gameId) {
+          for (var i=0; i<this.games.length;i++) {
+            if (this.games[i].name == gameId ) {
+               for (var j=0; j<this.games[i].about.translation.length;j++) {
+                 if (this.games[i].about.translation[j].language == this.locale ) {
+                    return {gameIndex: i, translationIndex:j}
+                 }
+               }  
+               return {gameIndex: i, translationIndex:undefined}
+            }
+          }
+      }, 
+      translatedGameName: function (gameId) {
+          
+          var l = this.gameIsInLocale (gameId)
+          if (l == undefined) return gameId
+          if (l.translationIndex == undefined) 
+            return this.games[l.gameIndex].about.translation[0].title + " (" + this.games[l.gameIndex].about.translation[0].language + ")"
+          
+          return this.games[l.gameIndex].about.translation[l.translationIndex].title
+      } 
   },
   store: store,
   vuex: {
     getters: {
+       locale: getLocale,
        userId: getUserId,
        gameId: getGameId,
        games: getGames,

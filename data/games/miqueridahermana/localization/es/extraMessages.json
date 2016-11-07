@@ -1,6 +1,145 @@
-{
+{	"items.escritor.articulo": {
+        "message": "el"
+    },
+    "items.estudio.articulo": {
+        "message": "el"
+    },
+    "items.delante_casa.articulo": {
+        "message": ""
+    },
+    "items.salón_comedor.articulo": {
+        "message": "el"
+    },
+    "items.cocina.articulo": {
+        "message": "la"
+    },
+    "items.pasillo.articulo": {
+        "message": "el"
+    },
+    "items.camino_playa.articulo": {
+        "message": "el"
+    },
+    "items.caleta.articulo": {
+        "message": "la"
+    },
+    "items.cuevita.articulo": {
+        "message": "la"
+    },
+    "items.promontorio.articulo": {
+        "message": "el"
+    },
+    "items.habitación_madre.articulo": {
+        "message": "la"
+    },
+    "items.habitación_gemelos.articulo": {
+        "message": "la"
+    },
+    "items.camino_residencial.articulo": {
+        "message": "el"
+    },
+    "items.portal_embarazada.articulo": {
+        "message": "el"
+    },
+    "items.portal_hippie.articulo": {
+        "message": "el"
+    },
+    "items.timbre_hippie.articulo": {
+        "message": "el"
+    },
+    "items.timbre_embarazada.articulo": {
+        "message": "el"
+    },
+    "items.embarazada.articulo": {
+        "message": ""
+    },
+    "items.hippie.articulo": {
+        "message": ""
+    },
+    "items.maleta.articulo": {
+        "message": "la"
+    },
+    "items.estantería.articulo": {
+        "message": "la"
+    },
+    "items.libro_magia.articulo": {
+        "message": "el"
+    },
+    "items.manuscrito.articulo": {
+        "message": "el"
+    },  
+    "items.tijeras.articulo": {
+        "message": "las"
+    },
+    "items.setas.articulo": {
+        "message": "las"
+    },
+    "items.servilleta.articulo": {
+        "message": "la"
+    },
+    "items.cerillas.articulo": {
+        "message": "las"
+    },
+    "items.collar.articulo": {
+        "message": "el"
+    },
+    "items.móvil.articulo": {
+        "message": "el"
+    },
+    "items.cargador.articulo": {
+        "message": "el"
+    },
+    "items.foto2.articulo": {
+        "message": "la"
+    },
+    "items.foto3.articulo": {
+        "message": "la"
+    },
+    "items.barrotes.articulo": {
+        "message": "barrotes"
+    },
+    "items.cuerda_enterrada.articulo": {
+        "message": "la"
+    },
+    "items.planta.articulo": {
+        "message": "la"
+    },
+    "items.chimenea.articulo": {
+        "message": "la"
+    },
+    "items.atizador.articulo": {
+        "message": "el"
+    },
+    "items.panfleto.articulo": {
+        "message": "el"
+    },
+    "items.lápida1.articulo": {
+        "message": "la"
+    },
+    "items.lápida2.articulo": {
+        "message": "la"
+    },
+    "items.cama.articulo": {
+        "message": "la"
+    },
+    "items.diario.articulo": {
+        "message": "el"
+    },
+    "items.espejo.articulo": {
+        "message": "el"
+    },
+    "items.escritorio.articulo": {
+        "message": "el"
+    },
+    "items.armario_madre.articulo": {
+        "message": "el"
+    },
+    "items.cinturón.articulo": {
+        "message": "el"
+    },
+    "items.cestaFreddie.articulo": {
+        "message": "el"
+    },
+    "items.cestaTelePapeo.articulo": {
+        "message": "la"
+    }
 }
-
-
-
- 

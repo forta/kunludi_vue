@@ -4,6 +4,8 @@ export function getUserId (state) { return state.userId }
 
 export function getGameId (state) { return state.gameId }
 
+export function getGameIsOver (state) { return state.gameIsOver }
+
 export function getLocale (state) { return state.locale }
 
 export function getLanguages (state) { return state.languages }

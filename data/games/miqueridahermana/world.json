@@ -202,7 +202,7 @@
             "type": "obj",
             "loc": "escritor",
 			"att": {
- 				"generalState": [ {"state":""}	]
+				"apps": [ {"llamada":""}, {"app_reloj":"450"}, {"app_linterna":"0"}, {"app_mareas":"1260"}, {"app_pilas":"1440"}	]		
             }
         },
 		{
@@ -304,11 +304,6 @@
             "loc": "habitación_madre"
         },
 		{
-			"id": "litera",
-            "type": "obj",
-            "loc": "habitación_gemelos"
-        },
-		{
 			"id": "escritorio",
             "type": "obj",
             "loc": "habitación_gemelos"
@@ -322,49 +317,12 @@
             }
         },
 		{
-			"id": "armario_gemelos",
-            "type": "obj",
-            "loc": "habitación_gemelos"
-        },
-		{
 			"id": "cinturón",
             "type": "obj",
             "loc": "armario_madre"
         },
 		{
-			"id": "app_reloj",
-            "type": "obj",
-            "loc": "limbo",
-            "att": {
- 				"generalState": [ {"state":"450"}	]
-            }
-        },
-		{
-			"id": "app_linterna",
-            "type": "obj",
-            "loc": "limbo",
-            "att": {
- 				"generalState": [ {"state":"0"}	]
-            }
-        },
-		{
-			"id": "app_mareas",
-            "type": "obj",
-            "loc": "limbo",
-            "att": {
- 				"generalState": [ {"state":"1260"}	]
-            }
-        },
-		{
-			"id": "app_batería",
-            "type": "obj",
-            "loc": "limbo",
-            "att": {
- 				"generalState": [ {"state":"1440"}	]
-            }
-        },
-		{
-			"id": "cesta_Freddie",
+			"id": "cestaFreddie",
             "type": "obj",
             "loc": "limbo",
             "att": {
@@ -372,7 +330,7 @@
             }
         },
 		{
-			"id": "cesta_TelePapeo",
+			"id": "cestaTelePapeo",
             "type": "obj",
             "loc": "limbo",
             "att": {
@@ -400,12 +358,12 @@
          "on":["obj"]
        },
 		{  
-         "id":"móvil_linterna",
+         "id":"encender_linterna",
          "numpar":"1",
          "on":["obj"]
        },
 		{  
-         "id":"móvil_mareas",
+         "id":"apagar_linterna",
          "numpar":"1",
          "on":["obj"]
        },
@@ -430,7 +388,7 @@
 	"attExceptions":[
 	  {  
          "id":"isTakeAble",
-         "exceptionList": ["timbre_embarazada", "timbre_hippie", "barrotes", "chimenea", "estantería", "lápida1", "lápida2", "cama", "litera", "espejo", "escritorio", "armario_madre", "armario_gemelos"]
+         "exceptionList": ["timbre_embarazada", "timbre_hippie", "barrotes", "chimenea", "estantería", "lápida1", "lápida2", "cama", "espejo", "escritorio", "armario_madre"]
 	  } 	  
    ]   
 }

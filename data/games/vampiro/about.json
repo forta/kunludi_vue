@@ -5,7 +5,7 @@
 		{
 			"language": "es",
 			"title": "Vampiro",
-			"desc": "Adaptación a LUDI del juego Vampiro",
+			"desc": "Adaptación a LUDI del juego Vampiro (http://wiki.caad.es/Proyecto_Vampiro), juego sencillo implementado en muchos sistemas de ficción interactiva.",
 			"introduction": "Vampiro",	
 			"author": {
 				"name": "Jaume Alcazo Castellarnau", 
@@ -17,7 +17,7 @@
 		{
 			"language": "en",
 			"title": "Vampiro",
-			"desc": "LUDI adaptation of Vampire",
+			"desc": "LUDI adaptation of Vampire (http://wiki.caad.es/Proyecto_Vampiro), simple game implemented in many interactive-fiction systems.",
 			"introduction": "Vampire",	
 			"author": {
 				"name": "Jaume Alcazo Castellarnau", 
@@ -29,7 +29,7 @@
 		{
 			"language": "eo",
 			"title": "Vampiro",
-			"desc": "Adaptaptiĝo al LUDI de Vampiro",
+			"desc": "Adaptaptiĝo al LUDI de Vampiro (http://wiki.caad.es/Proyecto_Vampiro), simpla ludo programita per multaj sistemoj de interreagema fikcio.",
 			"introduction": "Vampiro",	
 			"author": {
 				"name": "Jaume Alcazo Castellarnau", 
@@ -41,7 +41,7 @@
 		{
 			"language": "fr",
 			"title": "Vampire",
-			"desc": "LUDI adaptation du jeu Vampire",
+			"desc": "LUDI adaptation du jeu Vampire  (http://wiki.caad.es/Proyecto_Vampiro), jeu simple implementé dans beaucoup de systems de fiction interactive.",
 			"introduction": "Vampiro",	
 			"author": {
 				"name": "Jaume Alcazo Castellarnau", 
