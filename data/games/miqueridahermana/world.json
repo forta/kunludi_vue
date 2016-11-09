@@ -368,12 +368,12 @@
          "on":["obj"]
        },
 		{  
-         "id":"conectar_cargador",
+         "id":"cargar",
          "numpar":"1",
          "on":["obj"]
        },
 		{  
-         "id":"desconectar_cargador",
+         "id":"desconectar",
          "numpar":"1",
          "on":["obj"]
        },

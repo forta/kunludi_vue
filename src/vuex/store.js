@@ -299,9 +299,9 @@ const state = {
 		
 		// general kernel messages
 		if (choice.choiceId == 'top') return state.kTranslator("mainChoices_" + choice.choiceId)
-		else if (choice.choiceId == 'itemGroup') return state.kTranslator("mainChoices_" +  choice.itemGroup)
-		else if (choice.choiceId == 'directActions') return state.kTranslator("mainChoices_" + choice.choiceId)
-		else if (choice.choiceId == 'directionGroup') return state.kTranslator("mainChoices_" + choice.choiceId)
+		else if (choice.choiceId == 'itemGroup') return state.kTranslator("mainChoices_" +  choice.itemGroup) + "(" + choice.count + ")"
+		else if (choice.choiceId == 'directActions') return state.kTranslator("mainChoices_" + choice.choiceId) + "(" + choice.count + ")"
+		else if (choice.choiceId == 'directionGroup') return state.kTranslator("mainChoices_" + choice.choiceId) + "(" + choice.count + ")"
 
 		// game elements
 
@@ -313,10 +313,10 @@ const state = {
 
 			if (isEcho) { // echo message
 				if (choice.choiceId == 'action') {
-					let msg = state.language.expandText  ("messages", "Echo: %a1 %o1", "txt")
+					let msg = state.language.expandText  ("messages", "Echo_o1_a1", "txt")
 					return expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1})
 				} else {
-					let msg = state.language.expandText  ("messages", "Echo: %a1 %o1 -> %o2", "txt")
+					let msg = state.language.expandText  ("messages", "Echo_o1_a1_o2", "txt")
 					return expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1, o2: choice.action.item2})
 				}
 

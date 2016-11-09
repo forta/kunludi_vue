@@ -156,8 +156,9 @@ let initReactions =  function  (reactions, primitives) {
 
 		reaction: function (par_c) {
 		
-			primitives.CA_ShowMsg("You go to %d1", {d1:par_c.direction});
-			primitives.CA_ShowMsgAsIs("<br/><br/>");
+			// primitives.CA_ShowMsg("You go to %d1", {d1:par_c.direction});
+			
+			primitives.CA_ShowMsgAsIs("<br/>");
 
 			// preactions when trying to go out from here
 			
@@ -196,11 +197,8 @@ let initReactions =  function  (reactions, primitives) {
 			
 			if ((transtitionState == false) || (transtitionState== undefined)) {
 				// show location name
-				primitives.CA_ShowMsgAsIs ("<br/>");
-				primitives.CA_ShowItem (primitives.PC_GetCurrentLoc());
-				primitives.CA_ShowMsgAsIs ("<br/>");
+				primitives.CA_ShowMsg("Current_location_o1", {o1: primitives.PC_GetCurrentLoc()} );
 			}
-			
 			
 			if (!primitives.IT_GetIsItemKnown (primitives.PC_X(), par_c.link.target)) {
 				// set loc as known;
@@ -316,6 +314,8 @@ let initReactions =  function  (reactions, primitives) {
 		enabled: function (indexItem,indexItem2) {
 			// to-do: create attribute isTalkAble?
 			if (primitives.IT_GetType(indexItem) == "obj") return false;
+			if (!primitives.IT_IsHere(indexItem)) return false;
+			
 			return true;
 		},
 		
@@ -396,6 +396,7 @@ let initReactions =  function  (reactions, primitives) {
 		enabled: function (indexItem, indexItem2) {
 			if (indexItem2 == undefined)  return false;
 			if (indexItem == indexItem2) return false;
+			if (primitives.IT_GetLoc(indexItem) == indexItem2) return false;
 			if (!primitives.IT_ATT(indexItem, "isTakeAble")) return false;
 			if (primitives.IT_GetType(indexItem2) == "loc") return false;
 			
@@ -580,7 +581,8 @@ let initReactions =  function  (reactions, primitives) {
 		id: 'where',
 		
 		enabled: function (indexItem,indexItem2) {
-			// here
+			return false
+			// to-do: here!
 			if (primitives.IT_IsCarriedOrHere(indexItem)) return false;
 			// if in limbo, not shown
 			// if (primitives.IT_GetId(primitives.IT_GetLoc(indexItem))== "limbo") return false; // really?

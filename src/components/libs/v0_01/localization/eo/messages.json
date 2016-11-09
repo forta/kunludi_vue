@@ -356,11 +356,17 @@
     "messages.Locked direction.txt": {
         "message": "Direkto lokita."
     },
-    "messages.Echo: %a1 %o1.txt": {
-        "message": "%a1 %o1_a;n_o1%"
-   },
-    "messages.Echo: %a1 %o1 -> %o2.txt": {
-        "message": "%a1 %o1_a;n_o1% -> %o2"
+    "messages.Echo_o1_a1.txt": {
+        "message": "%o1: %a1"
+    },
+    "messages.Echo_o1_a1_o2.txt": {
+        "message": "%o1: %a1 + %o2"
+    },
+	"messages.It is not possible to go there.txt": {
+        "message": "Ne eblas iri tien."
+    },
+	"messages.Current_location_o1.txt": {
+        "message": "Nuna loko: <b>%o1</b><br/><br/>"
     }
 	
 }

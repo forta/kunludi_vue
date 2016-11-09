@@ -246,7 +246,7 @@
         "message": "cama"
     },
     "items.diario.desc": {
-        "message": "En el diario de tu madre, además de sus anotaciones, también hay intercaladas fotos y dibujos. Ves que el diario se empezó a escribir poco muerte de la muerte de Ana y termina días antes de la muerte de tu madre. La lectura te desgarra. Cuenta lo responsable que se siente de la muerte de Ana y que no tiene fuerzas para cuidar de ti, y por eso te había enviado al internado en la ciudad. También cuenta que se está volviendo loca y que ha creído ver a Ana varias veces en la casa y rondando la tumba. La útima última anotación reza: 'Las paredes de la casa se me caen encima, iré a ponerle flores frescas a la tumba de Ana y a pasear un poco por la playa'. Ese mismo día su cuerpo fue encontrado ahogado en la playa tras caer desde el promontorio donde está la tumba de Ana."
+        "message": "En el diario de tu madre, además de sus anotaciones, también hay intercaladas fotos y dibujos. Ves que el diario se empezó a escribir poco después de la muerte de Ana y termina días antes de la muerte de tu madre. La lectura te desgarra. Cuenta lo responsable que se siente de la muerte de Ana y que no tiene fuerzas para cuidar de ti, y por eso te había enviado al internado en la ciudad. También cuenta que se está volviendo loca y que ha creído ver a Ana varias veces en la casa y rondando la tumba. La útima última anotación reza: 'Las paredes de la casa se me caen encima, iré a ponerle flores frescas a la tumba de Ana y a pasear un poco por la playa'. Ese mismo día su cuerpo fue encontrado ahogado en la playa tras caer desde el promontorio donde está la tumba de Ana."
     },
     "items.diario.txt": {
         "message": "diario"
@@ -302,11 +302,11 @@
     "actions.apagar_linterna.txt": {
         "message": "apagar linterna"
     },
-    "actions.conectar_cargador.txt": {
-        "message": "conectar al móvil"
+    "actions.cargar.txt": {
+        "message": "cargar"
     },
-    "actions.desconectar_cargador.txt": {
-        "message": "desconectar del móvil"
+    "actions.desconectar.txt": {
+        "message": "desconectar"
     },
     "actions.write.txt": {
         "message": "escribir"

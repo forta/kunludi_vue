@@ -1630,7 +1630,24 @@ let initItems =  function  (items, primitives) {
 	});
 
 		
-		
+	// vagabunda (pc)
+	items.push ({
+		id: 'vagabunda',
+
+		shownWhenAbsent: function (indexItem) {
+			return (usr.getVersion() == "VC") 
+		}
+	});
+
+	// cazador (pc)
+	items.push ({
+		id: 'cazador',
+
+		shownWhenAbsent: function (indexItem) {
+			return (usr.getVersion() == "VC") 
+		}
+	});
+	
 	// flautista (npc)
 	items.push ({
 		id: 'flautista',

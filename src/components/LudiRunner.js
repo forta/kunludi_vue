@@ -403,106 +403,161 @@ exports.updateChoices = function () {
 	exports.choices = []
 
 	exports.choices.push ({choiceId:'top', isLeafe:false, parent:""});
-	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'here', parent:"top"});
-	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'carrying', parent:"top"});
-	exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'notHere', parent:"top"});
-	exports.choices.push ({choiceId:'directionGroup', isLeafe:false, directionGroup: 'fromHere', parent:"top"});
-	exports.choices.push ({choiceId:'directActions', isLeafe:false, parent:"top"});
-
-  if (this.choice.choiceId == 'top') {
-
-    var loc = arrayObjectIndexOf (exports.world.items, "id", exports.world.items[exports.userState.profile.indexPC].loc)
-
-    // set current loc as known
-    if (typeof exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[loc] == 'undefined') {
-      console.log ("Loc ["+ exports.world.items[exports.userState.profile.indexPC].loc + "] is now known.")
-      exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[loc] = {}
-    }
-  }
-
-	// direct action look always present
-	if (this.choice.choiceId == 'top') {
-		exports.choices.push ({choiceId:'action0', isLeafe:true, parent:"directActions", action:{actionId:'look', parent:"top"}});
+	
+	var internalChoices = {
+		directActions: [],
+		directionGroup: [],
+		itemGroup_here: [],
+		itemGroup_carrying: [],
+		itemGroup_notHere: []
 	}
 	
-	// rest of direct actions
-	if (this.choice.choiceId == 'directActions') {
+	/*
+	if (this.choice.choiceId == 'top') {
+
+		var loc = arrayObjectIndexOf (exports.world.items, "id", exports.world.items[exports.userState.profile.indexPC].loc)
+
+		// set current loc as known
+		if (typeof exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[loc] == 'undefined') {
+		  console.log ("Loc ["+ exports.world.items[exports.userState.profile.indexPC].loc + "] is now known.")
+		  exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[loc] = {}
+		}
+	}
+	*/
+
+	// direct actions
+	for (var i=0; i< exports.world.actions.length; i++) {
+		if (exports.world.actions[i].numpar == 0) {
+			var actionId = exports.world.actions[i].id
+			if (exports.actionIsEnabled  (actionId)) {
+				internalChoices.directActions.push ({choiceId:'action0', isLeafe:true, parent:"directActions", action: { actionId: actionId, parent:"top"}})
+			}
+		}
+	}
+
+	// directions
+	for (let d=0;d<exports.world.directions.length;d++) {
+
+		var link = exports.getTargetAndLocked (exports.userState.profile.loc, d)
+		if (link.target >= 0) {
+			internalChoices.directionGroup.push ({choiceId:'dir1', isLeafe:true, parent:"directionGroup", parent:"directActions", action: {actionId:'go', d1: d, target:link.target, isKnown:link.isKnown}})
+		}
+	}
+
+	// items here
+	for (let i=0;i<exports.world.items.length;i++) {
+		if (i == exports.userState.profile.indexPC) continue;
+		if (exports.world.items[i].type == "loc") continue;
+
+		if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].loc) {
+			internalChoices.itemGroup_here.push ({choiceId:'obj1', item1: i, parent:"here"});
+		}
+	}
+
+	// items carried
+	for (let i=0;i<exports.world.items.length;i++) {
+		if (i == exports.userState.profile.indexPC) continue;
+		if (exports.world.items[i].type == "loc") continue;
+
+		if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].id) {
+			internalChoices.itemGroup_carrying.push ({choiceId:'obj1', item1: i, parent:"carrying"});
+		}
+	}
+
+	// absent items
+	for (let i=0;i<exports.world.items.length;i++) {
+		if (i == exports.userState.profile.indexPC) continue;
+		if (exports.world.items[i].type == "loc") continue;
+		if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].loc) continue;
+		if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].id) continue;
+
+		var gameIndex = arrayObjectIndexOf(this.gameReactions.items, "id", exports.world.items[i].id);
+
+		if (gameIndex>=0) {
+			if (typeof this.gameReactions.items[gameIndex].shownWhenAbsent == 'function'){
+				if (!this.gameReactions.items[gameIndex].shownWhenAbsent ()) continue
+	
+				internalChoices.itemGroup_notHere.push ({choiceId:'obj1', item1: i, parent:"notHere"});
+			}
+		}
+	}
 		
-		for (var i=0; i< exports.world.actions.length; i++) {
-			if (exports.world.actions[i].numpar == 0) {
-				var actionId = exports.world.actions[i].id
-				if (exports.actionIsEnabled  (actionId)) { 	
-					exports.choices.push ({choiceId:'action0', isLeafe:true, parent:"directActions", action: { actionId: actionId, parent:"top"}})
-				}
+	// counting choices 
+	if (internalChoices.directActions.length > 0){
+		exports.choices.push ({choiceId:'directActions', isLeafe:false, parent:"top", count: internalChoices.directActions.length});
+
+		if ((this.choice.choiceId == 'top') || (this.choice.choiceId == 'directActions')) {
+
+			// direct action look is always present
+			if (this.choice.choiceId == 'top') {
+				// to-do: asset: PC can see
+				exports.choices.push ({choiceId:'action0', isLeafe:true, parent:"directActions", action:{actionId:'look', parent:"top"}});
+			} else {
+					
+				// all direct actions are not shown all the time (top)
+				for (var i in internalChoices.directActions) 
+					exports.choices.push (internalChoices.directActions[i])
 			}
 		}
 	}
+	
+	if (internalChoices.directionGroup.length > 0){
+		exports.choices.push ({choiceId:'directionGroup', isLeafe:false, parent:"top", count: internalChoices.directionGroup.length});
 
-	if ((this.choice.choiceId == 'top') ||(this.choice.choiceId == 'directionGroup')) {
-
-		// explore all directions
-		for (let d=0;d<exports.world.directions.length;d++) {
-
-			var link = exports.getTargetAndLocked (exports.userState.profile.loc, d)
-			if (link.target >= 0) {
-				exports.choices.push ({choiceId:'dir1', isLeafe:true, parent:"directionGroup", parent:"directActions", action: {actionId:'go', d1: d, target:link.target, isKnown:link.isKnown}})
-			}
+		if ((this.choice.choiceId == 'top') ||(this.choice.choiceId == 'directionGroup')) {
+			for (var i in internalChoices.directionGroup) 
+				exports.choices.push (internalChoices.directionGroup[i])
 		}
-
 	}
+	
+	if (internalChoices.itemGroup_here.length > 0){
+		exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'here', parent:"top", count: internalChoices.itemGroup_here.length});		
 
-	if ((this.choice.choiceId == 'top') || (this.choice.choiceId == 'itemGroup')) {
-
-		if ((this.choice.choiceId == 'top') || (this.choice.itemGroup == 'here')) {
-
-			for (let i=0;i<exports.world.items.length;i++) {
-				if (i == exports.userState.profile.indexPC) continue;
-				if (exports.world.items[i].type == "loc") continue;
-
-				if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].loc) {
-					exports.choices.push ({choiceId:'obj1', item1: i, parent:"here"});
-				}
-			}
+		if ((this.choice.choiceId == 'top') || ((this.choice.choiceId == 'itemGroup') && (this.choice.itemGroup == 'here'))) {
+			for (var i in internalChoices.itemGroup_here) 
+				exports.choices.push (internalChoices.itemGroup_here[i])
 		}
+	}
+	
+	if (internalChoices.itemGroup_carrying.length > 0){
+		exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'carrying', parent:"top", count: internalChoices.itemGroup_carrying.length});		
 
-		if ((this.choice.choiceId == 'top') || (this.choice.itemGroup == 'carrying')) {
-
-			for (let i=0;i<exports.world.items.length;i++) {
-				if (i == exports.userState.profile.indexPC) continue;
-				if (exports.world.items[i].type == "loc") continue;
-
-				if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].id) {
-					exports.choices.push ({choiceId:'obj1', item1: i, parent:"carrying"});
-				}
-			}
+		if ((this.choice.choiceId == 'top') || ((this.choice.choiceId == 'itemGroup') && (this.choice.itemGroup == 'carrying'))) {
+			for (var i in internalChoices.itemGroup_carrying) 
+				exports.choices.push (internalChoices.itemGroup_carrying[i])
 		}
 	}
 
-	if ( (this.choice.choiceId == 'itemGroup') && (this.choice.itemGroup == 'notHere')) {
-		for (let i=0;i<exports.world.items.length;i++) {
-			if (i == exports.userState.profile.indexPC) continue;
-			if (exports.world.items[i].type == "loc") continue;
-			if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].loc) continue;
-			if (exports.world.items[i].loc == exports.world.items[exports.userState.profile.indexPC].id) continue;
+	if (internalChoices.itemGroup_notHere.length > 0){
 
-			// item known
-			if (typeof exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[i] != "undefined")
-				exports.choices.push ({choiceId:'obj1', item1: i, parent:"notHere"});
+		exports.choices.push ({choiceId:'itemGroup', isLeafe:false, itemGroup: 'notHere', parent:"top", count: internalChoices.itemGroup_notHere.length});		
+		// absent items are not shown all the time (top)
+		if ((this.choice.choiceId == 'itemGroup') && (this.choice.itemGroup == 'notHere')) { 
+			for (var i in internalChoices.itemGroup_notHere) 
+				exports.choices.push (internalChoices.itemGroup_notHere[i])
 		}
 	}
-
+	
 	if (this.choice.choiceId == 'obj1') {
 
+		// if the item has items inside (container), show them
+		for (var itemInside=0; itemInside< exports.world.items.length; itemInside++) {
+			if (itemInside == this.choice.item1) continue; // item1 into itself
+			if (exports.world.items[itemInside].type == 'loc') continue // location into item1
+			
+			var itemInsideLoc = arrayObjectIndexOf (exports.world.items, "id",exports.world.items[itemInside].loc)
+			
+			if (itemInsideLoc != this.choice.item1)  continue // itemInsideLoc must be the container (item1)
+				
+			// finally the container must be carried or here
+			if ( (exports.world.items[itemInsideLoc].loc != exports.world.items[this.userState.profile.indexPC].id) &&  // not carried
+				 (exports.world.items[itemInsideLoc].loc != exports.world.items[this.userState.profile.indexPC].loc) )  // not here
+				continue
 
-		// if the item has items inside, show them
-		for (var i=0; i< exports.world.items.length; i++) {
-			if (i == this.choice.item1) continue; // item1 on item1?
-
-			if (exports.world.items[i].loc == exports.world.items[this.choice.item1].id) {
-				exports.choices.push ({choiceId:'obj1', item1: i, parent:"inside"}); // to-do: "Inside" instead of "notHere"
-			}
+			exports.choices.push ({choiceId:'obj1', item1: itemInside, parent:"inside"});
 		}
 
+		// actions on the item
 		for (var i=0; i< exports.world.actions.length; i++) {
 			var actionId = exports.world.actions[i].id
 			if (exports.world.actions[i].numpar == 0) continue;
@@ -527,12 +582,14 @@ exports.updateChoices = function () {
 			}
 		}
 
+		/*
 		if (this.choice.parent == 'notHere') {
 			// specially for absent items
 			if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[this.choice.item1] != undefined) {
 				exports.choices.push ({choiceId:'action', isLeafe:true, parent:"obj1", action: { item1: this.choice.item1, actionId: "where" }})
 			}
 		}
+		*/
 
 	}
 

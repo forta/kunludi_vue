@@ -392,6 +392,14 @@ let initReactions =  function  (reactions, primitives) {
 				primitives.GD_CreateMsg (1, "fantasma_asiente_cuando_metes_en_chimenea", "Una espantosa voz que viene de todos lados y ninguno grita un \'¡sí!\'.<br/>"); 
 				primitives.CA_ShowMsg ("fantasma_asiente_cuando_metes_en_chimenea");
 				// sino, tratamiento por defecto
+			} else if (((par_c.item1Id == "cargador")||(par_c.item1Id == "móvil")) && ((par_c.item2Id == "maleta") || (par_c.item2Id == "estantería"))) {
+				// meter cargador o móvil conectado
+				if (primitives.IT_GetAttPropValue (primitives.IT_X("cargador"), "generalState", "state") != "0") {
+					primitives.GD_CreateMsg (1, "meter_o1_mientras_se_carga_móvil", "¿Meter %o1 mientras el móvil se carga? Va a ser que no.<br/>"); 
+					primitives.CA_ShowMsg ("meter_o1_mientras_se_carga_móvil", {o1:par_c.item1Id});
+					return true
+				}
+
 			}
 		}
 		
@@ -691,12 +699,20 @@ let initReactions =  function  (reactions, primitives) {
 
 	reactions.push ({ 
 
-		id: 'conectar_cargador', 
+		id: 'cargar', 
 		
 		enabled: function (indexItem, indexItem2) {
 			
-			if (indexItem != primitives.IT_X("cargador")) return false;	
+			var otherItem
+			
+			if (indexItem == primitives.IT_X("cargador")) otherItem = primitives.IT_X("móvil")
+			else if (indexItem == primitives.IT_X("móvil")) otherItem = primitives.IT_X("cargador")
+			else return false
+			 
+			if (!primitives.IT_IsCarriedOrHere(otherItem)) return false
+			
 			if (primitives.IT_GetAttPropValue (primitives.IT_X("cargador"), "generalState", "state") != "0") return false
+			
 			return true;
 		},
 		
@@ -720,11 +736,11 @@ let initReactions =  function  (reactions, primitives) {
 	
 	reactions.push ({ 
 
-		id: 'desconectar_cargador', 
+		id: 'desconectar', 
 		
 		enabled: function (indexItem, indexItem2) {
 			
-			if (indexItem != primitives.IT_X("cargador")) return false;		
+			if ( (indexItem != primitives.IT_X("cargador")) && (indexItem != primitives.IT_X("móvil")) ) return false;	
 			if (primitives.IT_GetAttPropValue (primitives.IT_X("cargador"), "generalState", "state") == "0") return false
 			return true;
 		},
@@ -858,7 +874,7 @@ let initReactions =  function  (reactions, primitives) {
 
 				if (primitives.IT_GetAttPropValue (par_c.target, "generalState", "state") == "0") {
 
-					primitives.GD_CreateMsg (1, "primera_vez_salón_comedor", "<b>Entras.</b><br/><br/>El salón comedor está casi igual que hace quince años, si exceptuamos el polvo acumulado. Retiras las sábanas y las sacudes fuera. Ahora sí luce casi como antes. Entre diversos planfletos bajo la puerta, te llama la atención uno reciente de servicio de comida a domicilio, que no te vendrá mal estos días.<br/>");
+					primitives.GD_CreateMsg (1, "primera_vez_salón_comedor", "<b>Entras.</b><br/><br/>El salón comedor está casi igual que hace quince años, si exceptuamos el polvo acumulado. Retiras las sábanas y las sacudes fuera. Ahora sí, el salón luce casi como antes. Entre diversos planfletos bajo la puerta, te llama la atención uno de comida a domicilio, TelePapeo, que no te vendrá mal estos días.<br/>");
 					primitives.CA_ShowMsg ("primera_vez_salón_comedor");
 					primitives.IT_SetAttPropValue (par_c.target, "generalState", "state", "1")
 				}
