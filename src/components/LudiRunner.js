@@ -240,7 +240,7 @@ exports.processChoice = function  (choice) {
 		}
 
 		// after execution, show the parent
-		if ( 	!pendingRefresh && 
+		if ( !pendingRefresh && 
 		
 				// only after game actions
 				( ((choice.choiceId == 'action0') ||(choice.choiceId == 'action') || (choice.choiceId == 'action2')) &&
@@ -302,13 +302,6 @@ exports.processAction = function(action) {
 			exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item2] = {}
 		exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1].whereWas = exports.world.items[action.item2].loc
 	}
-
-	// updating exports.userState.profile.loc
-	if (exports.world.items[exports.userState.profile.loc].id != exports.world.items[exports.userState.profile.indexPC].loc) {
-		let newLoc = arrayObjectIndexOf (exports.world.items, "id", exports.world.items[exports.userState.profile.indexPC].loc)
-		exports.userState.profile.loc = newLoc
-
-	}
 	
 }
 
@@ -328,6 +321,8 @@ exports.worldTurn = function() {
 			// by now: no lib turn
 		}
     }
+		
+	exports.updateChoices()
 }
 
 
@@ -399,6 +394,13 @@ exports.getTargetAndLocked = function (loc, direction) {
 exports.updateChoices = function () {
 
 	if (this.choice.choiceId == 'quit') return
+	
+	// updating exports.userState.profile.loc
+	if (exports.world.items[exports.userState.profile.loc].id != exports.world.items[exports.userState.profile.indexPC].loc) {
+		let newLoc = arrayObjectIndexOf (exports.world.items, "id", exports.world.items[exports.userState.profile.indexPC].loc)
+		exports.userState.profile.loc = newLoc
+
+	}
 
 	exports.choices = []
 

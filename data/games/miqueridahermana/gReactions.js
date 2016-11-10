@@ -473,6 +473,13 @@ let initReactions =  function  (reactions, primitives) {
 				return true
 			}
 
+			if (primitives.PC_GetCurrentLoc() == primitives.IT_X("cuevita")) {
+				primitives.GD_CreateMsg (1, "no_dejas_nada_en_cueva", "Mejor no dejar nada en la cueva, no vaya a ser que suba la marea y lo pierdas.<br/>"); 
+				primitives.CA_ShowMsg ("no_dejas_nada_en_cueva");
+
+				return true
+			}
+
 		}
 		
 	});
@@ -709,6 +716,7 @@ let initReactions =  function  (reactions, primitives) {
 			else if (indexItem == primitives.IT_X("móvil")) otherItem = primitives.IT_X("cargador")
 			else return false
 			 
+			if (!primitives.IT_IsCarriedOrHere(indexItem)) return false
 			if (!primitives.IT_IsCarriedOrHere(otherItem)) return false
 			
 			if (primitives.IT_GetAttPropValue (primitives.IT_X("cargador"), "generalState", "state") != "0") return false
@@ -939,6 +947,11 @@ let initReactions =  function  (reactions, primitives) {
 					primitives.CA_ShowMsg ("primera_vez_cuevita");
 					primitives.IT_SetAttPropValue (par_c.target, "generalState", "state", "1")
 				}
+				
+				/* to-do: primera vez a la caleta
+				        "message": "Avanzas casi arrastrando los pies. No quieres ir, pero no puedes evitarlo. Llegas hasta hasta la altura del agua y, no puedes creerlo, la marea está tan baja hoy como aquel fatídico día. Los barrotes de seguridad que se pusieron a la entrada de la pequeña cueva para evitar que la tragedia se repitiera están muy oxidados y parecen ser fáciles de romper."
+
+				*/
 				
 			}
 			
@@ -1175,6 +1188,7 @@ let initReactions =  function  (reactions, primitives) {
 		
 		enabled: function (indexItem, indexItem2) {
 			
+			if (indexItem == primitives.IT_X("cerillas")) return true;
 			if (primitives.IT_GetAttPropValue (primitives.IT_X("libro_magia"), "generalState", "state") == "2") return false // ya arde
 			if (indexItem == primitives.IT_X("chimenea")) return true;
 			return false;
@@ -1182,6 +1196,15 @@ let initReactions =  function  (reactions, primitives) {
 		
 		reaction: function (par_c) {
 		
+			if (par_c.item1Id == "cerillas") {
+				if (primitives.PC_GetCurrentLoc() != primitives.IT_X("salón_comedor")) {
+					primitives.GD_CreateMsg (1, "no_gastar_cerillas", "Haces el amago de encender una, pero te das cuenta de que sólo la estarías desaprovechando aquí.<br/>");
+					primitives.CA_ShowMsg ("no_gastar_cerillas");
+					
+					return true
+				}
+			}
+
 			if (!primitives.IT_IsCarriedOrHere(primitives.IT_X("cerillas"))) {
 				primitives.GD_CreateMsg (1, "sin_cerillas", "No ves nada alrededor con qué encender la chimenea.<br/>");
 				primitives.CA_ShowMsg ("sin_cerillas");
@@ -1217,7 +1240,7 @@ let initReactions =  function  (reactions, primitives) {
 				} else { // getting PNJId
 							
 					if (par_c.option == "apagar_cerilla") {
-						primitives.GD_CreateMsg (1, "hechizo1_abortado", "Con apenas fuerzas, soplas la cerilla. De repente, la puerta que va a la cocina se abre con estrépito y aparece el espectro de tu querida hermana con cara de rabia. Su mirada se dirige a las tijeras, que salen disparadas hacia ti y que sólo esquivas por los pelos.<br/><br/>La caja de cerillas sale volando de tus manos y ves ante tus ojos cómo se abre y se enciende una cerrilla por sí sola y prende fuego a la chimenea. ¡No! De manera instintiva intentas sacar tu manuscrito de las llamas, pero ya es demasiado tarde.<br/><br/>Pero ése no es suficiente sacrificio para tu hermana, que se sitúa entre la entrada de la casa y las escalera bloqueando tu salida y te señala hacia la cocina y la salida posterior de la casa.<br><br/>"); 
+						primitives.GD_CreateMsg (1, "hechizo1_abortado", "Con apenas fuerzas, soplas la cerilla. Tu querida hermana te mira con rabia y luego dirige su atención a las tijeras, que salen disparadas hacia ti y que sólo esquivas por los pelos.<br/><br/>La caja de cerillas sale volando de tus manos y ves ante tus ojos cómo se abre y se enciende una cerrilla por sí sola y prende fuego a la chimenea. ¡No! De manera instintiva intentas sacar tu manuscrito de las llamas, pero ya es demasiado tarde.<br/><br/>Pero ése no es suficiente sacrificio para tu hermana, que se sitúa entre la entrada de la casa y las escalera bloqueando tu salida y te señala hacia la cocina y la salida posterior de la casa.<br><br/>"); 
 						primitives.CA_ShowMsg ("hechizo1_abortado");
 						
 						primitives.IT_SetLocToLimbo (primitives.IT_X("manuscrito"));
@@ -1315,6 +1338,9 @@ export function turn (indexItem) {
 	var  primitives = this.primitives // tricky
 
 	if (indexItem == primitives.IT_X("móvil")) usr.incrementar_hora(1)
+		
+	if (indexItem == primitives.IT_X("cargador")) usr.turnoCargador()
+	
 	
 	if ((indexItem == primitives.IT_X("hippie")) || (indexItem == primitives.IT_X("embarazada"))) usr.turnoPNJ(indexItem)
 	if (indexItem == primitives.IT_X("caleta")) usr.turnoCaleta()
@@ -1330,6 +1356,20 @@ export function turn (indexItem) {
 
 // internal functions ****************************************************************************************************************
 
+usr.turnoCargador = function() {
+	var  primitives = this.primitives // tricky
+
+	var indexItemC = primitives.IT_X("cargador")
+	var indexItemM = primitives.IT_X("móvil")
+
+	if ( (primitives.IT_GetAttPropValue (indexItemC, "generalState", "state") != "0") && 
+	     ((!primitives.IT_IsCarriedOrHere(indexItemC)) || (!primitives.IT_IsCarriedOrHere(indexItemM))) ) {
+		primitives.GD_CreateMsg (1, "desconectar_cargador", "Desconectas el cargador del móvil.<br/>");
+		primitives.CA_ShowMsg ("desconectar_cargador");
+		primitives.IT_SetAttPropValue (indexItemC, "generalState", "state", "0")
+	}
+	
+}
 
 usr.bajoTecho = function() {
 	var  primitives = this.primitives // tricky
@@ -1473,7 +1513,12 @@ usr.reseteoDia = function() {
 	primitives.CA_ShowMsg ("sueño"); // def de mensaje mensaje reusada de antes			
 	
 	primitives.IT_SetAttPropValue (primitives.IT_X("móvil"), "apps", "app_reloj", "450") // 7:30 de la mañana
-	primitives.IT_SetAttPropValue (primitives.IT_X("manuscrito"), "generalState", "state", "0")	
+	
+	// reseteo tiempo pendiente a dedicar en manuscrito
+	if (primitives.PC_IsAt (primitives.IT_X("estudio")))
+		primitives.IT_SetAttPropValue (primitives.IT_X("manuscrito"), "generalState", "state", "360")	
+	else
+		primitives.IT_SetAttPropValue (primitives.IT_X("manuscrito"), "generalState", "state", "0")	
 	
 	var dias = +primitives.IT_GetAttPropValue (primitives.IT_X("escritor"), "generalState", "state")
 	primitives.IT_SetAttPropValue (primitives.IT_X("escritor"), "generalState", "state", dias + 1)
@@ -1758,16 +1803,18 @@ usr.turnoCuevita = function () {
 	
     if (+primitives.IT_GetAttPropValue (primitives.IT_X("libro_magia"), "generalState", "state") >= 2) return // con fantasma en escena final
 
-	
 	primitives.GD_CreateMsg (1, "la_marea_sube", "La marea sube y cada ves oyes el mar más cerca. Puede ser peligroso permanecer mucho tiempo aquí.<br/>");
 	primitives.CA_ShowMsg ("la_marea_sube");
 
 	// venció el tiempo de la marea -> fuera de la cueva, de manera automática
 	if (usr.minutosRestantesMarea() <= 0) {
-		primitives.GD_CreateMsg (1, "el_agua_entra", "El agua empieza a entrar en la cueva. Te asustas, recoges tus cosas y sales apresuradamente.<br/><br/>"); 
+		primitives.GD_CreateMsg (1, "el_agua_entra", "El agua empieza a entrar en la cueva. Te asustas y sales apresuradamente.<br/><br/>"); 
 		primitives.CA_ShowMsg ("el_agua_entra");
-		// to-do: coger cosas y sacarlo de la cueva
-		
+
+		// sacarlo de la cueva
+		primitives.IT_SetLoc(primitives.PC_X(), primitives.IT_X("caleta"));
+		primitives.CA_Refresh()
+
 	} 
 	
 	if (primitives.IT_GetAttPropValue (primitives.IT_X("móvil"), "apps", "app_linterna") == "0")  {
@@ -1775,7 +1822,7 @@ usr.turnoCuevita = function () {
 		primitives.CA_ShowMsg ("cueva_se_oscurece");
 		
 		primitives.IT_SetLoc(primitives.PC_X(), primitives.IT_X("caleta"));
-		// to-do: recoger cosas
+		primitives.CA_Refresh()
 		
 	}
 	
@@ -1803,7 +1850,6 @@ usr.turnoCestaTelePapeo = function () {
 	
 	
 }
-
 	
 usr.turnoFantasma = function () {
 	
@@ -1814,6 +1860,7 @@ usr.turnoFantasma = function () {
 	
 	if (estado == 1) { 
 		if ( !primitives.IT_IsAt(primitives.IT_X("setas"), primitives.IT_X("limbo")) &&
+		     !primitives.IT_IsAt(primitives.IT_X("foto3"), primitives.IT_X("limbo")) &&
 		     !primitives.IT_IsAt(primitives.IT_X("collar"), primitives.IT_X("limbo")) &&
 		     !primitives.IT_IsAt(primitives.IT_X("servilleta"), primitives.IT_X("limbo")) ) {
 			primitives.GD_CreateMsg (1, "fantasma_te_incita_a_hechizo", "Oyes una voz que te dice \'haz el hechizo, hazlo, ¡hazlo!\'"); 

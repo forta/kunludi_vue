@@ -104,7 +104,6 @@ function expandDynReactions (state, reactionList) {
 	
 }
 
-
 function reactionListContains_Type (reactionList, type) {
 	
 	for (let r in reactionList) {
@@ -113,12 +112,9 @@ function reactionListContains_Type (reactionList, type) {
 
 	return false
 	
-	
 }
 
-
-
-function msgResolution (longMsgId) {
+function msgResolution (longMsgId) { // to-do: it's repeated code which is in the language module
 	
 	var expanded = ""
 	
@@ -130,44 +126,6 @@ function msgResolution (longMsgId) {
 	}
 	
 	return expanded
-}
-
-
-function expandParams (textIn, param) {
-
-	let availableParams = ["a1", "o1", "o2", "d1", "s1", "s2", "s3", "s4", "s5", "s6"] // yeah, clearly improvable
-	let expandedParams = [], numParms = 0
-
-	for (let i=0; i<availableParams.length;i++) {
-
-		let p1, p2
-
-		if ((p1 = textIn.indexOf("%" + availableParams[i])) >= 0) {   // parámeters like "%o1" and so on
-			expandedParams[numParms] = {code: availableParams[i]}
-
-			let type = "undefined!"
-			if (availableParams[i][0] == "o") type = "items"
-			else if (availableParams[i][0] == "d") type = "directions"
-			else if (availableParams[i][0] == "a") type = "actions"
-			else if (availableParams[i][0] == "s") type = "string"
-
-			if (type == "string") 
-				expandedParams[numParms].text = param[availableParams[i]] // as is
-			else
-				expandedParams[numParms].text = state.translateGameElement(type, param[availableParams[i]], "txt")
-
-			if ((p2 = textIn.indexOf("_" + availableParams[i] +  "%")) >= 0) {
-				expandedParams[numParms].modifiers = textIn.substring (p1+availableParams[i].length + 2,p2)
-				// to-do: get language-dependent properties!
-				expandedParams[numParms].properties = {artikolo:true}
-			}
-			numParms++
-		}
-	}
-	
-
-	return state.language.buildSentence (textIn, expandedParams)
-
 }
 
 function processChoice (state, choice) {
@@ -313,11 +271,11 @@ const state = {
 
 			if (isEcho) { // echo message
 				if (choice.choiceId == 'action') {
-					let msg = state.language.expandText  ("messages", "Echo_o1_a1", "txt")
-					return expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1})
+					let msg = state.language.getMessageFromLongMsgId  (state.language.getLongMsgId ("messages", "Echo_o1_a1", "txt"))
+					return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1})
 				} else {
-					let msg = state.language.expandText  ("messages", "Echo_o1_a1_o2", "txt")
-					return expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1, o2: choice.action.item2})
+					let msg = state.language.getMessageFromLongMsgId  (state.language.getLongMsgId ("messages", "Echo_o1_a1_o2", "txt"))
+					return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1, o2: choice.action.item2})
 				}
 
 			} else { // button
@@ -329,10 +287,12 @@ const state = {
 					return state.translateGameElement("actions", choice.action.actionId) + " -> " + state.translateGameElement("items", choice.action.item2, "txt")
 			}
 
-		}
-		else if (choice.choiceId == 'obj1') return state.translateGameElement("items", choice.item1, "txt")
-
-		else if (choice.choiceId == 'dir1') {
+		} else if (choice.choiceId == 'obj1') {
+			
+			return state.language.expandParams ("%o1", {o1: choice.item1})
+			// return state.translateGameElement("items", choice.item1, "txt") // to-do: will we rewrite state.translateGameElement using state.language.expandParams ??
+			
+		} else if (choice.choiceId == 'dir1') {
 			// show the target only ii it is known
 			console.log	("choice.action??: " + JSON.stringify(choice.action) )
 
@@ -398,16 +358,6 @@ const state = {
 
 		expanded = msgResolution (longMsgId)
 	
-		/*
-		// ---------- (begin msg resolution)
-		if (state.game.messages [state.locale] != undefined) {
-			if (state.game.messages [state.locale][longMsgId] != undefined) expanded = state.game.messages [state.locale][longMsgId].message
-		}
-		if ((expanded == "") && (state.lib.messages [state.locale] != undefined)) {
-			if (state.lib.messages [state.locale][longMsgId] != undefined) expanded = state.lib.messages [state.locale][longMsgId].message
-		}
-		*/
-
 		// if dev msg not exists, show json line to add in the console
 		if (reaction.type == "rt_dev_msg") {
 			if (expanded == "") {
@@ -435,7 +385,7 @@ const state = {
 		if (reaction.type == "rt_graph") {
 			// dirty trick (to-do)
 			if (reaction.param != undefined)
-				expanded = expandParams (expanded,  {o1: reaction.param[0]})
+				expanded = state.language.expandParams (expanded,  {o1: reaction.param[0]})
 
 			// to-do: show the picture (http)
 			//if (reaction.isLink)
@@ -455,7 +405,7 @@ const state = {
 		} else if ((reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues")) {
 			
 			// dirty trick (to-do)
-			expanded = expandParams (expanded,  {o1: reaction.param[0]})
+			expanded = state.language.expandParams (expanded,  {o1: reaction.param[0]})
 			
 			var itemExpanded = msgResolution ("items." + reaction.item + ".txt") 
 			if (itemExpanded == "") itemExpanded = reaction.item // in case of not defined
@@ -474,14 +424,14 @@ const state = {
 			state.menu = ['Press a key']
 		} 
 
-		expanded = expandParams (expanded, reaction.param)
+		expanded = state.language.expandParams (expanded, reaction.param)
 
 		return {type:'text', txt: expanded  }
 	},
 
 	translateGameElement: function (type, index, attribute) {
 
-		return state.language.expandText (type, index, attribute)
+		return state.language.getMessageFromLongMsgId (state.language.getLongMsgId (type, index, attribute))
 
 	}
 
@@ -575,10 +525,12 @@ const mutations = {
 	state.game.messages [state.locale] = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/messages.json')
 	//console.log ("gamemsg: " + JSON.stringify(state.game.messages [state.locale]))
 
+	// extraMessages
+	state.game.extraMessages = []
+	state.game.extraMessages [state.locale] = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/extraMessages.json')
+
 	state.game.world =  require ('../../data/games/' + gameId + '/world.json')
 
-	//state.game.extraMessages = []
-	//state.game.extraMessages [state.locale] = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/extraMessages.json')
 
 	state.runner = require ('../components/LudiRunner.js');
 	state.runner.createWorld(state.lib.world, state.game.world)
@@ -594,7 +546,7 @@ const mutations = {
 
 	state.runner.dependsOn(state.lib.reactions, state.game.reactions, state.reactionList)
 
-	state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
+	state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.game.extraMessages[state.locale], state.runner.world )
 
 	if ((slotId != undefined) && (slotId!='default')) 
 		mutations.LOAD_GAME_STATE (state, slotId)
