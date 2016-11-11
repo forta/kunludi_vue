@@ -40,17 +40,6 @@ cestaTelePapeo.state:  array en formato json de los items pedidos a TelePapeo
 
 timbre.state: turnos que permanece el PNJ antes de irse
 
-diario.state:?
-
-
-to-do's:
-- ABORTAR EJECUCIÓN DE TURNOS DESPUÉS DE END_GAME!!
-
-
-- se te queda el cargador en el estudio y se te acaban la batería -> pedir recarga a Vicky o a Charlie: "ven en un rato a recogerlo"
-- cuando saludas a charlie, sino tienes baterías ni la app_mareas -> no te lo instala, pero te dice que tiene una app guapa.
-- usar ex() dinámico
-
 Horarios:
 * luz solar: entre las 7:30 y las 18:00
 * escritor (protagonista): despierto de 7:30 a 23:30
@@ -206,7 +195,7 @@ let initReactions =  function  (reactions, primitives) {
 				if ((PNJId == "hippie") && (primitives.IT_GetAttPropValue (primitives.IT_X("hippie"), "generalState", "state") != "0")) {
 
 					if (primitives.IT_GetAttPropValue (primitives.IT_X("hippie"), "generalState", "state") == "2") {
-						primitives.GD_CreateMsg (1, "sabes_que_no_te_abrirá", "Tocas el timbre, ves encenderse una luz sobre la cámara... pero sabes que después de la última fiesta salvaje Charlie te va a abrir durante un tiempo.<br/><br/>"); 
+						primitives.GD_CreateMsg (1, "sabes_que_no_te_abrirá", "Tocas el timbre, ves encenderse una luz sobre la cámara... pero sabes que después de la última fiesta salvaje Charlie no te va a abrir durante un tiempo.<br/><br/>"); 
 						primitives.CA_ShowMsg("sabes_que_no_te_abrirá");
 						return true
 					}
@@ -378,12 +367,17 @@ let initReactions =  function  (reactions, primitives) {
 		reaction: function (par_c) {
 
 			if (par_c.item2Id == "chimenea") {
-				if ((par_c.item1Id != "manuscrito") && (par_c.item1Id != "foto3")  && (par_c.item1Id != "servilleta")) {
+				if ((par_c.item1Id != "manuscrito") && (par_c.item1Id != "foto3") && (par_c.item1Id != "foto2")  && (par_c.item1Id != "servilleta")) {
 					primitives.GD_CreateMsg (1, "no_dejar_meter_en_chimenea", "Podría ser interesante hacer que arda... pero no en esta ocasión.<br/>"); 
 					primitives.CA_ShowMsg ("no_dejar_meter_en_chimenea");
 					return true
 				}
 				if (primitives.IT_GetAttPropValue (primitives.IT_X("libro_magia"), "generalState", "state") == "0") {
+					if (par_c.item1Id == "foto2") {
+						primitives.GD_CreateMsg (1, "no_dejar_meter_foto2_en_chimenea", "Recuerdas que el libro arcano muestra una imagen de una madre con sus dos hijos.<br/>"); 
+						primitives.CA_ShowMsg ("no_dejar_meter_foto2_en_chimenea");
+						return true
+					}
 					primitives.GD_CreateMsg (1, "sin_motivo_para_dejar_meter_en_chimenea", "No ves el motivo para meter eso en la chimenea.<br/>"); 
 					primitives.CA_ShowMsg ("sin_motivo_para_dejar_meter_en_chimenea");
 					return true
@@ -986,14 +980,19 @@ let initReactions =  function  (reactions, primitives) {
 			}
 
 			if (par_c.item1Id  == "cestaTelePapeo") {
-				primitives.GD_CreateMsg (1, "contenidoCestaTelePapeo", "La cesta de TelePapeo contiene:<br/>");
-				primitives.CA_ShowMsg ("contenidoCestaTelePapeo");
-
 				var pedido = JSON.parse (primitives.IT_GetAttPropValue (primitives.IT_X("cestaTelePapeo"), "generalState", "state") )
 
-				for (var i=0; i<pedido.length; i++) {
-					primitives.GD_CreateMsg (1, "TelePapeo_ver_prod_s1", "%s1<br/>" ); 
-					primitives.CA_ShowMsg ("TelePapeo_ver_prod_s1", {s1: pedido[i].id});
+				if (pedido.length == 0) {
+					primitives.GD_CreateMsg (1, "CestaTelePapeo_vacía", "La cesta de TelePapeo está vacía.<br/>");
+					primitives.CA_ShowMsg ("CestaTelePapeo_vacía");
+					
+				} else {
+					primitives.GD_CreateMsg (1, "contenidoCestaTelePapeo", "La cesta de TelePapeo contiene:<br/>");
+					primitives.CA_ShowMsg ("contenidoCestaTelePapeo");
+					for (var i=0; i<pedido.length; i++) {
+						primitives.GD_CreateMsg (1, "TelePapeo_ver_prod_s1", "%s1<br/>" ); 
+						primitives.CA_ShowMsg ("TelePapeo_ver_prod_s1", {s1: pedido[i].id});
+					}
 				}
 
 				return true
@@ -1556,7 +1555,8 @@ usr.reseteoDia = function() {
 		primitives.IT_SetAttPropValue (primitives.IT_X("cestaFreddie"), "generalState", "state", "[]")
 	}
 
-	// cesta de telepapeo al limbo
+	// vaciar cestaTelePapeo y llevarla al limbo
+	primitives.IT_SetAttPropValue (primitives.IT_X("cestaTelePapeo"), "generalState", "state", "[]") 
 	primitives.IT_SetLocToLimbo (primitives.IT_X("cestaTelePapeo"));
 	
 	// por si llamada en curso (to-do: no pasaría si una secuencia de menús se consideraran un único turno)
@@ -1724,11 +1724,14 @@ usr.hablarConPNJ = function(PNJIndex, option) {
 	} else if (option == "Vicky_preguntar_por_embarazo") {
 		// to-do: código repetido en teléfono!!
 
-		primitives.GD_CreateMsg (1, "Vicky_preguntar_por_embarazo_reacción", "Con mucho tacto masculino, le preguntas a Vicky si está embarazada de gemelos."); 
-		primitives.CA_ShowMsg ("Vicky_preguntar_por_embarazo_reacción");
+		primitives.GD_CreateMsg (1, "Vicky_preguntar_por_embarazo_reacción_1", "Con mucho tacto masculino, le preguntas a Vicky si está embarazada de gemelos."); 
+		primitives.CA_ShowMsg ("Vicky_preguntar_por_embarazo_reacción_1");
 
 		primitives.GD_CreateMsg (1, "DLG_confirma_embarazo_gemelos", "¿Tan gorda estoy? Sí, de gemelos. Te iba a decir que tengo un antojito de chocolate y tenías algo, pero como veo que me ves como una foca, casi que me abstengo");
 		primitives.CA_QuoteBegin ("embarazada",  "DLG_confirma_embarazo_gemelos", [], true ); 
+
+		primitives.GD_CreateMsg (1, "Vicky_preguntar_por_embarazo_reacción_2", "<br/>Quedan confirmados tus temores. Efectivamente, de alguna manera, el libro arcano ha llegado a tus manos para realizar el ritual de unión con tu querida hermana. Por curiosidad morbosa, decides ponerlo en práctica, para ver hasta dónde te puede llevar.<br/><br/>"); 
+		primitives.CA_ShowMsg ("Vicky_preguntar_por_embarazo_reacción_2");
 		
 		primitives.IT_SetAttPropValue (primitives.IT_X("embarazada"), "generalState", "state",  "3") // confirma embarazo
 
@@ -1847,8 +1850,6 @@ usr.turnoCestaTelePapeo = function () {
 
 	}
 		  
-	
-	
 }
 	
 usr.turnoFantasma = function () {
@@ -2278,17 +2279,35 @@ usr.menuTelefonoVicky = function (option) {
 			primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_1", "A los pocos minutos, tienes a Vicky en casa. Durante unas horas os ponéis al día sobre vuestras vidas. Te habla sobre la aburrida vida de la villa costera y cómo te ha echado de menos."); 
 			primitives.CA_ShowMsg ("escena_merienda_con_Vicky_1");
 			
-			primitives.GD_CreateMsg (1, "DLG_embarazada_habla", "Querido Al, ¡qué raro se me hace verte sin tu querida hermana al lado! Después de aquello, tu madre te ennvió lejos y casi no tuvimos tiempo ni despedirnos. Pensarás que estoy loca, pero cuando he ido a dejar flores en la tumba de tu hermana y tu malograda madre, las brumas de la costa siempre parecen tomar su forma, como llamándome a reunirme con ella. Una vez casi me despeño en el promontorio.");
-			primitives.CA_QuoteBegin ("embarazada",  "DLG_embarazada_habla", [], true ); 
+			primitives.GD_CreateMsg (1, "DLG_embarazada_habla_1", "Querido Al, ¡qué raro se me hace verte sin tu querida hermana al lado! Después de aquello, tu madre te envió lejos y casi no tuvimos tiempo ni despedirnos. Pensarás que estoy loca, pero cuando he ido a dejar flores en la tumba de tu hermana y tu malograda madre, las brumas de la costa siempre parecen tomar su forma, como llamándome a reunirme con ella. Una vez casi me despeño en el promontorio.");
+			primitives.CA_QuoteBegin ("embarazada",  "DLG_embarazada_habla_1", [], true ); 
 
-			primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_2", "Vicky da buena cuenta del helado de chocolate. De alguna manera, te las ingenias para que se haga un pequeño corte y en su servilleta caen unas gotas de su sangre. Poco después, Vicky regresa a su casa y tú sigues con tus rutinas.<br/><br/>"); 
+			// escena de la posesión
+			primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_2", "<br/>Vicky da buena cuenta del helado de chocolate. Comienza comiendo comedidamente, pero luego devora como una posesa... tan posesa que con la boca llena de chocolate te mira con los ojos en blanco y te dice:<br/>"); 
 			primitives.CA_ShowMsg ("escena_merienda_con_Vicky_2");
+			
+			primitives.GD_CreateMsg (1, "DLG_embarazada_habla_2", "Querido hermano, pronto estaremos juntos. Necesitarás sangre de nuestra nueva madre para realizar el hechizo de reunión. Aquí te dejo un poco");
+			primitives.CA_QuoteBegin ("embarazada",  "DLG_embarazada_habla_2", [], true ); 
+			
+			primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_3", "<br/>Observas atónito cómo Vicky se muerde ligeramente el labio y recoge unas gotas de sangre con una servilleta, que te tira por encima de la mesa.	Acto seguido, como si hubiera sido un mal sueño, Vicky toma el control de su cuerpo y sigue halando como si nada:<br/>"); 
+			primitives.CA_ShowMsg ("escena_merienda_con_Vicky_3");
+
+			primitives.GD_CreateMsg (1, "DLG_embarazada_habla_3", "¡Qué tonta, me he mordido de tantas ganas que tenía de chocolate!");
+			primitives.CA_QuoteBegin ("embarazada",  "DLG_embarazada_habla_3", [], true ); 
+
+			primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_4", "<br/>Poco después, Vicky regresa a su casa y tú sigues con tus rutinas.<br/><br/>"); 
+			primitives.CA_ShowMsg ("escena_merienda_con_Vicky_4");
 			
 			primitives.IT_SetLoc( primitives.PC_X(), primitives.IT_X("salón_comedor"))
 			primitives.IT_SetLoc(primitives.IT_X("servilleta"), primitives.IT_X("salón_comedor"))
 			primitives.IT_SetLocToLimbo(primitives.IT_X("embarazada"))
 				
 			primitives.IT_SetAttPropValue (primitives.IT_X("móvil"), "apps", "llamada", "") // fin de la llamada
+
+			// vaciar cestaTelePapeo
+			primitives.IT_SetAttPropValue (primitives.IT_X("cestaTelePapeo"), "generalState", "state", "[]") 
+
+			primitives.CA_Refresh()
 
 			// pasan dos horas juntos
 			usr.incrementar_hora(8)

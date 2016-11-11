@@ -730,11 +730,13 @@ const mutations = {
 	state.lib.messages [state.locale] = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
 
 	state.game.messages = []
+	state.game.extraMessages = []
 	if (state.gameId != '') {
 		state.game.messages [state.locale] = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/messages.json');
+		state.game.extraMessages [state.locale] = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/extraMessages.json')
 
 		// update links
-		state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.runner.world )
+		state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.game.extraMessages[state.locale], state.runner.world )
 
 	}
 
