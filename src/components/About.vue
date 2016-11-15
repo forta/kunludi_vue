@@ -1,42 +1,62 @@
 <template>
   <div class="about">
-	<h3>{{kt("About")}} | </h3>
+	<h3>{{kt("About")}} </h3>
     
     <div v-show="locale == 'en'">
 
-        <h4>Welcome to LUDI!</h4>  
-        <p>LUDI means to play in Esperanto, games in Latin and people in Russian... so it's an under-construction environment to play multilingual interactive fiction games in a tiny collaborative network.</p>  
-        <p>You can contact us (mail: ludi.ludon at gmail.com). if you want to collaborate somehow.</p>  
-
-        <p>With LUDI you will be able to play offline or login to interact with another players. You will also be able to share your game actions and see what the other people do in the game.</p>  
-
-        <h3>Instructions</h3>
-
-        <p>1. Choose your preferred language .</p>
-
-        <p>2. Choose your game</p>
-        
-        <p><b>Note: </b>The games "tres fuentes" and <a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">&quot;vampiro&quot;</a> were originally written in Spanish with rude machine traslation into English and Esperanto; the game <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> was originally written in Esperanto but it is under development.</p>
+    <h4>Welcome to kunludi!</h4>
+    <p>"kun-ludi" means "to play together" in Esperanto. This is a environment <u>under development</u> to play <b>multilingual adventures of interactive fiction </b>.</p>
+    
+    <p> Kunludi will later allow you to interact with other players: chat with them and see what they do in their games.</p>
+    
+    <p>The goal is to play <u>in team mode</u>, with two variants: in leader mode (leader decides and observers propose actions, including asking to be the new leader); Or in democratic mode (choosing the most popular option among those proposed by the players).</p>
+    
+    <p>If you want to collaborate in some way, you can write to: ludi.ludon (at) gmail (dot) com.</p>
+    
+    <h3>Instructions </h3>
+    
+    <p>1. Choose the language you want to use: Language </p>
+    
+    <p> 2. Choose your game: Play / Games </p>
+    
+    <h3>Available games</h3>
+    
+    <li> The game &quot;The Three Sources&quot;, in an earlier version of kunludi, took part in the <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> in 2016 and was honored in the &quot;R &amp; D &quot; section.</li>
+    <li> The game &quot;<a href="http://wiki.caad.com/VampireProject" target="_blank"> vampire </a>&quot; was originally written in Spanish but it has unpolished machine translations into English, Esperanto and French. </li>
+    <li> The game <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> was originally written in Esperanto using <a hred = " Https://eo.wikipedia.org/wiki/Aventuro_(tekstaventuro) "target =" _ blank ">another system</a>. It is still under development. </li>
+    <li> The game &quot;My Dear Sister&quot; it is only in Spanish by the moment. It was featured in the &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Beyond-Death Comp</a>&quot; in 2017.</li>
+    </ul>
 	
     
     </div> 
 
     <div v-show="locale == 'es'">
     
-        <h4>¡Bienvenido a kun-ludi!</h4> 
+        <h4>¡Bienvenido a kunludi!</h4> 
          
-        <p>"ludi" significa jugar en esperanto, juegos en latín y gente en ruso... se trata de un entorno en desarrollo para jugar aventuras  multilingües de ficción interactiva en una pequeña red colaborativa.</p>  
-        <p>Nos puedes escribir (mail: ludi.ludon at gmail.com) si quieres colaborar de alguna manera.</p>  
+        <p>"kun-ludi" significa "jugar juntos" en esperanto. Se trata de un entorno <u>en desarrollo</u> para jugar <b>aventuras multilingües de ficción interactiva</b>.</p>  
 
-        <p>LUDI permitirá jugar de manera aislada o bien conectarte e interactuar con otros jugadores. También podrás hacer público qué acciones realizas en el juego y ver qué hacen los otros jugadores.</p>  
+        <p>Kunludi permitirá más adelante interactuar con otros jugadores que jueguen a tu mismo juego, para charlar con ellos y ver qué hacen en sus partidas.</p>
+
+        <p>El objetivo es poder jugar <u>en modo equipo</u>, con dos variantes: en modo líder (el líder decide y los observadores proponen acciones, incluyendo pedir ser el nuevo líder); o bien en modo democrático (eligiéndose la opción más popular entre las propuestas por los jugadores).</p>  
+
+        <p>Si quieres colaborar de alguna manera, nos puedes escribir a: ludi.ludon (arroba) gmail (punto) com .</p>  
 
      	<h3>Instrucciones</h3>
 
-        <p>1. Elige el idioma que quieres usar</p>
+        <p>1. Elige el idioma que quieres usar: Idioma</p>
         
-        <p>2. Elige tu juego</p>
+        <p>2. Elige tu juego: Jugar / Juegos</p>
+
+     	<h3>Juegos disponibles</h3>
+        <ul>
+        <li>El juego &quot;Las Tres Fuentes&quot;, en una versión anterior de kunludi, se presentó en la <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 y fue permiada en la sección &quot;I+D&quot;.</li>
+        <li>El juego &quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; fue escritos originalmente en español pero tiene traducciones máquina sin pulir a inglés, esperanto y francés.</li>
+        <li>El juego <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto y en <a hred ="https://eo.wikipedia.org/wiki/Aventuro_(tekstaventuro)"  target="_blank">otro sistema</a>. Está aún en desarrollo.</li>
+        <li>El juego &quot;Mi Querida Hermana&quot; por ahora sólo se encuentra en español. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
+        </ul>        
         
-        <p><b>Nota: </b>Los juegos "tres fuentes" y <a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">&quot;vampiro&quot;</a> fueron escritos originalmente en español pero tienen traducciones máquina sin pulir a inglés y esperanto; el juego <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto y aún está en desarrollo.</p>
+        <br/>
 
 
     </div> 
@@ -45,38 +65,55 @@
     
 
 
-        <h4>     Estu bonvena en LUDI!     </h4>  
-        <p>LUDI signifas ludi en Esperanto, ludoj en la latina kaj personoj en la rusa ... do temas pri konstruanta medio por ludi plurlingvajn interaga-fikciajn ludojn en eta kunlabora reto.</p>  
+        <h4>Estu bonvena en kunludi!</h4>  
+        <p>Kompreneble, estas esperanta vorto kaj temas pri <u>evoluigata sistema</u> por ludi <b>plurlingvajn interaga-fikciajn aventurojn</b>.</p>  
 
-        <p>Vi povas kontakti nin (mail: ludi.ludon at gmail.com) se vi volas kunlabori iel ajn.</p>  
+        <p>Kunludi eblos interagi kun aliaj sam-aventuraj ludantoj: babili kaj scii kion ili provas.</p>  
 
-        <p>Per LUDI vi povos ludi izole aŭ ensaluti por interagi kun alia ludantoj. Vi ankaŭ povos dividi vian ludajn agojn kaj vidi kion faras la aliaj ludantoj en la ludo.</p>  
+        <p>La celo estas ludi <b>teame</b> per du variantoj: varianto gvidanta (la ĉefo decidas kaj observantoj proponas agojn, inkluzive peti esti la novan ĉefon); aŭ varianto demokratia (elektiĝos la plej populara elekto inter tiuj proponitaj de la ludantoj).
+
+        <p>Se vi volas kunlabori iel ajn, vi povas kontakti nin je. ludi.ludon (ĉe) gmail (punkto) com .</p>  
 
         <h3> Instrukcioj </h3>
 
-        <p>1. Elektu viajn preferatan lingvon</p>
+        <p>1. Elektu viajn preferatan lingvon: Lingvo</p>
 
-        <p>2. Elektu vian ludon.</p>
+        <p>2. Elektu vian ludon: Ludi / Ludoj</p>
 
-        <p><b>Rimarko: </b>La ludoj  "tres fuentes" kaj <a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">&quot;vampiro&quot;</a> estis origine verkitaj en la hispana sed kun aŭtomataj tradukoj en la angla kaj esperanto; la ludo <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> estis verkita en esperanto per <a hred ="https://eo.wikipedia.org/wiki/Aventuro_(tekstaventuro)"  target="_blank">alia sistemo</a> sed ankoraŭ ne estis portita al LUDI.</p>
+     	<h3>Haveblaj ludoj (traduk-onta parto)</h3>
+        <ul>
+        <li>El juego &quot;Las Tres Fuentes&quot;, en una versión anterior de kunludi, se presentó en la <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 y fue permiada en la sección &quot;I+D&quot;.</li>
+        <li>El juego &quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; fue escritos originalmente en español pero tiene traducciones máquina sin pulir a inglés, esperanto y francés.</li>
+        <li>El juego <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto y en otro sistema. Está aún en desarrollo.</li>
+        <li>El juego &quot;Mi Querida Hermana&quot; por ahora sólo se encuentra en español. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
+        </ul>        
+
 
     </div> 
     
     <div v-show="locale == 'fr'">
-        <h4> Bienvenue à LUDI! </h4>
+        <h4>Bienvenue à kunludi!</h4>
+        <p>"kun-ludi" signifie «jouer ensemble» en espéranto. Il est un environnement <u>en développement</u> pour jouer <b>multilingue aventure fiction interactive </b>.</p>
         
-        <p> LUDI signifie jouer en espéranto, jeux en latin et des personnes en russe ... il est donc un environnement multilingue en construction à jouer à des jeux de fiction interactive dans un petit réseau de collaboration.</p>
-        <p> Vous pouvez nous contacter (mail: ludi.ludon at gmail.com) si vous voulez collaborer en quelque sorte. </p>
+        <p>Kunludi à l'avenir permettra interagir avec d'autres joueurs qui jouent votre propre jeu: bavarder avec eux et voir ce qu'ils font dans leurs jeux.</p>
+        
+        <p>Le but est de jouer en <u>équipe</u>, avec deux variantes: mode chef (le chef décide et observateurs a proposé des actions, y compris en demandant à être le nouveau chef); ou de manière démocratique (selon ce qui est le choix le plus populaire parmi ceux proposés par les joueurs).</p>
+        
+        <p>Si vous voulez aider en quelque sorte, nous pouvons écrire: ludi.ludon (at) gmail (dot) com</p>.
+        
+        <h3>Instructions</h3>
+        
+        <p> 1. Choisissez la langue que vous souhaitez utiliser: Langue </p>
+        
+        <P> 2. Choisissez votre jeu: Jouer / Jeux </ p>
 
-        <p> Avec LUDI vous serez en mesure de jouer hors ligne ou vous connecter à interagir avec un autre joueur. Vous serez également fiable pour partager votre jeu et de voir quelles actions les autres font dans le jeu.</p>
-
-        <h3> Instructions </h3>
-
-        <p> 1. Choisissez votre langue préférée. </p>
-
-        <p> 2. Choisissez votre jeu </p>
-        
-        <p><b>Remarque:</b> Les jeux «trois sources» et <a href = "http://wiki.caad.es/Proyecto_Vampiro" target="_blank">&quot;Vampire&quot;</a> ont été écrit à l'origine en espagnol avec la machine traslation grossière en Inglés et Esperanto;<a href = "https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank"> &quot;texel&quot;</a> a été écrit en espéranto, mais il est en cours de développement </p>.
+     	<h3>Jeux disponibles (à traduire)</h3>
+        <ul>
+        <li>El juego &quot;Las Tres Fuentes&quot;, en una versión anterior de kunludi, se presentó en la <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 y fue permiada en la sección &quot;I+D&quot;.</li>
+        <li>El juego &quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; fue escritos originalmente en español pero tiene traducciones máquina sin pulir a inglés, esperanto y francés.</li>
+        <li>El juego <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto y en otro sistema. Está aún en desarrollo.</li>
+        <li>El juego &quot;Mi Querida Hermana&quot; por ahora sólo se encuentra en español. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
+        </ul>        
         
     </div> 
 

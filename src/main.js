@@ -36,16 +36,16 @@ function storageON() {
         localStorage.setItem("__test", "data");
     } catch (e) {
         return false;
-    } 
+    }
     return true;
 }
 
 // load data from localStorage
 if (storageON()) {
-	if (localStorage.ludi_userId  != undefined) store.default._mutations.SETUSERID (store.default.state, localStorage.ludi_userId)
-	if (localStorage.ludi_locale  != undefined) store.default._mutations.SETLOCALE (store.default.state, localStorage.ludi_locale)
+	if (localStorage.ludi_userId  != undefined && localStorage.ludi_userId  != "undefined") store.default._mutations.SETUSERID (store.default.state, localStorage.ludi_userId)
+	if (localStorage.ludi_locale  != undefined && localStorage.ludi_locale  != "undefined") store.default._mutations.SETLOCALE (store.default.state, localStorage.ludi_locale)
 }
-		
+
 //add your routes and their components
 router.map({
     '/': {
@@ -64,10 +64,13 @@ router.map({
 				component: More
 			},
 			'/games': {
-				component: Games 
+				component: Games
+			},
+			'/games/:gameId2': {
+				component: Games
 			},
 			'/play': {
-				component: Play 
+				component: Play
 			}
 		}
 	},
@@ -79,31 +82,31 @@ router.map({
 			},
 			'/login': {
 				component: Login
-			}, 
+			},
 			'/login/:userId': {
-				name: 'user', 
+				name: 'user',
 				component: Login
-			}, 
+			},
 			'/messages': {
 				component: {
 				  template: '<h2>Messages<h2><h3>messageList</h3><h4>chatInput</h4>'
-				} 
+				}
 			},
 			 '/boards': {
 				component:{
 				  template: '<h2>Boards<h2><h3>boardList</h3><h4>chatInput</h4>'
-				} 
+				}
 			}
 		}
 	},
 	'/lingvo': {
         component:  Lingvo
-	}		
+	}
 })
 
 /*
 router.beforeEach(function (transition) {
-  
+
 	// console.log('transition:' + JSON.stringify (transition))
 
 	//if ((transition.to.path == '/kune' ) && !transition.to.auth) {
@@ -115,4 +118,3 @@ router.beforeEach(function (transition) {
 */
 
 router.start(App, '#app')
-

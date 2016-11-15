@@ -6,6 +6,101 @@ export let choice = {choiceId:'top', isLeafe:false, parent:''} // current under 
 exports.choices = []
 exports.world =[]
 
+exports.dependsOn = function (libReactions, gameReactions, reactionList) {
+	this.libReactions = libReactions
+	this.gameReactions = gameReactions
+	this.reactionList = reactionList
+
+}
+
+exports.createWorld = function (libWorld, gameWorld) {
+
+	exports.world = {
+		attributes: [],
+		items: [],
+		directions: [],
+		actions: []
+	}
+
+	// merging libWorld and gameWorld into world and generating indexes (ref: ludi_runner.compileIndexes)
+
+	// import game items (no items in lib)
+	for (let i=0;i<gameWorld.items.length;i++) {
+		exports.world.items.push (gameWorld.items[i])
+	}
+
+	// adding items[].state.itemsMemory
+	// if initial states are not defined, default values:
+	for (let i=0;i<exports.world.items.length;i++) {
+
+		if ((exports.world.items[i].type == "pc")) {
+
+			// if state is not defined, it is created now
+			if (typeof exports.world.items[i].state == "undefined") exports.world.items[i].state = {};
+
+			// A item i is known if itemsMemory[i] exists.
+			// the last container where item i was seen: itemsMemory[i].whereWas
+			// the time it was seen: itemsMemory[i].lastTime
+
+			// if itemsMemory is not defined, it is created now
+			if (typeof exports.world.items[i].state.itemsMemory == "undefined")
+				exports.world.items[i].state.itemsMemory = [];
+		}
+
+	}
+
+	// import lib directions
+	for (let i=0;i<libWorld.directions.length;i++) {
+		exports.world.directions.push (libWorld.directions[i])
+	}
+
+	// import game directions (only add more directions)
+	for (let i=0;i<gameWorld.directions.length;i++) {
+		exports.world.directions.push (gameWorld.directions[i])
+	}
+
+	// import lib actions
+	for (let i=0;i<libWorld.actions.length;i++) {
+		exports.world.actions.push (libWorld.actions[i])
+	}
+
+	// import game actions: (only add more actions)
+	for (let i=0;i<gameWorld.actions.length;i++) {
+		exports.world.actions.push (gameWorld.actions[i])
+	}
+
+	// adding attExceptions (no items in lib)
+	exports.world.attExceptions = []
+	for (let i=0;i<gameWorld.attExceptions.length;i++) {
+		exports.world.attExceptions.push (gameWorld.attExceptions[i])
+	}
+
+	// import lib attributes
+	for (let i=0;i<libWorld.attributes.length;i++) {
+		exports.world.attributes.push (libWorld.attributes[i])
+	}
+
+	// import game attributes (by now: only add more attributes: what about overwriting?)
+	for (let i=0;i<gameWorld.attributes.length;i++) {
+		exports.world.attributes.push (gameWorld.attributes[i])
+	}
+
+	// assign attributes to items
+	for (let i=0;i<exports.world.items.length;i++) {
+		setDefaultAttributeProperties (this, i)
+	}
+
+	// indexes ---------
+
+	exports.userState = {
+		profile: {
+			indexPC:0, // by default
+			loc:  arrayObjectIndexOf (exports.world.items, "id", exports.world.items[0].loc)
+		}
+	}
+
+}
+
 function arrayObjectIndexOf(myArray, property, searchTerm) {
     for(var i = 0, len = myArray.length; i < len; i++) {
         if (myArray[i][property] === searchTerm) return i;
@@ -107,100 +202,7 @@ function setDefaultAttributeProperties (context, indexItem) {
 
 }
 
-exports.createWorld = function (libWorld, gameWorld) {
 
-	exports.world = {
-		attributes: [],
-		items: [],
-		directions: [],
-		actions: []
-	}
-
-	// merging libWorld and gameWorld into world and generating indexes (ref: ludi_runner.compileIndexes)
-
-	// import game items (no items in lib)
-	for (let i=0;i<gameWorld.items.length;i++) {
-		exports.world.items.push (gameWorld.items[i])
-	}
-
-	// adding items[].state.itemsMemory
-	// if initial states are not defined, default values:
-	for (let i=0;i<exports.world.items.length;i++) {
-
-		if ((exports.world.items[i].type == "pc")) {
-
-			// if state is not defined, it is created now
-			if (typeof exports.world.items[i].state == "undefined") exports.world.items[i].state = {};
-
-			// A item i is known if itemsMemory[i] exists.
-			// the last container where item i was seen: itemsMemory[i].whereWas
-			// the time it was seen: itemsMemory[i].lastTime
-
-			// if itemsMemory is not defined, it is created now
-			if (typeof exports.world.items[i].state.itemsMemory == "undefined")
-				exports.world.items[i].state.itemsMemory = [];
-		}
-
-	}
-
-	// import lib directions
-	for (let i=0;i<libWorld.directions.length;i++) {
-		exports.world.directions.push (libWorld.directions[i])
-	}
-
-	// import game directions (only add more directions)
-	for (let i=0;i<gameWorld.directions.length;i++) {
-		exports.world.directions.push (gameWorld.directions[i])
-	}
-
-	// import lib actions
-	for (let i=0;i<libWorld.actions.length;i++) {
-		exports.world.actions.push (libWorld.actions[i])
-	}
-
-	// import game actions: (only add more actions)
-	for (let i=0;i<gameWorld.actions.length;i++) {
-		exports.world.actions.push (gameWorld.actions[i])
-	}
-
-	// adding attExceptions (no items in lib)
-	exports.world.attExceptions = []
-	for (let i=0;i<gameWorld.attExceptions.length;i++) {
-		exports.world.attExceptions.push (gameWorld.attExceptions[i])
-	}
-
-	// import lib attributes
-	for (let i=0;i<libWorld.attributes.length;i++) {
-		exports.world.attributes.push (libWorld.attributes[i])
-	}
-
-	// import game attributes (by now: only add more attributes: what about overwriting?)
-	for (let i=0;i<gameWorld.attributes.length;i++) {
-		exports.world.attributes.push (gameWorld.attributes[i])
-	}
-
-	// assign attributes to items
-	for (let i=0;i<exports.world.items.length;i++) {
-		setDefaultAttributeProperties (this, i)
-	}
-
-	// indexes ---------
-
-	exports.userState = {
-		profile: {
-			indexPC:0, // by default
-			loc:  arrayObjectIndexOf (exports.world.items, "id", exports.world.items[0].loc)
-		}
-	}
-
-}
-
-exports.dependsOn = function (libReactions, gameReactions, reactionList) {
-	this.libReactions = libReactions
-	this.gameReactions = gameReactions
-	this.reactionList = reactionList
-
-}
 
 exports.processChoice = function  (choice) {
 

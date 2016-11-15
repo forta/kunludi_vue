@@ -10,6 +10,7 @@
 	"Choose Game": { "message": "Bonvolu elekti ludon" }, 
 	"bottom": { "message": "malsupren" }, 
     "Delete": { "message": "Elimini" }, 
+    "Rename": { "message": "Renomi" }, 
     "Date": { "message": "Dato" }, 
     "Id": { "message": "Id" }, 
     "server_welcome": {

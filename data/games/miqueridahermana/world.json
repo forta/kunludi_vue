@@ -319,7 +319,10 @@
 		{
 			"id": "cinturón",
             "type": "obj",
-            "loc": "armario_madre"
+            "loc": "armario_madre",
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
 		{
 			"id": "cestaFreddie",

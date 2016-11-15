@@ -25,6 +25,7 @@
   },
   "bottom": { "message": "bas" }, 
   "Delete": { "message": "Eliminer" }, 
+  "Rename": { "message": "Renommer" }, 
   "Date": { "message": "Date" }, 
   "Id": { "message": "Id" }, 
   "server_welcome": {

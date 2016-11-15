@@ -18,8 +18,9 @@
          
          <li> <button v-on:click="loadGame('default')"> {{kt("LoadGameFromStart")}}  </button> <br/> </li>
            
-         <li v-for="gameSlot in gameSlots">
-           <button v-on:click="loadGame(gameSlot.id)"> {{kt("LoadGame")}}  </button>  {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}   <button v-on:click="deleteGameSlot(gameSlot.id)"> {{kt("Delete")}} </button>   <br/>  
+         <li v-for="gameSlot in gameSlots" v-if="gameSlot.id!='default'" >
+           <button v-on:click="loadGame(gameSlot.id)"> {{kt("LoadGame")}}  </button>  [{{gameSlot.slotDescription}}] <button v-on:click="renameGameSlot(gameSlot.id, gameSlot.slotDescription)"> {{kt("Rename")}} </button> - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}} <button v-on:click="deleteGameSlot(gameSlot.id)"> {{kt("Delete")}} </button>   <br/>
+           </span>  
          </li>
                     
          <!-- <li> <b>{{kt("SeeHistory")}}</b></li> -->
@@ -48,7 +49,8 @@ export default {
   },
   methods: {
      saveGame: function () {
-         store.dispatch('SAVE_GAME_STATE')
+         let slotDescription = prompt ("Description") // to-do: translation
+         store.dispatch('SAVE_GAME_STATE', slotDescription)
          // go back playing:  path:  /ludi/more -> /ludi/play
          this.$router.go('/ludi/play') 
      },
@@ -62,8 +64,13 @@ export default {
          // go back playing:  path:  /ludi/more -> /ludi/play
          this.$router.go('/ludi/play') 
      },
-      deleteGameSlot: function (id, slotId) {
-		  store.dispatch('DELETE_GAME_SLOT', id, slotId)
+      deleteGameSlot: function (slotId) {
+		  store.dispatch('DELETE_GAME_STATE', slotId)
+      }, 
+      renameGameSlot: function (slotId, oldDescription) {
+          let newSlotDescription = prompt ("Description", oldDescription) // to-do: translation
+          
+		  store.dispatch('RENAME_GAME_STATE', slotId, newSlotDescription)
       }, 
       convertDate: function (dateJSON) {
           var d = new Date (JSON.parse (dateJSON))

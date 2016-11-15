@@ -5,13 +5,13 @@
         <p>{{kt("Choose Game")}}</p>
         <ul class="gameList">
             <li v-for="game in games">
-               <button v-on:click="currentgame=game"> -> </button> {{translatedGameName (game.name)}}   
+               <button v-on:click="currentgame=game"> -> </button> {{translatedGameName (game.name)}}
             </li>
         </ul>
 
 <!--
         <h4>Filters</h4>
-        <input type="checkbox" id="checkbox" v-model="filterOnDevelopment"> <label>On development</label> | 
+        <input type="checkbox" id="checkbox" v-model="filterOnDevelopment"> <label>On development</label> |
         <label>By languages:</label>
         <select v-model="filterByLang">
             <option selected>Current</option>
@@ -24,7 +24,7 @@
 	<div v-else>
 		<play>
 	</div>
-    
+
   </div>
 </template>
 
@@ -40,25 +40,30 @@
 
 
 export default {
-    
+
    components: {
         LudiGameDetail, Play
    },
-   
+
   data () {
-	  
+
     return {
       currentgame: {},
       filterOnDevelopment: false,
       filterByLang: 'Current',
     }
-  },  
+  },
   computed: {
-     gameloaded: function () { return (this.gameId !== ""); }    
+     gameloaded: function () { return (this.gameId !== ""); }
   },
   ready: function(){
     // each time, the game list is loaded
     if (!this.gameloaded)  store.dispatch('LOADGAMES')
+
+    if (this.$router.app.$route.params.gameId2 != undefined) {
+        console.log ("From path: " + this.$router.app.$route.params.gameId2)
+        this.$data.currentgame = {name:this.$router.app.$route.params.gameId2}
+    }
   },
   methods: {
       gameIsInLocale: function (gameId) {
@@ -68,20 +73,20 @@ export default {
                  if (this.games[i].about.translation[j].language == this.locale ) {
                     return {gameIndex: i, translationIndex:j}
                  }
-               }  
+               }
                return {gameIndex: i, translationIndex:undefined}
             }
           }
-      }, 
+      },
       translatedGameName: function (gameId) {
-          
+
           var l = this.gameIsInLocale (gameId)
           if (l == undefined) return gameId
-          if (l.translationIndex == undefined) 
+          if (l.translationIndex == undefined)
             return this.games[l.gameIndex].about.translation[0].title + " (" + this.games[l.gameIndex].about.translation[0].language + ")"
-          
+
           return this.games[l.gameIndex].about.translation[l.translationIndex].title
-      } 
+      }
   },
   store: store,
   vuex: {
@@ -118,14 +123,11 @@ li {
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
 }
- 
+
 li:last-child {
   border: none;
 }
- 
+
 
 
 </style>
-
-
-

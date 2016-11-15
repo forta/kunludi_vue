@@ -9,6 +9,7 @@
 	"Choose Game": { "message": "Por favor, selecciona un juego" }, 
 	"bottom": { "message": "abajo" }, 
     "Delete": { "message": "Borrar" }, 
+    "Rename": { "message": "Renombrar" }, 
     "Date": { "message": "Fecha" }, 
     "Id": { "message": "Id" }, 
     "server_welcome": {

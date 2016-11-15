@@ -32,7 +32,7 @@
          <li><button v-on:click="loadGame(game.name, 'default', about.translation[languageIndex].language)"> {{kt("LoadGameFromStart")}}  </button></li>     
 
          <li v-for="gameSlot in gameSlots">
-           <button v-on:click="loadGame(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("LoadGame")}} </button> {{kt("Game")}} {{$index}} - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}      
+           <button v-on:click="loadGame(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("LoadGame")}} </button> [{{gameSlot.slotDescription}}] - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}      
          </li>
          
     </ul>

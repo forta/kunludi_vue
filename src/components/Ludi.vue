@@ -11,10 +11,11 @@
             <a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} | </a>
             <a v-link="{ path: '/ludi/about' }"> {{kt("About")}} | </a>
             
-            <h2 v-show="gameId"> {{kt("Playing")}}: {{gameId}} </h2> 
+            <!-- <h2 v-show="gameId"> {{kt("Playing")}}: {{gameId}} </h2> -->  
             <a v-show="gameId" v-link="{ path: '/ludi/play' }"> {{kt("Play")}} | </a>
             <a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}} | </a>
-            <a v-show="gameId" v-on:click="quit">  {{kt("Quit")}} | </a>
+            <a v-show="gameId" v-on:click="quit">  {{kt("Quit")}} | </a> 
+            <a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}}</a>
             
         </div>
 
@@ -55,6 +56,7 @@ export default {
   methods: {
     quit: function () { 
         store.dispatch('RESETGAMEID')
+        this.$router.go('/ludi/about')
 	}
   },
   store: store,

@@ -14,31 +14,34 @@
 
 Se usa un atributo genérico en cada item que lo necesite: primitives.IT_GetAttPropValue (item, "generalState", "state") 
 
-estudio.state: 0: primera vez; 1: siguientes
-panfleto.state: 0 no leído; 1: leído
-salón_comedor.state: 0: primera vez; 1: siguientes
-barrotes.state: 0: entrada bloqueada; 1: entrada abierta
-cuevita.state: 0: primera vez; 1: siguientes
+estudio.generalState.state: 0: primera vez; 1: siguientes
+panfleto.generalState.state: 0 no leído; 1: leído
+salón_comedor.generalState.state: 0: primera vez; 1: siguientes
+barrotes.generalState.state: 0: entrada bloqueada; 1: entrada abierta
+cuevita.generalState.state: 0: primera vez; 1: siguientes
 ---
-embarazada.state: 0: no la conoces aún; 1: ya la conoces pero no sabes que va a tener gemelos; 2: sabes que tiene gemelos y que quiere chocolate; 3: ya comió chocolate
-hippie.state: 0: no lo conoces aún; 1: ya lo conoces y quiere marcha; 2: ya tuviste fiesta con él
+embarazada.generalState.state: 0: no la conoces aún; 1: ya la conoces pero no sabes que va a tener gemelos; 2: sabes que tiene gemelos y que quiere chocolate; 3: ya comió chocolate
+hippie.generalState.state: 0: no lo conoces aún; 1: ya lo conoces y quiere marcha; 2: ya tuviste fiesta con él
 ---
-cargador_móvil.state:  0: no conectado; 1: conectado: no te puedes mover de la habitación mientras se carga (aprovecha para escribir!)
-manuscrito.state: minutos dedicados hoy al libro (se resetea a cero y cada sentada avanza hora y media; debes completar 6 horas al día)
+cargador_móvil.generalState.state:  0: no conectado; 1: conectado: no te puedes mover de la habitación mientras se carga (aprovecha para escribir!)
+manuscrito.generalState.state: minutos dedicados hoy al libro (se resetea a cero y cada sentada avanza hora y media; debes completar 6 horas al día)
 
-escritor.state: número de días jugados
+escritor.generalState.state: número de días jugados
 
-libro_magia.state: 0: muy bonito; 1:página del hechizo 1; 2:página del hechizo 2
-cinturón.state: 0: sin atar a ningún sitio; 1: atado a los barrotes (en caleta o en cuevita): no deja que te vayas de la caleta al paseo;
-móvil.app_pilas: carga inicial del móvil (minutos que quedan). Valor inicial: 1440 (100%). Cambios: pierde 15 puntos por turno en modo normal; pierde 120 puntos por turno en modo linterna; gana 75 puntos por turno en modo carga; pierde 45 puntos si llamas.
-móvil.app_hora: hora del día (empieza con 1020 al llegar a la casa; se incrementa 15 por turno; a las 1380 vas a dormir; te levantas a las 420)
-móvil.app_linterna:  0: apagado; 1: encendido
-móvil.app_mareas: hora de la siguiente marea
-movil.llamada: flujo de la conversacion: "" no iniciada; sino, el nombre del PNJ con el que se está hablando
-cestaFreddie.state: array en formato json de los items pedidos a Freddie
-cestaTelePapeo.state:  array en formato json de los items pedidos a TelePapeo
+libro_magia.generalState.state: 0: muy bonito; 1:página del hechizo 1; 2:página del hechizo 2
+cinturón.generalState.state: 0: sin atar a ningún sitio; 1: atado a los barrotes (en caleta o en cuevita): no deja que te vayas de la caleta al paseo;
 
-timbre.state: turnos que permanece el PNJ antes de irse
+
+móvil.apps.llamada: flujo de la conversacion: "" no iniciada; sino, el nombre del PNJ con el que se está hablando
+móvil.apps.app_reloj: hora del día (empieza con 1020 al llegar a la casa; se incrementa 15 por turno; a las 1380 vas a dormir; te levantas a las 420)
+móvil.apps.app_linterna: 0: apagado; 1: encendido
+móvil.apps.app_mareas:  hora de la siguiente marea
+móvil.apps.app_pilas: carga inicial del móvil (minutos que quedan). Valor inicial: 1440 (100%). Cambios: pierde 15 puntos por turno en modo normal; pierde 120 puntos por turno en modo linterna; gana 75 puntos por turno en modo carga; pierde 45 puntos si llamas.
+
+cestaFreddie.generalState.state: array en formato json de los items pedidos a Freddie
+cestaTelePapeo.generalState.state:  array en formato json de los items pedidos a TelePapeo
+
+timbre.generalState.state: turnos que permanece el PNJ antes de irse
 
 Horarios:
 * luz solar: entre las 7:30 y las 18:00
@@ -412,18 +415,78 @@ let initReactions =  function  (reactions, primitives) {
 		
 	});
 	
-	reactions.push ({  // acción específica de esta juego, así que debe tener definido enabled() y reaction() acabar con true o falsa explícito.
+	reactions.push ({
 
 		id: 'tie', 
 		
 		enabled: function (indexItem, indexItem2) {
-			return false;
+			
+			if (indexItem !== primitives.IT_X("cinturón")) return false;
+			if ( (primitives.PC_GetCurrentLoc() != primitives.IT_X("cuevita")) &&
+			     (primitives.PC_GetCurrentLoc() != primitives.IT_X("caleta")) ) return false
+			if (primitives.IT_GetAttPropValue (indexItem, "generalState", "state") != "0")  return false
+
+			return true;
 		},
 		
 		reaction: function (par_c) {
 
-			primitives.GD_CreateMsg (1, "atar_1", "¿Para qué atar?<br/>"); 
-			primitives.CA_ShowMsg ("atar_1");
+			if (primitives.PC_GetCurrentLoc() == primitives.IT_X("cuevita")) {
+				primitives.GD_CreateMsg (1, "atar_cinturón_en_cuevita", "Desde aquí no alcanzas los barrotes, deberás atar el cinturón desde fuera.<br/>"); 
+				primitives.CA_ShowMsg ("atar_cinturón_en_cuevita");
+				return true;				
+			} 
+
+			// la marea debe estar baja
+			if (usr.minutosRestantesMarea() <= 0) {
+				primitives.GD_CreateMsg (1, "atar_cinturón_barrotes_bajo_agua", "Los barrotes están bajo el agua y no consigues atar el cinturón, tendrás que esperar a que baje la marea.<br/>"); 
+				primitives.CA_ShowMsg ("atar_cinturón_barrotes_bajo_agua");
+				return true;
+			}
+
+			primitives.GD_CreateMsg (1, "atas_cinturón", "Atas el cinturón a los barrotes de la entrada a la cueva.<br/>"); 
+			primitives.CA_ShowMsg ("atas_cinturón");
+			
+			primitives.IT_SetAttPropValue (par_c.item1, "generalState", "state", "1")
+
+			return true;
+		}
+		
+	});
+
+	reactions.push ({
+
+		id: 'untie', 
+		
+		enabled: function (indexItem, indexItem2) {
+			
+			if (indexItem !== primitives.IT_X("cinturón")) return false;
+			if ( (primitives.PC_GetCurrentLoc() != primitives.IT_X("cuevita")) &&
+			     (primitives.PC_GetCurrentLoc() != primitives.IT_X("caleta")) ) return false
+			if (primitives.IT_GetAttPropValue (indexItem, "generalState", "state") == "0")  return false
+
+			return true;
+		},
+		
+		reaction: function (par_c) {
+
+			if (primitives.PC_GetCurrentLoc() == primitives.IT_X("cuevita")) {
+				primitives.GD_CreateMsg (1, "desatar_cinturón_en_cuevita", "Desde aquí no alcanzas los barrotes, deberás desatar el cinturón desde fuera.<br/>"); 
+				primitives.CA_ShowMsg ("desatar_cinturón_en_cuevita");
+				return true;				
+			} 
+
+			 // to-do:?? la marea debe estar baja
+			if (usr.minutosRestantesMarea() <= 0) {
+				primitives.GD_CreateMsg (1, "desatar_cinturón_barrotes_bajo_agua", "Los barrotes están bajo el agua y no consigues desatar el cinturón, tendrás que esperar a que baje la marea.<br/>"); 
+				primitives.CA_ShowMsg ("desatar_cinturón_barrotes_bajo_agua");
+				return true;
+			}
+
+			primitives.GD_CreateMsg (1, "desatas_cinturón", "Desatas el cinturón de los barrotes de la entrada a la cueva.<br/>"); 
+			primitives.CA_ShowMsg ("desatas_cinturón");
+			
+			primitives.IT_SetAttPropValue (par_c.item1, "generalState", "state", "0")
 
 			return true;
 		}
@@ -904,7 +967,6 @@ let initReactions =  function  (reactions, primitives) {
 				}
 			}
 
-			
 			if (par_c.target == primitives.IT_X("cuevita")) {
 
 				// si estás con fantasma, entras sin problema
@@ -935,18 +997,32 @@ let initReactions =  function  (reactions, primitives) {
 					return true
 				}
 
-				// primera vez que entras
-				if (primitives.IT_GetAttPropValue (par_c.target, "generalState", "state") == "0") {
-					primitives.GD_CreateMsg (1, "primera_vez_cuevita", "Te cuesta respirar, aquí fue donde ella murió ahogada. Nadie sabe muy bien porqué permaneció tanto tiempo dentro y fue sorprendida por la marea y el corrimiento de tierra y precipitó la area de la pequeña duna dentro de la cueva.<br/>En el suelo puedes ver lo que parece ser una cuerda semienterrada<br/>");
+				// contador de número de veces que has entrado en la cueva sin tener el cinturón atado
+				if (primitives.IT_GetAttPropValue (primitives.IT_X("cinturón"), "generalState", "state") == "0")  {
+					var vecesEnCueva =  primitives.IT_GetAttPropValue (par_c.target, "generalState", "state")
+					primitives.GD_CreateMsg (1, "entras_sin_cinturon_atado", "Entras con mucha precaución, atemorizado por lo que le pasó a tu hermana aquí. Seguramente no es una buena idea entrar sin una cuerda o similar atada a los barrotes, por si acaso.<br/>");
+					primitives.CA_ShowMsg ("entras_sin_cinturon_atado");
+					primitives.IT_SetAttPropValue (par_c.target, "generalState", "state", vecesEnCueva + 1)
+				}
+				
+				// primera vez que entras (localidad desconocida)
+				if (!primitives.IT_GetIsItemKnown(primitives.PC_X(), par_c.target)) {
+				//if (primitives.IT_GetAttPropValue (par_c.target, "generalState", "state") == "0") {
+					primitives.GD_CreateMsg (1, "primera_vez_cuevita", "Te cuesta respirar, aquí fue donde ella murió ahogada. Nadie sabe muy bien por qué permaneció tanto tiempo dentro y fue sorprendida por la marea y el corrimiento de tierra que precipitó la area de la pequeña duna dentro de la cueva.<br/>En el suelo puedes ver lo que parece ser una cuerda semienterrada<br/>");
 					primitives.CA_ShowMsg ("primera_vez_cuevita");
 					primitives.IT_SetAttPropValue (par_c.target, "generalState", "state", "1")
 				}
-				
-				/* to-do: primera vez a la caleta
-				        "message": "Avanzas casi arrastrando los pies. No quieres ir, pero no puedes evitarlo. Llegas hasta hasta la altura del agua y, no puedes creerlo, la marea está tan baja hoy como aquel fatídico día. Los barrotes de seguridad que se pusieron a la entrada de la pequeña cueva para evitar que la tragedia se repitiera están muy oxidados y parecen ser fáciles de romper."
 
-				*/
 				
+			} // fin si destino es cuevita
+			
+			if (par_c.target == primitives.IT_X("caleta")) {
+			
+				// primera vez que entras (localidad desconocida)
+				if (!primitives.IT_GetIsItemKnown(primitives.PC_X(), par_c.target)) {
+					primitives.GD_CreateMsg (1, "primera_vez_caleta", "Avanzas casi arrastrando los pies. No quieres ir, pero no puedes evitarlo. Sabes que tienes que hacer frente al pasado, ya han pasado más de quince años y tienes que superarlo.<br/>");
+					primitives.CA_ShowMsg ("primera_vez_caleta");
+				}
 			}
 			
 			return false; // se ejecuta reacción por defecto
@@ -1340,6 +1416,7 @@ export function turn (indexItem) {
 		
 	if (indexItem == primitives.IT_X("cargador")) usr.turnoCargador()
 	
+	if (indexItem == primitives.IT_X("cinturón")) usr.turnoCinturon()
 	
 	if ((indexItem == primitives.IT_X("hippie")) || (indexItem == primitives.IT_X("embarazada"))) usr.turnoPNJ(indexItem)
 	if (indexItem == primitives.IT_X("caleta")) usr.turnoCaleta()
@@ -1355,6 +1432,19 @@ export function turn (indexItem) {
 
 // internal functions ****************************************************************************************************************
 
+usr.turnoCinturon = function() {
+	var  primitives = this.primitives // tricky
+	var indexItem = primitives.IT_X("cinturón")
+	
+	if ( (usr.minutosRestantesMarea() == 0) &&
+		 (primitives.IT_GetAttPropValue (indexItem, "generalState", "state") != "0") &&
+		 (primitives.PC_GetCurrentLoc() == primitives.IT_X("caleta")) ) {
+		primitives.GD_CreateMsg (1, "desatas_cinturón_con_marea", "Desatas el cinturón de los barrotes antes de que suba más la marea.<br/>");
+		primitives.CA_ShowMsg ("desatas_cinturón_con_marea");
+		primitives.IT_SetAttPropValue (indexItem, "generalState", "state", "0")
+	}
+}
+	
 usr.turnoCargador = function() {
 	var  primitives = this.primitives // tricky
 
@@ -1811,11 +1901,34 @@ usr.turnoCuevita = function () {
 
 	// venció el tiempo de la marea -> fuera de la cueva, de manera automática
 	if (usr.minutosRestantesMarea() <= 0) {
-		primitives.GD_CreateMsg (1, "el_agua_entra", "El agua empieza a entrar en la cueva. Te asustas y sales apresuradamente.<br/><br/>"); 
+		primitives.GD_CreateMsg (1, "el_agua_entra", "El agua empieza a entrar en la cueva. Te asustas y te afanas por salir."); 
 		primitives.CA_ShowMsg ("el_agua_entra");
+
+		// sin cinturón, posibilidad de que mueras, insensato
+		if (primitives.IT_GetAttPropValue (primitives.IT_X("cinturón"), "generalState", "state") == "0")  {
+			// posibilidad de que mueras: numero de veces que entras sin cinturón * 10
+			var probabilidadMuerte = +primitives.IT_GetAttPropValue (primitives.IT_X("cuevita"), "generalState", "state") * 10
+			if (primitives.MISC_Random (100) < probabilidadMuerte) {
+				primitives.GD_CreateMsg (1, "el_agua_entra_y_mueres", "Sin embargo, resbalas y caes atrás. Tocas los barrotes pero no consigues asirlos por las algas pegadas. Un corrimiento de area aprisona tus pies y sólo puedes ser testigo de ver cómo cada vez entra más agua. Cuando por fin el agua te sobrepasa y no te deja respirar, crees ver la figura de tu querida hermana, que te sonríe y te ofrece la mano para que vayas con ella a un círculo de luz.<br/><br/><hr/>"); 
+				primitives.CA_ShowMsg ("el_agua_entra_y_mueres");
+
+				primitives.GD_CreateMsg (1, "fin_juego_asfixia_sin_cinturón", "El juego ha terminado, pero ¿qué habría pasado si hubieras atado una cuerda o similar a los barrotes para poder salir con ellos?")
+				primitives.CA_EndGame("fin_juego_asfixia_sin_cinturón")
+				return true
+			} else {
+				primitives.GD_CreateMsg (1, "el_agua_entra_y_sales", "Afortunadamente, consigues asir los barrotes sin resbalarte, pero te apuntas mentalmente atar algo a los barrotes para no volver a llevarte este susto.<br/><br/>")
+				primitives.CA_ShowMsg ("el_agua_entra_y_sales");
+
+			}
+		} else {
+			primitives.GD_CreateMsg (1, "el_agua_entra_y_sales_con_cinturón", "Agarras el cinturón y tirando de él consigues salir sin demasiados problemas<br/><br/>")
+			primitives.CA_ShowMsg ("el_agua_entra_y_sales_con_cinturón");
+
+		}
 
 		// sacarlo de la cueva
 		primitives.IT_SetLoc(primitives.PC_X(), primitives.IT_X("caleta"));
+		primitives.CA_ShowMsg("Current_location_o1", {o1: primitives.PC_GetCurrentLoc()} );
 		primitives.CA_Refresh()
 
 	} 
@@ -1825,6 +1938,7 @@ usr.turnoCuevita = function () {
 		primitives.CA_ShowMsg ("cueva_se_oscurece");
 		
 		primitives.IT_SetLoc(primitives.PC_X(), primitives.IT_X("caleta"));
+		primitives.CA_ShowMsg("Current_location_o1", {o1: primitives.PC_GetCurrentLoc()} );
 		primitives.CA_Refresh()
 		
 	}
@@ -1938,17 +2052,14 @@ usr.minutosRestantesMarea = function () {
 	
 	var  primitives = this.primitives // tricky
 
-	var minutos
-	
 	var horaBajamar = usr.DividirMinutos (+primitives.IT_GetAttPropValue (primitives.IT_X("móvil"), "apps", "app_mareas"))
 	var	estado_hora = usr.DividirMinutos (+primitives.IT_GetAttPropValue (primitives.IT_X("móvil"), "apps", "app_reloj"))
 
-	if ((estado_hora.minutosDia  >= horaBajamar.minutosDia - 60) && (estado_hora.minutosDia  <= horaBajamar.minutosDia + 60)) 
-		minutos = horaBajamar.minutosDia + 60 - estado_hora.minutosDia
-	else
-		minutos = 0
+	var diferencia = horaBajamar.minutosDia + 60 - estado_hora.minutosDia
+
+	if (diferencia < 0 || diferencia > 120) return 0
 	
-	return minutos
+	return diferencia
 
 }				
 
