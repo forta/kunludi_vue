@@ -1018,7 +1018,6 @@ let initReactions =  function  (reactions, primitives) {
 				// entras:
 				primitives.CA_ShowImg ("cuevita.jpg", true, false, "%o1", ["cuevita"] ); 
 
-
 				
 			} // fin si destino es cuevita
 			

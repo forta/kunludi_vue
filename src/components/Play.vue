@@ -100,7 +100,7 @@ export default {
                    if (piece.isLocal) 
                        return  "<p>" + piece.txt + "</p><img src='" + require("./../../data/games/" + this.gameId + "/images/" + piece.src) + "'/><br/>"
                    else 
-                       return  "<p>" + piece.txt + "</p><img src='" + require(piece.src) + "'/><br/>" // to-do: in fact, it doesn't work
+                       return  "<p>" + piece.txt + "</p><img src='" + piece.src + "'/><br/>" // to-do: in fact, it doesn't work
               }
           }
           
