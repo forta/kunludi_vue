@@ -229,11 +229,15 @@ export function CA_ShowMenu ( menu) {
 }
 
 export function CA_ShowImg (url, isLocal, isLink, txt, param) {
- if (typeof txt == "undefined") txt = "";
- if (typeof isLocal == "undefined") isLocal = false;
- if (typeof isLink == "undefined") isLink = false;
- 
- this.reactionList.push ({type:this.caMapping("GRAPH"), url:url, isLocal:isLocal, isLink:isLink, txt:txt, param:param});
+
+	this.reactionList.push ({
+		type:this.caMapping("GRAPH"), 
+		url:url, 
+		isLocal: (typeof isLocal == "undefined")? false : isLocal, 
+		isLink: (typeof isLink == "undefined")? false: isLink, 
+		txt:(typeof txt == "undefined")? "": txt, 
+		param:param
+	});
 }
 
 export function CA_PressKey (txt) {

@@ -333,7 +333,9 @@ let initReactions =  function  (reactions, primitives) {
 		reaction: function (par_c) {
 			
 			if (par_c.loc == primitives.IT_X("estudio")) {
+				
 				if (primitives.IT_GetAttPropValue (par_c.loc, "generalState", "state") == "0") {
+					
 					primitives.GD_CreateMsg (1, "sueño", "No puedes respirar, estás encerrado en la cueva de la playa y no puedes escapar. De repente, un corrimiento de arena de la playa entra en la cueva y te cubre hasta la cintura y no puedes moverte. En tus manos tienes el collar de conchas marinas que has hecho para regalárselas a tu querido hermano...<br/>Pero no, no puede ser, estos no son recuerdos tuyos, sólo pueden ser los últimos recuerdos de ella, del día en que...<br/>Despiertas, mojado en sudor.<br/><br/>Te levantas, no crees que vayas a poder reconciliar el sueño. De hecho, temes volver a dormir y volver a vivir esa horrible experiencia.<br/><br/>"); 
 					primitives.CA_ShowMsg ("sueño");
 
@@ -1012,6 +1014,10 @@ let initReactions =  function  (reactions, primitives) {
 					primitives.CA_ShowMsg ("primera_vez_cuevita");
 					primitives.IT_SetAttPropValue (par_c.target, "generalState", "state", "1")
 				}
+				
+				// entras:
+				primitives.CA_ShowImg ("cuevita.jpg", true, false, "%o1", ["cuevita"] ); 
+
 
 				
 			} // fin si destino es cuevita
@@ -1148,6 +1154,16 @@ let initReactions =  function  (reactions, primitives) {
 				// and shows dfault message too
 				
 			}
+			
+			var fichero ="";
+			if (par_c.item1Id == "collar") fichero = "collar.jpg";
+					
+			primitives.GD_CreateMsg (1, "pulsa_para_ver_imagen_de_%o1", "Pulsa para ver imagen de %o1.<br/>");
+			if (fichero != "") {
+				// primitives.CA_ShowImg (fichero, true, true, "pulsa_para_ver_imagen_de_%o1", [par_c.item1Id] ); 
+				primitives.CA_ShowImg (fichero, true, false, "%o1", [par_c.item1Id] ); 
+			}
+			
 		}
 		
 	});		
@@ -1227,6 +1243,9 @@ let initReactions =  function  (reactions, primitives) {
 				var dias = +primitives.IT_GetAttPropValue (primitives.IT_X("escritor"), "generalState", "state")
 				var estado_hora = usr.DividirMinutos (+primitives.IT_GetAttPropValue (primitives.IT_X("móvil"), "apps", "app_reloj"))
 				primitives.GD_CreateMsg (1, "estadística_juego_s1_s2_s3", "Has necesitado %s1 días y %s2:%s3 horas para liberarte de tu querida hermana.<br/><br/>")
+				
+				primitives.CA_ShowImg ("hermanos.jpg", true, false, "" ); 
+
 				primitives.CA_ShowMsg ("estadística_juego_s1_s2_s3" , {s1: dias, s2:estado_hora.horas, s3:estado_hora.minutos });
 
 				// escena final

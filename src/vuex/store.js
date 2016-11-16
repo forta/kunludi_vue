@@ -383,24 +383,12 @@ const state = {
 		if (expanded == "[]") expanded = ""
 
 		if (reaction.type == "rt_graph") {
-			// dirty trick (to-do)
+
+		// to-do: parameters: by now, only one parameter to expand the text
 			if (reaction.param != undefined)
 				expanded = state.language.expandParams (expanded,  {o1: reaction.param[0]})
 
-			// to-do: show the picture (http)
-			//if (reaction.isLink)
-			//	return "<a href='../data/games/" + state.gameId + "/images/" + reaction.url + "' target='_blank'>" + expanded + "</a><br/>"
-			//else
-			//	return "<p>" + expanded + "</p><img src='../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
-			// var src = require("./../../data/games/" + state.gameId + "/images/" + reaction.url + "'")
-			//var imgPath = "./../../data/games/tresfuentes/images/diamante.jpg"
-			//var src = require("./../../data/games/tresfuentes/images/diamante.jpg")
-			//var src = require("../../data/games/tresfuentes/images/diamante.jpg")
-
-			return {type:'img', txt: expanded, src:reaction.url, isLink:reaction.isLink}
-			//return {type:'img', txt: expanded, src:"./../../data/games/" + state.gameId + "/images/" + reaction.url}
-
-			//return "<p>" + expanded + "</p><img src='./../../data/games/" + state.gameId + "/images/" + reaction.url + "'/>"
+			return {type:'img', src:reaction.url, isLocal:reaction.isLocal, isLink:reaction.isLink, txt: expanded }
 
 		} else if ((reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues")) {
 

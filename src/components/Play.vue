@@ -87,14 +87,22 @@ export default {
       formatReaction: function (r) {
           var piece = this.t(r)
           if (piece == undefined) return ""
-          // console.log ('piece: ' + JSON.stringify (piece))
-     	  if (piece.isLink) 
-		      return "<a href='" + require("./../../data/games/" + this.gameId + "/images/" + piece.src) + "' target='_blank'>" + piece.txt + "</a><br/>"
-            // piece.isLocal, 
-            // piece.param)
+          console.log ('piece: ' + JSON.stringify (piece))
                     
-          if (piece.type == "img")
-              return  "<p>" + piece.txt + "</p><img src='" + require("./../../data/games/" + this.gameId + "/images/" + piece.src) + "'/><br/>"
+          if (piece.type == "img") {
+              
+         	  if (piece.isLink) {
+                   if (piece.isLocal) 
+	    	            return "<a href='" + require("./../../data/games/" + this.gameId + "/images/" + piece.src) + "' target='_blank'>" + piece.txt + "</a><br/>"
+                   else 
+                        return "<a href='" + piece.src + "' target='_blank'>" + piece.txt + "</a><br/>"
+              } else {
+                   if (piece.isLocal) 
+                       return  "<p>" + piece.txt + "</p><img src='" + require("./../../data/games/" + this.gameId + "/images/" + piece.src) + "'/><br/>"
+                   else 
+                       return  "<p>" + piece.txt + "</p><img src='" + require(piece.src) + "'/><br/>" // to-do: in fact, it doesn't work
+              }
+          }
           
           return piece.txt
       },           
