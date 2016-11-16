@@ -294,7 +294,7 @@ const state = {
 
 		} else if (choice.choiceId == 'dir1') {
 			// show the target only ii it is known
-			console.log	("choice.action??: " + JSON.stringify(choice.action) )
+			// console.log	("choice.action??: " + JSON.stringify(choice.action) )
 
 			var txt = state.translateGameElement("directions", choice.action.d1, "txt")
 			if (choice.action.isKnown) txt += " -> " + state.translateGameElement("items", choice.action.target, "txt")
