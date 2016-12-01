@@ -17,16 +17,27 @@
     
     <p>1. Choose the language you want to use: Language </p>
     
-    <p> 2. Choose your game: Play / Games </p>
+    <p>2. Choose your game: Play / Games / Load initial game state</p>
+    
+    <p>3. Once the game is started, to save the current game status or to load a previously saved game: click on <b>More</b></p>
+    
     
     <h3>Available games</h3>
     
-    <li> The game &quot;The Three Sources&quot;, in an earlier version of kunludi, took part in the <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> in 2016 and was honored in the &quot;R &amp; D &quot; section.</li>
-    <li> The game &quot;<a href="http://wiki.caad.com/VampireProject" target="_blank"> vampire </a>&quot; was originally written in Spanish but it has unpolished machine translations into English, Esperanto and French. </li>
-    <li> The game <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> was originally written in Esperanto using <a hred = " Https://eo.wikipedia.org/wiki/Aventuro_(tekstaventuro) "target =" _ blank ">another system</a>. It is still under development. </li>
-    <li> The game &quot;My Dear Sister&quot; it is only in Spanish by the moment. It was featured in the &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Beyond-Death Comp</a>&quot; in 2017.</li>
+    <ul>
+    <li>&quot;The Three Sources&quot;, in an earlier version of kunludi, took part in the <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> in 2016 and was honored in the &quot;R &amp; D &quot; section.</li>
+    <li>&quot;<a href="http://wiki.caad.com/VampireProject" target="_blank"> vampire </a>&quot; was originally written in Spanish but it has unpolished machine translations into English, Esperanto and French. </li>
+    <li><a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> was originally written in Esperanto using <a hred = " Https://eo.wikipedia.org/wiki/Aventuro_(tekstaventuro) "target =" _ blank ">another system</a>. It is still under development. </li>
+    <li>&quot;My Dear Sister&quot; it is only in Spanish by the moment. It was featured in the &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Beyond-Death Comp</a>&quot; in 2017.</li>
     </ul>
-	
+
+    <h3>More</h3>
+    <ul>
+    <li>Blog: <a href="http://blog.kunludi.com" target="_blank">http://blog.kunludi.com</a></li>
+    <li>Source code of kunludi: <a href="https://github.com/forta/kunludi_vue" target="_blank"> https://github.com/forta/kunludi_vue</a> (Two games included: Vampiro and My Dear Sister)</li>
+    <li>Source code of game The Three Fountains: <a href="https://github.com/forta/kunludiGame_tresfuentes" target="_blank">https://github.com/forta/kunludiGame_tresfuentes</a></li>
+    <li>Source code of game Texel: <a href="https://github.com/forta/kunludiGame_texel" target="_blank">https://github.com/forta/kunludiGame_texel</a></li>
+    </ul>
     
     </div> 
 
@@ -46,19 +57,25 @@
 
         <p>1. Elige el idioma que quieres usar: Idioma</p>
         
-        <p>2. Elige tu juego: Jugar / Juegos</p>
+        <p>2. Elige tu juego: Jugar / Juegos / Cargar estado inicial del juego</p>
+        
+        <p>3. Una vez iniciado el juego, para guardar el estado actual del juego o cargar una partida guardada previamente: pulsa en <b>Más</b></p>
 
      	<h3>Juegos disponibles</h3>
         <ul>
-        <li>El juego &quot;Las Tres Fuentes&quot;, en una versión anterior de kunludi, se presentó en la <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 y fue permiada en la sección &quot;I+D&quot;.</li>
-        <li>El juego &quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; fue escritos originalmente en español pero tiene traducciones máquina sin pulir a inglés, esperanto y francés.</li>
-        <li>El juego <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto y en <a hred ="https://eo.wikipedia.org/wiki/Aventuro_(tekstaventuro)"  target="_blank">otro sistema</a>. Está aún en desarrollo.</li>
-        <li>El juego &quot;Mi Querida Hermana&quot; por ahora sólo se encuentra en español. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
+        <li>&quot;Las Tres Fuentes&quot;, en una versión anterior de kunludi, se presentó en la <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 y fue permiada en la sección &quot;I+D&quot;. Con traducciones máquina sin pulir en inglés y esperanto.</li>
+        <li>&quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; fue escrito originalmente en español. Con traducción avanzada al francés y traducciones máquina sin pulir a inglés y esperanto.</li>
+        <li><a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto usando <a href ="https://eo.wikipedia.org/wiki/Aventuro_(tekstaventuro)"  target="_blank">un sistema de desarrollo en MSDOS de su autor</a>. Conversión a kunludi aún en desarrollo.</li>
+        <li>&quot;Mi Querida Hermana&quot; por ahora sólo se encuentra en español. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
         </ul>        
         
-        <br/>
-
-
+     	<h3>Más</h3>
+        <ul>
+        <li>Blog: <a href="http://blog.kunludi.com" target="_blank">http://blog.kunludi.com</a></li>
+        <li>Código fuente de kunludi: <a href="https://github.com/forta/kunludi_vue" target="_blank"> https://github.com/forta/kunludi_vue</a> (Incluye dos juegos: Vampiro y Mi Querida Hermana)</li>
+        <li>Código fuente del juego Las Tres Fuentes: <a href="https://github.com/forta/kunludiGame_tresfuentes" target="_blank">https://github.com/forta/kunludiGame_tresfuentes</a></li>
+        <li>Código fuente del juego Texel: <a href="https://github.com/forta/kunludiGame_texel" target="_blank">https://github.com/forta/kunludiGame_texel</a></li>
+        </ul>
     </div> 
 
     <div v-show="locale == 'eo'">
@@ -78,16 +95,25 @@
 
         <p>1. Elektu viajn preferatan lingvon: Lingvo</p>
 
-        <p>2. Elektu vian ludon: Ludi / Ludoj</p>
+        <p>2. Elektu vian ludon: Ludi / Ludoj / Rekuperi startan statuson el ludo</p>
 
-     	<h3>Haveblaj ludoj (traduk-onta parto)</h3>
+        <p>3. Post starti la ludon, por gardi la nunan lud-statuson aŭ ŝarĝi malnovan statuson, kliku sur <b>Pli</b></p>
+
+     	<h3>Haveblaj ludoj</h3>
         <ul>
-        <li>El juego &quot;Las Tres Fuentes&quot;, en una versión anterior de kunludi, se presentó en la <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 y fue permiada en la sección &quot;I+D&quot;.</li>
-        <li>El juego &quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; fue escritos originalmente en español pero tiene traducciones máquina sin pulir a inglés, esperanto y francés.</li>
-        <li>El juego <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto y en otro sistema. Está aún en desarrollo.</li>
-        <li>El juego &quot;Mi Querida Hermana&quot; por ahora sólo se encuentra en español. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
+        <li>&quot;La Tri Fontoj&quot;, en antaŭ versio prezentiĝis en hispana konkurso <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 kaj gajnis en la sekcio &quot;E+D (esploro kaj disvolviĝo)&quot;. Tradukoj en la angla kaj esperanto, sed ankoraŭ ne polurigitaj.</li>
+        <li>&quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; estis verkita originale en la hispana sed haveblas en nepolurigitaj aŭtomataj tradukoj en esperanto, franca kaj angla.</li>
+        <li><a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> estis verkita originale en esperanto. Ankoraŭ ne estas preta.</li>
+        <li>&quot;Mia Kara Fratino&quot;, ankoraŭ nur en la hispana. Ĝi prezentiĝis en hispana konkurso &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; en 2017.</li>
         </ul>        
 
+        <h3>Plu</h3>
+        <ul>
+        <li>Blogo: <a href="http://blog.kunludi.com" target="_blank">http://blog.kunludi.com</a></li>
+        <li>Kodo de kunludi: <a href="https://github.com/forta/kunludi_vue" target="_blank"> https://github.com/forta/kunludi_vue</a> (Du ludoj inkluzivitaj: Vampiro kaj Mia Kara Fratino)</li>
+        <li>Kodo de la ludo La Tri Fontoj: <a href="https://github.com/forta/kunludiGame_tresfuentes" target="_blank">https://github.com/forta/kunludiGame_tresfuentes</a></li>
+        <li>Kodo de la ludo Texel: <a href="https://github.com/forta/kunludiGame_texel" target="_blank">https://github.com/forta/kunludiGame_texel</a></li>
+        </ul>
 
     </div> 
     
@@ -105,16 +131,27 @@
         
         <p> 1. Choisissez la langue que vous souhaitez utiliser: Langue </p>
         
-        <P> 2. Choisissez votre jeu: Jouer / Jeux </ p>
+        <P> 2. Choisissez votre jeu: Jouer / Jeux / Chargez état initial du jeu </ p>
+        
+        <p>3. Une fois le jeu lancé, pour sauvegarder l'état actuel du jeu ou pour charger un jeu précédemment enregistré: cliquez sur <b>Plus</b></p>    
+
 
      	<h3>Jeux disponibles (à traduire)</h3>
         <ul>
-        <li>El juego &quot;Las Tres Fuentes&quot;, en una versión anterior de kunludi, se presentó en la <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 y fue permiada en la sección &quot;I+D&quot;.</li>
-        <li>El juego &quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; fue escritos originalmente en español pero tiene traducciones máquina sin pulir a inglés, esperanto y francés.</li>
-        <li>El juego <a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto y en otro sistema. Está aún en desarrollo.</li>
-        <li>El juego &quot;Mi Querida Hermana&quot; por ahora sólo se encuentra en español. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
+        <li>&quot;Las Tres Fuentes&quot;, en una versión anterior de kunludi, se presentó en la <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 y fue permiada en la sección &quot;I+D&quot;.</li>
+        <li>&quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; fue escrito originalmente en español pero tiene traducciones máquina sin pulir a inglés, esperanto y francés.</li>
+        <li><a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto y en otro sistema. Está aún en desarrollo.</li>
+        <li>&quot;Mi Querida Hermana&quot; por ahora sólo se encuentra en español. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
         </ul>        
         
+     	<h3>Plus</h3>
+        <ul>
+        <li>Blog: <a href="http://blog.kunludi.com" target="_blank">http://blog.kunludi.com</a></li>
+        <li>Code source de kunludi: <a href="https://github.com/forta/kunludi_vue" target="_blank"> https://github.com/forta/kunludi_vue</a> (Y compris les jeux: Vampiro et Ma Chère sœur</li>
+        <li>Code source du jeu juego Las Tres Fuentes: <a href="https://github.com/forta/kunludiGame_tresfuentes" target="_blank">https://github.com/forta/kunludiGame_tresfuentes</a></li>
+        <li>Code source du jeu Texel: <a href="https://github.com/forta/kunludiGame_texel" target="_blank">https://github.com/forta/kunludiGame_texel</a></li>
+        </ul>
+
     </div> 
 
   </div>
@@ -137,10 +174,10 @@ export default {
   },
   route: {
     activate: function () {
-        console.log('login route activated!')
-        console.log('this.$route.path: ' + JSON.stringify (this.$route.path))
-        console.log('this.$route.params: ' + JSON.stringify (this.$route.params))
-        console.log('this.$route.query: ' + JSON.stringify (this.$route.query))
+        // console.log('login route activated!')
+        // console.log('this.$route.path: ' + JSON.stringify (this.$route.path))
+        // console.log('this.$route.params: ' + JSON.stringify (this.$route.params))
+        // console.log('this.$route.query: ' + JSON.stringify (this.$route.query))
         
     }
   },
