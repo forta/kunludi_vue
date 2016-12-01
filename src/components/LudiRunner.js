@@ -43,7 +43,7 @@ exports.createWorld = function (libWorld, gameWorld) {
 			// the time it was seen: itemsMemory[i].lastTime
 
 			// if itemsMemory is not defined, it is created now
-			if (typeof exports.world.items[i].state.itemsMemory == "undefined")
+			if (exports.world.items[i].state.itemsMemory == null)
 				exports.world.items[i].state.itemsMemory = [];
 		}
 
@@ -294,13 +294,13 @@ exports.processAction = function(action) {
 	
 	// update memory
 	if (action.item1 >= 0) {
-		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1] == undefined)
+		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1] == null)
 			exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1] = {}
 		exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1].whereWas = exports.world.items[action.item1].loc
 	}
 
 	if (action.item2 >= 0) {
-		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item2] == undefined)
+		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item2] == null)
 			exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item2] = {}
 		exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1].whereWas = exports.world.items[action.item2].loc
 	}
@@ -383,10 +383,10 @@ exports.getTargetAndLocked = function (loc, direction) {
 		}
 	}
 
-  connection.isKnown = false
-  if (connection.target != -1) {
-   connection.isKnown = (typeof exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[connection.target] != "undefined");
-  }
+	connection.isKnown = false
+	if (connection.target != -1) {
+		connection.isKnown = (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[connection.target] != null) 
+	}
 
 	return connection;
 
@@ -416,18 +416,15 @@ exports.updateChoices = function () {
 		itemGroup_notHere: []
 	}
 	
-	/*
 	if (this.choice.choiceId == 'top') {
-
 		var loc = arrayObjectIndexOf (exports.world.items, "id", exports.world.items[exports.userState.profile.indexPC].loc)
 
 		// set current loc as known
-		if (typeof exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[loc] == 'undefined') {
+		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[loc] == null) {
 		  console.log ("Loc ["+ exports.world.items[exports.userState.profile.indexPC].loc + "] is now known.")
 		  exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[loc] = {}
 		}
 	}
-	*/
 
 	// direct actions
 	for (var i=0; i< exports.world.actions.length; i++) {

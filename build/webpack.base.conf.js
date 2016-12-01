@@ -52,6 +52,14 @@ module.exports = {
           name: utils.assetsPath('[name].[hash:7].[ext]')
         }
       },
+      {
+        test: /\.(mp3|m4a)$/,
+        loader: 'url',
+        query: {
+          limit: 10000,
+          name: utils.assetsPath('[name].[hash:7].[ext]')
+        }
+      },
 	  { test: /\.(md|txt)$/, loader: 'null' }
     ]
   },

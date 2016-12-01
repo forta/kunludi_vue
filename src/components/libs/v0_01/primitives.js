@@ -386,7 +386,7 @@ export function IT_SetIsLocked (i, dir, value) {
 
 export function IT_GetIsItemKnown (i1, i2) {
  
- return (typeof this.world.items[i1].state.itemsMemory[i2] != "undefined");
+ return (this.world.items[i1].state.itemsMemory[i2] != null);
 }
 
 export function IT_SetIsItemKnown (i1, i2) {

@@ -87,7 +87,7 @@ export default {
       formatReaction: function (r) {
           var piece = this.t(r)
           if (piece == undefined) return ""
-          console.log ('piece: ' + JSON.stringify (piece))
+          // console.log ('piece: ' + JSON.stringify (piece))
                     
           if (piece.type == "img") {
               

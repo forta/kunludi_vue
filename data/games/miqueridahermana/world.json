@@ -41,7 +41,10 @@
 				{   "dir":"d180", "target":"salón_comedor"  },
 				{   "dir":"d0", "target":"camino_playa"  }
 
-			]
+			],
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
         {
 			"id": "pasillo",
@@ -60,7 +63,10 @@
 				{   "dir":"d180", "target":"cocina"  },
 				{   "dir":"up", "target":"promontorio"  },
 				{   "dir":"d90", "target":"caleta"  }
-			]
+			],
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
         {
 			"id": "caleta",
@@ -68,7 +74,10 @@
 			"address":[  
 				{   "dir":"d270", "target":"camino_playa"  },
 				{   "dir":"in", "target":"cuevita"  }
-			]
+			],
+            "att": {
+ 				"generalState": [ {"state":"0"}	]
+            }
         },
         {
 			"id": "cuevita",

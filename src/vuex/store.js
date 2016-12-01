@@ -361,11 +361,13 @@ const state = {
 		// if dev msg not exists, show json line to add in the console
 		if (reaction.type == "rt_dev_msg") {
 			if (expanded == "") {
+				/*
 				var line = "DEV MSG:\n," ;
 				line += "\t\"" + "messages."+ reaction.txt + ".txt\": {\n" ;
 				line += "\t\t\"" + "message\": \"" + reaction.detail + "\"\n" ;
 				line += "\t}";
 				console.log(line);
+				*/
 
 				// add in memory
 				state.game.messages [state.locale]["messages." + reaction.txt + ".txt"] = {message:reaction.detail}
@@ -606,6 +608,8 @@ const mutations = {
 	})
 	state.gameTurn = 0
 	state.gameIsOver = false
+	state.pendingChoice= {}
+	state.gameIsOver=false
 
   },
   LOADGAMES (state, par) { // par: filter
@@ -616,7 +620,30 @@ const mutations = {
 
 	// load all about files from all games
 	for (let i=0; i<state.games.length;i++) {
-		state.games[i].about = require ('../../data/games/' + state.games[i].name + '/about.json');
+		try {
+			state.games[i].about = require ('../../data/games/' + state.games[i].name + '/about.json');
+		}
+		catch(err) {
+			state.games[i].about = {
+				"ludi_id": "1", 
+				"name": state.games[i].name, 
+				"translation": [
+					{
+						"language": state.locale,
+						"title": "[" + state.games[i].name +"]",
+						"desc": "??",
+						"introduction": "??",	
+						"author": {
+							"name": "??", 
+							"ludi_account": "??", 
+							"email": "??"
+						}
+					} 		
+				]
+			}
+
+		}
+		
 	}
 
   },
@@ -646,6 +673,8 @@ const mutations = {
   },
   LOAD_GAME_STATE (state, slotId, showIntro) {
 
+	mutations.GAME_STATE_RESET (state)
+
 	// necessary to refresh data
 	state.gameSlots = []
 	mutations.LOAD_GAME_SLOTS (state)
@@ -667,7 +696,6 @@ const mutations = {
 	
 	// show intro, after default game slot
 	if ( (slotId == "default") && (showIntro == undefined) ) {
-		mutations.GAME_STATE_RESET (state)
 		state.choice = { choiceId:'action0', action: {actionId:'look'}, isLeafe:true}
 	} else {
 		state.choice = 	{choiceId:'top', isLeafe:false, parent:''} 

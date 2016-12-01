@@ -19,6 +19,9 @@ panfleto.generalState.state: 0 no leído; 1: leído
 salón_comedor.generalState.state: 0: primera vez; 1: siguientes
 barrotes.generalState.state: 0: entrada bloqueada; 1: entrada abierta
 cuevita.generalState.state: 0: primera vez; 1: siguientes
+
+Cuando aparece el fantasma: salón_comedor, cocina, camino_playa, y caleta usan atributo generalState.state como contador para forzar acciones.
+
 ---
 embarazada.generalState.state: 0: no la conoces aún; 1: ya la conoces; 2: no sabes que va a tener gemelos; 3: ya sabes que va a tener gemelos; 4: ya comió chocolate y te dió la servilleta
 hippie.generalState.state: 0: no lo conoces aún; 1: ya lo conoces y quiere marcha; 2: ya tuviste fiesta con él
@@ -240,7 +243,7 @@ let initReactions =  function  (reactions, primitives) {
 			}
 			
 			// igual que talk
-			return usr.hablarConPNJ (PNJIndex, par_c.option, true) // esTelefonico: true
+			return usr.hablarConPNJ (PNJIndex, par_c.option, false) // esTelefonico: false
 		}
 		
 	});
@@ -355,8 +358,13 @@ let initReactions =  function  (reactions, primitives) {
 	reactions.push ({ 
 		id: 'wait',
 		
+		enabled: function (indexItem,indexItem2) {
+			// si fantasma, no duermes
+			if (+primitives.IT_GetAttPropValue (primitives.IT_X("libro_magia"), "generalState", "state") >=2) return false
+			return true
+		},
+		
 		reaction: function (par_c) {
-			
 			primitives.GD_CreateMsg (1, "perder_tiempo", "La cosa no está como para derrochar el tiempo, pero una cabezadita nunca viene mal... ZZZ.<br/>"); 
 			primitives.CA_ShowMsg ("perder_tiempo");
 			usr.incrementar_hora(4)
@@ -512,6 +520,36 @@ let initReactions =  function  (reactions, primitives) {
 		}
 		
 	});
+	
+		
+	reactions.push ({ 
+		id: 'give', 
+		
+		// to-do: por ahora lo deshabilitamos en el juego
+		enabled: function (indexItem, indexItem2) {
+			return false
+		},
+
+		reaction: function (par_c) {
+						
+			// dar cesta a Vicky
+			if ((par_c.item1Id  == "cestaTelePapeo") && (par_c.item2Id  == "embarazada")) {
+
+				if (+primitives.IT_GetAttPropValue (par_c.item2, "generalState", "state") < 3) {
+					// no te interesa nada de ella
+					primitives.GD_CreateMsg (1, "antisocial", "Por ahora estás muy centrado en tu libro como para hacer vida social, así que al final no lo haces.<br/>"); 
+					primitives.CA_ShowMsg ("antisocial");
+				} else {
+					usr.hablarConPNJ (par_c.item2, "Vicky_invitar_a_comer", false) // esTelefonico: false 
+				}	
+				
+				return true
+
+			}
+		}
+		
+	});
+
 	
 	reactions.push ({ 
 		id: 'drop', 
@@ -1021,13 +1059,25 @@ let initReactions =  function  (reactions, primitives) {
 				
 			} // fin si destino es cuevita
 			
+
+			// primera vez que entras (localidad desconocida)
 			if (par_c.target == primitives.IT_X("caleta")) {
 			
-				// primera vez que entras (localidad desconocida)
 				if (!primitives.IT_GetIsItemKnown(primitives.PC_X(), par_c.target)) {
 					primitives.GD_CreateMsg (1, "primera_vez_caleta", "Avanzas casi arrastrando los pies. No quieres ir, pero no puedes evitarlo. Sabes que tienes que hacer frente al pasado, ya han pasado más de quince años y tienes que superarlo.<br/>");
 					primitives.CA_ShowMsg ("primera_vez_caleta");
 				}
+			}
+
+			// ir de caleta a camino_playa con el cinturón atado a los barroes
+			if ( (par_c.loc == primitives.IT_X("caleta")) && 
+			     (par_c.target == primitives.IT_X("camino_playa")) &&
+				 (primitives.IT_GetAttPropValue (primitives.IT_X("cinturón"), "generalState", "state") == "1") ) {
+				primitives.GD_CreateMsg (1, "debes_dejar_cinturón", "No puedes irte con el cinturón atado a los barrores. Lo desatas y te lo llevas contigo.<br/>");
+				primitives.CA_ShowMsg ("debes_dejar_cinturón");
+				
+				primitives.IT_SetAttPropValue (primitives.IT_X("cinturón"), "generalState", "state", "0")
+					 
 			}
 			
 			return false; // se ejecuta reacción por defecto
@@ -1236,12 +1286,12 @@ let initReactions =  function  (reactions, primitives) {
 				 (+primitives.IT_GetAttPropValue (primitives.IT_X("libro_magia"), "generalState", "state") >= 2) ) {
 					 
 				// final del juego
-				primitives.GD_CreateMsg (1, "rompes_collar", "Tus lágimas se diluyen en el mar que te cubre por completo. Cuando ya casi no puedes seguir respirando pones todas tus energías en romper el collar, en un intento desesperado de romper tu nexo con tu querida hermana. Te hieres las manos, pero al final rompes la cuerda y las conchas que formaban el collar se dispersan por la corriente en todas direcciones.<br/>Entonces sucede lo inesperado. Ese collar parece que contenía un poder que mantenía encadenada a tu hermana a ti y al mundo de los mortales. Una vez roto el collar, toda la rabia de tu querida hermana desaparece y es sustituida por una gran paz y una sonrisa. Su cuerpo respandece y te guía en la oscuridad hasta la salida de la cueva.<br>Apareces de noche en la pequeña caleta. Tu querida hermana se despide de ti y se diríge a un círculo de luz.<br/><br/>");
+				primitives.GD_CreateMsg (1, "rompes_collar", "Tus lágimas se diluyen en el mar, que te cubre por completo. Cuando ya casi no puedes seguir respirando pones todas tus energías en romper el collar, en un intento desesperado de romper el nexo con tu querida hermana. Te hieres las manos, pero al final rompes la cuerda y las conchas que formaban el collar se dispersan por la corriente en todas direcciones.<br/>Entonces sucede lo inesperado. Aparentemente, ese collar mantenía encadenada a tu hermana a ti y al mundo de los mortales. Una vez roto el collar, toda la rabia de tu querida hermana desaparece y es sustituida por una gran paz y una bella sonrisa. Su cuerpo respandece y te guía en la oscuridad hasta la salida de la cueva.<br>Apareces de noche en la pequeña caleta. Tu querida hermana se despide de ti y se diríge a un círculo de luz.<br/><br/>");
 				primitives.CA_ShowMsg ("rompes_collar");
 				
 				var dias = +primitives.IT_GetAttPropValue (primitives.IT_X("escritor"), "generalState", "state")
 				var estado_hora = usr.DividirMinutos (+primitives.IT_GetAttPropValue (primitives.IT_X("móvil"), "apps", "app_reloj"))
-				primitives.GD_CreateMsg (1, "estadística_juego_s1_s2_s3", "Has necesitado %s1 días y %s2:%s3 horas para liberarte de tu querida hermana.<br/><br/>")
+				primitives.GD_CreateMsg (1, "estadística_juego_s1_s2_s3", "Has necesitado %s1 días y %s2:%s3 horas para despedirte de tu querida hermana.<br/><br/>")
 				
 				primitives.CA_ShowImg ("hermanos.jpg", true, false, "" ); 
 
@@ -1348,13 +1398,9 @@ let initReactions =  function  (reactions, primitives) {
 							
 						// activa reacción ante tu negativa -> ya no habrá recálculo de horas, ni cambio de día o mareas, ni se necesitará linterna
 						primitives.IT_SetAttPropValue (primitives.IT_X("libro_magia"), "generalState", "state", 2)
-						
-						// to-do: bloquear salidas al piso superior o a la calle: sólo puedes ir a la cocina: cuando digas ir a la cocina... escena en la que la fantasma te lleva hasta el camino costero y te señala las dos alternativas para morir: al promontorio o a la cueva.
-						
-						// brainstorming: objetos necesarios en la cueva: collar [y cinturón?]: al llegar a la cueva, ????????????????
-						
-						
-						
+												
+						// brainstorming: el único objeto necesario para entrar en la cueva con el fantasma: el collar					
+						primitives.CA_Refresh()
 						
 					} else {
 						primitives.GD_CreateMsg (1, "hechizo1_ejecutado", "Con apenas fuerzas, acercas la cerilla a la chimenea, mientra las tijeras vuelan por el aire y se clavan en tu cuello. Caes al suelo, desde donde ves quemarse tu vida. Tu manuscrito arde mientras notas que tu alma sale de tu cuerpo. Al lado tuyo están ahora las figuras de tu madre y tu querida hermana. Vuestra madre se dirige a un círculo de luz mientras que tú y tu querida hermana volaís hasta la habitación de Vicky. Ella duerme plácidamente abrazada a su marido. Notas cómo entráis en su vientre.<br/><br/>Dentro de Vicky, uno de los gemelos, la niña, sonríe, mientras que tú, en tu último pensamiento antes de perder la memoria, dudas de si esto era lo que realmente querías o has sido sólo el títere de su hermana. Después de ese momento, oscuridad y espera. Tu querida hermana te da la mano, volvéis a estar juntos.<br/><br/>");
@@ -1429,19 +1475,22 @@ let initItems =  function  (items, primitives) {
 export function turn (indexItem) {
 	
 	var  primitives = this.primitives // tricky
-
-	if (indexItem == primitives.IT_X("móvil")) usr.incrementar_hora(1)
+	
+	// cuando aparece el fantasma pralizamos el resto de reacciones ("el tiempo se para"), salvo la del fantasma
+	if (+primitives.IT_GetAttPropValue (primitives.IT_X("libro_magia"), "generalState", "state") < 2) {
 		
-	if (indexItem == primitives.IT_X("cargador")) usr.turnoCargador()
-	
-	if (indexItem == primitives.IT_X("cinturón")) usr.turnoCinturon()
-	
-	if ((indexItem == primitives.IT_X("hippie")) || (indexItem == primitives.IT_X("embarazada"))) usr.turnoPNJ(indexItem)
-	if (indexItem == primitives.IT_X("caleta")) usr.turnoCaleta()
-	if (indexItem == primitives.IT_X("cuevita")) usr.turnoCuevita()
+		if (indexItem == primitives.IT_X("móvil")) usr.incrementar_hora(1)
+			
+		if (indexItem == primitives.IT_X("cargador")) usr.turnoCargador()
+		
+		if (indexItem == primitives.IT_X("cinturón")) usr.turnoCinturon()
+		
+		if ((indexItem == primitives.IT_X("hippie")) || (indexItem == primitives.IT_X("embarazada"))) usr.turnoPNJ(indexItem)
+		if (indexItem == primitives.IT_X("caleta")) usr.turnoCaleta()
+		if (indexItem == primitives.IT_X("cuevita")) usr.turnoCuevita()
 
-	if (indexItem == primitives.IT_X("cestaTelePapeo")) usr.turnoCestaTelePapeo ()
-
+		if (indexItem == primitives.IT_X("cestaTelePapeo")) usr.turnoCestaTelePapeo ()
+	}
 		// vinculamos turno de la fantasma al libro arcano
 	if (indexItem == primitives.IT_X("libro_magia")) usr.turnoFantasma()
 		
@@ -1514,11 +1563,13 @@ usr.incrementar_hora = function(turnos) {
 	
 	var  primitives = this.primitives // tricky
 
+	// si fantasma, el tiempo se para:
+	if (+primitives.IT_GetAttPropValue (primitives.IT_X("libro_magia"), "generalState", "state") >=2) return
+
 	var minutosHoy = +primitives.IT_GetAttPropValue (primitives.IT_X("móvil"), "apps", "app_reloj") + turnos * 15
 	
-	
 	if (primitives.PC_IsAt (primitives.IT_X("estudio"))) {
-		// to-do: si pierde el avión, reseteo del día en el estudio
+		// si pierde el avión, reseteo del día en el estudio
 		if (minutosHoy >= 13 * 60) { 
 			primitives.GD_CreateMsg (1, "perdiste_avión", "Ni tú mismo te puedes creer que hayas perdido el avión. Menos mal que no será por vuelos. Llamas a la compañía aérea y reservas otro para la misma hora para mañana. Te pones a trabajar en tu nuevo libro y al llegar la noche comes algo y te vas a la cama. Mañana será otro día... aunque temes la noche y las pesadillas que trae consigo.<br/><br/>");
 			primitives.CA_ShowMsg ("perdiste_avión");
@@ -1572,7 +1623,10 @@ usr.incrementar_hora = function(turnos) {
 	
 	// recálculo de marea
 	var siguiente_marea = +primitives.IT_GetAttPropValue (primitives.IT_X("móvil"), "apps", "app_mareas")
-	if (minutosHoy > siguiente_marea) siguiente_marea += 745
+	
+	// ventana de marea se acaba 60 minutos después de máxima bajamar
+	if (minutosHoy > siguiente_marea + 60) siguiente_marea += 745 
+	
 	if (siguiente_marea >= 1440) siguiente_marea -= 1440 // si suma más de 24 horas
 	primitives.IT_SetAttPropValue (primitives.IT_X("móvil"), "apps", "app_mareas", siguiente_marea)
 	
@@ -1998,13 +2052,38 @@ usr.turnoFantasma = function () {
 	// estado >= 2, después del hechizo
 	
     if (!primitives.PC_IsAt(primitives.IT_X("cuevita")))   {
-		primitives.GD_CreateMsg (1, "fantasma_te_mira_enfadado", "Tu querida hermana brilla en la noche y te señala el camino."); 
-		primitives.CA_ShowMsg ("fantasma_te_mira_enfadado");
 		
-		if (primitives.PC_IsAt(primitives.IT_X("camino_playa"))) {
-			primitives.GD_CreateMsg (1, "fantasma_te_apunta_dos_direcciones", "Con cada mano apunta dos direcciones, como preguntándote dónde quieres morir y reunirte con ella: si en el promontorio o en la cueva de la caleta."); 
-			primitives.CA_ShowMsg ("fantasma_te_apunta_dos_direcciones");
+		primitives.GD_CreateMsg (1, "fantasma_te_mira_enfadado", "Tu querida hermana brilla en la noche y te señala el camino.<br/><br/>"); 
+		primitives.CA_ShowMsg ("fantasma_te_mira_enfadado");
+
+		// incrementar contadores de localidad y forzar cambio de localidad si el jugador está remolón
+		var contadorLocalidad = +primitives.IT_GetAttPropValue (primitives.PC_GetCurrentLoc(), "generalState", "state")
+		primitives.IT_SetAttPropValue (primitives.PC_GetCurrentLoc(), "generalState", "state", contadorLocalidad + 1)
+		
+		if (contadorLocalidad > 4 ) {
+			var nuevaLoc = -1
+
+			if (primitives.PC_IsAt(primitives.IT_X("salón_comedor"))) nuevaLoc = primitives.IT_X("cocina")
+			else if (primitives.PC_IsAt(primitives.IT_X("cocina"))) nuevaLoc = primitives.IT_X("camino_playa")
+			else if (primitives.PC_IsAt(primitives.IT_X("camino_playa"))) nuevaLoc = primitives.IT_X("caleta")
+			else if (primitives.PC_IsAt(primitives.IT_X("caleta"))) nuevaLoc = primitives.IT_X("cuevita")
+
+			if (nuevaLoc != -1) {
+				primitives.PC_SetCurrentLoc(nuevaLoc)
+				
+				primitives.GD_CreateMsg (1, "fantasma__te_empuja_a_o1", "Tu querida hermana no soporta la espera y te arrastra a %o1.<br/><br/>"); 
+				primitives.CA_ShowMsg ("fantasma__te_empuja_a_o1", {o1: nuevaLoc});
+				primitives.CA_ShowMsg("Current_location_o1", {o1: nuevaLoc} );
+
+				primitives.CA_Refresh()
+			}
+		} else {
+			if (primitives.PC_IsAt(primitives.IT_X("camino_playa"))) {
+				primitives.GD_CreateMsg (1, "fantasma_te_apunta_dos_direcciones", "Con cada mano apunta dos direcciones, como preguntándote dónde quieres morir y reunirte con ella: si en el promontorio o en la cueva de la caleta."); 
+				primitives.CA_ShowMsg ("fantasma_te_apunta_dos_direcciones");
+			}
 		}
+		
 	} else {
 		// en la cueva, sube la marea
 		if (estado < 5) {
@@ -2216,7 +2295,7 @@ usr.menuTelePapeo = function (option) {
 	} else { 
 	
 		if (option == "TelePapeo_cancelar_paquete") {
-			primitives.GD_CreateMsg (1, "TelePapeo_cancelar_paquete_reacción", "TelePapeo te dice que va todo bien y cuelga."); 
+			primitives.GD_CreateMsg (1, "TelePapeo_cancelar_paquete_reacción", "Cancelas el pedido a TelePapeo.<br/>"); 
 			primitives.CA_ShowMsg ("TelePapeo_cancelar_paquete_reacción");
 			primitives.IT_SetAttPropValue (primitives.IT_X("cestaTelePapeo"), "generalState", "state", "[]") // resetea cesta
 			primitives.IT_SetAttPropValue (primitives.IT_X("móvil"), "apps", "llamada", "") // fin de la llamada
@@ -2282,11 +2361,11 @@ usr.agregarDialogos = function (PNJIndex, menu) {
 			menu.push ({id:"Vicky_preguntar_por_embarazo", msg:"Vicky_preguntar_por_embarazo"})
 		} else if (primitives.IT_GetAttPropValue (PNJIndex, "generalState", "state") == "3") {  // sabes que está embarazada de gemelos
 			
-			// si tienes chocolate en cestaTelePapeo
+			// si tienes cestaTelePapeo y la necesitas, aunque no tenga chocolate
 			if ( (primitives.IT_IsCarried(primitives.IT_X("cestaTelePapeo"))) && 
-				 (usr.paqueteContiene (primitives.IT_X("cestaTelePapeo"), "chocolate")) &&
+				 (primitives.IT_GetAttPropValue (primitives.IT_X("cestaTelePapeo"), "generalState", "state") != "[]") &&
 				 (primitives.IT_GetLoc(primitives.IT_X("servilleta")) == primitives.IT_X("limbo")) ) {
-				primitives.GD_CreateMsg (1, "Vicky_invitar_a_comer", "Te invito a un helado de chocolate"); 
+				primitives.GD_CreateMsg (1, "Vicky_invitar_a_comer", "Te invito a comer algo"); 
 				menu.push ({id:"Vicky_invitar_a_comer", msg:"Vicky_invitar_a_comer"})
 			}
 
@@ -2412,44 +2491,62 @@ usr.reaccionesVicky = function (option, esTelefonico) {
 		}
 
 	} else if (option == "Vicky_invitar_a_comer") {
-		// escena de merienda de chocolate y servilleta
-
-		primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_1", "A los pocos minutos, tienes a Vicky en casa. Durante unas horas os ponéis al día sobre vuestras vidas. Te habla sobre la aburrida vida de la villa costera y cómo te ha echado de menos."); 
-		primitives.CA_ShowMsg ("escena_merienda_con_Vicky_1");
 		
-		primitives.GD_CreateMsg (1, "DLG_embarazada_habla_1", "Querido Al, ¡qué raro se me hace verte sin tu querida hermana al lado! Después de aquello, tu madre te envió lejos y casi no tuvimos tiempo ni despedirnos. Pensarás que estoy loca, pero cuando he ido a dejar flores en la tumba de tu hermana y tu malograda madre, las brumas de la costa siempre parecen tomar su forma, como llamándome a reunirme con ella. Una vez casi me despeño en el promontorio.");
-		primitives.CA_QuoteBegin ("embarazada",  "DLG_embarazada_habla_1", [], true ); 
-
-		// escena de la posesión
-		primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_2", "<br/>Vicky da buena cuenta del helado de chocolate. Comienza comiendo comedidamente, pero luego devora como una posesa... tan posesa que con la boca llena de chocolate te mira con los ojos en blanco y te dice:<br/>"); 
-		primitives.CA_ShowMsg ("escena_merienda_con_Vicky_2");
-		
-		primitives.GD_CreateMsg (1, "DLG_embarazada_habla_2", "Querido hermano, pronto estaremos juntos. Necesitarás sangre de nuestra nueva madre para realizar el hechizo de reunión. Aquí te dejo un poco");
-		primitives.CA_QuoteBegin ("embarazada",  "DLG_embarazada_habla_2", [], true ); 
-		
-		primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_3", "<br/>Observas atónito cómo Vicky se muerde ligeramente el labio y recoge unas gotas de sangre con una servilleta, que te tira por encima de la mesa.	Acto seguido, como si hubiera sido un mal sueño, Vicky toma el control de su cuerpo y sigue halando como si nada:<br/>"); 
-		primitives.CA_ShowMsg ("escena_merienda_con_Vicky_3");
-
-		primitives.GD_CreateMsg (1, "DLG_embarazada_habla_3", "¡Qué tonta, me he mordido de tantas ganas que tenía de chocolate!");
-		primitives.CA_QuoteBegin ("embarazada",  "DLG_embarazada_habla_3", [], true ); 
-
-		primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_4", "<br/>Poco después, Vicky regresa a su casa y tú sigues con tus rutinas.<br/><br/>"); 
-		primitives.CA_ShowMsg ("escena_merienda_con_Vicky_4");
-		
-		primitives.IT_SetLoc( primitives.PC_X(), primitives.IT_X("salón_comedor"))
-		primitives.IT_SetLoc(primitives.IT_X("servilleta"), primitives.IT_X("salón_comedor"))
-		primitives.IT_SetLocToLimbo(PNJIndex)
+		// si le llevas algo que no tenga chocolate...
+		if (!usr.paqueteContiene (primitives.IT_X("cestaTelePapeo"), "chocolate")) {
+			primitives.GD_CreateMsg (1, "invitas_sin_chocolate", "Vicky se planta contigo en casa y da buena cuenta de la comida, pero en cuanto ve que no tienes chocolate, se va apresuradamente no sin antes soltarte que \'a ver si la próxima vez me invitas a chocolate, vecino.\'.<br/><br/>"); 
+			primitives.CA_ShowMsg ("invitas_sin_chocolate");
 			
-		// finiquitada: ya pasó la escena de la servilleta
-		primitives.IT_SetAttPropValue (PNJIndex, "generalState", "state", "4")
+			// en el salón comedor
+			primitives.IT_SetLoc( primitives.PC_X(), primitives.IT_X("salón_comedor"))
+			primitives.CA_Refresh()
+
+			// vaciar cestaTelePapeo
+			primitives.IT_SetAttPropValue (primitives.IT_X("cestaTelePapeo"), "generalState", "state", "[]") 
+
+			// pasan un rato juntos
+			usr.incrementar_hora(3)	
+
+		} else {
+			// escena de merienda de chocolate y servilleta
+
+			primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_1", "A los pocos minutos, tienes a Vicky en casa. Durante unas horas os ponéis al día sobre vuestras vidas. Te habla sobre la aburrida vida de la villa costera y cómo te ha echado de menos."); 
+			primitives.CA_ShowMsg ("escena_merienda_con_Vicky_1");
 			
-		// vaciar cestaTelePapeo
-		primitives.IT_SetAttPropValue (primitives.IT_X("cestaTelePapeo"), "generalState", "state", "[]") 
+			primitives.GD_CreateMsg (1, "DLG_embarazada_habla_1", "Querido Al, ¡qué raro se me hace verte sin tu querida hermana al lado! Después de aquello, tu madre te envió lejos y casi no tuvimos tiempo ni de despedirnos. Pensarás que estoy loca, pero cuando he ido a dejar flores a las tumbas de tu hermana y tu malograda madre, las brumas de la costa siempre parecen tomar sus formas, como llamándome a reunirme con ellas. Una vez casi me despeño en el promontorio.");
+			primitives.CA_QuoteBegin ("embarazada",  "DLG_embarazada_habla_1", [], true ); 
 
-		primitives.CA_Refresh()
+			// escena de la posesión
+			primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_2", "<br/>Vicky da buena cuenta del helado de chocolate. Comienza comiendo comedidamente, pero luego devora como una posesa... tan posesa que con la boca llena de chocolate te mira con los ojos en blanco y te dice:<br/>"); 
+			primitives.CA_ShowMsg ("escena_merienda_con_Vicky_2");
+			
+			primitives.GD_CreateMsg (1, "DLG_embarazada_habla_2", "Querido hermano, pronto estaremos juntos. Necesitarás sangre de nuestra nueva madre para realizar el hechizo de reunión. Aquí te dejo un poco");
+			primitives.CA_QuoteBegin ("embarazada",  "DLG_embarazada_habla_2", [], true ); 
+			
+			primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_3", "<br/><br/>Observas atónito cómo Vicky se muerde ligeramente el labio y recoge unas gotas de sangre con una servilleta, que te tira por encima de la mesa.	Acto seguido, como si hubiera sido un mal sueño, Vicky toma el control de su cuerpo y sigue hablando como si nada:<br/>"); 
+			primitives.CA_ShowMsg ("escena_merienda_con_Vicky_3");
 
-		// pasan dos horas juntos
-		usr.incrementar_hora(8)
+			primitives.GD_CreateMsg (1, "DLG_embarazada_habla_3", "¡Qué tonta, me he mordido de tantas ganas que tenía de chocolate!");
+			primitives.CA_QuoteBegin ("embarazada",  "DLG_embarazada_habla_3", [], true ); 
+
+			primitives.GD_CreateMsg (1, "escena_merienda_con_Vicky_4", "<br/><br/>Poco después, Vicky regresa a su casa y tú sigues con tus rutinas.<br/><br/>"); 
+			primitives.CA_ShowMsg ("escena_merienda_con_Vicky_4");
+			
+			primitives.IT_SetLoc( primitives.PC_X(), primitives.IT_X("salón_comedor"))
+			primitives.IT_SetLoc(primitives.IT_X("servilleta"), primitives.IT_X("salón_comedor"))
+			primitives.IT_SetLocToLimbo(PNJIndex)
+				
+			// finiquitada: ya pasó la escena de la servilleta
+			primitives.IT_SetAttPropValue (PNJIndex, "generalState", "state", "4")
+				
+			// vaciar cestaTelePapeo
+			primitives.IT_SetAttPropValue (primitives.IT_X("cestaTelePapeo"), "generalState", "state", "[]") 
+
+			primitives.CA_Refresh()
+
+			// pasan dos horas juntos
+			usr.incrementar_hora(8)			
+		}
 				
 	} else {
 
@@ -2561,3 +2658,4 @@ usr.rellenaCeros = function (n, width) {
 	n = n + '';
 	return n.length >= width ? n : new Array(width - n.length + 1).join('0') + n;
 }
+

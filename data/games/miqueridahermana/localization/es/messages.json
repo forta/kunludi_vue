@@ -150,10 +150,10 @@
         "message": "setas"
     },
     "items.servilleta.desc": {
-        "message": "Es la servilleta con la que se curó la herida Vicky."
+        "message": "La servilleta tiene manchas de sangre de Vicky. Es uno de los elementos necesarios para el hechizo de reunión."
     },
     "items.servilleta.txt": {
-        "message": "servilleta con sangre de Vicky"
+        "message": "servilleta"
     },
     "items.cerillas.desc": {
         "message": "Unas pocas cerillas en una cajita de cartón. Dudas de si servirán para algo."

@@ -25,17 +25,20 @@
          <div>
     </ul>
 
-    <h3>{{kt("Options")}}</h3>
-    <ul>
-        <!-- <li> <button v-on:click="load(game.name)">{{kt("Load game")}}</button> </li> -->
+    <div v-if="languageIndex >= 0 && about.translation[languageIndex].desc != '??'">
+            
+        <h3>{{kt("Options")}}</h3>
+        <ul>
+            <!-- <li> <button v-on:click="load(game.name)">{{kt("Load game")}}</button> </li> -->
 
-         <li><button v-on:click="loadGame(game.name, 'default', about.translation[languageIndex].language)"> {{kt("LoadGameFromStart")}}  </button></li>     
+            <li><button v-on:click="loadGame(game.name, 'default', about.translation[languageIndex].language)"> {{kt("LoadGameFromStart")}}  </button></li>     
 
-         <li v-for="gameSlot in gameSlots">
-           <button v-on:click="loadGame(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("LoadGame")}} </button> [{{gameSlot.slotDescription}}] - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}      
-         </li>
-         
-    </ul>
+            <li v-for="gameSlot in gameSlots">
+            <button v-on:click="loadGame(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("LoadGame")}} </button> [{{gameSlot.slotDescription}}] - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}      
+            </li>
+            
+        </ul>
+     </div>
 
   </div>
 </template>
