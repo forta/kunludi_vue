@@ -2,10 +2,10 @@
   <div class="ludi-game-detail"  v-show='game.name'>
     <h3>{{kt("Details")}}</h3>
     <ul>
-        <li> {{kt("Id")}}: {{game.name}} </li> 
+        <li> {{kt("Id")}}: {{game.name}} </li>
         <!--
-         <li> Type: {{game.type}} </li> 
-        <li> Group: {{game.group}} </li> 
+         <li> Type: {{game.type}} </li>
+        <li> Group: {{game.group}} </li>
         <li> Url: {{game.baseurl}} </li>
         -->
         <li> <label>{{kt("Language")}}:</label>
@@ -19,24 +19,24 @@
             <li> {{kt("Title")}}: {{about.translation[languageIndex].title}} </li>
             <li> {{kt("Description")}}: {{about.translation[languageIndex].desc}} </li>
             <li> {{kt("Introduction")}}: {{about.translation[languageIndex].introduction}} </li>
-            <li> {{kt("Author")}}: {{about.translation[languageIndex].author.name}} 
+            <li> {{kt("Author")}}: {{about.translation[languageIndex].author.name}}
                     ({{kt("ludi account")}}: {{about.translation[languageIndex].author.ludi_account}})
                 ({{kt("email")}}: {{about.translation[languageIndex].author.email}})</li>
          <div>
     </ul>
 
     <div v-if="languageIndex >= 0 && about.translation[languageIndex].desc != '??'">
-            
+
         <h3>{{kt("Options")}}</h3>
         <ul>
             <!-- <li> <button v-on:click="load(game.name)">{{kt("Load game")}}</button> </li> -->
 
-            <li><button v-on:click="loadGame(game.name, 'default', about.translation[languageIndex].language)"> {{kt("LoadGameFromStart")}}  </button></li>     
+            <li><button v-on:click="loadGame(game.name, 'default', about.translation[languageIndex].language)"> {{kt("LoadGameFromStart")}}  </button></li>
 
             <li v-for="gameSlot in gameSlots">
-            <button v-on:click="loadGame(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("LoadGame")}} </button> [{{gameSlot.slotDescription}}] - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}      
+            <button v-on:click="loadGame(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("LoadGame")}} </button> [{{gameSlot.slotDescription}}] - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}
             </li>
-            
+
         </ul>
      </div>
 
@@ -51,11 +51,11 @@
 
 export default {
   data () {
-	
+
     return {
         languageIndex: -1
     }
-  },  
+  },
   watch: {
      'game': function (val, oldVal) {
         store.dispatch('LOAD_GAME_ABOUT', val.name)
@@ -65,7 +65,7 @@ export default {
         for (; i<this.about.translation.length;i++) {
             if (this.about.translation[i].language == this.locale) {
                 this.languageIndex=i
-                break            
+                break
             }
         }
         // not necessary, but...
@@ -77,7 +77,7 @@ export default {
   methods: {
       loadGame: function (id, slotId, newLocal) {
 		  store.dispatch('SETGAMEID', id, slotId, newLocal)
-      }, 
+      },
       convertDate: function (dateJSON) {
           var d = new Date (JSON.parse (dateJSON))
 		  return d.toLocaleString()
@@ -95,20 +95,28 @@ export default {
     },
     actions: actions
   }
-    
+
 }
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
+
+h3 {
   color: #42b983;
+  text-align: center;
 }
 
 .ludi-game-detail {
   text-align: left;
-    
+
+}
+
+button:hover {
+    background-color: #4CAF50; /* Green */
+    border-radius: 10px;
+    color: white;
 }
 
 ul {
@@ -120,14 +128,36 @@ ul {
 li {
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
+  text-align: left;
 }
- 
+
 li:last-child {
   border: none;
 }
- 
+
+
+/* Portrait */
+@media screen
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+
+    button {
+        border-radius: 10px;
+        font-size: 1em;
+    }
+
+}
+
+/* Landscape */
+@media screen
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+    button {
+        border-radius: 10px;
+        font-size: 1em;
+    }
+
+}
 
 </style>
-
-
-

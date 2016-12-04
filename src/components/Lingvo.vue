@@ -1,35 +1,35 @@
 <template>
-  <h2> <a v-link="{ path: '/kune' }"> {{kt("Together")}} | </a>
-  <a v-link="{ path: '/ludi' }"> {{kt("Play")}} | </a>
-  {{kt("Language")}}: {{locale}}</h2>
 
   <div class="lingvo">
+
+  <br/><br/><br/>
+  <h2> {{kt("Language")}}: {{locale}} </h2>
 
   <img src="./../../data/icons/languages.jpg">
 
 	<h2>{{kt("Your languages")}}:</h2>
     <ul>
         <li v-for="l in languages.pref">
-            <span v-if ="langIsValid (l)"> 
+            <span v-if ="langIsValid (l)">
             <button @click='setLocale(l)'>{{kt("choose")}}</button>
-            {{l}} 
+            <span class="lingvoText"> {{l}} </span>
             <!-- <button @click='removeAsFavouriteLanguage("en")'> remove </button> -->
             </span>
         </li>
-        
+
     </ul>
 
 	<h2>{{kt("Additional languages")}}:</h2>
     <ul>
         <li v-for="l in languages.other">
-            <span v-if ="langIsValid (l)"> 
+            <span v-if ="langIsValid (l)">
                 <button @click='setLocale(l)'>{{kt("choose")}}</button>
-                {{l}} 
+                <span class="lingvoText"> {{l}} </span>
                 <!-- <button @click='removeAsFavouriteLanguage("en")'> remove </button> -->
             </span>
         </li>
     </ul>
-    
+
 
   </div>
 </template>
@@ -42,7 +42,7 @@ import * as actions from '../vuex/actions'
 
 // import kunLingvo from './KunLingvo'
 
-export default { 
+export default {
    data () {
     return {
     }
@@ -76,14 +76,30 @@ ul {
   padding: 0;
 }
 
+
 li {
-  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
+  text-align: center;
 }
- 
+
 li:last-child {
   border: none;
 }
- 
+
+button {
+    border-radius: 10px;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #4CAF50; /* Green */
+    border-radius: 10px;
+    color: white;
+}
+
+.lingvoText {
+  font-size: 1em;
+}
+
 
 </style>

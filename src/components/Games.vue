@@ -1,10 +1,11 @@
 <template>
   <div class="games">
 
+  <br/><br/><br/>
 	<div v-if="!gameloaded">
         <p>{{kt("Choose Game")}}</p>
         <ul class="gameList">
-            <li v-for="game in games">
+            <li v-for="game in games" class="gameList">
                <button v-on:click="currentgame=game"> -> </button> {{translatedGameName (game.name)}}
             </li>
         </ul>
@@ -105,26 +106,37 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
-  color: #42b983;
-}
+
 
 .gameList {
   text-align: left;
 }
 
-ul {
+button {
+    border-radius: 10px;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #4CAF50; /* Green */
+    border-radius: 10px;
+    color: white;
+}
+
+
+ul.gameList {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-li {
+li.gameList {
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
+  font-size: 20px;
 }
 
-li:last-child {
+li.gameList:last-child {
   border: none;
 }
 

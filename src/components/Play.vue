@@ -1,31 +1,31 @@
 <template>
 
   <div id= "play" class="play">
-  
+
   <div id= "play_top" class="play_top">
-  
-        <button v-on:click="seeGamePanel()"> {{kt("bottom")}}  </button>
+
+        <button v-on:click="seeGamePanel()" > {{kt("bottom")}}  </button>
 
         <h2>{{kt("History")}}</h2>
-        <div v-for="hItem in history">
+        <div v-for="hitem in history">
             <!-- echo -->
-            <p><b><span v-if ="hItem.gameTurn > 0"> {{hItem.gameTurn}} &gt; </span>{{choiceToShow(hItem.action, true)}}</b></p>
-                <!-- to-do: problem with nested v-for: so, we'll create a new component -->  
-            
-            <span v-for="r in hItem.reactionList">
-                <span>{{{formatReaction(r)}}}</span> 
-            </span>
+            <p><b><span v-if ="hitem.gameTurn > 0"> {{hitem.gameTurn}} &gt; </span>{{choiceToShow(hitem.action, true)}}</b></p>
+
+            <!-- to-do: problem with nested v-for: so, we'll create a new component -->
+            <!-- <reaction :hitem="hitem"></reaction> -->
+
+            <span v-for="r in hitem.reactionList">
+                {{{formatReaction(r)}}}
+            </span
+
+
         </div>
-        <!--<h3> menu: {{menu | json}}</h3> 
-        <h3> pendingChoice: {{pendingChoice | json}}</h3> -->
     </div>
 
   </div>
 
-
-
   <div  id="play_bottom" class="play_bottom" &&  v-if ="!gameIsOver">
-  
+
     <!-- Groups of choices -->
     <div class="mainChoices"  v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'" >
         <h3> {{kt("Location")}}: {{this.tge("items", gameState.userState.loc, "txt")}} </h3>
@@ -35,33 +35,32 @@
             <button v-if ="choice.choiceId == 'directActions' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}}</button>
             <button v-if ="choice.choiceId == 'directionGroup' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
         </span>
-        
+
     </div>
-  
-    
+
+
     <!-- choices -->
-    <div class="choices" v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'"> 
-        <h3> <!-- <button class={{getChoiceClass(currentChoice.parent)}} v-on:click="doGameChoice(currentChoice.parent)"> {{kt("Back")}} </button>--> {{showCurrentChoice()}}</h3> 
-        <!--<h2>{{currentChoice | json}}</h2>-->
-        
+    <div class="choices" v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'">
+        <h3>  {{showCurrentChoice()}}</h3>
+
         <span v-for="choice in choices">
             <button v-if = isMiddleChoice(choice) class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
         </span>
 
     </div>
-    
-    <div class="menu" v-if = "menu.length > 0"> 
+
+    <div class="menu" v-if = "menu.length > 0">
         <h3> {{kt("Action")}}: {{choiceToShow(pendingChoice)}}</h3>
         <ul>
             <span v-for="m in menu">
             <li><button v-on:click="menuOption(menu, m)">  {{ $index + 1}} - {{tge("messages",m.msg,"txt")}}</button></li>
             </span>
         </ul>
-        
+
     </div>
-  
+
   </div>
-  
+
   </div>
 
 
@@ -74,8 +73,13 @@
     import { getEcho, getGTranslator, getKTranslator, getCurrentChoice, getGameState, translateGameElement, getGameId, getGameIsOver, getLocale, getHistory, getMenu, getPendingChoice, getChoices } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
+    import Reaction from './Reaction.vue'
+
 
 export default {
+  components: {
+       Reaction
+  },
   data () {
      return {
       }
@@ -88,31 +92,31 @@ export default {
           var piece = this.t(r)
           if (piece == undefined) return ""
           // console.log ('piece: ' + JSON.stringify (piece))
-                    
+
           if (piece.type == "img") {
-              
+
          	  if (piece.isLink) {
-                   if (piece.isLocal) 
+                   if (piece.isLocal)
 	    	            return "<a href='" + require("./../../data/games/" + this.gameId + "/images/" + piece.src) + "' target='_blank'>" + piece.txt + "</a><br/>"
-                   else 
+                   else
                         return "<a href='" + piece.src + "' target='_blank'>" + piece.txt + "</a><br/>"
               } else {
-                   if (piece.isLocal) 
+                   if (piece.isLocal)
                        return  "<p>" + piece.txt + "</p><img src='" + require("./../../data/games/" + this.gameId + "/images/" + piece.src) + "'/><br/>"
-                   else 
+                   else
                        return  "<p>" + piece.txt + "</p><img src='" + piece.src + "'/><br/>" // to-do: in fact, it doesn't work
               }
           }
-          
+
           return piece.txt
-      },           
+      },
       isMiddleChoice: function (choice) {
          return ((choice.choiceId == 'action0') ||(choice.choiceId == 'action') ||(choice.choiceId == 'action2') || (choice.choiceId == 'obj1') || (choice.choiceId == 'dir1'))
-      },           
+      },
       getChoiceClass: function (choice) {
 
-          if (choice.choiceId == 'action0') return "choiceDA"  
-          if (choice.choiceId == 'action') return "choiceAction"  
+          if (choice.choiceId == 'action0') return "choiceDA"
+          if (choice.choiceId == 'action') return "choiceAction"
           else if (choice.choiceId == 'action2')  return "choiceAction2"
           else if (choice.choiceId == 'obj1') return "choiceObj1" + "_" + choice.parent
           else if (choice.choiceId == 'dir1') return "choiceDir1"
@@ -121,7 +125,7 @@ export default {
           else if (choice.choiceId == 'directionGroup') return 'choiceDirections'
           return ""
       },
-      choiceToShow: function (choice, isEcho) { 
+      choiceToShow: function (choice, isEcho) {
           return this.echo (choice, isEcho)
 
       },
@@ -132,22 +136,22 @@ export default {
       },
       showCurrentChoice: function () {
            console.log ("current choice on play.vue: " + JSON.stringify (this.currentChoice))
-           
+
            return this.choiceToShow (this.currentChoice)
-	   
-      }, 
+
+      },
       showEndOfText: function () {
             //var elem = document.getElementById("play_bottom")
             // elem.scrollIntoView(true)
-            
-            setTimeout(function(){ 
+
+            setTimeout(function(){
             var elem = document.getElementById("play_bottom")
-            if (elem != null) 
+            if (elem != null)
                 //elem.scrollTop =  elem.scrollHeight
                 elem.scrollIntoView(true)
-            	
+
             }, 100);
-             
+
       },
       doGameChoice(choice) {
           store.dispatch('PROCESS_CHOICE', choice)
@@ -155,7 +159,7 @@ export default {
       },
       menuOption(menu, m) {
           var choice = this.pendingChoice
-          choice.action.option = m.id 
+          choice.action.option = m.id
           choice.action.msg = m.msg
           choice.action.menu = menu
           store.dispatch('SET_PENDING_CHOICE', choice)
@@ -163,7 +167,7 @@ export default {
       },
       seeGamePanel() {
           this.showEndOfText()
-      }  
+      }
   },
   store: store,
   vuex: {
@@ -196,26 +200,36 @@ h1 {
   color: #42b983;
 }
 
-/*
 button {
-    border-radius: 10px;
-    font-size: 16px;
-
-}
-*/
-
-button {
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: 5px;
+    font-size: 0.8em;
 
 }
 
-@media screen and (max-width: 1000px) {
+/* Portrait */
+@media screen
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+
     button {
         border-radius: 10px;
-        font-size: 32px;
+        font-size: 1.2em;
     }
+
 }
+
+/* Landscape */
+@media screen
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+    button {
+        border-radius: 10px;
+        font-size: 1.3em;
+    }
+
+}
+
 
 button:hover {
     background-color: #4CAF50; /* Green */
@@ -228,7 +242,7 @@ button:hover {
 }
 
 .choiceIG_here {
-    
+
 	background-color: #40FF00;
 }
 
@@ -278,7 +292,7 @@ li {
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
 }
- 
+
 li:last-child {
   border: none;
 }
@@ -291,16 +305,16 @@ div.play {
 div.play_top {
 
     //border: 1px solid green;
-    position: relative; 
+    position: relative;
     top: 0;
     right: 0;
- 	overflow: scroll;		
+ 	overflow: scroll;
     text-align: left;
 	background-color:#FFF;
-}		
+}
 
 div.play_bottom {
-    position: relative; 
+    position: relative;
     //border: 1px solid gray;
     buttom: 0;
     right: 0;
@@ -318,7 +332,7 @@ div.choices {
     text-align: center;
 }
 
- 
- 
+
+
 
 </style>

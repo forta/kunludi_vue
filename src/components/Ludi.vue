@@ -3,41 +3,27 @@
 
         <div class="ludi_top1">
 
-            <h2> <a v-link="{ path: '/kune' }"> {{kt("Together")}} | </a>
-            {{kt("Play")}} |
-            <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a></h2>
+            <h2>
+            <!-- <a v-link="{ path: '/kune' }"> {{kt("Together")}} </a> | -->
+            <!--{{kt("Play")}} | -->
 
-            
-            <a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} | </a>
-            <a v-link="{ path: '/ludi/about' }"> {{kt("About")}} | </a>
-            
-            <!-- <h2 v-show="gameId"> {{kt("Playing")}}: {{gameId}} </h2> -->  
-            <a v-show="gameId" v-link="{ path: '/ludi/play' }"> {{kt("Play")}} | </a>
-            <a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}} | </a>
-            <a v-show="gameId" v-on:click="quit">  {{kt("Quit")}} | </a> 
-            <a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}}</a>
-            
+            <span v-show="!gameId"> <a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} </a> | </span>
+            <span v-show="gameId">  <a  v-link="{ path: '/ludi/play' }"> {{kt("Play")}} </a> | </span>
+            <a v-link="{ path: '/ludi/lingvo' }"> {{kt("Language")}} </a>
+            | <a v-link="{ path: '/ludi/about' }"> {{kt("About")}}  </a>
+
+            <span v-show="gameId"> | <a v-link="{ path: '/ludi/files' }"> {{kt("Files")}} </a>  </span>
+
+             </h2>
+
         </div>
 
        <div class="ludi_bottom" id="ludi_bottom">
 
             <router-view></router-view>
-        
-        </div>
-        
-        
-        <div class="ludi_top2" v-if = "gameId">
 
-            <h4> <a v-link="{ path: '/kune' }"> {{kt("Together")}} | </a>
-            <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a> |  
-            <a v-show="gameId" v-link="{ path: '/ludi/play' }"> {{kt("Play")}} | </a>
-            <a v-show="gameId" v-link="{ path: '/ludi/more' }"> {{kt("More")}} </a>
-            </h4>
-            
         </div>
 
-       
-        
   </div>
 
 </template>
@@ -53,11 +39,10 @@ export default {
     return {
     }
   },
+  ready: function () {
+      this.$router.go('/ludi/about')
+  },
   methods: {
-    quit: function () { 
-        store.dispatch('RESETGAMEID')
-        this.$router.go('/ludi/about')
-	}
   },
   store: store,
   vuex: {
@@ -74,14 +59,35 @@ export default {
 <style>
 
 html {
- // height: 100%;
 }
 
 body {
   display: flex;
   justify-content: center;
   height: 100%;
+  font-size:20px;
 }
+
+/* Portrait */
+@media screen
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+
+    body {
+        font-size: 2.3em;
+    }
+}
+
+/* Landscape */
+@media screen
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+    body {
+        font-size: 1.2em;
+    }
+}
+
 
 #app {
   color: #2c3e50;
@@ -99,25 +105,44 @@ div.ludi {
     overflow: hidden;
     height: 100%;
     width: 100%;
-    //border: 1px solid gray;    
+    //border: 1px solid gray;
 }
 
 div.ludi_top1 {
-   left: 0px; 
+   left: 0px;
    top: 0px;
    width: 100%;
    border: 1px solid red;
-}		
+   position: fixed;
 
-div.ludi_top2 {
-    position: relative;
-    border: 1px solid red;
-}		
+   /*border-bottom:1px solid #eb7429; */
+   background:#fc9400;
+   padding:10px 20px;
+   z-index:100;
+
+}
 
 div.ludi_bottom {
-    position: relative;
-    //border: 1px solid yellow;
-}		
-		
+
+  width: 100%;
+   /*position: static;
+    top: 200px;
+
+    left:0px;
+    width: 100%;
+    border: 1px solid yellow;
+    overflow:scroll;
+    */
+
+
+}
+
+h2 {
+    font-size:1em;
+}
+
+h3 {
+    font-size:.7em;
+}
 
 </style>

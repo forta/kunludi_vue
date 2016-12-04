@@ -1,574 +1,193 @@
-
 {
-    "Play": { "message": "Ludi" },
-    "Boards": { "message": "Forumoj" },
-    "Messages": { "message": "Mesaĝoj" },
-    "Language": { "message": "Lingvo" },
-    "History": {  "message": "Historio" },
+	"Play": { "message": "Ludi" },
+	"Boards": { "message": "Forumoj" },
+	"Messages": { "message": "Mesaĝoj" },
+	"Language": { "message": "Lingvo" },
+	"History": {  "message": "Historio" },
 	"Together": { "message": "Kune" },
 	"Username": { "message": "Kromnomo" },
-	"Choose Game": { "message": "Bonvolu elekti ludon" }, 
-	"bottom": { "message": "malsupren" }, 
-    "Delete": { "message": "Elimini" }, 
-    "Rename": { "message": "Renomi" }, 
-    "Date": { "message": "Dato" }, 
-    "Id": { "message": "Id" }, 
-    "server_welcome": {
-        "message": "bonvenon al la LUDI-a reto."
-    },
-    "server_invalidRequireName": {
-        "message": "bedaŭinde vi bezonas diri al mi vian nomon unue."
-    },
-    "server_invalidNameChange": {
-        "message": "Ne certas kion vi faris, sed bonvolu ne ŝanĝi vian uzulnomon dum la konektado."
-    },
-    "server_filtersChanged": {
-        "message": "filtriloj ŝanĝiĝis"
-    },
-    "server_leftChatroom": {
-        "message": "{{id}} forlasis la LUDI-a reto."
-    },
-    "server_haveFun": {
-        "message": "ĝuu, {{id}}."
-    },
-    "server_hasJoinedRoom": {
-        "message": "{{id}} eniris en la LUDI-a reto."
-    },
-    "server_invalidName": {
-        "message": "bedaŭrinde, {{id}} estas malvalida salutnomo. certiĝu ke ne estas spacoj aŭ strangaj signoj en via nomo (substrekoj bonas). malkonektanta."
-    },
-    "Input": {
-        "message": "Agu!"
-    },
-    "SwitchOrientation": {
-        "message": "Ŝanĝi orientadon"
-    },
-    "SocialTab": {
-        "message": "Socie"
-    },
-    "Panels": {
-        "message": "Paneloj"
-    },
-    "Send message": {
-        "message": "Sendu mesaĝon"
-    },
-    "Offline Players": {
-        "message": "Ne-konektitaj"
-    },
-    "Online Players": {
-        "message": "Konektitaj"
-    },
-    "Game Players": {
-        "message": "Ludaj"
-    },
-    "Players Here": {
-        "message": "Lokaj"
-    },
-    "All Messages": {
-        "message": "Ĉiuj"
-    },
-    "Global Messages": {
-        "message": "Generalaj"
-    },
-    "Game Messages": {
-        "message": "Ludaj"
-    },
-    "Score": {
-        "message": "Poentoj"
-    },
-    "Turns": {
-        "message": "Agoj"
-    },
-    "Scope": {
-        "message": "Amplekso"
-    },
-    "Text": {
-        "message": "Teksto"
-    },
-    "Location": {
-        "message": "Loko"
-    },
-    "Here": {
-        "message": "Ĉi tie"
-    },
-    "Location Messages": {
-        "message": "Lokaj"
-    },
-    "Private Messages": {
-        "message": "Privataj"
-    },
-    "Global Board": {
-        "message": "Generala"
-    },
-    "Game Board": {
-        "message": "Luda"
-    },
-    "Location Board": {
-        "message": "Loka"
-    },
-    "Private Board": {
-        "message": "Privata"
-    },
-    "Stable games": {
-        "message": "Stabilaj ludoj"
-    },
-    "Under construction": {
-        "message": "Konstruata"
-    },
-    "QuitGame": {
-        "message": "Forlasu ludon"
-    },
-    "Save game": {
-        "message": "Konservi ludon"
-    },
-    "Saved games": {
-        "message": "Konservitaj ludoj"
-    },
-    "Load game ": {
-        "message": "Rekuperi ludon"
-    },
-    "Load game from start": {
-        "message": "Rekuperi ludon ekde nulo"
-    },
-    "Load saved game": {
-        "message": "Rekuperi konservitan ludon"
-    },
-    "Refresh": {
-        "message": "Repentri"
-    },
-    "Redescribe": {
-        "message": "Repriskribu"
-    },
-    "PlayerView": {
-        "message": "Ludantoj"
-    },
-    "PlayingView": {
-        "message": "Ludejo"
-    },
-    "GamesView": {
-        "message": "Ludoj"
-    },
-    "LocationView": {
-        "message": "Loko"
-    },
-    "ActivityView": {
-        "message": "Agado"
-    },
-    "ChatView": {
-        "message": "Babili"
-    },
-    "HelpView": {
-        "message": "Helpo"
-    },
-    "File": {
-        "message": "Arĥivo"
-    },
-    "HistoryView": {
-        "message": "Historio"
-    },
-    "you": {
-        "message": "vi"
-    },
-    "Your settings": {
-        "message": "Viaj preferoj"
-    },
-    "Marked item is o1": {
-        "message": "Ero(2) estas %o1"
-    },
-    "You unmark o1": {
-        "message": "Vi elmarkas %o1-n"
-    },
-    "You mark o1 for 2-object actions": {
-        "message": "Vi markas %o1-n por agoj kun du objektoj"
-    },
-    "nowhere": {
-        "message": "nenien"
-    },
-    "Actions on o1": {
-        "message": "Agoj por %o1"
-    },
-    "Current playing character is o1": {
-        "message": "La aktiva rolo estas %o1"
-    },
-    "Switch Language": {
-        "message": "Ŝanĝi lingvon"
-    },
-    "SwitchView": {
-        "message": "Ŝanĝi aspekton"
-    },
-    "Start": {
-        "message": "Ek"
-    },
-    "Restart": {
-        "message": "Rekomenci"
-    },
-    "Undo": {
-        "message": "Malfari"
-    },
-    "ClearHistory": {
-        "message": "Elimini historion"
-    },
-    "Direct actions": {
-        "message": "Direktaj Agoj"
-    },
-    "From here": {
-        "message": "Ekde ĉi tie"
-    },
-    "Items here": {
-        "message": "Ĉi tieaj eroj"
-    },
-    "Items carried": {
-        "message": "Kunportitaj eroj"
-    },
-    "Inside marked": {
-        "message": "Ene de markita ero"
-    },
-    "Carried by marked": {
-        "message": "Kunportita el markita ero"
-    },
-    "Items not here": {
-        "message": "Foraj eroj"
-    },
-    "Players": {
-        "message": "Ludantoj"
-    },
-    "Player": {
-        "message": "Ludanto"
-    },
-    "Games": {
-        "message": "Ludoj"
-    },
-    "All of them": {
-        "message": "Ĉiuj"
-    },
-    "Meeting room": {
-        "message": "Renkontiĝejo"
-    },
-    "Game": {
-        "message": "Ludo"
-    },
-    "Filter panel": {
-        "message": "Filtrejo"
-    },
-    "About": {
-        "message": "Pri LUDI"
-    },
-    "Instructions": {
-        "message": "Instrukcioj"
-    },
-    "about game": {
-        "message": "pri la ludo"
-    },
-    "about in its original language": {
-        "message": "pri la ludo, en sia originala lingvo"
-    },
-    "game": {
-        "message": "ludo"
-    },
-    "title": {
-        "message": "titolo"
-    },
-    "desc": {
-        "message": "priskribo"
-    },
-    "translations": {
-        "message": "tradukoj"
-    },
-    "original language": {
-        "message": "originala lingvo"
-    },
-    "author": {
-        "message": "aŭtoro"
-    },
-    "name": {
-        "message": "nomo"
-    },
-    "account": {
-        "message": "akonto"
-    },
-    "mail": {
-        "message": "poŝtadreso"
-    },
-    "Your profile": {
-        "message": "Via profilo"
-    },
-    "Profile": {
-        "message": "Profilo"
-    },
-    "nick": {
-        "message": "kromnomo"
-    },
-    "Set nick": {
-        "message": "Elektu vian kromnomon"
-    },
-    "Login": {
-        "message": "Identifikiĝu"
-    },
-    "Log out": {
-        "message": "Devenu anonimon"
-    },
-    "status": {
-        "message": "statuso"
-    },
-    "Change your nick": {
-        "message": "Ŝanĝu vian kromnomon"
-    },
-    "Get your profile": {
-        "message": "Rigardu vian profilon"
-    },
-    "Set your profile email": {
-        "message": "Ŝanĝu vian poŝtadreson"
-    },
-    "Set your profile status": {
-        "message": "Ŝanĝu vian statuso"
-    },
-    "About game": {
-        "message": "Pri la ludo"
-    },
-    "Who are playing now": {
-        "message": "Kiuj ludas nun?"
-    },
-    "MyLanguages": {
-        "message": "Miaj lingvoj"
-    },
-    "Message filters": {
-        "message": "Mesaĝ-filtroj"
-    },
-    "Display preferences": {
-        "message": "Montro-agordoj"
-    },
-    "Apply changes": {
-        "message": "Efektivigu ŝanĝojn"
-    },
-    "Language changed to s1": {
-        "message": "Lingvo ŝanĝita al %s1"
-    },
-    "MessagesHidden": {
-        "message": "Mesaĝoj kaŝitaj"
-    },
-    "ActivityHidden": {
-        "message": "Agado kaŝita"
-    },
-    "SpeechOn": {
-        "message": "Aŭskulti tekstojn"
-    },
-    "Are you sure": {
-        "message": "Ĉu vi certas?"
-    },
-    "Number of Items": {
-        "message": "Nombro da eroj"
-    },
-    "GameHelp": {
-        "message": "Ludhelpo"
-    },
-    "ShowAbout": {
-        "message": "Pri"
-    },
-    "SaveGame": {
-        "message": "Gardi ludon"
-    },
-    "LoadGameFromStart": {
-        "message": "Rekuperi startan statuson el ludo"
-    },
-    "Mark": {
-        "message": "Marku kiel ero(2)"
-    },
-    "Unmark": {
-        "message": "Malmarku"
-    },
-    "Back": {
-        "message": "Malantaŭe"
-    },
-    "4-buttons input": {
-        "message": "Kromaj butonoj"
-    },
-    "NewInput": {
-        "message": "Rapida Enigo"
-    },
-    "Filter options": {
-        "message": "Filtri eblecojn"
-    },
-    "Icons": {
-        "message": "Bildetoj"
-    },
-    "Options": {
-        "message": "Eblecoj"
-    },
-    "Select": {
-        "message": "elektu"
-    },
-    "Shortcuts": {
-        "message": "Ŝparvojo"
-    },
-    "external source": {
-        "message": "ekstera fonto"
-    },
-    "Direct Actions": {
-        "message": "Ekaj Agoj"
-    },
-    "Item Groups": {
-        "message": "Grupo da Eroj"
-    },
-    "IncomingLanguages": {
-        "message": "Ricevantaj lingvoj"
-    },
-    "BroadcastFrom": {
-        "message": "Publikaj mesaĝojn el"
-    },
-    "ActivityFrom": {
-        "message": "Agoj el"
-    },
-    "ActivityTo": {
-        "message": "Agoj al"
-    },
-    "GeneralSettings": {
-        "message": "Ĝeneralaj agordoj"
-    },
-    "Logout": {
-        "message": "Elsaluti"
-    },
-    "Available languages": {
-        "message": "Eblaj lingvoj"
-    },
-    "remove": {
-        "message": "elimini"
-    },
-    "down": {
-        "message": "malsupre"
-    },
-    "up": {
-        "message": "supre"
-    },
-    "add": {
-        "message": "aldoni"
-    },
-    "ChatGlobal": {
-        "message": "Globala mesaĝo"
-    },
-    "ChatGame": {
-        "message": "Luda mesaĝo"
-    },
-    "ChatLocation": {
-        "message": "Loka mesaĝo"
-    },
-    "ChatPrivate": {
-        "message": "Privata mesaĝo"
-	},
-    "Number of known items": {
-        "message": "Nombro da konataj eroj"
-    },
-    "LoadGame": {
-        "message": "Sarĝu ludon"
-    },
-    "LoadSavedGame": {
-        "message": "Sarĝu garditan ludon"
-    },
-    "true": {
-        "message": "vero"
-    },
-    "preferedLanguages": {
-        "message": "Preferataj lingvoj"
-    },
-    "myGame": {
-        "message": "mia lingvo"
-    },
-    "myLocation": {
-        "message": "mia loko"
-    },
-    "none": {
-        "message": "nenio"
-    },
-    "System Messages": {
-        "message": "sistemaj mesaĝoj"
-    },
-    "To": {
-        "message": "Al"
-    },
-    "loc": {
-        "message": "loko"
-    },
-    "false": {
-        "message": "malvero"
-    },
-    "everywhere": {
-        "message": "ĉie"
-    },
-    "global": {
-        "message": "globale"
-    },
-    "all": {
-        "message": "ĉio"
-    },
-    "private": {
-        "message": "private"
-    },
-    "Select what you choose": {
-        "message": "Elektu kion vi preferas"
-    },
-    "Playing": {
-        "message": "Ludas"
-	}, 
-    "mainChoices_top": {
-        "message": "Ĉiuj"
-    }, 
-    "mainChoices_here": {
-        "message": "Ĉeestantaj eroj"
-    }, 
-    "mainChoices_carrying": {
-        "message": "Kunportitaj eroj"
-    }, 
-    "mainChoices_notHere": {
-        "message": "Foraj eroj"
-    }, 
-    "mainChoices_directActions": {
-        "message": "Directaj Agoj"
-    }, 
-    "mainChoices_directionGroup": {
-        "message": "Direktoj"
-    }, 
-    "Your languages": {
-        "message": "Viaj lingvoj"
-    }, 
-    "Additional languages": {
-        "message": "Aliaj lingvoj"
-    }, 
-    "Chosen option": {
-        "message": "Elektita ebleco"
-    },
-	"Type your user name and push enter": {
-        "message": "Bonvolu tajpi vian kromnomon kaj puŝi"
-      },
-	"choose": {
-        "message": "elektu"
-    },
-	"More": {
-        "message": "Pli"
-     },
-	"Quit": {
-        "message": "Adiaŭi"
-     },
-	"Details": {
-        "message": "Detaloj"
-     },
-	"Title": {
-        "message": "Titolo"
-     },
-	"Description": {
-        "message": "Priskribo"
-     },
-	"Introduction": {
-        "message": "Enkonduko"
-     },
-	"Author": {
-        "message": "Aŭtoro"
-     },
-	"ludi account": {
-        "message": "ludi-a konto"
-     },
-	"email": {
-        "message": "retadreso"
-      },
-	"Load game": {
-        "message": "Ŝargi ludon"
-   }
+	"Choose Game": { "message": "Bonvolu elekti ludon" },
+	"Confirm game quit": { "message": "Bonvolu konfirmi lud-eliron" },
+	"bottom": { "message": "malsupren" },
+	"Delete": { "message": "Elimini" },
+	"Rename": { "message": "Renomi" },
+	"Date": { "message": "Dato" },
+	"Id": { "message": "Id" },
+	"SwitchOrientation": {        "message": "Ŝanĝi orientadon"    },
+	"SocialTab": {        "message": "Socie"    },
+	"Panels": {        "message": "Paneloj"    },
+	"Send message": {        "message": "Sendu mesaĝon"    },
+	"Offline Players": {        "message": "Ne-konektitaj"    },
+	"Online Players": {        "message": "Konektitaj"    },
+	"Game Players": {        "message": "Ludaj"    },
+	"Players Here": {        "message": "Lokaj"    },
+	"All Messages": {        "message": "Ĉiuj"    },
+	"Global Messages": {        "message": "Generalaj"    },
+	"Game Messages": {        "message": "Ludaj"    },
+	"Score": {        "message": "Poentoj"    },
+	"Turns": {        "message": "Agoj"    },
+	"Scope": {        "message": "Amplekso"    },
+	"Text": {        "message": "Teksto"    },
+	"Location": {        "message": "Loko"    },
+	"Here": {        "message": "Ĉi tie"    },
+	"Location Messages": {        "message": "Lokaj"    },
+	"Private Messages": {        "message": "Privataj"    },
+	"Global Board": {        "message": "Generala"    },
+	"Game Board": {        "message": "Luda"    },
+	"Location Board": {        "message": "Loka"    },
+	"Private Board": {        "message": "Privata"    },
+	"Stable games": {        "message": "Stabilaj ludoj"    },
+	"Under construction": {        "message": "Konstruata"    },
+	"QuitGame": {        "message": "Forlasu ludon"    },
+	"Save game": {        "message": "Konservi ludon"    },
+	"Saved games": {        "message": "Konservitaj ludoj"    },
+	"Load game ": {        "message": "Rekuperi ludon"    },
+	"Load game from start": {        "message": "Rekuperi ludon ekde nulo"    },
+	"Load saved game": {        "message": "Rekuperi konservitan ludon"    },
+	"Refresh": {        "message": "Repentri"    },
+	"Redescribe": {        "message": "Repriskribu"    },
+	"PlayerView": {        "message": "Ludantoj"    },
+	"PlayingView": {        "message": "Ludejo"    },
+	"GamesView": {        "message": "Ludoj"    },
+	"LocationView": {        "message": "Loko"    },
+	"ActivityView": {        "message": "Agado"    },
+	"ChatView": {        "message": "Babili"    },
+	"HelpView": {        "message": "Helpo"    },
+	"Files": {        "message": "Arĥivo"    },
+	"HistoryView": {        "message": "Historio"    },
+	"you": {        "message": "vi"    },
+	"Your settings": {        "message": "Viaj preferoj"    },
+	"Marked item is o1": {        "message": "Ero(2) estas %o1"    },
+	"You unmark o1": {        "message": "Vi elmarkas %o1-n"    },
+	"You mark o1 for 2-object actions": {        "message": "Vi markas %o1-n por agoj kun du objektoj"    },
+	"nowhere": {        "message": "nenien"    },
+	"Actions on o1": {        "message": "Agoj por %o1"    },
+	"Current playing character is o1": {        "message": "La aktiva rolo estas %o1"    },
+	"Switch Language": {        "message": "Ŝanĝi lingvon"    },
+	"SwitchView": {        "message": "Ŝanĝi aspekton"    },
+	"Start": {        "message": "Ek"    },
+	"Restart": {        "message": "Rekomenci"    },
+	"Undo": {        "message": "Malfari"    },
+	"ClearHistory": {        "message": "Elimini historion"    },
+	"Direct actions": {        "message": "Direktaj Agoj"    },
+	"From here": {        "message": "Ekde ĉi tie"    },
+	"Items here": {        "message": "Ĉi tieaj eroj"    },
+	"Items carried": {        "message": "Kunportitaj eroj"    },
+	"Inside marked": {        "message": "Ene de markita ero"    },
+	"Carried by marked": {        "message": "Kunportita el markita ero"    },
+	"Items not here": {        "message": "Foraj eroj"    },
+	"Players": {        "message": "Ludantoj"    },
+	"Player": {        "message": "Ludanto"    },
+	"Games": {        "message": "Ludoj"    },
+	"All of them": {        "message": "Ĉiuj"    },
+	"Meeting room": {        "message": "Renkontiĝejo"    },
+	"Game": {        "message": "Ludo"    },
+	"Filter panel": {        "message": "Filtrejo"    },
+	"About": {        "message": "Pri LUDI"    },
+	"Instructions": {        "message": "Instrukcioj"    },
+	"about game": {        "message": "pri la ludo"    },
+	"about in its original language": {        "message": "pri la ludo, en sia originala lingvo"    },
+	"game": {        "message": "ludo"    },
+	"title": {        "message": "titolo"    },
+	"desc": {        "message": "priskribo"    },
+	"translations": {        "message": "tradukoj"    },
+	"original language": {        "message": "originala lingvo"    },
+	"author": {        "message": "aŭtoro"    },
+	"name": {        "message": "nomo"    },
+	"account": {        "message": "akonto"    },
+	"mail": {        "message": "poŝtadreso"    },
+	"Your profile": {        "message": "Via profilo"    },
+	"Profile": {        "message": "Profilo"    },
+	"nick": {        "message": "kromnomo"    },
+	"Set nick": {        "message": "Elektu vian kromnomon"    },
+	"Login": {        "message": "Identifikiĝu"    },
+	"Log out": {        "message": "Devenu anonimon"    },
+	"status": {        "message": "statuso"    },
+	"Change your nick": {        "message": "Ŝanĝu vian kromnomon"    },
+	"Get your profile": {        "message": "Rigardu vian profilon"    },
+	"Set your profile email": {        "message": "Ŝanĝu vian poŝtadreson"    },
+	"Set your profile status": {        "message": "Ŝanĝu vian statuso"    },
+	"About game": {        "message": "Pri la ludo"    },
+	"Who are playing now": {        "message": "Kiuj ludas nun?"    },
+	"MyLanguages": {        "message": "Miaj lingvoj"    },
+	"Message filters": {        "message": "Mesaĝ-filtroj"    },
+	"Display preferences": {        "message": "Montro-agordoj"    },
+	"Apply changes": {        "message": "Efektivigu ŝanĝojn"    },
+	"Language changed to s1": {        "message": "Lingvo ŝanĝita al %s1"    },
+	"MessagesHidden": {        "message": "Mesaĝoj kaŝitaj"    },
+	"ActivityHidden": {        "message": "Agado kaŝita"    },
+	"SpeechOn": {        "message": "Aŭskulti tekstojn"    },
+	"Are you sure": {        "message": "Ĉu vi certas?"    },
+	"Number of Items": {        "message": "Nombro da eroj"    },
+	"GameHelp": {        "message": "Ludhelpo"    },
+	"ShowAbout": {        "message": "Pri"    },
+	"SaveGame": {        "message": "Gardi ludon"    },
+	"LoadGameFromStart": {        "message": "Rekuperi startan statuson el ludo"    },
+	"Mark": {        "message": "Marku kiel ero(2)"    },
+	"Unmark": {        "message": "Malmarku"    },
+	"Back": {        "message": "Malantaŭe"    },
+	"4-buttons input": {        "message": "Kromaj butonoj"    },
+	"NewInput": {        "message": "Rapida Enigo"    },
+	"Filter options": {        "message": "Filtri eblecojn"    },
+	"Icons": {        "message": "Bildetoj"    },
+	"Options": {        "message": "Eblecoj"    },
+	"Select": {        "message": "elektu"    },
+	"Shortcuts": {        "message": "Ŝparvojo"    },
+	"external source": {        "message": "ekstera fonto"    },
+	"Direct Actions": {        "message": "Ekaj Agoj"    },
+	"Item Groups": {        "message": "Grupo da Eroj"    },
+	"IncomingLanguages": {        "message": "Ricevantaj lingvoj"    },
+	"BroadcastFrom": {        "message": "Publikaj mesaĝojn el"    },
+	"ActivityFrom": {        "message": "Agoj el"    },
+	"ActivityTo": {        "message": "Agoj al"    },
+	"GeneralSettings": {        "message": "Ĝeneralaj agordoj"    },
+	"Logout": {        "message": "Elsaluti"    },
+	"Available languages": {        "message": "Eblaj lingvoj"    },
+	"remove": {        "message": "elimini"    },
+	"down": {        "message": "malsupre"    },
+	"up": {        "message": "supre"    },
+	"add": {        "message": "aldoni"    },
+	"ChatGlobal": {        "message": "Globala mesaĝo"    },
+	"ChatGame": {        "message": "Luda mesaĝo"    },
+	"ChatLocation": {        "message": "Loka mesaĝo"    },
+	"ChatPrivate": {        "message": "Privata mesaĝo"	},
+	"Number of known items": {        "message": "Nombro da konataj eroj"    },
+	"LoadGame": {        "message": "Sarĝu ludon"    },
+	"LoadSavedGame": {        "message": "Sarĝu garditan ludon"    },
+	"true": {        "message": "vero"    },
+	"preferedLanguages": {        "message": "Preferataj lingvoj"    },
+	"myGame": {        "message": "mia lingvo"    },
+	"myLocation": {        "message": "mia loko"    },
+	"none": {        "message": "nenio"    },
+	"System Messages": {        "message": "sistemaj mesaĝoj"    },
+	"To": {        "message": "Al"    },
+	"loc": {        "message": "loko"    },
+	"false": {        "message": "malvero"    },
+	"everywhere": {        "message": "ĉie"    },
+	"global": {        "message": "globale"    },
+	"all": {        "message": "ĉio"    },
+	"private": {        "message": "private"    },
+	"Select what you choose": {        "message": "Elektu kion vi preferas"    },
+	"Playing": {        "message": "Ludas"	},
+	"mainChoices_top": {        "message": "Ĉiuj"    },
+	"mainChoices_here": {        "message": "Ĉeestantaj eroj"    },
+	"mainChoices_carrying": {        "message": "Kunportitaj eroj"    },
+	"mainChoices_notHere": {        "message": "Foraj eroj"    },
+	"mainChoices_directActions": {        "message": "Directaj Agoj"    },
+	"mainChoices_directionGroup": {        "message": "Direktoj"    },
+	"Your languages": {        "message": "Viaj lingvoj"    },
+	"Additional languages": {        "message": "Aliaj lingvoj"    },
+	"Chosen option": {        "message": "Elektita ebleco"    },
+	"Type your user name and push enter": {        "message": "Bonvolu tajpi vian kromnomon kaj puŝi"      },
+	"choose": {        "message": "elektu"    },
+	"More": {        "message": "Pli"     },
+	"Quit": {        "message": "Adiaŭi"     },
+	"Details": {        "message": "Detaloj"     },
+	"Title": {        "message": "Titolo"     },
+	"Description": {        "message": "Priskribo"     },
+	"Introduction": {        "message": "Enkonduko"     },
+	"Author": {        "message": "Aŭtoro"     },
+	"ludi account": {        "message": "ludi-a konto"     },
+	"email": {        "message": "retadreso"      },
+	"Load game": {        "message": "Ŝargi ludon"   }
 }

@@ -49,10 +49,10 @@ export default {
   },
   route: {
     activate: function () {
-        // console.log('login route activated!')
-        // console.log('this.$route.path: ' + JSON.stringify (this.$route.path))
-        // console.log('this.$route.params: ' + JSON.stringify (this.$route.params))
-        // console.log('this.$route.query: ' + JSON.stringify (this.$route.query))
+        console.log('login route activated!')
+        console.log('this.$route.path: ' + JSON.stringify (this.$route.path))
+        console.log('this.$route.params: ' + JSON.stringify (this.$route.params))
+        console.log('this.$route.query: ' + JSON.stringify (this.$route.query))
         
     }
   },

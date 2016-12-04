@@ -1,589 +1,193 @@
 {
-  "Play": {
-    "message": "jouer"
-  },
-  "Boards": {
-    "message": "Forums"
-  },
-  "Messages": {
-    "message": "messages"
-  },
-  "Language": {
-    "message": "Langue"
-  },
-  "History": {
-    "message": "record"
-  },
-  "Together": {
-    "message": "ensemble"
-  },
-  "Username": {
-    "message": "Nom d'utilisateur"
-  },
-  "Choose Game": {
-    "message": "S'il vous plaît sélectionner un jeu"
-  },
-  "bottom": { "message": "bas" }, 
-  "Delete": { "message": "Eliminer" }, 
-  "Rename": { "message": "Renommer" }, 
-  "Date": { "message": "Date" }, 
-  "Id": { "message": "Id" }, 
-  "server_welcome": {
-    "message": "bienvenue à la LUDI réseau"
-  },
-  "server_invalidRequireName": {
-    "message": "désolé, vous devez me dire votre prénom."
-  },
-  "server_invalidNameChange": {
-    "message": "Je ne suis pas sûr de ce que vous avez fait, mais s'il vous plaît ne changez pas votre nom d'utilisateur dans le milieu de la connexion."
-  },
-  "server_filtersChanged": {
-    "message": "les filtres ont changé"
-  },
-  "server_leftChatroom": {
-    "message": "{{Id}} a quitté le LUDI réseau."
-  },
-  "server_haveFun": {
-    "message": "Passez un bon moment, {{id}}."
-  },
-  "server_hasJoinedRoom": {
-    "message": "{{Id}} a été contectado réseau de Ludi."
-  },
-  "server_invalidName": {
-    "message": "Je suis désolé, {{id}} est un nom d'utilisateur non valide. assurez-vous qu'il n'y a pas d'espaces ou de caractères étranges dans votre nom (oui underscores sont autorisés). déconnexion."
-  },
-  "Input": {
-    "message": "Action!"
-  },
-  "SwitchOrientation": {
-    "message": "changement d'orientation"
-  },
-  "SocialTab": {
-    "message": "social"
-  },
-  "Panels": {
-    "message": "panneaux"
-  },
-  "Send message": {
-    "message": "Envoyer un message"
-  },
-  "Offline Players": {
-    "message": "Hors ligne"
-  },
-  "Online Players": {
-    "message": "En ligne"
-  },
-  "Game Players": {
-    "message": "Dans ce jeu"
-  },
-  "Players Here": {
-    "message": "Dans cette localité"
-  },
-  "All Messages": {
-    "message": "tous"
-  },
-  "Global Messages": {
-    "message": "global"
-  },
-  "Game Messages": {
-    "message": "jeu"
-  },
-  "Score": {
-    "message": "score"
-  },
-  "Turns": {
-    "message": "BATS"
-  },
-  "Scope": {
-    "message": "portée"
-  },
-  "Text": {
-    "message": "texte"
-  },
-  "Location": {
-    "message": "localité"
-  },
-  "Here": {
-    "message": "ici"
-  },
-  "Location Messages": {
-    "message": "De la ville"
-  },
-  "Private Messages": {
-    "message": "privé"
-  },
-  "Global Board": {
-    "message": "global"
-  },
-  "Game Board": {
-    "message": "jeu"
-  },
-  "Location Board": {
-    "message": "De la ville"
-  },
-  "Private Board": {
-    "message": "privé"
-  },
-  "Stable games": {
-    "message": "Jeux stables"
-  },
-  "Under construction": {
-    "message": "En construction"
-  },
-  "QuitGame": {
-    "message": "Exit Game"
-  },
-  "Save game": {
-    "message": "Sauvegarder la partie"
-  },
-  "Saved games": {
-    "message": "Parties sauvegardées"
-  },
-  "Load game ": {
-    "message": "Jeu de chargement"
-  },
-  "Load game from start": {
-    "message": "Charger un jeu à partir de zéro"
-  },
-  "Load saved game": {
-    "message": "Charger une partie enregistrée"
-  },
-  "Refresh": {
-    "message": "rafraîchir"
-  },
-  "Redescribe": {
-    "message": "redescribes"
-  },
-  "PlayerView": {
-    "message": "joueurs"
-  },
-  "PlayingView": {
-    "message": "Heatmap"
-  },
-  "GamesView": {
-    "message": "Jeux"
-  },
-  "LocationView": {
-    "message": "localité"
-  },
-  "ActivityView": {
-    "message": "activité"
-  },
-  "ChatView": {
-    "message": "Gato"
-  },
-  "HelpView": {
-    "message": "aider"
-  },
-  "File": {
-    "message": "archives"
-  },
-  "HistoryView": {
-    "message": "historique"
-  },
-  "you": {
-    "message": "vous"
-  },
-  "Your settings": {
-    "message": "vos préférences"
-  },
-  "Marked item is o1": {
-    "message": "Point (2) est% o1"
-  },
-  "You unmark o1": {
-    "message": "Décochant% o1"
-  },
-  "You mark o1 for 2-object actions": {
-    "message": "O1 marque% pour les actions avec deux objets"
-  },
-  "nowhere": {
-    "message": "nulle part"
-  },
-  "Actions on o1": {
-    "message": "Actions sur% o1"
-  },
-  "Current playing character is o1": {
-    "message": "Le caractère actif est% o1"
-  },
-  "Switch Language": {
-    "message": "Changer de langue"
-  },
-  "SwitchView": {
-    "message": "Changer de vue"
-  },
-  "Start": {
-    "message": "Débuter"
-  },
-  "Restart": {
-    "message": "Recommencer"
-  },
-  "Undo": {
-    "message": "défaire"
-  },
-  "ClearHistory": {
-    "message": "Effacer l'historique"
-  },
-  "Direct actions": {
-    "message": "actions directes"
-  },
-  "From here": {
-    "message": "D'ici"
-  },
-  "Items here": {
-    "message": "éléments ici"
-  },
-  "Items carried": {
-    "message": "objets transportés"
-  },
-  "Inside marked": {
-    "message": "Dans le marqué"
-  },
-  "Carried by marked": {
-    "message": "Dirigé par le marquage"
-  },
-  "Items not here": {
-    "message": "éléments manquants"
-  },
-  "Players": {
-    "message": "joueurs"
-  },
-  "Player": {
-    "message": "joueur"
-  },
-  "Games": {
-    "message": "Jeux"
-  },
-  "All of them": {
-    "message": "Tous ceux"
-  },
-  "Meeting room": {
-    "message": "lieu"
-  },
-  "Game": {
-    "message": "jeu"
-  },
-  "Filter panel": {
-    "message": "les filtres du panneau"
-  },
-  "About": {
-    "message": "A propos de LUDI"
-  },
-  "Instructions": {
-    "message": "instructions"
-  },
-  "about game": {
-    "message": "sur le jeu"
-  },
-  "about in its original language": {
-    "message": "sur le jeu dans sa langue originale"
-  },
-  "game": {
-    "message": "jeu"
-  },
-  "title": {
-    "message": "titre"
-  },
-  "desc": {
-    "message": "description"
-  },
-  "translations": {
-    "message": "traductions"
-  },
-  "original language": {
-    "message": "langue originale"
-  },
-  "author": {
-    "message": "auteur"
-  },
-  "name": {
-    "message": "nom"
-  },
-  "account": {
-    "message": "raconte"
-  },
-  "mail": {
-    "message": "courrier"
-  },
-  "Your profile": {
-    "message": "profil"
-  },
-  "nick": {
-    "message": "surnom"
-  },
-  "Profile": {
-    "message": "profil"
-  },
-  "Set nick": {
-    "message": "Ponte un surnom"
-  },
-  "Login": {
-    "message": "login"
-  },
-  "Log out": {
-    "message": "Déconnexion"
-  },
-  "status": {
-    "message": "statut"
-  },
-  "Change your nick": {
-    "message": "Changer votre pseudonyme"
-  },
-  "Get your profile": {
-    "message": "Voir le profil"
-  },
-  "Set your profile email": {
-    "message": "Changez votre email"
-  },
-  "Set your profile status": {
-    "message": "Changer l'état"
-  },
-  "About game": {
-    "message": "A propos du jeu"
-  },
-  "Who are playing now": {
-    "message": "Qui joue maintenant?"
-  },
-  "MyLanguages": {
-    "message": "Mes langues"
-  },
-  "Message filters": {
-    "message": "Message Filter"
-  },
-  "Display preferences": {
-    "message": "préférences visuelles"
-  },
-  "Apply changes": {
-    "message": "appliquer les modifications"
-  },
-  "Language changed to s1": {
-    "message": "Langue changée en% s1"
-  },
-  "MessagesHidden": {
-    "message": "messages cachés"
-  },
-  "ActivityHidden": {
-    "message": "activité cachée"
-  },
-  "SpeechOn": {
-    "message": "écouter des textes"
-  },
-  "Are you sure": {
-    "message": "¿Estáseguro?"
-  },
-  "Number of Items": {
-    "message": "Nombre d'éléments"
-  },
-  "GameHelp": {
-    "message": "Aide de jeu"
-  },
-  "ShowAbout": {
-    "message": "sur"
-  },
-  "SaveGame": {
-    "message": "Enregistrez le jeu"
-  },
-  "LoadGameFromStart": {
-    "message": "Chargez état initial du jeu"
-  },
-  "Mark": {
-    "message": "Mark article (2)"
-  },
-  "Unmark": {
-    "message": "décochez"
-  },
-  "Back": {
-    "message": "dos"
-  },
-  "4-buttons input": {
-    "message": "boutons supplémentaires"
-  },
-  "NewInput": {
-    "message": "saisie rapide"
-  },
-  "Filter options": {
-    "message": "Les options de filtrage"
-  },
-  "Icons": {
-    "message": "icônes"
-  },
-  "Options": {
-    "message": "Options"
-  },
-  "Select": {
-    "message": "choisir"
-  },
-  "Shortcuts": {
-    "message": "Raccourcis"
-  },
-  "external source": {
-    "message": "source externe"
-  },
-  "Direct Actions": {
-    "message": "actions directes"
-  },
-  "Item Groups": {
-    "message": "groupes d'articles"
-  },
-  "IncomingLanguages": {
-    "message": "langues entrantes"
-  },
-  "BroadcastFrom": {
-    "message": "message public de"
-  },
-  "ActivityFrom": {
-    "message": "activité depuis"
-  },
-  "ActivityTo": {
-    "message": "activité"
-  },
-  "GeneralSettings": {
-    "message": "options générales"
-  },
-  "Logout": {
-    "message": "Fermer la session"
-  },
-  "Available languages": {
-    "message": "langues disponibles"
-  },
-  "remove": {
-    "message": "supprimer"
-  },
-  "down": {
-    "message": "vers le bas"
-  },
-  "up": {
-    "message": "dessus"
-  },
-  "add": {
-    "message": "ajouter"
-  },
-  "ChatGlobal": {
-    "message": "message global"
-  },
-  "ChatGame": {
-    "message": "Message au jeu"
-  },
-  "ChatLocation": {
-    "message": "Message dans la ville"
-  },
-  "ChatPrivate": {
-    "message": "Message privé"
-  },
-  "Number of known items": {
-    "message": "Nombre d'éléments connus"
-  },
-  "LoadGame": {
-    "message": "Jeu de chargement"
-  },
-  "LoadSavedGame": {
-    "message": "Charger une partie enregistrée"
-  },
-  "true": {
-    "message": "réel"
-  },
-  "preferedLanguages": {
-    "message": "langues préférées"
-  },
-  "myGame": {
-    "message": "mon jeu"
-  },
-  "myLocation": {
-    "message": "ma ville"
-  },
-  "none": {
-    "message": "aucun"
-  },
-  "System Messages": {
-    "message": "Messages système"
-  },
-  "To": {
-    "message": "A"
-  },
-  "loc": {
-    "message": "localité"
-  },
-  "false": {
-    "message": "faux"
-  },
-  "everywhere": {
-    "message": "Nouveau"
-  },
-  "global": {
-    "message": "global"
-  },
-  "all": {
-    "message": "tous"
-  },
-  "private": {
-    "message": "privé"
-  },
-  "Select what you choose": {
-    "message": "Sélectionnez ce que vous choisissez"
-  },
-  "Playing": {
-    "message": "jouer"
-  },
-  "mainChoices_top": {
-    "message": "tous"
-  },
-  "mainChoices_here": {
-    "message": "éléments présents"
-  },
-  "mainChoices_carrying": {
-    "message": "éléments ci-dessus"
-  },
-  "mainChoices_notHere": {
-    "message": "articles manquants"
-  },
-  "mainChoices_directActions": {
-    "message": "actions directes"
-  },
-  "mainChoices_directionGroup": {
-    "message": "directions"
-  },
-  "Your languages": {
-    "message": "vos langues"
-  },
-  "Additional languages": {
-    "message": "langues supplémentaires"
-  },
-  "Chosen option": {
-    "message": "option choisie"
-  },
-  "Type your user name and push enter": {
-    "message": "S'il vous plaît taper votre nom d'utilisateur et appuyez sur Entrée"
-      },
-	"choose": {
-        "message": "choisissez"
-      },
-	"More": {
-        "message": "Plus"
-     },
-	"Quit": {
-        "message": "Quitter"
-     },
-	"Details": {
-        "message": "Détails"
-     },
-	"Title": {
-        "message": "Titre"
-     },
-	"Description": {
-        "message": "Description"
-     },
-	"Introduction": {
-        "message": "Introduction"
-     },
-	"Author": {
-        "message": "Auteur"
-     },
-	"ludi account": {
-        "message": "compte ludi"
-     },
-	"email": {
-        "message": "email"
-      },
-	"Load game": {
-        "message": "Charger le jeu"
-  }
+	"Play": {"message": "jouer"},
+	"Boards": {"message": "Forums" },
+	"Messages": { "message": "messages" },
+	"Language": {   "message": "Langue" },
+	"History": {   "message": "record"  },
+	"Together": {    "message": "ensemble"  },
+	"Username": {    "message": "Nom d'utilisateur"  },
+	"Choose Game": {    "message": "S'il vous plaît sélectionnez un jeu"  },
+	"Confirm game quit": { "message": "S'il vous plaît, confirmez que vouz abandonnez le jeu" },
+	"bottom": { "message": "bas" },
+	"Delete": { "message": "Eliminer" },
+	"Rename": { "message": "Renommer" },
+	"Date": { "message": "Date" },
+	"Id": { "message": "Id" },
+	"SwitchOrientation": {    "message": "changement d'orientation"  },
+	"SocialTab": {    "message": "social"  },
+	"Panels": {    "message": "panneaux"  },
+	"Send message": {    "message": "Envoyer un message"  },
+	"Offline Players": {    "message": "Hors ligne"  },
+	"Online Players": {    "message": "En ligne"  },
+	"Game Players": {    "message": "Dans ce jeu"  },
+	"Players Here": {    "message": "Dans cette localité"  },
+	"All Messages": {    "message": "tous"  },
+	"Global Messages": {    "message": "global"  },
+	"Game Messages": {    "message": "jeu"  },
+	"Score": {    "message": "score"  },
+	"Turns": {    "message": "BATS"  },
+	"Scope": {    "message": "portée"  },
+	"Text": {    "message": "texte"  },
+	"Location": {    "message": "localité"  },
+	"Here": {    "message": "ici"  },
+	"Location Messages": {    "message": "De la ville"  },
+	"Private Messages": {    "message": "privé"  },
+	"Global Board": {    "message": "global"  },
+	"Game Board": {    "message": "jeu"  },
+	"Location Board": {    "message": "De la ville"  },
+	"Private Board": {    "message": "privé"  },
+	"Stable games": {    "message": "Jeux stables"  },
+	"Under construction": {    "message": "En construction"  },
+	"QuitGame": {    "message": "Exit Game"  },
+	"Save game": {    "message": "Sauvegarder la partie"  },
+	"Saved games": {    "message": "Parties sauvegardées"  },
+	"Load game ": {    "message": "Jeu de chargement"  },
+	"Load game from start": {    "message": "Charger un jeu à partir de zéro"  },
+	"Load saved game": {  "message": "Charger une partie enregistrée"  },
+	"Refresh": {    "message": "rafraîchir"  },
+	"Redescribe": {    "message": "redescribes"  },
+	"PlayerView": {    "message": "joueurs"  },
+	"PlayingView": {    "message": "Heatmap"  },
+	"GamesView": {    "message": "Jeux"  },
+	"LocationView": {    "message": "localité"  },
+	"ActivityView": {    "message": "Activité"  },
+	"ChatView": {    "message": "Gato"  },
+	"HelpView": {    "message": "Aider"  },
+	"Files": {    "message": "Archives"  },
+	"HistoryView": {    "message": "historique"  },
+	"you": {    "message": "vous"  },
+	"Your settings": {    "message": "vos préférences"  },
+	"Marked item is o1": {    "message": "Point (2) est% o1"  },
+	"You unmark o1": {    "message": "Décochant% o1"  },
+	"You mark o1 for 2-object actions": {    "message": "O1 marque% pour les actions avec deux objets"  },
+	"nowhere": {    "message": "nulle part"  },
+	"Actions on o1": {    "message": "Actions sur% o1"  },
+	"Current playing character is o1": {    "message": "Le caractère actif est% o1"  },
+	"Switch Language": {    "message": "Changer de langue"  },
+	"SwitchView": {    "message": "Changer de vue"  },
+	"Start": {    "message": "Débuter"  },
+	"Restart": {    "message": "Recommencer"  },
+	"Undo": {    "message": "défaire"  },
+	"ClearHistory": {    "message": "Effacer l'historique"  },
+	"Direct actions": {    "message": "actions directes"  },
+	"From here": {    "message": "D'ici"  },
+	"Items here": {    "message": "éléments ici"  },
+	"Items carried": {    "message": "objets transportés"  },
+	"Inside marked": {    "message": "Dans le marqué"  },
+	"Carried by marked": {    "message": "Dirigé par le marquage"  },
+	"Items not here": {    "message": "éléments manquants"  },
+	"Players": {    "message": "joueurs"  },
+	"Player": {    "message": "joueur"  },
+	"Games": {    "message": "Jeux"  },
+	"All of them": {    "message": "Tous ceux"  },
+	"Meeting room": {    "message": "lieu"  },
+	"Game": {    "message": "jeu"  },
+	"Filter panel": {    "message": "les filtres du panneau"  },
+	"About": {    "message": "A propos de LUDI"  },
+	"Instructions": {    "message": "instructions"  },
+	"about game": {    "message": "sur le jeu"  },
+	"about in its original language": {    "message": "sur le jeu dans sa langue originale"  },
+	"game": {    "message": "jeu"  },
+	"title": {    "message": "titre"  },
+	"desc": {    "message": "description"  },
+	"translations": {    "message": "traductions"  },
+	"original language": {    "message": "langue originale"  },
+	"author": {    "message": "auteur"  },
+	"name": {    "message": "nom"  },
+	"account": {    "message": "raconte"  },
+	"mail": {    "message": "courrier"  },
+	"Your profile": {    "message": "profil"  },
+	"nick": {    "message": "surnom"  },
+	"Profile": {    "message": "profil"  },
+	"Set nick": {    "message": "Ponte un surnom"  },
+	"Login": {    "message": "login"  },
+	"Log out": {    "message": "Déconnexion"  },
+	"status": {    "message": "statut"  },
+	"Change your nick": {    "message": "Changer votre pseudonyme"  },
+	"Get your profile": {    "message": "Voir le profil"  },
+	"Set your profile email": {    "message": "Changez votre email"  },
+	"Set your profile status": {    "message": "Changer l'état"  },
+	"About game": {    "message": "A propos du jeu"  },
+	"Who are playing now": {    "message": "Qui joue maintenant?"  },
+	"MyLanguages": {    "message": "Mes langues"  },
+	"Message filters": {    "message": "Message Filter"  },
+	"Display preferences": {    "message": "préférences visuelles"  },
+	"Apply changes": {    "message": "appliquer les modifications"  },
+	"Language changed to s1": {    "message": "Langue changée en% s1"  },
+	"MessagesHidden": {    "message": "messages cachés"  },
+	"ActivityHidden": {    "message": "activité cachée"  },
+	"SpeechOn": {    "message": "écouter des textes"  },
+	"Are you sure": {    "message": "¿Estáseguro?"  },
+	"Number of Items": {    "message": "Nombre d'éléments"  },
+	"GameHelp": {    "message": "Aide de jeu"  },
+	"ShowAbout": {    "message": "sur"  },
+	"SaveGame": {    "message": "Enregistrez le jeu"  },
+	"LoadGameFromStart": {    "message": "Chargez état initial du jeu"  },
+	"Mark": {    "message": "Mark article (2)"  },
+	"Unmark": {    "message": "décochez"  },
+	"Back": {    "message": "dos"  },
+	"4-buttons input": {    "message": "boutons supplémentaires"  },
+	"NewInput": {    "message": "saisie rapide"  },
+	"Filter options": {    "message": "Les options de filtrage"  },
+	"Icons": {    "message": "icônes"  },
+	"Options": {    "message": "Options"  },
+	"Select": {    "message": "choisir"  },
+	"Shortcuts": {    "message": "Raccourcis"  },
+	"external source": {    "message": "source externe"  },
+	"Direct Actions": {    "message": "actions directes"  },
+	"Item Groups": {    "message": "groupes d'articles"  },
+	"IncomingLanguages": {    "message": "langues entrantes"  },
+	"BroadcastFrom": {    "message": "message public de"  },
+	"ActivityFrom": {    "message": "activité depuis"  },
+	"ActivityTo": {    "message": "activité"  },
+	"GeneralSettings": {    "message": "options générales"  },
+	"Logout": {    "message": "Fermer la session"  },
+	"Available languages": {    "message": "langues disponibles"  },
+	"remove": {    "message": "supprimer"  },
+	"down": {    "message": "vers le bas"  },
+	"up": {    "message": "dessus"  },
+	"add": {    "message": "ajouter"  },
+	"ChatGlobal": {    "message": "message global"  },
+	"ChatGame": {    "message": "Message au jeu"  },
+	"ChatLocation": {    "message": "Message dans la ville"  },
+	"ChatPrivate": {    "message": "Message privé"  },
+	"Number of known items": {    "message": "Nombre d'éléments connus"  },
+	"LoadGame": {    "message": "Jeu de chargement"  },
+	"LoadSavedGame": {    "message": "Charger une partie enregistrée"  },
+	"true": {    "message": "réel"  },
+	"preferedLanguages": {    "message": "langues préférées"  },
+	"myGame": {    "message": "mon jeu"  },
+	"myLocation": {    "message": "ma ville"  },
+	"none": {    "message": "aucun"  },
+	"System Messages": {    "message": "Messages système"  },
+	"To": {    "message": "A"  },
+	"loc": {    "message": "localité"  },
+	"false": {    "message": "faux"  },
+	"everywhere": {    "message": "Nouveau"  },
+	"global": {    "message": "global"  },
+	"all": {    "message": "tous"  },
+	"private": {    "message": "privé"  },
+	"Select what you choose": {    "message": "Sélectionnez ce que vous choisissez"  },
+	"Playing": {    "message": "jouer"  },
+	"mainChoices_top": {    "message": "tous"  },
+	"mainChoices_here": {    "message": "éléments présents"  },
+	"mainChoices_carrying": {    "message": "éléments ci-dessus"  },
+	"mainChoices_notHere": {    "message": "articles manquants"  },
+	"mainChoices_directActions": {    "message": "actions directes"  },
+	"mainChoices_directionGroup": {    "message": "directions"  },
+	"Your languages": {    "message": "vos langues"  },
+	"Additional languages": {    "message": "langues supplémentaires"  },
+	"Chosen option": {    "message": "option choisie"  },
+	"Type your user name and push enter": {    "message": "S'il vous plaît taper votre nom d'utilisateur et appuyez sur Entrée"      },
+	"choose": {        "message": "choisissez"      },
+	"More": {        "message": "Plus"     },
+	"Quit": {        "message": "Quitter"     },
+	"Details": {        "message": "Détails"     },
+	"Title": {        "message": "Titre"     },
+	"Description": {        "message": "Description"     },
+	"Introduction": {        "message": "Introduction"     },
+	"Author": {        "message": "Auteur"     },
+	"ludi account": {        "message": "compte ludi"     },
+	"email": {        "message": "email"      },
+	"Load game": {        "message": "Charger le jeu"  }
 }

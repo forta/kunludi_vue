@@ -1,12 +1,12 @@
 <template>
-  <h2> {{kt("Together")}} | 
+  <h2> {{kt("Together")}} |
   <a v-link="{ path: '/ludi' }"> {{kt("Play")}} | </a>
   <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a></h2>
 
   <h3> {{kt("Under construction")}}</h2>
 
   <img src="./../../data/icons/social.jpg">
-  
+
   <div class="kune">
 	<div v-show="userId != ''">
         <h3>{{kt("Username")}}: {{ userId }}</h3>
@@ -29,7 +29,7 @@ export default {
     }
   },
   methods: {
-    logout: function () { 
+    logout: function () {
         store.dispatch('RESETUSERID')
         this.$router.go('/ludi')
    	}
@@ -45,9 +45,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
-h1 {
-  color: #42b983;
-}
+
 </style>

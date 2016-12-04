@@ -22,7 +22,7 @@ var Ludi  = require('./components/Ludi.vue')
 var Login  = require('./components/Login.vue')
 var Kune  = require('./components/Kune.vue')
 var About = require('./components/About.vue')
-var More = require('./components/More.vue')
+var Files = require('./components/Files.vue')
 var Games = require('./components/Games.vue')
 var Play = require('./components/Play.vue')
 var Lingvo = require('./components/Lingvo.vue')
@@ -57,11 +57,14 @@ router.map({
 			'/': {
 				component: Games
 			},
+    	'/lingvo': {
+        component:  Lingvo
+    	},
 			'/about': {
 				component: About
 			},
-			'/more': {
-				component: More
+			'/files': {
+				component: Files
 			},
 			'/games': {
 				component: Games
@@ -98,9 +101,6 @@ router.map({
 				}
 			}
 		}
-	},
-	'/lingvo': {
-        component:  Lingvo
 	}
 })
 
