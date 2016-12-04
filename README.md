@@ -8,7 +8,7 @@ El sistema kunludi está siendo desarrollado en javascript tanto en el lado del 
 
 Se juega desde un navegador web, ya sea contra la versión actualizada en internet (http://www.kunludi.com) o contra un servicio web local (http://localhost:8080), que hay que instalar y lanzar, como indicaremos más adelante.
 
-Para jugar directamente el juego "Mi Querida Hermana" presentado a la ["Más allá de la Comp"](wiki.caad.es/Más_allá_de_la_Comp): http://www.kunludi.com:8080/#!/ludi/games/miqueridahermana
+Para jugar directamente el juego "Mi Querida Hermana" presentado a la ["Más allá de la Comp"](wiki.caad.es/Más_allá_de_la_Comp): http://www.kunludi.com/#!/ludi/games/miqueridahermana
 
 Instrucciones para instalar y lanzar el servicio web local de kunludi.
 ----------------------------------------------------------------------
@@ -28,7 +28,7 @@ npm install
 ``` bash
 npm run dev (o bien: "node build/dev-server.js")
 ```
-(En algunos linux es "nodejs" en vez de "node"). 
+(En algunos linux es "nodejs" en vez de "node").
 
 En *modo producción*, se ejecutaría:
 ``` bash
@@ -37,7 +37,7 @@ node build/build.js
 
 3) Para jugar localmente: http://localhost:8080
 
-4) Para ir directamente a un juego hay que usar su nombre interno. Por ejemplo para el juego "Mi Querida Hermana": http://localhost:8080/#!/ludi/games/miqueridahermana
+4) Para ir directamente a un juego hay que usar su nombre interno. Por ejemplo para el juego "Mi Querida Hermana": http://localhost/#!/ludi/games/miqueridahermana
 
 Instrucciones para instalar juegos adicionales a los que vienen en el paquete de github de kunludi.
 ---------------------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ Los juegos "texel" y "las tres fuentes" no vienen en el paquete del código de k
 
 Para cargar a estos dos juegos, hay que descomprimir sus fuentes en  en **./kunludi/data/games/**:
 - Texel: https://github.com/forta/kunludiGame_texel -> ./kunludi/data/games/texel
-- Las tres fuentes: https://github.com/forta/kunludiGame_tresfuentes -> ./kunludi/data/games/tresfuentes 
+- Las tres fuentes: https://github.com/forta/kunludiGame_tresfuentes -> ./kunludi/data/games/tresfuentes
 
 Igualmente, si el usuario desea desarrollar su propio juego, sólo tiene que añadir una entrada en el fichero games.json y crear el directorio asociado.
 
@@ -140,15 +140,3 @@ Each kunludi game consists of:
 The messages of the game are in a format that understands the GTT (Google Translation Toolkit): a quick translation can be done using GTT, which also allows online collaboration to translate the file by several people.
 
 Initial program template, using [vue-cli and webpack] (http://vuejs-templates.github.io/webpack/).
-
-
-
-
-
-
-
-
-
-
-
-
