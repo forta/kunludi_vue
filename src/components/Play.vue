@@ -200,37 +200,6 @@ h1 {
   color: #42b983;
 }
 
-button {
-    border-radius: 5px;
-    font-size: 0.8em;
-
-}
-
-/* Portrait */
-@media screen
-  and (-webkit-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-
-    button {
-        border-radius: 10px;
-        font-size: 1.2em;
-    }
-
-}
-
-/* Landscape */
-@media screen
-  and (-webkit-device-pixel-ratio: 2)
-  and (orientation: landscape) {
-
-    button {
-        border-radius: 10px;
-        font-size: 1.3em;
-    }
-
-}
-
-
 button:hover {
     background-color: #4CAF50; /* Green */
     border-radius: 10px;
@@ -289,7 +258,7 @@ ul {
 }
 
 li {
-  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  font: 200 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
 }
 
@@ -304,21 +273,18 @@ div.play {
 
 div.play_top {
 
-    //border: 1px solid green;
-    position: relative;
-    top: 0;
-    right: 0;
+  position: relative;
+  top: 0;
+  right: 0;
  	overflow: scroll;
-    text-align: left;
+  text-align: left;
 	background-color:#FFF;
 }
 
 div.play_bottom {
     position: relative;
-    //border: 1px solid gray;
     buttom: 0;
     right: 0;
-    // border: 3px solid #73AD21;
 }
 
 
@@ -327,9 +293,31 @@ div.mainChoices {
 }
 
 div.choices {
-       	/*height: 120px;*/
 	background-color: #FFD;
-    text-align: center;
+  text-align: center;
+}
+
+button {
+    border-radius: 5px;
+    font-size: 1.5em;
+}
+
+div, p {
+    font-size: 1em;
+}
+
+@media screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 1),
+        screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 2)  and (min-resolution: 192dpi) {
+  button {
+      font-size: 1em;
+  }
+}
+
+@media screen and (min-resolution: 350dpi),
+       screen and (min-resolution: 2dppx) {
+  button {
+      font-size: 1.3em;
+  }
 }
 
 

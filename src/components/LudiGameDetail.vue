@@ -135,29 +135,17 @@ li:last-child {
   border: none;
 }
 
-
-/* Portrait */
-@media screen
-  and (-webkit-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-
-    button {
-        border-radius: 10px;
-        font-size: 1em;
-    }
-
+button {
+    border-radius: 10px;
+    font-size: 1em;
 }
 
-/* Landscape */
-@media screen
-  and (-webkit-device-pixel-ratio: 2)
-  and (orientation: landscape) {
+body {
+    font-size: 1em;
+}
 
-    button {
-        border-radius: 10px;
-        font-size: 1em;
-    }
-
+h3,li, button {
+  font-size: 1em;
 }
 
 </style>

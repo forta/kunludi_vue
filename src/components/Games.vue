@@ -107,14 +107,17 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-
-.gameList {
-  text-align: left;
+body {
+    font-size: 2.3em;
 }
 
 button {
     border-radius: 10px;
     font-size: 1em;
+}
+
+.gameList {
+  text-align: left;
 }
 
 button:hover {
@@ -133,13 +136,30 @@ ul.gameList {
 li.gameList {
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
-  font-size: 20px;
+  font-size: 1em;
 }
 
 li.gameList:last-child {
   border: none;
 }
 
+@media screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 1),
+       screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 2)  and (min-resolution: 192dpi) {
+
+ body {
+     font-size: 1em;
+ }
+
+ button {
+     border-radius: 10px;
+     font-size: 1em;
+ }
+
+ li.gameList {
+   font-size: 1em;
+ }
+
+}
 
 
 </style>

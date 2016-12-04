@@ -1,6 +1,7 @@
 <template>
   <div class="files">
 
+  <br/><br/><br/>
 	<h3>{{kt("Files")}}</h3>
 
     <ul>
@@ -163,11 +164,23 @@ ul {
 li {
   font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   border-bottom: 1px solid #ccc;
-  font-size: 20px;
 }
 
 li:last-child {
   border: none;
+}
+
+button {
+    border-radius: 10px;
+    font-size: 1em;
+}
+
+body {
+    font-size: 1em;
+}
+
+h3,li, button {
+  font-size: 1em;
 }
 
 

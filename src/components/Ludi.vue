@@ -68,26 +68,49 @@ body {
   font-size:20px;
 }
 
-/* Portrait */
-@media screen
-  and (-webkit-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+/*
+body {
+    font-size:1em;
+}
+*/
 
+body {
+    font-size: 2em;
+}
+
+@media screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 1),
+        screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 2)  and (min-resolution: 192dpi) {
+  body {
+      font-size: 1em;
+  }
+}
+
+@media screen and (min-resolution: 350dpi),
+       screen and (min-resolution: 2dppx) {
+  body {
+      font-size: 2.5em;
+  }
+}
+
+
+/*
+
+@media screen
+  and (-webkit-device-pixel-ratio: 2)  and (orientation: portrait) {
     body {
         font-size: 2.3em;
     }
 }
 
-/* Landscape */
 @media screen
-  and (-webkit-device-pixel-ratio: 2)
-  and (orientation: landscape) {
+  and (-webkit-device-pixel-ratio: 2)  and (orientation: landscape) {
 
     body {
         font-size: 1.2em;
     }
 }
 
+*/
 
 #app {
   color: #2c3e50;
