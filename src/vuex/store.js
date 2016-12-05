@@ -779,7 +779,7 @@ const mutations = {
 
     state.locale = locale
 	if (storageON()) localStorage.ludi_locale = locale
-
+	
 	// load kernel messages
 	state.i18n [state.locale] = require ('../../data/kernel/kernel_' + state.locale + '.json');
 
@@ -793,10 +793,15 @@ const mutations = {
 		state.game.messages [state.locale] = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/messages.json');
 		state.game.extraMessages [state.locale] = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/extraMessages.json')
 
+		// to refresh internal value of locale in language module
+		state.language.setLocale (state.locale)
+		
 		// update links
 		state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.game.extraMessages[state.locale], state.runner.world )
 
 	}
+	
+
 
   }, 
   
