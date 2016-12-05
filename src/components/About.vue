@@ -29,7 +29,7 @@
     <li>&quot;The Three Sources&quot;, in an earlier version of kunludi, took part in the <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> in 2016 and was honored in the &quot;R &amp; D &quot; section.</li>
     <li>&quot;<a href="http://wiki.caad.com/VampireProject" target="_blank"> vampire </a>&quot; was originally written in Spanish but it has unpolished machine translations into English, Esperanto and French. </li>
     <li><a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> was originally written in Esperanto using <a hred = " Https://eo.wikipedia.org/wiki/Aventuro_(tekstaventuro) "target =" _ blank ">another system</a>. It is still under development. </li>
-    <li>&quot;My Dear Sister&quot; it is only in Spanish by the moment. It was featured in the &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Beyond-Death Comp</a>&quot; in 2017.</li>
+    <li>&quot;My Dear Sister&quot;originally written in Spanish but it has unpolished machine translations into English and Esperanto.  It was featured in the &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Beyond-Death Comp</a>&quot; in 2017.</li>
     </ul>
 
     <h3>More</h3>
@@ -67,7 +67,7 @@
         <li>&quot;Las Tres Fuentes&quot;, en una versión anterior de kunludi, se presentó en la <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 y fue permiada en la sección &quot;I+D&quot;. Con traducciones máquina sin pulir en inglés y esperanto.</li>
         <li>&quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; fue escrito originalmente en español. Con traducción avanzada al francés y traducciones máquina sin pulir a inglés y esperanto.</li>
         <li><a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto usando <a href ="https://eo.wikipedia.org/wiki/Aventuro_(tekstaventuro)"  target="_blank">un sistema de desarrollo en MSDOS de su autor</a>. Conversión a kunludi aún en desarrollo.</li>
-        <li>&quot;Mi Querida Hermana&quot; por ahora sólo se encuentra en español. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
+        <li>&quot;Mi Querida Hermana&quot; escrita en español y con traducciones máquina a inglés y esperanto. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
         </ul>
 
      	<h3>Más</h3>
@@ -105,7 +105,7 @@
         <li>&quot;La Tri Fontoj&quot;, en antaŭ versio prezentiĝis en hispana konkurso <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 kaj gajnis en la sekcio &quot;E+D (esploro kaj disvolviĝo)&quot;. Tradukoj en la angla kaj esperanto, sed ankoraŭ ne polurigitaj.</li>
         <li>&quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; estis verkita originale en la hispana sed haveblas en nepolurigitaj aŭtomataj tradukoj en esperanto, franca kaj angla.</li>
         <li><a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> estis verkita originale en esperanto. Ankoraŭ ne estas preta.</li>
-        <li>&quot;Mia Kara Fratino&quot;, ankoraŭ nur en la hispana. Ĝi prezentiĝis en hispana konkurso &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; en 2017.</li>
+        <li>&quot;Mia Kara Fratino&quot;, verkita en la hispana sed kun nepolurigitaj aŭtomataj tradukoj en esperanto kaj angla. Ĝi prezentiĝis en hispana konkurso &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; en 2017.</li>
         </ul>
 
         <h3>Plu</h3>
@@ -136,13 +136,13 @@
 
         <p>3. Une fois le jeu lancé, pour sauvegarder l'état actuel du jeu ou pour charger un jeu précédemment enregistré: cliquez sur <b>Archive</b></p>
 
-
-     	<h3>Jeux disponibles (à traduire)</h3>
+     	<h3>Jeux disponibles</h3>
+         
         <ul>
-        <li>&quot;Las Tres Fuentes&quot;, en una versión anterior de kunludi, se presentó en la <a href="http://wiki.caad.es/XComp_3" target="_blank">XComp</a> de 2016 y fue permiada en la sección &quot;I+D&quot;.</li>
-        <li>&quot;<a href="http://wiki.caad.es/Proyecto_Vampiro" target="_blank">vampiro</a>&quot; fue escrito originalmente en español pero tiene traducciones máquina sin pulir a inglés, esperanto y francés.</li>
-        <li><a href="https://eo.wikipedia.org/wiki/Interreagema_fikcio" target="_blank">&quot;texel&quot;</a> fue escrito originalmente en esperanto y en otro sistema. Está aún en desarrollo.</li>
-        <li>&quot;Mi Querida Hermana&quot; por ahora sólo se encuentra en español. Se presentó en la &quot;<a href="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp" target="_blank">Más allá de la Comp</a>&quot; de 2017.</li>
+		<li>&quot;Trois Sources&quot;, dans une version antérieure de kunludi, a été présenté à la <a target="_blank" href ="http://wiki.caad.es/XComp_3">XComp  2016</a> et était reçu le premi sur le &quot;R & D&quot;. Avec traduction automatique grosse en anglais et l'espéranto.</li>
+		<li>&quot;<a target="_blank" href = "http://wiki.caad.es/Proyecto_Vampiro"> vampire </a>&quot;. Il a été écrit en espagnol. Avec la traduction de pointe dans des traductions automatiques français et frustes en anglais et en espéranto.</li>
+		<li><a target="_blank" href = "https://eo.wikipedia.org/wiki/Interreagema_fikcio">&quot; texel &quot;</a> a été écrit en espéranto en utilisant <a target =" _ blank " href = "https: / /eo.wikipedia.org/wiki/Aventuro_(tekstaventuro)"> un système de développement en MSDOS de l'auteur</a>. Conversion à kunludi encore en développement. </li>
+		<li>&quot;My Dear Sister&quot; Écrite en espagnol, dans les traductions de la machine en anglaise et l'espéranto. Il a été présenté à la &quot; <a target="_blank" href ="http://wiki.caad.es/M%C3%A1s_all%C3%A1_de_la_Comp"> Beyond Comp &quot; 2016.</a></li>
         </ul>
 
      	<h3>Plus</h3>

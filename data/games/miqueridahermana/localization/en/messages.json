@@ -1,0 +1,995 @@
+{
+  "items.escritor.desc": {
+    "message": "The protagonist of this story"
+  },
+  "items.escritor.txt": {
+    "message": "Writer"
+  },
+  "items.estudio.desc": {
+    "message": "In your small studio in New York"
+  },
+  "items.estudio.txt": {
+    "message": "study"
+  },
+  "items.delante_casa.desc": {
+    "message": "In front of the beach house"
+  },
+  "items.delante_casa.txt": {
+    "message": "in front of the house"
+  },
+  "items.salón_comedor.desc": {
+    "message": "The room was always very simple, as befits the use as a summer residence. There are only some old sofas, a table and some shelves closed. From here you can access the kitchen and upper floor, where the bedrooms are."
+  },
+  "items.salón_comedor.txt": {
+    "message": "living room"
+  },
+  "items.cocina.desc": {
+    "message": "Almost that neither you pay attention. You do not plan to waste time cooking, you've come to finish your novel. In the kitchen there is a back door leading to the promenade and beaches, a chill runs down your body just think back to the beach where Ana drowned"
+  },
+  "items.cocina.txt": {
+    "message": "kitchen"
+  },
+  "items.pasillo.desc": {
+    "message": "The hallway upstairs room communicating your mother and you shared with your dear sister."
+  },
+  "items.pasillo.txt": {
+    "message": "aisle"
+  },
+  "items.camino_playa.desc": {
+    "message": "From here there is easy road to the famous beaches and the steep path leading to the secret cove where you two were wont play. The road is not as walkable as before but surely hippies and surfers still use it today, as telltale spins butts."
+  },
+  "items.camino_playa.txt": {
+    "message": "coastal path"
+  },
+  "items.caleta.desc": {
+    "message": "In this small cove you used to spend hours and hours playing with your dear sister. Hurl you were wont to collect shells and sand balls between baths. There is near the entrance to the small cave, with the bars, now very rusty, which were put to prevent the tragedy from happening again."
+  },
+  "items.caleta.txt": {
+    "message": "creek"
+  },
+  "items.cuevita.desc": {
+    "message": "This was where it all happened."
+  },
+  "items.cuevita.txt": {
+    "message": "cuevita"
+  },
+  "items.promontorio.desc": {
+    "message": "In a land halfway house and the beach, on a small promontory, are the gravestones of Ana and your madre.Un chill runs whenever you are here, because you know that your mother died after falling from near here at sea, which can be seen from this height."
+  },
+  "items.promontorio.txt": {
+    "message": "promontory"
+  },
+  "items.habitación_madre.desc": {
+    "message": "Mom slept here. Almost still smell the aroma. It hurt. The cabinet, with its central mirror, is so ugly and baroque as remembered."
+  },
+  "items.habitación_madre.txt": {
+    "message": "your mother's room"
+  },
+  "items.habitación_gemelos.desc": {
+    "message": "The bunk-bed! Your site was the top one. Subías and hasselled almost like a monkey even when there was no light. In front of the berth is the double desk where your mother forced you to do chores in summer, but where at the end acababais inventing a game to be played with paper and pencil hidden from the eyes of your mother appeared. It is at this desk where you plan to make corrections in your novel. There follows the closet where you had vuesta untidy clothes and toys. You do not know what has become of her things; They traveled yours with you when you left the house to go live in the boarding school."
+  },
+  "items.habitación_gemelos.txt": {
+    "message": "Twins room"
+  },
+  "items.camino_residencial.desc": {
+    "message": "This road communicates with other neighboring houses, it is the one who used to go to visit friends summer."
+  },
+  "items.camino_residencial.txt": {
+    "message": "residential road"
+  },
+  "items.portal_embarazada.desc": {
+    "message": "Vicky lived here, your child love."
+  },
+  "items.portal_embarazada.txt": {
+    "message": "Vicky portal"
+  },
+  "items.portal_hippie.desc": {
+    "message": "Charlie lived here, your friend surfer."
+  },
+  "items.portal_hippie.txt": {
+    "message": "Charlie portal"
+  },
+  "items.timbre_hippie.desc": {
+    "message": "The bell Charlie portal. It is full of gum stuck and painted marijuana leaves. It is seen that Charlie's friends are very 'friendly'. Above the ring you can see a security camera that seems to watch you carefully."
+  },
+  "items.timbre_hippie.txt": {
+    "message": "Charlie timbre portal"
+  },
+  "items.timbre_embarazada.desc": {
+    "message": "What monkey ringer! It has some little drawings in the form of flowers. Vicky was always very thorough."
+  },
+  "items.timbre_embarazada.txt": {
+    "message": "Vicky timbre portal"
+  },
+  "items.embarazada.desc": {
+    "message": "It is as beautiful as ever. You are pregnant."
+  },
+  "items.embarazada.txt": {
+    "message": "Vicky"
+  },
+  "items.hippie.desc": {
+    "message": "Charlie, your old childhood friend."
+  },
+  "items.hippie.txt": {
+    "message": "Charlie"
+  },
+  "items.maleta.desc": {
+    "message": "Your suitcase ... almost new, and you do not usually travel."
+  },
+  "items.maleta.txt": {
+    "message": "bag"
+  },
+  "items.estantería.desc": {
+    "message": "Books and books. A whole shelf. Notable books of gothic literature of terror, not only novels and stories, but also essays and biographies of the authors, a prominent role does your own book about Egan Allan Poe, published a year ago, although the book what fascinates you currently a strange book written in a language untranslatable bought on the trail a few months ago and have not had time to look."
+  },
+  "items.estantería.txt": {
+    "message": "shelving"
+  },
+  "items.libro_magia.desc": {
+    "message": "An old book bought in Marrakech market. You do not understand the notes, but has many illustrations, many of them appear to be disturbing spells."
+  },
+  "items.libro_magia.txt": {
+    "message": "arcane book"
+  },
+  "items.manuscrito.desc": {
+    "message": "The manuscript of your novel. It's all a treasure to you as an error by the computer file lost shortly after printing to make corrections to boli, which is how you like to correct the first draft. Rain or shine you have tax spend at least six hours a day."
+  },
+  "items.manuscrito.txt": {
+    "message": "manuscript"
+  },
+  "items.tijeras.desc": {
+    "message": "A simple kitchen scissors somewhat rusty, but still cut."
+  },
+  "items.tijeras.txt": {
+    "message": "scissors"
+  },
+  "items.setas.desc": {
+    "message": "These mushrooms have a somewhat disgusting appearance, will you know well?"
+  },
+  "items.setas.txt": {
+    "message": "mushrooms"
+  },
+  "items.servilleta.desc": {
+    "message": "The napkin has bloodstains from Vicky. It is one of the elements necessary to spell meeting."
+  },
+  "items.servilleta.txt": {
+    "message": "napkin"
+  },
+  "items.cerillas.desc": {
+    "message": "A few matches in a cardboard box. Doubts whether serve for something."
+  },
+  "items.cerillas.txt": {
+    "message": "matches"
+  },
+  "items.collar.desc": {
+    "message": "The shell necklace made your dear sister."
+  },
+  "items.collar.txt": {
+    "message": "necklace"
+  },
+  "items.móvil.desc": {
+    "message": "Your smartphone. An android somewhat outdated but that did not ask a lot. You are a bit outdated and prefer to call texting. You have either not installed any additional app coming to the factory. The last message that was sent to your neighbor, thanking him for agreeing to come to regarte your 'plant inspiration' a couple of times a week. The list of incoming or outgoing calls is a desert all media. The agenda has a few phone numbers; among them, your neighbor. Nevertheless, you are attached to mobile as a magnet and have an irrational panic not take it with you. Like you think they'll call you sometime to give a literary prize for your last published novel."
+  },
+  "items.móvil.txt": {
+    "message": "mobile"
+  },
+  "items.cargador.desc": {
+    "message": "The charger of your mobile phone. Essential for an urbanite like you nomobófico."
+  },
+  "items.cargador.txt": {
+    "message": "mobile charger"
+  },
+  "items.foto2.desc": {
+    "message": "This old photo almost makes you mourn. You show you and your sister playing on the beach. the shadow of your mother is also seen taking the picture."
+  },
+  "items.foto2.txt": {
+    "message": "photo of Ana and you"
+  },
+  "items.foto3.desc": {
+    "message": "In this photo you appear you and your dear sister to both sides of your mother. The three you smile and you seem very happy, who would say that only a few weeks after the tragedy sucedaría?"
+  },
+  "items.foto3.txt": {
+    "message": "family picture"
+  },
+  "items.barrotes.desc": {
+    "message": "Then placed the bars to prevent a disaster happening again are now very rusty and they seem very weak."
+  },
+  "items.barrotes.txt": {
+    "message": "bars"
+  },
+  "items.cuerda_enterrada.desc": {
+    "message": "You half buried in the sand, you see a piece of rope sticking to the surface."
+  },
+  "items.cuerda_enterrada.txt": {
+    "message": "semiburied rope"
+  },
+  "items.planta.desc": {
+    "message": "We still do not know how you can survive with how badly you treat. It gives off a strong scent that any day the police will take the door down and will not be worth your explanations that helps you get inspired to write. You've entrusted to the good of Freddie come a couple of times a week to water it, but it would not hurt to remind every couple of days so clueless it is."
+  },
+  "items.planta.txt": {
+    "message": "plant"
+  },
+  "items.chimenea.desc": {
+    "message": "The fireplace in the living room. As little used to come in summer, you saw lit rarely."
+  },
+  "items.chimenea.txt": {
+    "message": "chimney"
+  },
+  "items.atizador.desc": {
+    "message": "The poker stove is very strong and heavy."
+  },
+  "items.atizador.txt": {
+    "message": "poker"
+  },
+  "items.panfleto.desc": {
+    "message": "An advertising pamphlet takeaways."
+  },
+  "items.panfleto.txt": {
+    "message": "pamphlet"
+  },
+  "items.lápida1.desc": {
+    "message": "Ana Raven (1990-2001) Daughter kind and loving sister. We will not forget you."
+  },
+  "items.lápida1.txt": {
+    "message": "lápidade your sister"
+  },
+  "items.lápida2.desc": {
+    "message": "Virginia Raven (1949-2002) Your child will always lead you in the heart."
+  },
+  "items.lápida2.txt": {
+    "message": "your mother's gravestone"
+  },
+  "items.cama.desc": {
+    "message": "The rickety bed of your mother."
+  },
+  "items.cama.txt": {
+    "message": "bed"
+  },
+  "items.diario.desc": {
+    "message": "In your mother's diary, along with his notes, there are also interleaved photos and drawings. You see the newspaper began writing shortly after the death of Ana and ending days before the death of your mother. Reading tears you apart. Account that feels responsible for the death of Ana and does not have the strength to take care of you, so you had sent to boarding school in the city. Also note that you are going crazy and who believed see Ana several times in the house and hanging around the grave. Útima the last entry reads: 'The walls of the house will fall on me, I'm going to put fresh flowers to the grave of Ana and walk a bit along the beach'. That same day his body was found drowned on the beach after falling from the promontory where the grave of Ana's."
+  },
+  "items.diario.txt": {
+    "message": "daily"
+  },
+  "items.espejo.desc": {
+    "message": "The old baroque mirror exerted a great fascination in your dear sister and you."
+  },
+  "items.espejo.txt": {
+    "message": "mirror"
+  },
+  "items.escritorio.desc": {
+    "message": "In front of the berth is the double desk where your mother forced you to do chores in summer, but where at the end acababais inventing a game to be played with paper and pencil hidden from the eyes of your mother appeared. It is at this desk where you plan to make corrections in your novel."
+  },
+  "items.escritorio.txt": {
+    "message": "desk"
+  },
+  "items.armario_madre.desc": {
+    "message": "The old closet of your mother, half eaten away by moths."
+  },
+  "items.armario_madre.txt": {
+    "message": "your mother's closet"
+  },
+  "items.cinturón.desc": {
+    "message": "An old leather belt your mother."
+  },
+  "items.cinturón.txt": {
+    "message": "belt"
+  },
+  "items.cestaFreddie.desc": {
+    "message": "The express package Freddie."
+  },
+  "items.cestaFreddie.txt": {
+    "message": "Freddie package"
+  },
+  "items.cestaTelePapeo.desc": {
+    "message": "TelePapeo basket with express checkout."
+  },
+  "items.cestaTelePapeo.txt": {
+    "message": "TelePapeo basket"
+  },
+  "messages.Introduction.txt": {
+    "message": "My dear sister. The loss of your beloved twin sister has left you upset since your childhood, but she is so far from you how you think?"
+  },
+  "actions.móvil_llamar.txt": {
+    "message": "to call"
+  },
+  "actions.móvil_estado.txt": {
+    "message": "state"
+  },
+  "actions.encender_linterna.txt": {
+    "message": "light flashlight"
+  },
+  "actions.apagar_linterna.txt": {
+    "message": "off flashlight"
+  },
+  "actions.cargar.txt": {
+    "message": "load"
+  },
+  "actions.desconectar.txt": {
+    "message": "disconnect"
+  },
+  "actions.write.txt": {
+    "message": "to write"
+  },
+  "messages.nadie_sale_a_recibirte.txt": {
+    "message": "After waiting a while, you see that nobody comes to greet you. They will be out or busy. <br/>"
+  },
+  "messages.DLG_ya_estoy_aquí.txt": {
+    "message": "I'm here, why do you call me?"
+  },
+  "messages.sabes_que_no_te_abrirá.txt": {
+    "message": "Ring the bell, you see lit a light on the camera ... but you know that after the last wild party Charlie is not going to open for a while. <br/>"
+  },
+  "messages.te_observan_por_cámara.txt": {
+    "message": "Note how the light from the security camera is turned on and you observe a few seconds. At the end listeners: <br/>"
+  },
+  "messages.DLG_welcome_whisky.txt": {
+    "message": "My brother !, how good you come with supplies! Come in, boy, welcome to our humble abode."
+  },
+  "messages.fiestón.txt": {
+    "message": "<br/> What time did you come to get into this mess? Passing through the door, the smell of marijuana makes you feel at home and you remember your plantita the study. Music every meter, beautiful people and great joy. With a smile from ear to ear you talk screaming about your new novel with perfect strangers who have adopted you as part of their group. One of them tells you about noises and mysterious events in your house '? Usually enter squatters in the abandoned houses for a long time, why do you think we respected yours' Early in the morning you <br/> dare to throw your question about whether anyone has hallucinogenic mushrooms, for 'document yourself' on one thing you write. The colleague of a colleague called a colleague and half hour mushrooms are testing. Luckily you reach a hide in your jacket ... before losing consciousness. Vaguely you feel someone takes you to your home, but it's almost more a dream than something you're sure. <br/>"
+  },
+  "messages.DLG_donde_whisky.txt": {
+    "message": "My brother, where whiskey is? I think you've got the wrong party."
+  },
+  "messages.%o1_aparece.txt": {
+    "message": "% O1 appears."
+  },
+  "messages.escribes_en_estudio.txt": {
+    "message": "You're a freak of literature, you start tinkering a little something of your manuscript and when you realize, you take over an hour with the review. <br/>"
+  },
+  "messages.sitio_incorrecto_escribir.txt": {
+    "message": "For convenience not consider it appropriate to write somewhere else than on the desktop of your old room. <br/>"
+  },
+  "messages.ya_escribiste_por_hoy.txt": {
+    "message": "And you dedicate your daily ration of writing. As your conscience is free to do other things, you turn away the manuscript aside. <br/>"
+  },
+  "messages.Sesión_escritura.txt": {
+    "message": "You sit at the desk and after a few moments of doubt, run and grab when you give accounts has spent more than an hour, time that you rewrite parts of your new novel. <br/>"
+  },
+  "messages.comesTelePapeo.txt": {
+    "message": "It's boring junk food, but your priority these days is not eating well. <br/>"
+  },
+  "messages.comesTelePapeoVacío.txt": {
+    "message": "Disconsolate, you look at the remnants, but little else. <br/>"
+  },
+  "messages.sueño.txt": {
+    "message": "You can not breathe, you're locked in the cave of the beach and you can not escape. Suddenly, a shift of beach sand enters the cave and cover you to the waist and can not move. In your hands you have the necklace of seashells you've done to give them to your dear brother ... <br/> But no, can not be, these are not yours memories, can only be the last memories of her day in that ... <br/> wake up, drenched in sweat. <br/> you get up, you do not think you're going to be able to reconcile sleep. In fact, you fear back to sleep and relive this horrible experience. <br/>"
+  },
+  "messages.sueño_en_estudio.txt": {
+    "message": "You have the suitcase almost ready for the trip back to the old family home on the coast. All you need is to put a few more things and you take that trip you've been delaying fifteen years. <br/> Should leave home before 13:00 to keep the plane. <br/> You finished the first draft of your new novel and believe that the old house will give you the necessary to finish tranquility, away from the noise and the obligations of the city. <br/>"
+  },
+  "messages.perder_tiempo.txt": {
+    "message": "The thing is not to waste time, but a nap never hurts ... ZZZ. <br/>"
+  },
+  "messages.no_dejar_meter_en_chimenea.txt": {
+    "message": "It might be interesting to make it burn ... but not this time. <br/>"
+  },
+  "messages.no_dejar_meter_foto2_en_chimenea.txt": {
+    "message": "Remember that the secret book shows a picture of a mother with her two children. <br/>"
+  },
+  "messages.sin_motivo_para_dejar_meter_en_chimenea.txt": {
+    "message": "You do not see the reason to put it in the fireplace. <br/>"
+  },
+  "messages.fantasma_asiente_cuando_metes_en_chimenea.txt": {
+    "message": "A dreadful voice coming from everywhere and none shouts a 'yes!'. <br/>"
+  },
+  "messages.meter_o1_mientras_se_carga_móvil.txt": {
+    "message": "Do you fit% o1 while the mobile is loaded? It's going to be no. <br/>"
+  },
+  "messages.atar_cinturón_en_cuevita.txt": {
+    "message": "From here you do not reach the bars, you must attach the belt from outside. <br/>"
+  },
+  "messages.atar_cinturón_barrotes_bajo_agua.txt": {
+    "message": "The bars are underwater and not get tied the belt, you have to wait for the tide. <br/>"
+  },
+  "messages.atas_cinturón.txt": {
+    "message": "Atas belt to the bars of the entrance to the cave. <br/>"
+  },
+  "messages.desatar_cinturón_en_cuevita.txt": {
+    "message": "From here you do not reach the bars, you should untie the belt from outside. <br/>"
+  },
+  "messages.desatar_cinturón_barrotes_bajo_agua.txt": {
+    "message": "The bars are underwater and not get unfastening you will have to wait for the tide. <br/>"
+  },
+  "messages.desatas_cinturón.txt": {
+    "message": "Untie the belt of the bars of the entrance to the cave. <br/>"
+  },
+  "messages.coges_collar.txt": {
+    "message": "a shell necklace like your dream appears. You can not help mourn while fondling. You can not explain it, but notes Ana near you, as if she were with you now. <br/>"
+  },
+  "messages.antisocial.txt": {
+    "message": "By now you're very focused in your book to make social life, so in the end you do not. <br/>"
+  },
+  "messages.nomobofia.txt": {
+    "message": "When you go to leave, you simply enter your usual attack nomobofia and not loose. <br/>"
+  },
+  "messages.no_dejas_collar.txt": {
+    "message": "You do not feel able to drop the necklace that you did your dear sister before dying. <br/>"
+  },
+  "messages.no_dejas_nada_en_cueva.txt": {
+    "message": "Better not leave anything in the cave, not going to be the tide and miss. <br/>"
+  },
+  "messages.sin_baterías.txt": {
+    "message": "The batteries are exhausted. You should recharge it first. <br/>"
+  },
+  "messages.llamar_desde_estudio.txt": {
+    "message": "You see that on the agenda Freddie, your next door neighbor, appears but for now do not see the need to call. <br/>"
+  },
+  "messages.llamar_a_quien.txt": {
+    "message": "Who do you want to call? <br/>"
+  },
+  "messages.cancelar_acción.txt": {
+    "message": "Cancel Action"
+  },
+  "messages.llamar_a_Freddie.txt": {
+    "message": "Freddie"
+  },
+  "messages.llamar_a_TelePapeo.txt": {
+    "message": "TelePapeo"
+  },
+  "messages.llamar_a_Charlie.txt": {
+    "message": "Charlie"
+  },
+  "messages.llamar_a_Vicky.txt": {
+    "message": "Vicky"
+  },
+  "messages.no_llamas.txt": {
+    "message": "At the end you do not call anyone"
+  },
+  "messages.llamas_a_s1_y_cuelgas.txt": {
+    "message": "% S1 call and hang up. <br/>"
+  },
+  "messages.recuerdas_hora_avión.txt": {
+    "message": "Remember that you should leave before 13:00 for the airport or lose the plane that takes you to the coast. <br/>"
+  },
+  "messages.son_las_s1_s2.txt": {
+    "message": "They are the% s1:% s2."
+  },
+  "messages.batería_restante_s1_s2.txt": {
+    "message": " Battery time remaining:% S1H% S2M."
+  },
+  "messages.linterna_encendida.txt": {
+    "message": " Flashlight on."
+  },
+  "messages.bajamar_ahora_durante_s1.txt": {
+    "message": "The maximum low tide being now end in% s1 minutes. <br/>"
+  },
+  "messages.próxima_bajamar_s1_s2.txt": {
+    "message": "The next low tide will be at% s1.% S2 <br/>"
+  },
+  "messages.móvil_cargándose.txt": {
+    "message": "It is charging now. <br/>"
+  },
+  "messages.baterías_móvil_llenas.txt": {
+    "message": "The batteries are full. <br/>"
+  },
+  "messages.enciendes_linterna.txt": {
+    "message": "You turn on the flashlight mobile. <br/>"
+  },
+  "messages.apagas_linterna.txt": {
+    "message": "Flashlight turn off mobile <br/>"
+  },
+  "messages.sin_enchufe.txt": {
+    "message": "Here there is no outlet where load it. <br/>"
+  },
+  "messages.lo_pones_a_cargar.txt": {
+    "message": "You put the phone to charge and see if does not take long. <br/>"
+  },
+  "messages.retiras_cargador.txt": {
+    "message": "Fold phone charger. <br/>"
+  },
+  "messages.no_puedes_salir_mientras_carga.txt": {
+    "message": "Try to move ... but not you break your phone while it is charging. <br/>"
+  },
+  "messages.no_puedes_sacar_maleta_de_casa.txt": {
+    "message": "When you head out, you feel a little ridiculous carrying the suitcase with you, so you leave before you leave. <br/>"
+  },
+  "messages.no_puedes_sacar_manuscrito_de_casa.txt": {
+    "message": "Heading off the house with your valuable manuscript? Just a copy and do not risk losing. Leave it at home before leaving. <br/>"
+  },
+  "messages.fantasma_no_te_deja_ir.txt": {
+    "message": "Your dear sister will not let you go in that direction. <br/>"
+  },
+  "messages.te_despeñas.txt": {
+    "message": "At night <br/> advance following the will of your sister. Upon arrival of the two gravestones, you see how a fog leaves the grave of your mother and meets with the figure of your beloved sister. Both call you with open arms. You walk toward them transfixed ... and suddenly feel that there is no ground under your feet. While you fall, two lights accompany you in the fall. Then a third light, you, you meet with them and move together toward a circle of light on the horizon. <br/>"
+  },
+  "messages.fin_juego_despeñas.txt": {
+    "message": "The game is over. What would have happened if you had gone to the cave instead of the promontory? <Hr />"
+  },
+  "messages.no_te_olvides_móvil.txt": {
+    "message": "¿Leave without the phone? You're a little freaky and can not last ... but not both. <br/>"
+  },
+  "messages.no_te_olvides_maleta.txt": {
+    "message": "¿Irte travel without luggage? You're a little forgetful and confused, I'm afraid. <br/>"
+  },
+  "messages.cosas_en_mano.txt": {
+    "message": "You think going out with your hands so full. Except mobile, you know you'd go more comfortable if you take other things into the suitcase. <br/>"
+  },
+  "messages.no_te_lleves_planta.txt": {
+    "message": "What the hell you want to take the plant trip? <br/>"
+  },
+  "messages.no_te_olvides_novela.txt": {
+    "message": "You are supposed to go a few weeks to the beach house to finish your NO-VE-LA ... do not you think you forget something? <br/>"
+  },
+  "messages.te_olvidas_algo.txt": {
+    "message": "Like you have forgotten to take something, but those anxious to leave."
+  },
+  "messages.cierras_maleta.txt": {
+    "message": "Close the suitcase and salts of the study. <br/>"
+  },
+  "messages.al_salir_del_estudio_1.txt": {
+    "message": "The trip runs like a dream. A moment ago you were in your study ... and now, there are in front of the door of the beach house. The taxi rides, airport bustle, snoring passenger next to nothing ... that you have paid much attention. In your head there was only an idea 'in a while I'll be there where it all happened, after so many years'. Of course the reason why you go, corrections finish your latest novel, either you've dedicated a thought. <br/>"
+  },
+  "messages.al_salir_del_estudio_2.txt": {
+    "message": "You can only think about how things were before the death of Anna, your beloved twin sister, the girl of your eyes. Especially remember how happy you were together that last summer. Pasabais almost more time in the creek behind the house within it. Your mother always had to go looking for you when getting dark. That same infamous cove where the tragedy occurred. <br/>"
+  },
+  "messages.primera_vez_salón_comedor.txt": {
+    "message": "<B> You go. </ B> <br/> The dining room is almost the same as fifteen years ago, except for accumulated dust. Fold the sheets and shake out. Now, the room looks almost as before. Among various leaflets and under the door, you striking one of food at home, TelePapeo, you will not come wrong these days. <br/>"
+  },
+  "messages.promontorio_sin_luz.txt": {
+    "message": "A dark, do not dare to move even one step for fear despeñarte, as happened to your mother. <br/>"
+  },
+  "messages.camino_playa_sin_luz_a_o1.txt": {
+    "message": "A dark, you walk rashly and without knowing how to get ...% o1 <br/>"
+  },
+  "messages.caleta_sin_luz_a_camino_playa.txt": {
+    "message": "A dark, groping comienzar up a hill, but you slip and go back to where you were. <br/>"
+  },
+  "messages.entras_cueva_con_fanstasma.txt": {
+    "message": "With an ineffable feeling of fateful Unfortunately you enter the cave, followed by your dear sister. <br/>"
+  },
+  "messages.cueva_no_accesible.txt": {
+    "message": "The small cave is now covered by the sea. You'll have to wait for the next low tide. <br/>"
+  },
+  "messages.cueva_innaccesible.txt": {
+    "message": "The bars prevent you enter the small cave. <br/>"
+  },
+  "messages.entrar_sin_linterna.txt": {
+    "message": "It is very dark in there. As you would see nothing without light would be foolish to go now. <br/>"
+  },
+  "messages.entras_sin_cinturon_atado.txt": {
+    "message": "You walk very carefully, frightened by what happened to your sister here. It is probably not a good idea to enter without a rope or the like attached to the bars, just in case. <br/>"
+  },
+  "messages.primera_vez_cuevita.txt": {
+    "message": "Have trouble breathing, here it was where she drowned. No one knows why he stayed so long in and was surprised by the tide and the landslide that precipitated the area of ​​the small dune in the cave. <br/> The ground can see what appears to be a partially buried rope <br/>"
+  },
+  "messages.primera_vez_caleta.txt": {
+    "message": "Avanzas almost dragging his feet. You do not want to go, but you can not help it. You know you have to face the past, they have already spent more than fifteen years and you have to overcome. <br/>"
+  },
+  "messages.debes_dejar_cinturón.txt": {
+    "message": "You can not go with the belt tied to barrores. Untie it and take it with you. <br/>"
+  },
+  "messages.telepapeo_en_agenda.txt": {
+    "message": "Add the phone store on your agenda TelePapeo mobile. <br/>"
+  },
+  "messages.ex_barrotes_marea_alta.txt": {
+    "message": "High tide just see a rusted iron underwater. They got to seal the entrance to the cave where Ana ... when the tide is low. <br/>"
+  },
+  "messages.CestaTelePapeo_vacía.txt": {
+    "message": "TelePapeo basket is empty. <br/>"
+  },
+  "messages.contenidoCestaTelePapeo.txt": {
+    "message": "TelePapeo basket contains: <br/>"
+  },
+  "messages.TelePapeo_ver_prod_s1.txt": {
+    "message": "% S1 <br/>"
+  },
+  "messages.ex_libro_magia_general.txt": {
+    "message": "Macabre illustrations of this ancient book written in a language you do not know fascinates sickeningly. He has given many ideas to write your stories and novels. <br/>"
+  },
+  "messages.ex_libro_magia_embarazada.txt": {
+    "message": "There's the picture you wanted. It seems to be a ritual to two souls separated by death meet again in the body of a pregnant woman with twins. See how the deceased twin gives a gift to the survivor, who holds it in one hand while another sets fire to a cloth with the blood of the pregnant woman and a valuable offering of the living twin. As a postscript, the living twin is eating something like magic mushrooms while you watch the fire burn before him. <br/>"
+  },
+  "messages.duda_embarazada_gemelos.txt": {
+    "message": "A feeling sombío comes to mind: Vicky is pregnant with twins <br/>?"
+  },
+  "messages.duda_embarazada_gemelos_confirmada.txt": {
+    "message": "Something irrepressible encourages you to go ahead with the spell, if only to confirm that you are nothing more than superstitious nonsense. <br/>"
+  },
+  "messages.ex_libro_magia_hechizo2.txt": {
+    "message": "ex_libro_magia_hechizo2 <br/>"
+  },
+  "messages.ex_libro_completo.txt": {
+    "message": "The book seems to have nothing interesting to offer now. <br/>"
+  },
+  "messages.aparece_diario.txt": {
+    "message": "To lean on the mattress to see how the bed, you hear a noise of something falling to the floor under the bed. <br/>"
+  },
+  "messages.aparece_foto3.txt": {
+    "message": "Among other things, featured a photo of your mother and your sister with you. <br/>"
+  },
+  "messages.espejo_0.txt": {
+    "message": "For a moment, I seem to see your sister fuck your hand next to you. You feel the cold hand and rub it to recover heat. <br/>"
+  },
+  "messages.espejo_1.txt": {
+    "message": "You will be blurred vision and you look as were small. You hear one vocetia that laughingly tells 'Al! I'm hiding, come find me, hurry up!' <br/>"
+  },
+  "messages.espejo_2.txt": {
+    "message": "You are surrounded by an aura of fire that covers you. Instinctively, you spend hands over his head, more customer you notes than usual. <br/>"
+  },
+  "messages.espejo_3.txt": {
+    "message": "The mirror reflects the open window, through which you can see the distant promontory. Tiemblas to remember not only the body of your dear sister and your mother are there, but the latter died after falling from there. <br/>"
+  },
+  "messages.espejo_4.txt": {
+    "message": "For a second, you is a picture of your recurring nightmare. You see yourself covered the sea and drowning in the cave. <br/>"
+  },
+  "messages.pulsa_para_ver_imagen_de_%o1.txt": {
+    "message": "Click to view image% o1. <br/>"
+  },
+  "messages.falta_atizador.txt": {
+    "message": "The bars are very rusty and move, but you convince yourself that only hands can not be removed. <br/>"
+  },
+  "messages.rompes_barrotes.txt": {
+    "message": "Thanks to poker, you break the bars with ease and can now enter the small cave. <br/>"
+  },
+  "messages.no_es_necesario_que_insistas.txt": {
+    "message": "No need to insist. <br/>"
+  },
+  "messages.rompes_collar.txt": {
+    "message": "Your lágimas are diluted in the sea, which covers you completely. When they almost can not keep breathing you put all your energy to break the collar, in a desperate attempt to break the link with your dear sister. You hurt your hands, but ultimately break the rope and shells forming the collar are dispersed by the current in all directions. <br/> Then the unexpected happens. Apparently, that necklace kept chained to your sister to you and the world of mortals. Once broken necklace, all the rage of your dear sister disappears and is replaced by a great peace and a beautiful smile. His body respandece and guide you in the dark until the exit of the cave. <br> You show up at night in the small cove. Your dear sister goodbye to you and goes to a circle of light. <br/>"
+  },
+  "messages.estadística_juego_s1_s2_s3.txt": {
+    "message": "You need% s1% s2 days:% s3 hours to say goodbye to your dear sister <br/>."
+  },
+  "messages.epílogo.txt": {
+    "message": "<B> Epilogue </ b> <br/> Days later, host a party at the beach house. Freddie attend, Vicky with her husband and several of his friends Charlie. After eating, drinking (and some smoked the remainder of your plant has brought Freddie) in abundance, you announce you that these days in the house will have to be reborn, you've burned your novel almost finished and have begun writing a new novel. <br/>"
+  },
+  "messages.DLG_presentación_poema.txt": {
+    "message": "Friends, let me read you this little poem I came yesterday, which is essentially a continuation of the poem Egan Allan Poe 'Annabelle Lee' and I think he will play an important role in my new novel:"
+  },
+  "messages.fin_juego_poema.txt": {
+    "message": "The game is over <hr />"
+  },
+  "messages.no_rompes_collas.txt": {
+    "message": "How to break something so beautiful that you did your dear sister the day of his death? The mere fact entistrece you think and makes you drop lágimas pain and grief. <br/>"
+  },
+  "messages.no_gastar_cerillas.txt": {
+    "message": "You make light hint of one, but you realize that only you would be missing out here. <br/>"
+  },
+  "messages.sin_cerillas.txt": {
+    "message": "You not see anything about how light the fireplace. <br/>"
+  },
+  "messages.escena_hechizo1.txt": {
+    "message": "You eat mushrooms and hand shaking turn the match and approach the fireplace. Here rest the manuscript pages of your novel, which took you four years of your vid: what greater sacrifice than this to make the arcane spell book? You feel very stupid, what if all this is nonsense and simply're burning your work for nothing? <br/> But you can not resist, notes like mushrooms have left you altered consciousness and a shadow of the room takes the shape of your sister, who comes to you and makes a gesture to finish to bring the match to the fireplace. <br/> you've had to go crazy, because now you see flying through the air kitchen scissors. Now you know what will happen, the spell will require your death so you can be reborn with your dear sister Vicky's womb. <br/> Raring to complete the spell and join your dear sister, but ... you have still so much to do in this life !: publish your novel, parenting, travel ... Before inevitably bring the match to the chimney attachment to life gives you the opportunity to not go the way you mark your dear sister . <br/>"
+  },
+  "messages.apagar_cerilla.txt": {
+    "message": "Turn off the match"
+  },
+  "messages.encender_hoguera.txt": {
+    "message": "Light the fire and complete the spell"
+  },
+  "messages.hechizo1_abortado.txt": {
+    "message": "With just forces you blow the match. Your dear sister looks at you with rage and then turns his attention to the scissors, which shoot out at you and only dodges barely. <br/> Matchbox flies out of your hands and you see before your how eyes open and lights Cerrilla alone and sets fire to the chimney. Do not! Instinctively you try to take your manuscript to the flames, but it's too late. <br/> But that is not sufficient sacrifice for your sister, who is between the entrance of the house and the staircase blocking your exit and points you to the kitchen and out the back of the house. <br> <br/>"
+  },
+  "messages.fantasma_rompe_móvil.txt": {
+    "message": "Seeing you doubt, your dear sister enfuerece further and returns to throw the scissors, which give full on your chest ... right where you were wearing your mobile brand. Cheer you never thought you got to feel how your screen broke into a thousand pieces. <br>"
+  },
+  "messages.hechizo1_ejecutado.txt": {
+    "message": "With just forces you approach the match to the fireplace, mientra scissors fly through the air and dig into your neck. Hit the ground, from where you see burn your life. Your handwritten notes burns while your soul leaves your body. Next to you are now the figures of your mother and your dear sister. Your mother goes to a circle of light while you and your dear sister you fly to Vicky room. She sleeps peacefully embraced her husband. Notes how you enter into your belly. <br/> Within Vicky, one of the twins, the girl, smiles, while you, in your last thought before losing memory, doubts whether this was what really you wanted or have been only the puppet of his sister. After that time, darkness and waits. Your dear sister shakes your hand, you come back to together. <br/>"
+  },
+  "messages.fin_juego_chimenea.txt": {
+    "message": "This game is over, but ... what would have happened if you had not turned on the fireplace? <Hr />"
+  },
+  "messages.fantasma_apaga_cerilla.txt": {
+    "message": "You light a match, and when you go to set fire to the fireplace, notice a strange stream of air that off. You will herizan hairs to hear a stream of air that reminds you of your dear sister when playing at being a ghost. <br/>"
+  },
+  "messages.tiempo_dedicado_s1.txt": {
+    "message": "Today you have spent% s1 6 hours daily minimum you marked you."
+  },
+  "messages.desatas_cinturón_con_marea.txt": {
+    "message": "Untie the belt of the bars before the tide rise more. <br/>"
+  },
+  "messages.desconectar_cargador.txt": {
+    "message": "Disconnect my phone charger. <br/>"
+  },
+  "messages.perdiste_avión.txt": {
+    "message": "Neither you can believe yourself that you have lost the plane. Luckily it will not be by flights. Call the airline and other reservations for the same time tomorrow. You get to work in your new book and by evening you eat something and go to bed. Tomorrow is another day ... but you fear the night and brings nightmares. <br/>"
+  },
+  "messages.dejarlo_todo_y_escribir.txt": {
+    "message": "You realize that you have not fulfilled your commitment to six hours of daily review of your novel. Leave it all and you go to your room to do your duty. <br/>"
+  },
+  "messages.el_remordimiento_te_corroe.txt": {
+    "message": "Worse, you realize that you can not fulfill your commitment to not knowing how to get home. <br/>"
+  },
+  "messages.a_dormir_después_de_escribir.txt": {
+    "message": "You just exhausted after the review session of your novel. Eat something and go to bed. <br/>"
+  },
+  "messages.a_dormir.txt": {
+    "message": "<br/> Suddenly, you realize what time it is. You're squeamish about your schedule and at 23:00 you retire home to roost, yes or yes. Sleep overcomes you and you crawl into bed. Tomorrow is another day. <br/>"
+  },
+  "messages.de_noche_sin_luz.txt": {
+    "message": "It's night and you are out of unlit house to guide you. <br/>"
+  },
+  "messages.tirado_en_la_calle.txt": {
+    "message": "At night, in the street without light. You get a ball anywhere and sleep something crippled cold until the sun rises. <br/>"
+  },
+  "messages.antes_dormir_cargas_móvil.txt": {
+    "message": "Before sleeping, you stretch your arm and put the phone to charge. <br/>"
+  },
+  "messages.antes_dormir_NO_cargas_móvil.txt": {
+    "message": "Before sleeping, you stretch the arm, but the charger is not ... well, you seek tomorrow. <br/>"
+  },
+  "messages.día_s1.txt": {
+    "message": "With renewed energy <br/> you start the day% s1 since you had the nightmare for the first time. <br/>"
+  },
+  "messages.recibes_paquete.txt": {
+    "message": "Today <br/> sure Freddie received the package! You go to the door of the house, take out all the contents of the package and leave it in the living room. <br/>"
+  },
+  "messages.baterías_0.txt": {
+    "message": "You are left without batteries. Your turn apañártelas old-fashioned. <br/>"
+  },
+  "messages.baterías_60.txt": {
+    "message": "You're running out of batteries. You have an hour at a normal pace. <br/>"
+  },
+  "messages.baterías_120.txt": {
+    "message": "You're running out of batteries. You have less than two hours at a normal pace. <br/>"
+  },
+  "messages.estrofa1.txt": {
+    "message": "<br/> a child spent with my family <br/> summers in a house by the sea. <br/> I had a pretty <br/> neighbor whose name I will not mention <br/> it was the groom in summer <br/> child and whom the rest of the year could only long for. <br/>"
+  },
+  "messages.estrofa2.txt": {
+    "message": "A miserable summer, <br/> my dear love I was caught by a stroke of <br/> sea and was deeply shocked. <br/> His tomb was going to visit <br/> every day that summer and the following <br/> on a promontory by the sea. <br/>"
+  },
+  "messages.estrofa3.txt": {
+    "message": "Fifteen years without <br/> could not calm me. Then something happened <br/> <br/> and let me look <br/> your eyes reflected in the stars. <br/> Just write me could relieve < br /> and letters and more letters <br/> not let her call. <br/>"
+  },
+  "messages.estrofa4.txt": {
+    "message": "In other eyes and wanted to find the bodies <br/> <br/> both angels and demons. <br/> But never could find <br/> <br/> Such was my despair that almost got to forget . <br/>"
+  },
+  "messages.estrofa5.txt": {
+    "message": "One day someone saw fit <br/> send loving me a nice letter. <br/> It was an admirer age who could I turn. <br/> <br/> Had read something of mine that her and me seemed talk. <br/> But we could never see us. <br/> Because she lived away from my house by the sea. <br/>"
+  },
+  "messages.estrofa6.txt": {
+    "message": "One day, as he signed books in the city, I <br/> beg a sweet voice heard <br/> 'I sign, please.' And the sight <br/> lift, her eyes <br/> I reacquainted themselves <br/> those who loved so much. <br/> and was fortunate to never go back to separate those eyes <br/> beyond sky and sea. <br/>"
+  },
+  "messages.DLG_hippie_se_presenta.txt": {
+    "message": "Hello !, what I can do for you? ... But wait, you're Al, my old friend from summer adventures! How I'm glad to see you after so many years! I'm here with my music and surf ... by the way, that app looks prettier to know what time are the tides"
+  },
+  "messages.hippie_app_mareas_móvil_cargado.txt": {
+    "message": "You grab your phone and install it without you. <br/>"
+  },
+  "messages.hippie_app_mareas_presta_cargador.txt": {
+    "message": "You take your mobile and seeing that have no batteries, go home with your phone and returns to mobile with a little charge and the app installed tides."
+  },
+  "messages.DLG_hippie_invita_a_fiesta.txt": {
+    "message": "Dude, stop by home from her night at 7. There are almost always people, sex, drugs and rockandroll from that time. Hahaha. Bring something to drink and I'll take care of the rest. I kind of good quality."
+  },
+  "messages.hippie_se_despide.txt": {
+    "message": "<br/> Without realizing much room, your childhood friend gets home ( \"sleep it off,\" he says), but not before leaving you his mobile number. <br/>"
+  },
+  "messages.sobre_mareas_y_cuevas.txt": {
+    "message": "A dark reflection <br/> clouding your mind. You just agree on the time of year when we are about the same when she ... How you had not noticed before? Charlie's surfing tides just what you remember. It is long time tides, allowing the fateful cuevita the beach is exposed when it is low. The rest of the year the cave is always under sea level, without the risk of any child what might happen to her. <br/>"
+  },
+  "messages.DLG_embarazada_se_presenta.txt": {
+    "message": "Al! \"Without giving you time to react a heavyset pregnant woman swoops above you and gives you four kisses.\" What greater joy! Are you going to be much ?, I few weeks maybe ?, what bueeeno! Spend a lot of time alone at home in the morning, until about tea time, when my husband returns to work. Aim my mobile number: call me and invite me to your house to eat a chocolate ice cream. These days I only think about eating chocolate!"
+  },
+  "messages.embarazada_se_despide.txt": {
+    "message": "Vicky <br/> gestures to feel nauseous and without notice comes home. <br/>"
+  },
+  "messages.recuerdas_libro.txt": {
+    "message": "<br/> ... Suddenly you remember your old book bought in Marrakech market. You reminded of a particular page, with illustrations of a pregnant woman with twins. Why did he come that memory now? Sure it's silly, but you will not be quiet until you check the book. <br/>"
+  },
+  "messages.libro_en_estudio.txt": {
+    "message": "\"Shit!\", Remember that not you entered the book in the suitcase; \"Freddie perhaps the good of me to send by courier.\" <br/>"
+  },
+  "messages.pedir_cargador.txt": {
+    "message": "Borrow a charger <br/>"
+  },
+  "messages.DLG_pedir_cargador_reacción.txt": {
+    "message": "Come, go, but do not forget there, giving me you're a little confused. <br/>"
+  },
+  "messages.o1_te_devuelve_el_saludo.txt": {
+    "message": "% O1 you returned the greeting."
+  },
+  "messages.DLG_se_despide.txt": {
+    "message": "Well, I have a lot, mess. We talked."
+  },
+  "messages.se_va_o1.txt": {
+    "message": "% O1 will <br/>"
+  },
+  "messages.o1_te_mira.txt": {
+    "message": "% O1 looks at you, waiting to see what you want."
+  },
+  "messages.la_marea_sube.txt": {
+    "message": "The tide rises and every time you hear the sea closer. It can be dangerous to stay here long. <br/>"
+  },
+  "messages.el_agua_entra.txt": {
+    "message": "Water begins to enter the cave. You get scared and you are anxious to get out."
+  },
+  "messages.el_agua_entra_y_mueres.txt": {
+    "message": "However, you slip and you fall behind. You touch the bars but do not get stuck grab them by algae. A bleed area aprisona your feet and you can only witness to see how more and more water comes. When the water finally passes you and not let you breathe, you think you see the figure of your dear sister, who smiles and offers his hand to go with her to a circle of light. <br/> < hr />"
+  },
+  "messages.fin_juego_asfixia_sin_cinturón.txt": {
+    "message": "The game is over, but what would have happened if you had tied a rope or similar to the bars to hang out with them?"
+  },
+  "messages.el_agua_entra_y_sales.txt": {
+    "message": "Fortunately, you get grab bars without could slip, but mentally you sign tie something to the bars to not to take this scare. <br/>"
+  },
+  "messages.el_agua_entra_y_sales_con_cinturón.txt": {
+    "message": "Grab the belt and pulling him get out without too many problems <br/> <br/>"
+  },
+  "messages.cueva_se_oscurece.txt": {
+    "message": "Being without light in the cave is superior to you. Hardly you collect your things and salts fits and starts. <br/>"
+  },
+  "messages.comes_con_ansia.txt": {
+    "message": "The time it is and even without eating! Eagerly devour the contents of the basket TelePapeo. <br/>"
+  },
+  "messages.fantasma_te_incita_a_hechizo.txt": {
+    "message": "You hear a voice telling you 'do the spell, do it, do it!'"
+  },
+  "messages.fantasma_te_mira_enfadado.txt": {
+    "message": "Your dear sister shines in the night and points the way. <br/>"
+  },
+  "messages.fantasma__te_empuja_a_o1.txt": {
+    "message": "Your dear sister can not stand the wait and drags you to% o1. <br/>"
+  },
+  "messages.fantasma_te_apunta_dos_direcciones.txt": {
+    "message": "With each hand pointing two directions, as asking where you want to die and meet her: if on the promontory or in the cave of the cove."
+  },
+  "messages.te_asfixias_con_fantasma.txt": {
+    "message": "The tide rises beyond repair. Water covers you and you begin to experience the same choking your dear sister the day he died. Your dear sister looks at you pleased, soon you will meet with her."
+  },
+  "messages.mueres_asfixiado_con_fanstama.txt": {
+    "message": "Your dear sister comes over and takes you by the hand. The accompany a luminous circle, looking back see your body drowned in the cave. <Hr />"
+  },
+  "messages.fin_juego_asfixia.txt": {
+    "message": "The game is over, but perhaps could have been otherwise if you had not felt so attached to the collar of your dear sister."
+  },
+  "messages.marea_alta.txt": {
+    "message": "The tide covers the entrance to the cave where I play occurred. <br/>"
+  },
+  "messages.marea_baja.txt": {
+    "message": "The tide is very low and can see the entrance to the cave where I play occurred. <br/>"
+  },
+  "messages.Freddie_solo_saludar.txt": {
+    "message": "You simply say hello and you make sure that all goes well for the study."
+  },
+  "messages.Freddie_cancelar_paquete.txt": {
+    "message": "You would think better, and at the end you do not ask anything and you say goodbye depues ensure that all goes well for the study."
+  },
+  "messages.Freddie_fin_paquete.txt": {
+    "message": "You say goodbye, insisting that you send the package urgently, we already pay."
+  },
+  "messages.Freddie_cargador.txt": {
+    "message": "You ask the charger."
+  },
+  "messages.Freddie_foto.txt": {
+    "message": "You ask your own photo with your dear sister."
+  },
+  "messages.Freddie_libro.txt": {
+    "message": "You ask the illustrated book."
+  },
+  "messages.Freddie_solo_saludar_reacción.txt": {
+    "message": "Freddie tells you that all goes well and hangs up."
+  },
+  "messages.Freddie_cancelar_paquete_reacción.txt": {
+    "message": "Freddie tells you that all goes well and hangs up."
+  },
+  "messages.Freddie_pedido_reacción.txt": {
+    "message": "Freddie tells you what tomorrow will send mail if you want something else."
+  },
+  "messages.pedido_ya_realizado.txt": {
+    "message": "In reality, what you asked and you can settle for today, so you resign yourself and hang up. <br/>"
+  },
+  "messages.TelePapeo_cancelar_paquete.txt": {
+    "message": "You would think better, and ultimately not ask anything."
+  },
+  "messages.TelePapeo_fin_paquete.txt": {
+    "message": "You close the order, you'll receive at the door of the house."
+  },
+  "messages.TelePapeo_prod_agua.txt": {
+    "message": "Add water to the request"
+  },
+  "messages.TelePapeo_prod_cocacola.txt": {
+    "message": "Add cocacola to order"
+  },
+  "messages.TelePapeo_prod_cerveza.txt": {
+    "message": "Add beer to order"
+  },
+  "messages.TelePapeo_prod_chocolate.txt": {
+    "message": "Add chocolate to order"
+  },
+  "messages.TelePapeo_prod_whisky.txt": {
+    "message": "Add whiskey to order"
+  },
+  "messages.TelePapeo_prod_bocadillo.txt": {
+    "message": "Add sandwich to order"
+  },
+  "messages.TelePapeo_prod_pizza.txt": {
+    "message": "Add pizza to order"
+  },
+  "messages.TelePapeo_prod_patatas fritas.txt": {
+    "message": "Add chips to order"
+  },
+  "messages.TelePapeo_cancelar_paquete_reacción.txt": {
+    "message": "Canceled the order to TelePapeo. <br/>"
+  },
+  "messages.TelePapeo_pedido_reacción.txt": {
+    "message": "You add to order"
+  },
+  "messages.whisky_antes_de_tiempo.txt": {
+    "message": "Actually you are more whiskey rum, so discard."
+  },
+  "messages.saludar_embarazada.txt": {
+    "message": "Hello, Vicky, how are you?"
+  },
+  "messages.saludar_hippie.txt": {
+    "message": "Hello buddy, how's it going?"
+  },
+  "messages.Vicky_preguntar_por_embarazo.txt": {
+    "message": "Ask Vicky pregnancy"
+  },
+  "messages.Vicky_invitar_a_comer.txt": {
+    "message": "I invite you to eat something"
+  },
+  "messages.embarazada_dice_estoy_aquí.txt": {
+    "message": "Do not you see I'm here, what you call me?"
+  },
+  "messages.embarazada_dice_no_puedo_hablar_ahora.txt": {
+    "message": "Now I can not attend, sorry. I will be free from 10:00 to 17:00. Llamame then. Kisses."
+  },
+  "messages.y_cuelga.txt": {
+    "message": " And hanging <br/>"
+  },
+  "messages.embarazada_dice_qué_quieres.txt": {
+    "message": "Hello, dear Al, what I can do for you?"
+  },
+  "messages.Y_cuelga.txt": {
+    "message": "And hangs up the phone. <br/>"
+  },
+  "messages.saludar_embarazada_reacción.txt": {
+    "message": "You ask what is this, to see if tells you something. <br/>"
+  },
+  "messages.DLG_Vicky_responde_saludo.txt": {
+    "message": "All right, majete. Let's see if we are."
+  },
+  "messages.DLG_Vicky_no_mas_chocolate.txt": {
+    "message": "Al, swear not let me eat chocolate again. I felt like a demon in the stomach."
+  },
+  "messages.Vicky_preguntar_por_embarazo_reacción.txt": {
+    "message": "With much masculine touch, you ask Vicky pregnant with twins."
+  },
+  "messages.DLG_confirma_embarazo_gemelos.txt": {
+    "message": "So I'm fat? Yes, twins. I was going to say I have a chocolate appetizer and had something, but as I see you see me as a seal, almost I forbear."
+  },
+  "messages.invitas_sin_chocolate.txt": {
+    "message": "Vicky is planted with you at home and give a good account of the food, but when you see that you do not have chocolate, will hastily not before letting go you 'to see if the next time buy me chocolate, neighbor.'. <Br / > <br/>"
+  },
+  "messages.escena_merienda_con_Vicky_1.txt": {
+    "message": "Within minutes, you have to Vicky at home. For a few hours you do get a day of your lives. You talk about the boring life of the coastal town and how it has missed you."
+  },
+  "messages.DLG_embarazada_habla_1.txt": {
+    "message": "Dear Al, how strange it makes me see you without your dear sister next door! After that, your mother sent you away and almost did not have time or saying goodbye. You think I'm crazy, but when I went to lay flowers at the graves of your sister and your mother ill-fated, the mists of the coast always seem to take their forms, like calling me to join them. Once I almost plunged on the promontory."
+  },
+  "messages.escena_merienda_con_Vicky_2.txt": {
+    "message": "<br/> Vicky gives a good account of chocolate ice cream. Starts eating politely, but then devours like a madwoman ... so possessed with a mouthful of chocolate looks at you with her eyes and says, <br/>"
+  },
+  "messages.DLG_embarazada_habla_2.txt": {
+    "message": "Dear brother, soon we'll be together. You will need blood of our new mother to make the spell meeting. Here I leave a bit"
+  },
+  "messages.escena_merienda_con_Vicky_3.txt": {
+    "message": "You watch <br/> stunned Vicky slightly bites the lip and collect a few drops of blood with a napkin, you strip above the table. Then, as if it had been a bad dream, Vicky takes control of your body and keep talking as if nothing: <br/>"
+  },
+  "messages.DLG_embarazada_habla_3.txt": {
+    "message": "What a fool, I have bitten so badly I had chocolate!"
+  },
+  "messages.escena_merienda_con_Vicky_4.txt": {
+    "message": "<br/> Soon after, Vicky returns home and you go on with your routines. <br/>"
+  },
+  "messages.Vicky_no_tiene_qué_decir.txt": {
+    "message": "Vicky does not have much to say."
+  },
+  "messages.hippie_dice_estoy_aquí.txt": {
+    "message": "Do not you see I'm here, what you call me?"
+  },
+  "messages.hippie_dice_no_puedo_hablar_ahora.txt": {
+    "message": "Po Favo, let 'rmir one Poito more."
+  },
+  "messages.hippie_saturado_de_fiestas.txt": {
+    "message": "Brother, I have not your stamina. I think I'll parties for a while and dedicate myself to surferar. Do not call me for a while, I have to recover me."
+  },
+  "messages.Charlie_te_invita_a_fiesta.txt": {
+    "message": "Among a lot of background noise of music and laughter, they hit only understand you need more whiskey, that you come to the big party and who love you dearly. <br/>"
+  }
+}

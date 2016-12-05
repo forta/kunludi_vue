@@ -1,0 +1,699 @@
+	"messages.nadie_sale_a_recibirte.txt": {
+		"message": "Después de esperar un rato, ves que nadie sale a recibirte. Estarán fuera o muy ocupados.<br/>"
+	},
+ 	"messages.DLG_ya_estoy_aquí.txt": {
+		"message": "Ya estoy aquí, ¿para qué me llamas?"
+	},
+ 	"messages.sabes_que_no_te_abrirá.txt": {
+		"message": "Tocas el timbre, ves encenderse una luz sobre la cámara... pero sabes que después de la última fiesta salvaje Charlie no te va a abrir durante un tiempo.<br/><br/>"
+	},
+ 	"messages.te_observan_por_cámara.txt": {
+		"message": "Notas cómo se enciende la luz de la cámara de seguridad y te observan unos segundos. Al final escuchas:<br/>"
+	},
+ 	"messages.DLG_welcome_whisky.txt": {
+		"message": "¡Mi hermano!, ¡qué bueno que vienes con provisiones! Entra, muchacho, bienvenido a nuestra humilde morada."
+	},
+ 	"messages.fiestón.txt": {
+		"message": "<br/><br/>¿En qué momento se te ocurrió meterte en este lío? Al pasar por la puerta, el olor a marihuana te hace sentirte en casa y te acuerdas de tu plantita del estudio. Música a todo meter, gente guapa y mucha alegría. Con una sonrisa de oreja a oreja hablas entre gritos acerca tu nueva novela con unos perfectos desconocidos que te han adoptado como parte de su grupo. Uno de ellos te habla de ruidos y sucesos misteriosos ocurridos en tu casa: 'solemos entrar de okupas en las casas abandonadas durante mucho tiempo, ¿por qué crees que hemos respetado la tuya?'<br/><br/>De madrugada te atreves a lanzar tu pregunta sobre si hay alguien que tenga setas alucinógenas, para 'documentarte' en una cosa que escribes. El colega de un colega llama a un colega y a la media hora estás probando las setas. Menos mal que alcanzas a esconder unas en tu chaqueta antes de... perder la conciencia. Vagamente sientes que alguien te lleva a tu casa, pero es casi más un sueño que algo de lo que estés seguro.<br/><br/>"
+	},
+ 	"messages.DLG_donde_whisky.txt": {
+		"message": "Mi hermano, ¿dónde está el whisky? Creo que te has equivocado de fiesta."
+	},
+ 	"messages.%o1_aparece.txt": {
+		"message": "%o1 aparece."
+	},
+ 	"messages.escribes_en_estudio.txt": {
+		"message": "Eres un obseso de la literatura, empiezas retocando una cosita de tu manuscrito y cuando te das cuenta, ya llevas más de una hora con la revisión.<br/>"
+	},
+ 	"messages.sitio_incorrecto_escribir.txt": {
+		"message": "Por comodidad no considerar oportuno escribir en otro sitio que no sea en el escritorio de tu antigua habitación.<br/>"
+	},
+ 	"messages.ya_escribiste_por_hoy.txt": {
+		"message": "Ya dedicaste tu ración diaria de escritura. Como tu conciencia está libre para hacer otras cosas, apartas el manuscrito a un lado.<br/>"
+	},
+ 	"messages.Sesión_escritura.txt": {
+		"message": "Te sientas en el escritorio y después de unos momentos de duda, coges carrerilla y cuando te das cuentas ha pasado más de una hora, tiempo en el que reescribes algunas partes de tu nueva novela.<br/>"
+	},
+ 	"messages.comesTelePapeo.txt": {
+		"message": "Es aburrida comida basura, pero tu prioridad en estos días no es comer bien.<br/><br/>"
+	},
+ 	"messages.comesTelePapeoVacío.txt": {
+		"message": "Desconsolado, miras las restos que quedan, pero poco más.<br/><br/>"
+	},
+ 	"messages.sueño.txt": {
+		"message": "No puedes respirar, estás encerrado en la cueva de la playa y no puedes escapar. De repente, un corrimiento de arena de la playa entra en la cueva y te cubre hasta la cintura y no puedes moverte. En tus manos tienes el collar de conchas marinas que has hecho para regalárselas a tu querido hermano...<br/>Pero no, no puede ser, estos no son recuerdos tuyos, sólo pueden ser los últimos recuerdos de ella, del día en que...<br/>Despiertas, mojado en sudor.<br/><br/>Te levantas, no crees que vayas a poder reconciliar el sueño. De hecho, temes volver a dormir y volver a vivir esa horrible experiencia.<br/><br/>"
+	},
+ 	"messages.sueño_en_estudio.txt": {
+		"message": "Tienes la maleta casi preparada para el viaje de vuelta a la vieja casa familiar, en la costa. Sólo te hace falta meter un par de cosas más y podrás emprender ese viaje que llevas retrasando ya quince años.<br/>Deberías salir de casa antes de las 13:00 para no perder el avión.<br/>Has terminado el primer borrador de tu nueva novela y crees que la vieja casa te dará la tranquilidad necesaria para terminarla, lejos del ruido y las obligaciones de la ciudad.<br/><br/>"
+	},
+ 	"messages.perder_tiempo.txt": {
+		"message": "La cosa no está como para derrochar el tiempo, pero una cabezadita nunca viene mal... ZZZ.<br/>"
+	},
+ 	"messages.no_dejar_meter_en_chimenea.txt": {
+		"message": "Podría ser interesante hacer que arda... pero no en esta ocasión.<br/>"
+	},
+ 	"messages.no_dejar_meter_foto2_en_chimenea.txt": {
+		"message": "Recuerdas que el libro arcano muestra una imagen de una madre con sus dos hijos.<br/>"
+	},
+ 	"messages.sin_motivo_para_dejar_meter_en_chimenea.txt": {
+		"message": "No ves el motivo para meter eso en la chimenea.<br/>"
+	},
+ 	"messages.fantasma_asiente_cuando_metes_en_chimenea.txt": {
+		"message": "Una espantosa voz que viene de todos lados y ninguno grita un '¡sí!'.<br/>"
+	},
+ 	"messages.meter_o1_mientras_se_carga_móvil.txt": {
+		"message": "¿Meter %o1 mientras el móvil se carga? Va a ser que no.<br/>"
+	},
+ 	"messages.atar_cinturón_en_cuevita.txt": {
+		"message": "Desde aquí no alcanzas los barrotes, deberás atar el cinturón desde fuera.<br/>"
+	},
+ 	"messages.atar_cinturón_barrotes_bajo_agua.txt": {
+		"message": "Los barrotes están bajo el agua y no consigues atar el cinturón, tendrás que esperar a que baje la marea.<br/>"
+	},
+ 	"messages.atas_cinturón.txt": {
+		"message": "Atas el cinturón a los barrotes de la entrada a la cueva.<br/>"
+	},
+ 	"messages.desatar_cinturón_en_cuevita.txt": {
+		"message": "Desde aquí no alcanzas los barrotes, deberás desatar el cinturón desde fuera.<br/>"
+	},
+ 	"messages.desatar_cinturón_barrotes_bajo_agua.txt": {
+		"message": "Los barrotes están bajo el agua y no consigues desatar el cinturón, tendrás que esperar a que baje la marea.<br/>"
+	},
+ 	"messages.desatas_cinturón.txt": {
+		"message": "Desatas el cinturón de los barrotes de la entrada a la cueva.<br/>"
+	},
+ 	"messages.coges_collar.txt": {
+		"message": "Aparece un collar de conchas como el de tu sueño. No puedes evitar llorar mientras lo acaricias. No puedes explicarlo, pero notas a Ana cerca de ti, como si ella estuviera contigo ahora.<br/>"
+	},
+ 	"messages.antisocial.txt": {
+		"message": "Por ahora estás muy centrado en tu libro como para hacer vida social, así que al final no lo haces.<br/>"
+	},
+ 	"messages.nomobofia.txt": {
+		"message": "Cuando vas a dejarlo, te entra tu habitual ataque de nomobofia y no lo sueltas.<br/>"
+	},
+ 	"messages.no_dejas_collar.txt": {
+		"message": "No te sientes capaz de soltar el collar que te hizo tu querida hermana antes de morir.<br/>"
+	},
+ 	"messages.no_dejas_nada_en_cueva.txt": {
+		"message": "Mejor no dejar nada en la cueva, no vaya a ser que suba la marea y lo pierdas.<br/>"
+	},
+ 	"messages.sin_baterías.txt": {
+		"message": "Las baterías están gastadas. Tendrías que recargarlo primero.<br/>"
+	},
+ 	"messages.llamar_desde_estudio.txt": {
+		"message": "Ves que en la agenda aparece Freddie, tu vecino de al lado, pero por ahora no ves la necesidad de llamarlo.<br/>"
+	},
+ 	"messages.llamar_a_quien.txt": {
+		"message": "¿A quién quieres llamar?<br/>"
+	},
+ 	"messages.cancelar_acción.txt": {
+		"message": "Cancelar la acción"
+	},
+ 	"messages.llamar_a_Freddie.txt": {
+		"message": "Freddie"
+	},
+ 	"messages.llamar_a_TelePapeo.txt": {
+		"message": "TelePapeo"
+	},
+ 	"messages.llamar_a_Charlie.txt": {
+		"message": "Charlie"
+	},
+ 	"messages.llamar_a_Vicky.txt": {
+		"message": "Vicky"
+	},
+ 	"messages.no_llamas.txt": {
+		"message": "Al final no llamas a nadie"
+	},
+ 	"messages.llamas_a_s1_y_cuelgas.txt": {
+		"message": "Llamas a %s1 y cuelgas.<br/>"
+	},
+ 	"messages.sin_baterías.txt": {
+		"message": "Las baterías están gastadas. Tendrías que recargarlo primero.<br/>"
+	},
+ 	"messages.recuerdas_hora_avión.txt": {
+		"message": "Recuerdas que deberías salir antes de las 13:00 para el aeropuerto o perderás el avión que te lleva a la costa.<br/>"
+	},
+ 	"messages.son_las_s1_s2.txt": {
+		"message": "Son las %s1:%s2."
+	},
+ 	"messages.batería_restante_s1_s2.txt": {
+		"message": " Tiempo restante de batería: %s1h%s2m."
+	},
+ 	"messages.linterna_encendida.txt": {
+		"message": " Linterna encendida."
+	},
+ 	"messages.sin_baterías.txt": {
+		"message": "Las baterías están gastadas. Tendrías que recargarlo primero.<br/>"
+	},
+ 	"messages.bajamar_ahora_durante_s1.txt": {
+		"message": "La máxima marea baja está siendo ahora y acabará dentro de %s1 minutos.<br/>"
+	},
+ 	"messages.próxima_bajamar_s1_s2.txt": {
+		"message": "La próxima marea baja será a las %s1:%s2.<br/>"
+	},
+ 	"messages.móvil_cargándose.txt": {
+		"message": "Se está cargando ahora.<br/>"
+	},
+ 	"messages.baterías_móvil_llenas.txt": {
+		"message": "Las baterías están llenas.<br/>"
+	},
+ 	"messages.enciendes_linterna.txt": {
+		"message": "Enciendes la linterna del móvil.<br/>"
+	},
+ 	"messages.apagas_linterna.txt": {
+		"message": "Apagas linterna del móvil<br/>"
+	},
+ 	"messages.sin_enchufe.txt": {
+		"message": "Aquí no hay ningún enchufe donde cargarlo.<br/>"
+	},
+ 	"messages.lo_pones_a_cargar.txt": {
+		"message": "Pones el móvil a cargar, a ver si no tarda mucho.<br/>"
+	},
+ 	"messages.retiras_cargador.txt": {
+		"message": "Retiras el cargador del móvil.<br/>"
+	},
+ 	"messages.no_puedes_salir_mientras_carga.txt": {
+		"message": "Intentas moverte... pero ni te separas de tu móvil mientras se está cargando.<br/>"
+	},
+ 	"messages.no_puedes_sacar_maleta_de_casa.txt": {
+		"message": "Cuando  te diriges afuera, te sientes un poco ridículo llevando la maleta contigo, así que la dejas antes de salir.<br/>"
+	},
+ 	"messages.no_puedes_sacar_manuscrito_de_casa.txt": {
+		"message": "¿Salir de casa con tu valioso manuscrito? Sólo tienes una copia y no te arriesgas a perderlo. Lo dejas en casa antes de salir.<br/>"
+	},
+ 	"messages.fantasma_no_te_deja_ir.txt": {
+		"message": "Tu querida hermana no te permite ir en esa dirección.<br/>"
+	},
+ 	"messages.te_despeñas.txt": {
+		"message": "<br/><br/>En la noche avanzas siguiendo la voluntad de tu hermana. Al llegar al lugar de las dos lápidas, ves cómo una niebla sale de la tumba de tu madre y se reúne con la figura de tu querida hermana. Ambas te llaman con los brazos abiertos. Caminas hacia ellas como hipnotizado... y de repente sientes que no hay suelo bajo tus pies. Mientras caes, dos luces te acompañan en la caída. Luego, una tercera luz, tú, se reúne con ellas y avanzan juntas hacia un círculo de luz en el horizonte.<br/><br/>"
+	},
+ 	"messages.fin_juego_despeñas.txt": {
+		"message": "El juego ha terminado. ¿Qué habría pasado si hubieras ido a la cueva en vez de al promontorio?<hr/>"
+	},
+ 	"messages.no_te_olvides_móvil.txt": {
+		"message": "¿Irte sin el móvil? Eres un poco rarito y no vas a la última... pero no tanto.<br/>"
+	},
+ 	"messages.no_te_olvides_maleta.txt": {
+		"message": "¿Irte de viaje sin  maleta? Eres un poco olvidadizo y despistado, me temo.<br/>"
+	},
+ 	"messages.cosas_en_mano.txt": {
+		"message": "Te piensas salir con las manos tan llenas. Salvo el móvil, sabes que irías más cómodo si llevas el resto de cosas en la maleta.<br/>"
+	},
+ 	"messages.no_te_lleves_planta.txt": {
+		"message": "¿Para qué demonios te quieres llevar la planta de viaje?<br/>"
+	},
+ 	"messages.no_te_olvides_novela.txt": {
+		"message": "Se supone que te vas unas semanas a la casa de la playa a terminar tu NO-VE-LA... ¿no crees que te olvidas algo?<br/>"
+	},
+ 	"messages.te_olvidas_algo.txt": {
+		"message": "Igual te has olvidado de coger algo, pero esás ansioso por partir."
+	},
+ 	"messages.cierras_maleta.txt": {
+		"message": "Cierras la maleta y sales del estudio.<br/><br/>"
+	},
+ 	"messages.al_salir_del_estudio_1.txt": {
+		"message": "El viaje transcurre como en un sueño. Un momento atrás estabas en tu estudio...y ahora, ahí estás delante de la puerta de la casa de la playa. Los trayectos de taxi, el bullicio del aeropuerto, el ronquido del pasajero de al lado... a nada de eso le has prestado demasiada atención. En tu cabeza sólo había una idea 'en un rato volveré a estar allí donde todo ocurrió, después de hace tantos años'. Al supuesto motivo por el que vas, acabar las correcciones de tu última novela, tampoco le has dedicado ni un pensamiento.<br/><br/>"
+	},
+ 	"messages.al_salir_del_estudio_2.txt": {
+		"message": "Sólo puedes pensar en cómo eran las cosas antes de la muerte de Ana, tu querida hermana gemela, la niña de tus ojos. Recuerdas en especial lo felices que fuisteis juntos aquel último verano. Pasabais casi más tiempo en la caleta de detrás de la casa que dentro de la misma. Vuestra madre siempre tenía que ir a buscaros cuando empezaba a oscurecer. Esa misma caleta infame donde ocurrió la tragedia.<br/><br/>"
+	},
+ 	"messages.primera_vez_salón_comedor.txt": {
+		"message": "<b>Entras.</b><br/><br/>El salón comedor está casi igual que hace quince años, si exceptuamos el polvo acumulado. Retiras las sábanas y las sacudes fuera. Ahora sí, el salón luce casi como antes. Entre diversos planfletos bajo la puerta, te llama la atención uno de comida a domicilio, TelePapeo, que no te vendrá mal estos días.<br/>"
+	},
+ 	"messages.promontorio_sin_luz.txt": {
+		"message": "A oscuras, no te atreves a moverte ni un paso por miedo a despeñarte, como le pasó a tu madre.<br/>"
+	},
+ 	"messages.camino_playa_sin_luz_a_o1.txt": {
+		"message": "A oscuras, caminas sin tino y llegas sin saber como a... %o1<br/>"
+	},
+ 	"messages.caleta_sin_luz_a_camino_playa.txt": {
+		"message": "A oscuras, comienzar a subir a tientas un promontorio, pero resbalas y vuelves a donde estabas.<br/>"
+	},
+ 	"messages.entras_cueva_con_fanstasma.txt": {
+		"message": "Con un inefable sensación de fatídica desgracia entras en la cueva, seguido por tu querida hermana.<br/>"
+	},
+ 	"messages.cueva_no_accesible.txt": {
+		"message": "La pequeña cueva ahora está cubierta por el mar. Tendrás que esperar a la próxima marea baja.<br/>"
+	},
+ 	"messages.cueva_innaccesible.txt": {
+		"message": "Los barrotes te impiden entrar en la cuevita.<br/>"
+	},
+ 	"messages.entrar_sin_linterna.txt": {
+		"message": "Está muy oscuro ahí dentro. Como sin luz no verías nada sería tontería entrar ahora.<br/>"
+	},
+ 	"messages.entras_sin_cinturon_atado.txt": {
+		"message": "Entras con mucha precaución, atemorizado por lo que le pasó a tu hermana aquí. Seguramente no es una buena idea entrar sin una cuerda o similar atada a los barrotes, por si acaso.<br/>"
+	},
+ 	"messages.primera_vez_cuevita.txt": {
+		"message": "Te cuesta respirar, aquí fue donde ella murió ahogada. Nadie sabe muy bien por qué permaneció tanto tiempo dentro y fue sorprendida por la marea y el corrimiento de tierra que precipitó la area de la pequeña duna dentro de la cueva.<br/>En el suelo puedes ver lo que parece ser una cuerda semienterrada<br/>"
+	},
+ 	"messages.primera_vez_caleta.txt": {
+		"message": "Avanzas casi arrastrando los pies. No quieres ir, pero no puedes evitarlo. Sabes que tienes que hacer frente al pasado, ya han pasado más de quince años y tienes que superarlo.<br/>"
+	},
+ 	"messages.debes_dejar_cinturón.txt": {
+		"message": "No puedes irte con el cinturón atado a los barrores. Lo desatas y te lo llevas contigo.<br/>"
+	},
+ 	"messages.telepapeo_en_agenda.txt": {
+		"message": "Añades el teléfono de la tienda TelePapeo en tu agenda del móvil.<br/>"
+	},
+ 	"messages.ex_barrotes_marea_alta.txt": {
+		"message": "Con la marea alta apenas ves unos hierros oxidados bajo el agua. Se pusieron para sellar la entrada a la cueva donde Ana..., cuando la marea está baja.<br/>"
+	},
+ 	"messages.CestaTelePapeo_vacía.txt": {
+		"message": "La cesta de TelePapeo está vacía.<br/>"
+	},
+ 	"messages.contenidoCestaTelePapeo.txt": {
+		"message": "La cesta de TelePapeo contiene:<br/>"
+	},
+ 	"messages.TelePapeo_ver_prod_s1.txt": {
+		"message": "%s1<br/>"
+	},
+ 	"messages.ex_libro_magia_general.txt": {
+		"message": "Las macabras ilustraciones de este libro antiquísimo escrito en un idioma que desconoces te fascina de manera enfermiza. Te ha dado muchas ideas para escribir tus cuentos y novelas.<br/>"
+	},
+ 	"messages.ex_libro_magia_embarazada.txt": {
+		"message": "Ahí está la ilustración que buscabas. Parece ser un ritual para que dos almas separadas por la muerte vuelvan a encontrarse en el cuerpo de una mujer embarazada de gemelos. Ves cómo el gemelo difunto le da un regalo al superviviente, que lo sujeta en una mano mientras que con otra prende fuego a una tela con la sangre de la mujer embarazada y a una ofrenda valiosa del gemelo vivo. Como colofón, se ve al gemelo vivo comiendo algo parecido a setas alucinógenas mientras ver arder el fuego ante él.<br/>"
+	},
+ 	"messages.duda_embarazada_gemelos.txt": {
+		"message": "Un sombío presentimiento te viene a la cabeza: ¿estará Vicky embarazada de gemelos?<br/>"
+	},
+ 	"messages.duda_embarazada_gemelos_confirmada.txt": {
+		"message": "Algo irrefrenable te anima a seguir adelante con el hechizo, aunque sólo sea para confirmar que no son más que supersticiones sin sentido.<br/>"
+	},
+ 	"messages.ex_libro_magia_hechizo2.txt": {
+		"message": "ex_libro_magia_hechizo2<br/>"
+	},
+ 	"messages.ex_libro_completo.txt": {
+		"message": "El libro no parece tener nada interesante que ofrecerte ahora.<br/>"
+	},
+ 	"messages.aparece_diario.txt": {
+		"message": "Al apoyarte en el colchón para ver cómo está la cama, oyes un ruido de algo que cae al suelo debajo de la cama.<br/>"
+	},
+ 	"messages.aparece_foto3.txt": {
+		"message": "Entre otras cosas, aparece una foto de tu madre con tu hermana y contigo.<br/>"
+	},
+ 	"messages.espejo_0.txt": {
+		"message": "Por un momento, te parece ver a tu hermana cogida de tu mano al lado tuya. Sientes la mano fría y te la frotas para recuperar el calor.<br/>"
+	},
+ 	"messages.espejo_1.txt": {
+		"message": "Se te nubla la vista y te ves tal como eras de pequeño. Oyes una vocetia que entre risas te dice '¡Al!¡Estoy escondida, ven a buscarme, apúrate!'<br/>"
+	},
+ 	"messages.espejo_2.txt": {
+		"message": "Te ves rodeado de un aura de fuego que te cubre. Instintívamente, te pasas las manos por la cabeza, que te notas más cliente de lo normal.<br/>"
+	},
+ 	"messages.espejo_3.txt": {
+		"message": "El espejo refleja la ventana abierta, a través de la que puede ver el lejano promontorio. Tiemblas al recordar no sólo que los cuerpo de tu querida hermana y tu madre están ahí, sino que ésta última falleció al caer desde ahí.<br/>"
+	},
+ 	"messages.espejo_4.txt": {
+		"message": "Por un segundo, te viene una imagen de tu recurrente pesadilla. Te ves a ti mismo cubierto del mar y ahogándote en la cueva.<br/>"
+	},
+ 	"messages.pulsa_para_ver_imagen_de_%o1.txt": {
+		"message": "Pulsa para ver imagen de %o1.<br/>"
+	},
+ 	"messages.falta_atizador.txt": {
+		"message": "Los barrotes están muy oxidados y se mueven, pero te convences de que con las manos sólo no vas a poder retirarlos.<br/>"
+	},
+ 	"messages.rompes_barrotes.txt": {
+		"message": "Gracias al atizador, rompes los barrotes con facilidad, pudiendo ahora entrar en la cuevita.<br/>"
+	},
+ 	"messages.no_es_necesario_que_insistas.txt": {
+		"message": "No es necesario que insistas.<br/>"
+	},
+ 	"messages.rompes_collar.txt": {
+		"message": "Tus lágimas se diluyen en el mar, que te cubre por completo. Cuando ya casi no puedes seguir respirando pones todas tus energías en romper el collar, en un intento desesperado de romper el nexo con tu querida hermana. Te hieres las manos, pero al final rompes la cuerda y las conchas que formaban el collar se dispersan por la corriente en todas direcciones.<br/>Entonces sucede lo inesperado. Aparentemente, ese collar mantenía encadenada a tu hermana a ti y al mundo de los mortales. Una vez roto el collar, toda la rabia de tu querida hermana desaparece y es sustituida por una gran paz y una bella sonrisa. Su cuerpo respandece y te guía en la oscuridad hasta la salida de la cueva.<br>Apareces de noche en la pequeña caleta. Tu querida hermana se despide de ti y se diríge a un círculo de luz.<br/><br/>"
+	},
+ 	"messages.estadística_juego_s1_s2_s3.txt": {
+		"message": "Has necesitado %s1 días y %s2:%s3 horas para despedirte de tu querida hermana.<br/><br/>"
+	},
+ 	"messages.epílogo.txt": {
+		"message": "<b>Epílogo</b><br/><br/>Días después, organizas una fiesta en la casa de la playa. Asisten Freddie, Vicky con su marido, así como Charlie con varios amigos suyos. Después de comer, beber (y, algunos, fumarse lo que queda de tu planta que ha traído Freddie) en abundancia, les anuncias que estos días en la casa te han hecho renacer, que has quemado tu novela casi acabada y has empezado a escribir una nueva novela.<br/><br/>"
+	},
+ 	"messages.DLG_presentación_poema.txt": {
+		"message": "Amigos, permitidme leeros este poemita que se me ocurrió ayer, que es en esencia una continuación del poema de Edgan Allan Poe 'Annabelle Lee' y que creo que va a  jugar un papel importante en mi nueva novela:"
+	},
+ 	"messages.fin_juego_poema.txt": {
+		"message": "El juego ha terminado<hr/>"
+	},
+ 	"messages.no_rompes_collas.txt": {
+		"message": "¿Cómo romper algo tan bello que te hizo tu querida hermana el día de su muerte? El sólo hecho de pensarlo te entistrece y te hace soltar lágimas de dolor y pena.<br/>"
+	},
+ 	"messages.no_gastar_cerillas.txt": {
+		"message": "Haces el amago de encender una, pero te das cuenta de que sólo la estarías desaprovechando aquí.<br/>"
+	},
+ 	"messages.sin_cerillas.txt": {
+		"message": "No ves nada alrededor con qué encender la chimenea.<br/>"
+	},
+ 	"messages.escena_hechizo1.txt": {
+		"message": "Te comes las setas y con mano temblorosa enciendes la cerilla y la acercas a la chimenea. Ahí descansan las páginas del manuscrito de tu novela, que te ha llevado cuatro años de tu vid: ¿qué mayor sacrificio que este para realizar el hechizo del libro arcano? Te sientes muy estúpido, ¿y si todo esto es una tontería y simplemente estás quemando tu trabajo por nada?<br/><br/>Pero no puedes resistirte, notas como las setas te han dejado la conciencia alterada y una sombra de la habitación adquiere la forma de tu hermana, que se acerca a ti y te hace un gesto para que acabes de acercar la cerilla a la chimenea.<br/><br/>Te has tenido que volver loco, porque ahora ves volando por el aire las tijeras de la cocina. Ahora sabes qué va a pasar, el hechizo exigirá tu muerte para que puedas renacer con tu querida hermana en el vientre de Vicky.<br/>Tienes muchas ganas de completar el hechizo y reunirte con tu querida hermana, pero... ¡tienes tantas cosas que hacer aún en esta vida!: publicar tu novela, ser padre, viajar... Antes de acercar irremisiblemente la cerilla a la chimenea el apego a la vida te da la oportunidad de no seguir el camino que te marca tu querida hermana.<br/>"
+	},
+ 	"messages.apagar_cerilla.txt": {
+		"message": "Apagar la cerilla"
+	},
+ 	"messages.encender_hoguera.txt": {
+		"message": "Encender la hoguera y completar el hechizo"
+	},
+ 	"messages.hechizo1_abortado.txt": {
+		"message": "Con apenas fuerzas, soplas la cerilla. Tu querida hermana te mira con rabia y luego dirige su atención a las tijeras, que salen disparadas hacia ti y que sólo esquivas por los pelos.<br/><br/>La caja de cerillas sale volando de tus manos y ves ante tus ojos cómo se abre y se enciende una cerrilla por sí sola y prende fuego a la chimenea. ¡No! De manera instintiva intentas sacar tu manuscrito de las llamas, pero ya es demasiado tarde.<br/><br/>Pero ése no es suficiente sacrificio para tu hermana, que se sitúa entre la entrada de la casa y las escalera bloqueando tu salida y te señala hacia la cocina y la salida posterior de la casa.<br><br/>"
+	},
+ 	"messages.fantasma_rompe_móvil.txt": {
+		"message": "Al verte dudar, tu querida hermana se enfuerece aún más y vuelve a lanzarte las tijeras, que dan de pleno en tu pecho... justo donde llevabas tu flamante móvil. Nunca creíste que llegaras alegrarte de sentir cómo se rompía su pantalla en mil pedazos.<br>"
+	},
+ 	"messages.hechizo1_ejecutado.txt": {
+		"message": "Con apenas fuerzas, acercas la cerilla a la chimenea, mientra las tijeras vuelan por el aire y se clavan en tu cuello. Caes al suelo, desde donde ves quemarse tu vida. Tu manuscrito arde mientras notas que tu alma sale de tu cuerpo. Al lado tuyo están ahora las figuras de tu madre y tu querida hermana. Vuestra madre se dirige a un círculo de luz mientras que tú y tu querida hermana volaís hasta la habitación de Vicky. Ella duerme plácidamente abrazada a su marido. Notas cómo entráis en su vientre.<br/><br/>Dentro de Vicky, uno de los gemelos, la niña, sonríe, mientras que tú, en tu último pensamiento antes de perder la memoria, dudas de si esto era lo que realmente querías o has sido sólo el títere de su hermana. Después de ese momento, oscuridad y espera. Tu querida hermana te da la mano, volvéis a estar juntos.<br/><br/>"
+	},
+ 	"messages.fin_juego_chimenea.txt": {
+		"message": "Este juego ha terminado, pero... ¿que habría pasado si no hubieras encendido la chimenea?<hr/>"
+	},
+ 	"messages.fantasma_apaga_cerilla.txt": {
+		"message": "Enciendes una cerilla, y cuando vas a prender fuego a la chimenea, notas una corriente de aire extraña que la apaga. Se te herizan los pelos al escuchar una corriente de aire que te recuerda a tu querida hermana cuando jugaba a ser un fantasma.<br/>"
+	},
+ 	"messages.tiempo_dedicado_s1.txt": {
+		"message": "Hoy le has dedicado %s1 horas de las 6 mínimas diarias que te marcaste."
+	},
+ 	"messages.desatas_cinturón_con_marea.txt": {
+		"message": "Desatas el cinturón de los barrotes antes de que suba más la marea.<br/>"
+	},
+ 	"messages.desconectar_cargador.txt": {
+		"message": "Desconectas el cargador del móvil.<br/>"
+	},
+ 	"messages.perdiste_avión.txt": {
+		"message": "Ni tú mismo te puedes creer que hayas perdido el avión. Menos mal que no será por vuelos. Llamas a la compañía aérea y reservas otro para la misma hora para mañana. Te pones a trabajar en tu nuevo libro y al llegar la noche comes algo y te vas a la cama. Mañana será otro día... aunque temes la noche y las pesadillas que trae consigo.<br/><br/>"
+	},
+ 	"messages.dejarlo_todo_y_escribir.txt": {
+		"message": "Te das cuenta de que no has cumplido con tu compromiso de seis horas diarias de revisión diaria de tu novela. Lo dejas todo y te diriges a tu habitación a cumplir con tu deber.<br/>"
+	},
+ 	"messages.el_remordimiento_te_corroe.txt": {
+		"message": "Peor aún, te das cuenta de que no podrás cumplir con tu compromiso al no saber cómo volver a casa.<br/>"
+	},
+ 	"messages.a_dormir_después_de_escribir.txt": {
+		"message": "Acabas exhausto después de la sesión de revisión de tu novela. Comes algo y te acuestas.<br/>"
+	},
+ 	"messages.a_dormir.txt": {
+		"message": "<br/>De repente, te das cuenta de qué hora es. Eres muy escrupuloso con tus horarios y a las 23:00 te retiras a casa a dormir, sí o sí. El sueño te vence y te arrastras a la cama. Mañana será otro día.<br/><br/>"
+	},
+ 	"messages.de_noche_sin_luz.txt": {
+		"message": "Es de noche y estás fuera de casa sin iluminación que te guíe.<br/><br/>"
+	},
+ 	"messages.tirado_en_la_calle.txt": {
+		"message": "De noche, en la calle y sin luz. Te haces un ovillo en cualquier lugar y duermes algo tullido de frío hasta que sale el sol.<br/><br/>"
+	},
+ 	"messages.antes_dormir_cargas_móvil.txt": {
+		"message": "Antes de dormir, estiras el brazo y pones el móvil a cargar.<br/>"
+	},
+ 	"messages.antes_dormir_NO_cargas_móvil.txt": {
+		"message": "Antes de dormir, estiras el brazo, pero el cargador no está... bueno, ya lo buscarás mañana.<br/>"
+	},
+ 	"messages.día_s1.txt": {
+		"message": "<br/>Con energías renovadas comienzas la jornada %s1 desde que tuviste la pesadilla por primera vez.<br/><br/>"
+	},
+ 	"messages.recibes_paquete.txt": {
+		"message": "<br/>¡Hoy seguro que recibiste el paquete de Freddie! Te diriges a la puerta de la casa, sacas todo el contenido del paquete y lo dejas en el salón comedor.<br/>"
+	},
+ 	"messages.baterías_0.txt": {
+		"message": "Te has quedado sin baterías. Te toca apañártelas a la antigua usanza.<br/>"
+	},
+ 	"messages.baterías_60.txt": {
+		"message": "Te estás quedando sin baterías. Te queda una hora a ritmo normal.<br/>"
+	},
+ 	"messages.baterías_120.txt": {
+		"message": "Te estás quedando sin baterías. Te quedan menos de dos horas a ritmo normal.<br/>"
+	},
+ 	"messages.estrofa1.txt": {
+		"message": "<br/><br/>De niño pasaba con mi familia<br/>los veranos en una casa junto al mar.<br/>Tenía yo una guapa vecina<br/>cuyo nombre no voy a mencionar<br/>de la que era novio infantil en verano<br/>y a quien el resto del año sólo podía añorar.<br/><br/>"
+	},
+ 	"messages.estrofa2.txt": {
+		"message": "Un desgraciado verano,<br/>mi querido amor me fue arrebatado por un golpe de mar<br/>y quedé profundamente conmocionado.<br/>Su tumba iba a visitar <br/>todos los días, ese verano y los siguientes,<br/>en un promontorio junto al mar.<br/><br/>"
+	},
+ 	"messages.estrofa3.txt": {
+		"message": "Quince años sin ella<br/>no me pudieron calmar.<br/>Entonces algo sucedió<br/>y me dejaron de mirar<br/>sus ojos reflejados en las estrellas.<br/>Sólo escribir me podía aliviar<br/>y con letras y más letras<br/>no la dejaba de llamar.<br/><br/>"
+	},
+ 	"messages.estrofa4.txt": {
+		"message": "En otros ojos y cuerpos<br/>la quise buscar<br/>tanto de ángeles como de demonios.<br/>Pero nunca la pude encontrar<br/>Tanta fue mi desesperación<br/>que casi la llegué a olvidar.<br/><br/>"
+	},
+ 	"messages.estrofa5.txt": {
+		"message": "Un día alguien tuvo a bien<br/>una bonita carta quererme enviar.<br/>Era una admiradora a quien en edad podría yo doblar.<br/>Había leído algo mío<br/>que de ella y de mí parecía hablar.<br/>Pero nunca pudimos vernos.<br/>Porque vivía ella lejos de mi casa junto al mar.<br/><br/>"
+	},
+ 	"messages.estrofa6.txt": {
+		"message": "Un día, mientras firmaba libros en la ciudad,<br/>A una dulce voz oí rogar<br/>'Me firma, por favor.'<br/>Y al la vista levantar,<br/>los ojos de ella reencontré<br/>Aquellos mismos a quienes tanto amé.<br/>Y fui afortunado de nunca más volverme a separar<br/>de aquellos ojos de más allá de cielo y del mar.<br/><br/>"
+	},
+ 	"messages.DLG_hippie_se_presenta.txt": {
+		"message": "¡Hola!, ¿qué puedo hacer por usted?... pero espera, ¡tú eres Al, mi viejo amigo de aventuras veraniegas! ¡Cómo me alegro de verte después de tantos años! Yo sigo aquí, con mi música y mi surf... a propósito, mira que app más guapa para saber a qué hora son las mareas"
+	},
+ 	"messages.hippie_app_mareas_móvil_cargado.txt": {
+		"message": "Te coge tu móvil y te la instala sin más.<br/>"
+	},
+ 	"messages.hippie_app_mareas_presta_cargador.txt": {
+		"message": "Te coge tu móvil y al ver que lo tienes sin baterías, entra en casa con tu móvil y vuelve con el móvil con un poco de carga y la app de mareas instalada."
+	},
+ 	"messages.DLG_hippie_invita_a_fiesta.txt": {
+		"message": "Colega, pásate por casa a partir de las 7 de le noche. Casi siempre hay gente, sexo, drogas y rockandroll a partir de esa hora. Ja, ja, ja. Tráete algo de bebida y yo me encargo del resto. Tengo género de buena calidad."
+	},
+ 	"messages.hippie_se_despide.txt": {
+		"message": "<br/>Sin darte mucho margen, tu amigo de la infancia se mete en casa («a dormir la mona», dice), no sin antes dejarte su número de móvil.<br/>"
+	},
+ 	"messages.sobre_mareas_y_cuevas.txt": {
+		"message": "<br/>Una oscura reflexión te nubla la mente. Te acabas de acordar de la época del año en la que estamos, aproximadamente la misma en que ella... ¿Como no te habías dado cuenta antes? Las mareas surferas de Charlie te lo acaban de recordar. Es época de mareas largas, permitiendo que la fatídica cuevita de la playa quede al descubierto cuando está baja. El resto del año la cueva queda siempre bajo el nivel del mar, sin riesgo de que a ningún niño le pueda pasar lo que a ella.<br/>"
+	},
+ 	"messages.DLG_embarazada_se_presenta.txt": {
+		"message": "¡Al!» Sin darte tiempo a reaccionar una corpulenta mujer embarazada se abalanza encima tuya y te da cuatro besos.«¡Qué alegría más grande! ¿Vas a estar mucho?, ¿unas semanas tal vez?, ¡qué bueeeno! Paso mucho tiempo sola en casa por las mañanas, hasta eso de la hora del té, que es cuando regresa de trabajar mi marido. Apunta mi número de móvil: llámame e invítame a tu casa a comerme un helado de chocolate. ¡Estos días sólo pienso en comer chocolate!"
+	},
+ 	"messages.embarazada_se_despide.txt": {
+		"message": "<br/><br/>Vicky hace gestos de sentir náuseas y sin previo aviso entra en casa.<br/>"
+	},
+ 	"messages.recuerdas_libro.txt": {
+		"message": "<br/>De repente... te acuerdas de tu viejo libro comprado en el mercado de Marrakech. Te viene a la memoria una página en concreto, con unas ilustraciones de una mujer embarazada de gemelos. ¿Por qué te habrá venido ese recuerdo ahora? Seguro que es una tontería, pero no te vas a quedar tranquilo hasta que consultes el libro.<br/>"
+	},
+ 	"messages.libro_en_estudio.txt": {
+		"message": "«¡Mierda!», recuerdas que no metiste el libro en la maleta; «quizás el bueno de Freddie me lo pueda enviar por mensajería.»<br/>"
+	},
+ 	"messages.pedir_cargador.txt": {
+		"message": "Pedir prestado un cargador<br/>"
+	},
+ 	"messages.DLG_pedir_cargador_reacción.txt": {
+		"message": "Venga, va, pero no te lo olvides por ahí, que me da que eres un poco despistado.<br/>"
+	},
+ 	"messages.DLG_pedir_cargador_reacción.txt": {
+		"message": "Bueno, tengo mucho, lío. Ya hablamos."
+	},
+ 	"messages.o1_te_devuelve_el_saludo.txt": {
+		"message": "%o1 te devuelve el saludo."
+	},
+ 	"messages.DLG_se_despide.txt": {
+		"message": "Bueno, tengo mucho, lío. Ya hablamos."
+	},
+ 	"messages.se_va_o1.txt": {
+		"message": "%o1 se va<br/>"
+	},
+ 	"messages.o1_te_mira.txt": {
+		"message": "%o1 te mira, esperando ver qué quieres."
+	},
+ 	"messages.la_marea_sube.txt": {
+		"message": "La marea sube y cada ves oyes el mar más cerca. Puede ser peligroso permanecer mucho tiempo aquí.<br/>"
+	},
+ 	"messages.el_agua_entra.txt": {
+		"message": "El agua empieza a entrar en la cueva. Te asustas y te afanas por salir."
+	},
+ 	"messages.el_agua_entra_y_mueres.txt": {
+		"message": "Sin embargo, resbalas y caes atrás. Tocas los barrotes pero no consigues asirlos por las algas pegadas. Un corrimiento de area aprisona tus pies y sólo puedes ser testigo de ver cómo cada vez entra más agua. Cuando por fin el agua te sobrepasa y no te deja respirar, crees ver la figura de tu querida hermana, que te sonríe y te ofrece la mano para que vayas con ella a un círculo de luz.<br/><br/><hr/>"
+	},
+ 	"messages.fin_juego_asfixia_sin_cinturón.txt": {
+		"message": "El juego ha terminado, pero ¿qué habría pasado si hubieras atado una cuerda o similar a los barrotes para poder salir con ellos?"
+	},
+ 	"messages.el_agua_entra_y_sales.txt": {
+		"message": "Afortunadamente, consigues asir los barrotes sin resbalarte, pero te apuntas mentalmente atar algo a los barrotes para no volver a llevarte este susto.<br/><br/>"
+	},
+ 	"messages.el_agua_entra_y_sales_con_cinturón.txt": {
+		"message": "Agarras el cinturón y tirando de él consigues salir sin demasiados problemas<br/><br/>"
+	},
+ 	"messages.cueva_se_oscurece.txt": {
+		"message": "Estar sin luz en la cueva es superior a ti. A duras penas recoges tus cosas y sales a trompicones.<br/><br/>"
+	},
+ 	"messages.comes_con_ansia.txt": {
+		"message": "¡La hora que es y aún sin comer! Devoras con ansia el contenido de la cesta de TelePapeo.<br/><br/>"
+	},
+ 	"messages.fantasma_te_incita_a_hechizo.txt": {
+		"message": "Oyes una voz que te dice 'haz el hechizo, hazlo, ¡hazlo!'"
+	},
+ 	"messages.fantasma_te_mira_enfadado.txt": {
+		"message": "Tu querida hermana brilla en la noche y te señala el camino.<br/><br/>"
+	},
+ 	"messages.fantasma__te_empuja_a_o1.txt": {
+		"message": "Tu querida hermana no soporta la espera y te arrastra a %o1.<br/><br/>"
+	},
+ 	"messages.fantasma_te_apunta_dos_direcciones.txt": {
+		"message": "Con cada mano apunta dos direcciones, como preguntándote dónde quieres morir y reunirte con ella: si en el promontorio o en la cueva de la caleta."
+	},
+ 	"messages.te_asfixias_con_fantasma.txt": {
+		"message": "La marea sube irremediablemente. El agua te cubre y empiezas a experimentar la misma asfixia que tu querida hermana el día en que murió. Tu querida hermana te mira complacida, pronto te reunirás con ella."
+	},
+ 	"messages.mueres_asfixiado_con_fanstama.txt": {
+		"message": "Tu querida hermana se acerca y te toma por la mano. La acompañas a un círculo luminoso, al mirar atrás ves tu cuerpo ahogado en la cueva.<hr/>"
+	},
+ 	"messages.fin_juego_asfixia.txt": {
+		"message": "El juego ha terminado, pero quizás podría haber sido de otra manera si no te hubieras sentido tan apegado al collar de tu querida hermana."
+	},
+ 	"messages.marea_alta.txt": {
+		"message": "La marea cubre la entrada a la cueva donde toco ocurrió.<br/><br/>"
+	},
+ 	"messages.marea_baja.txt": {
+		"message": "La marea está muy baja y permite ver la entrada a la cueva donde toco ocurrió.<br/><br/>"
+	},
+ 	"messages.Freddie_solo_saludar.txt": {
+		"message": "Simplemente lo saludas y te aseguras de que va todo bien por el estudio."
+	},
+ 	"messages.Freddie_cancelar_paquete.txt": {
+		"message": "Te lo piensas mejor, y al final no le pides nada y te despides depués de asegurarte de que va todo bien por el estudio."
+	},
+ 	"messages.Freddie_fin_paquete.txt": {
+		"message": "Te despides, insistiéndole que te envíe el paquete urgente, que ya se lo pagarás."
+	},
+ 	"messages.Freddie_cargador.txt": {
+		"message": "Le pides el cargador."
+	},
+ 	"messages.Freddie_foto.txt": {
+		"message": "Le pides la foto tuya con tu querida hermana."
+	},
+ 	"messages.Freddie_libro.txt": {
+		"message": "Le pides el libro ilustrado."
+	},
+ 	"messages.Freddie_solo_saludar_reacción.txt": {
+		"message": "Freddie te dice que va todo bien y cuelga."
+	},
+ 	"messages.Freddie_cancelar_paquete_reacción.txt": {
+		"message": "Freddie te dice que va todo bien y cuelga."
+	},
+ 	"messages.Freddie_fin_paquete.txt": {
+		"message": "Freddie te dice te lo enviará ahora mismo."
+	},
+ 	"messages.Freddie_pedido_reacción.txt": {
+		"message": "Freddie te dice que te lo enviará mañana por correo y que si quieres algo más."
+	},
+ 	"messages.pedido_ya_realizado.txt": {
+		"message": "En realidad, con lo que ya pediste te puedes apañar por hoy, así que te resignas y cuelgas.<br/>"
+	},
+ 	"messages.TelePapeo_cancelar_paquete.txt": {
+		"message": "Te lo piensas mejor, y al final no pides nada."
+	},
+ 	"messages.TelePapeo_fin_paquete.txt": {
+		"message": "Cierras el pedido, que recibirás en la puerta de la casa."
+	},
+ 	"messages.TelePapeo_prod_agua.txt": {
+		"message": "Añadir agua al pedido"
+	},
+ 	"messages.TelePapeo_prod_cocacola.txt": {
+		"message": "Añadir cocacola al pedido"
+	},
+ 	"messages.TelePapeo_prod_cerveza.txt": {
+		"message": "Añadir cerveza al pedido"
+	},
+ 	"messages.TelePapeo_prod_chocolate.txt": {
+		"message": "Añadir chocolate al pedido"
+	},
+ 	"messages.TelePapeo_prod_whisky.txt": {
+		"message": "Añadir whisky al pedido"
+	},
+ 	"messages.TelePapeo_prod_bocadillo.txt": {
+		"message": "Añadir bocadillo al pedido"
+	},
+ 	"messages.TelePapeo_prod_pizza.txt": {
+		"message": "Añadir pizza al pedido"
+	},
+ 	"messages.TelePapeo_prod_patatas fritas.txt": {
+		"message": "Añadir patatas fritas al pedido"
+	},
+ 	"messages.TelePapeo_cancelar_paquete_reacción.txt": {
+		"message": "Cancelas el pedido a TelePapeo.<br/>"
+	},
+ 	"messages.TelePapeo_fin_paquete.txt": {
+		"message": "TelePapeo te dice te lo enviará ahora mismo.<br/>"
+	},
+ 	"messages.TelePapeo_pedido_reacción.txt": {
+		"message": "Lo añades al pedido"
+	},
+ 	"messages.whisky_antes_de_tiempo.txt": {
+		"message": "En realidad eres más de ron que de whisky, así que lo descartas."
+	},
+ 	"messages.saludar_embarazada.txt": {
+		"message": "Hola, Vicky, ¿qué tal estás?"
+	},
+ 	"messages.saludar_hippie.txt": {
+		"message": "Hola compadre, ¿cómo va todo?"
+	},
+ 	"messages.Vicky_preguntar_por_embarazo.txt": {
+		"message": "Preguntar a Vicky por embarazo"
+	},
+ 	"messages.Vicky_invitar_a_comer.txt": {
+		"message": "Te invito a comer algo"
+	},
+ 	"messages.embarazada_dice_estoy_aquí.txt": {
+		"message": "¿No ves que estoy aquí, para qué me llamas?"
+	},
+ 	"messages.embarazada_dice_no_puedo_hablar_ahora.txt": {
+		"message": "Ahora no te puedo atender, lo siento. Estaré libre de 10:00 a 17:00. Llamame entonces. Besos."
+	},
+ 	"messages.y_cuelga.txt": {
+		"message": " Y cuelga<br/>"
+	},
+ 	"messages.embarazada_dice_qué_quieres.txt": {
+		"message": "Hola, querido Al, ¿qué puedo hacer por ti?"
+	},
+ 	"messages.Y_cuelga.txt": {
+		"message": "Y cuelga el teléfono.<br/>"
+	},
+ 	"messages.saludar_embarazada_reacción.txt": {
+		"message": "Le preguntas qué tal está, a ver si te cuenta algo.<br/>"
+	},
+ 	"messages.DLG_Vicky_responde_saludo.txt": {
+		"message": "Todo bien, majete. A ver si nos vemos."
+	},
+ 	"messages.DLG_Vicky_no_mas_chocolate.txt": {
+		"message": "Al, júrame que no me dejarás volver a comer chocolate. Sentí como un demonio en el estómago."
+	},
+ 	"messages.Vicky_preguntar_por_embarazo_reacción.txt": {
+		"message": "Con mucho tacto masculino, le preguntas a Vicky si está embarazada de gemelos."
+	},
+ 	"messages.DLG_confirma_embarazo_gemelos.txt": {
+		"message": "¿Tan gorda estoy? Sí, de gemelos. Te iba a decir que tengo un antojito de chocolate y tenías algo, pero como veo que me ves como una foca, casi que me abstengo."
+	},
+ 	"messages.invitas_sin_chocolate.txt": {
+		"message": "Vicky se planta contigo en casa y da buena cuenta de la comida, pero en cuanto ve que no tienes chocolate, se va apresuradamente no sin antes soltarte que 'a ver si la próxima vez me invitas a chocolate, vecino.'.<br/><br/>"
+	},
+ 	"messages.escena_merienda_con_Vicky_1.txt": {
+		"message": "A los pocos minutos, tienes a Vicky en casa. Durante unas horas os ponéis al día sobre vuestras vidas. Te habla sobre la aburrida vida de la villa costera y cómo te ha echado de menos."
+	},
+ 	"messages.DLG_embarazada_habla_1.txt": {
+		"message": "Querido Al, ¡qué raro se me hace verte sin tu querida hermana al lado! Después de aquello, tu madre te envió lejos y casi no tuvimos tiempo ni de despedirnos. Pensarás que estoy loca, pero cuando he ido a dejar flores a las tumbas de tu hermana y tu malograda madre, las brumas de la costa siempre parecen tomar sus formas, como llamándome a reunirme con ellas. Una vez casi me despeño en el promontorio."
+	},
+ 	"messages.escena_merienda_con_Vicky_2.txt": {
+		"message": "<br/>Vicky da buena cuenta del helado de chocolate. Comienza comiendo comedidamente, pero luego devora como una posesa... tan posesa que con la boca llena de chocolate te mira con los ojos en blanco y te dice:<br/>"
+	},
+ 	"messages.DLG_embarazada_habla_2.txt": {
+		"message": "Querido hermano, pronto estaremos juntos. Necesitarás sangre de nuestra nueva madre para realizar el hechizo de reunión. Aquí te dejo un poco"
+	},
+ 	"messages.escena_merienda_con_Vicky_3.txt": {
+		"message": "<br/><br/>Observas atónito cómo Vicky se muerde ligeramente el labio y recoge unas gotas de sangre con una servilleta, que te tira por encima de la mesa.	Acto seguido, como si hubiera sido un mal sueño, Vicky toma el control de su cuerpo y sigue hablando como si nada:<br/>"
+	},
+ 	"messages.DLG_embarazada_habla_3.txt": {
+		"message": "¡Qué tonta, me he mordido de tantas ganas que tenía de chocolate!"
+	},
+ 	"messages.escena_merienda_con_Vicky_4.txt": {
+		"message": "<br/><br/>Poco después, Vicky regresa a su casa y tú sigues con tus rutinas.<br/><br/>"
+	},
+ 	"messages.Vicky_no_tiene_qué_decir.txt": {
+		"message": "Vicky no tiene mucho que decirte."
+	},
+ 	"messages.hippie_dice_estoy_aquí.txt": {
+		"message": "¿No ves que estoy aquí, para qué me llamas?"
+	},
+ 	"messages.hippie_dice_no_puedo_hablar_ahora.txt": {
+		"message": "Po favó, déjame 'rmir un poito más."
+	},
+ 	"messages.y_cuelga.txt": {
+		"message": " Y cuelga<br/>"
+	},
+ 	"messages.hippie_saturado_de_fiestas.txt": {
+		"message": "Hermano, yo no tengo tu aguante. Creo que dejaré las fiestas por un tiempo y me dedicaré a surferar. No me llames por un tiempo, que me tengo que recuperar."
+	},
+ 	"messages.Charlie_te_invita_a_fiesta.txt": {
+		"message": "Entre un montón de ruido de fondo de música y risas, sólo le alcanzas a entender que necesita más whisky, que te vengas al fiestón y que te quiere mucho.<br/>"
+	}

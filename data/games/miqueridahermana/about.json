@@ -5,13 +5,36 @@
 		{
 			"language": "es",
 			"title": "Mi Querida Hermana",
-			"desc": "Juego participante en 'más alla de la Comp'",
+			"desc": "Juego participante en 'más alla de la Comp' 2016",
 			"introduction": "Mi Querida Hermana. La pérdida de tu querida hermana gemela te ha dejado trastornado desde tu infancia, pero ¿está ella tan lejos de ti cómo crees?",	
 			"author": {
 				"name": "Tekas", 
 				"ludi_account": "tekas", 
 				"email": "sinmail@notengo.com"
 			}
+		},
+		{
+			"language": "en",
+			"title": "My Dear Sister",
+			"desc": "Game featured in the 'Beyond-Death Comp' in 2016",
+			"introduction": "My Dear Sister. The loss of your beloved twin sister has upset you since your childhood, but is she as far from you as you think?",	
+			"author": {
+				"name": "Tekas", 
+				"ludi_account": "tekas", 
+				"email": "sinmail@notengo.com"
+			}
+		},
+		{
+			"language": "eo",
+			"title": "Mia Kara Fratino",
+			"desc": "Ludo prezentita en la 'Preter-Morta Konkurso' en 2016",
+			"introduction": "Mia Kara Fratino. La perdo de via amato ĝemela fratino renversis vi ekde via infanaĝo, sed estas ŝi kiel malproksimaj de ni, kiel vi pensas?",	
+			"author": {
+				"name": "Tekas", 
+				"ludi_account": "tekas", 
+				"email": "sinmail@notengo.com"
+			}
 		} 		
+		
 	]
 }

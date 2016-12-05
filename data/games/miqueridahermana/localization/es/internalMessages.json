@@ -1,0 +1,314 @@
+﻿{
+    "items.escritor.desc": {
+        "message": "El protagonista de esta historia"
+    },
+    "items.escritor.txt": {
+        "message": "escritor"
+    },
+    "items.estudio.desc": {
+        "message": "En tu pequeño estudio de Nueva York"
+    },
+    "items.estudio.txt": {
+        "message": "estudio"
+    },
+    "items.delante_casa.desc": {
+        "message": "Delante de la casa de la playa"
+    },
+    "items.delante_casa.txt": {
+        "message": "delante de la casa"
+    },
+    "items.salón_comedor.desc": {
+        "message": "El salón siempre fue muy sencillo, como corresponde al su uso como residencia de verano. Sólo hay unos viejos sofás, la mesa y unas estanterías cerradas. Desde aquí se accede a la cocina y a la planta superior, donde están las habitaciones."
+    },
+    "items.salón_comedor.txt": {
+        "message": "salón comedor"
+    },
+    "items.cocina.desc": {
+        "message": "Casi que ni le prestas atención. No piensas perder el tiempo cocinando, has venido a terminar tu novela. En la cocina hay una puerta trasera que lleva al paseo marítimo y a las playas, un escalofrío te recorre el cuerpo de sólo pensar en volver a la playa donde Ana se ahogó"
+    },
+    "items.cocina.txt": {
+        "message": "cocina"
+    },
+    "items.pasillo.desc": {
+        "message": "El pasillo del piso superior comunicaba la habitación de tu madre y la que compartías con tu querida hermana."
+    },
+    "items.pasillo.txt": {
+        "message": "pasillo"
+    },
+    "items.camino_playa.desc": {
+        "message": "Desde aquí parte el camino fácil que lleva a las playas conocidas, y el camino escarpado que lleva a la cala secreta donde vosotros dos solíais jugar. El camino ya no es tan transitable como antes pero seguramente hippies y surferos lo siguen usando hoy en día, como delatan las colillas tiradas."
+    },
+    "items.camino_playa.txt": {
+        "message": "Camino costero"
+    },
+    "items.caleta.desc": {
+        "message": "En esta pequeña caleta solías pasas horas y horas, jugando con tu querida hermana. Solíais recoger conchas y lanzaros bolas de arena entre baño y baño. Ahí cerca está la entrada de la pequeña cueva, con los barrotes, ahora muy oxidados, que se pusieron para evitar que la tragedia se repitiera."
+    },
+    "items.caleta.txt": {
+        "message": "caleta"
+    },
+    "items.cuevita.desc": {
+        "message": "Aquí fue donde todo ocurrió."
+    },
+    "items.cuevita.txt": {
+        "message": "cuevita"
+    },
+    "items.promontorio.desc": {
+        "message": "En un terreno a mitad de camino de la casa y la playa, en un pequeño promontorio, están las lápidas de Ana y tu madre.Un escalofrío te recorre siempre que estás aquí, pues sabes que tu madre murió al caer desde cerca de aquí al mar, que se puede ver desde esta altura."
+    },
+    "items.promontorio.txt": {
+        "message": "promontorio"
+    },
+    "items.habitación_madre.desc": {
+        "message": "Aquí dormía mamá. Casi que aún hueles su aroma. Duele. El armario, con su espejo central, es tan feo y barroco como recordabas."
+    },
+    "items.habitación_madre.txt": {
+        "message": "habitación de tu madre"
+    },
+    "items.habitación_gemelos.desc": {
+        "message": "La litera! Tu sitio era el de arriba. Subías y bajabas casi como un mono incluso cuando no había luz. Delante de la litera está el escritorio doble donde vuestra madre os obligaba a hacer tareas en verano, pero donde al final acababais inventando algún juego que al ser jugado con papel y lápiz aparecía oculto a los ojos de vuestra madre. Es en este escritorio donde tienes pensado hacer las correcciones de tu novela. Ahí sigue el armario donde teníais vuesta ropa y los juguetes desordenados. No sabes qué habrá sido de las cosas de ella; las tuyas viajaron contigo cuando dejaste la casa para ir a vivir al internado."
+	},
+    "items.habitación_gemelos.txt": {
+        "message": "habitación de los gemelos"
+    },
+    "items.camino_residencial.desc": {
+        "message": "Este camino comunica con otras casas vecinas, es el que solían recorrer para visitar a tus amigos de verano."
+    },
+    "items.camino_residencial.txt": {
+        "message": "camino residencial"
+    },
+    "items.portal_embarazada.desc": {
+        "message": "Aquí vivía Vicky, tu amor infantil."
+    },
+    "items.portal_embarazada.txt": {
+        "message": "portal de Vicky"
+    },
+    "items.portal_hippie.desc": {
+        "message": "Aquí vivía Charlie, tu amigo surfero."
+    },
+    "items.portal_hippie.txt": {
+        "message": "portal de Charlie"
+    },
+    "items.timbre_hippie.desc": {
+        "message": "El timbre del portal de Charlie. Está lleno de chicles pegados, y pintadas de hojas de marihuana. Se ve que los amigos de Charlie son muy 'simpáticos'. Encima del timbre puedes ver una cámara de seguridad que parece mirarte con atención."
+    },
+    "items.timbre_hippie.txt": {
+        "message": "timbre del portal de Charlie"
+    },
+    "items.timbre_embarazada.desc": {
+        "message": "¡Qué mono el timbre! Tiene unos dibujitos en forma de flores. Vicky siempre fue muy detallista."
+    },
+    "items.timbre_embarazada.txt": {
+        "message": "timbre del portal de Vicky"
+    },
+    "items.embarazada.desc": {
+        "message": "Está tan guapa como siempre. Está embarazada."
+    },
+    "items.embarazada.txt": {
+        "message": "Vicky"
+    },
+    "items.hippie.desc": {
+        "message": "Charlie, tu antiguo amigo infantil."
+    },
+    "items.hippie.txt": {
+        "message": "Charlie"
+    },
+    "items.maleta.desc": {
+        "message": "Tu maleta de viaje... casi nueva, ya que no sueles viajar."
+    },
+    "items.maleta.txt": {
+        "message": "maleta"
+    },
+    "items.estantería.desc": {
+        "message": "Libros y libros. Toda una estantería. Destacan los libros de literatura gótica de terror, no sólo novelas y cuentos, sino también ensayos y biografías de los autores, un lugar destacado ocupa tu propio libro sobre Edgan Allan Poe, publicado hace un año, aunque el libro qué te fascina actualmente es un extraño libro escrito en un idioma intraducible que compraste en el rastro hace unos meses y no has tenido tiempo de mirar."
+    },	
+    "items.estantería.txt": {
+        "message": "estantería"
+    },
+    "items.libro_magia.desc": {
+        "message": "Un viejo libro comprado en el mercado de Marrakech. No entiendes las anotaciones, pero tiene muchas ilustraciones, muchas de ellas parecen ser de inquietantes hechizos."
+    },
+    "items.libro_magia.txt": {
+        "message": "libro arcano"
+    },
+    "items.manuscrito.desc": {
+        "message": "El manuscrito de tu novela. Es todo un tesoro para ti, ya que por un error perdiste el archivo de ordenador, poco después de imprimirla para hacer correcciones a boli, que es como te gusta corregir el primer borrador. Llueva o truene te has impuesto dedicarle como mínimo seis horas al día."
+    },
+    "items.manuscrito.txt": {
+        "message": "manuscrito"
+    },  
+    "items.tijeras.desc": {
+        "message": "Una sencillas tijeras de cocina algo oxidadas, pero aún cortan."
+    },
+    "items.tijeras.txt": {
+        "message": "tijeras"
+    },
+    "items.setas.desc": {
+        "message": "Estas setas tienen una apariencia algo asquerosa, ¿sabrán bien?"
+    },
+    "items.setas.txt": {
+        "message": "setas"
+    },
+    "items.servilleta.desc": {
+        "message": "La servilleta tiene manchas de sangre de Vicky. Es uno de los elementos necesarios para el hechizo de reunión."
+    },
+    "items.servilleta.txt": {
+        "message": "servilleta"
+    },
+    "items.cerillas.desc": {
+        "message": "Unas pocas cerillas en una cajita de cartón. Dudas de si servirán para algo."
+    },
+    "items.cerillas.txt": {
+        "message": "cerillas"
+    },
+    "items.collar.desc": {
+        "message": "El collar de conchas que hizo tu querida hermana."
+    },
+    "items.collar.txt": {
+        "message": "collar"
+    },
+    "items.móvil.desc": {
+        "message": "Tu smartphone. Un android algo desfasado pero al que tampoco exiges mucho. Estás un poco desfasado y prefieres llamar a enviar mensajes de texto. Tampoco has instalado ninguna app adicional a las que venían de fábrica. El último mensaje que enviaste fue a tu vecino, dándole las gracias por aceptar venir a regarte tu 'planta de la inspiración' un par de veces a la semana. La lista de llamadas entrantes o salientes es todo un desierto de comunicación social. La agenda tiene unos cuantos números de teléfonos; entre ellos, el de tu vecino. A pesar de todo, estás atado al móvil como un imán y tienes un pánico irracional a no llevarlo contigo. Igual piensas que te van a llamar en algún momento para darte algún premio literario por tu última novela publicada."
+    },
+    "items.móvil.txt": {
+        "message": "móvil"
+    },
+    "items.cargador.desc": {
+        "message": "El cargador de tu móvil. Imprescindible para un nomobófico urbanita como tú."
+    },
+    "items.cargador.txt": {
+        "message": "cargador de móvil"
+    },
+    "items.foto2.desc": {
+        "message": "Esta vieja foto casi te hace llorar. Apareces tú y tu hermana jugando en la playa. También se ve la sombra de vuestra madre tomando la foto."
+    },   
+    "items.foto2.txt": {
+        "message": "foto de Ana y tú"
+    },
+    "items.foto3.desc": {
+        "message": "En esta foto aparecéis tú y tu querida hermana a ambos lados de tu madre. Los tres sonreís y parecéis muy felices, ¿quién iba a decir que sólo unas semanas después sucedaría la tragedia?"
+    },
+    "items.foto3.txt": {
+        "message": "foto familiar"
+    },
+    "items.barrotes.desc": {
+        "message": "Los barrotes que colocaron entonces para impedir que volviera a suceder una desgracia ahora están muy oxidados y parecen muy endebles."
+    },
+    "items.barrotes.txt": {
+        "message": "barrotes"
+    },
+    "items.cuerda_enterrada.desc": {
+        "message": "Semienterrada en la arena, ves un trocito de cuerda que sobresale a la superficie."
+    },
+    "items.cuerda_enterrada.txt": {
+        "message": "cuerda semienterrada"
+    },
+    "items.planta.desc": {
+        "message": "Aún no sabes cómo puede sobrevivir con lo mal que la tratas. Desprende un fuerte aroma que cualquier dia hará que la policía eche la puerta abajo y no le valdrán tus explicaciones de que te ayuda a inspirarte para escribir. Le has encomendado al bueno de Freddie que venga un par de veces por semana a regarla, pero no estaría mal recordárselo cada par de días por lo despistado que es."
+    },
+    "items.planta.txt": {
+        "message": "planta"
+    },
+    "items.chimenea.desc": {
+        "message": "La chimenea del salón comedor. Como de pequeño solías venir en verano, la has visto encendida muy pocas veces."
+    },
+    "items.chimenea.txt": {
+        "message": "chimenea"
+    },
+    "items.atizador.desc": {
+        "message": "El atizador de leña es muy fuerte y pesado."
+    },
+    "items.atizador.txt": {
+        "message": "atizador"
+    },
+    "items.panfleto.desc": {
+        "message": "Un panfleto publicitario de comida para llevar."
+    },
+    "items.panfleto.txt": {
+        "message": "panfleto"
+    },
+    "items.lápida1.desc": {
+        "message": "Ana Raven(1990-2001)Hija bondadosa y cariñosa hermana. No te olvidaremos."
+    },
+    "items.lápida1.txt": {
+        "message": "lápidade tu hermana"
+    },
+    "items.lápida2.desc": {
+        "message": "Virginia Raven(1949-2002)Tu hijo te llevará siempre en el corazón."
+    },
+    "items.lápida2.txt": {
+        "message": "lápida de tu madre"
+    },
+    "items.cama.desc": {
+        "message": "La destartalada cama de tu madre."
+    },
+    "items.cama.txt": {
+        "message": "cama"
+    },
+    "items.diario.desc": {
+        "message": "En el diario de tu madre, además de sus anotaciones, también hay intercaladas fotos y dibujos. Ves que el diario se empezó a escribir poco después de la muerte de Ana y termina días antes de la muerte de tu madre. La lectura te desgarra. Cuenta lo responsable que se siente de la muerte de Ana y que no tiene fuerzas para cuidar de ti, y por eso te había enviado al internado en la ciudad. También cuenta que se está volviendo loca y que ha creído ver a Ana varias veces en la casa y rondando la tumba. La útima última anotación reza: 'Las paredes de la casa se me caen encima, iré a ponerle flores frescas a la tumba de Ana y a pasear un poco por la playa'. Ese mismo día su cuerpo fue encontrado ahogado en la playa tras caer desde el promontorio donde está la tumba de Ana."
+    },
+    "items.diario.txt": {
+        "message": "diario"
+    },
+    "items.espejo.desc": {
+        "message": "El viejo espejo barroco ejercía una gran fascinación en tu querida hermana y tú."
+    },
+    "items.espejo.txt": {
+        "message": "espejo"
+    },
+    "items.escritorio.desc": {
+        "message": "Delante de la litera está el escritorio doble donde vuestra madre os obligaba a hacer tareas en verano, pero donde al final acababais inventando algún juego que al ser jugado con papel y lápiz aparecía oculto a los ojos de vuestra madre. Es en este escritorio donde tienes pensado hacer las correcciones de tu novela."
+    },
+    "items.escritorio.txt": {
+        "message": "escritorio"
+    },
+    "items.armario_madre.desc": {
+        "message": "El viejo armario de tu madre, medio roído por las polillas."
+    },
+    "items.armario_madre.txt": {
+        "message": "armario de tu madre"
+    },
+    "items.cinturón.desc": {
+        "message": "Un viejo cinturón de cuero de tu madre."
+    },
+    "items.cinturón.txt": {
+        "message": "cinturón"
+    },
+    "items.cestaFreddie.desc": {
+        "message": "El paquete express de Freddie."
+    },
+    "items.cestaFreddie.txt": {
+        "message": "paquete de Freddie"
+    },
+    "items.cestaTelePapeo.desc": {
+        "message": "La cesta de TelePapeo con tu pedido express."
+    },
+    "items.cestaTelePapeo.txt": {
+        "message": "cesta de TelePapeo"
+    },
+    "messages.Introduction.txt": {
+        "message": "Mi Querida Hermana. La pérdida de tu querida hermana gemela te ha dejado trastornado desde tu infancia, pero ¿está ella tan lejos de ti cómo crees?"
+    },
+    "actions.móvil_llamar.txt": {
+        "message": "llamar"
+    },
+    "actions.móvil_estado.txt": {
+        "message": "estado"
+    },
+    "actions.encender_linterna.txt": {
+        "message": "encender linterna"
+    },
+    "actions.apagar_linterna.txt": {
+        "message": "apagar linterna"
+    },
+    "actions.cargar.txt": {
+        "message": "cargar"
+    },
+    "actions.desconectar.txt": {
+        "message": "desconectar"
+    },
+    "actions.write.txt": {
+        "message": "escribir"
+    }
+}

@@ -1,0 +1,995 @@
+{
+  "items.escritor.desc": {
+    "message": "La ĉefrolulo de ĉi tiu historio"
+  },
+  "items.escritor.txt": {
+    "message": "verkisto"
+  },
+  "items.estudio.desc": {
+    "message": "En via malgranda studio en Nov-Jorko"
+  },
+  "items.estudio.txt": {
+    "message": "studo"
+  },
+  "items.delante_casa.desc": {
+    "message": "Antaŭ la domo de strando"
+  },
+  "items.delante_casa.txt": {
+    "message": "antaŭ la domo"
+  },
+  "items.salón_comedor.desc": {
+    "message": "La ĉambro estis ĉiam tre simpla, kiel konvenas la uzo kiel somera restadejo. Ekzistas nur kelkaj malnovaj sofoj, tablo kaj kelkaj bretoj fermita. De tie vi povas aliri la kuirejo kaj supra etaĝo, kie la dormoĉambroj estas."
+  },
+  "items.salón_comedor.txt": {
+    "message": "loĝoĉambro"
+  },
+  "items.cocina.desc": {
+    "message": "Preskaŭ ke nek vi pagas atenton. Vi ne planas malŝpari tempon kuiri, vi venis por fini vian romanon. En la kuirejo estas malantaŭa pordo kondukanta al la promenejo kaj strandoj, malvarmon kuras malsupren via korpo nur pensas reen al la strando kie Anna dronis"
+  },
+  "items.cocina.txt": {
+    "message": "kuirado"
+  },
+  "items.pasillo.desc": {
+    "message": "La koridoro cxambro komunikanta via patrino kaj vi dividas kun via kara fratino."
+  },
+  "items.pasillo.txt": {
+    "message": "koridoro"
+  },
+  "items.camino_playa.desc": {
+    "message": "De tie estas facile vojo al la fama strandoj kaj la kruta vojeto kondukanta al la sekreta kreko, kie vi du estis kunvenejo ludi. La vojo ne estas tiel walkable kiel antaŭe sed certe hipioj kaj Surfers ankoraŭ uzas ĝin hodiaŭ, kiel rivela turnadas cigaredstumpoj."
+  },
+  "items.camino_playa.txt": {
+    "message": "marborda vojo"
+  },
+  "items.caleta.desc": {
+    "message": "En tiu malgranda kreko vi kutimis pasi horojn kaj horojn ludante kun via kara fratino. Ĵetegi vi kutimis kolekti konkoj kaj sablo pilkojn inter banoj. Estas proksime de la enirejo al la malgranda kaverno, kun la stangoj, nun tre rusta, kiu estis metita por malhelpi la tragedion okazas denove."
+  },
+  "items.caleta.txt": {
+    "message": "rivereto"
+  },
+  "items.cuevita.desc": {
+    "message": "Tio estis kie ĉio okazis."
+  },
+  "items.cuevita.txt": {
+    "message": "cuevita"
+  },
+  "items.promontorio.desc": {
+    "message": "En lando duonvoje domo kaj la strando, sur malgranda promontorio, estas la tomboŝtonoj de Anna kaj via madre.Un malvarmon runs kiam vi alvenis, ĉar vi scias ke via patrino mortis post fali de proksime ĉe maro, kiu povas esti vidita de tiu alteco."
+  },
+  "items.promontorio.txt": {
+    "message": "promontorio"
+  },
+  "items.habitación_madre.desc": {
+    "message": "Panjo dormis tie. Preskaŭ ankoraŭ flari la aromon. Doloras. La kabineto, kun ĝia centra spegulo, estas tiom malbelaj kaj barroco kiel memoris."
+  },
+  "items.habitación_madre.txt": {
+    "message": "via patrino ĉambro"
+  },
+  "items.habitación_gemelos.desc": {
+    "message": "Portilo! Via retejo estas la plej supra. Supreniris kaj hasselled preskaŭ kiel simio eĉ kiam ne ekzistis lumo. Antaŭ la lito estas la duobla skribotablo kie via patrino devigis vin fari taskojn en somero, sed kie fine acababais inventi ludo por esti ludita kun papero kaj krajono kasxita antaux la okuloj de via patrino aspektis. Estas en ĉi tiu skribotablo kie vi planas fari korektojn en via romano. Tie sekvas la ŝranko kie vi havis vuesta malnetan vestojn kaj ludilojn. Vi ne scias kio okazis al ŝia aferoj; Ili vojaĝis vian kun vi kiam vi forlasis la domon por iri vivas en la internulejo."
+  },
+  "items.habitación_gemelos.txt": {
+    "message": "ĝemeloj ĉambro"
+  },
+  "items.camino_residencial.desc": {
+    "message": "Tiu vojo komunikas kun aliaj apudaj domoj, ĝi estas la unu kiu kutimis iri al viziti amikojn somero."
+  },
+  "items.camino_residencial.txt": {
+    "message": "residenciales vojo"
+  },
+  "items.portal_embarazada.desc": {
+    "message": "Vicky vivis tie, via infano amo."
+  },
+  "items.portal_embarazada.txt": {
+    "message": "Vicky portalo"
+  },
+  "items.portal_hippie.desc": {
+    "message": "Charlie vivis tie, via amiko surfer."
+  },
+  "items.portal_hippie.txt": {
+    "message": "Charlie portalo"
+  },
+  "items.timbre_hippie.desc": {
+    "message": "La sonorilo Charlie portalo. Ĝi estas plena de gum batitaj kaj pentrita mariĥuano folioj. Ĝi vidas ke Charlie amikoj estas tre 'amika'. Super la ringo povas vidi sekureco ĉambro kiu ŝajnas rigardi vin atente."
+  },
+  "items.timbre_hippie.txt": {
+    "message": "Charlie stampas portalo"
+  },
+  "items.timbre_embarazada.desc": {
+    "message": "Kio simio sonorigisto! Ĝi havas iom da desegnoj en la formo de floroj. Vicky estis ĉiam tre funda."
+  },
+  "items.timbre_embarazada.txt": {
+    "message": "Vicky stampas portalo"
+  },
+  "items.embarazada.desc": {
+    "message": "Ĝi estas tiel bela kiel ĉiam. Vi estas graveda."
+  },
+  "items.embarazada.txt": {
+    "message": "Vicky"
+  },
+  "items.hippie.desc": {
+    "message": "Charlie, via malnova amiko de la infanaĝo."
+  },
+  "items.hippie.txt": {
+    "message": "charlie"
+  },
+  "items.maleta.desc": {
+    "message": "Via valizo ... preskaŭ nova, kaj vi ne kutime vojaĝi."
+  },
+  "items.maleta.txt": {
+    "message": "valizo"
+  },
+  "items.estantería.desc": {
+    "message": "Libroj kaj libroj. Tuta breto. Rimarkindaj libroj de gotika literaturo de teruro, ne nur romanoj kaj rakontoj, sed ankaŭ eseoj kaj biografioj de la aŭtoroj, elstara rolo faras vian propran libron pri Egan Allan Poe, eldonita unu jaro, kvankam la libro kion logas vin nuntempe stranga libro skribita en lingvo netradukeblaj aĉetis sur la migrovojo kelkaj monatoj kaj ne havis tempon por rigardi."
+  },
+  "items.estantería.txt": {
+    "message": "bretaro"
+  },
+  "items.libro_magia.desc": {
+    "message": "Malnova libro aĉetita en Marakeŝo merkato. Vi ne komprenas la notojn, sed havas multajn ilustraĵojn, multaj el ili ŝajnas esti perturbi sorĉoj."
+  },
+  "items.libro_magia.txt": {
+    "message": "arcano libro"
+  },
+  "items.manuscrito.desc": {
+    "message": "La manuskripto de via romano. Ĉio trezoron al vi kiel eraro de la komputilo dosiero perdis baldaŭ post presado fari korektojn al boli, per kiu vi volas korekti la unuan malneton. Pluvo aŭ brilas vi havas imposton elspezi almenaŭ ses horojn tage."
+  },
+  "items.manuscrito.txt": {
+    "message": "manuskripto"
+  },
+  "items.tijeras.desc": {
+    "message": "Simpla kuirejo tondilo iomete rusta, sed ankoraŭ tranĉitaj."
+  },
+  "items.tijeras.txt": {
+    "message": "tondilo"
+  },
+  "items.setas.desc": {
+    "message": "Tiuj fungoj havas iom naŭza aspekto, vi scias bone?"
+  },
+  "items.setas.txt": {
+    "message": "fungoj"
+  },
+  "items.servilleta.desc": {
+    "message": "La visxtukon havas makuloj de sango de Vicky. Ĝi estas unu el la elementoj necesaj al literumi kunveno."
+  },
+  "items.servilleta.txt": {
+    "message": "buŝtukon"
+  },
+  "items.cerillas.desc": {
+    "message": "Kelkaj matĉoj en kartona skatolo. Dubojn ĉu servi por io."
+  },
+  "items.cerillas.txt": {
+    "message": "alumetoj"
+  },
+  "items.collar.desc": {
+    "message": "La ŝelo koliero farita via kara fratino."
+  },
+  "items.collar.txt": {
+    "message": "koliero"
+  },
+  "items.móvil.desc": {
+    "message": "Via smartphone. Androide iom antikva sed ne demandis multe. Vi estas iom malnoviĝinta kaj preferas nomi texting. Vi aŭ ne instalis neniun aldonan app venas al la fabriko. La lasta mesaĝo kiu estis sendita al via proksimulo, dankante lin por interkonsenti veni al regarte via 'planto inspiro' kelkajn fojojn semajne. La listo de envenantaj aŭ eksiĝinta alvokoj estas dezerta ĉiuj amaskomunikiloj. La tagordo havas kelkajn telefonnumerojn; inter ili, via najbaro. Tamen, vi estas alligita al telefonoj kiel magneto kaj havas neracian panikon preni ĝin kun vi. Kiel vi pensas ili vokos vin iam doni literaturan premion por via lasta publikigita romano."
+  },
+  "items.móvil.txt": {
+    "message": "movebla"
+  },
+  "items.cargador.desc": {
+    "message": "La plado de via poŝtelefono. Esencaj por urbanite kiel vi nomobófico."
+  },
+  "items.cargador.txt": {
+    "message": "movebla plado"
+  },
+  "items.foto2.desc": {
+    "message": "Tiu malnova foto preskaŭ igas vin funebras. Vi montras vin kaj via fratino ludis sur la strando. la ombro de via patrino Vidu ankaŭ preni la foton."
+  },
+  "items.foto2.txt": {
+    "message": "foto de Anna kaj vi"
+  },
+  "items.foto3.desc": {
+    "message": "En ĉi tiu foto vi aperos vi kaj via kara fratino al ambaŭ flankoj de via patrino. La tri vin rideti kaj vi ŝajnas tre feliĉa, kiu dirus ke nur kelkaj semajnoj post la tragedio sucedaría?"
+  },
+  "items.foto3.txt": {
+    "message": "familia foto"
+  },
+  "items.barrotes.desc": {
+    "message": "Tiam metis la stangojn malhelpi katastrofo okazas denove estas nun tre rusta kaj ili ŝajnas tre malforta."
+  },
+  "items.barrotes.txt": {
+    "message": "stangoj"
+  },
+  "items.cuerda_enterrada.desc": {
+    "message": "Vi duone enterigitaj en la sablo, vi vidos pecon de ŝnuro frotado al la surfaco."
+  },
+  "items.cuerda_enterrada.txt": {
+    "message": "semiburied ŝnuro"
+  },
+  "items.planta.desc": {
+    "message": "Ni ankoraŭ ne scias kiel vi povas supervivi per kiom malbone vi traktas. Ĝi eligas fortan odoron, ke iu tago la polico prenos la pordo malsupren kaj ne valoros via eksplikoj kiuj helpas vin akiri inspirita por skribi. Vi jam konfidis al la bono de Freddie venis plurfoje semajne por trinkigu gxin, sed ne vundi memorigi ĉiu paro de tagoj por despistado estas."
+  },
+  "items.planta.txt": {
+    "message": "planton"
+  },
+  "items.chimenea.desc": {
+    "message": "La kameno en la loĝoĉambro. Kiel malmulte uzata veni en somero, vi vidis lumigis malofte."
+  },
+  "items.chimenea.txt": {
+    "message": "fajrejo"
+  },
+  "items.atizador.desc": {
+    "message": "La pokero forno estas tre forta kaj peza."
+  },
+  "items.atizador.txt": {
+    "message": "pokero"
+  },
+  "items.panfleto.desc": {
+    "message": "Reklam pamfleto takeaways."
+  },
+  "items.panfleto.txt": {
+    "message": "broŝuron"
+  },
+  "items.lápida1.desc": {
+    "message": "Anna Raven (1990-2001) Filino afabla kaj amema fratino. Ni ne forgesu."
+  },
+  "items.lápida1.txt": {
+    "message": "lápidade via fratino"
+  },
+  "items.lápida2.desc": {
+    "message": "Virginio Raven (1949-2002) Via infano ĉiam kondukas vin en la koron."
+  },
+  "items.lápida2.txt": {
+    "message": "via patrino tombo"
+  },
+  "items.cama.desc": {
+    "message": "La ŝanceliĝajn liton de via patrino."
+  },
+  "items.cama.txt": {
+    "message": "lito"
+  },
+  "items.diario.desc": {
+    "message": "En via patrino taglibro, kune kun siaj notoj, ekzistas ankaŭ intercalada fotoj kaj desegnoj. Komprenu la ĵurnalo komencis skribanta baldaŭ post la morto de Anna kaj finante tagojn antaŭ la morto de via patrino. Legado ŝiras vin dise. Konto kiu sentas respondeca por la morto de Anna kaj ne havas la forton por prizorgi vin, tiel vi sendis al internulejo en la urbo. Ankaŭ notu ke vi iras freneza kaj kiu kredis vidi Anna plurfoje en la domo kaj pendis ĉirkaŭ la tombo. Útima la lasta eniro legas: 'La muroj de la domo falos sur min, mi tuj metis freŝajn florojn al la tombo de Anna kaj marŝi iom laŭ la strando'. Tiu sama tago lia korpo estis trovita sufokita sur la strando post fali de la promontorio kie la tombo de Ana."
+  },
+  "items.diario.txt": {
+    "message": "ĉiutaga"
+  },
+  "items.espejo.desc": {
+    "message": "La malnova baroka spegulo praktikis granda fascinación en via kara fratino kaj vi."
+  },
+  "items.espejo.txt": {
+    "message": "spegulo"
+  },
+  "items.escritorio.desc": {
+    "message": "Antaŭ la lito estas la duobla skribotablo kie via patrino devigis vin fari taskojn en somero, sed kie fine acababais inventi ludo por esti ludita kun papero kaj krajono kasxita antaux la okuloj de via patrino aspektis. Estas en ĉi tiu skribotablo kie vi planas fari korektojn en via romano."
+  },
+  "items.escritorio.txt": {
+    "message": "skribtablo"
+  },
+  "items.armario_madre.desc": {
+    "message": "La malnova ŝranko de via patrino, duone manĝis for de tineoj."
+  },
+  "items.armario_madre.txt": {
+    "message": "via patrino ŝranko"
+  },
+  "items.cinturón.desc": {
+    "message": "Malnova leda rimeno al via patrino."
+  },
+  "items.cinturón.txt": {
+    "message": "zono"
+  },
+  "items.cestaFreddie.desc": {
+    "message": "Esprimas pako Freddie."
+  },
+  "items.cestaFreddie.txt": {
+    "message": "Freddie pako"
+  },
+  "items.cestaTelePapeo.desc": {
+    "message": "TelePapeo korbo kun esprimas kaso."
+  },
+  "items.cestaTelePapeo.txt": {
+    "message": "TelePapeo korbo"
+  },
+  "messages.Introduction.txt": {
+    "message": "Mia Kara Fratino. La perdo de via amato ĝemela fratino lasis vin agitita ekde via infanaĝo, sed ŝi estas tiel malproksimaj de ni, kiel vi pensas?"
+  },
+  "actions.móvil_llamar.txt": {
+    "message": "alvoko"
+  },
+  "actions.móvil_estado.txt": {
+    "message": "ŝtato"
+  },
+  "actions.encender_linterna.txt": {
+    "message": "lumo poŝlampo"
+  },
+  "actions.apagar_linterna.txt": {
+    "message": "for poŝlampo"
+  },
+  "actions.cargar.txt": {
+    "message": "ŝarĝo"
+  },
+  "actions.desconectar.txt": {
+    "message": "malkonekti"
+  },
+  "actions.write.txt": {
+    "message": "skribi"
+  },
+  "messages.nadie_sale_a_recibirte.txt": {
+    "message": "Atendinte momenton, komprenu ke neniu venas saluti vin. Ili estos ekstere aŭ okupataj. <br/>"
+  },
+  "messages.DLG_ya_estoy_aquí.txt": {
+    "message": "Mi estas ĉi tie, kial vi min vokas?"
+  },
+  "messages.sabes_que_no_te_abrirá.txt": {
+    "message": "Sonoru, vi vidos ekbruligis lumon de la fotilo ... sed vi scias, ke post la lastaj sovaĝaj partio Charlie ne tuj malfermu por momento. <br/>"
+  },
+  "messages.te_observan_por_cámara.txt": {
+    "message": "Notu, ke la lumo de la ĉambro de sekureco estas ŝaltita kaj vi observos kelkajn sekundojn. Fine aŭskultantoj: <br/>"
+  },
+  "messages.DLG_welcome_whisky.txt": {
+    "message": "Mia frato! Kiel bona vi venis kun provizoj! Envenu, knabo, bonvenon al nia humila loĝejo."
+  },
+  "messages.fiestón.txt": {
+    "message": "<br/> kioma vi venis enir ĉi malordo? Trapasante la pordon, la odoro de mariĥuano igas vin senti ĉe hejmo kaj vi rememoros vian plantita la studo. Muziko ĉiu metro, bela homo kaj granda gxojo. Kun rideto de orelo al orelo vi Diskuto kriante pri via nova romano kun perfektaj nekonatoj kiuj adoptis vin kiel parto de ilia grupo. Unu el ili diras vin pri bruoj kaj misteraj okazaĵoj en via domo? Kutime eniri okupantoj en la forlasitaj domoj dum longa tempo, kial vi pensas ke ni respektas vian 'Frumatene vi <br/> kuraĝis ĵeti via demando pri ĉu iu havas halucinajn fungoj, por 'dokumenti mem' sur unu aferon vi skribas. La kolego de kolego nomita kolego kaj duonhoro fungojn Elprovas. Feliĉe vi atingas kaŝi en via jako ... antaŭ perdi la konsciencon. Pigre vi sentas iun prenas vin al via hejmo, Sed ĝi estas preskaŭ pli sonĝo ol io vi estas certa. <br/>"
+  },
+  "messages.DLG_donde_whisky.txt": {
+    "message": "Mia frato, kie viskio estas? Mi opinias ke vi mem havigis la malĝusta partio."
+  },
+  "messages.%o1_aparece.txt": {
+    "message": "% Aŭ1 aperas."
+  },
+  "messages.escribes_en_estudio.txt": {
+    "message": "Vi estas freak de literaturo, vi komencos laboreti iom iu de via manuskripto kaj kiam vi rimarkos, vi transpreni horo kun la recenzo. <br/>"
+  },
+  "messages.sitio_incorrecto_escribir.txt": {
+    "message": "Por oportuneco ne konsideras taŭga skribi aliloke ol sur la labortablo de via malnova ĉambro. <br/>"
+  },
+  "messages.ya_escribiste_por_hoy.txt": {
+    "message": "Kaj vi dediĉi vian ĉiutagan porcion de skribo. Kiel via konscienco estas libera fari aliajn aferojn, vi povas forigi manuskripto flanken. <br/>"
+  },
+  "messages.Sesión_escritura.txt": {
+    "message": "Vi sidas ĉe la skribotablo kaj post kelkaj momentoj de dubo, kuri kaj ekpreni kiam vi donas kontoj pasigis pli ol horo, tempo ke vi reverki partojn de via nova romano. <br/>"
+  },
+  "messages.comesTelePapeo.txt": {
+    "message": "Ĝi estas enuiga manĝita rubo, sed via prioritato ĉi tiuj tagoj ne manĝis bone. <br/>"
+  },
+  "messages.comesTelePapeoVacío.txt": {
+    "message": "Senkonsola, vi rigardas la restaĵojn, sed iom alie. <br/>"
+  },
+  "messages.sueño.txt": {
+    "message": "Vi ne povas spiri, vi estas enfermita en la kaverno de la strando kaj vi ne povas eskapi. Subite movo de strando sablo eniras la kavernon kaj kovri vin al la talio kaj ne povas moviĝi. En viajn manojn vi havas la koliero de conchas maraj vi faris por doni ilin al via kara frato ... <br/> Sed ne, ne povas esti, ĉi tiuj ne estas la viaj memoroj, povas esti nur la lasta memoroj de ŝia tago en ke ... <br/> vekiĝas, trempita en ŝvito. <br/> vi levigxos, vi ne kredas vi tuj povos repacigi dormo. Fakte, vi timas reen dormi kaj revivi tiu terura sperto. <br/>"
+  },
+  "messages.sueño_en_estudio.txt": {
+    "message": "Vi havas la kofron preskaŭ preta por la vojaĝo reen al la malnova familia hejmo sur la marbordo. Oni nur bezonas meti kelkajn pliajn aferojn kaj vi prenas tiun vojaĝon vi estis prokrastante dekkvin jaroj. <br/> Should forlasi hejmon antaŭ 13:00 teni la aviadilon. <br/> Vi finis la unuan skizo de via nova romano kaj kredas ke la malnova domo donos al vi la necesajn fini trankvileco, for de la bruo kaj la devoj de la urbo. <br/>"
+  },
+  "messages.perder_tiempo.txt": {
+    "message": "La afero estas ne malŝpari tempon, sed dormeti neniam doloras ... zzz. <br/>"
+  },
+  "messages.no_dejar_meter_en_chimenea.txt": {
+    "message": "Ĝi povus esti interese fari bruli ... sed ne ĉi tiu tempo. <br/>"
+  },
+  "messages.no_dejar_meter_foto2_en_chimenea.txt": {
+    "message": "Memoru ke la sekreta libro montras bildon de patrino kun liaj du filoj. <br/>"
+  },
+  "messages.sin_motivo_para_dejar_meter_en_chimenea.txt": {
+    "message": "Vi ne vidas la kialon por meti ĝin en la kamenon. <br/>"
+  },
+  "messages.fantasma_asiente_cuando_metes_en_chimenea.txt": {
+    "message": "Terura bruo de ĉie kaj neniu krioj 'jes!'. <br/>"
+  },
+  "messages.meter_o1_mientras_se_carga_móvil.txt": {
+    "message": "Vi persvadi% Aŭ1 dum la telefonoj estas ŝarĝita? Ĝi tuj ekzistos. <br/>"
+  },
+  "messages.atar_cinturón_en_cuevita.txt": {
+    "message": "De tie vi ne atingas la trinkejoj, vi devas alfiksi la zono de ekstere. <br/>"
+  },
+  "messages.atar_cinturón_barrotes_bajo_agua.txt": {
+    "message": "La stangoj estas subakve kaj ne akiri ligis la zonon, vi devos atendi la tajdo. <br/>"
+  },
+  "messages.atas_cinturón.txt": {
+    "message": "Atas rimeno al la stangoj de la enirejo al la kaverno. <br/>"
+  },
+  "messages.desatar_cinturón_en_cuevita.txt": {
+    "message": "De tie vi ne atingas la trinkejoj, vi devus malligi la zonon de ekstere. <br/>"
+  },
+  "messages.desatar_cinturón_barrotes_bajo_agua.txt": {
+    "message": "La stangoj estas subakve kaj ne ricevas unfastening vi devos atendi la tajdo. <br/>"
+  },
+  "messages.desatas_cinturón.txt": {
+    "message": "Malligi la zonon de la stangoj de la enirejo de la kaverno. <br/>"
+  },
+  "messages.coges_collar.txt": {
+    "message": "konko koliero kiel via sonĝo aperas. Vi ne povas helpi funebri dum amuzigxas. Vi ne povas klarigi ĝin, sed notas Anna proksime vi, kvazaŭ ŝi estis kun vi nun. <br/>"
+  },
+  "messages.antisocial.txt": {
+    "message": "De nun vi tre centrita en via libro fari socian vivon, tiel en la fino vi ne. <br/>"
+  },
+  "messages.nomobofia.txt": {
+    "message": "Kiam vi iros forlasi, vi simple tajpi vian ordinaran atako nomobofia kaj ne malfiksas. <br/>"
+  },
+  "messages.no_dejas_collar.txt": {
+    "message": "Vi ne sentas povis faligi la koliero kiujn vi faris via kara fratino antaŭ morti. <br/>"
+  },
+  "messages.no_dejas_nada_en_cueva.txt": {
+    "message": "Bona ne lasi ion en la kaverno, ne tuj estos la tajdo kaj frauxlino. <br/>"
+  },
+  "messages.sin_baterías.txt": {
+    "message": "La kuirilaroj estas elĉerpita. Vi devas lardi ĝin unue. <br/>"
+  },
+  "messages.llamar_desde_estudio.txt": {
+    "message": "Komprenu ke sur la tagordo Freddie, via venonta najbaro, aperas sed nuntempe ne vidas la bezonon por alvoki. <br/>"
+  },
+  "messages.llamar_a_quien.txt": {
+    "message": "Kiu do vi volas nomi? <br/>"
+  },
+  "messages.cancelar_acción.txt": {
+    "message": "nuligi Ago"
+  },
+  "messages.llamar_a_Freddie.txt": {
+    "message": "Freddie"
+  },
+  "messages.llamar_a_TelePapeo.txt": {
+    "message": "TelePapeo"
+  },
+  "messages.llamar_a_Charlie.txt": {
+    "message": "charlie"
+  },
+  "messages.llamar_a_Vicky.txt": {
+    "message": "Vicky"
+  },
+  "messages.no_llamas.txt": {
+    "message": "Fine vi nomu neniun"
+  },
+  "messages.llamas_a_s1_y_cuelgas.txt": {
+    "message": "% S1 alvoko kaj pendigu. <br/>"
+  },
+  "messages.recuerdas_hora_avión.txt": {
+    "message": "Memoru ke vi devas forlasi antaŭ 13:00 al la flughaveno aŭ perdi la aviadilo kiu prenas vin al la marbordo. <br/>"
+  },
+  "messages.son_las_s1_s2.txt": {
+    "message": "Estas la% s1:% s2."
+  },
+  "messages.batería_restante_s1_s2.txt": {
+    "message": " Baterio tempo restanta:% S1H% S2M."
+  },
+  "messages.linterna_encendida.txt": {
+    "message": " Poŝlampo plu."
+  },
+  "messages.bajamar_ahora_durante_s1.txt": {
+    "message": "La maksimuma malfluso estanta nun finos en% s1 minutoj. <br/>"
+  },
+  "messages.próxima_bajamar_s1_s2.txt": {
+    "message": "La sekva malfluso estos ĉe% s1.% S2 <br/>"
+  },
+  "messages.móvil_cargándose.txt": {
+    "message": "Estas akuzanta nun. <br/>"
+  },
+  "messages.baterías_móvil_llenas.txt": {
+    "message": "La baterioj estas plenaj. <br/>"
+  },
+  "messages.enciendes_linterna.txt": {
+    "message": "Vi ŝaltas la poŝlampo movebla. <br/>"
+  },
+  "messages.apagas_linterna.txt": {
+    "message": "Poŝlampo malŝalti moveblaj <br/>"
+  },
+  "messages.sin_enchufe.txt": {
+    "message": "Tie ne ekzistas elirejo kie ŝarĝi ĝin. <br/>"
+  },
+  "messages.lo_pones_a_cargar.txt": {
+    "message": "Vi metis la telefonon por ŝarĝi kaj vidi se ĝi ne okupis longan tempon. <br/>"
+  },
+  "messages.retiras_cargador.txt": {
+    "message": "Faldi telefono plado. <br/>"
+  },
+  "messages.no_puedes_salir_mientras_carga.txt": {
+    "message": "Provu movi ... sed ne rompi vian telefonon dum estas akuzanta. <br/>"
+  },
+  "messages.no_puedes_sacar_maleta_de_casa.txt": {
+    "message": "Kiam vi estras eksteren, vi sentas iom ridinda portante la kofron kun vi, por vin forlasi antaŭ vi foriros. <br/>"
+  },
+  "messages.no_puedes_sacar_manuscrito_de_casa.txt": {
+    "message": "Rubriko de la domo kun via valora manuskripto? Nur kopio kaj ne riski perdi. Lasi ŝin hejme antaŭ forirado. <br/>"
+  },
+  "messages.fantasma_no_te_deja_ir.txt": {
+    "message": "Via kara fratino ne lasos vin iri en tiu direkto. <br/>"
+  },
+  "messages.te_despeñas.txt": {
+    "message": "Nokte <br/> antaŭi sekvante la volo de via fratino. Je alveno de la du tomboŝtonoj, vi vidos kiom nebulo lasas la tombo de via patrino kaj renkontiĝas kun la figuro de via amata fratino. Ambaŭ nomas vin kun malfermaj brakoj. Marŝas al ili trapikis ... kaj subite sentas ke ekzistas neniu grundo sub viaj piedoj. Dum vi falos, du lumoj akompani vin en la aŭtuno. Tiam tria lumo, vi, vi renkontos ilin kaj movi kune al cirklo de lumo sur la horizonto. <br/>"
+  },
+  "messages.fin_juego_despeñas.txt": {
+    "message": "La ludo estas finita. Kio estus okazinta se vi estus irinta al la kaverno anstataŭ la promontorio? <Hr />"
+  },
+  "messages.no_te_olvides_móvil.txt": {
+    "message": "¿Leave sen la telefono? Vi estas iom freaky kaj ne povas daŭri ... sed ne ambaŭ. <br/>"
+  },
+  "messages.no_te_olvides_maleta.txt": {
+    "message": "¿Iri vin vojaĝi sen pakaĵo? Vi estas iom forgesema kaj konfuzita, mi timas. <br/>"
+  },
+  "messages.cosas_en_mano.txt": {
+    "message": "Vi pensas eliri kun viaj manoj tiom plena. Krom mobile, komprenu vi irus pli komforta se vi prenos aliajn aferojn en la valizo. <br/>"
+  },
+  "messages.no_te_lleves_planta.txt": {
+    "message": "Kio diable vi volas preni la planton vojaĝo? <br/>"
+  },
+  "messages.no_te_olvides_novela.txt": {
+    "message": "Vi devas iri post kelkaj semajnoj al la plaĝo domo fini vian NO-VE-LA ... ne vin pensas vin forgesas ion? <br/>"
+  },
+  "messages.te_olvidas_algo.txt": {
+    "message": "Kiel vi forgesis preni ion, sed tiuj maltrankvilaj forlasi."
+  },
+  "messages.cierras_maleta.txt": {
+    "message": "Fermi la valizon kaj saloj de la studo. <br/>"
+  },
+  "messages.al_salir_del_estudio_1.txt": {
+    "message": "La vojaĝo kuras kiel sonĝo. Antaŭ momento vi estis en via studado ... kaj nun, estas antaŭ la pordo de la domo de strando. La taksio rajdas, flughaveno bullicio, ronki pasaĝero preskaŭ nenion ... ke vi pagos da atento. En via kapo estis nur ideo 'en momento mi estos tie kie ĉio okazis, post tiom da jaroj. Kompreneble la kialo kial vi iras, korektojn fini vian lastan romanon, ĉu vi jam dediĉis penso. <br/>"
+  },
+  "messages.al_salir_del_estudio_2.txt": {
+    "message": "Vi povas nur pensi kiel aferoj estis antaŭ la morto de Anna, vian amatan fratinon manumbutonino, La knabino de viaj okuloj. Speciale memoras kiom feliĉaj vi estis kune ke lasta somero. Pasabais preskaŭ pli tempo en la rivera malantaŭ la domo por tio. Via patrino ĉiam devis iri serĉanta vin kiam krepusko. Tiu sama fifama kreko kie la tragedio okazis. <br/>"
+  },
+  "messages.primera_vez_salón_comedor.txt": {
+    "message": "<B> Vi iros. </ B> <br/> La manĝoĉambro estas preskaŭ la sama kiel antaŭ dek kvin jaroj, krom amasigis polvon. Faldu la foliojn kaj skui eksteren. Nun la ĉambro aspektas preskaŭ kiel antaŭe. Inter diversaj broŝuroj kaj sub la pordo, vi batante unu el manĝaĵon hejme TelePapeo, vi ne iros malĝustan tiujn tagojn. <br/>"
+  },
+  "messages.promontorio_sin_luz.txt": {
+    "message": "Malhela, ne kuraĝis movi eĉ unu paŝon pro timo despeñarte, kiel okazis al via patrino. <br/>"
+  },
+  "messages.camino_playa_sin_luz_a_o1.txt": {
+    "message": "Malhela, vi piediras senpripense kaj sen scii kiel akiri ...% Aŭ1 <br/>"
+  },
+  "messages.caleta_sin_luz_a_camino_playa.txt": {
+    "message": "Malhela, palpante comienzar supre monteto, sed vi glitas kaj iri reen al kie vi estis. <br/>"
+  },
+  "messages.entras_cueva_con_fanstasma.txt": {
+    "message": "Kun neesprimeblan senton de fatala Bedaŭrinde vi eniros la kavernon, sekvata de via kara fratino. <br/>"
+  },
+  "messages.cueva_no_accesible.txt": {
+    "message": "La malgranda kaverno nun estas kovrita per la maro. Vi devos atendi la proksima malalta tajdo. <br/>"
+  },
+  "messages.cueva_innaccesible.txt": {
+    "message": "La stangoj malhelpi vin eniri la malgrandan kavernon. <br/>"
+  },
+  "messages.entrar_sin_linterna.txt": {
+    "message": "Ĝi estas tre malluma tie. Kiel vi vidus nenion sen lumo estus malsaĝe iri nun. <br/>"
+  },
+  "messages.entras_sin_cinturon_atado.txt": {
+    "message": "Marŝas tre singarde, timigita de kio okazis al via fratino tie. Ĝi estas probable ne estas bona ideo por eniri sen ŝnuro aŭ kiel kuna al la stangoj, ĉiaokaze. <br/>"
+  },
+  "messages.primera_vez_cuevita.txt": {
+    "message": "Ĉu problemojn spiri, tie iris kie ŝi dronis. Neniu scias kial lia restado en kaj estis surprizita de la tajdo kaj la derrumbe ke ekigis la areo de la malgranda duno en la kaverno. <br/> La tero povas vidi kion ŝajnu esti parte enterigita ŝnuro <br/>"
+  },
+  "messages.primera_vez_caleta.txt": {
+    "message": "Avanzas preskaŭ trenante siajn piedojn. Vi ne volas iri, sed vi ne kulpas. Vi scias vin devas alfronti la pasinteco, ili jam pasigis pli ol dek kvin jaroj kaj vi devas venki. <br/>"
+  },
+  "messages.debes_dejar_cinturón.txt": {
+    "message": "Vi ne povas iri kun la zono ligita al barrores. Malligu kaj preni ĝin kun vi. <br/>"
+  },
+  "messages.telepapeo_en_agenda.txt": {
+    "message": "Aldonu la telefonon vendejo sur via tagordo TelePapeo movebla. <br/>"
+  },
+  "messages.ex_barrotes_marea_alta.txt": {
+    "message": "Fluso simple vidi rustigxis fero subakve. Ili akiris por sigeli la enirejon al la kaverno kie Anna ... kiam la tajdo estas malalta. <br/>"
+  },
+  "messages.CestaTelePapeo_vacía.txt": {
+    "message": "TelePapeo korbo malplenas. <br/>"
+  },
+  "messages.contenidoCestaTelePapeo.txt": {
+    "message": "TelePapeo korbo enhavas: <br/>"
+  },
+  "messages.TelePapeo_ver_prod_s1.txt": {
+    "message": "% S1 <br/>"
+  },
+  "messages.ex_libro_magia_general.txt": {
+    "message": "Macabra ilustraĵoj de tiu antikva libro skribita en lingvo vi ne scias logas sickeningly. Li donis multajn ideojn por verki viajn rakontojn kaj romanojn. <br/>"
+  },
+  "messages.ex_libro_magia_embarazada.txt": {
+    "message": "Jen la bildo vi deziras. Ŝajnas esti ceremoniaro por du animoj apartigitaj per morto kunvenas denove en la korpo de graveda virino kun ĝemeloj. Vidi kiel la forpasinto ĝemelaj donos donacon al la postvivantoj, kiuj tenas ĝin en unu mano dum alia aroj ekbruliĝis al tuko kun la sango de la graveda virino kaj valoran donacon de vivanta ĝemelo. Kiel postskribo, vivanta ĝemelaj manĝas ion kiel magio fungojn dum vi spekti la fajro forbruligos antaux li. <br/>"
+  },
+  "messages.duda_embarazada_gemelos.txt": {
+    "message": "Sento sombío venas al menso Vicky estas graveda kun ĝemeloj <br/>?"
+  },
+  "messages.duda_embarazada_gemelos_confirmada.txt": {
+    "message": "Io neregebla instigas vin iri antaŭen kun la sorĉon, se nur konfirmi ke vi estas nenio pli ol superstiĉa sensencaĵo. <br/>"
+  },
+  "messages.ex_libro_magia_hechizo2.txt": {
+    "message": "ex_libro_magia_hechizo2 <br/>"
+  },
+  "messages.ex_libro_completo.txt": {
+    "message": "La libro ŝajnas havi nenion interesan por oferti nun. <br/>"
+  },
+  "messages.aparece_diario.txt": {
+    "message": "Apogi sur la matraco por vidi kiel la lito, vi aŭdas bruon de io falanta al la planko sub la lito. <br/>"
+  },
+  "messages.aparece_foto3.txt": {
+    "message": "Interalie, aperis foto de via patrino kaj via fratino kun vi. <br/>"
+  },
+  "messages.espejo_0.txt": {
+    "message": "Dum momento, mi ŝajnis vidi vian fratinon fuck vian manon apud vi. Vi sentas la malvarma mano kaj froti ĝin reakiri varmego. <br/>"
+  },
+  "messages.espejo_1.txt": {
+    "message": "Vi estos neklaran vidadon kaj vi aspektas kiel estis malgrandaj. Vi aŭdos unu vocetia ke ridante diras 'Al! Mi kaŝis, venu trovi min, rapide supren! <br/>"
+  },
+  "messages.espejo_2.txt": {
+    "message": "Vi estas ĉirkaŭitaj de aura de fajro kiu kovras vin. Instinkte, vi elspezas manojn super sian kapon, pli kliento vi notojn ol kutime. <br/>"
+  },
+  "messages.espejo_3.txt": {
+    "message": "La spegulo reflektas la malfermita fenestro, tra kiu oni povas vidi la malproksiman promontorio. Tiemblas memori ne nur la korpon de via kara fratino kaj via patrino estas tie, sed tiu lasta mortis post fali de tie. <br/>"
+  },
+  "messages.espejo_4.txt": {
+    "message": "Por sekundo, vi estas bildo de via recurrente koŝmaro. Vin vidas kovris la maro kaj sufokante en la kaverno. <br/>"
+  },
+  "messages.pulsa_para_ver_imagen_de_%o1.txt": {
+    "message": "Klaku por vidi bildon% Aŭ1. <br/>"
+  },
+  "messages.falta_atizador.txt": {
+    "message": "La stangoj estas tre rusta kaj movado, sed vi konvinkis vin, ke nur manoj ne sxanceligxas. <br/>"
+  },
+  "messages.rompes_barrotes.txt": {
+    "message": "Danke al la pokero, vi rompos la stangojn kun facileco kaj povas nun eniri la malgrandan kavernon. <br/>"
+  },
+  "messages.no_es_necesario_que_insistas.txt": {
+    "message": "Ne necesas insisti. <br/>"
+  },
+  "messages.rompes_collar.txt": {
+    "message": "Via lágimas diluas en la maro, kiuj kovras vin tute. Kiam preskaŭ ne povas teni spirante vi metis ĉiuj viaj energio por rompi la kolumo, en senespera provo por rompi la ligon kun via kara fratino. Vi vundis viaj manoj, sed fine rompi la ŝnuron kaj konkoj formante la kolumo estas dissemitaj de la nuna ĉiudirekte. <br/> Tiam la neatendita okazas. Ŝajne, ke koliero konservis ĉenita al via fratino al vi kaj la mondo de la mortales. Fojo rompita koliero, ĉiuj furiozo de via kara fratino malaperas kaj estas anstataŭita de granda paco kaj belan rideton. Lia korpo respandece kaj gvidi vin en la mallumo ĝis la eliro de la kaverno. <br> Vi aperas nokte en la malgranda kreko. Via kara fratino adiaŭ al vi kaj iras al cirklo de lumo. <br/>"
+  },
+  "messages.estadística_juego_s1_s2_s3.txt": {
+    "message": "Vi bezonas% s1% s2 tagoj:% s3 horoj diri adiaŭ al via kara fratino <br/>."
+  },
+  "messages.epílogo.txt": {
+    "message": "<B> Epilogo </ b> <br/> Tagoj poste, gastigi partion ĉe la domo de strando. Freddie ĉeesti, Vicky kun ŝia edzo kaj pluraj de liaj amikoj Charlie. Post manĝi, trinki (kaj iuj fumis la cetero de via planto alportis Freddie) estis multe, vi anonci vin ke ĉi tiuj tagoj en la domo devos renaskiĝi, vi bruligis vian romano preskaŭ finita kaj komencis skribi nova romano. <br/>"
+  },
+  "messages.DLG_presentación_poema.txt": {
+    "message": "Amikoj, lasu min legi al vi tiun malgrandan poemon mi venis hieraŭ, kiu estas esence daŭrigo de la poemo Egan Allan Poe 'Annabelle Lee \"kaj mi kredas ke li ludos gravan rolon en mia nova romano:"
+  },
+  "messages.fin_juego_poema.txt": {
+    "message": "La ludo estas finita <hr />"
+  },
+  "messages.no_rompes_collas.txt": {
+    "message": "Kiel rompi ion tiel bela ke vi faris vian karan fratinon la tago de sia morto? La nura fakto entistrece vi pensas kaj faras vin faligi lágimas doloron kaj malĝojon. <br/>"
+  },
+  "messages.no_gastar_cerillas.txt": {
+    "message": "Vi bagateligas sugesto de unu, sed vi rimarkos ke nur vi mankus tie. <br/>"
+  },
+  "messages.sin_cerillas.txt": {
+    "message": "Vi ne vidis ion pri kiel lumigi la kameno. <br/>"
+  },
+  "messages.escena_hechizo1.txt": {
+    "message": "Vi manĝas fungojn kaj manpremado turni la matĉon kaj alproksimigi la kameno. Tie ripozas la manuskripto paĝoj de via romano, kiu elkondukis vin kvar jaroj de via vid: kion grandan oferon ol tiu fari la arcano sorĉas libro? Vi sentos tre stulta, se ĉio ĉi estas sensencaĵo kaj simply're brulanta vian laboron por nenio? <br/> Sed vi ne povas rezisti, notas kiel fungoj restigos vin ŝanĝita konscio kaj ombro de la ĉambro prenas la formon de via fratino, kiu venas al vi kaj faras geston por fini alporti la partion al la kameno. <br/> vi devis iri freneza, ĉar nun vi vidis flugantan en aero kuirejo tondilo. Nun vi scias, kio okazos, La sorĉas postulos vian morton tiel vi povas renaskiĝi kun via kara fratino Vicky ventro. <br/> Raring kompletigi la sorĉas kaj aliĝi via kara fratino, sed ... vi ankoraŭ tiel fari en ĉi tiu vivo!: publikigi viajn romano, gepatrado, vojaĝoj ... Antaŭ neeviteble alporti la partion al la kamentubo alligiteco al vivo donas vin la ŝanco ne iras la vojon vi marki vian karan fratinon . <br/>"
+  },
+  "messages.apagar_cerilla.txt": {
+    "message": "Elŝalti la matĉo"
+  },
+  "messages.encender_hoguera.txt": {
+    "message": "Ekbruligu la fajron kaj kompletigi la sorĉon"
+  },
+  "messages.hechizo1_abortado.txt": {
+    "message": "Kun nur devigas vin blovi la matĉo. Via kara fratino rigardas vin pro kolerego kaj tiam turnas sian atenton al la tondilo, kiu pafas ĉe vi kaj nur evitas apenaŭ. <br/> Matchbox flugas el viaj manoj, kaj vi vidos antaŭ via kiom okulojn malfermitaj kaj lumoj Cerrilla sole kaj prende fajro al la kamentubo. Neniu! Instinkte vi provas eltiri lian manuskripton al la flamoj, sed estas tro malfrue. <br/> Sed tio ne suficxus ofero pro via fratino, kiu estas inter la eniro de la domo kaj la ŝtuparo blokante via eliro kaj notas vin al la kuirejo kaj la dorso de la domo. <br> <br/>"
+  },
+  "messages.fantasma_rompe_móvil.txt": {
+    "message": "Vidante vin dubas, via kara fratino enfuerece pliaj kaj denove ĵeti la tondilo, kiu donas plenan sur via brusto ... ĝuste kie vi surhavas vian moveblaj marko. Ĝojigi vin neniam pensis vi alvenis al senti kiel via ekrano rompis en mil pecojn. <br>"
+  },
+  "messages.hechizo1_ejecutado.txt": {
+    "message": "Kun nur devigas vin alproksimigi la matĉo por la kameno, mientra tondilo flugi tra la aero kaj fosi en via nuko. Batis la teron, el kiu vi vidos bruligi vian vivon. Via manskribitaj notoj brulas dum via animo forlasas vian korpon. Apud vi estas nun la ciferoj de via patrino kaj via kara fratino. Via patrino iras al cirklo de lumo dum vi kaj via kara fratino vi flugas al Vicky ĉambro. Ŝi dormas pace brakumis sian edzon. Notoj kiel vi venos en vian ventron. <br/> Ene Vicky, unu el la ĝemeloj, la knabino, ridetas, dum vi, en via lasta penso antaŭ perdi memoron, dubojn ĉu ĉi tio estis kio vere vi volis aŭ estis nur la marionetoj de lia fratino. Post tiu tempo, mallumo kaj atendas. Via kara fratino skuas vian manon, vi revenos al kune. <br/>"
+  },
+  "messages.fin_juego_chimenea.txt": {
+    "message": "Tiu ludo estas finita, sed ... kio okazus se vi ne ŝaltis la kameno? <Hr />"
+  },
+  "messages.fantasma_apaga_cerilla.txt": {
+    "message": "Vi bruligas alumeton, kaj kiam vi iros prender fajro al la kameno, rimarkis strangan rivereto de aero kiu ekstere. Vi herizan harojn aŭdi torenton de aero kiu memorigas vin de via kara fratino kiam ludanta ĉe esti fantomo. <br/>"
+  },
+  "messages.tiempo_dedicado_s1.txt": {
+    "message": "Hodiaŭ vi elspezis% s1 6 horoj ĉiutage minimumo vi markita vi."
+  },
+  "messages.desatas_cinturón_con_marea.txt": {
+    "message": "Malligi la zonon de la stangoj antaŭ la tajdo pligrandiĝo pli. <br/>"
+  },
+  "messages.desconectar_cargador.txt": {
+    "message": "Malkonekti mian telefonon plado. <br/>"
+  },
+  "messages.perdiste_avión.txt": {
+    "message": "Nek povas kredi vin, ke vi perdis la ebeno. Feliĉe ĝi ne estos de flugoj. Voku la aviadkompanio kaj aliaj rezervojn por la sama tempo morgaŭ. Vi eklaboru en via nova libro kaj vespere vi manĝos ion kaj enlitiĝu. Morgaŭ estas alia tago ... sed vi timu la nokto kaj alportas koŝmarojn. <br/>"
+  },
+  "messages.dejarlo_todo_y_escribir.txt": {
+    "message": "Vi konscias ke vi ne plenumis vian promeson al ses horoj de ĉiutaga revizio de via romano. Forlasi ĉion kaj vi iros al via ĉambro por fari vian devon. <br/>"
+  },
+  "messages.el_remordimiento_te_corroe.txt": {
+    "message": "Malbona, vi rimarkos ke vi ne povas plenumi vian promeson al ne sciante kiel akiri hejmon. <br/>"
+  },
+  "messages.a_dormir_después_de_escribir.txt": {
+    "message": "Vi nur elĉerpita post la revizio kunsido de via romano. Manĝi ion kaj enlitiĝu. <br/>"
+  },
+  "messages.a_dormir.txt": {
+    "message": "<br/> Subite vi konscias kion horo estas. Vi estas impresionable pri via horaro kaj ĉe 23:00 vi retiriĝi hejmo ripozi, jes aŭ jes. Dormo venkas vin kaj vi enrampi lito. Morgaŭ estos alia tago. <br/>"
+  },
+  "messages.de_noche_sin_luz.txt": {
+    "message": "Estas nokto kaj vi estas el nebruligita domon gvidi vin. <br/>"
+  },
+  "messages.tirado_en_la_calle.txt": {
+    "message": "Nokte, en la strato sen lumo. Vi ricevas pilkon ie kaj dormo io kripla malvarma ol la suno leviĝas. <br/>"
+  },
+  "messages.antes_dormir_cargas_móvil.txt": {
+    "message": "Antaŭ dormi, vi etendos viajn brako kaj meti la telefonon akuzi. <br/>"
+  },
+  "messages.antes_dormir_NO_cargas_móvil.txt": {
+    "message": "Antaŭ dormi, vi etendos la brakon, sed la plado ne ... nu, vi serĉas morgaŭ. <br/>"
+  },
+  "messages.día_s1.txt": {
+    "message": "Kun renovigita energio <br/> vi komencas la tagon% s1 ĉar vi havis la koŝmaro por la unua fojo. <br/>"
+  },
+  "messages.recibes_paquete.txt": {
+    "message": "Hodiaŭ <br/> certa Freddie ricevis la pakon! Vi iras al la pordo de la domo, forprenu tutan enhavon de la pako kaj lasi ĝin en la loĝoĉambro. <br/>"
+  },
+  "messages.baterías_0.txt": {
+    "message": "Vi restos sen baterioj. Via vico apañártelas malmoderna. <br/>"
+  },
+  "messages.baterías_60.txt": {
+    "message": "Vi elkuranta de kuirilaroj. Vi havas hore ĉe normala rapideco. <br/>"
+  },
+  "messages.baterías_120.txt": {
+    "message": "Vi elkuranta de kuirilaroj. Vi havas malpli ol du horoj en normala ritmo. <br/>"
+  },
+  "messages.estrofa1.txt": {
+    "message": "<br/> infano pasigis kun mia familio <br/> someroj en domo apud la marbordo. <br/> mi sufiĉe <br/> najbaro kies nomon mi ne mencios <br/> estis la grumo en somero <br/> infano kaj kiu la resto de la jaro povis nur sopiri. <br/>"
+  },
+  "messages.estrofa2.txt": {
+    "message": "Malafabla somero, <br/> kara amo mi kaptis bato de <br/> maro kaj estis profunde ŝokita. <br/> Lia tombo tuj vizitos <br/> ĉiutage ke la somero kaj la sekvan <br/> sur promontorio apud la maro. <br/>"
+  },
+  "messages.estrofa3.txt": {
+    "message": "Dekkvin jaroj sen <br/> povis trankviligi min. Tiam io okazis <br/> <br/> kaj lasu min rigardi <br/> viajn okulojn reflektita en la steloj. <br/> Nur skribu al mi povus malpezigi < br /> kaj literoj kaj pli literoj <br/> ne lasu ŝia alvoko. <br/>"
+  },
+  "messages.estrofa4.txt": {
+    "message": "En aliaj okuloj kaj volis trovi la korpojn <br/> <br/> ambaŭ anĝeloj kaj demonoj. <br/> Sed neniam povus trovi <br/> <br/> Tia estis mia malespero kiuj alvenis preskaŭ forgesi . <br/>"
+  },
+  "messages.estrofa5.txt": {
+    "message": "Iam iu vidis tauxgas <br/> sendu amanta mi belan leteron. <br/> Estis admirador aĝo kiuj povus min turni. <br/> <br/> Ĉu legi ion mia ke ŝi kaj mi sxajnis paroli. <br/> Sed ni neniam povus vidi nin. <br/> Ĉar ŝi vivis for de mia domo apud la marbordo. <br/>"
+  },
+  "messages.estrofa6.txt": {
+    "message": "Unu tagon, kiam li subskribis librojn en la urbo, Mi <br/> petas dolĉan voĉon <br/> 'Subskribas, bonvolu. \"Kaj la okuloj <br/> lifto, ŝiaj okuloj <br/> mi reacquainted sin <br/> kiuj tiom amis. <br/> kaj estis bonsorta neniam reiros disigi tiujn okulojn <br/> preter ĉielo kaj maro. <br/>"
+  },
+  "messages.DLG_hippie_se_presenta.txt": {
+    "message": "Saluton!, Kion mi povas fari por vi? ... Sed atendu, vi estas Al, mia malnova amiko de somero aventurojn! Kiel mi ĝojas vidi vin post tiom da jaroj! Mi estas ĉi tie kun mia muziko kaj surf ... de la vojo, ke app aspektas bela scii kio horo estas la tajdoj"
+  },
+  "messages.hippie_app_mareas_móvil_cargado.txt": {
+    "message": "Vi ekpreni vian telefonon kaj instali ŝin sen vi. <br/>"
+  },
+  "messages.hippie_app_mareas_presta_cargador.txt": {
+    "message": "Vi prenas vian moveblaj kaj vidanta ke ne pilojn, iri hejmen kun via telefono kaj revenas por porteblaj kun iom zorge kaj la app instalita tajdoj."
+  },
+  "messages.DLG_hippie_invita_a_fiesta.txt": {
+    "message": "Dude, halti por hejmo de ŝia nokto ĉe 7. Estas preskaŭ ĉiam homoj, sekso, drogoj kaj rockandroll de tiu tempo. Ha ha ha. Alporti ion por trinki kaj mi prizorgos la reston. Mi specon de bona kvalito."
+  },
+  "messages.hippie_se_despide.txt": {
+    "message": "<br/> Sen rimarki multe ĉambro, via infaneco amiko ricevas hejmo ( \"dormi ĝin,\" li diras), sed ne antaŭ forlasi vin lian poŝtelefonan numeron. <br/>"
+  },
+  "messages.sobre_mareas_y_cuevas.txt": {
+    "message": "Malhela reflekto <br/> clouding via menso. Vi nur konsentos sur la tempo de jaro kiam ni estas sur la sama kiam ŝi ... Kiel vi ne rimarkis antaŭe? Charlie surfing tajdoj precize kion vi memoras. Estas longa tempo tajdoj, permesante la fatídico cuevita la strando estas elmontrita kiam ĝi estas malalta. La resto de la jaro la kaverno estas ĉiam sub marnivelo, sen la risko de ajna infano, kio okazos al ŝi. <br/>"
+  },
+  "messages.DLG_embarazada_se_presenta.txt": {
+    "message": "Al! \"Sen donanta vin tempo reagi pli fortikaj graveda virino flugas super vi kaj donas kvar kisojn.\" Kio granda ĝojo! Ĉu vi tuj estos multa? Mi semajnoj eble?, Kion bueeeno! Pasigas multan tempon sole hejme matene ĝis ĉirkaŭ teo tempo, kiam mia edzo revenas labori. Celas mian poŝtelefonan numeron: min vokas kaj invitas min al via domo por manĝi ĉokolado glaciaĵo. Tiuj tagoj mi nur pensas pri manĝi ĉokoladon!"
+  },
+  "messages.embarazada_se_despide.txt": {
+    "message": "Vicky <br/> gestojn por nauseas kaj sen avizo venas hejmen. <br/>"
+  },
+  "messages.recuerdas_libro.txt": {
+    "message": "<br/> ... Subite vi rememoros vian malnovan libron aĉetis en Marakeŝo merkato. Vi memoras aparta paĝo, kun ilustraĵoj de graveda virino kun ĝemeloj. Kial li venis tiu memoro nun? Ke ĝi estas stulta, sed vi ne estos trankvila, ĝis vi kontrolu la libro. <br/>"
+  },
+  "messages.libro_en_estudio.txt": {
+    "message": "\"Shit!\": Memoru ke vi eniris la libron en la valizo; \"Freddie eble la bona de mi sendu per kuriero.\" <br/>"
+  },
+  "messages.pedir_cargador.txt": {
+    "message": "Prunteprenos plado <br/>"
+  },
+  "messages.DLG_pedir_cargador_reacción.txt": {
+    "message": "Iru, sed ne forgesu ke, donante al mi vi estas iom konfuzita. <br/>"
+  },
+  "messages.o1_te_devuelve_el_saludo.txt": {
+    "message": "% Aŭ1 vi redonis la saluton."
+  },
+  "messages.DLG_se_despide.txt": {
+    "message": "Nu, mi havas multe, salaton. Ni parolis."
+  },
+  "messages.se_va_o1.txt": {
+    "message": "% Aŭ1 estos <br/>"
+  },
+  "messages.o1_te_mira.txt": {
+    "message": "% Aŭ1 rigardas vin, atendante vidi kion vi volas."
+  },
+  "messages.la_marea_sube.txt": {
+    "message": "La tajdo levas kaj ĉiufoje kiam vi aŭdas la maro proksima. Ĝi povas esti danĝera por resti tie longe. <br/>"
+  },
+  "messages.el_agua_entra.txt": {
+    "message": "Akvo komencas eniri la kavernon. Vi ricevas timigita kaj vi estas maltrankvila akiri ekstere."
+  },
+  "messages.el_agua_entra_y_mueres.txt": {
+    "message": "Tamen, vi glitas kaj vi falos malantaŭ. Vi tuŝos la stangoj sed ne blokiĝas ekpreni ilin per algoj. A Bleed areon aprisona viaj piedoj kaj vi povos nur atesti vidi kiel pli kaj pli akvo venas. Kiam la akvo fine pasas vin kaj ne lasu vin spiri, vi kredas vidi la figuron de via kara fratino, kiu ridetas kaj ofertas sian manon al iri kun ŝi al cirklo de lumo. <br/> < hr />"
+  },
+  "messages.fin_juego_asfixia_sin_cinturón.txt": {
+    "message": "La ludo estas finita, sed kio okazus se vi ligis ŝnuron aŭ simila al la stangoj pendi ekstere kun ili?"
+  },
+  "messages.el_agua_entra_y_sales.txt": {
+    "message": "Feliĉe, vi ricevas grab stangoj sen povus gliti, sed mense vi subskribas ligi ion al la stangoj por ne preni ĉi susto. <br/>"
+  },
+  "messages.el_agua_entra_y_sales_con_cinturón.txt": {
+    "message": "Ekpreni la zono kaj tirante lin eliri sen tro da problemoj <br/> <br/>"
+  },
+  "messages.cueva_se_oscurece.txt": {
+    "message": "Estante sen lumo en la kaverno estas supera al vi. Apenaŭ vi kolektas viajn aferojn kaj saloj konvenas kaj komencoj. <br/>"
+  },
+  "messages.comes_con_ansia.txt": {
+    "message": "La tempo estas kaj eĉ sen manĝi! Avide voras la enhavon de la korbo TelePapeo. <br/>"
+  },
+  "messages.fantasma_te_incita_a_hechizo.txt": {
+    "message": "Vi aŭdas voĉon diranta vin 'ĉu la sorĉo, agu faru!'"
+  },
+  "messages.fantasma_te_mira_enfadado.txt": {
+    "message": "Via kara fratino brilas en la nokto kaj notas la vojo. <br/>"
+  },
+  "messages.fantasma__te_empuja_a_o1.txt": {
+    "message": "Via kara fratino ne eltenas la embuskon kaj trenas vin al% Aŭ1. <br/>"
+  },
+  "messages.fantasma_te_apunta_dos_direcciones.txt": {
+    "message": "Kun ĉiu mano montrante du direktoj, kiel demandi kie vi volas morti kaj sxi renkonte: se sur la promontorio aŭ en la kaverno de la kreko."
+  },
+  "messages.te_asfixias_con_fantasma.txt": {
+    "message": "La tajdo pliiĝas preter riparo. Akvo kovras vin kaj vi komencas sperti la saman sufokiĝante via kara fratino la tago li mortis. Via kara fratino rigardas vi deziras, baldaŭ vi renkontos ŝin."
+  },
+  "messages.mueres_asfixiado_con_fanstama.txt": {
+    "message": "Via kara fratino venas inten kaj prenas vin per la mano. La akompani hela cirklo, rerigardante vidi vian korpon dronis en la kaverno. <Hr />"
+  },
+  "messages.fin_juego_asfixia.txt": {
+    "message": "La ludo estas finita, sed eble povus esti alie, se vi ne sentis tiel ligita al la kolumo de via kara fratino."
+  },
+  "messages.marea_alta.txt": {
+    "message": "La tajdo kovras la enirejo al la kaverno, kie mi ludas okazis. <br/>"
+  },
+  "messages.marea_baja.txt": {
+    "message": "La tajdo estas tre malalta kaj povas vidi la enirejon al la kaverno, kie mi ludas okazis. <br/>"
+  },
+  "messages.Freddie_solo_saludar.txt": {
+    "message": "Vi simple diru saluton kaj vi certigu ke ĉiu iras bone por la studo."
+  },
+  "messages.Freddie_cancelar_paquete.txt": {
+    "message": "Vi pensus bona, kaj fine vi ne petas nenion kaj vi adiaŭi depues certigi ke ĉiu iras bone por la studo."
+  },
+  "messages.Freddie_fin_paquete.txt": {
+    "message": "Diru adiaŭ, insistante ke vi sendu la pakaĵon urĝe, ni jam pagas."
+  },
+  "messages.Freddie_cargador.txt": {
+    "message": "Vi demandas la plado."
+  },
+  "messages.Freddie_foto.txt": {
+    "message": "Vi demandas viajn proprajn foto kun via kara fratino."
+  },
+  "messages.Freddie_libro.txt": {
+    "message": "Vi demandas la ilustrita libro."
+  },
+  "messages.Freddie_solo_saludar_reacción.txt": {
+    "message": "Freddie diras vin ke ĉiu iras bone kaj cuelga."
+  },
+  "messages.Freddie_cancelar_paquete_reacción.txt": {
+    "message": "Freddie diras vin ke ĉiu iras bone kaj cuelga."
+  },
+  "messages.Freddie_pedido_reacción.txt": {
+    "message": "Freddie diras vin kio morgaŭ sendos poŝto se vi ekdeziras alian."
+  },
+  "messages.pedido_ya_realizado.txt": {
+    "message": "En realo, kion vi demandis kaj vi povas laŭigi hodiaŭ, do vi rezignos vin kaj pendigu. <br/>"
+  },
+  "messages.TelePapeo_cancelar_paquete.txt": {
+    "message": "Vi pensus bona, kaj finfine ne petu nenion."
+  },
+  "messages.TelePapeo_fin_paquete.txt": {
+    "message": "Vi fermas la ordo, vi ricevos ĉe la pordo de la domo."
+  },
+  "messages.TelePapeo_prod_agua.txt": {
+    "message": "Aldoni akvon al la peto"
+  },
+  "messages.TelePapeo_prod_cocacola.txt": {
+    "message": "Aldoni cocacola ordigi"
+  },
+  "messages.TelePapeo_prod_cerveza.txt": {
+    "message": "Aldonu bieron ordigi"
+  },
+  "messages.TelePapeo_prod_chocolate.txt": {
+    "message": "Aldoni ĉokolado ordigi"
+  },
+  "messages.TelePapeo_prod_whisky.txt": {
+    "message": "Aldoni viskio ordigi"
+  },
+  "messages.TelePapeo_prod_bocadillo.txt": {
+    "message": "Aldoni sandviĉo ordigi"
+  },
+  "messages.TelePapeo_prod_pizza.txt": {
+    "message": "Aldoni pico ordigi"
+  },
+  "messages.TelePapeo_prod_patatas fritas.txt": {
+    "message": "Aldoni blatoj ordigi"
+  },
+  "messages.TelePapeo_cancelar_paquete_reacción.txt": {
+    "message": "Nuligis la ordon al TelePapeo. <br/>"
+  },
+  "messages.TelePapeo_pedido_reacción.txt": {
+    "message": "Vi aldonas ordigi"
+  },
+  "messages.whisky_antes_de_tiempo.txt": {
+    "message": "Vere vi estas pli viskio ron, do forĵeti."
+  },
+  "messages.saludar_embarazada.txt": {
+    "message": "Saluton, Vicky, kiel vi fartas?"
+  },
+  "messages.saludar_hippie.txt": {
+    "message": "Saluton amiko, kiel vi fartas?"
+  },
+  "messages.Vicky_preguntar_por_embarazo.txt": {
+    "message": "Petu Vicky gravedeco"
+  },
+  "messages.Vicky_invitar_a_comer.txt": {
+    "message": "Mi invitas vin por manĝi ion"
+  },
+  "messages.embarazada_dice_estoy_aquí.txt": {
+    "message": "Ĉu vi ne vidas mi ĉi tie, kiel vi nomas min?"
+  },
+  "messages.embarazada_dice_no_puedo_hablar_ahora.txt": {
+    "message": "Nun mi ne povas ĉeesti, pardonon. Mi estos libera de 10:00 al 17:00. Nomu min tiam. Kisoj."
+  },
+  "messages.y_cuelga.txt": {
+    "message": " Kaj pendante <br/>"
+  },
+  "messages.embarazada_dice_qué_quieres.txt": {
+    "message": "Saluton, kara Al, kion mi povas fari por vi?"
+  },
+  "messages.Y_cuelga.txt": {
+    "message": "Kaj pendigas la telefonon. <br/>"
+  },
+  "messages.saludar_embarazada_reacción.txt": {
+    "message": "Vi demandos kion estas tiu, al vidi se Vi komprenas ion. <br/>"
+  },
+  "messages.DLG_Vicky_responde_saludo.txt": {
+    "message": "Bone, majete. Ni vidu se ni."
+  },
+  "messages.DLG_Vicky_no_mas_chocolate.txt": {
+    "message": "Al, ĵuri ne lasu min manĝi ĉokoladon denove. Mi sentis kiel demono en la stomako."
+  },
+  "messages.Vicky_preguntar_por_embarazo_reacción.txt": {
+    "message": "Kun multe vira takto, vi demandas Vicky graveda kun ĝemeloj."
+  },
+  "messages.DLG_confirma_embarazo_gemelos.txt": {
+    "message": "Do mi estas grasa? Jes, ĝemeloj. Mi intencis diri mi havas ĉokolado aperitivo kaj havis ion, sed kiel mi vidas vi vidas min kiel sigelon, preskaŭ ne faru."
+  },
+  "messages.invitas_sin_chocolate.txt": {
+    "message": "Vicky estas plantita kun vi hejme kaj doni bona rakontas de la nutraĵo, sed kiam vi vidos, ke vi ne havas ĉokolado, estos rapide ne antaŭ lasanta iri vin 'por vidi se la proksima tempo aĉeti min ĉokolado, najbaro.'. <Br / > <br/>"
+  },
+  "messages.escena_merienda_con_Vicky_1.txt": {
+    "message": "Ene minutoj, vi devas Vicky hejme. Dum kelkaj horoj vi ja akiras tago de via vivo. Vi parolas pri la enuiga vivo de la marborda urbo kaj kiel ĝi maltrafis vin."
+  },
+  "messages.DLG_embarazada_habla_1.txt": {
+    "message": "Karaj Al, kiom stranga tio faras min vidi vin sen via kara fratino najbare! Post tio, via patrino sendis vin kaj preskaŭ ne havis tempon aŭ adiaŭi. Vi kredas min freneza, sed kiam mi iris meti florojn ĉe la tombo de via fratino kaj via patrino malogrado, la nebuloj de la marbordo ĉiam ŝajnas preni iliajn formojn, kiel nomante mi akompanu ilin. Unufoje mi preskaŭ plonĝis sur la terlango."
+  },
+  "messages.escena_merienda_con_Vicky_2.txt": {
+    "message": "<br/> Vicky donas bona rakontas de ĉokolado glaciaĵo. Komencas manĝi ĝentile, sed tiam forkonsumas kiel madwoman ... do tenataj buŝplenon da ĉokolado rigardas vin per la okuloj kaj diris, <br/>"
+  },
+  "messages.DLG_embarazada_habla_2.txt": {
+    "message": "Kara frato, baldaŭ ni estos kune. Vi bezonos sango de nia nova patrino por la sorĉas kunveno. Tie mi lasas iom"
+  },
+  "messages.escena_merienda_con_Vicky_3.txt": {
+    "message": "Rigardu <br/> miregigita Vicky iomete mordas la lipojn kaj kolekti kelkajn gutojn de sango kun buŝtuko, vi senvestigi super la tablo. Tiam, kvazaŭ ĝi estus malbona sonĝo, Vicky prenas kontrolon de via korpo kaj interparolas kvazaŭ nenio: <br/>"
+  },
+  "messages.DLG_embarazada_habla_3.txt": {
+    "message": "Kia malsaĝulo mi mordis tiel malbone mi devis ĉokolado!"
+  },
+  "messages.escena_merienda_con_Vicky_4.txt": {
+    "message": "<br/> Baldaŭ post, Vicky revenas hejmen kaj vin daŭrigi vian rutinoj. <br/>"
+  },
+  "messages.Vicky_no_tiene_qué_decir.txt": {
+    "message": "Vicky ne havas tre ke diri."
+  },
+  "messages.hippie_dice_estoy_aquí.txt": {
+    "message": "Ĉu vi ne vidas mi ĉi tie, kiel vi nomas min?"
+  },
+  "messages.hippie_dice_no_puedo_hablar_ahora.txt": {
+    "message": "Po Favo, lasu 'rmir unu Poito pli."
+  },
+  "messages.hippie_saturado_de_fiestas.txt": {
+    "message": "Frato, mi havas ne vian eltenemon. Mi planas partioj por momento kaj dediĉi min al surferar. Ne nomi min por momento, mi devas resanigis min."
+  },
+  "messages.Charlie_te_invita_a_fiesta.txt": {
+    "message": "Inter multajn fono bruon de muziko kaj rido, ili batis nur komprenas vin bezonas pli viskio, ke vi venis al la granda partio kaj kiu amas vin elkore. <br/>"
+  }
+}
