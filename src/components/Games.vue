@@ -3,6 +3,10 @@
 
   <br/><br/><br/>
 	<div v-if="!gameloaded">
+    <div v-if=" (userId !== '') ">
+        <p>{{kt("Username")}}: {{ userId }}</p>
+    </div>
+
         <p>{{kt("Choose Game")}}</p>
         <ul class="gameList">
             <li v-for="game in games" class="gameList">

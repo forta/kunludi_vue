@@ -4,7 +4,8 @@
         <div class="ludi_top1">
 
             <h2>
-            <!-- <a v-link="{ path: '/kune' }"> {{kt("Together")}} </a> | -->
+
+			      <a v-link="{ path: '/kune' }"> {{kt("Together")}} </a> |
             <!--{{kt("Play")}} | -->
 
             <span v-show="!gameId"> <a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} </a> | </span>
@@ -14,7 +15,7 @@
 
             <span v-show="gameId"> | <a v-link="{ path: '/ludi/files' }"> {{kt("Files")}} </a>  </span>
 
-             </h2>
+            </h2>
 
         </div>
 
@@ -38,9 +39,6 @@ export default {
   data () {
     return {
     }
-  },
-  ready: function () {
-      this.$router.go('/ludi/about')
   },
   methods: {
   },

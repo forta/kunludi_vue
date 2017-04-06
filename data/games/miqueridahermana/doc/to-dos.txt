@@ -1,0 +1,7 @@
+bug: barrotes: que si son visibles sean rompibles
+
+mejora: que para abrirlos haga falta tanto el atizador como el cinturón.
+
+------
+
+

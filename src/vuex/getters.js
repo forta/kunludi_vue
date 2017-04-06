@@ -2,6 +2,8 @@ export function getCount (state) { return state.count }
 
 export function getUserId (state) { return state.userId }
 
+export function getPlayerList (state) { return state.playerList }
+
 export function getGameId (state) { return state.gameId }
 
 export function getGameIsOver (state) { return state.gameIsOver }
@@ -16,9 +18,17 @@ export function getGameSlots (state) { return state.gameSlots }
 
 export function getChoices (state) { return state.choices }
 
+export function getChatMessages (state) { return state.chatMessages }
+
 export function getMenu (state) { return state.menu }
 
+export function getMenuPiece (state) { return state.menuPiece }
+
 export function getPendingChoice (state) { return state.pendingChoice }
+
+export function getPendingPressKey (state) { return state.pendingPressKey }
+
+export function getPressKeyMessage (state) { return state.pressKeyMessage }
 
 export function getGames (state) { return state.games }
 

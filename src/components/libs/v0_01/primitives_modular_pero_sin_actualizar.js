@@ -11,10 +11,9 @@ module that:
 let world;
 let reactionList;
 let userState;
-let hidenMessages = false;
 
 /* Expose stuff */
-
+ 
 module.exports = exports = {
 	caMapping:caMapping,
 	CA_ShowDesc:CA_ShowDesc,
@@ -34,10 +33,9 @@ module.exports = exports = {
 	CA_PressKey:CA_PressKey,
 	CA_EndGame:CA_EndGame,
 	CA_PlayAudio:CA_PlayAudio,
-  PC_X:PC_X,
+	PC_X:PC_X,
 	PC_SetIndex:PC_SetIndex,
 	PC_GetCurrentLoc:PC_GetCurrentLoc,
-	PC_GetCurrentLocId:PC_GetCurrentLocId,
 	PC_SetCurrentLoc:PC_SetCurrentLoc,
 	PC_CheckCurrentLocId,PC_CheckCurrentLocId,
 	PC_Points:PC_Points,
@@ -78,13 +76,11 @@ module.exports = exports = {
 	IT_FirstTimeDesc:IT_FirstTimeDesc,
 	W_GetAttIndex:W_GetAttIndex,
 	GD_CreateMsg:GD_CreateMsg,
-	MISC_Random:MISC_Random,
-  MISC_HideMessages:MISC_HideMessages
-
+	MISC_Random:MISC_Random	
 }
 
 function caMapping (type) {
-
+	
 	let reactionTypes = [
 		"ASIS",
 		"ATT",
@@ -107,15 +103,16 @@ function caMapping (type) {
  		"QUOTE_BEGIN",
  		"QUOTE_CONTINUES",
 		"DEV_MSG",
-		"KERNEL_MSG"
+		"KERNEL_MSG",
+		
 	]
-
+	
 	// var pos = reactionTypes.indexOf (type);
-
+	
 	return "rt_" + type.toLowerCase();
-
-
-
+	
+	
+	
 }
 
 function arrayObjectIndexOf(myArray, property, searchTerm) {
@@ -128,17 +125,17 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
 function dependsOn (worldPar, reactionListPar, userStatePar) {
 	this.world = worldPar;
 	this.reactionList = reactionListPar;
-	this.userState = userStatePar;
+	this.userState = userStatePar;	
 };
 
 function executeGameAction (type, parameters) {
 
  switch (type) {
-
+	 
   case 'msg':
 	reactionList.add ({type:type, parameters:parameters} );
   break;
-
+ 
   //default:
   //break;
  }
@@ -162,19 +159,18 @@ Categories:
   CA_ShowMsgAsIs (txt)
   CA_ATT (o1, o2)
   CA_ShowItem (o1)
-  CA_ShowMenu ( menu, piece)
+  CA_ShowMenu ( o1)
   CA_ShowImg (url)
   CA_PressKey (txt)
   CA_EndGame ()
   CA_RestartGame ()
   CA_PlayAudio (fileName, autoStart, txt)
-
+ 
  PC: Playing Character
 
   PC_X()
   PC_SetIndex(o1)
   PC_GetCurrentLoc ()
-  PC_GetCurrentLocId ()
   PC_SetCurrentLoc (o1)
   PC_CheckCurrentLocId (locId)
   PC_Points (value)
@@ -182,10 +178,10 @@ Categories:
   PC_IsAt (i)
 
  DIR: Directions
-
+ 
   DIR_GetIndex (id)
   DIR_GetId (index)
-
+  
  IT: items
 
   IT_X(id)
@@ -230,12 +226,11 @@ Categories:
  GD: Game Definition
 
   GD_CreateMsg (indexLang, idMsg, txtMsg)
-
+ 
  MISC:
 
   MISC_Random (num)
-	MISC_HideMessages (boolean)
-
+ 
  Auxiliary functions (internals):
 
   getTargetAndLocked (par_c)
@@ -245,7 +240,7 @@ Categories:
 /* CA: Client Action *****************************************************************/
 
 function CA_ShowDesc  (o1) {
- this.reactionList.push ({type:this.caMapping("DESC"), o1:o1, o1Id:this.world.items[o1].id});
+ this.reactionList.push ({type:this.caMapping("DESC"), o1:o1});
 };
 
 function CA_QuoteBegin  (item, txt, param, last) {
@@ -271,20 +266,6 @@ function CA_URL (url, txt, param) {
 }
 
 function CA_ShowMsg (txt, param) {
-
-  if (this.hidenMessages) return
-
-  // to-do: this is a temp trick
-  if (param != undefined) {
-	console.log ("Param in CA_ShowMsg: " + JSON.stringify (param))
-	if (param.o1 != undefined) {
-		console.log ("Param.o1 in CA_ShowMsg: " + param.o1)
-		if  (!isNaN(parseFloat(param.o1)) && isFinite(param.o1)) {
-			param.o1 = this.world.items[param.o1].id
-		}
-	}
-  }
-
  this.reactionList.push ({type:this.caMapping("MSG"), txt:txt, param:param});
 }
 
@@ -301,33 +282,27 @@ function CA_ShowDir ( dir) {
 }
 
 function CA_ShowItem ( o1) {
- // o1Id!
- this.reactionList.push ({type:this.caMapping("ITEM"), o1:o1, o1Id:this.world.items[o1].id});
+ this.reactionList.push ({type:this.caMapping("ITEM"), o1:o1});
 }
 
-function CA_ShowMenu ( menu, menuPiece) {
-
- if (menuPiece != undefined) {
-	  console .log ("MenuPiece: " + JSON.stringify (menuPiece))
- }
-
-  this.reactionList.push ({type:this.caMapping("SHOW_MENU"), menu:menu, menuPiece:menuPiece});
+function CA_ShowMenu ( menu) {
+ this.reactionList.push ({type:this.caMapping("SHOW_MENU"), menu:menu});
 }
 
 function CA_ShowImg (url, isLocal, isLink, txt, param) {
 
 	this.reactionList.push ({
-		type:this.caMapping("GRAPH"),
-		url:url,
-		isLocal: (typeof isLocal == "undefined")? false : isLocal,
-		isLink: (typeof isLink == "undefined")? false: isLink,
-		txt:(typeof txt == "undefined")? "": txt,
+		type:this.caMapping("GRAPH"), 
+		url:url, 
+		isLocal: (typeof isLocal == "undefined")? false : isLocal, 
+		isLink: (typeof isLink == "undefined")? false: isLink, 
+		txt:(typeof txt == "undefined")? "": txt, 
 		param:param
 	});
 }
 
 function CA_PressKey (txt) {
-	this.reactionList.push ({type:this.caMapping("PRESS_KEY"), txt:txt, pressed:false});
+ this.reactionList.push ({type:this.caMapping("PRESS_KEY"), txt:txt});
 }
 
 function CA_EndGame (txt) {
@@ -354,14 +329,10 @@ function PC_SetIndex (o1) {
   return;
  }
 }
-
+ 
 function PC_GetCurrentLoc () {
  var locId = this.world.items[this.userState.profile.indexPC].loc;
  return this.IT_X (locId);
-}
-
-function PC_GetCurrentLocId () {
- return this.world.items[this.userState.profile.indexPC].loc;
 }
 
 function PC_SetCurrentLoc  (indexItem) {
@@ -476,7 +447,7 @@ function IT_SetIsLocked (i, dir, value) {
 }
 
 function IT_GetIsItemKnown (i1, i2) {
-
+ 
  return (this.world.items[i1].state.itemsMemory[i2] != null);
 }
 
@@ -546,7 +517,7 @@ function IT_GetAttPropValue (indexItem, attId, propId) {
 
  // find j in this.world.items[indexItem].att[attId][i][propId]
  for (var i=0; i<this.world.items[indexItem].att[attId].length;i++) {
-
+ 
   // to-do: two versions!
   if (this.world.items[indexItem].att[attId][i].id == propId) {
    return this.world.items[indexItem].att[attId][i].value;
@@ -558,9 +529,9 @@ function IT_GetAttPropValue (indexItem, attId, propId) {
 }
 
 function IT_SetAttPropValue (indexItem, attId, propId, newValue) {
-
+	
 	// console.log ("IT_SetAttPropValue. indexItem: " + indexItem + ",attId: " + attId + ",propId: " + propId + ", newValue: " + newValue)
-
+	
  // find j in this.world.items[indexItem].att[attId][i][propId]
  for (var i=0; i<this.world.items[indexItem].att[attId].length;i++) {
   // to-do: two versions!
@@ -593,7 +564,7 @@ function IT_IncrAttPropValue (indexItem, attId, propId, increment) {
 }
 
 function IT_GetRandomDirectionFromLoc (indexLoc) {
-
+	
  // to-do: pending to repare
  return
  var table = ludi_runner.getCSExits(indexLoc);
@@ -624,7 +595,7 @@ function IT_FirstTimeDesc (indexItem) {
    var state=ludi_game.items[itemWorlIndex.gameIndex].firstDesc();
    return ((state) || ( state == undefined));
   }
-
+ 
  }
  return true;
 
@@ -641,7 +612,7 @@ function W_GetAttIndex (id) {
 
 // note: for use during game development
 function GD_CreateMsg (indexLang, idMsg, txtMsg) {
-
+	
 	this.reactionList.push ({type:this.caMapping("DEV_MSG"), lang:indexLang, txt:idMsg, detail:txtMsg});
 
 }
@@ -653,13 +624,7 @@ function GD_CreateMsg (indexLang, idMsg, txtMsg) {
  return Math.floor((Math.random() * (+num)));
  }
 
- function MISC_HideMessages (flag) {
-
-	 console.log ("MISC_HideMessages. flag: " + flag)
-
-	 this.hidenMessages = flag
-
- }
-
-
 /*(end)********************** INSTRUCTION SET *********************/
+
+
+

@@ -30,7 +30,6 @@ var Lingvo = require('./components/Lingvo.vue')
 // create App instance
 var App = Vue.extend({})
 
-
 function storageON() {
     try {
         localStorage.setItem("__test", "data");
@@ -53,29 +52,29 @@ router.map({
 	},
     '/ludi': {
         component:  Ludi,
-		subRoutes: {
-			'/': {
-				component: Games
-			},
-    	'/lingvo': {
-        component:  Lingvo
-    	},
-			'/about': {
-				component: About
-			},
-			'/files': {
-				component: Files
-			},
-			'/games': {
-				component: Games
-			},
-			'/games/:gameId2': {
-				component: Games
-			},
-			'/play': {
-				component: Play
-			}
-		}
+		    subRoutes: {
+    			'/': {
+    				component: Games
+    			},
+        	'/lingvo': {
+            component:  Lingvo
+        	},
+    			'/about': {
+    				component: About
+    			},
+    			'/files': {
+    				component: Files
+    			},
+    			'/games': {
+    				component: Games
+    			},
+    			'/games/:gameId2': {
+    				component: Games
+    			},
+    			'/play': {
+    				component: Play
+    			}
+		     }
 	},
 	'/kune': {
         component:  Kune,
@@ -104,10 +103,16 @@ router.map({
 	}
 })
 
-/*
+
 router.beforeEach(function (transition) {
 
-	// console.log('transition:' + JSON.stringify (transition))
+	console.log('transition:' + JSON.stringify (transition))
+
+  if (transition.to.path == "/") {
+       // from == {}
+       console.log('by default: about page')
+       transition.redirect('/ludi/about')
+   }
 
 	//if ((transition.to.path == '/kune' ) && !transition.to.auth) {
 	//	transition.redirect('/kune/login/annonymous')
@@ -115,6 +120,6 @@ router.beforeEach(function (transition) {
 		transition.next()
 	//}
 })
-*/
+
 
 router.start(App, '#app')

@@ -2,7 +2,7 @@
 
   <div id= "play" class="play">
 
-  <div id= "play_top" class="play_top">
+    <div id= "play_top" class="play_top">
 
         <button v-on:click="seeGamePanel()" > {{kt("bottom")}}  </button>
 
@@ -18,51 +18,128 @@
                 {{{formatReaction(r)}}}
             </span
 
-
         </div>
+
     </div>
 
   </div>
 
   <div  id="play_bottom" class="play_bottom" &&  v-if ="!gameIsOver">
 
-    <!-- Groups of choices -->
-    <div class="mainChoices"  v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'" >
-        <h3> {{kt("Location")}}: {{this.tge("items", gameState.userState.loc, "txt")}} </h3>
-        <span v-for="choice in choices">
-            <button v-if ="choice.choiceId == 'top'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
-            <button v-if ="choice.choiceId == 'itemGroup'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </button>
-            <button v-if ="choice.choiceId == 'directActions' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}}</button>
-            <button v-if ="choice.choiceId == 'directionGroup' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
-        </span>
-
+    <!-- press key -->
+    <div v-if = "pendingPressKey">
+       <button v-on:click="pressAnyKey()" > {{pressKeyMessage}}  </button>
     </div>
 
+    <!-- choices (not menu nor presskey) -->
+    <div v-if = "!pendingPressKey && menu.length == 0  && currentChoice.choiceId != 'quit'" >
 
-    <!-- choices -->
-    <div class="choices" v-if = "menu.length == 0  && currentChoice.choiceId != 'quit'">
-        <h3>  {{showCurrentChoice()}}</h3>
+      <div class="mainChoices" >
+          <h3> {{kt("Location")}}: {{this.tge("items", gameState.userState.loc, "txt")}} </h3>
+          <span v-for="choice in choices">
+              <span v-if ="choice.choiceId == 'itemGroup'"  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </span>
+              <span v-if ="choice.choiceId == 'directActions' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </span>
+              <span v-if ="choice.choiceId == 'directionGroup' "  class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)"> {{choiceToShow(choice, false)}} </span>
+          </span>
 
-        <span v-for="choice in choices">
-            <button v-if = isMiddleChoice(choice) class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
-        </span>
+      </div>
 
-    </div>
+  	<hr/>
 
-    <div class="menu" v-if = "menu.length > 0">
+  	  <!-- direct actions -->
+      <div class="choices">
+          <span v-for="choice in choices">
+              <button v-if = "(choice.parent== 'directActions') && (choice.action.actionId != 'go')" class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
+          </span>
+      </div>
+
+  	  <!-- directions -->
+      <div class="choices">
+          <span v-for="choice in choices">
+              <button v-if = "(choice.parent== 'directActions') && (choice.action.actionId == 'go')" class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
+          </span>
+      </div>
+
+  	  <!-- items Here -->
+      <div class="choices">
+          <span v-for="choice in choices">
+              <button v-if = "(choice.parent== 'here')" class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
+          </span>
+      </div>
+
+  	  <!-- items notHere -->
+      <div class="choices">
+          <span v-for="choice in choices">
+              <button v-if = "(choice.parent== 'notHere')" class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
+          </span>
+      </div>
+
+      <!-- items Carrying -->
+        <div class="choices">
+            <span v-for="choice in choices">
+                <button v-if = "(choice.parent== 'carrying')" class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
+            </span>
+        </div>
+
+      <h3>  {{showCurrentChoice()}}</h3>
+
+  	  <!-- items inside -->
+      <div class="choices">
+          <span v-for="choice in choices">
+              <button v-if = "(choice.parent== 'inside')" class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
+          </span>
+      </div>
+
+  	<!-- actions on selected item -->
+      <div class="choices">
+          <span v-for="choice in choices">
+              <button v-if = "(choice.parent== 'obj1')" class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
+          </span>
+      </div>
+
+  	<!-- actiosn2 on items inside -->
+      <div class="choices">
+          <span v-for="choice in choices">
+              <button v-if = "(choice.parent== 'action2')" class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
+          </span>
+      </div>
+
+   </div>
+
+    <!-- menu but not presskey -->
+
+    <div class="menu" v-if = "!pendingPressKey && menu.length > 0">
+
+      <div class="menuPiece"> {{{ formatPiece(menuPiece) }}} </div>
+
+      <div class="menuChoices">
         <h3> {{kt("Action")}}: {{choiceToShow(pendingChoice)}}</h3>
         <ul>
             <span v-for="m in menu">
             <li><button v-on:click="menuOption(menu, m)">  {{ $index + 1}} - {{tge("messages",m.msg,"txt")}}</button></li>
             </span>
         </ul>
+      </div>
 
+    </div> <!--menu -->
+
+  </div> <!-- play_bottom -->
+
+  <div class="chatSecton" v-show="userId != ''">
+      <button v-on:click="seeChatSection()" > {{kt("Messages")}}  </button>
+      <div class="chatSubsecton" v-show="chatVisible">
+        <div v-for="c in chatMessages">
+            <p><b>{{c.from}}:</b> {{c.msg}}</p>
+        </div>
+        <b>{{kt("Online Players")}}: </b>
+        <span v-for="p in playerList">
+            <span><b>{{p.userId}}</b> ({{convertDate(p.date)}}) </span>
+        </span><br/>
+        <span>{{kt("ChatGame")}}:</span>
+        <input v-model="chatMessage">
+        <button v-on:click="sendMessage()" > {{kt("Send message")}}  </button>
     </div>
-
   </div>
-
-  </div>
-
 
 </template>
 
@@ -70,18 +147,39 @@
 
 
     import store from '../vuex/store'
-    import { getEcho, getGTranslator, getKTranslator, getCurrentChoice, getGameState, translateGameElement, getGameId, getGameIsOver, getLocale, getHistory, getMenu, getPendingChoice, getChoices } from '../vuex/getters'
+    import {
+        getEcho,
+        getGTranslator,
+        getKTranslator,
+        getCurrentChoice,
+        getGameState,
+        translateGameElement,
+        getGameId,
+        getGameIsOver,
+        getLocale,
+        getHistory,
+        getMenu,
+        getMenuPiece,
+        getPendingChoice,
+		    getPendingPressKey,
+        getPressKeyMessage,
+        getChoices,
+        getUserId,
+        getChatMessages,
+        getPlayerList
+      } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
-    import Reaction from './Reaction.vue'
+    // import Reaction from './Reaction.vue'
 
 
 export default {
   components: {
-       Reaction
+       // Reaction
   },
   data () {
      return {
+       chatVisible: true
       }
   },
   created: function () {
@@ -89,9 +187,21 @@ export default {
   },
   methods: {
       formatReaction: function (r) {
+
           var piece = this.t(r)
           if (piece == undefined) return ""
-          // console.log ('piece: ' + JSON.stringify (piece))
+
+          return this.formatPiece (piece)
+      },
+      pressAnyKey: function () {
+         store.dispatch('SET_KEY_PRESSED')
+      },
+      convertDate: function (dateJSON) {
+          var d = new Date (JSON.parse (dateJSON))
+          return d.toLocaleString()
+      },
+      formatPiece: function (piece) {
+        // console.log ('piece: ' + JSON.stringify (piece))
 
           if (piece.type == "img") {
 
@@ -167,6 +277,14 @@ export default {
       },
       seeGamePanel() {
           this.showEndOfText()
+      },
+      seeChatSection() {
+          this.chatVisible = !this.chatVisible
+      },
+      sendMessage() {
+          // send message to server
+          store.dispatch('SEND_CHAT_MESSAGE', this.chatMessage)
+          this.chatMessage = ""
       }
   },
   store: store,
@@ -178,13 +296,19 @@ export default {
        history: getHistory,
        choices: getChoices,
        menu: getMenu,
+       menuPiece: getMenuPiece,
        pendingChoice: getPendingChoice,
+       pendingPressKey: getPendingPressKey,
+	     pressKeyMessage: getPressKeyMessage,
        kt: getKTranslator,
        t: getGTranslator,
        tge: translateGameElement,
        currentChoice: getCurrentChoice,
        gameState: getGameState,
-       echo: getEcho
+       echo: getEcho,
+       userId: getUserId,
+       chatMessages:getChatMessages,
+       playerList:getPlayerList
     },
     actions: actions
   }
@@ -292,6 +416,13 @@ div.mainChoices {
 	background-color: #FFE;
 }
 
+div.chatSecton {
+	background-color: #EEE;
+  text-align: left;
+  font-size: 0.9vw;
+}
+
+
 div.choices {
 	background-color: #FFD;
   text-align: center;
@@ -304,6 +435,10 @@ button {
 
 div, p {
     font-size: 1em;
+}
+
+div.menuPiece {
+  float:left;
 }
 
 @media screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 1),

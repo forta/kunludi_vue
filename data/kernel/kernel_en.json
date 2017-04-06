@@ -38,6 +38,7 @@
 	"Private Board": {	"message": "Private"	},
 	"Stable games": {	"message": "Stable games"	},
 	"Under construction": {	"message": "Under construction"	},
+	"Kune introduction": {	"message": "When you enter a username, the game is loaded from the server and many players can play the same game simultaneosly.<br/>In future versions, there will be more than just one game state."	},
 	"QuitGame": {	"message": "Quit game"	},
 	"Save game": {	"message": "Save game"	},
 	"Saved games": {	"message": "Saved games"	},

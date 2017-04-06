@@ -59,7 +59,7 @@ export default {
   watch: {
      'game': function (val, oldVal) {
         store.dispatch('LOAD_GAME_ABOUT', val.name)
-        store.dispatch('LOAD_GAME_SLOTS', val.name)
+        // store.dispatch('LOAD_GAME_SLOTS', val.name)
         // show current local in the language combobox
         var i=0
         for (; i<this.about.translation.length;i++) {

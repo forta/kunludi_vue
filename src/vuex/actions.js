@@ -10,9 +10,13 @@ export const resetGameId = ({ dispatch }) => dispatch('RESETGAMEID')
 
 export const processChoice = ({ dispatch, choice }) => dispatch('PROCESS_CHOICE', choice)
 
+export const sendChatMessage = ({ dispatch, chatMessage }) => dispatch('SEND_CHAT_MESSAGE', chatMessage)
+
 export const setPendingChoice = function (store, choice) {  store.dispatch('SET_PENDING_CHOICE', choice) }
 
-export const loadGameSlots = function (store, par) {  store.dispatch('LOAD_GAME_SLOTS', par) }
+export const setKeyPressed = function (store) {  store.dispatch('SET_KEY_PRESSED') }
+
+// export const loadGameSlots = function (store, par) {  store.dispatch('LOAD_GAME_SLOTS', par) }
 
 export const loadGames = function (store, par) {  store.dispatch('LOADGAMES', par) }
 

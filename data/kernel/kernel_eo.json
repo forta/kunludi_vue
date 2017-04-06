@@ -38,6 +38,7 @@
 	"Private Board": {        "message": "Privata"    },
 	"Stable games": {        "message": "Stabilaj ludoj"    },
 	"Under construction": {        "message": "Konstruata"    },
+	"Kune introduction": {	"message": "Kiam vi eniros uzantonomon, la ludo estas ŝarĝita de la servilo kaj multaj ludantoj povas ludi la sama ludo simultaneosly. <br/> En estontaj versioj, estos pli ol nur unu ludo stato."	},
 	"QuitGame": {        "message": "Forlasu ludon"    },
 	"Save game": {        "message": "Konservi ludon"    },
 	"Saved games": {        "message": "Konservitaj ludoj"    },

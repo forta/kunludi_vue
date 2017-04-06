@@ -1,9 +1,26 @@
 <template>
-  <h2> {{kt("Together")}} |
-  <a v-link="{ path: '/ludi' }"> {{kt("Play")}} | </a>
-  <a v-link="{ path: '/lingvo' }"> {{kt("Language")}} </a></h2>
 
-  <h3> {{kt("Under construction")}}</h2>
+
+  <div class="ludi_top1">
+    <h2>
+
+    <a v-link="{ path: '/kune' }"> {{kt("Together")}} </a> |
+
+    <span v-show="!gameId"> <a v-show="!gameId" v-link="{ path: '/ludi/games' }"> {{kt("Games")}} </a> | </span>
+    <span v-show="gameId">  <a  v-link="{ path: '/ludi/play' }"> {{kt("Play")}} </a> | </span>
+    <a v-link="{ path: '/ludi/lingvo' }"> {{kt("Language")}} </a>
+    | <a v-link="{ path: '/ludi/about' }"> {{kt("About")}}  </a>
+
+    <span v-show="gameId"> | <a v-link="{ path: '/ludi/files' }"> {{kt("Files")}} </a>  </span>
+
+    </h2>
+
+  </div>
+
+  <br/><br/><br/>
+
+  <h2> {{kt("Under construction")}}</h2>
+  <p> {{{kt("Kune introduction")}}} </p>
 
   <img src="./../../data/icons/social.jpg">
 
@@ -11,16 +28,26 @@
 	<div v-show="userId != ''">
         <h3>{{kt("Username")}}: {{ userId }}</h3>
         <button v-on:click="logout">Logout</button>
+        <!--
         <a v-show="userId != 'annonymous'"  v-link="{ path: '/kune/messages' }"> {{kt("Messages")}} | </a>
         <a v-show="userId != 'annonymous'"  v-link="{ path: '/kune/boards' }"> {{kt("Boards")}} | </a>
+        -->
 	</div>
     <router-view></router-view>
   </div>
+
+  <div class="chatSecton" v-show="userId != ''">
+    <b>{{kt("Online Players")}}: </b>
+    <span v-for="p in playerList">
+        <span><b>{{p.userId}}</b>({{convertDate(p.date)}}) | </span>
+    </span>
+  </div>
+
 </template>
 <script>
 
 import store from '../vuex/store'
-import { getUserId, getKTranslator } from '../vuex/getters'
+import { getUserId, getGameId, getKTranslator, getPlayerList } from '../vuex/getters'
 import * as actions from '../vuex/actions'
 
 export default {
@@ -32,13 +59,19 @@ export default {
     logout: function () {
         store.dispatch('RESETUSERID')
         this.$router.go('/ludi')
-   	}
+   	},
+    convertDate: function (dateJSON) {
+        var d = new Date (JSON.parse (dateJSON))
+        return d.toLocaleString()
+    }
   },
   store: store,
   vuex: {
     getters: {
         kt: getKTranslator,
-       userId: getUserId
+        userId: getUserId,
+        gameId: getGameId,
+        playerList: getPlayerList
     },
     actions: actions
   }

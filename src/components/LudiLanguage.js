@@ -1,7 +1,6 @@
 // references to external modules
 let libMessages, gameMessages, extraMesssages
 let locale
-let world
 
 
 function arrayObjectIndexOf(myArray, property, searchTerm) {
@@ -11,21 +10,33 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
     return -1;
 }
 
-exports.dependsOn = function (libMessages, gameMessages, extraMesssages, world) {
+exports.dependsOn = function (libMessages, gameMessages, extraMesssages) {
 	this.libMessages = libMessages
 	this.gameMessages = gameMessages
 	this.extraMesssages = extraMesssages
-	this.world = world
-
 }
 
 export function setLocale (locale) {
 	this.locale = locale
 }
 
+// getLongMsgId: code to eliminate, because in this module we don't know anything about index of items.
 export function getLongMsgId   (type, index, attribute) {
 	
 	var longMsgId
+
+	if (type == 'actions')
+		longMsgId = type + "." + index + ".txt"
+	else 
+		longMsgId = type + "." + index + "." + attribute
+	
+	return longMsgId 
+	
+	
+	// code to eliminate
+	
+	/*
+	
 	
 	if (type == 'items') {
 		if (this.world.items[index] == undefined) 
@@ -46,6 +57,8 @@ export function getLongMsgId   (type, index, attribute) {
 		longMsgId = type + "." + index + "." + attribute
 		
 	return longMsgId
+	
+	*/
 	
 }
 
@@ -191,7 +204,9 @@ lang_modules.es.process = function (langModule, param) {
 
 		if (param.properties.articulo) {		
 			articulo = langModule.getExtraMessageFromLongMsgId (param.base + "articulo")
-			textOut = articulo + " " + textOut
+			if (articulo !== undefined) {
+				textOut = articulo + " " + textOut
+			}
 		}
 	}
 
@@ -227,9 +242,11 @@ lang_modules.fr.process = function (langModule, param) {
 	if (param.code.indexOf("o") >= 0) {
 		var article = ""
 
-		if (param.properties.article) {
+		if (param.properties.article) {		
 			article = langModule.getExtraMessageFromLongMsgId (param.base + "article")
-			textOut = article + " " + textOut
+			if (article !== undefined) {
+				textOut = article + " " + textOut
+			}
 		}
 	}
 

@@ -1,13 +1,18 @@
 import Vue from 'vue'
+
+import VueResource from 'vue-resource'
+
 import Vuex from 'vuex'
 
-// import apps from './modules/apps'
-
-
-//var Vue = require('vue')
-// var Vuex = require('vuex')
-
 Vue.use(Vuex)
+
+Vue.use(VueResource)
+// ?: Vue.http.options.emulateJSON = true
+
+//game engine
+const runnerProxie = require ('../components/RunnerProxie.js');
+
+const Http=Vue.http // Http instead of this.$http.get(url).then((response) => {
 
 function arrayObjectIndexOf(myArray, property, searchTerm) {
     for(var i = 0, len = myArray.length; i < len; i++) {
@@ -25,85 +30,6 @@ function storageON() {
     return true;
 }
 
-
-function expandDynReactions (state, reactionList) {
-
-	function arrayObjectIndexOf(myArray, property, searchTerm) {
-		for(var i = 0, len = myArray.length; i < len; i++) {
-			if (myArray[i][property] === searchTerm) return i;
-		}
-		return -1;
-		}
-
-
-	// expand each dyn reaction into static ones
-
-	let sourceReactionList = reactionList.slice()
-	//console.log("----------------------------------original reactionList:\n" + JSON.stringify (sourceReactionList))
-
-	let targetReactionList = []
-
-	for (let sReaction in sourceReactionList) {
-
-		if (sourceReactionList[sReaction].type == "rt_desc") {
-			// if static message does not exist, look for dynamic method
-			var attribute = "desc"
-
-			// getting a new state.reactionList
-
-			// converte rt_dyn_desc into rt_desc
-			var item1 = sourceReactionList[sReaction].o1
-			var longMsgId = "items." + state.runner.world.items[item1].id + "." + attribute
-
-			if (msgResolution (longMsgId) != "") {
-				// confirmed that it was a static desc
-				targetReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[sReaction])) )
-				continue
-			}
-
-
-
-
-			// insertion of expanded reactions
-			let itemReaction = arrayObjectIndexOf (state.game.reactions.items, "id", state.runner.world.items[item1].id)
-
-			// for debug:
-			//if (false) {
-			if (itemReaction>=0) {
-				// item level -> add reactions into state.reactionList
-				state.game.reactions.items[itemReaction][attribute]()
-			} else {
-				// not static nor dynamic desc, the missing longMsgId will be shown
-				sourceReactionList[sReaction].type = "rt_asis"
-				sourceReactionList[sReaction].txt = "[" + longMsgId + "]"
-
-				targetReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[sReaction])) )
-				continue
-			}
-
-			// catch up reactions of state.reactionlist and insert them in targetReactionList
-			for (let newReaction in state.reactionList) {
-				//if (state.reactionList[newReaction].type == "rt_desc")
-				// by now: item.desc() cannot call another item.desc()
-				targetReactionList.push (JSON.parse(JSON.stringify(state.reactionList[newReaction])))
-			}
-			state.reactionList.splice(0,state.reactionList.length)
-			// state.reactionList = []
-			// state.reactionList.length = 0
-
-
-		} else { // standard static reaction
-			targetReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[sReaction])) )
-		}
-	}
-
-	// console.log("----------------------------------Expanded reactionList:\n" + JSON.stringify (targetReactionList))
-
-	return targetReactionList.slice()
-
-
-}
-
 function reactionListContains_Type (reactionList, type) {
 
 	for (let r in reactionList) {
@@ -118,50 +44,120 @@ function msgResolution (longMsgId) { // to-do: it's repeated code which is in th
 
 	var expanded = ""
 
-	if (state.game.messages [state.locale] != undefined) {
-		if (state.game.messages [state.locale][longMsgId] != undefined) expanded = state.game.messages [state.locale][longMsgId].message
+	if (state.gameMessages  != undefined) {
+		if (state.gameMessages [longMsgId] != undefined) expanded = state.gameMessages [longMsgId].message
 	}
-	if ((expanded == "") && (state.lib.messages [state.locale] != undefined)) {
-		if (state.lib.messages [state.locale][longMsgId] != undefined) expanded = state.lib.messages [state.locale][longMsgId].message
+	if ((expanded == "") && (state.libMessages  != undefined)) {
+		if (state.libMessages [longMsgId] != undefined) expanded = state.libMessages [longMsgId].message
 	}
 
 	return expanded
 }
 
+
+function refreshChatMessages() {
+  setInterval(function() {
+    // force mofidification for vue
+    if (state.chatMessagesState != state.chatMessagesInternal[0].seq) {
+      state.chatMessagesState = state.chatMessages[0].seq
+      state.chatMessages = state.chatMessagesInternal.slice()
+      console.log ("State of chatMessages: " +  state.chatMessages[0].seq)
+      // runnerProxie
+    }
+  }, 1000);
+}
+
+
+function backEnd_getGames () {
+
+	//let serverName = "localhost"
+	//let serverName = "www.kunludi.com"
+	//let serverName = "buitre.ll.iac.es"
+	let serverName = "paco-pc"
+	let url = 'http://' + serverName + ':8090/api/'
+
+	url += 'games'
+
+	state.games = []
+
+	Http.get(url).then((response) => {
+		state.games = response.data
+
+    refreshChatMessages()
+
+	}, (response) => {
+		console.log ("missed game list")
+	});
+
+}
+
+function localData_getGames () {
+
+	let gamesData = require ('../../data/games.json');
+
+	state.games = gamesData.games
+
+	// load all about files from all games
+	for (let i=0; i<state.games.length;i++) {
+		try {
+			state.games[i].about = require ('../../data/games/' + state.games[i].name + '/about.json');
+		}
+		catch(err) {
+			state.games[i].about = {
+				"ludi_id": "1",
+				"name": state.games[i].name,
+				"translation": [
+					{
+						"language": state.locale,
+						"title": "[" + state.games[i].name +"]",
+						"desc": "??",
+						"introduction": "??",
+						"author": {
+							"name": "??",
+							"ludi_account": "??",
+							"email": "??"
+						}
+					}
+				]
+			}
+
+		}
+
+	}
+}
+
+
 function processChoice (state, choice) {
+
 	if (state.choice.choiceId == 'quit') return
 
 	state.choice = choice
 	state.menu = []
 
-	console.log ("current choice: " +  JSON.stringify(state.runner.choice))
-
 	var optionMsg
 	if (choice.isLeafe) {
+		console.log ("actionDump: {userSession:'" + state.userSession + "', action: {" +  JSON.stringify(choice.action) + "}" )
+
 		state.pendingChoice = choice
 		optionMsg = choice.action.msg
 	}
 
-	// processing as much menu choices as game actions (leave choices)
-	state.runner.processChoice (choice)
+	// processing choices or game actions (leave choices)
+	runnerProxie.processChoice (choice, optionMsg)
 
+	afterProcessChoice (choice, optionMsg)
 
-	if (choice.isLeafe) {
-		// is game over?
-		state.gameIsOver = reactionListContains_Type (state.reactionList, "rt_end_game")
-
-		if (reactionListContains_Type (state.reactionList, "rt_show_menu")) state.menuDepth++
-		else {
-			// to-do: in the future, if we allow actions after show_menu: if (state.menuDepth > 0) state.menuDepth--
-			state.menuDepth = 0
-		}
-
-		if ((!state.gameIsOver) && (state.menuDepth == 0)) {
-			state.gameTurn++
-			state.runner.worldTurn ()
-		}
+	if (state.userId == '') {
+		state.choice = runnerProxie.getCurrentChoice()
+		runnerProxie.updateChoices()
+		state.choices = runnerProxie.getChoices ()
+		state.gameTurn = runnerProxie.getGameTurn ()
+		state.gameState = runnerProxie.getGameState()
 	}
 
+}
+
+function afterProcessChoice (choice, optionMsg) {
 
 	// show chosen option
 	// to-do: send parameters to kernel messages
@@ -170,39 +166,55 @@ function processChoice (state, choice) {
 		state.reactionList.unshift ({type:"rt_asis", txt: "<br/><br/>"} )
 		state.reactionList.unshift ({type:"rt_msg", txt:  optionMsg } )
 		state.reactionList.unshift ({type:"rt_asis", txt: ": " } )
-		state.reactionList.unshift ({type:"rt_kernel_msg", txt: "Chosen option"} )
-		// game menu echo
-		for (var i=choice.action.menu.length-1;i>=0;i--) {
-			state.reactionList.unshift ({type:"rt_asis", txt: "<br/>" } )
-			state.reactionList.unshift ({type:"rt_msg", txt: choice.action.menu[i].msg } )
-			state.reactionList.unshift ({type:"rt_asis", txt: "- " } )
-		}
-		state.reactionList.unshift ({type:"rt_asis", txt: "<b>Menu:</b><br/><br/>"} )
-	}
 
-	// refresh choices
-	state.choices = state.runner.choices
+		state.reactionList.unshift ({type:"rt_kernel_msg", txt: "Chosen option"} )
+
+	}
 
 	// add reactions to history
 	if (choice.isLeafe) {
-
-		let reactionList = state.reactionList.slice()
-		state.reactionList.length = 0
-
-		// expand dyn reactions
-		reactionList = expandDynReactions(state, reactionList)
-
-		state.history.push (
-			{	gameTurn: state.gameTurn,
-				action: choice,
-				reactionList: reactionList
-			}
-		)
+		state.history.push ({ gameTurn: state.gameTurn, action: choice, reactionList: [] })
+		processingRemainingReactions ();
 	}
 
-	state.choice = state.runner.getCurrentChoice()
+}
+
+function processingRemainingReactions () {
+
+	// expand dyn reactions
+	let forkedReactionList = runnerProxie.expandDynReactions(state.reactionList)
+
+	// empty state.reactionList
+	state.reactionList.splice(0,state.reactionList.length)
+
+	// copy expanded into state.reactionList
+	for (var i=0;i<forkedReactionList.expandedReactionList.length;i++) {
+		state.reactionList.push (forkedReactionList.expandedReactionList[i])
+
+		// to-do: tricky by now, avoiding anything after a menu submission
+		if (forkedReactionList.expandedReactionList[i].type == 'rt_show_menu')
+			break;
+	}
+
+	// add already shown reactions to history
+	for (var i in state.reactionList) {
+		state.history[state.history.length-1].reactionList.push (state.reactionList[i])
+	}
+
+	// empty state.reactionList
+	state.reactionList.splice(0,state.reactionList.length)
+
+	// copy pendingReactionlist into state.reactionList
+	for (var i=0;i<forkedReactionList.pendingReactionlist.length;i++) {
+		state.reactionList.push (forkedReactionList.pendingReactionlist[i])
+	}
+
+	if (state.pendingPressKey) {
+		state.pendingPressKey = false
+	}
 
 }
+
 
 
 const state = {
@@ -210,18 +222,21 @@ const state = {
 	],
 	gameTurn: 0,
 	gameState : {},
-	menuDepth: 0,
 	userId: '', // kune
+  playerList: [],
+	userSession: 'anonymous',
 	locale: '', // lingvo /here!!!
 	gameId: '', // ludi
-	gameIsOver: false,
 	i18n:[],
 	history: [ ],
 	gameSlots: [],
 	choices: [],
 	choice: {choiceId:'top', isLeafe:false, parent:''} ,
 	pendingChoice: {},
+  pendingPressKey: false,
+	pressKeyMessage: '',
 	menu: [],
+  menuPiece: '',
 	reactionList: [],
 	gameAbout: {},
 	languages: { all: [], pref: [], other: []},
@@ -229,9 +244,10 @@ const state = {
 		primitives: {},
 		reactions:{}
 	},
-	game: {
-
-	},
+  chatMessages: [],
+  chatMessagesInternal: [],
+  chatMessagesState: 0,
+	game: {	},
 	kTranslator: function (kMsg) {
 		if (state.locale == "") {
 			// set default language and load kernel messages
@@ -255,6 +271,12 @@ const state = {
 
 	getEcho: function (choice, isEcho) {
 
+		if ((choice.noEcho != undefined) && (choice.noEcho)) {
+			return ""
+		}
+
+		// console.log	("getEcho.choice: " + JSON.stringify(choice) )
+
 		// general kernel messages
 		if (choice.choiceId == 'top') return state.kTranslator("mainChoices_" + choice.choiceId)
 		else if (choice.choiceId == 'itemGroup') return state.kTranslator("mainChoices_" +  choice.itemGroup) + "(" + choice.count + ")"
@@ -272,10 +294,10 @@ const state = {
 			if (isEcho) { // echo message
 				if (choice.choiceId == 'action') {
 					let msg = state.language.getMessageFromLongMsgId  (state.language.getLongMsgId ("messages", "Echo_o1_a1", "txt"))
-					return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1})
+					return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1Id})
 				} else {
 					let msg = state.language.getMessageFromLongMsgId  (state.language.getLongMsgId ("messages", "Echo_o1_a1_o2", "txt"))
-					return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1, o2: choice.action.item2})
+					return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1Id, o2: choice.action.item2Id})
 				}
 
 			} else { // button
@@ -284,20 +306,20 @@ const state = {
 				if (choice.choiceId == 'action')
 					return state.translateGameElement("actions", choice.action.actionId)
 				else
-					return state.translateGameElement("actions", choice.action.actionId) + " -> " + state.translateGameElement("items", choice.action.item2, "txt")
+					return state.translateGameElement("actions", choice.action.actionId) + " -> " + state.translateGameElement("items", choice.action.item2Id, "txt")
 			}
 
 		} else if (choice.choiceId == 'obj1') {
 
-			return state.language.expandParams ("%o1", {o1: choice.item1})
+			return state.language.expandParams ("%o1", {o1: choice.item1Id})
 			// return state.translateGameElement("items", choice.item1, "txt") // to-do: will we rewrite state.translateGameElement using state.language.expandParams ??
 
 		} else if (choice.choiceId == 'dir1') {
 			// show the target only ii it is known
 			// console.log	("choice.action??: " + JSON.stringify(choice.action) )
 
-			var txt = state.translateGameElement("directions", choice.action.d1, "txt")
-			if (choice.action.isKnown) txt += " -> " + state.translateGameElement("items", choice.action.target, "txt")
+			var txt = state.translateGameElement("directions", choice.action.d1Id, "txt")
+			if (choice.action.isKnown) txt += " -> " + state.translateGameElement("items", choice.action.targetId, "txt")
 			return txt
 
 		}
@@ -320,7 +342,7 @@ const state = {
 
 		var expanded = ""
 
-		// console.log	("gTranslator.reaction: " + JSON.stringify(reaction) )
+		//console.log	("gTranslator.reaction: " + JSON.stringify(reaction) )
 
 		if (reaction.type == "rt_asis") {
 			return {type:'text', txt:reaction.txt}
@@ -340,14 +362,17 @@ const state = {
 			longMsg = {type:'messages', id:reaction.txt, attribute:'txt'}
 		} else if (reaction.type == "rt_desc") {
 			longMsg.type = "items"
-			longMsg.id = state.runner.world.items[reaction.o1].id
+			longMsg.id = reaction.o1Id
+			console.log("rt_desc.o1Id: o1 " + reaction.o1 + " -> o1Id: " + reaction.o1Id + "!!!!!!!!!!!!")
 			longMsg.attribute = "desc"
 		} else if (reaction.type == "rt_item") {
 			longMsg.type = "items"
-			longMsg.id = state.runner.world.items[reaction.o1].id
+			longMsg.id = reaction.o1Id
+			console.log("rt_item.o1Id: o1 " + reaction.o1 + " -> o1Id: " + reaction.o1Id + "!!!!!!!!!!!!")
 			longMsg.attribute = "txt"
 		} else if (reaction.type == "rt_show_menu") {
 			state.menu = reaction.menu
+			state.menuPiece = reaction.menuPiece
 			return
 		} else {
 			return {type:'text', txt: "gTranslator:[" + JSON.stringify(reaction) + "]"}
@@ -370,7 +395,7 @@ const state = {
 				*/
 
 				// add in memory
-				state.game.messages [state.locale]["messages." + reaction.txt + ".txt"] = {message:reaction.detail}
+				state.gameMessages ["messages." + reaction.txt + ".txt"] = {message:reaction.detail}
 			}
 			return
 		}
@@ -409,9 +434,12 @@ const state = {
 			if (expanded == "") expanded = "End of game"
 			state.choice = {choiceId:'quit', action:{actionId:''}, isLeafe:true}
 		} else if (reaction.type == "rt_press_key")  {
-			if (expanded == "") expanded = "Press a key"
-			// deactivate buttons
-			state.menu = ['Press a key']
+
+			if (!reaction.alreadyPressed) {
+				state.pendingPressKey = true
+				state.pressKeyMessage = expanded
+			}
+			expanded = "[...]<br/>"
 		}
 
 		expanded = state.language.expandParams (expanded, reaction.param)
@@ -427,16 +455,133 @@ const state = {
 
 }
 
+function localData_loadData (gameId) {
+
+	var libVersion = 'v0_01'
+
+	// code
+	var primitives = require ('../components/libs/' + libVersion + '/primitives.js');
+	var libReactions = require ('../components/libs/' + libVersion + '/libReactions.js');
+	var gameReactions = require ('../../data/games/' + gameId + '/gReactions.js');
+	var langHandel = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/handler.js');
+
+	// world
+	var libWorld = require ('../components/libs/' + libVersion + '/world.json');
+	var gameWorld0 =  require ('../../data/games/' + gameId + '/world.json')
+
+	// load explicit data to the local engine
+	runnerProxie.loadLocalData (gameId, primitives, libReactions, gameReactions, libWorld, gameWorld0 )
+
+	if (runnerProxie.getConnectionState() == 0) return true
+
+	return false
+
+
+}
+
+
+function cleanHistory () {
+
+	state.history = []
+
+	state.history.push ( {
+		action: { choiceId:'action0', action : {actionId:'look'}, noEcho:true},
+		reactionList: [
+			//{ type: 'rt_msg', txt: 'Introduction' },
+			// { type: 'rt_press_key', txt: 'press_key_to_start' }
+		]
+	})
+
+	state.gameTurn = runnerProxie.resetGameTurn()
+	runnerProxie.setHistory(state.history )
+	state.pendingChoice = {}
+}
+
+function afterUserLogged(userId) {
+  state.userId = userId
+  state.userSession =  runnerProxie.getToken()
+  state.playerList = runnerProxie.getPlayerList ()
+  if (storageON()) localStorage.ludi_userId = userId
+
+  state.chatMessages = [
+      {seq:1, from: 'demo-user', msg:'Mensaje de demo.', new:true},
+      {seq:0, from: 'System', msg:'Bienvenido a KunLudi. En esta sección verás los mensajes de los otros jugadores.', new:true}
+  ]
+  state.chatMessagesState = 0
+
+  runnerProxie.linkChatMessages (state.chatMessagesInternal)
+
+}
+
+function afterGameLoaded(slotId) {
+
+  if (runnerProxie.getConnectionState() < 0) {
+    alert ("http error: token error?");
+    mutations.RESETGAMEID(state)
+    return
+  }
+
+	state.gameTurn = runnerProxie.getGameTurn ()
+	state.gameState = runnerProxie.getGameState ()
+
+	if (state.gameState.PC < 0) {
+		// error
+		alert ("http error");
+		mutations.RESETGAMEID(state)
+		return
+	}
+
+	runnerProxie.updateChoices()
+
+	state.choices = runnerProxie.getChoices ()
+	state.reactionList = runnerProxie.getReactionList ()
+	state.menu = runnerProxie.getMenu () //?.slice()
+	state.menuPiece = runnerProxie.getMenuPiece () //?.slice()
+	runnerProxie.setHistory(state.history )
+
+	runnerProxie.saveGameState (slotId)
+	state.gameSlots = runnerProxie.getGameSlots ()
+
+	if (slotId == "default") {
+		processChoice (state, { choiceId:'action0', action: {actionId:'look'}, isLeafe:true, noEcho:true} )
+	}
+
+}
+
+
 const mutations = {
   RESETUSERID (state) {
+    if (state.gameId != "") {
+        alert ("[You will loose your current game state.]")
+        mutations.RESETGAMEID (state)
+    }
     state.userId= ''
-	if (storageON()) localStorage.removeItem("ludi_userId")
+	  state.userSession = 'anonymous'
+
+	  if (storageON()) localStorage.removeItem("ludi_userId")
   },
-  SETUSERID (state, par) {
-    state.userId = par
-	if (storageON()) localStorage.ludi_userId = par
+  SETUSERID (state, userId) {
+
+    if (state.gameId != "") {
+        alert ("[You will loose your current game state.]")
+        mutations.RESETGAMEID (state)
+    }
+	  // user session
+		runnerProxie.userLogon (userId, Http)
+
+    // wait for several seconds till the game were loaded
+		setTimeout(function () {
+			if (runnerProxie.getConnectionState() != -1) {
+				if (runnerProxie.getConnectionState() == 1) {
+					afterUserLogged(userId)
+				}
+			}
+		}, 3000);
+
   },
   SETGAMEID (state, gameId, slotId, newlocale) {
+
+	var libVersion = 'v0_01'
 
 	console.log ("state.locale: " + state.locale)
 	console.log ("Slot: " + slotId)
@@ -453,12 +598,8 @@ const mutations = {
 
     state.gameId = gameId
 
-	mutations.LOAD_GAME_SLOTS (state)
+	// languages
 
-	var gameIndex = arrayObjectIndexOf (state.games, "name", gameId)
-	state.gameAbout = state.games[gameIndex].about
-
-	// languages in the game
 	let oldLanguages = state.languages
 	let languagesInGame = []
 	for (let i=0;i<state.gameAbout.translation.length;i++) {
@@ -467,122 +608,69 @@ const mutations = {
 	state.languages = oldLanguages
 	state.languages.inGame = languagesInGame
 
-	// LIB SCOPE -------------------------------
-	// load generic libraries and texts:
-	// language-independent: primitives, reactions, world
-	// by language: messages, extraMesssages, localization handlers
-	state.lib = {}
 
-	let libPath = '../components/libs/'
-	let libVersion = 'v0_01'
+	var gameIndex = arrayObjectIndexOf (state.games, "name", gameId)
+	state.gameAbout = state.games[gameIndex].about
 
-	console.log ('state.lib: ' + JSON.stringify (state.lib))
-	console.log ('lib primitives path: ' + libPath + 'primitives.js')
-
-	// lib primitives
-	state.lib.primitives = require ('../components/libs/' + libVersion + '/primitives.js');
-
-	// lib reactions
-	state.lib.reactions = require ('../components/libs/' + libVersion + '/reactions.js');
-
-	// lib messages
-	state.lib.messages = []
-	state.lib.messages [state.locale] = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
-	//console.log ("libmsg: " + JSON.stringify(state.lib.messages [state.locale]))
-
-	// lib extraMessages
-	state.lib.extraMessages = []
-	state.lib.extraMessages [state.locale] = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/extraMessages.json');
-
-	// localization handlers
-	state.lib.localization = [];
-	state.lib.localization [state.locale] = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/handler.js');
-
-	// GAME SCOPE -------------------------------
-	state.game = {reactions: {}}
-	let gamePath = '../../data/games/' + gameId + '/'
-
-	// load specific game code and texts:
-	// language-independent: reactions
-	// by language: messages, extraMessages
-
-	state.game.reactions = require ('../../data/games/' + gameId + '/gReactions.js');
-	state.game.messages = []
-	state.game.messages [state.locale] = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/messages.json')
-	//console.log ("gamemsg: " + JSON.stringify(state.game.messages [state.locale]))
-
-	// extraMessages
-	state.game.extraMessages = []
-	state.game.extraMessages [state.locale] = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/extraMessages.json')
-
-	state.runner = require ('../components/LudiRunner.js');
+	// language code (always local)
+	state.language = require ('../components/LudiLanguage.js');
+	state.langHandler = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/handler.js');
 
 	// cleaning previous game data
-	mutations.GAME_STATE_RESET (state)
+	cleanHistory()
 
-	var gameSlotIndex = mutations.GET_GAME_SLOT_INDEX (state, slotId)
-	if (gameSlotIndex>=0) {
-		// if it exists a game slot, get it
-		mutations.LOAD_GAME_STATE (state, slotId, false)
-	} else {
-		// lib world
-		state.lib.world = require ('../components/libs/' + libVersion + '/world.json');
-
-		// game world
-		state.game.world =  require ('../../data/games/' + gameId + '/world.json')
-
-		// "compile" default ( == initial) state
-		state.runner.createWorld(state.lib.world, state.game.world)		
-
-		// save default slot game for next time
-  	    mutations.SAVE_GAME_STATE (state, "default")		
-	}
-
-	state.language = require ('../components/LudiLanguage.js');
+	// messages (always local)
+	state.libMessages = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
+	state.gameMessages = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/messages.json')
+	state.gameExtraMessages = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/extraMessages.json')
+	state.language.dependsOn (state.libMessages, state.gameMessages, state.gameExtraMessages)
 	state.language.setLocale (state.locale)
 
-	// DEPENDENCES -------------------------------
-	state.lib.primitives.dependsOn(state.runner.world, state.reactionList, state.runner.userState )
+	// here!!
+	// to-do: timeout message
 
-	state.lib.reactions.dependsOn(state.lib.primitives, state.reactionList)
-	state.game.reactions.dependsOn(state.lib.primitives, state.lib.reactions, state.reactionList )
+	if (state.userId == '') { // local engine
+		localData_loadData (gameId)
+		afterGameLoaded(slotId)
+	} else {
 
-	state.runner.dependsOn(state.lib.reactions, state.game.reactions, state.reactionList)
+		// remote engine using REST calls
+		runnerProxie.connectToGame (gameId, Http)
 
-	state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.game.extraMessages[state.locale], state.runner.world )
+		// wait for several seconds till the game were loaded
+		setTimeout(function () {
+			if (runnerProxie.getConnectionState() != -1) {
+				if (runnerProxie.getConnectionState() == 1) {
+					// game loaded
+					state.reactionList = runnerProxie.getReactionList ()
+					state.choices = runnerProxie.getChoices ()
+					state.gameTurn = runnerProxie.getGameTurn ()
+					state.gameState = runnerProxie.getGameState ()
 
-	if (slotId == "default") {
-		mutations.PROCESS_CHOICE(state, { choiceId:'action0', action: {actionId:'look'}, isLeafe:true});
-	}
-	state.runner.updateChoices()
-  },
-  
-  LOAD_GAME_SLOTS (state) {
+					afterGameLoaded(slotId)
+				}
+			}
+		}, 3000);
 
-	if (storageON()) {
-		var ludi_games = {}
-		if (localStorage.ludi_games == undefined) localStorage.setItem("ludi_games", JSON.stringify({}));
-		else ludi_games = JSON.parse (localStorage.ludi_games)
-
-		if (ludi_games[state.gameId] == undefined) {
-			ludi_games[state.gameId] = []
-			localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
-		}
-		state.gameSlots = ludi_games[state.gameId].slice()
 	}
 
   },
+
   SET_PENDING_CHOICE (state, choice) {
-	state.menu = [] // reset
-	processChoice (state, choice)
+	   state.menu = [] // reset
+	   processChoice (state, choice)
+  },
+  SEND_CHAT_MESSAGE (state, chatMessage) {
+
+   console.log ("here")
+    runnerProxie.sendChatMessage (chatMessage, Http)
+
+	},
+  SET_KEY_PRESSED (state) {
+	processingRemainingReactions()
   },
   PROCESS_CHOICE (state, choice) {
-	processChoice (state, choice)
-
-	// refresh gameState
-	var PC = state.lib.primitives.userState.profile.indexPC
-	state.gameState = {PC:PC, userState: state.runner.world.items[PC] }
-
+	   processChoice (state, choice)
   },
   RESETGAMEID (state) {
     state.gameId= ''
@@ -594,157 +682,50 @@ const mutations = {
 	state.languages = oldLanguages
 	state.languages.inGame = undefined
 
-	mutations.GAME_STATE_RESET (state)
+	cleanHistory()
 
   },
-  GAME_STATE_RESET (state) {
 
-	state.history = []
-	state.history.push ( {
-			action: { choiceId:'action0', action : {actionId:'look'}},
-			reactionList: [
-				{ type: 'rt_msg', txt: 'Introduction' }
-			]
-	})
-	state.gameTurn = 0
-	state.gameIsOver = false
-	state.pendingChoice= {}
-	state.gameIsOver=false
-
-  },
   LOADGAMES (state, par) { // par: filter
 
-	let gamesData = require ('../../data/games.json');
-
-	state.games = gamesData.games
-
-	// load all about files from all games
-	for (let i=0; i<state.games.length;i++) {
-		try {
-			state.games[i].about = require ('../../data/games/' + state.games[i].name + '/about.json');
-		}
-		catch(err) {
-			state.games[i].about = {
-				"ludi_id": "1", 
-				"name": state.games[i].name, 
-				"translation": [
-					{
-						"language": state.locale,
-						"title": "[" + state.games[i].name +"]",
-						"desc": "??",
-						"introduction": "??",	
-						"author": {
-							"name": "??", 
-							"ludi_account": "??", 
-							"email": "??"
-						}
-					} 		
-				]
-			}
-
-		}
-		
+	// server calls if session active
+	if (state.userId != '') {
+		backEnd_getGames ()
+	} else {
+		localData_getGames ()
 	}
-
   },
   SAVE_GAME_STATE (state, slotDescription) {
-
-	if (storageON()) {
-		var ludi_games = JSON.parse (localStorage.ludi_games)
-		var d = +new Date
-
-		ludi_games[state.gameId].push ({
-			id: (slotDescription == "default")? "default": d,
-			date: d,
-			world: state.runner.world,
-			history: state.history.slice(),
-			gameTurn: state.gameTurn,
-			userState: state.runner.userState, 
-			slotDescription: slotDescription
-		})
-
-		state.gameSlots = ludi_games[state.gameId].slice()
-
-		localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
-
-		console.log ("Game saved!")
-	}
-
+	runnerProxie.saveGameState (slotDescription)
+	// refresh slot list
+	state.gameSlots = runnerProxie.getGameSlots ()
   },
   LOAD_GAME_STATE (state, slotId, showIntro) {
+	runnerProxie.loadGameState (slotId, false)
 
-	mutations.GAME_STATE_RESET (state)
+	// refresh slot list
+	state.gameSlots = runnerProxie.getGameSlots ()
 
-	// necessary to refresh data
-	state.gameSlots = []
-	mutations.LOAD_GAME_SLOTS (state)
-		
-	var i = mutations.GET_GAME_SLOT_INDEX (state, slotId)
-	if (i>=0) {
-		state.runner.world = state.gameSlots[i].world
-		state.history = state.gameSlots[i].history.slice()
-		state.gameTurn = state.gameSlots[i].gameTurn
-		state.runner.userState = state.gameSlots[i].userState
-	}
-
-	console.log ("Game loaded!. Slot: " + slotId)
-
-	// dependence
-	state.lib.primitives.dependsOn(state.runner.world, state.reactionList, state.runner.userState )
-	
-	if (showIntro == false) return
-	
-	// show intro, after default game slot
-	if ( (slotId == "default") && (showIntro == undefined) ) {
-		state.choice = { choiceId:'action0', action: {actionId:'look'}, isLeafe:true}
-	} else {
-		state.choice = 	{choiceId:'top', isLeafe:false, parent:''} 
-	}
-
-	mutations.PROCESS_CHOICE(state, state.choice)
-	state.runner.updateChoices()
+	// refresh game states
+	state.choices = runnerProxie.getChoices ()
+	state.gameTurn = runnerProxie.getGameTurn ()
+	state.gameState = runnerProxie.getGameState()
+	state.reactionList = runnerProxie.getReactionList ()
+	state.menu = runnerProxie.getMenu () //?.slice()
+	state.menuPiece = runnerProxie.getMenuPiece () //?.slice()
+	state.history = runnerProxie.getHistory() //?.slice() //?
 
   },
   DELETE_GAME_STATE (state, slotId) {
-
-	if (storageON()) {
-		if (slotId == 'default') return
-
-		var i = mutations.GET_GAME_SLOT_INDEX (state, slotId)
-		if (i>=0) {
-			var ludi_games = JSON.parse (localStorage.ludi_games)
-
-			state.gameSlots.splice(i,1)
-
-			ludi_games[state.gameId] = state.gameSlots
-			localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
-
-			console.log ("Game slot deleted!. Slot: " + slotId)
-		}
-
-	}
-
+	runnerProxie.deleteGameState (slotId)
+	// refresh slot list
+	state.gameSlots = runnerProxie.getGameSlots ()
   },
   RENAME_GAME_STATE (state, slotId, newSlotDescription) {
 
-	if (storageON()) {
-		if (slotId == 'default') return
-
-		var i = mutations.GET_GAME_SLOT_INDEX (state, slotId)
-		if (i>=0) {
-			var ludi_games = JSON.parse (localStorage.ludi_games)
-
-			ludi_games[state.gameId][i].slotDescription = newSlotDescription
-			state.gameSlots[i].slotDescription = newSlotDescription
-			localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
-
-			// refresh state
-			state.gameSlots = ludi_games[state.gameId]
-
-			console.log ("Game slot " + slotId + " renamed: [" + newSlotDescription + "]")
-		}
-
-	}
+	runnerProxie.renameGameState ( slotId, newSlotDescription)
+	// refresh slot list
+	state.gameSlots = runnerProxie.getGameSlots ()
 
   },
   LOAD_GAME_ABOUT (state, par) {
@@ -779,51 +760,32 @@ const mutations = {
 
     state.locale = locale
 	if (storageON()) localStorage.ludi_locale = locale
-	
+
 	// load kernel messages
 	state.i18n [state.locale] = require ('../../data/kernel/kernel_' + state.locale + '.json');
 
 	let libVersion = 'v0_01'
-	state.lib.messages = []
-	state.lib.messages [state.locale] = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
+	state.libMessages = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
 
-	state.game.messages = []
-	state.game.extraMessages = []
+	state.gameMessages = {}
+	state.gameExtraMessages = {}
 	if (state.gameId != '') {
-		state.game.messages [state.locale] = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/messages.json');
-		state.game.extraMessages [state.locale] = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/extraMessages.json')
+		state.gameMessages = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/messages.json');
+		state.gameExtraMessages  = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/extraMessages.json')
 
 		// to refresh internal value of locale in language module
 		state.language.setLocale (state.locale)
-		
+
 		// update links
-		state.language.dependsOn (state.lib.messages[state.locale], state.game.messages[state.locale], state.game.extraMessages[state.locale], state.runner.world )
+		state.language.dependsOn (state.libMessages, state.gameMessages, state.gameExtraMessages )
 
 	}
-	
 
 
-  }, 
-  
-  GET_GAME_SLOT_INDEX (state, slotId) {
-	
-	if (slotId == undefined) return -1
 
-	// necessary to refresh data
-	state.gameSlots = []
-	mutations.LOAD_GAME_SLOTS (state)
-	
-	for (var i=0;i<state.gameSlots.length;i++) {
-		if (state.gameSlots[i] == undefined) continue
-		if (state.gameSlots[i].id == slotId) break
-	}
-	if (i < state.gameSlots.length) return i
-	return -1
-   }
-  
+  }
+
 }
-
-
 
 export default new Vuex.Store({
   state,
@@ -832,3 +794,15 @@ export default new Vuex.Store({
     // apps
   }
 })
+
+
+function randomHash(nChar) {
+    let nBytes = Math.ceil(nChar = (+nChar || 8) / 2);
+    let u = new Uint8Array(nBytes);
+    window.crypto.getRandomValues(u);
+    let zpad = str => '00'.slice(str.length) + str;
+    let a = Array.prototype.map.call(u, x => zpad(x.toString(16)));
+    let str = a.join('').toUpperCase();
+    if (nChar % 2) str = str.slice(1);
+    return str;
+}

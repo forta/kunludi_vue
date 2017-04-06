@@ -38,7 +38,7 @@
 	"Private Board": {        "message": "Privado"    },
 	"Stable games": {        "message": "Juegos estables"    },
 	"Under construction": {        "message": "En construcción"    },
-	"QuitGame": {        "message": "Salir del juego"    },
+	"Kune introduction": {	"message": "Cuando ingresas un nombre de usuario, el juego se carga desde el servidor y muchos jugadores pueden jugar el mismo juego simultáneamente. <br/> En futuras versiones, habrá más de un solo estado de juego."	},	"QuitGame": {        "message": "Salir del juego"    },
 	"Save game": {        "message": "Guardar juego"    },
 	"Saved games": {        "message": "Juegos guardados"    },
 	"Load game ": {        "message": "Cargar juego"    },
