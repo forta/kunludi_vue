@@ -1,20 +1,20 @@
 <template>
   <div class="login">
 	<div v-show="userId == ''">
-  		
+
         <!-- <p>Please type your user name and password to logon: </p> -->
         <label> {{kt("Type your user name and push enter")}}: </label><input v-model="newUserId" v-on:keyup.enter="modifyUserId"><br/>
         <!--
   		<label>Password: </label> <input v-model="newUserId2">
-        
+
         <br/>
-         
+
   		<p>Or create a new aocout: </p>
   		<label>New user name: </label> <input v-model="newUserId2"><br/>
   		<label>Password: </label> <input v-model="newPwd"><br/>
   		<label>email: </label> <input v-model="newEmail">
         -->
-        
+
 	</div>
   </div>
 </template>
@@ -37,13 +37,21 @@ export default {
   ready: function () {
     console.log('login ready: this.$route.params: ' + JSON.stringify (this.$route.params))
   },
- 
+
   methods: {
-    modifyUserId: function () { 
+    timeOutError: function (thisPointer) {
+      if (this.userId == "") {
+        alert("Connection error with username " + this.newUserId );
+        this.newUserId = ""
+      }
+    },
+    modifyUserId: function () {
 		var text = this.newUserId.trim()
 		  if (text) {
-			this.newUserId = text
-            store.dispatch('SETUSERID', text)
+			    this.newUserId = text
+          store.dispatch('SETUSERID', text)
+          // to-do: if after a timeout userId remains null: show alert "connection error"
+          setTimeout(this.timeOutError, 3000);
 		  }
 	}
   },
@@ -53,7 +61,7 @@ export default {
         console.log('this.$route.path: ' + JSON.stringify (this.$route.path))
         console.log('this.$route.params: ' + JSON.stringify (this.$route.params))
         console.log('this.$route.query: ' + JSON.stringify (this.$route.query))
-        
+
     }
   },
   store: store,

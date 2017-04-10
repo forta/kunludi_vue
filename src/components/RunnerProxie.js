@@ -1,6 +1,6 @@
 //const serverName = "www.kunludi.com"
-//const serverName = "buitre.ll.iac.es"
-const serverName = "paco-pc"
+const serverName = "buitre.ll.iac.es"
+// const serverName = "paco-pc"
 
 let runner
 
@@ -9,6 +9,8 @@ let runnerCache = {
 	world: {},
 	userState: {}
 }
+
+let games = []
 
 let language = {}
 
@@ -28,9 +30,11 @@ let history = []
 
 let gameSlots = []
 
-let token, playerList = []
+let userId = "" , token, playerList = []
 
 let chatMessages // link to external data
+
+let chatMessagesSeq = 0, gameTurn = 0, playerListLogons = 0
 
 // to-do: attention, vue dependence
 let Http
@@ -42,6 +46,7 @@ let primitives, libReactions, gameReactions
 module.exports = exports = {
 	loadLocalData:loadLocalData,
 	userLogon:userLogon,
+	userLogoff:userLogoff,
 	connectToGame:connectToGame,
 	expandDynReactions:expandDynReactions,
 	processChoice:processChoice,
@@ -66,21 +71,23 @@ module.exports = exports = {
 	getPlayerList:getPlayerList,
 	sendChatMessage:sendChatMessage,
 	linkChatMessages:linkChatMessages,
-	getChatMessagesFromServer:getChatMessagesFromServer,
+	refreshDataFromServer:refreshDataFromServer,
+  getGames:getGames,
+	loadGames:loadGames,
 
 	//??
 	getGameSlotIndex:getGameSlotIndex,
 	refreshGameSlots:refreshGameSlots,
 	backEnd_sendChoice:backEnd_sendChoice,
-	refreshChatMessages:refreshChatMessages
+	refreshPeriodicallyDataFromServer:refreshPeriodicallyDataFromServer
 
 }
 
-function refreshChatMessages(thisPointer) {
+// important: periodic request to server
+function refreshPeriodicallyDataFromServer(thisPointer) {
 	setInterval(function() {
-		// to-do: only when /chat/state has changed on server
-	  if (thisPointer.connectionState == 1)  thisPointer.getChatMessagesFromServer(thisPointer.Http)
-	}, 1000);
+	  if (thisPointer.connectionState == 1)  thisPointer.refreshDataFromServer(thisPointer.Http)
+	}, 10000);
 }
 
 function storageON() {
@@ -108,16 +115,50 @@ function userLogon (userId, Http ) {
 			this.connectionState = 1
 			this.token = response.data.token
 			this.playerList = response.data.playerList
+			this.chatMessagesSeq = 0
+			this.gameTurn = 0
+			this.playerListLogons = 0
 
 			// periodically refreshing
-			this.refreshChatMessages(this)
+			this.refreshPeriodicallyDataFromServer(this)
 
 
 		}, (response) => {
-			this.connectionState = -2 /error
+			this.connectionState = -2 //error
 			console.log ("User not logged on.")
 		});
 
+
+}
+
+function userLogoff (Http ) {
+
+	let url = 'http://' + serverName + ':8090/api/'
+
+	url += 'users/' + this.token + '/logoff'
+	this.connectionState = -1 // initial state
+	this.userId = ""
+
+		Http.post(url, {userId:this.userId}).then(response => {
+			console.log ("Chat message was sent to server")
+			this.refreshDataFromServer(Http)
+		}, (response) => {
+			// error, but it doesn't matter
+		});
+
+}
+
+function loadGames (Http) {
+
+	let url = 'http://' + serverName + ':8090/api/'
+
+	url += 'games'
+
+	Http.get(url).then((response) => {
+		this.games = response.data
+	}, (response) => {
+		console.log ("missed game list")
+	});
 
 }
 
@@ -146,6 +187,7 @@ function connectToGame (gameId, Http ) {
 				return
 			}
 
+		  // initial arrays and values
 			this.reactionList = response.data.reactionList
 			this.choices = response.data.choices
 			this.runnerCache.userState = response.data.userState
@@ -154,8 +196,9 @@ function connectToGame (gameId, Http ) {
 			if (response.data.gameTurn == undefined) this.gameTurn = 0;
 			else this.gameTurn = response.data.gameTurn
 
-			this.connectionState = 1
+			this.history = response.data.history
 
+			this.connectionState = 1
 
 
 		}, (response) => {
@@ -272,37 +315,24 @@ function backEnd_sendChoice (choice, optionMsg) {
 	else if (choice.choiceId == "action2" )
 		url += 'gameAction2/' + this.token + '/' + choice.action.item1 + '/' + choice.action.actionId + '/' + choice.action.item2
 
+  /*
 	var res = {
 		reactionList: [],
-		choices: [{ choiceId:'action0', action: {actionId:'look'}, isLeafe:true, comment:'error'}]
+		choices: [{ userId: this.userId, choiceId:'action0', action: {actionId:'look'}, isLeafe:true, comment:'error'}]
 	}
+	*/
 
 	if (url != "") {
 		this.Http.get(url).then((response) => {
 
-			// to-do: if (response.data.status < 0) { }
-
-			// copy reaction list. version1:
-			// this.reactionList = response.data.reactionList.slice()
-
-			// copy reaction list. version2:
-			// empty this.reactionList
-			this.reactionList.splice(0,this.reactionList.length)
-			for (let r in response.data.reactionList) {
-				this.reactionList.push (JSON.parse(JSON.stringify(response.data.reactionList[r])))
+			if (response.data.status < 0) {
+				console.log ("Connection lost")
+				token = undefined
+				userId = ""
+				connectionState = -1
 			}
 
-			// copy choices
-			this.choices.splice(0,this.choices.length)
-			for (let c in response.data.choices) {
-				this.choices.push (JSON.parse(JSON.stringify(response.data.choices[c])))
-			}
-
-			if (response.data.gameTurn == undefined) this.gameTurn = 0;
-			else this.gameTurn = response.data.gameTurn
-
-			// here!!
-			// to-do: what about response.data. (userState and world) ?
+      copyGameDataFromServer (this, response.data)
 
 		}, (response) => {
 			console.log ("missed game reaction")
@@ -345,6 +375,8 @@ function updateChoices() {
 	}
 
 }
+
+
 
 function getChoices() {
 	return this.choices
@@ -591,9 +623,17 @@ function refreshGameSlots () {
 			localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
 		}
 		this.gameSlots = ludi_games[this.gameId].slice()
+	} else {
+		//from serve
 	}
 
 }
+
+function getGames () {
+
+	return this.games
+}
+
 
 function getGameSlots () {
 	this.refreshGameSlots()
@@ -647,29 +687,102 @@ function sendChatMessage(chatMessage, Http ) {
 	// see: https://github.com/pagekit/vue-resource/blob/develop/docs/http.md  (timeout!!)
 	Http.post(url, {userId:this.userId}).then(response => {
 		console.log ("Chat message was sent to server")
-		this.getChatMessagesFromServer(Http)
+		this.refreshDataFromServer(Http)
 	}, (response) => {
 		console.log ("Chat message wasnot sent to server")
 	});
 
 }
 
-function getChatMessagesFromServer(Http) {
+function copyGameDataFromServer (thisPointer, data) {
+
+	if (data.gameTurn == undefined) return
+	thisPointer.gameTurn = data.gameTurn
+
+	// copy reactionList
+	thisPointer.reactionList.splice(0, thisPointer.reactionList.length) // empty array
+	for (let r in data.reactionList) {
+		thisPointer.reactionList.push (JSON.parse(JSON.stringify(data.reactionList[r])))
+	}
+
+	// copy choices
+	thisPointer.choices.splice(0, thisPointer.choices.length) // empty array
+	for (let c in data.choices) {
+		thisPointer.choices.push (JSON.parse(JSON.stringify(data.choices[c])))
+	}
+
+  // add incremental entries from history
+	for (let h in data.historyInc) {
+		thisPointer.history.push (JSON.parse(JSON.stringify(data.historyInc[h])))
+	}
+
+	// to-do: what about response.data. (userState and world) ?
+
+}
+
+function copyChatDataFromServer (thisPointer, data) {
+
+	if (data.seq == undefined) return
+	thisPointer.chatMessagesSeq = data.seq
+
+	console.log ("Chat messages from server: " + JSON.stringify(data.chatMessages))
+
+	//copy chatMessages
+	thisPointer.chatMessages.splice(0, thisPointer.chatMessages.length) // empty array
+	for (var i=0; i<data.chatMessages.length && i<10;i++) {
+		thisPointer.chatMessages [i] = data.chatMessages[i]
+	}
+}
+
+
+function copyPlayerListFromServer (thisPointer, data) {
+
+  if (data.logons == undefined) return
+	thisPointer.playerListLogons = data.logons
+
+	// copy playerList
+  thisPointer.playerList.splice(0, thisPointer.playerList.length) // empty array
+	for (let c in data.playerList) {
+		thisPointer.playerList.push (JSON.parse(JSON.stringify(data.playerList[c])))
+	}
+
+}
+
+function refreshDataFromServer(Http) {
+
+  if (this.connectionState < 0) {
+		return
+	}
 
   // get messages back from server
 	let url = 'http://' + serverName + ':8090/api/'
 
-	url += '/chat/' + this.userId + '/' + this.token
-	console.log ("Getting chat messages from server")
+	url += '/refresh/' + this.token + '/' + this.chatMessagesSeq + '/' + this.gameTurn + '/' + (this.history==undefined?0:this.history.length) + '/' + this.playerListLogons
+
+	// console.log ("Refreshing data from the server")
 
 	Http.get(url).then(response => {
 
-		  // console.log ("Chat messages from server: " + JSON.stringify(response.data.chatMessages))
-		  for (var i=0; i<response.data.chatMessages.length && i<10;i++) {
-		  	this.chatMessages [i] = response.data.chatMessages[i]
-		  }
+		if ( response.data.status < 0) {
+			console.log ("Connection lost")
+			connectionState = -1
+			token = undefined
+			userId = ""
+			return
+		}
+
+		copyChatDataFromServer (this, response.data.chat)
+    copyGameDataFromServer (this, response.data.gameData)
+		copyPlayerListFromServer (this, response.data.players)
+
+		// to-do
+		if (response.data.historyInc != undefined) {
+			console.log ("historyInc: " + response.data.historyInc.length)
+		}
+
 	}, (response) => {
-		console.log ("new chat messages were not given back")
+		this.connectionState = -1
+		console.log ("Connection Error")
 	});
 
 }

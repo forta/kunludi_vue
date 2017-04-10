@@ -172,6 +172,7 @@
 
     // import Reaction from './Reaction.vue'
 
+// to-do: if connection lost, go to games tab
 
 export default {
   components: {

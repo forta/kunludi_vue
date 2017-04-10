@@ -54,44 +54,41 @@ function msgResolution (longMsgId) { // to-do: it's repeated code which is in th
 	return expanded
 }
 
+function refreshDataFromServer(runnerProxie) {
 
-function refreshChatMessages() {
   setInterval(function() {
-    // force mofidification for vue
-    if (state.chatMessagesState != state.chatMessagesInternal[0].seq) {
-      state.chatMessagesState = state.chatMessages[0].seq
-      state.chatMessages = state.chatMessagesInternal.slice()
-      console.log ("State of chatMessages: " +  state.chatMessages[0].seq)
-      // runnerProxie
+
+    {
+      // console.log ("Get data from runnerProxie")
+
+      state.playerList = runnerProxie.getPlayerList ()
+      if (state.gameId == "") state.games = runnerProxie.getGames ()
+      else {
+        state.history = runnerProxie.getHistory()
+        state.choices = runnerProxie.getChoices ()
+        state.gameTurn = runnerProxie.getGameTurn ()
+      }
+
+      if (runnerProxie.getConnectionState() < 0) {
+        if (state.userId != "") {
+          state.userId = ""
+          state.userSession = 'anonymous'
+          alert ("Connection lost with server")
+        }
+      }
+
+      if ((state.chatMessagesInternal.length > 0) && (state.chatMessagesState != state.chatMessagesInternal[0].seq)) {
+        state.chatMessagesState = state.chatMessages[0].seq
+        state.chatMessages = state.chatMessagesInternal.slice()
+        console.log ("State of chatMessages: " +  state.chatMessages[0].seq)
+      }
+
     }
-  }, 1000);
+
+  }, 10000);
 }
 
-
-function backEnd_getGames () {
-
-	//let serverName = "localhost"
-	//let serverName = "www.kunludi.com"
-	//let serverName = "buitre.ll.iac.es"
-	let serverName = "paco-pc"
-	let url = 'http://' + serverName + ':8090/api/'
-
-	url += 'games'
-
-	state.games = []
-
-	Http.get(url).then((response) => {
-		state.games = response.data
-
-    refreshChatMessages()
-
-	}, (response) => {
-		console.log ("missed game list")
-	});
-
-}
-
-function localData_getGames () {
+function localData_loadGames () {
 
 	let gamesData = require ('../../data/games.json');
 
@@ -285,9 +282,14 @@ const state = {
 
 		// game elements
 
-		else if (choice.choiceId == 'action0') return state.translateGameElement("actions", choice.action.actionId)
+		else if (choice.choiceId == 'action0') {
 
-		else if ((choice.choiceId == 'action') || (choice.choiceId == 'action2')) {
+     let player = ""
+       if (isEcho && runnerProxie.getConnectionState() == 1 && (choice.userId != undefined)) player = choice.userId
+
+      return player + state.translateGameElement("actions", choice.action.actionId)
+
+    }	else if ((choice.choiceId == 'action') || (choice.choiceId == 'action2')) {
 
 			// to-do: each action must have an echo statement in each language!
 
@@ -503,10 +505,13 @@ function afterUserLogged(userId) {
   state.playerList = runnerProxie.getPlayerList ()
   if (storageON()) localStorage.ludi_userId = userId
 
+  runnerProxie.loadGames (Http)
+
   state.chatMessages = [
       {seq:1, from: 'demo-user', msg:'Mensaje de demo.', new:true},
       {seq:0, from: 'System', msg:'Bienvenido a KunLudi. En esta sección verás los mensajes de los otros jugadores.', new:true}
   ]
+  state.chatMessagesInternal = []
   state.chatMessagesState = 0
 
   runnerProxie.linkChatMessages (state.chatMessagesInternal)
@@ -555,8 +560,12 @@ const mutations = {
         alert ("[You will loose your current game state.]")
         mutations.RESETGAMEID (state)
     }
+
+    runnerProxie.userLogoff (Http)
+
     state.userId= ''
 	  state.userSession = 'anonymous'
+
 
 	  if (storageON()) localStorage.removeItem("ludi_userId")
   },
@@ -573,6 +582,10 @@ const mutations = {
 		setTimeout(function () {
 			if (runnerProxie.getConnectionState() != -1) {
 				if (runnerProxie.getConnectionState() == 1) {
+
+          // launch periodic request
+          refreshDataFromServer(runnerProxie)
+
 					afterUserLogged(userId)
 				}
 			}
@@ -690,9 +703,9 @@ const mutations = {
 
 	// server calls if session active
 	if (state.userId != '') {
-		backEnd_getGames ()
+    runnerProxie.loadGames (Http)
 	} else {
-		localData_getGames ()
+		localData_loadGames ()
 	}
   },
   SAVE_GAME_STATE (state, slotDescription) {
