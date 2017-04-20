@@ -258,7 +258,7 @@ function processChoice (newChoice) {
 	var previousChoice = choice
 
 	choice = newChoice
-	
+
 	if (choice.choiceId == 'top') choice.action = undefined
 
 	if (choice.choiceId == 'obj1') choice.parent = previousChoice
@@ -269,7 +269,8 @@ function processChoice (newChoice) {
 
 		// saving its previous location
 		var locBefore
-		if (((choice.choiceId == 'action0') || (choice.choiceId == 'action') || (choice.choiceId == 'action2')) && (choice.action.item1 != undefined) ){
+		if ( ( (choice.choiceId == 'action0') || (choice.choiceId == 'action') || (choice.choiceId == 'action2')) &&
+		     (choice.action.item1 != undefined) ) {
 			locBefore = exports.world.items[choice.action.item1].loc
 		}
 
@@ -301,9 +302,9 @@ function processChoice (newChoice) {
 
 			// to-do: here!! show actions on obj1
 			// solution: not use recursive call to processchoice
-			
 
-			// to-do: too much tricky!		
+
+			// to-do: too much tricky!
 			// not a game action, just menu choice
 			// exports.processChoice (previousChoice)
 
@@ -329,8 +330,8 @@ function processChoice (newChoice) {
 
 		// world turn
 		if (!pendingChoice && // if pendingChoice do nothing
- 			(!gameIsOver) && 
-			(menuDepth == 0)) { 	
+ 			(!gameIsOver) &&
+			(menuDepth == 0)) {
 			this.gameTurn++
 
 			for (var i=0;i<exports.world.items.length;i++) {
@@ -346,10 +347,10 @@ function processChoice (newChoice) {
 			}
 		}
 	}
-	
+
 	// to see again all the actions for the item
 	if (choice.choiceId == 'action') choice = previousChoice
-	
+
 	exports.updateChoices()
 
 }
@@ -565,7 +566,7 @@ function updateChoices(showAll) {
 
 			// if only 'look':
       // exports.choices.push ({choiceId:'action0', isLeafe:true, parent:"directActions", action:{actionId:'look', parent:"top"}});
-      
+
 			// all direct actions are not shown all the time (top)
 			for (var i in internalChoices.directActions)
 					exports.choices.push (internalChoices.directActions[i])

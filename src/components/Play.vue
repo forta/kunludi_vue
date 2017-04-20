@@ -16,8 +16,18 @@
 
             <span v-for="r in hitem.reactionList">
                 {{{formatReaction(r)}}}
-            </span
+            </span>
 
+        </div>
+
+        <div class="reactionList" v-if = "lastAction != undefined">
+          <!-- <h2>{{kt("ReactionList")}}</h2> -->
+  		    <!-- echo -->
+  		    <p><b>{{actionToShow(lastAction, true)}}</b></p>
+
+      		<span v-for="r in reactionList">
+      			{{{formatReaction(r)}}}
+      		</span>
         </div>
 
     </div>
@@ -97,7 +107,7 @@
           </span>
       </div>
 
-  	<!-- actiosn2 on items inside -->
+  	<!-- actions2 on items inside -->
       <div class="choices">
           <span v-for="choice in choices">
               <button v-if = "(choice.parent== 'action2')" class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
@@ -148,7 +158,8 @@
 
     import store from '../vuex/store'
     import {
-        getEcho,
+        getEchoChoice,
+        getEchoAction,
         getGTranslator,
         getKTranslator,
         getCurrentChoice,
@@ -158,6 +169,8 @@
         getGameIsOver,
         getLocale,
         getHistory,
+        getReactionList,
+        getLastAction,
         getMenu,
         getMenuPiece,
         getPendingChoice,
@@ -236,9 +249,11 @@ export default {
           else if (choice.choiceId == 'directionGroup') return 'choiceDirections'
           return ""
       },
+      actionToShow: function (choice, isEcho) {
+          return this.echoAction (choice, isEcho)
+      },
       choiceToShow: function (choice, isEcho) {
-          return this.echo (choice, isEcho)
-
+          return this.echoChoice (choice, isEcho)
       },
       decodeHtml: function (html) {
         var txt = document.createElement("textarea");
@@ -295,6 +310,8 @@ export default {
        gameIsOver: getGameIsOver,
        locale: getLocale,
        history: getHistory,
+	     reactionList: getReactionList,
+       lastAction: getLastAction,
        choices: getChoices,
        menu: getMenu,
        menuPiece: getMenuPiece,
@@ -306,7 +323,8 @@ export default {
        tge: translateGameElement,
        currentChoice: getCurrentChoice,
        gameState: getGameState,
-       echo: getEcho,
+       echoChoice: getEchoChoice,
+       echoAction: getEchoAction,
        userId: getUserId,
        chatMessages:getChatMessages,
        playerList:getPlayerList
@@ -423,6 +441,10 @@ div.chatSecton {
   font-size: 0.9vw;
 }
 
+div.reactionList {
+	background-color: #EFE;
+  text-align: left;
+}
 
 div.choices {
 	background-color: #FFD;

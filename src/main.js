@@ -112,7 +112,19 @@ router.beforeEach(function (transition) {
        // from == {}
        console.log('by default: about page')
        transition.redirect('/ludi/about')
+   } else{
+
+     if (transition.to.path == "/ludi/play") {
+        if (store.default.state.userId == "") {
+          console.log('connection issue')
+          transition.redirect('/ludi/games')
+        }
+      }
+
    }
+
+
+
 
 	//if ((transition.to.path == '/kune' ) && !transition.to.auth) {
 	//	transition.redirect('/kune/login/annonymous')

@@ -14,6 +14,10 @@ export function getLanguages (state) { return state.languages }
 
 export function getHistory (state) { return state.history }
 
+export function getReactionList (state) { return state.reactionList }
+
+export function getLastAction (state) { return state.lastAction }
+
 export function getGameSlots (state) { return state.gameSlots }
 
 export function getChoices (state) { return state.choices }
@@ -40,7 +44,9 @@ export function getGTranslator (state) { return state.gTranslator }
 
 export function translateGameElement (state) { return state.translateGameElement }
 
-export function getEcho (state) { return state.getEcho }
+export function getEchoChoice (state) { return state.getEchoChoice }
+
+export function getEchoAction (state) { return state.getEchoAction }
 
 export function getCurrentChoice (state) { return state.choice }
 

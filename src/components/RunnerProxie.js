@@ -20,9 +20,11 @@ let libVersion= '', gameId= ''
 
 let remoteServer = 'www.kunludi.com', remotePort = 8089
 
-let reactionList = []
+let reactionList = [], reactionListCounter = 0, processedReactionList = []
 
 let menu = []
+
+let pendingPressKey = false, pressKeyMessage = ""
 
 let menuPiece = {}
 
@@ -33,6 +35,8 @@ let gameSlots = []
 let userId = "" , token, playerList = []
 
 let chatMessages // link to external data
+
+let lastAction
 
 let chatMessagesSeq = 0, gameTurn = 0, playerListLogons = 0
 
@@ -48,9 +52,9 @@ module.exports = exports = {
 	userLogon:userLogon,
 	userLogoff:userLogoff,
 	connectToGame:connectToGame,
-	expandDynReactions:expandDynReactions,
 	processChoice:processChoice,
 	getCurrentChoice:getCurrentChoice,
+	getLastAction:getLastAction,
 	updateChoices:updateChoices,
 	getChoices:getChoices,
 	getReactionList:getReactionList,
@@ -74,12 +78,21 @@ module.exports = exports = {
 	refreshDataFromServer:refreshDataFromServer,
   getGames:getGames,
 	loadGames:loadGames,
+	processingRemainingReactions:processingRemainingReactions,
+	keyPressed:keyPressed,
+	setPendingPressKey: setPendingPressKey,
+	getPendingPressKey: getPendingPressKey,
+	setPressKeyMessage: setPressKeyMessage,
+	getPressKeyMessage: getPressKeyMessage,
+
 
 	//??
 	getGameSlotIndex:getGameSlotIndex,
 	refreshGameSlots:refreshGameSlots,
 	backEnd_sendChoice:backEnd_sendChoice,
-	refreshPeriodicallyDataFromServer:refreshPeriodicallyDataFromServer
+	refreshPeriodicallyDataFromServer:refreshPeriodicallyDataFromServer,
+	afterProcessChoice:afterProcessChoice,
+	expandDynReactions:expandDynReactions
 
 }
 
@@ -87,7 +100,7 @@ module.exports = exports = {
 function refreshPeriodicallyDataFromServer(thisPointer) {
 	setInterval(function() {
 	  if (thisPointer.connectionState == 1)  thisPointer.refreshDataFromServer(thisPointer.Http)
-	}, 10000);
+	}, 1000);
 }
 
 function storageON() {
@@ -131,15 +144,16 @@ function userLogon (userId, Http ) {
 
 }
 
-function userLogoff (Http ) {
+function userLogoff () {
 
 	let url = 'http://' + serverName + ':8090/api/'
 
 	url += 'users/' + this.token + '/logoff'
 	this.connectionState = -1 // initial state
 	this.userId = ""
+	this.chatMessagesSeq = this.gameTurn = this.playerListLogons = 0
 
-		Http.post(url, {userId:this.userId}).then(response => {
+		this.Http.post(url).then(response => {
 			console.log ("Chat message was sent to server")
 			this.refreshDataFromServer(Http)
 		}, (response) => {
@@ -196,7 +210,7 @@ function connectToGame (gameId, Http ) {
 			if (response.data.gameTurn == undefined) this.gameTurn = 0;
 			else this.gameTurn = response.data.gameTurn
 
-			this.history = response.data.history
+			this.history = response.data.history.slice()
 
 			this.connectionState = 1
 
@@ -206,6 +220,136 @@ function connectToGame (gameId, Http ) {
 			console.log ("The game was not loaded")
 		});
 
+
+}
+
+
+function backEnd_sendChoice (choice, optionMsg ) {
+
+	let url = 'http://' + serverName + ':8090/api/'
+
+   // game actions
+	 if ( (choice.choiceId == "action0") ||
+			 (choice.choiceId == "dir1") ||
+			 (choice.choiceId == "action") ||
+			 (choice.choiceId == "action2") ) {
+
+	 		url += 'gameAction'
+			let params = {token: this.token, choice: choice}
+
+			// see: https://github.com/pagekit/vue-resource/blob/develop/docs/http.md  (timeout!!)
+			this.Http.post(url, {params: params}).then((response) => {
+
+				if (response.data.status < 0) {
+					console.log ("Connection lost")
+					token = undefined
+					userId = ""
+					connectionState = -1
+				}
+
+				// to-do: extract visualization data: choices, menu, keypressed
+				copyGameChoicesFromServer (this, response.data)
+
+				copyGameDataFromServer (this, response.data)
+
+			}, (response) => {
+				console.log ("missed game reaction")
+			});
+
+			return
+		}
+
+		if ( (choice.choiceId == "top") ||
+		     (choice.choiceId == "directActions") ||
+				 (choice.choiceId == "directionGroup") ||
+				 (choice.choiceId == "obj1") ||
+				 (choice.choiceId == "itemGroup" ) ) {
+
+		 url += 'choice/' + choice.choiceId + '/' + this.token + '/'
+
+		 // extra parameter
+		 if (choice.choiceId == "itemGroup" )
+ 			 url += choice.itemGroup
+		 else if (choice.choiceId == "obj1" )
+ 			url += choice.item1
+ 		 else  url += "0"
+
+			if (url != "") {
+				this.Http.get(url).then((response) => {
+
+					if (response.data.status < 0) {
+						console.log ("Connection lost")
+						token = undefined
+						userId = ""
+						connectionState = -1
+					}
+
+		      copyGameChoicesFromServer (this, response.data)
+
+				}, (response) => {
+					console.log ("missed game reaction")
+				});
+			}
+
+			return
+
+	}
+
+	console.log ("Unknown game choice")
+
+}
+
+function processChoice (choice, optionMsg, Http) {
+
+  if (choice.isLeafe) {
+		this.lastAction = choice
+		this.reactionListCounter = 0
+		this.pendingPressKey = false
+		this.pressKeyMessage = ""
+		this.processedReactionList.splice(0,this.processedReactionList.length) // empty
+	}
+
+	if (this.connectionState == 0) {
+		this.runner.processChoice (choice, optionMsg)
+	} else {
+		this.backEnd_sendChoice (choice)
+	}
+
+	this.afterProcessChoice (choice, optionMsg)
+
+}
+
+function afterProcessChoice (choice, optionMsg) {
+
+	// dynamic messages
+	let expandedReactionList = this.expandDynReactions(this.reactionList)
+
+	// copy expandedReactionList into state.reactionList
+	this.reactionList.splice(0,this.reactionList.length)
+	for (var i=0;i<expandedReactionList.length;i++) {
+	  this.reactionList.push (expandedReactionList[i])
+
+	  // tricky: avoiding anything after a menu submission
+	  if (expandedReactionList[i].type == 'rt_show_menu')
+	    break;
+	}
+
+
+	// show chosen option
+	// to-do: send parameters to kernel messages
+	if (optionMsg != undefined) {
+		// option echo
+		this.reactionList.unshift ({type:"rt_asis", txt: "<br/><br/>"} )
+		this.reactionList.unshift ({type:"rt_msg", txt:  optionMsg } )
+		this.reactionList.unshift ({type:"rt_asis", txt: ": " } )
+
+		this.reactionList.unshift ({type:"rt_kernel_msg", txt: "Chosen option"} )
+
+	}
+
+	if (choice.isLeafe) {
+		this.processingRemainingReactions ()
+	}
 
 }
 
@@ -224,7 +368,7 @@ function expandDynReactions (reactionList) {
 	let sourceReactionList = reactionList.slice()
 	//console.log("----------------------------------original reactionList:\n" + JSON.stringify (sourceReactionList))
 
-	let expandedReactionList = [], pendingReactionlist = []
+	let expandedReactionList = []
 
 	let currentPointer
 	for (currentPointer = 0;
@@ -272,88 +416,85 @@ function expandDynReactions (reactionList) {
 			}
 			// empty this.reactionList
 			this.reactionList.splice(0,this.reactionList.length)
-		}
-		else if (sourceReactionList[currentPointer].type == "rt_press_key") {
-			expandedReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[currentPointer])) )
-			expandedReactionList [expandedReactionList.length-1].alreadyPressed = false
-
-			// avoid processing the rest of reactions until key is pressed
-			break
-		}
-		else { // standard static reaction
+		}	else { // standard static reaction
 			expandedReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[currentPointer])) )
 		}
 	}
+	return expandedReactionList.slice()
+}
 
-	// console.log("----------------------------------Expanded reactionList:\n" + JSON.stringify (expandedReactionList))
 
-	for (var i= currentPointer+1; i < sourceReactionList.length;i++) {
-		pendingReactionlist.push (sourceReactionList[i])
+function setPendingPressKey (value) {
+	this.pendingPressKey = value
+}
+
+function getPendingPressKey () {
+	return this.pendingPressKey
+}
+
+function setPressKeyMessage (expanded) {
+	this.pressKeyMessage = expanded
+}
+
+function getPressKeyMessage () {
+	return this.pressKeyMessage
+}
+
+
+function keyPressed () {
+
+  //alert ("keyPressed! (" + this.reactionListCounter + "): " +  JSON.stringify(this.reactionList[this.reactionListCounter]))
+  this.pendingPressKey = false
+
+  if (this.reactionListCounter >= this.reactionList.length) {
+		  // here!?
+		this.reactionListCounter = 0
+		return
 	}
 
-	return {expandedReactionList: expandedReactionList.slice(), pendingReactionlist: pendingReactionlist.slice()}
+	if (this.reactionList[this.reactionListCounter].type == "rt_press_key")  {
+		 if (!this.reactionList[this.reactionListCounter].alreadyPressed) {
+		   // marked as pressed
+			 this.reactionList[this.reactionListCounter].alreadyPressed = true
+			 this.processedReactionList.push (this.reactionList[this.reactionListCounter])
+			 this.reactionListCounter ++
+		 }
+  }
 
+	this.processingRemainingReactions ()
 
 }
 
-function backEnd_sendChoice (choice, optionMsg) {
 
-	let url = 'http://' + serverName + ':8090/api/'
+function processingRemainingReactions () {
 
-	if (choice.choiceId == "top" || choice.choiceId == "directActions" || choice.choiceId == "directionGroup")
-		url += 'choice/' + this.token + '/' + choice.choiceId
-	else if (choice.choiceId == "itemGroup" )
-		url += 'choice/itemGroup/' + this.token + '/' + choice.itemGroup
-	else if (choice.choiceId == "action0" )
-		url += 'gameAction0/' + this.token + '/' + choice.action.actionId
-	else if (choice.choiceId == "dir1" )
-		url += 'dir/' + this.token + '/' + choice.action.d1 + '/' + choice.action.target + '/' + choice.action.isKnown
-	else if (choice.choiceId == "obj1" )
-		url += 'obj1/' + this.token + '/' + choice.item1
-	else if (choice.choiceId == "action" )
-		url += 'gameAction1/' + this.token + '/' + choice.action.item1 + '/' + choice.action.actionId
-	else if (choice.choiceId == "action2" )
-		url += 'gameAction2/' + this.token + '/' + choice.action.item1 + '/' + choice.action.actionId + '/' + choice.action.item2
-
-  /*
-	var res = {
-		reactionList: [],
-		choices: [{ userId: this.userId, choiceId:'action0', action: {actionId:'look'}, isLeafe:true, comment:'error'}]
-	}
-	*/
-
-	if (url != "") {
-		this.Http.get(url).then((response) => {
-
-			if (response.data.status < 0) {
-				console.log ("Connection lost")
-				token = undefined
-				userId = ""
-				connectionState = -1
-			}
-
-      copyGameDataFromServer (this, response.data)
-
-		}, (response) => {
-			console.log ("missed game reaction")
-		});
+	for (;this.reactionListCounter<this.reactionList.length; this.reactionListCounter++) {
+		if (this.reactionList[this.reactionListCounter].type == "rt_press_key")  {
+			 if (!this.reactionList[this.reactionListCounter].alreadyPressed) {
+				 this.pendingPressKey = true
+				 this.pressKeyMessage = this.reactionList[this.reactionListCounter].txt
+				 return
+			 }
+		 } else if (this.reactionList[this.reactionListCounter].type == 'rt_show_menu') {
+			 // avoiding anything after a menu submission
+			 this.reactionListCounter = this.reactionList.length
+			 break
+		 } else {
+			 this.processedReactionList.push (this.reactionList[this.reactionListCounter])
+		 }
 	}
 
-	return
+	// add reaction entry to history
+	this.history.push ({ gameTurn: this.gameTurn, action: this.lastAction, reactionList: this.reactionList.slice() })
 
-}
+	this.lastAction = undefined
 
-function processChoice (choice, optionMsg) {
+	// only if local playing
+	if (this.connectionState == 0) this.gameTurn = this.runner.getGameTurn()
 
-	if (this.connectionState == 0) {
-		this.runner.processChoice (choice, optionMsg)
-		this.gameTurn = this.runner.getGameTurn()
-
-	} else {
-
-		this.backEnd_sendChoice (choice)
-
-	}
+	// reactionList end of life
+  this.reactionList.splice(0,this.reactionList.length)
+	this.processedReactionList.splice(0,this.processedReactionList.length)
 
 }
 
@@ -366,6 +507,16 @@ function getCurrentChoice() {
 
 }
 
+function getLastAction() {
+
+	if (this.connectionState == 0) return this.lastAction
+	else {
+		// to-do: Http.get(url).then((response)
+	}
+
+}
+
+
 function updateChoices() {
 	if (this.connectionState == 0) {
 		this.runner.updateChoices ()
@@ -376,14 +527,13 @@ function updateChoices() {
 
 }
 
-
-
 function getChoices() {
 	return this.choices
 }
 
 function getReactionList() {
-	return this.reactionList
+	if (this.processedReactionList == undefined) this.processedReactionList = []
+	return this.processedReactionList.slice()
 }
 
 function getMenu() {
@@ -399,7 +549,7 @@ function getHistory() {
 }
 
 function setHistory(history) {
-	this.history = history
+	this.history = history.slice()
 }
 
 
@@ -466,7 +616,7 @@ function saveGameState (slotDescription) {
 			id: (slotDescription == "default")? "default": d,
 			date: d,
 			world: this.runner.world,
-			history: this.history,
+			history: this.history.slice(),
 			gameTurn: this.runner.gameTurn,
 			userState: pointer.userState,
 			slotDescription: slotDescription
@@ -540,7 +690,7 @@ function loadGameState (slotId, showIntro) {
 			console.log ("Game not loaded!. Slot: " + slotId)
 		} else {
 			this.runner.world = this.gameSlots[i].world
-			this.history = this.gameSlots[i].history //.slice()
+			this.history = this.gameSlots[i].history.slice()
 			this.gameTurn = this.gameSlots[i].gameTurn
 			this.runner.userState = this.gameSlots[i].userState
 			console.log ("Game loaded!. Slot: " + slotId)
@@ -676,21 +826,32 @@ function getPlayerList() {
 	return this.playerList
 }
 
-function sendChatMessage(chatMessage, Http ) {
+// send chat message to backserver
+function sendChatMessage(chatMessage) {
 
-  // send chat message to backserver
   let url = 'http://' + serverName + ':8090/api/'
+	url += '/chat' // + '/' + this.userId + '/' + this.token + '/' + encodeURIComponent (chatMessage)
 
-	url += '/chat/' + this.userId + '/' + this.token + '/' + encodeURIComponent (chatMessage)
-	console.log ("Trying to send chat Message: " + chatMessage)
+  let params = {userId:this.userId, token:this.token, chatMessage: chatMessage}
 
-	// see: https://github.com/pagekit/vue-resource/blob/develop/docs/http.md  (timeout!!)
-	Http.post(url, {userId:this.userId}).then(response => {
-		console.log ("Chat message was sent to server")
-		this.refreshDataFromServer(Http)
+	this.Http.post(url, {params: params}).then(response => {
+		// do nothing
 	}, (response) => {
-		console.log ("Chat message wasnot sent to server")
+		console.log ("Chat message was not sent to server")
 	});
+
+}
+
+
+function copyGameChoicesFromServer (thisPointer, data) {
+
+	// copy choices
+	if (thisPointer.choices.length>0) {
+		thisPointer.choices.splice(0, thisPointer.choices.length) // empty array
+	}
+	for (let c in data.choices) {
+		thisPointer.choices.push (JSON.parse(JSON.stringify(data.choices[c])))
+	}
 
 }
 
@@ -700,15 +861,13 @@ function copyGameDataFromServer (thisPointer, data) {
 	thisPointer.gameTurn = data.gameTurn
 
 	// copy reactionList
-	thisPointer.reactionList.splice(0, thisPointer.reactionList.length) // empty array
-	for (let r in data.reactionList) {
-		thisPointer.reactionList.push (JSON.parse(JSON.stringify(data.reactionList[r])))
-	}
-
-	// copy choices
-	thisPointer.choices.splice(0, thisPointer.choices.length) // empty array
-	for (let c in data.choices) {
-		thisPointer.choices.push (JSON.parse(JSON.stringify(data.choices[c])))
+	if (thisPointer.reactionList!= undefined) {
+		if (thisPointer.reactionList.length>0) {
+			thisPointer.reactionList.splice(0, thisPointer.reactionList.length) // empty array
+		}
+		for (let r in data.reactionList) {
+			thisPointer.reactionList.push (JSON.parse(JSON.stringify(data.reactionList[r])))
+		}
 	}
 
   // add incremental entries from history

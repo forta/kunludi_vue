@@ -54,29 +54,48 @@ function msgResolution (longMsgId) { // to-do: it's repeated code which is in th
 	return expanded
 }
 
-function refreshDataFromServer(runnerProxie) {
+function refreshDataFromProxie(runnerProxie) {
 
   setInterval(function() {
 
     {
       // console.log ("Get data from runnerProxie")
 
-      state.playerList = runnerProxie.getPlayerList ()
-      if (state.gameId == "") state.games = runnerProxie.getGames ()
-      else {
-        state.history = runnerProxie.getHistory()
-        state.choices = runnerProxie.getChoices ()
-        state.gameTurn = runnerProxie.getGameTurn ()
-      }
-
+      // connection active
       if (runnerProxie.getConnectionState() < 0) {
         if (state.userId != "") {
           state.userId = ""
           state.userSession = 'anonymous'
           alert ("Connection lost with server")
         }
+        return
       }
 
+      //playerList
+      state.playerList = runnerProxie.getPlayerList ()
+
+      //  game list or current game
+      if (state.gameId == "") state.games = runnerProxie.getGames ()
+      else {
+
+        if (state.gameTurn < runnerProxie.getGameTurn ()) {
+          // here!!!
+          let history_backup = state.history.slice()
+          state.history = runnerProxie.getHistory().slice()
+          if (history_backup.length > state.history.length) {
+            //so much tricky that even me don't understand it
+            state.history =  history_backup.slice()
+          }
+
+          state.choices = runnerProxie.getChoices ()
+          state.gameTurn = runnerProxie.getGameTurn ()
+        }
+
+        // state.refreshEnvironment()
+      }
+
+
+      // chatmessages
       if ((state.chatMessagesInternal.length > 0) && (state.chatMessagesState != state.chatMessagesInternal[0].seq)) {
         state.chatMessagesState = state.chatMessages[0].seq
         state.chatMessages = state.chatMessagesInternal.slice()
@@ -85,7 +104,7 @@ function refreshDataFromServer(runnerProxie) {
 
     }
 
-  }, 10000);
+  }, 1000);
 }
 
 function localData_loadGames () {
@@ -139,80 +158,16 @@ function processChoice (state, choice) {
 		optionMsg = choice.action.msg
 	}
 
+  if (choice.isLeafe) state.lastAction = choice
+
 	// processing choices or game actions (leave choices)
 	runnerProxie.processChoice (choice, optionMsg)
 
-	afterProcessChoice (choice, optionMsg)
-
-	if (state.userId == '') {
-		state.choice = runnerProxie.getCurrentChoice()
-		runnerProxie.updateChoices()
-		state.choices = runnerProxie.getChoices ()
-		state.gameTurn = runnerProxie.getGameTurn ()
-		state.gameState = runnerProxie.getGameState()
-	}
+	if (runnerProxie.getConnectionState() == 0)  {
+      state.refreshEnvironment ()
+  }
 
 }
-
-function afterProcessChoice (choice, optionMsg) {
-
-	// show chosen option
-	// to-do: send parameters to kernel messages
-	if (optionMsg != undefined) {
-		// option echo
-		state.reactionList.unshift ({type:"rt_asis", txt: "<br/><br/>"} )
-		state.reactionList.unshift ({type:"rt_msg", txt:  optionMsg } )
-		state.reactionList.unshift ({type:"rt_asis", txt: ": " } )
-
-		state.reactionList.unshift ({type:"rt_kernel_msg", txt: "Chosen option"} )
-
-	}
-
-	// add reactions to history
-	if (choice.isLeafe) {
-		state.history.push ({ gameTurn: state.gameTurn, action: choice, reactionList: [] })
-		processingRemainingReactions ();
-	}
-
-}
-
-function processingRemainingReactions () {
-
-	// expand dyn reactions
-	let forkedReactionList = runnerProxie.expandDynReactions(state.reactionList)
-
-	// empty state.reactionList
-	state.reactionList.splice(0,state.reactionList.length)
-
-	// copy expanded into state.reactionList
-	for (var i=0;i<forkedReactionList.expandedReactionList.length;i++) {
-		state.reactionList.push (forkedReactionList.expandedReactionList[i])
-
-		// to-do: tricky by now, avoiding anything after a menu submission
-		if (forkedReactionList.expandedReactionList[i].type == 'rt_show_menu')
-			break;
-	}
-
-	// add already shown reactions to history
-	for (var i in state.reactionList) {
-		state.history[state.history.length-1].reactionList.push (state.reactionList[i])
-	}
-
-	// empty state.reactionList
-	state.reactionList.splice(0,state.reactionList.length)
-
-	// copy pendingReactionlist into state.reactionList
-	for (var i=0;i<forkedReactionList.pendingReactionlist.length;i++) {
-		state.reactionList.push (forkedReactionList.pendingReactionlist[i])
-	}
-
-	if (state.pendingPressKey) {
-		state.pendingPressKey = false
-	}
-
-}
-
-
 
 const state = {
 	games: [
@@ -229,6 +184,7 @@ const state = {
 	gameSlots: [],
 	choices: [],
 	choice: {choiceId:'top', isLeafe:false, parent:''} ,
+  lastAction: {},
 	pendingChoice: {},
   pendingPressKey: false,
 	pressKeyMessage: '',
@@ -266,7 +222,52 @@ const state = {
 		return "*" + kMsg + "*"
 	},
 
-	getEcho: function (choice, isEcho) {
+  getEchoAction: function (choice, isEcho) {
+
+    if (choice.choiceId == 'action0') {
+
+     let player = ""
+     if (isEcho && runnerProxie.getConnectionState() == 1 && (choice.userId != "") && (choice.userId != undefined)) {
+         player = choice.userId
+     }
+
+      return player + state.translateGameElement("actions", choice.action.actionId)
+
+    }	else if ((choice.choiceId == 'action') || (choice.choiceId == 'action2')) {
+
+      // to-do: each action must have an echo statement in each language!
+
+      if (isEcho) { // echo message
+        if (choice.choiceId == 'action') {
+          let msg = state.language.getMessageFromLongMsgId  (state.language.getLongMsgId ("messages", "Echo_o1_a1", "txt"))
+          return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1Id})
+        } else {
+          let msg = state.language.getMessageFromLongMsgId  (state.language.getLongMsgId ("messages", "Echo_o1_a1_o2", "txt"))
+          return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1Id, o2: choice.action.item2Id})
+        }
+
+      } else { // button
+
+        // to-do?: modified as in the Echo?
+        if (choice.choiceId == 'action')
+          return state.translateGameElement("actions", choice.action.actionId)
+        else
+          return state.translateGameElement("actions", choice.action.actionId) + " -> " + state.translateGameElement("items", choice.action.item2Id, "txt")
+      }
+
+    }  else if (choice.choiceId == 'dir1') {
+      // show the target only ii it is known
+      // console.log	("choice.action??: " + JSON.stringify(choice.action) )
+
+      var txt = state.translateGameElement("directions", choice.action.d1Id, "txt")
+      if (choice.action.isKnown) txt += " -> " + state.translateGameElement("items", choice.action.targetId, "txt")
+      return txt
+
+    }
+
+    return ""
+  },
+  getEchoChoice: function (choice, isEcho) {
 
 		if ((choice.noEcho != undefined) && (choice.noEcho)) {
 			return ""
@@ -279,54 +280,14 @@ const state = {
 		else if (choice.choiceId == 'itemGroup') return state.kTranslator("mainChoices_" +  choice.itemGroup) + "(" + choice.count + ")"
 		else if (choice.choiceId == 'directActions') return state.kTranslator("mainChoices_" + choice.choiceId) + "(" + choice.count + ")"
 		else if (choice.choiceId == 'directionGroup') return state.kTranslator("mainChoices_" + choice.choiceId) + "(" + choice.count + ")"
+    else if (choice.choiceId == 'obj1') {
+      return state.language.expandParams ("%o1", {o1: choice.item1Id})
+      // return state.translateGameElement("items", choice.item1, "txt") // to-do: will we rewrite state.translateGameElement using state.language.expandParams ??
+    }
 
 		// game elements
+    return state.getEchoAction (choice, isEcho)
 
-		else if (choice.choiceId == 'action0') {
-
-     let player = ""
-       if (isEcho && runnerProxie.getConnectionState() == 1 && (choice.userId != undefined)) player = choice.userId
-
-      return player + state.translateGameElement("actions", choice.action.actionId)
-
-    }	else if ((choice.choiceId == 'action') || (choice.choiceId == 'action2')) {
-
-			// to-do: each action must have an echo statement in each language!
-
-			if (isEcho) { // echo message
-				if (choice.choiceId == 'action') {
-					let msg = state.language.getMessageFromLongMsgId  (state.language.getLongMsgId ("messages", "Echo_o1_a1", "txt"))
-					return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1Id})
-				} else {
-					let msg = state.language.getMessageFromLongMsgId  (state.language.getLongMsgId ("messages", "Echo_o1_a1_o2", "txt"))
-					return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1Id, o2: choice.action.item2Id})
-				}
-
-			} else { // button
-
-				// to-do?: modified as in the Echo?
-				if (choice.choiceId == 'action')
-					return state.translateGameElement("actions", choice.action.actionId)
-				else
-					return state.translateGameElement("actions", choice.action.actionId) + " -> " + state.translateGameElement("items", choice.action.item2Id, "txt")
-			}
-
-		} else if (choice.choiceId == 'obj1') {
-
-			return state.language.expandParams ("%o1", {o1: choice.item1Id})
-			// return state.translateGameElement("items", choice.item1, "txt") // to-do: will we rewrite state.translateGameElement using state.language.expandParams ??
-
-		} else if (choice.choiceId == 'dir1') {
-			// show the target only ii it is known
-			// console.log	("choice.action??: " + JSON.stringify(choice.action) )
-
-			var txt = state.translateGameElement("directions", choice.action.d1Id, "txt")
-			if (choice.action.isKnown) txt += " -> " + state.translateGameElement("items", choice.action.targetId, "txt")
-			return txt
-
-		}
-
-		return ""
 	},
 
 	gTranslator: function (reaction) {
@@ -438,6 +399,9 @@ const state = {
 		} else if (reaction.type == "rt_press_key")  {
 
 			if (!reaction.alreadyPressed) {
+        runnerProxie.setPendingPressKey (true)
+        runnerProxie.setPressKeyMessage (expanded)
+
 				state.pendingPressKey = true
 				state.pressKeyMessage = expanded
 			}
@@ -453,7 +417,22 @@ const state = {
 
 		return state.language.getMessageFromLongMsgId (state.language.getLongMsgId (type, index, attribute))
 
-	}
+	},
+
+  refreshEnvironment: function () {
+    state.choice = runnerProxie.getCurrentChoice()
+    state.reactionList = runnerProxie.getReactionList ()
+    runnerProxie.updateChoices()
+    state.choices = runnerProxie.getChoices ()
+    state.gameTurn = runnerProxie.getGameTurn ()
+    state.gameState = runnerProxie.getGameState()
+    state.history = runnerProxie.getHistory()
+    state.pendingPressKey = runnerProxie.getPendingPressKey ()
+    state.pressKeyMessage =  msgResolution ("messages." + runnerProxie.getPressKeyMessage () + ".desc")
+    // to-do: internal game messages are not expanded
+    if (state.pressKeyMessage  == "") state.pressKeyMessage  = runnerProxie.getPressKeyMessage ()
+    state.lastAction =  runnerProxie.getLastAction ()
+  }
 
 }
 
@@ -480,6 +459,7 @@ function localData_loadData (gameId) {
 
 
 }
+
 
 
 function cleanHistory () {
@@ -542,7 +522,11 @@ function afterGameLoaded(slotId) {
 	state.reactionList = runnerProxie.getReactionList ()
 	state.menu = runnerProxie.getMenu () //?.slice()
 	state.menuPiece = runnerProxie.getMenuPiece () //?.slice()
-	runnerProxie.setHistory(state.history )
+
+  //only when local playing
+  if (runnerProxie.getConnectionState() == 0) {
+	  runnerProxie.setHistory(state.history )
+  }
 
 	runnerProxie.saveGameState (slotId)
 	state.gameSlots = runnerProxie.getGameSlots ()
@@ -561,7 +545,7 @@ const mutations = {
         mutations.RESETGAMEID (state)
     }
 
-    runnerProxie.userLogoff (Http)
+    runnerProxie.userLogoff ()
 
     state.userId= ''
 	  state.userSession = 'anonymous'
@@ -584,7 +568,7 @@ const mutations = {
 				if (runnerProxie.getConnectionState() == 1) {
 
           // launch periodic request
-          refreshDataFromServer(runnerProxie)
+          refreshDataFromProxie(runnerProxie)
 
 					afterUserLogged(userId)
 				}
@@ -674,13 +658,16 @@ const mutations = {
 	   processChoice (state, choice)
   },
   SEND_CHAT_MESSAGE (state, chatMessage) {
-
-   console.log ("here")
-    runnerProxie.sendChatMessage (chatMessage, Http)
-
+    runnerProxie.sendChatMessage (chatMessage)
 	},
   SET_KEY_PRESSED (state) {
-	processingRemainingReactions()
+
+	  runnerProxie.keyPressed()
+
+    if (runnerProxie.getConnectionState() == 0)  {
+        state.refreshEnvironment ()
+    }
+
   },
   PROCESS_CHOICE (state, choice) {
 	   processChoice (state, choice)
@@ -688,14 +675,14 @@ const mutations = {
   RESETGAMEID (state) {
     state.gameId= ''
     state.about= {}
-	mutations.SETLOCALE (state, state.locale)
+  	mutations.SETLOCALE (state, state.locale)
 
-	// force change
-	let oldLanguages = state.languages
-	state.languages = oldLanguages
-	state.languages.inGame = undefined
+  	// force change
+  	let oldLanguages = state.languages
+  	state.languages = oldLanguages
+  	state.languages.inGame = undefined
 
-	cleanHistory()
+  	cleanHistory()
 
   },
 
@@ -726,7 +713,7 @@ const mutations = {
 	state.reactionList = runnerProxie.getReactionList ()
 	state.menu = runnerProxie.getMenu () //?.slice()
 	state.menuPiece = runnerProxie.getMenuPiece () //?.slice()
-	state.history = runnerProxie.getHistory() //?.slice() //?
+	state.history = runnerProxie.getHistory().slice() //?
 
   },
   DELETE_GAME_STATE (state, slotId) {
