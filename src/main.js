@@ -27,6 +27,8 @@ var Games = require('./components/Games.vue')
 var Play = require('./components/Play.vue')
 var Lingvo = require('./components/Lingvo.vue')
 
+var Admin = require('./components/Admin.vue')
+
 // create App instance
 var App = Vue.extend({})
 
@@ -41,8 +43,11 @@ function storageON() {
 
 // load data from localStorage
 if (storageON()) {
-	if (localStorage.ludi_userId  != undefined && localStorage.ludi_userId  != "undefined") store.default._mutations.SETUSERID (store.default.state, localStorage.ludi_userId)
+
+	// if (localStorage.ludi_userId  != undefined && localStorage.ludi_userId  != "undefined") store.default._mutations.SETUSERID (store.default.state, localStorage.ludi_userId)
+
 	if (localStorage.ludi_locale  != undefined && localStorage.ludi_locale  != "undefined") store.default._mutations.SETLOCALE (store.default.state, localStorage.ludi_locale)
+
 }
 
 //add your routes and their components
@@ -100,7 +105,12 @@ router.map({
 				}
 			}
 		}
-	}
+	},
+
+  '/admin': {
+      component: Admin
+  }
+
 })
 
 
@@ -122,9 +132,6 @@ router.beforeEach(function (transition) {
       }
 
    }
-
-
-
 
 	//if ((transition.to.path == '/kune' ) && !transition.to.auth) {
 	//	transition.redirect('/kune/login/annonymous')

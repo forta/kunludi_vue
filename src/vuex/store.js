@@ -1,18 +1,15 @@
 import Vue from 'vue'
-
 import VueResource from 'vue-resource'
-
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
-
 Vue.use(VueResource)
-// ?: Vue.http.options.emulateJSON = true
 
 //game engine
 const runnerProxie = require ('../components/RunnerProxie.js');
 
-const Http=Vue.http // Http instead of this.$http.get(url).then((response) => {
+// vue dependence (VueResource)
+runnerProxie.initHttp (Vue.http)
 
 function arrayObjectIndexOf(myArray, property, searchTerm) {
     for(var i = 0, len = myArray.length; i < len; i++) {
@@ -40,18 +37,10 @@ function reactionListContains_Type (reactionList, type) {
 
 }
 
-function msgResolution (longMsgId) { // to-do: it's repeated code which is in the language module
+function msgResolution (longMsgId) {
 
-	var expanded = ""
+  return runnerProxie.msgResolution (longMsgId)
 
-	if (state.gameMessages  != undefined) {
-		if (state.gameMessages [longMsgId] != undefined) expanded = state.gameMessages [longMsgId].message
-	}
-	if ((expanded == "") && (state.libMessages  != undefined)) {
-		if (state.libMessages [longMsgId] != undefined) expanded = state.libMessages [longMsgId].message
-	}
-
-	return expanded
 }
 
 function refreshDataFromProxie(runnerProxie) {
@@ -66,6 +55,7 @@ function refreshDataFromProxie(runnerProxie) {
         if (state.userId != "") {
           state.userId = ""
           state.userSession = 'anonymous'
+          console.log ("Connection lost with server")
           alert ("Connection lost with server")
         }
         return
@@ -74,97 +64,37 @@ function refreshDataFromProxie(runnerProxie) {
       //playerList
       state.playerList = runnerProxie.getPlayerList ()
 
-      //  game list or current game
-      if (state.gameId == "") state.games = runnerProxie.getGames ()
-      else {
-
-        if (state.gameTurn < runnerProxie.getGameTurn ()) {
-          // here!!!
-          let history_backup = state.history.slice()
-          state.history = runnerProxie.getHistory().slice()
-          if (history_backup.length > state.history.length) {
-            //so much tricky that even me don't understand it
-            state.history =  history_backup.slice()
-          }
-
-          state.choices = runnerProxie.getChoices ()
-          state.gameTurn = runnerProxie.getGameTurn ()
-        }
-
-        // state.refreshEnvironment()
-      }
-
-
-      // chatmessages
-      if ((state.chatMessagesInternal.length > 0) && (state.chatMessagesState != state.chatMessagesInternal[0].seq)) {
-        state.chatMessagesState = state.chatMessages[0].seq
-        state.chatMessages = state.chatMessagesInternal.slice()
-        console.log ("State of chatMessages: " +  state.chatMessages[0].seq)
-      }
+      state.refreshFromProxie()
 
     }
 
   }, 1000);
 }
 
-function localData_loadGames () {
-
-	let gamesData = require ('../../data/games.json');
-
-	state.games = gamesData.games
-
-	// load all about files from all games
-	for (let i=0; i<state.games.length;i++) {
-		try {
-			state.games[i].about = require ('../../data/games/' + state.games[i].name + '/about.json');
-		}
-		catch(err) {
-			state.games[i].about = {
-				"ludi_id": "1",
-				"name": state.games[i].name,
-				"translation": [
-					{
-						"language": state.locale,
-						"title": "[" + state.games[i].name +"]",
-						"desc": "??",
-						"introduction": "??",
-						"author": {
-							"name": "??",
-							"ludi_account": "??",
-							"email": "??"
-						}
-					}
-				]
-			}
-
-		}
-
-	}
-}
-
-
 function processChoice (state, choice) {
 
-	if (state.choice.choiceId == 'quit') return
+  // to-do here
+  if (state.choice != undefined) {
+    if (state.choice.choiceId == 'quit') return
+
+  }
 
 	state.choice = choice
 	state.menu = []
 
 	var optionMsg
 	if (choice.isLeafe) {
-		console.log ("actionDump: {userSession:'" + state.userSession + "', action: {" +  JSON.stringify(choice.action) + "}" )
+		console.log ("store.js. action: {userSession:'" + state.userSession + "', action: {" +  JSON.stringify(choice.action) + "}" )
 
-		state.pendingChoice = choice
 		optionMsg = choice.action.msg
+    state.lastAction = choice
 	}
-
-  if (choice.isLeafe) state.lastAction = choice
 
 	// processing choices or game actions (leave choices)
 	runnerProxie.processChoice (choice, optionMsg)
 
 	if (runnerProxie.getConnectionState() == 0)  {
-      state.refreshEnvironment ()
+      state.refreshFromProxie ()
   }
 
 }
@@ -221,57 +151,22 @@ const state = {
 		}
 		return "*" + kMsg + "*"
 	},
-
   getEchoAction: function (choice, isEcho) {
-
-    if (choice.choiceId == 'action0') {
-
-     let player = ""
-     if (isEcho && runnerProxie.getConnectionState() == 1 && (choice.userId != "") && (choice.userId != undefined)) {
-         player = choice.userId
-     }
-
-      return player + state.translateGameElement("actions", choice.action.actionId)
-
-    }	else if ((choice.choiceId == 'action') || (choice.choiceId == 'action2')) {
-
-      // to-do: each action must have an echo statement in each language!
-
-      if (isEcho) { // echo message
-        if (choice.choiceId == 'action') {
-          let msg = state.language.getMessageFromLongMsgId  (state.language.getLongMsgId ("messages", "Echo_o1_a1", "txt"))
-          return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1Id})
-        } else {
-          let msg = state.language.getMessageFromLongMsgId  (state.language.getLongMsgId ("messages", "Echo_o1_a1_o2", "txt"))
-          return state.language.expandParams (msg, {a1: choice.action.actionId, o1: choice.action.item1Id, o2: choice.action.item2Id})
-        }
-
-      } else { // button
-
-        // to-do?: modified as in the Echo?
-        if (choice.choiceId == 'action')
-          return state.translateGameElement("actions", choice.action.actionId)
-        else
-          return state.translateGameElement("actions", choice.action.actionId) + " -> " + state.translateGameElement("items", choice.action.item2Id, "txt")
-      }
-
-    }  else if (choice.choiceId == 'dir1') {
-      // show the target only ii it is known
-      // console.log	("choice.action??: " + JSON.stringify(choice.action) )
-
-      var txt = state.translateGameElement("directions", choice.action.d1Id, "txt")
-      if (choice.action.isKnown) txt += " -> " + state.translateGameElement("items", choice.action.targetId, "txt")
-      return txt
-
-    }
-
-    return ""
+    return runnerProxie.getEchoAction(choice, isEcho)
   },
   getEchoChoice: function (choice, isEcho) {
+
+    if (isEcho) {
+      console.log ("Echo: " +  JSON.stringify (choice))
+
+    }
 
 		if ((choice.noEcho != undefined) && (choice.noEcho)) {
 			return ""
 		}
+
+    // here!!
+    let outText = ""
 
 		// console.log	("getEcho.choice: " + JSON.stringify(choice) )
 
@@ -281,12 +176,29 @@ const state = {
 		else if (choice.choiceId == 'directActions') return state.kTranslator("mainChoices_" + choice.choiceId) + "(" + choice.count + ")"
 		else if (choice.choiceId == 'directionGroup') return state.kTranslator("mainChoices_" + choice.choiceId) + "(" + choice.count + ")"
     else if (choice.choiceId == 'obj1') {
-      return state.language.expandParams ("%o1", {o1: choice.item1Id})
-      // return state.translateGameElement("items", choice.item1, "txt") // to-do: will we rewrite state.translateGameElement using state.language.expandParams ??
+      outText = runnerProxie.translateGameElement ("items", choice.item1Id, "txt")
+
+      if (outText == "") { // the language modules weren't loaded into the runnerProxie.language
+        runnerProxie.setLocale (state.locale)
+
+        // second try
+        outText = runnerProxie.translateGameElement ("items", choice.item1Id, "txt")
+        if (outText == "") outText = "[" + choice.item1Id + "]"
+      }
+
+      return outText
     }
 
 		// game elements
-    return state.getEchoAction (choice, isEcho)
+    outText = runnerProxie.getEchoAction (choice, isEcho)
+    if (outText == "") { // the language modules weren't loaded into the runnerProxie.language
+      runnerProxie.setLocale (state.locale)
+
+      // second try
+      outText = runnerProxie.getEchoAction (choice, isEcho)
+      if (outText == "") outText = "[" + JSON.stringify (choice) + "]"
+    }
+    return outText
 
 	},
 
@@ -301,142 +213,63 @@ const state = {
 			return {type:'text', txt:state.kTranslator (reaction.txt)}
 		}
 
-		state.menu = []
-
-		var expanded = ""
-
-		//console.log	("gTranslator.reaction: " + JSON.stringify(reaction) )
 
 		if (reaction.type == "rt_asis") {
 			return {type:'text', txt:reaction.txt}
 		}
 
-		// if not as is
-		let longMsg = {}
-
-		if (
-			(reaction.type == "rt_msg") || (reaction.type == "rt_graph") ||
-			(reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues") ||
-			(reaction.type == "rt_play_audio") ||
-			(reaction.type == "rt_dev_msg") ||
-			(reaction.type == "rt_end_game") ||
-			(reaction.type == "rt_press_key")
-		) {
-			longMsg = {type:'messages', id:reaction.txt, attribute:'txt'}
-		} else if (reaction.type == "rt_desc") {
-			longMsg.type = "items"
-			longMsg.id = reaction.o1Id
-			console.log("rt_desc.o1Id: o1 " + reaction.o1 + " -> o1Id: " + reaction.o1Id + "!!!!!!!!!!!!")
-			longMsg.attribute = "desc"
-		} else if (reaction.type == "rt_item") {
-			longMsg.type = "items"
-			longMsg.id = reaction.o1Id
-			console.log("rt_item.o1Id: o1 " + reaction.o1 + " -> o1Id: " + reaction.o1Id + "!!!!!!!!!!!!")
-			longMsg.attribute = "txt"
-		} else if (reaction.type == "rt_show_menu") {
-			state.menu = reaction.menu
-			state.menuPiece = reaction.menuPiece
-			return
-		} else {
-			return {type:'text', txt: "gTranslator:[" + JSON.stringify(reaction) + "]"}
-		}
-
-		// if static:
-		var longMsgId = longMsg.type + "." + longMsg.id + "." + longMsg.attribute
-
-		expanded = msgResolution (longMsgId)
-
-		// if dev msg not exists, show json line to add in the console
-		if (reaction.type == "rt_dev_msg") {
-			if (expanded == "") {
-				/*
-				var line = "DEV MSG:\n," ;
-				line += "\t\"" + "messages."+ reaction.txt + ".txt\": {\n" ;
-				line += "\t\t\"" + "message\": \"" + reaction.detail + "\"\n" ;
-				line += "\t}";
-				console.log(line);
-				*/
-
-				// add in memory
-				state.gameMessages ["messages." + reaction.txt + ".txt"] = {message:reaction.detail}
-			}
-			return
-		}
-
-		if (expanded == "") {
-			if (reaction.txt == undefined)
-				expanded = "[" + longMsgId + "]"
-			else
-				expanded = "[" + reaction.txt + "]"
-		}
-
-		if (expanded == "[]") expanded = ""
-
-		if (reaction.type == "rt_graph") {
-
-		// to-do: parameters: by now, only one parameter to expand the text
-			if (reaction.param != undefined)
-				expanded = state.language.expandParams (expanded,  {o1: reaction.param[0]})
-
-			return {type:'img', src:reaction.url, isLocal:reaction.isLocal, isLink:reaction.isLink, txt: expanded }
-
-		} else if ((reaction.type == "rt_quote_begin") || (reaction.type == "rt_quote_continues")) {
-
-			// dirty trick (to-do)
-			expanded = state.language.expandParams (expanded,  {o1: reaction.param[0]})
-
-			var itemExpanded = msgResolution ("items." + reaction.item + ".txt")
-			if (itemExpanded == "") itemExpanded = reaction.item // in case of not defined
-
-			return {type:'text', txt: ((reaction.type == "rt_quote_begin")? "<br/><b>" + itemExpanded + "</b>: «": "" ) + expanded + ((reaction.last) ? "»" : "") }
-		} else if (reaction.type == "rt_play_audio") {
-			// to-do
-			return {type:'text', txt: expanded + " (play: " + reaction.fileName + " autoStart: " + reaction.autoStart + ")"}
-
-		} else if (reaction.type == "rt_end_game") {
-			if (expanded == "") expanded = "End of game"
-			state.choice = {choiceId:'quit', action:{actionId:''}, isLeafe:true}
-		} else if (reaction.type == "rt_press_key")  {
-
-			if (!reaction.alreadyPressed) {
-        runnerProxie.setPendingPressKey (true)
-        runnerProxie.setPressKeyMessage (expanded)
-
-				state.pendingPressKey = true
-				state.pressKeyMessage = expanded
-			}
-			expanded = "[...]<br/>"
-		}
-
-		expanded = state.language.expandParams (expanded, reaction.param)
-
-		return {type:'text', txt: expanded  }
+    return runnerProxie.gTranslator (reaction)
 	},
 
-	translateGameElement: function (type, index, attribute) {
-
-		return state.language.getMessageFromLongMsgId (state.language.getLongMsgId (type, index, attribute))
-
+	translateGameElement: function (type, id, attribute) {
+    return runnerProxie.translateGameElement  (type, id, attribute)
 	},
 
-  refreshEnvironment: function () {
-    state.choice = runnerProxie.getCurrentChoice()
-    state.reactionList = runnerProxie.getReactionList ()
-    runnerProxie.updateChoices()
-    state.choices = runnerProxie.getChoices ()
-    state.gameTurn = runnerProxie.getGameTurn ()
-    state.gameState = runnerProxie.getGameState()
-    state.history = runnerProxie.getHistory()
-    state.pendingPressKey = runnerProxie.getPendingPressKey ()
-    state.pressKeyMessage =  msgResolution ("messages." + runnerProxie.getPressKeyMessage () + ".desc")
-    // to-do: internal game messages are not expanded
-    if (state.pressKeyMessage  == "") state.pressKeyMessage  = runnerProxie.getPressKeyMessage ()
-    state.lastAction =  runnerProxie.getLastAction ()
+  refreshFromProxie: function () {
+
+    if (state.gameId == "") state.games = runnerProxie.getGames ()
+    else { // if playing a game
+      state.choice = runnerProxie.getCurrentChoice()
+      state.reactionList = runnerProxie.getReactionList ()
+      runnerProxie.updateChoices()
+      state.pendingChoice = runnerProxie.getPendingChoice()
+      state.choices = runnerProxie.getChoices ()
+      state.gameTurn = runnerProxie.getGameTurn ()
+      state.gameState = runnerProxie.getGameState()
+      state.history = runnerProxie.getHistory()
+      state.pendingPressKey = runnerProxie.getPendingPressKey ()
+
+      if (state.pendingPressKey) {         // pressKey message
+        let pressKeyMessage_short = runnerProxie.getPressKeyMessage ()
+        if ( pressKeyMessage_short == undefined || pressKeyMessage_short == "") {
+          // default message
+          pressKeyMessage_short  = "press_key"
+        }
+
+        state.pressKeyMessage =  msgResolution ("messages." + pressKeyMessage_short + ".txt")
+        // if message not resolved, show it as is.
+        if (state.pressKeyMessage  == "") {
+          state.pressKeyMessage  = "[" + pressKeyMessage_short + "]"
+        }
+      } else {
+        state.pressKeyMessage  = ""
+      }
+
+      state.lastAction =  runnerProxie.getLastAction ()
+  		state.menu = runnerProxie.getMenu ()
+  		state.menuPiece = runnerProxie.getMenuPiece ()
+    }
+
+    // chatmessages
+    if ((state.chatMessagesInternal.length > 0) && (state.chatMessagesState != state.chatMessagesInternal[0].seq)) {
+      state.chatMessagesState = state.chatMessages[0].seq
+      state.chatMessages = state.chatMessagesInternal.slice()
+      console.log ("State of chatMessages: " +  state.chatMessages[0].seq)
+    }
   }
-
 }
 
-function localData_loadData (gameId) {
+function localData_loadGame (gameId) {
 
 	var libVersion = 'v0_01'
 
@@ -451,16 +284,13 @@ function localData_loadData (gameId) {
 	var gameWorld0 =  require ('../../data/games/' + gameId + '/world.json')
 
 	// load explicit data to the local engine
-	runnerProxie.loadLocalData (gameId, primitives, libReactions, gameReactions, libWorld, gameWorld0 )
+	runnerProxie.local_loadGame (gameId, primitives, libReactions, gameReactions, libWorld, gameWorld0 )
 
 	if (runnerProxie.getConnectionState() == 0) return true
 
 	return false
 
-
 }
-
-
 
 function cleanHistory () {
 
@@ -485,7 +315,7 @@ function afterUserLogged(userId) {
   state.playerList = runnerProxie.getPlayerList ()
   if (storageON()) localStorage.ludi_userId = userId
 
-  runnerProxie.loadGames (Http)
+  runnerProxie.backEnd_loadGames ()
 
   state.chatMessages = [
       {seq:1, from: 'demo-user', msg:'Mensaje de demo.', new:true},
@@ -498,6 +328,7 @@ function afterUserLogged(userId) {
 
 }
 
+
 function afterGameLoaded(slotId) {
 
   if (runnerProxie.getConnectionState() < 0) {
@@ -506,8 +337,9 @@ function afterGameLoaded(slotId) {
     return
   }
 
-	state.gameTurn = runnerProxie.getGameTurn ()
-	state.gameState = runnerProxie.getGameState ()
+  runnerProxie.setLocale (state.locale) // update language data in proxie
+
+  state.refreshFromProxie()
 
 	if (state.gameState.PC < 0) {
 		// error
@@ -516,24 +348,16 @@ function afterGameLoaded(slotId) {
 		return
 	}
 
-	runnerProxie.updateChoices()
 
-	state.choices = runnerProxie.getChoices ()
-	state.reactionList = runnerProxie.getReactionList ()
-	state.menu = runnerProxie.getMenu () //?.slice()
-	state.menuPiece = runnerProxie.getMenuPiece () //?.slice()
-
+  /*
   //only when local playing
   if (runnerProxie.getConnectionState() == 0) {
 	  runnerProxie.setHistory(state.history )
   }
+  */
 
 	runnerProxie.saveGameState (slotId)
 	state.gameSlots = runnerProxie.getGameSlots ()
-
-	if (slotId == "default") {
-		processChoice (state, { choiceId:'action0', action: {actionId:'look'}, isLeafe:true, noEcho:true} )
-	}
 
 }
 
@@ -550,6 +374,8 @@ const mutations = {
     state.userId= ''
 	  state.userSession = 'anonymous'
 
+    // load local list of games again
+    mutations.LOADGAMES (state)
 
 	  if (storageON()) localStorage.removeItem("ludi_userId")
   },
@@ -559,8 +385,9 @@ const mutations = {
         alert ("[You will loose your current game state.]")
         mutations.RESETGAMEID (state)
     }
+
 	  // user session
-		runnerProxie.userLogon (userId, Http)
+		runnerProxie.userLogon (userId)
 
     // wait for several seconds till the game were loaded
 		setTimeout(function () {
@@ -588,12 +415,13 @@ const mutations = {
 	for (l=0; l < t.length; l++) {
 		if (t[l].language == state.locale) break;
 	}
+
 	if 	(newlocale != state.locale) {
 		// load new locale
 		mutations.SETLOCALE (state, newlocale)
 	}
 
-    state.gameId = gameId
+  state.gameId = gameId
 
 	// languages
 
@@ -609,41 +437,25 @@ const mutations = {
 	var gameIndex = arrayObjectIndexOf (state.games, "name", gameId)
 	state.gameAbout = state.games[gameIndex].about
 
-	// language code (always local)
-	state.language = require ('../components/LudiLanguage.js');
-	state.langHandler = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/handler.js');
-
 	// cleaning previous game data
 	cleanHistory()
 
-	// messages (always local)
-	state.libMessages = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
-	state.gameMessages = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/messages.json')
-	state.gameExtraMessages = require ('../../data/games/' + gameId + '/localization/' + state.locale + '/extraMessages.json')
-	state.language.dependsOn (state.libMessages, state.gameMessages, state.gameExtraMessages)
-	state.language.setLocale (state.locale)
-
-	// here!!
-	// to-do: timeout message
-
 	if (state.userId == '') { // local engine
-		localData_loadData (gameId)
+		localData_loadGame (gameId)
 		afterGameLoaded(slotId)
 	} else {
 
+		state.choice = {choiceId:'top', isLeafe:false, parent:''}
+
 		// remote engine using REST calls
-		runnerProxie.connectToGame (gameId, Http)
+		runnerProxie.backEnd_LoadGame (gameId)
+
+    //runnerProxie.setLocale (state.locale) // update language data in proxie
 
 		// wait for several seconds till the game were loaded
 		setTimeout(function () {
 			if (runnerProxie.getConnectionState() != -1) {
 				if (runnerProxie.getConnectionState() == 1) {
-					// game loaded
-					state.reactionList = runnerProxie.getReactionList ()
-					state.choices = runnerProxie.getChoices ()
-					state.gameTurn = runnerProxie.getGameTurn ()
-					state.gameState = runnerProxie.getGameState ()
-
 					afterGameLoaded(slotId)
 				}
 			}
@@ -654,7 +466,7 @@ const mutations = {
   },
 
   SET_PENDING_CHOICE (state, choice) {
-	   state.menu = [] // reset
+     state.menu = []
 	   processChoice (state, choice)
   },
   SEND_CHAT_MESSAGE (state, chatMessage) {
@@ -665,7 +477,7 @@ const mutations = {
 	  runnerProxie.keyPressed()
 
     if (runnerProxie.getConnectionState() == 0)  {
-        state.refreshEnvironment ()
+        state.refreshFromProxie ()
     }
 
   },
@@ -686,15 +498,20 @@ const mutations = {
 
   },
 
-  LOADGAMES (state, par) { // par: filter
+  LOADGAMES (state, par) { // par: filter (not used yet)
 
-	// server calls if session active
-	if (state.userId != '') {
-    runnerProxie.loadGames (Http)
-	} else {
-		localData_loadGames ()
-	}
+    // if (runnerProxie.getConnectionState() < 0) return
+
+  	if (runnerProxie.getConnectionState() <= 0) {
+  		runnerProxie.localData_loadGames ()
+  	} else {
+  		runnerProxie.backEnd_loadGames ()
+  	}
+
+    state.games = runnerProxie.getGames ()
+
   },
+
   SAVE_GAME_STATE (state, slotDescription) {
 	runnerProxie.saveGameState (slotDescription)
 	// refresh slot list
@@ -727,22 +544,29 @@ const mutations = {
 	// refresh slot list
 	state.gameSlots = runnerProxie.getGameSlots ()
 
+
   },
   LOAD_GAME_ABOUT (state, par) {
 
-	for (var i=0;i<state.games.length;i++) {
-		if (state.games[i].name == par) {state.gameAbout = state.games[i].about; break; }
-	}
+  	for (var i=0;i<state.games.length;i++) {
+  		if (state.games[i].name == par) {state.gameAbout = state.games[i].about; break; }
+  	}
 
   },
   SETLOCALE (state, locale) {
 
+	// prevention
+	if ((locale == undefined) || (locale == "")) state.locale = "en"
+	else state.locale = locale
+
+	if (storageON()) localStorage.ludi_locale = state.locale
+
 	if (state.gameId == '') {
 		state.languages.all = ['en', 'eo', 'es', 'fr']
-		state.languages.pref = [locale]
+		state.languages.pref = [state.locale]
 		state.languages.other = []
 		for (let i=0;i<state.languages.all.length;i++) {
-			if (state.languages.all[i] != locale) {
+			if (state.languages.all[i] != state.locale) {
 				state.languages.other.push (state.languages.all[i])
 			}
 		}
@@ -755,35 +579,12 @@ const mutations = {
 
 	}
 
-	// prevention
-	if (state.locale == undefined || state.locale == "") state.locale == "en"
-
-    state.locale = locale
-	if (storageON()) localStorage.ludi_locale = locale
-
-	// load kernel messages
+    // load kernel messages
 	state.i18n [state.locale] = require ('../../data/kernel/kernel_' + state.locale + '.json');
 
-	let libVersion = 'v0_01'
-	state.libMessages = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/messages.json');
+	runnerProxie.setLocale (state.locale) // update language data in proxie
 
-	state.gameMessages = {}
-	state.gameExtraMessages = {}
-	if (state.gameId != '') {
-		state.gameMessages = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/messages.json');
-		state.gameExtraMessages  = require ('../../data/games/' + state.gameId + '/localization/' + state.locale + '/extraMessages.json')
-
-		// to refresh internal value of locale in language module
-		state.language.setLocale (state.locale)
-
-		// update links
-		state.language.dependsOn (state.libMessages, state.gameMessages, state.gameExtraMessages )
-
-	}
-
-
-
-  }
+ }
 
 }
 

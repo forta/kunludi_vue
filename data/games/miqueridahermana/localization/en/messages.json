@@ -525,7 +525,7 @@
     "message": "You can only think about how things were before the death of Anna, your beloved twin sister, the girl of your eyes. Especially remember how happy you were together that last summer. Pasabais almost more time in the creek behind the house within it. Your mother always had to go looking for you when getting dark. That same infamous cove where the tragedy occurred. <br/>"
   },
   "messages.primera_vez_salón_comedor.txt": {
-    "message": "<B> You go. </ B> <br/> The dining room is almost the same as fifteen years ago, except for accumulated dust. Fold the sheets and shake out. Now, the room looks almost as before. Among various leaflets and under the door, you striking one of food at home, TelePapeo, you will not come wrong these days. <br/>"
+    "message": "<B> You go. </B> <br/> The dining room is almost the same as fifteen years ago, except for accumulated dust. Fold the sheets and shake out. Now, the room looks almost as before. Among various leaflets and under the door, you striking one of food at home, TelePapeo, you will not come wrong these days. <br/>"
   },
   "messages.promontorio_sin_luz.txt": {
     "message": "A dark, do not dare to move even one step for fear despeñarte, as happened to your mother. <br/>"
@@ -991,5 +991,18 @@
   },
   "messages.Charlie_te_invita_a_fiesta.txt": {
     "message": "Among a lot of background noise of music and laughter, they hit only understand you need more whiskey, that you come to the big party and who love you dearly. <br/>"
+  },
+  "messages.sueño1.txt": {
+    "message": "You can not breathe, you are locked in the cave on the beach and you can not escape. Suddenly, a blast of sand from the beach enters the cave and covers you to the waist and you can not move. In your hands you have the necklace of sea shells that you have made to give them to your dear brother ... <br/>"
+  },
+  "messages.pulsa_avanzar.txt": {
+    "message": "Continuе"
+  },
+  "messages.pulsa_para_entrar.txt": {
+    "message": "Press any key to go into"
+  },
+  "messages.después_sueño1.txt": {
+    "message": "But no, it can not be, these are not your memories, they can only be the last memories of her, the day when ... <br/> Awake, wet in sweat. <br/> <br/> You get up, You do not believe that you will be able to reconcile the dream. In fact, you fear returning to sleep and reliving that horrible experience. <br/> <br/>"
   }
+
 }

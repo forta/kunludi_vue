@@ -3,9 +3,8 @@ var libReactions, gameReactions, reactionList
 
 exports.userState
 
-
 ////export
-var choice = {choiceId:'top', isLeafe:false, parent:''} // current under construction choice
+let choice = {choiceId:'top', isLeafe:false, parent:''}
 
 /* Expose stuff */
 
@@ -18,9 +17,12 @@ module.exports = exports = {
 	getTargetAndLocked:getTargetAndLocked,
 	updateChoices:updateChoices,
 	getCurrentChoice:getCurrentChoice,
-	getGameTurn:getGameTurn
+	getGameTurn:getGameTurn,
+	keyPressed:keyPressed,
 
-
+  processingRemainingReactions:processingRemainingReactions,
+	afterProcessChoice:afterProcessChoice,
+	expandDynReactions:expandDynReactions
 }
 
 exports.choices = []
@@ -37,6 +39,13 @@ function dependsOn (libPrimitives, libReactions, gameReactions, reactionList) {
 
 	this.gameReactions.dependsOn(libPrimitives, this.libReactions, this.reactionList );
 
+  this.history = []
+	this.lastAction = undefined
+	this.reactionListCounter = 0
+	this.pendingPressKey = false
+	this.pressKeyMessage = ""
+	this.processedReactionList = []
+
 }
 
 function createWorld (libWorld, gameWorld) {
@@ -49,6 +58,9 @@ function createWorld (libWorld, gameWorld) {
 		directions: [],
 		actions: []
 	}
+
+	this.devMessages = []
+
 
 	// merging libWorld and gameWorld into world and generating indexes (ref: ludi_runner.compileIndexes)
 
@@ -137,7 +149,7 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
 }
 
 function getCurrentChoice () {
-	return choice
+	return this.choice
 }
 
 function getGameTurn () {
@@ -244,11 +256,14 @@ function reactionListContains_Type (reactionList, type) {
 
 }
 
-function processChoice (newChoice) {
+function processChoice (newChoice, optionMsg) {
+
+  if (this.choice == undefined) {
+		this.choice = {choiceId:'top', isLeafe:false, parent:''}
+	}
 
 	// empty this.reactionList
 	this.reactionList.splice(0,this.reactionList.length)
-
 
 	if (choice.choiceId == 'quit') return
 
@@ -265,8 +280,6 @@ function processChoice (newChoice) {
 
 	if (choice.isLeafe) { // execution
 
-		var pendingChoice = (choice.action.option != undefined)
-
 		// saving its previous location
 		var locBefore
 		if ( ( (choice.choiceId == 'action0') || (choice.choiceId == 'action') || (choice.choiceId == 'action2')) &&
@@ -276,8 +289,23 @@ function processChoice (newChoice) {
 
 		var indexPCBefore = exports.userState.profile.indexPC
 
+		// reseting variables
+		this.lastAction = choice
+		this.reactionListCounter = 0
+		this.pendingPressKey = false
+		this.pressKeyMessage = ""
+
+		var flagPendingChoice = (choice.action.option != undefined)
+		this.menu = []
+
+		this.processedReactionList.splice(0, this.processedReactionList.length) // empty
+
 		// game action execution
-		exports.processAction (choice.action)
+		exports.processAction (choice.action, optionMsg)
+
+		// to-do?: introduction message
+	  // this.reactionList.unshift ({ type: 'rt_press_key', txt: 'press_key_to_start' })
+		// this.reactionList.unshift ({ type: 'rt_msg', txt: 'Introduction' })
 
 		// check whether is at least one refresh action in the reaction list
 		var pendingRefresh = false
@@ -298,19 +326,7 @@ function processChoice (newChoice) {
 				(locBefore == exports.world.items[choice.action.item1].loc) && // item is still accesible
 				(indexPCBefore == exports.userState.profile.indexPC) ) // same pc
 		{
-			var reactionListBackup = this.reactionList.slice ()
-
-			// to-do: here!! show actions on obj1
-			// solution: not use recursive call to processchoice
-
-
-			// to-do: too much tricky!
-			// not a game action, just menu choice
-			// exports.processChoice (previousChoice)
-
-			// restore reactionList
-			this.reactionList = reactionListBackup.slice ()
-
+			choice = previousChoice
 		} else {
 			// top level of game choices
 			choice = {choiceId:'top', isLeafe:false, parent:''};
@@ -329,10 +345,10 @@ function processChoice (newChoice) {
 		}
 
 		// world turn
-		if (!pendingChoice && // if pendingChoice do nothing
+		if (!flagPendingChoice && // if flagPendingChoice do nothing
  			(!gameIsOver) &&
 			(menuDepth == 0)) {
-			this.gameTurn++
+			//? this.gameTurn++
 
 			for (var i=0;i<exports.world.items.length;i++) {
 
@@ -355,7 +371,7 @@ function processChoice (newChoice) {
 
 }
 
-function processAction (action) {
+function processAction (action, optionMsg) {
 
 	var status
 
@@ -396,8 +412,179 @@ function processAction (action) {
 		exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1].whereWas = exports.world.items[action.item2].loc
 	}
 
+	this.afterProcessChoice (action, optionMsg)
+
 }
 
+function afterProcessChoice (choice, optionMsg) {
+
+	// dynamic messages
+	let expandedReactionList = this.expandDynReactions(this.reactionList)
+
+	// copy expandedReactionList into state.reactionList
+	this.reactionList.splice(0,this.reactionList.length)
+	for (var i=0;i<expandedReactionList.length;i++) {
+	  this.reactionList.push (expandedReactionList[i])
+	}
+
+	// show chosen option
+	// to-do: send parameters to kernel messages
+	if (optionMsg != undefined) {
+
+		// option echo
+		this.reactionList.unshift ({type:"rt_asis", txt: "<br/><br/>"} )
+		this.reactionList.unshift ({type:"rt_msg", txt:  optionMsg } )
+		this.reactionList.unshift ({type:"rt_asis", txt: ":" } )
+		this.reactionList.unshift ({type:"rt_kernel_msg", txt: "Chosen option"} )
+
+	}
+
+  this.processingRemainingReactions ()
+
+}
+
+function expandDynReactions (reactionList) {
+
+	function arrayObjectIndexOf(myArray, property, searchTerm) {
+		for(var i = 0, len = myArray.length; i < len; i++) {
+			if (myArray[i][property] === searchTerm) return i;
+		}
+		return -1;
+		}
+
+
+	// expand each dyn reaction into static ones
+
+	let sourceReactionList = reactionList.slice()
+	//console.log("----------------------------------original reactionList:\n" + JSON.stringify (sourceReactionList))
+
+	let expandedReactionList = []
+
+	let currentPointer
+	for (currentPointer = 0;
+		 currentPointer < sourceReactionList.length;
+		 currentPointer++) {
+
+		if (sourceReactionList[currentPointer].type == "rt_desc") {
+			// if static message does not exist, look for dynamic method
+			var attribute = "desc"
+
+			// getting a new this.reactionList
+
+			// transform rt_dyn_desc into rt_desc
+			var longMsgId = "items." + sourceReactionList[currentPointer].o1Id + "." + attribute
+
+			// to-do: msgResolution depends on language and mustn't be here
+			// if (msgResolution (longMsgId) != "") {
+				// confirmed that it was a static desc
+				expandedReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[currentPointer])) )
+				continue
+			//}
+
+			// insertion of expanded reactions
+			let itemReaction = arrayObjectIndexOf (this.gameReactions.items, "id", sourceReactionList[sReaction].o1Id)
+
+			// for debug:
+			//if (false) {
+			if (itemReaction>=0) {
+				// item level -> add reactions into this.reactionList
+				this.gamReactions.items[itemReaction][attribute]()
+			} else {
+				// not static nor dynamic desc, the missing longMsgId will be shown
+				sourceReactionList[currentPointer].type = "rt_asis"
+				sourceReactionList[currentPointer].txt = "[" + longMsgId + "]"
+
+				expandedReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[currentPointer])) )
+				continue
+			}
+
+			// catch up reactions of this.reactionlist and insert them in expandedReactionList
+			for (let newReaction in this.reactionList) {
+				//if (this.reactionList[newReaction].type == "rt_desc")
+				// by now: item.desc() cannot call another item.desc()
+				expandedReactionList.push (JSON.parse(JSON.stringify(this.reactionList[newReaction])))
+			}
+			// empty this.reactionList
+			this.reactionList.splice(0,this.reactionList.length)
+		} else if (sourceReactionList[currentPointer].type == "rt_dev_msg") {
+
+			let langIndex =  sourceReactionList[currentPointer].lang
+			// store internal translations
+			if (this.devMessages[langIndex] == undefined) { 	this.devMessages[langIndex] = {}	}
+			let longMsgId = "messages." + sourceReactionList[currentPointer].txt + ".txt"
+
+			if (this.devMessages[langIndex + longMsgId] == undefined) {
+				this.devMessages[langIndex][longMsgId] = sourceReactionList[currentPointer].detail
+			}
+
+		} else {
+			// standard static reaction
+			expandedReactionList.push (JSON.parse(JSON.stringify(sourceReactionList[currentPointer])) )
+		}
+	}
+	return expandedReactionList.slice()
+}
+
+function keyPressed () {
+
+  //alert ("keyPressed! (" + this.reactionListCounter + "): " +  JSON.stringify(this.reactionList[this.reactionListCounter]))
+  this.pendingPressKey = false
+
+  if (this.reactionListCounter >= this.reactionList.length) {
+		  // here!?
+		this.reactionListCounter = 0
+		return
+	}
+
+	if (this.reactionList[this.reactionListCounter].type == "rt_press_key")  {
+		 if (!this.reactionList[this.reactionListCounter].alreadyPressed) {
+		   // marked as pressed
+			 this.reactionList[this.reactionListCounter].alreadyPressed = true
+			 this.processedReactionList.push (this.reactionList[this.reactionListCounter])
+			 this.reactionListCounter ++
+		 }
+  }
+
+	this.processingRemainingReactions ()
+
+}
+
+
+function processingRemainingReactions () {
+
+	for (;this.reactionListCounter<this.reactionList.length; this.reactionListCounter++) {
+		if (this.reactionList[this.reactionListCounter].type == "rt_press_key")  {
+			 if (!this.reactionList[this.reactionListCounter].alreadyPressed) {
+				 this.pendingPressKey = true
+				 this.pressKeyMessage = this.reactionList[this.reactionListCounter].txt
+				 return
+			 }
+		 } else if (this.reactionList[this.reactionListCounter].type == 'rt_show_menu') {
+ 			 this.menu = this.reactionList[this.reactionListCounter].menu
+ 			 this.menuPiece = this.reactionList[this.reactionListCounter].menuPiece
+			 this.pendingChoice = this.lastAction
+			 // actions after a rt_show_menu will be ommited
+		 } else {
+			 this.processedReactionList.push (this.reactionList[this.reactionListCounter])
+		 }
+	}
+
+	// add reaction entry to history
+	this.history.push ({
+		gameTurn: this.gameTurn,
+		action: this.lastAction,
+		reactionList: this.processedReactionList.slice()
+	})
+
+	this.processedReactionList = []
+	this.lastAction = undefined
+
+	this.gameTurn++
+
+	// reactionList end of life
+  this.reactionList.splice(0,this.reactionList.length)
+
+}
 
 function actionIsEnabled (actionId, item1, item2) {
 

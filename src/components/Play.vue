@@ -9,7 +9,11 @@
         <h2>{{kt("History")}}</h2>
         <div v-for="hitem in history">
             <!-- echo -->
-            <p><b><span v-if ="hitem.gameTurn > 0"> {{hitem.gameTurn}} &gt; </span>{{choiceToShow(hitem.action, true)}}</b></p>
+
+
+            <p><b><span v-if ="hitem.gameTurn > 0"> {{hitem.gameTurn}} &gt; </span>{{choiceToShow(hitem.action, true)}}</b>
+            <!--[Debug: {{hitem.gameTurn}} &gt; {{choiceToShow(hitem.action, true)}}]-->
+            </p>
 
             <!-- to-do: problem with nested v-for: so, we'll create a new component -->
             <!-- <reaction :hitem="hitem"></reaction> -->
@@ -117,7 +121,6 @@
    </div>
 
     <!-- menu but not presskey -->
-
     <div class="menu" v-if = "!pendingPressKey && menu.length > 0">
 
       <div class="menuPiece"> {{{ formatPiece(menuPiece) }}} </div>
@@ -143,7 +146,7 @@
         </div>
         <b>{{kt("Online Players")}}: </b>
         <span v-for="p in playerList">
-            <span><b>{{p.userId}}</b> ({{convertDate(p.date)}}) </span>
+            <span><b>{{p.userId}}</b>({{p.locale}}) ({{convertDate(p.date)}}) </span>
         </span><br/>
         <span>{{kt("ChatGame")}}:</span>
         <input v-model="chatMessage">
@@ -215,7 +218,10 @@ export default {
           return d.toLocaleString()
       },
       formatPiece: function (piece) {
-        // console.log ('piece: ' + JSON.stringify (piece))
+
+        // console.log ('Play.vue. piece: ' + JSON.stringify (piece))
+
+        if (piece == undefined) return ""
 
           if (piece.type == "img") {
 
@@ -424,6 +430,11 @@ div.play_top {
 	background-color:#FFF;
 }
 
+div.reactionList {
+	background-color: #FFF;
+  text-align: left;
+}
+
 div.play_bottom {
     position: relative;
     buttom: 0;
@@ -436,14 +447,9 @@ div.mainChoices {
 }
 
 div.chatSecton {
-	background-color: #EEE;
+  background-color: #EEE;
   text-align: left;
-  font-size: 0.9vw;
-}
-
-div.reactionList {
-	background-color: #EFE;
-  text-align: left;
+  /*font-size: 0.9vw;*/
 }
 
 div.choices {
