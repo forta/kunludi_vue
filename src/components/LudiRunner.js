@@ -59,8 +59,7 @@ function createWorld (libWorld, gameWorld) {
 		actions: []
 	}
 
-	this.devMessages = []
-
+	this.devMessages = {}
 
 	// merging libWorld and gameWorld into world and generating indexes (ref: ludi_runner.compileIndexes)
 
@@ -401,15 +400,24 @@ function processAction (action, optionMsg) {
 
 	// update memory
 	if (action.item1 >= 0) {
-		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1] == null)
-			exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1] = {}
-		exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1].whereWas = exports.world.items[action.item1].loc
+		var pos = arrayObjectIndexOf(exports.world.items[exports.userState.profile.indexPC].state.itemsMemory, "itemIndex", action.item1)
+
+		if (pos < 0) {
+			exports.world.items[exports.userState.profile.indexPC].state.itemsMemory.push ( {itemIndex:action.item1} )
+			pos = arrayObjectIndexOf(exports.world.items[exports.userState.profile.indexPC].state.itemsMemory, "itemIndex", action.item1)
+		}
+		exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[pos].whereWas = exports.world.items[action.item1].loc
 	}
 
 	if (action.item2 >= 0) {
-		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item2] == null)
-			exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item2] = {}
-		exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[action.item1].whereWas = exports.world.items[action.item2].loc
+		var pos = arrayObjectIndexOf(exports.world.items[exports.userState.profile.indexPC].state.itemsMemory, "itemIndex", action.item2)
+
+		if (pos < 0) {
+			exports.world.items[exports.userState.profile.indexPC].state.itemsMemory.push ( {itemIndex:action.item2} )
+			pos = arrayObjectIndexOf(exports.world.items[exports.userState.profile.indexPC].state.itemsMemory, "itemIndex", action.item2)
+		}
+		exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[pos].whereWas = exports.world.items[action.item2].loc
+
 	}
 
 	this.afterProcessChoice (action, optionMsg)
@@ -508,13 +516,13 @@ function expandDynReactions (reactionList) {
 			this.reactionList.splice(0,this.reactionList.length)
 		} else if (sourceReactionList[currentPointer].type == "rt_dev_msg") {
 
-			let langIndex =  sourceReactionList[currentPointer].lang
+			let lang =  sourceReactionList[currentPointer].lang
 			// store internal translations
-			if (this.devMessages[langIndex] == undefined) { 	this.devMessages[langIndex] = {}	}
+			if (typeof this.devMessages[lang] == "undefined") { 	this.devMessages[lang] = {}	}
 			let longMsgId = "messages." + sourceReactionList[currentPointer].txt + ".txt"
 
-			if (this.devMessages[langIndex + longMsgId] == undefined) {
-				this.devMessages[langIndex][longMsgId] = sourceReactionList[currentPointer].detail
+			if (typeof this.devMessages[lang][longMsgId] == "undefined") {
+				this.devMessages[lang][longMsgId] = sourceReactionList[currentPointer].detail
 			}
 
 		} else {
@@ -643,7 +651,8 @@ function getTargetAndLocked (loc, direction) {
 
 	connection.isKnown = false
 	if (connection.target != -1) {
-		connection.isKnown = (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[connection.target] != null)
+		var pos = arrayObjectIndexOf(exports.world.items[exports.userState.profile.indexPC].state.itemsMemory, "itemIndex", connection.target)
+		connection.isKnown = (pos >=0)
 	}
 
 	return connection;
@@ -682,9 +691,11 @@ function updateChoices(showAll) {
 		var loc = arrayObjectIndexOf (exports.world.items, "id", exports.world.items[exports.userState.profile.indexPC].loc)
 
 		// set current loc as known
-		if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[loc] == null) {
+		var pos = arrayObjectIndexOf(exports.world.items[exports.userState.profile.indexPC].state.itemsMemory, "itemIndex", loc)
+
+		if (pos < 0) {
 		  console.log ("Loc ["+ exports.world.items[exports.userState.profile.indexPC].loc + "] is now known.")
-		  exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[loc] = {}
+			exports.world.items[exports.userState.profile.indexPC].state.itemsMemory.push ({itemIndex:loc})
 		}
 	}
 
@@ -844,7 +855,7 @@ function updateChoices(showAll) {
 		/*
 		if (choice.parent == 'notHere') {
 			// specially for absent items
-			if (exports.world.items[exports.userState.profile.indexPC].state.itemsMemory[choice.item1] != undefined) {
+			if ( "itemsMemory for choice.item1 exists") {
 				exports.choices.push ({choiceId:'action', isLeafe:true, parent:"obj1", action: { item1: choice.item1, actionId: "where" }})
 			}
 		}

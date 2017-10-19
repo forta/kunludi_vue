@@ -6,6 +6,9 @@
 	"History": {   "message": "record"  },
 	"Together": {    "message": "ensemble"  },
 	"Username": {    "message": "Nom d'utilisateur"  },
+	"Password": { "message": "Mot de passe" },
+	"LoginInformation": { "message": "Mot de passe vide signifie que l'utilisateur non enregistré avec des fonctionnalités limitées." },
+	"RequestAccount": { "message": "Envoyez un courrier à ludi.ludon@gmail.com si vous souhaitez enregistrer votre nom d'utilisateur" },
 	"Choose Game": {    "message": "S'il vous plaît sélectionnez un jeu"  },
 	"Confirm game quit": { "message": "S'il vous plaît, confirmez que vouz abandonnez le jeu" },
 	"bottom": { "message": "bas" },
@@ -155,6 +158,8 @@
 	"Number of known items": {    "message": "Nombre d'éléments connus"  },
 	"LoadGame": {    "message": "Jeu de chargement"  },
 	"LoadSavedGame": {    "message": "Charger une partie enregistrée"  },
+	"JoinGame": {	"message": "Rejoint le jeu"	},
+	"ResetGame": {	"message": "Réinitialise le jeu"	},
 	"true": {    "message": "réel"  },
 	"preferedLanguages": {    "message": "langues préférées"  },
 	"myGame": {    "message": "mon jeu"  },
@@ -190,5 +195,9 @@
 	"Author": {        "message": "Auteur"     },
 	"ludi account": {        "message": "compte ludi"     },
 	"email": {        "message": "email"      },
-	"Load game": {        "message": "Charger le jeu"  }
+	"Load game": {        "message": "Charger le jeu"  },
+	"Private game states of the user": {        "message": "États de jeu privés de l'utilisateur"   },
+	"Private game states of the user on the server": {	"message": "États de jeu privés de l'utilisateur sur le serveur"	},
+	"The game is being played in group in these server sessions": {	"message": "Le jeu est joué en groupe dans ces sessions de serveur"	}
+
 }

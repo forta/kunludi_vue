@@ -27,6 +27,7 @@
   <div class="kune">
 	<div v-show="userId != ''">
         <h3>{{kt("Username")}}: {{ userId }}</h3>
+        <p v-if="userId=='admin'"> <a v-link="{ path: '/admin' }"> {{kt("Admin")}} </a> </p>
         <button v-on:click="logout">Logout</button>
         <!--
         <a v-show="userId != 'annonymous'"  v-link="{ path: '/kune/messages' }"> {{kt("Messages")}} | </a>
@@ -41,6 +42,19 @@
     <span v-for="p in playerList">
         <span><b>{{p.userId}}</b>({{convertDate(p.date)}}) | </span>
     </span>
+
+    <br/><br/>
+
+    <!-- send private messages -->
+    <!--
+    <span>{{kt("ChatPrivate")}}. </span>
+    <span>{{kt("Username")}}: </span>
+    <input v-model="chatToUser">
+    <input v-model="chatMessagePrivate">
+    <button v-on:click="sendMessagePrivate()" > {{kt("Send message")}}  </button>
+    -->
+
+    </div>
   </div>
 
 </template>

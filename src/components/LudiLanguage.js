@@ -127,9 +127,9 @@ export function msgResolution (longMsgId) {
 		let indexLang = ["en", "es", "eo", "fr"].indexOf(this.locale)
 		if (indexLang<0) console ("RunnerProxie.js Missing locale: " + this.locale)
 		else {
-			if (this.devMessages [indexLang] == undefined) this.devMessages [indexLang] = []
-			if (this.devMessages [indexLang][longMsgId] != undefined) {
-				expanded = this.devMessages [indexLang][longMsgId]
+			if (typeof this.devMessages [this.locale] == "undefined") this.devMessages [this.locale] = {}
+			if (this.devMessages [this.locale][longMsgId] != undefined) {
+				expanded = this.devMessages [this.locale][longMsgId]
 			}
 		}
 	}

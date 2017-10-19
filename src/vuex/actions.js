@@ -2,15 +2,17 @@ export const setLocale = function (store, par) {  store.dispatch('SETLOCALE', pa
 
 export const resetUserId = ({ dispatch }) => dispatch('RESETUSERID')
 
-export const setUserId = function (store, par) {  store.dispatch('SETUSERID', par) }
+export const setUserId = function (store, userId, password) {  store.dispatch('SETUSERID', userId, password) }
 
 export const setGameId = function (store, par, slotId) {  store.dispatch('SETGAMEID', par, slotId) }
 
 export const resetGameId = ({ dispatch }) => dispatch('RESETGAMEID')
 
+export const resetSlotId = ({ dispatch, gameId, slotId, newLocal }) => dispatch('RESETSLOTID', gameId, slotId, newLocal)
+
 export const processChoice = ({ dispatch, choice }) => dispatch('PROCESS_CHOICE', choice)
 
-export const sendChatMessage = ({ dispatch, chatMessage }) => dispatch('SEND_CHAT_MESSAGE', chatMessage)
+export const sendChatMessage = ({ dispatch, chatMessage, target}) => dispatch('SEND_CHAT_MESSAGE', chatMessage, target)
 
 export const setPendingChoice = function (store, choice) {  store.dispatch('SET_PENDING_CHOICE', choice) }
 

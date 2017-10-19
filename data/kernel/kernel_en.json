@@ -6,11 +6,14 @@
 	"History": { "message": "History"},
 	"Together": { "message": "Together" },
 	"Username": { "message": "User name" },
+	"Password": { "message": "Password" },
+	"LoginInformation": { "message": "Empty password for non-registered users, limited functionality." },
+	"RequestAccount": { "message": "Send mail to ludi.ludon@gmail.com if you want to register your username" },
 	"Choose Game": { "message": "Please, choose game to load" },
 	"Confirm game quit": { "message": "Please, confirm game quit" },
 	"bottom": { "message": "bottom" },
 	"Delete": { "message": "Delete" },
-	"Rename": { "message": "" },
+	"Rename": { "message": "Rename" },
 	"Date": { "message": "Date" },
 	"Id": { "message": "Id" },
 	"SwitchOrientation": {	"message": "Switch orientation"	},
@@ -155,6 +158,8 @@
 	"Number of known items": {	"message": "Number of known items"	},
 	"LoadGame": {	"message": "Load Game"	},
 	"LoadSavedGame": {	"message": "Load saved game"	},
+	"JoinGame": {	"message": "Join the game"	},
+	"ResetGame": {	"message": "Reset the game"	},
 	"true": {	"message": "true"	},
 	"preferedLanguages": {	"message": "Prefered languages"	},
 	"myGame": {	"message": "my game"	},
@@ -179,7 +184,6 @@
 	"Your languages": {	"message": "Your languages"	},
 	"Additional languages": {	"message": "Additional languages"	},
 	"Chosen option": {	"message": "Chosen option"	},
-	"Type your user name and push enter": {	"message": "Please, type your user name and push enter"	},
 	"choose": {	"message": "choose"	},
 	"More": {	"message": "More"	},
 	"Quit": {	"message": "Quit"	},
@@ -190,5 +194,9 @@
 	"Author": {	"message": "Author"	},
 	"ludi account": {	"message": "ludi account"	},
 	"email": {	"message": "email"	},
-	"Load game": {	"message": "Load game"	}
+	"Load game": {	"message": "Load game"	},
+	"Private game states of the user": {        "message": "Private game states of the user"   },
+	"Private game states of the user on the server": {	"message": "Private game states of the user on the server"	},
+	"The game is being played in group in these server sessions": {	"message": "The game is being played in group in these server sessions"	}
+
 }

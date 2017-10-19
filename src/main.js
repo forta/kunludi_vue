@@ -29,6 +29,8 @@ var Lingvo = require('./components/Lingvo.vue')
 
 var Admin = require('./components/Admin.vue')
 
+var Ethereum = require('./components/Ethereum.vue')
+
 // create App instance
 var App = Vue.extend({})
 
@@ -107,16 +109,22 @@ router.map({
 		}
 	},
 
-  '/admin': {
+	'/admin': {
       component: Admin
-  }
+	},
+
+	'/ethereum': {
+      component: Ethereum
+	}
+
 
 })
 
 
 router.beforeEach(function (transition) {
 
-	console.log('transition:' + JSON.stringify (transition))
+	// console.log('transition:' + JSON.stringify (transition))
+  console.log('transition.to.path: ' + transition.to.path)
 
   if (transition.to.path == "/") {
        // from == {}

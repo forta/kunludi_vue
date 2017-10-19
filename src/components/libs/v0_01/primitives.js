@@ -476,29 +476,35 @@ function IT_SetIsLocked (i, dir, value) {
 }
 
 function IT_GetIsItemKnown (i1, i2) {
-
- return (this.world.items[i1].state.itemsMemory[i2] != null);
+	 return arrayObjectIndexOf(this.world.items[i1].state.itemsMemory, "itemIndex", i2) >= 0
 }
 
 function IT_SetIsItemKnown (i1, i2) {
-
- this.world.items[i1].state.itemsMemory[i2] = { whereWas:-1, lastTime:-1 };
+	var pos = arrayObjectIndexOf(this.world.items[i1].state.itemsMemory, "itemIndex", i2)
+	if (pos < 0) {
+		this.world.items[i1].state.itemsMemory.push ( {itemIndex: i2, whereWas:-1, lastTime:-1 } )
+	} else {
+		this.world.items[i1].state.itemsMemory[pos] = {itemIndex: i2, whereWas:-1, lastTime:-1 }
+	}
 }
 
 function IT_GetWhereItemWas (i1, i2) {
- if (this.IT_GetIsItemKnown (i1, i2)) return this.world.items[i1].state.itemsMemory[i2].whereWas;
- return "limbo"; // it could be undefined
+	var pos = arrayObjectIndexOf(this.world.items[i1].state.itemsMemory, "itemIndex", i2)
+	if (pos < 0) return "limbo"; // it could be undefined
+	return  this.world.items[i1].state.itemsMemory[pos].whereWas;
 }
 
 function IT_SetWhereItemWas (i1, i2, value) {
- if (!this.IT_GetIsItemKnown (i1, i2)) this.IT_SetIsItemKnown (i1,i2);
- this.world.items[i1].state.itemsMemory[i2].whereWas = value;
- this.IT_SetLastTime(i1, i2);
+	var pos = arrayObjectIndexOf(this.world.items[i1].state.itemsMemory, "itemIndex", i2)
+	if (pos < 0) this.IT_SetIsItemKnown (i1,i2)
+	pos = arrayObjectIndexOf(this.world.items[i1].state.itemsMemory, "itemIndex", i2)
+  this.world.items[i1].state.itemsMemory[pos].whereWas = value;
+  this.IT_SetLastTime(i1, i2);
 }
 
 function IT_SetLastTime (i1, i2) {
-
- this.world.items[i1].state.itemsMemory[i2].lastTime = this.userState.profile.turnCounter;
+	var pos = arrayObjectIndexOf(this.world.items[i1].state.itemsMemory, "itemIndex", i2)
+  this.world.items[i1].state.itemsMemory[pos].lastTime = this.userState.profile.turnCounter;
 }
 
 function IT_IsAt  (i, l) {
@@ -640,9 +646,9 @@ function W_GetAttIndex (id) {
 /* GD: Game Definition *****************************************************************/
 
 // note: for use during game development
-function GD_CreateMsg (indexLang, idMsg, txtMsg) {
+function GD_CreateMsg (lang, idMsg, txtMsg) {
 
-	this.reactionList.push ({type:this.caMapping("DEV_MSG"), lang:indexLang, txt:idMsg, detail:txtMsg});
+	this.reactionList.push ({type:this.caMapping("DEV_MSG"), lang:lang, txt:idMsg, detail:txtMsg});
 
 }
 

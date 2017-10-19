@@ -73,8 +73,10 @@ body {
 */
 
 body {
-    font-size: 2em;
+    font-size: 1em; /* until commented on 25/7/2017 it was 2em*/
 }
+
+/* commented on 25/7/2017
 
 @media screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 1),
         screen  and (min-device-width: 1200px)  and (max-device-width: 1600px)  and (-webkit-min-device-pixel-ratio: 2)  and (min-resolution: 192dpi) {
@@ -90,6 +92,7 @@ body {
   }
 }
 
+*/
 
 /*
 

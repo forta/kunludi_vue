@@ -1,0 +1,95 @@
+﻿{
+    "items.prota.desc": {
+        "message": "Eres el protagonista de Venganza."
+    },
+    "items.prota.txt": {
+        "message": "prota"
+    },
+	"items.hab_alberto.desc": {
+        "message": "La habitación donde yaciste innumerables veces con tu ahora difunta esposa. De repente te sientes muy culpable por haber mancillado su sanctasanctórum con ese despliegue de posturas obscenas, y qué posturas, y qué obscenas, que has desarrollado con Matilda durante los últimos meses."
+    },
+	"items.hab_alberto.txt": {
+        "message": "tu habitación"
+    },
+    "items.salón_alberto.desc": {
+          "message": "El salón padece la falta de una mano femenina. De ser un lugar placentero donde sentarse y pasar un rato agradable, ha pasado a ser una prolongación de tu habitación, con ropa apilada en sillas y poco acogedora"
+    },
+  	"items.salón_alberto.txt": {
+          "message": "salón de tu casa"
+    },
+    "items.salón_matilda.desc": {
+          "message": "El piso se Matilda está tal y como estaba la última vez que la visitaste. Todo en su sitio, salvo… un diario en la mesita del salón."
+    },
+  	"items.salón_matilda.txt": {
+          "message": "salón de Matilda"
+    },
+    "items.hab_matilda.desc": {
+          "message": "Conoces bien esta habitación. Las pocas veces que la has visitado habéis venido directamente aquí a probar los muelles de la cama."
+    },
+  	"items.hab_matilda.txt": {
+          "message": "habitación de Matilda"
+    },
+    "items.cocina.desc": {
+          "message": "Una cocina muy bien surtida. Como hoy trabaja, Matilde parece haber preparado algo rápido para comer hoy y ha dejado descongelándose un taperware con comida."
+    },
+  	"items.cocina.txt": {
+          "message": "cocina"
+    },
+    "items.foto_boda.desc": {
+          "message": "En la foto enmarcada aparecen en primer plano Clara y tú. Detrás de vosotros se ven algunos invitados sonriendo, excepto Matilda, que parece lanzar una mirada de odio a Clara. Qué extraño, no te habías percatado de esa mirada antes, se supone que ellas eran muy buenas amigas."
+    },
+  	"items.foto_boda.txt": {
+          "message": "foto de boda"
+    },
+    "items.mesa_noche.desc": {
+          "message": "mesa_noche"
+    },
+  	"items.mesa_noche.txt": {
+          "message": "mesa de noche"
+    },
+    "items.cristales.desc": {
+          "message": "cristales desc"
+    },
+  	"items.cristales.txt": {
+          "message": "cristales"
+    },
+    "items.foto_boda_rota.desc": {
+          "message": "foto_boda_rota desc"
+    },
+  	"items.foto_boda_rota.txt": {
+          "message": "foto de boda rota"
+    },
+    "items.foto_quemada.desc": {
+          "message": "Observas que la parte quemada corresponde con la parte donde antes estaba Matilda."
+    },
+  	"items.foto_quemada.txt": {
+          "message": "foto quemada"
+    },
+    "items.llaves_matilda.desc": {
+          "message": "Las llaves en sí no tienen nada en especial, una llave de seguridad de la puerta del piso de Matilda, en la cuarta planta; y la llave del portal."
+    },
+  	"items.llaves_matilda.txt": {
+          "message": "llaves"
+    },
+  	"items.diario.txt": {
+          "message": "diario"
+    },
+    "items.tupperware.desc": {
+          "message": "A medio descongelar, una ración de tarta de carne."
+    },
+  	"items.tupperware.txt": {
+          "message": "tupperware"
+    },
+    "items.barra_labios.desc": {
+          "message": "Aparentemente es sólo una barra de labios. Te cuidas mucho de quitarle la tapa."
+    },
+  	"items.barra_labios.txt": {
+          "message": "barra de labios"
+    },
+    "items.frasco.desc": {
+          "message": "Parece un pequeño dispensador de colonia."
+    },
+  	"items.frasco.txt": {
+          "message": "frasco de perfume"
+    }
+}

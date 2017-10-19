@@ -24,7 +24,7 @@
         "message": "salón comedor"
     },
     "items.cocina.desc": {
-        "message": "Casi que ni le prestas atención. No piensas perder el tiempo cocinando, has venido a terminar tu novela. En la cocina hay una puerta trasera que lleva al paseo marítimo y a las playas, un escalofrío te recorre el cuerpo de sólo pensar en volver a la playa donde Ana se ahogó"
+        "message": "Casi que ni le prestas atención. No piensas perder el tiempo cocinando, has venido a terminar tu novela. En la cocina hay una puerta trasera que lleva al paseo marítimo y a las playas, un escalofrío te recorre el cuerpo de sólo pensar en volver a la playa donde Ana se ahogó."
     },
     "items.cocina.txt": {
         "message": "cocina"
@@ -114,14 +114,14 @@
         "message": "Charlie"
     },
     "items.maleta.desc": {
-        "message": "Tu maleta de viaje... casi nueva, ya que no sueles viajar."
+        "message": "No sueles viajar. La compraste para tu viaje a Marrakech, adonde viajaste siguiendo un impulso irrefrenable, algo muy extraño en ti."
     },
     "items.maleta.txt": {
         "message": "maleta"
     },
     "items.estantería.desc": {
         "message": "Libros y libros. Toda una estantería. Destacan los libros de literatura gótica de terror, no sólo novelas y cuentos, sino también ensayos y biografías de los autores, un lugar destacado ocupa tu propio libro sobre Edgan Allan Poe, publicado hace un año, aunque el libro qué te fascina actualmente es un extraño libro escrito en un idioma intraducible que compraste en el rastro hace unos meses y no has tenido tiempo de mirar."
-    },	
+    },
     "items.estantería.txt": {
         "message": "estantería"
     },
@@ -136,7 +136,7 @@
     },
     "items.manuscrito.txt": {
         "message": "manuscrito"
-    },  
+    },
     "items.tijeras.desc": {
         "message": "Una sencillas tijeras de cocina algo oxidadas, pero aún cortan."
     },
@@ -168,7 +168,7 @@
         "message": "collar"
     },
     "items.móvil.desc": {
-        "message": "Tu smartphone. Un android algo desfasado pero al que tampoco exiges mucho. Estás un poco desfasado y prefieres llamar a enviar mensajes de texto. Tampoco has instalado ninguna app adicional a las que venían de fábrica. El último mensaje que enviaste fue a tu vecino, dándole las gracias por aceptar venir a regarte tu 'planta de la inspiración' un par de veces a la semana. La lista de llamadas entrantes o salientes es todo un desierto de comunicación social. La agenda tiene unos cuantos números de teléfonos; entre ellos, el de tu vecino. A pesar de todo, estás atado al móvil como un imán y tienes un pánico irracional a no llevarlo contigo. Igual piensas que te van a llamar en algún momento para darte algún premio literario por tu última novela publicada."
+        "message": "Tu smartphone. Un android algo desfasado pero al que tampoco exiges mucho. El último mensaje que enviaste fue a tu vecino, dándole las gracias por aceptar venir a regarte tu 'planta de la inspiración' un par de veces a la semana. La lista de llamadas entrantes o salientes es todo un desierto de comunicación social pero a pesar de ello te sientes atado al móvil como un imán y tienes un pánico irracional a no llevarlo contigo: quizás te crees que te van a llamar en algún momento para darte algún premio literario por tu última novela publicada."
     },
     "items.móvil.txt": {
         "message": "móvil"
@@ -181,7 +181,7 @@
     },
     "items.foto2.desc": {
         "message": "Esta vieja foto casi te hace llorar. Apareces tú y tu hermana jugando en la playa. También se ve la sombra de vuestra madre tomando la foto."
-    },   
+    },
     "items.foto2.txt": {
         "message": "foto de Ana y tú"
     },

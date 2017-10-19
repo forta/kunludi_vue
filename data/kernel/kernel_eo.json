@@ -6,6 +6,9 @@
 	"History": {  "message": "Historio" },
 	"Together": { "message": "Kune" },
 	"Username": { "message": "Kromnomo" },
+	"Password": { "message": "Pasvorto" },
+	"LoginInformation": { "message": "Malplena pasvorton por ne-registritaj uzantoj, limigitaj eblecoj." },
+	"RequestAccount": { "message": "Sendu messaĝon al ludi.ludon@gmail.com se vi volas enregistriĝi" },
 	"Choose Game": { "message": "Bonvolu elekti ludon" },
 	"Confirm game quit": { "message": "Bonvolu konfirmi lud-eliron" },
 	"bottom": { "message": "malsupren" },
@@ -155,6 +158,8 @@
 	"Number of known items": {        "message": "Nombro da konataj eroj"    },
 	"LoadGame": {        "message": "Sarĝu ludon"    },
 	"LoadSavedGame": {        "message": "Sarĝu garditan ludon"    },
+	"JoinGame": {	"message": "Aliĝu al la ludo"	},
+	"ResetGame": {	"message": "Restartu la ludon"	},
 	"true": {        "message": "vero"    },
 	"preferedLanguages": {        "message": "Preferataj lingvoj"    },
 	"myGame": {        "message": "mia lingvo"    },
@@ -190,5 +195,8 @@
 	"Author": {        "message": "Aŭtoro"     },
 	"ludi account": {        "message": "ludi-a konto"     },
 	"email": {        "message": "retadreso"      },
-	"Load game": {        "message": "Ŝargi ludon"   }
+	"Load game": {        "message": "Ŝargi ludon"   },
+	"Private game states of the user": {        "message": "Privataj savitaj ludoj"   },
+	"Private game states of the user on the server": {	"message": "Privataj savitaj ludoj en la servilo"	},
+	"The game is being played in group in these server sessions": {	"message": "La ludo ludeblas grupe en ĉi servilaj kunsidoj"	}	
 }

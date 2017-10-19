@@ -269,7 +269,7 @@ const state = {
   }
 }
 
-function localData_loadGame (gameId) {
+function localData_loadGame (gameId, slotId) {
 
 	var libVersion = 'v0_01'
 
@@ -281,11 +281,23 @@ function localData_loadGame (gameId) {
 
 	// world
 	var libWorld = require ('../components/libs/' + libVersion + '/world.json');
-	var gameWorld0 =  require ('../../data/games/' + gameId + '/world.json')
+	var gameWorld0
+  var slotIndex = arrayObjectIndexOf (state.gameSlots, "id", slotId)
+
+  if ((slotIndex < 0) || (slotId == "default")) {
+    gameWorld0 =  require ('../../data/games/' + gameId + '/world.json')
+  } else {
+    gameWorld0 = JSON.parse(JSON.stringify(state.gameSlots[slotIndex].world))
+  }
 
 	// load explicit data to the local engine
-	runnerProxie.local_loadGame (gameId, primitives, libReactions, gameReactions, libWorld, gameWorld0 )
+	runnerProxie.local_loadGame (gameId, primitives, libReactions, gameReactions, libWorld, gameWorld0, slotId )
 
+  if ((slotIndex >= 0) && (slotId != "default")) {
+    runnerProxie.loadGameState (slotId, false)
+  }
+
+  runnerProxie.processChoice ( { choiceId:'action0', action: {actionId:'look'}, isLeafe:true, noEcho:true} )
 	if (runnerProxie.getConnectionState() == 0) return true
 
 	return false
@@ -337,6 +349,8 @@ function afterGameLoaded(slotId) {
     return
   }
 
+  state.slotId = slotId
+
   runnerProxie.setLocale (state.locale) // update language data in proxie
 
   state.refreshFromProxie()
@@ -356,8 +370,9 @@ function afterGameLoaded(slotId) {
   }
   */
 
-	runnerProxie.saveGameState (slotId)
-	state.gameSlots = runnerProxie.getGameSlots ()
+	// ?? runnerProxie.saveGameState (slotId)
+
+	state.gameSlots = runnerProxie.getGameSlotList (state.gameId)
 
 }
 
@@ -379,7 +394,7 @@ const mutations = {
 
 	  if (storageON()) localStorage.removeItem("ludi_userId")
   },
-  SETUSERID (state, userId) {
+  SETUSERID (state, userId, password) {
 
     if (state.gameId != "") {
         alert ("[You will loose your current game state.]")
@@ -387,7 +402,7 @@ const mutations = {
     }
 
 	  // user session
-		runnerProxie.userLogon (userId)
+		runnerProxie.userLogon (userId, password)
 
     // wait for several seconds till the game were loaded
 		setTimeout(function () {
@@ -416,12 +431,15 @@ const mutations = {
 		if (t[l].language == state.locale) break;
 	}
 
-	if 	(newlocale != state.locale) {
+  if ((newlocale != undefined) && (newlocale != state.locale)) {
 		// load new locale
 		mutations.SETLOCALE (state, newlocale)
 	}
 
   state.gameId = gameId
+  state.slotId = slotId
+
+  state.gameSlots = runnerProxie.getGameSlotList (state.gameId)
 
 	// languages
 
@@ -441,14 +459,14 @@ const mutations = {
 	cleanHistory()
 
 	if (state.userId == '') { // local engine
-		localData_loadGame (gameId)
+		localData_loadGame (gameId, slotId)
 		afterGameLoaded(slotId)
 	} else {
 
 		state.choice = {choiceId:'top', isLeafe:false, parent:''}
 
 		// remote engine using REST calls
-		runnerProxie.backEnd_LoadGame (gameId)
+		runnerProxie.backEnd_LoadGame (gameId, slotId)
 
     //runnerProxie.setLocale (state.locale) // update language data in proxie
 
@@ -469,8 +487,8 @@ const mutations = {
      state.menu = []
 	   processChoice (state, choice)
   },
-  SEND_CHAT_MESSAGE (state, chatMessage) {
-    runnerProxie.sendChatMessage (chatMessage)
+  SEND_CHAT_MESSAGE (state, chatMessage, target) {
+    runnerProxie.sendChatMessage (chatMessage, target)
 	},
   SET_KEY_PRESSED (state) {
 
@@ -484,8 +502,15 @@ const mutations = {
   PROCESS_CHOICE (state, choice) {
 	   processChoice (state, choice)
   },
+  RESETSLOTID (state, gameId, slotId, newLocal) {
+    if (runnerProxie.getConnectionState() <= 0) return
+
+		runnerProxie.backEnd_resetGameId (gameId, slotId, newLocal)
+
+  },
   RESETGAMEID (state) {
-    state.gameId= ''
+    state.gameId = ''
+    state.slotId = undefined
     state.about= {}
   	mutations.SETLOCALE (state, state.locale)
 
@@ -513,36 +538,45 @@ const mutations = {
   },
 
   SAVE_GAME_STATE (state, slotDescription) {
-	runnerProxie.saveGameState (slotDescription)
-	// refresh slot list
-	state.gameSlots = runnerProxie.getGameSlots ()
+	   runnerProxie.saveGameState (slotDescription)
+	   // refresh slot list
+	   state.gameSlots = runnerProxie.getGameSlotList (state.gameId )
   },
   LOAD_GAME_STATE (state, slotId, showIntro) {
-	runnerProxie.loadGameState (slotId, false)
 
-	// refresh slot list
-	state.gameSlots = runnerProxie.getGameSlots ()
+    state.slotId = undefined
 
-	// refresh game states
-	state.choices = runnerProxie.getChoices ()
-	state.gameTurn = runnerProxie.getGameTurn ()
-	state.gameState = runnerProxie.getGameState()
-	state.reactionList = runnerProxie.getReactionList ()
-	state.menu = runnerProxie.getMenu () //?.slice()
-	state.menuPiece = runnerProxie.getMenuPiece () //?.slice()
-	state.history = runnerProxie.getHistory().slice() //?
+    if (slotId == 'default') {
+      mutations.SETGAMEID(state.gameId, slotId, state.locale)
+      return
+    }
+
+  	runnerProxie.loadGameState (slotId, false)
+    state.slotId = slotId
+
+  	// refresh slot list
+  	state.gameSlots = runnerProxie.getGameSlotList (state.gameId )
+
+  	// refresh game states
+  	state.choices = runnerProxie.getChoices ()
+  	state.gameTurn = runnerProxie.getGameTurn ()
+  	state.gameState = runnerProxie.getGameState()
+  	state.reactionList = runnerProxie.getReactionList ()
+  	state.menu = runnerProxie.getMenu () //?.slice()
+  	state.menuPiece = runnerProxie.getMenuPiece () //?.slice()
+  	state.history = runnerProxie.getHistory().slice() //?
 
   },
   DELETE_GAME_STATE (state, slotId) {
 	runnerProxie.deleteGameState (slotId)
 	// refresh slot list
-	state.gameSlots = runnerProxie.getGameSlots ()
+	state.gameSlots = runnerProxie.getGameSlotList (state.gameId )
   },
   RENAME_GAME_STATE (state, slotId, newSlotDescription) {
 
 	runnerProxie.renameGameState ( slotId, newSlotDescription)
 	// refresh slot list
-	state.gameSlots = runnerProxie.getGameSlots ()
+	state.gameSlots = runnerProxie.getGameSlotList (state.gameId )
 
 
   },
@@ -551,6 +585,8 @@ const mutations = {
   	for (var i=0;i<state.games.length;i++) {
   		if (state.games[i].name == par) {state.gameAbout = state.games[i].about; break; }
   	}
+
+    state.gameSlots = runnerProxie.getGameSlotList (par)
 
   },
   SETLOCALE (state, locale) {

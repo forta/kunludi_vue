@@ -17,15 +17,21 @@
      <h3>{{kt("Options")}} </h3>
 
      <ul>
-         <li> <button @click='quitGame()'>{{kt("Quit")}}</button></li>
 
-         <li> <button @click='saveGame()'>{{kt("SaveGame")}}</button></li>
+       <li> <button @click='saveGame()'>{{kt("SaveGame")}}</button></li>
 
-         <li> <button v-on:click="loadGame('default')"> {{kt("LoadGameFromStart")}}  </button> <br/> </li>
+       <!-- quit game -->
+       <li> <button @click='quitGame_internal()'>{{kt("QuitGame")}}</button></li>
 
+       <!-- offline game states -->
+       <div v-if=" (userId === '') ">
+         <!-- offline default state -->
+         <li><button v-on:click="loadGame()"> {{kt("LoadGameFromStart")}}  </button></li>
+
+         <h3>{{kt("Private game states of the user")}}:</h3>
          <li v-for="gameSlot in gameSlots" >
            <span v-if="gameSlot.id!='default'">
-             <button  v-on:click="loadGame(gameSlot.id)"> {{kt("LoadGame")}}  </button>
+             <button  v-on:click="loadGameState_internal(gameSlot.id)"> {{kt("LoadGame")}}  </button>
               [{{gameSlot.slotDescription}}]
               <button v-on:click="renameGameSlot(gameSlot.id, gameSlot.slotDescription)"> {{kt("Rename")}} </button>
               - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}
@@ -34,8 +40,40 @@
            </span>
          </li>
 
-         <!-- <li> <b>{{kt("SeeHistory")}}</b></li> -->
+       </div>
+
+       <!-- online game states -->
+       <div v-else>
+         <h3>{{kt("Private game states of the user on the server")}}:</h3>
+         <li v-for="gameSlot in gameSlots" >
+           <span v-if="gameSlot.id!='default' && gameSlot.type=='stored'">
+             <button  v-on:click="loadGame(gameSlot.id)">  [{{gameSlot.type}}] {{kt("LoadGame")}}  </button>
+              [{{gameSlot.slotDescription}}]
+              <button v-on:click="renameGameSlot(gameSlot.id, gameSlot.slotDescription)"> {{kt("Rename")}} </button>
+              - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}
+              <button v-on:click="deleteGameSlot(gameSlot.id)"> {{kt("Delete")}} </button>
+              <br/>
+           </span>
+         </li>
+
+       <h3>{{kt("The game is being played in group in these server sessions")}}:</h3>
+       <li v-for="gameSlot in gameSlots" >
+       <!-- online gameslots where the player is not playing right now -->
+       <span v-if="gameSlot.id!='default' && gameSlot.type=='live' && gameSlot.playerList.indexOf(userId) < 0 && gameSlot.gameTurn > 0">
+         [{{gameSlot.slotDescription}}]
+        <button  v-on:click="loadGameState_internal(gameSlot.id)">   {{kt("JoinGame")}}  </button>
+          - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}
+          <span v-if="gameSlot.playerList.length>0">
+            - {{kt("Players")}}: {{gameSlot.playerList.length}} =>  <span v-for="player in gameSlot.playerList"> {{player}} </span>
+          </span>
+        </li>
+
+        <!-- <li> <b>{{kt("SeeHistory")}}</b></li> -->
+
+      </div>
+
      </ul>
+
 
   </div>
 </template>
@@ -43,7 +81,7 @@
 <script>
 
 import store from '../vuex/store'
-import {getKTranslator, getLocale, getGameAbout, getGameId, getGameSlots} from '../vuex/getters'
+import {getKTranslator, getLocale, getGameAbout, getGameId, getUserId, getGameSlots} from '../vuex/getters'
 import * as actions from '../vuex/actions'
 
 export default {
@@ -65,32 +103,30 @@ export default {
          // go back playing:  path:  /ludi/files -> /ludi/play
          this.$router.go('/ludi/play')
      },
-     loadGame: function (slotId) {
-         store.dispatch('LOAD_GAME_STATE', slotId)
-         // go back playing:  path:  /ludi/files -> /ludi/play
+     loadGame: function (id) {
+         store.dispatch('SETGAMEID', this.gameId, 'default')
          this.$router.go('/ludi/play')
      },
-     loadGameState2: function (slotId) {
+     loadGameState_internal: function (slotId) {
          store.dispatch('LOAD_GAME_STATE', slotId)
-         // go back playing:  path:  /ludi/files -> /ludi/play
          this.$router.go('/ludi/play')
+         // to-vue2: for vue 2.0 do: this.$router.push('/about') instead of using this.$router.go()
      },
       deleteGameSlot: function (slotId) {
-		  store.dispatch('DELETE_GAME_STATE', slotId)
+		      store.dispatch('DELETE_GAME_STATE', slotId)
       },
       renameGameSlot: function (slotId, oldDescription) {
           let newSlotDescription = prompt ("Description", oldDescription) // to-do: translation
-
-		  store.dispatch('RENAME_GAME_STATE', slotId, newSlotDescription)
+	        store.dispatch('RENAME_GAME_STATE', slotId, newSlotDescription)
       },
       convertDate: function (dateJSON) {
           var d = new Date (JSON.parse (dateJSON))
 		  return d.toLocaleString()
       },
-      quitGame: function () {
+      quitGame_internal: function () {
           if (confirm (this.kt ("Confirm game quit"))) {
               store.dispatch('RESETGAMEID')
-              this.$router.go('/ludi/about')
+              this.$router.go('/ludi/games')
           }
       }
   },
@@ -105,6 +141,7 @@ export default {
        locale: getLocale,
        about: getGameAbout,
        gameId: getGameId,
+       userId: getUserId,
        kt: getKTranslator,
        gameSlots: getGameSlots
     },

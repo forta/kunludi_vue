@@ -6,6 +6,9 @@
 	"History": { "message": "Historial"  },
 	"Together": { "message": "Juntos" },
 	"Username": { "message": "Nombre de usuario" },
+	"Password": { "message": "Contraseña" },
+	"LoginInformation": { "message": "Contraseña en blanco significa usuario no registrado, con funcionalidad limitada." },
+	"RequestAccount": { "message": "Escribe a ludi.ludon@gmail.com si quieres registrarte" },
 	"Choose Game": { "message": "Por favor, selecciona un juego" },
 	"Confirm game quit": { "message": "Por favor, confirma que sales del juego" },
 	"bottom": { "message": "abajo" },
@@ -39,6 +42,7 @@
 	"Stable games": {        "message": "Juegos estables"    },
 	"Under construction": {        "message": "En construcción"    },
 	"Kune introduction": {	"message": "Cuando ingresas un nombre de usuario, el juego se carga desde el servidor y muchos jugadores pueden jugar el mismo juego simultáneamente. <br/> En futuras versiones, habrá más de un solo estado de juego."	},	"QuitGame": {        "message": "Salir del juego"    },
+	"QuitGame": {	"message": "Salir del juego"	},
 	"Save game": {        "message": "Guardar juego"    },
 	"Saved games": {        "message": "Juegos guardados"    },
 	"Load game ": {        "message": "Cargar juego"    },
@@ -154,6 +158,8 @@
 	"Number of known items": {        "message": "Número de items conocidos"    },
 	"LoadGame": {        "message": "Cargar juego"    },
 	"LoadSavedGame": {        "message": "Cargar juego guardado"    },
+	"JoinGame": {	"message": "Únete al juego"	},
+	"ResetGame": {	"message": "Reinicia el juego"	},
 	"true": {        "message": "verdadero"    },
 	"preferedLanguages": {        "message": "Idiomas preferidos"    },
 	"myGame": {        "message": "mi juego"    },
@@ -189,5 +195,9 @@
 	"Author": {        "message": "Autor"     },
 	"ludi account": {        "message": "cuenta ludi"     },
 	"email": {        "message": "correo"      },
-	"Load game": {        "message": "Cargar juego"   }
+	"Load game": {        "message": "Cargar juego"   },
+	"Private game states of the user": {        "message": "Partidas privadas del usuario"   },
+	"Private game states of the user on the server": {	"message": "Partidas privadas del usuario en el servidor"	},
+	"The game is being played in group in these server sessions": {	"message": "El juego se está jugando en grupo en estas sesiones del servidor"	}
+
 }

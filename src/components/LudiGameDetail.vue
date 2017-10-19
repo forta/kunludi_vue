@@ -29,15 +29,63 @@
 
         <h3>{{kt("Options")}}</h3>
         <ul>
-            <!-- <li> <button v-on:click="load(game.name)">{{kt("Load game")}}</button> </li> -->
 
+          <!-- offline game states -->
+          <div v-if=" (userId === '') ">
+
+            <!-- offline default state -->
             <li><button v-on:click="loadGame(game.name, 'default', about.translation[languageIndex].language)"> {{kt("LoadGameFromStart")}}  </button></li>
 
-            <li v-for="gameSlot in gameSlots">
-            <button v-on:click="loadGame(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("LoadGame")}} </button> [{{gameSlot.slotDescription}}] - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}
+            <h3>{{kt("Private game states of the user")}}:</h3>
+            <li v-for="gameSlot in gameSlots" >
+              <span v-if="gameSlot.id!='default'">
+                <button  v-on:click="loadGame(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("LoadGame")}}  </button>
+                 [{{gameSlot.slotDescription}}]
+                 <button v-on:click="renameGameSlot(gameSlot.id, gameSlot.slotDescription)"> {{kt("Rename")}} </button>
+                 - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}
+                 <button v-on:click="deleteGameSlot(gameSlot.id)"> {{kt("Delete")}} </button>
+                 <br/>
+              </span>
             </li>
 
-        </ul>
+          </div>
+
+          <!-- online game states -->
+          <div v-else>
+
+            <h3>{{kt("Private game states of the user")}}:</h3>
+            <li v-for="gameSlot in gameSlots" >
+
+            <!-- no default / stored -->
+            <span v-if="gameSlot.type=='stored'">
+              <button  v-on:click="loadGame(gameSlot.id)">{{kt("LoadGame")}}</button>
+               [{{gameSlot.slotDescription}}]
+               <button v-on:click="renameGameSlot(gameSlot.id, gameSlot.slotDescription)"> {{kt("Rename")}} </button>
+               - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}
+               <button v-on:click="deleteGameSlot(gameSlot.id)"> {{kt("Delete")}} </button>
+               <br/>
+            </span>
+            </li>
+
+            <h3>{{kt("The game is being played in group in these server sessions")}}:</h3>
+            <li v-for="gameSlot in gameSlots" >
+              <span v-if="gameSlot.type=='live'">
+                <button  v-on:click="loadGame(game.name, gameSlot.id, about.translation[languageIndex].language)">   {{kt("JoinGame")}}  </button>
+                [{{gameSlot.slotDescription}}]
+                 - {{kt("Turns")}}: {{gameSlot.gameTurn}} - {{kt("Date")}}: {{convertDate(gameSlot.date)}}
+                 <span v-if="gameSlot.playerList.length>0">
+                   - {{kt("Players")}}: {{gameSlot.playerList.length}} =>  <span v-for="player in gameSlot.playerList"> {{player}} </span>
+                 </span>
+                 <span v-if="gameSlot.gameTurn>0 && gameSlot.playerList.length==0">
+                   <button v-on:click="reseteGameSlot(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("ResetGame")}} </button>
+                 </span>
+                 <br/>
+              </span>
+
+              </li>
+            </div>
+          </ul>
+
      </div>
 
   </div>
@@ -46,7 +94,7 @@
 <script>
 
     import store from '../vuex/store'
-    import { getGameAbout, getGameId, getLocale, getKTranslator, getGameSlots } from '../vuex/getters'
+    import { getGameAbout, getGameId, getUserId, getLocale, getKTranslator, getGameSlots } from '../vuex/getters'
     import * as actions from '../vuex/actions'
 
 export default {
@@ -76,11 +124,18 @@ export default {
   },
   methods: {
       loadGame: function (id, slotId, newLocal) {
-		  store.dispatch('SETGAMEID', id, slotId, newLocal)
+		      store.dispatch('SETGAMEID', id, slotId, newLocal)
       },
       convertDate: function (dateJSON) {
           var d = new Date (JSON.parse (dateJSON))
-		  return d.toLocaleString()
+		      return d.toLocaleString()
+      },
+      deleteGameSlot: function (slotId) {
+		      store.dispatch('DELETE_GAME_STATE', slotId)
+      },
+      renameGameSlot: function (slotId, oldDescription) {
+          let newSlotDescription = prompt ("Description", oldDescription) // to-do: translation
+	        store.dispatch('RENAME_GAME_STATE', slotId, newSlotDescription)
       }
   },
   props: ['game'],
@@ -88,6 +143,7 @@ export default {
   vuex: {
     getters: {
        gameId: getGameId,
+       userId: getUserId,
        locale: getLocale,
        about: getGameAbout,
        kt: getKTranslator,

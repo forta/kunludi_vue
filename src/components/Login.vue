@@ -3,17 +3,13 @@
 	<div v-show="userId == ''">
 
         <!-- <p>Please type your user name and password to logon: </p> -->
-        <label> {{kt("Type your user name and push enter")}}: </label><input v-model="newUserId" v-on:keyup.enter="modifyUserId"><br/>
-        <!--
-  		<label>Password: </label> <input v-model="newUserId2">
+        <label> {{kt("Username")}}: </label><input v-model="newUserId"><br/><br/>
 
-        <br/>
+        <label> {{kt("Password")}}: </label><input v-model="password" type="password"><br/>
+        <p> {{kt("LoginInformation")}} </p>
+        <button @click='modifyUserId()' > {{kt("Login")}} </button>
 
-  		<p>Or create a new aocout: </p>
-  		<label>New user name: </label> <input v-model="newUserId2"><br/>
-  		<label>Password: </label> <input v-model="newPwd"><br/>
-  		<label>email: </label> <input v-model="newEmail">
-        -->
+        <p> {{kt("RequestAccount")}} </p>
 
 	</div>
   </div>
@@ -49,7 +45,7 @@ export default {
 		var text = this.newUserId.trim()
 		  if (text) {
 			    this.newUserId = text
-          store.dispatch('SETUSERID', text)
+          store.dispatch('SETUSERID', text, this.password)
           // to-do: if after a timeout userId remains null: show alert "connection error"
           setTimeout(this.timeOutError, 3000);
 		  }

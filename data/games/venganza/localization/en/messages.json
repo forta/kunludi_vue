@@ -1,0 +1,95 @@
+{
+  "items.prota.desc": {
+    "message": "You are the protagonist of Revenge."
+  },
+  "items.prota.txt": {
+    "message": "protagonist"
+  },
+  "items.hab_alberto.desc": {
+    "message": "The room where you lay innumerable times with your now deceased wife. Suddenly you feel very guilty for having defiled your sanctum with that display of obscene postures, and what postures, and how obscene, that you have developed with Matilda during the last months."
+  },
+  "items.hab_alberto.txt": {
+    "message": "Your room"
+  },
+  "items.salón_alberto.desc": {
+    "message": "The living room suffers from the lack of a female hand. From being a pleasant place to sit and have a pleasant time, it has become an extension of your room, with clothes stacked in chairs and unfriendly"
+  },
+  "items.salón_alberto.txt": {
+    "message": "living room of your house"
+  },
+  "items.salón_matilda.desc": {
+    "message": "The floor is Matilda is as it was the last time you visited. Everything in its place, except ... a newspaper on the living room table."
+  },
+  "items.salón_matilda.txt": {
+    "message": "Matilda's living room"
+  },
+  "items.hab_matilda.desc": {
+    "message": "You know this room well. The few times you have visited her, you have come directly here to taste the docks of the bed."
+  },
+  "items.hab_matilda.txt": {
+    "message": "Matilda's room"
+  },
+  "items.cocina.desc": {
+    "message": "A very well stocked kitchen. As she works today, Matilde seems to have prepared something quick to eat today and has allowed a food taperware to thaw."
+  },
+  "items.cocina.txt": {
+    "message": "kitchen"
+  },
+  "items.foto_boda.desc": {
+    "message": "In the framed photo Clara and you are in the foreground. Behind you you see some guests smiling, except Matilda, who seems to cast a look of hatred on Clara. Strange, you had not noticed that look before, they were supposed to be very good friends."
+  },
+  "items.foto_boda.txt": {
+    "message": "wedding photo"
+  },
+  "items.mesa_noche.desc": {
+    "message": "night table"
+  },
+  "items.mesa_noche.txt": {
+    "message": "nightstand"
+  },
+  "items.cristales.desc": {
+    "message": "crystals desc"
+  },
+  "items.cristales.txt": {
+    "message": "crystals"
+  },
+  "items.foto_boda_rota.desc": {
+    "message": "photo_boda_rota desc"
+  },
+  "items.foto_boda_rota.txt": {
+    "message": "broken wedding photo"
+  },
+  "items.foto_quemada.desc": {
+    "message": "You notice that the burned part corresponds to the part where Matilda was before."
+  },
+  "items.foto_quemada.txt": {
+    "message": "photo burned"
+  },
+  "items.llaves_matilda.desc": {
+    "message": "The keys themselves have nothing special, a security key from Matilda's floor door, on the fourth floor; and the key to the portal."
+  },
+  "items.llaves_matilda.txt": {
+    "message": "keys"
+  },
+  "items.diario.txt": {
+    "message": "daily"
+  },
+  "items.tupperware.desc": {
+    "message": "Half thawed, a serving of meat pie."
+  },
+  "items.tupperware.txt": {
+    "message": "tupperware"
+  },
+  "items.barra_labios.desc": {
+    "message": "Apparently it's just a lipstick. You take great care to remove the lid."
+  },
+  "items.barra_labios.txt": {
+    "message": "lipstick"
+  },
+  "items.frasco.desc": {
+    "message": "Looks like a little cologne dispenser."
+  },
+  "items.frasco.txt": {
+    "message": "perfume bottle"
+  }
+}

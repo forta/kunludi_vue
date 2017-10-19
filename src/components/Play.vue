@@ -95,7 +95,7 @@
             </span>
         </div>
 
-      <h3>  {{showCurrentChoice()}}</h3>
+      <h3 v-if="currentChoice.choiceId=='obj1'"> {{choiceToShow(currentChoice)}}</h3>
 
   	  <!-- items inside -->
       <div class="choices">
@@ -139,18 +139,35 @@
   </div> <!-- play_bottom -->
 
   <div class="chatSecton" v-show="userId != ''">
-      <button v-on:click="seeChatSection()" > {{kt("Messages")}}  </button>
+      <button v-on:click="seeChatSection()">
+        {{kt("Messages")}}
+        <span v-if = "!chatVisible">({{chatMessages.length - numberOfKnownMessages}})</span>
+      </button>
       <div class="chatSubsecton" v-show="chatVisible">
         <div v-for="c in chatMessages">
-            <p><b>{{c.from}}:</b> {{c.msg}}</p>
+            <p><b>{{c.from}}
+            <span v-if="c.scope == 'private'"> -&gt; {{c.target}}</span>:</b>
+            {{c.msg}} </p>
         </div>
         <b>{{kt("Online Players")}}: </b>
         <span v-for="p in playerList">
-            <span><b>{{p.userId}}</b>({{p.locale}}) ({{convertDate(p.date)}}) </span>
-        </span><br/>
-        <span>{{kt("ChatGame")}}:</span>
+            <!--<span v-if = "slotId == p.slotId">-->
+              <span v-if="userId != p.userId"><button v-on:click="selectChatToUser(p.userId)" >{{p.userId}}</button></span>
+              <span v-if="userId == p.userId"><b>{{p.userId}}</b></span>
+              <span v-if="p.type > 0"><b>(R)</b></span>
+              ({{p.locale}}) ({{convertDate(p.date)}})
+            <!--</span>-->
+        </span>
+
+        <br/>
+
+        <span v-show="selectedUserToChat != ''"><button v-on:click="selectChatToAll()"> {{kt("ChatGame")}}</button></span>
+        <span class="chatToAll" v-show="selectedUserToChat == ''">{{kt("ChatGame")}}: </span>
+        <span class="chatToUser" v-show="selectedUserToChat != ''">{{kt("ChatPrivate")}} [{{selectedUserToChat}}]: </span>
         <input v-model="chatMessage">
         <button v-on:click="sendMessage()" > {{kt("Send message")}}  </button>
+
+        <br/><br/>
     </div>
   </div>
 
@@ -181,6 +198,7 @@
         getPressKeyMessage,
         getChoices,
         getUserId,
+        getSlotId,
         getChatMessages,
         getPlayerList
       } from '../vuex/getters'
@@ -196,7 +214,10 @@ export default {
   },
   data () {
      return {
-       chatVisible: true
+       chatVisible: true,
+       selectedUserToChat: '',
+       chatMessage:'',
+       numberOfKnownMessages:0
       }
   },
   created: function () {
@@ -209,6 +230,12 @@ export default {
           if (piece == undefined) return ""
 
           return this.formatPiece (piece)
+      },
+      selectChatToUser: function (userId) {
+        this.selectedUserToChat = userId
+      },
+      selectChatToAll: function () {
+        this.selectedUserToChat = ''
       },
       pressAnyKey: function () {
          store.dispatch('SET_KEY_PRESSED')
@@ -302,10 +329,11 @@ export default {
       },
       seeChatSection() {
           this.chatVisible = !this.chatVisible
+          if (!this.chatVisible) this.numberOfKnownMessages = this.chatMessages.length
       },
       sendMessage() {
           // send message to server
-          store.dispatch('SEND_CHAT_MESSAGE', this.chatMessage)
+          store.dispatch('SEND_CHAT_MESSAGE', this.chatMessage, this.selectedUserToChat)
           this.chatMessage = ""
       }
   },
@@ -332,6 +360,7 @@ export default {
        echoChoice: getEchoChoice,
        echoAction: getEchoAction,
        userId: getUserId,
+       slotId: getSlotId,
        chatMessages:getChatMessages,
        playerList:getPlayerList
     },
@@ -455,6 +484,10 @@ div.chatSecton {
 div.choices {
 	background-color: #FFD;
   text-align: center;
+}
+
+span.chatToUser, span.chatToAll {
+  background-color: #AFD;
 }
 
 button {

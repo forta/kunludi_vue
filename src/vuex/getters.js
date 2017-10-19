@@ -2,6 +2,8 @@ export function getCount (state) { return state.count }
 
 export function getUserId (state) { return state.userId }
 
+export function getSlotId (state) { return state.slotId }
+
 export function getPlayerList (state) { return state.playerList }
 
 export function getGameId (state) { return state.gameId }

@@ -29,7 +29,7 @@ let menuPiece = {}
 
 let history = []
 
-let gameSlots = []
+let gameSlotList = []
 
 let userId = "" , token, playerList = []
 
@@ -52,6 +52,7 @@ module.exports = exports = {
 	userLogon:userLogon,
 	userLogoff:userLogoff,
 	backEnd_LoadGame:backEnd_LoadGame,
+	backEnd_resetGameId:backEnd_resetGameId,
 	processChoice:processChoice,
 	getCurrentChoice:getCurrentChoice,
 	getPendingChoice:getPendingChoice,
@@ -69,7 +70,7 @@ module.exports = exports = {
 	loadGameState:loadGameState,
 	deleteGameState:deleteGameState,
 	renameGameState:renameGameState,
-	getGameSlots:getGameSlots,
+	getGameSlotList:getGameSlotList,
 	resetGameTurn:resetGameTurn,
 	getConnectionState:getConnectionState,
 	getToken:getToken,
@@ -92,7 +93,7 @@ module.exports = exports = {
 
 	//??
 	getGameSlotIndex:getGameSlotIndex,
-	refreshGameSlots:refreshGameSlots,
+	refreshGameSlotList:refreshGameSlotList,
 	backEnd_sendChoice:backEnd_sendChoice,
 	backEnd_keyPressed:backEnd_keyPressed,
 	refreshPeriodicallyDataFromServer:refreshPeriodicallyDataFromServer,
@@ -158,9 +159,9 @@ function setLocale (locale) {
 	} else { // devMessages from server
 
 		// send language to server
-		let url = 'http://' + serverName + ':8090/api/'
+		let url = 'http://' + serverName + ':8090/api'
 
-		url += 'setLocale'
+		url += '/setLocale'
 
 		let params = {token:this.token, locale: this.locale}
 
@@ -322,7 +323,8 @@ function gTranslator (reaction) {
 			state.pressKeyMessage = expanded
 			*/
 		}
-		expanded = "[...]<br/>"
+		// to-do: make it language-dependent
+		expanded = "<br/>[...]<br/><br/>"
 	}
 
 	expanded = this.language.expandParams (expanded, reaction.param)
@@ -330,16 +332,50 @@ function gTranslator (reaction) {
 	return {type:'text', txt: expanded  }
 }
 
-function userLogon (userId) {
+/**
+ * Calculate a 32 bit FNV-1a hash
+ * https://stackoverflow.com/questions/41649250/js-hashing-function-should-always-return-the-same-hash-for-a-particular-string
+ * Found here: https://gist.github.com/vaiorabbit/5657561
+ * Ref.: http://isthe.com/chongo/tech/comp/fnv/
+ *
+ * @param {string} str the input value
+ * @param {boolean} [asString=false] set to true to return the hash value as
+ *     8-digit hex string instead of an integer
+ * @param {integer} [seed] optionally pass the hash of the previous chunk
+ * @returns {integer | string}
+ */
+function hashFnv32a(str, asString, seed) {
+    /*jshint bitwise:false */
+    var i, l,
+        hval = (seed === undefined) ? 0x811c9dc5 : seed;
 
-	let url = 'http://' + serverName + ':8090/api/'
+    for (i = 0, l = str.length; i < l; i++) {
+        hval ^= str.charCodeAt(i);
+        hval += (hval << 1) + (hval << 4) + (hval << 7) + (hval << 8) + (hval << 24);
+    }
+    if (asString) {
+        // Convert to 8 digit hex string
+        return ("0000000" + (hval >>> 0).toString(16)).substr(-8);
+    }
+    return hval >>> 0;
+}
 
-	url += 'users/' + userId + '/logon/' + (this.locale==undefined?"0":this.locale) // to-do
+function userLogon (userId, password) {
+
+	let url = 'http://' + serverName + ':8090/api'
+
+	url += '/logon'
 	this.connectionState = -1 // initial state
 	this.userId = userId
 
 	// ask for user session
-	this.Http.get(url).then((response) => {
+	var params = {
+		userId: userId,
+		hash: hashFnv32a (password==undefined?"":password, true), // password si not sent but hash
+		locale: (this.locale==undefined?"0":this.locale) // to-do
+	}
+
+	this.Http.post(url, {params: params}).then(response => {
 
 			if (response.data.status < 0) {
 				this.connectionState = 0
@@ -374,11 +410,9 @@ function userLogoff () {
 
 	clearInterval(this.refreshIntervalId);
 
-	alert ("nos vamos")
+	let url = 'http://' + serverName + ':8090/api'
 
-	let url = 'http://' + serverName + ':8090/api/'
-
-	url += 'users/' + this.token + '/logoff'
+	url += '/users/' + this.token + '/logoff'
 	this.connectionState = -1 // initial state
 	this.userId = ""
 	this.chatMessagesSeq = this.gameTurn = 0
@@ -430,9 +464,9 @@ function localData_loadGames () {
 
 function backEnd_loadGames () {
 
-	let url = 'http://' + serverName + ':8090/api/'
+	let url = 'http://' + serverName + ':8090/api'
 
-	url += 'games/' + this.token
+	url += '/games/' + this.token
 
 	this.Http.get(url).then((response) => {
 
@@ -450,11 +484,57 @@ function backEnd_loadGames () {
 
 }
 
-function backEnd_LoadGame (gameId ) {
+function backEnd_resetGameId (gameId, slotId, newLocal) {
 
-	let url = 'http://' + serverName + ':8090/api/'
+	let url = 'http://' + serverName + ':8090/api'
 
-	url += 'game/' + gameId + '/load/' + this.token
+	url += '/resetlivegame'
+	this.reactionList = []
+	this.gameId = gameId
+
+	this.runnerCache = {
+		world: {},
+		userState: {}
+	}
+
+	var params = {
+		gameId: gameId,
+		token:  this.token,
+		slotId: slotId
+	}
+
+	// ask for game session
+	this.Http.post(url, {params: params}).then((response) => {
+
+			if ( response.data.status < 0) {
+				this.connectionState = -2 //error
+				console.log ("The game was not reset")
+				this.gameId= ''
+				return
+			}
+
+			copyGameSlotListFromServer (this, response.data)
+
+			//?: this.gameSlotList = ludi_games[this.gameId].slice()
+
+			//?: necessary to refresh data
+			//?: this.refreshGameSlotList (this.gameId)
+
+		}, (response) => {
+			this.connectionState = -2 /error
+			console.log ("The game was not reseted")
+		});
+
+
+
+}
+
+
+function backEnd_LoadGame (gameId, slotId ) {
+
+	let url = 'http://' + serverName + ':8090/api'
+
+	url += '/joinlivegame'
 	this.connectionState = -1 // initial state
 	this.reactionList = []
 	this.gameId = gameId
@@ -464,8 +544,14 @@ function backEnd_LoadGame (gameId ) {
 		userState: {}
 	}
 
+	var params = {
+		gameId: gameId,
+		token:  this.token,
+		slotId: slotId
+	}
+
 	// ask for game session
-	this.Http.get(url).then((response) => {
+	this.Http.post(url, {params: params}).then((response) => {
 
 		  if ( response.data.status < 0) {
 				this.connectionState = -2 //error
@@ -512,9 +598,9 @@ function backEnd_LoadGame (gameId ) {
 }
 
 function backEnd_keyPressed () {
-	let url = 'http://' + serverName + ':8090/api/'
+	let url = 'http://' + serverName + ':8090/api'
 
-	url += 'keyPressed'
+	url += '/keyPressed'
 	let params = {token: this.token, myGameTurn:this.gameTurn }
 
 	this.Http.post(url, {params: params}).then((response) => {
@@ -539,7 +625,7 @@ function backEnd_sendChoice (choice, optionMsg ) {
 
   this.currentChoice = choice
 
-	let url = 'http://' + serverName + ':8090/api/'
+	let url = 'http://' + serverName + ':8090/api'
 
    // game actions
 	 if ( (choice.choiceId == "action0") ||
@@ -547,7 +633,7 @@ function backEnd_sendChoice (choice, optionMsg ) {
 			 (choice.choiceId == "action") ||
 			 (choice.choiceId == "action2") ) {
 
-	 		url += 'gameAction'
+	 		url += '/gameAction'
 			let params = {token: this.token, choice: choice, myGameTurn: this.gameTurn, optionMsg:optionMsg}
 
 			// see: https://github.com/pagekit/vue-resource/blob/develop/docs/http.md  (timeout!!)
@@ -576,7 +662,7 @@ function backEnd_sendChoice (choice, optionMsg ) {
 				 (choice.choiceId == "obj1") ||
 				 (choice.choiceId == "itemGroup" ) ) {
 
-		 url += 'choice/' + choice.choiceId + '/' + this.token + '/'
+		 url += '/choice/' + choice.choiceId + '/' + this.token + '/'
 
 		 // extra parameter
 		 if (choice.choiceId == "itemGroup" )
@@ -614,8 +700,8 @@ function refreshCache () {
 
 	this.currentChoice = this.runner.getCurrentChoice()
 
-  if (this.language != undefined) {
-		if (this.language.devMessages == undefined) {
+  if (typeof this.language != "undefined") {
+		if (typeof this.language.devMessages == "undefined") {
 			this.language.devMessages = this.runner.devMessages
 		}
 	}
@@ -793,6 +879,7 @@ function getGameState () {
 
 }
 
+
 function saveGameState (slotDescription) {
 
 	var pointer
@@ -808,7 +895,7 @@ function saveGameState (slotDescription) {
 		if (!storageON()) return
 
 		// necessary to refresh data
-		this.refreshGameSlots ()
+		this.refreshGameSlotList (this.gameId)
 
 		var i = this.getGameSlotIndex(slotDescription)
 
@@ -818,7 +905,7 @@ function saveGameState (slotDescription) {
 				return
 			} else {
 				// name used
-				alert ("Name slot in use, try another one");
+				console.log ("RunnerProxie. saveGameState(): Warning Name slot in use, try another one");
 				return
 			}
 		}
@@ -837,20 +924,48 @@ function saveGameState (slotDescription) {
 			slotDescription: slotDescription
 		})
 
-		this.gameSlots = ludi_games[this.gameId].slice()
+		this.gameSlotList = ludi_games[this.gameId].slice()
 
 		localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
 
-		console.log ("Game saved!")
+		console.log ("Game slot saved on localStorage!")
 
 
 	} else {
-		// to-do: Http.get(url).then((response)
+
+		/* save gameSlot on server */
+
+		let url = 'http://' + serverName + ':8090/api'
+
+		url += '/saveGameSlot'
+
+		let params = {token:this.token, slotDescription: slotDescription}
+
+		this.Http.post(url, {params: params}).then(response => {
+
+			if ( response.data.status < 0) {
+				if (response.data.status == -2 ) {
+					alert ("You must be a registered user!")
+					return
+				}
+
+				logedOffFromServer(this)
+				return
+			}
+
+			console.log ("Game Slot saved on server!")
+			alert ("Game Slot saved on server!")
+
+		}, (response) => {
+			this.connectionState = -1
+			console.log ("Game Slot not saved on server!")
+		});
+
 	}
 
 }
 
-function local_loadGame (gameId, primitives, libReactions, gameReactions, libWorld, gameWorld0) {
+function local_loadGame (gameId, primitives, libReactions, gameReactions, libWorld, gameWorld, slotId) {
 
 	var libVersion = 'v0_01'
 
@@ -865,8 +980,16 @@ function local_loadGame (gameId, primitives, libReactions, gameReactions, libWor
 
 	this.runner = require ('../components/LudiRunner.js');
 
-	// "compile" default ( == initial) state
-	this.runner.createWorld(libWorld, gameWorld0)
+  if ( slotId == "default") {
+		// "compile" default ( == initial) state
+		this.runner.createWorld(libWorld, gameWorld)
+	} else {
+		this.runner.world = JSON.parse(JSON.stringify(gameWorld))
+
+		//  from this.runner.createWorld():
+		this.runner.gameTurn = 0; // to-do: not really
+		this.runner.devMessages = {}
+	}
 
 	this.reactionList = []
 
@@ -878,9 +1001,6 @@ function local_loadGame (gameId, primitives, libReactions, gameReactions, libWor
 
 	this.gameTurn = 0
 
-	// first description
-  this.processChoice ( { choiceId:'action0', action: {actionId:'look'}, isLeafe:true, noEcho:true} )
-
 }
 
 function loadGameState (slotId, showIntro) {
@@ -890,16 +1010,17 @@ function loadGameState (slotId, showIntro) {
 		if (!storageON()) return
 
 		// necessary to refresh data
-		this.refreshGameSlots ()
+		this.refreshGameSlotList (this.gameId)
 
 		var i = this.getGameSlotIndex(slotId)
 		if (i<0) {
 			console.log ("Game not loaded!. Slot: " + slotId)
 		} else {
-			this.runner.world = this.gameSlots[i].world
-			this.history = this.gameSlots[i].history.slice()
-			this.gameTurn = this.gameSlots[i].gameTurn
-			this.runner.userState = this.gameSlots[i].userState
+			this.runner.world = this.gameSlotList[i].world
+			this.history = this.gameSlotList[i].history.slice()
+			this.runner.gameTurn = this.gameTurn = this.gameSlotList[i].gameTurn
+			this.runner.userState = this.gameSlotList[i].userState
+			this.runner.menu = []
 			console.log ("Game loaded!. Slot: " + slotId)
 		}
 
@@ -922,6 +1043,8 @@ function loadGameState (slotId, showIntro) {
 
 function deleteGameState (slotId) {
 
+  if (this.connectionState < 0) return
+
 	if (this.connectionState == 0) {
 
 		if (!storageON()) return
@@ -930,18 +1053,23 @@ function deleteGameState (slotId) {
 		if (i>=0) {
 			var ludi_games = JSON.parse (localStorage.ludi_games)
 
-			this.gameSlots.splice(i,1)
+			this.gameSlotList.splice(i,1)
 
-			ludi_games[this.gameId] = this.gameSlots
+			ludi_games[this.gameId] = this.gameSlotList
 			localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
 
 			console.log ("Game slot deleted!. Slot: " + slotId)
 		}
+	} else {
+		alert ("Not implemented yet")
+
 	}
 
 }
 
 function renameGameState ( slotId, newSlotDescription) {
+
+	if (this.connectionState < 0) return
 
 	if (this.connectionState == 0) {
 
@@ -952,20 +1080,25 @@ function renameGameState ( slotId, newSlotDescription) {
 			var ludi_games = JSON.parse (localStorage.ludi_games)
 
 			ludi_games[this.gameId][i].slotDescription = newSlotDescription
-			this.gameSlots[i].slotDescription = newSlotDescription
+			this.gameSlotList[i].slotDescription = newSlotDescription
 			localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
 
 			// refresh state
-			this.gameSlots = ludi_games[this.gameId]
+			this.gameSlotList = ludi_games[this.gameId]
 
 			console.log ("Game slot " + slotId + " renamed: [" + newSlotDescription + "]")
 		}
+	}  else {
+		alert ("Not implemented yet")
+
 	}
+
 }
 
-function refreshGameSlots () {
+function refreshGameSlotList (parGameId) {
 
-	this.gameSlots =  []
+	this.gameSlotList =  []
+	if (this.connectionState < 0) return
 
 	if (this.connectionState == 0) {
 
@@ -975,14 +1108,34 @@ function refreshGameSlots () {
 		if (localStorage.ludi_games == undefined) localStorage.setItem("ludi_games", JSON.stringify({}));
 		else ludi_games = JSON.parse (localStorage.ludi_games)
 
-		if (ludi_games[this.gameId] == undefined) {
-			ludi_games[this.gameId] = []
+		if (ludi_games[parGameId] == undefined) {
+			ludi_games[parGameId] = []
 			localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
 		}
-		this.gameSlots = ludi_games[this.gameId].slice()
-	} else {
-		//from serve
+		this.gameSlotList = ludi_games[parGameId].slice()
+		return
 	}
+
+  // get slot list from server  from server
+	let url = 'http://' + serverName + ':8090/api'
+
+	url += '/gameSlotList/' + this.token + '/' + parGameId
+
+
+	this.Http.get(url).then(response => {
+
+		if ( response.data.status < 0) {
+			logedOffFromServer(this)
+			return
+		}
+
+		copyGameSlotListFromServer (this, response.data)
+
+	}, (response) => {
+		this.connectionState = -1
+		console.log ("Connection Error")
+	});
+
 
 }
 
@@ -991,26 +1144,26 @@ function getGames () {
 	return this.games
 }
 
+function getGameSlotList (parGameId) {
 
-function getGameSlots () {
-	this.refreshGameSlots()
+	this.refreshGameSlotList(parGameId)
 
-	return this.gameSlots
+  return this.gameSlotList
+
 }
-
 
 // internal
 function getGameSlotIndex( slotId) {
 
 	if (slotId == undefined) return -1
 
-	this.refreshGameSlots ()
+	this.refreshGameSlotList (this.gameId)
 
-	for (var i=0;i<this.gameSlots.length;i++) {
-		if (this.gameSlots[i] == undefined) continue
-		if (this.gameSlots[i].id == slotId) break
+	for (var i=0;i<this.gameSlotList.length;i++) {
+		if (this.gameSlotList[i] == undefined) continue
+		if (this.gameSlotList[i].id == slotId) break
 	}
-	if (i < this.gameSlots.length) return i
+	if (i < this.gameSlotList.length) return i
 	return -1
 }
 
@@ -1034,12 +1187,12 @@ function getPlayerList() {
 }
 
 // send chat message to backserver
-function sendChatMessage(chatMessage) {
+function sendChatMessage(chatMessage, target) {
 
-  let url = 'http://' + serverName + ':8090/api/'
-	url += '/chat' // + '/' + this.userId + '/' + this.token + '/' + encodeURIComponent (chatMessage)
+  let url = 'http://' + serverName + ':8090/api'
+	url += '/chat'
 
-  let params = {userId:this.userId, token:this.token, chatMessage: chatMessage}
+  let params = {userId:this.userId, token:this.token, chatMessage: chatMessage, target:target}
 
 	this.Http.post(url, {params: params}).then(response => {
 		// do nothing
@@ -1094,7 +1247,7 @@ function copyGameDataFromServer (thisPointer, data) {
 		}
 	}
 
-  if (thisPointer.language != undefined) {
+  if (typeof thisPointer.language != "undefined") {
 		thisPointer.language.devMessages = data.devMessages
 	}
 
@@ -1134,6 +1287,9 @@ function copyChatDataFromServer (thisPointer, data) {
 function copyPlayerListFromServer (thisPointer, data) {
 
   if ((data.logons == undefined) || (data.logoffs == undefined) )  return
+
+  // always it is updated (mainly for refreshing the active player language)
+
 	thisPointer.playerListLogons = data.logons
 	thisPointer.playerListLogoffs = data.logoffs
 
@@ -1145,6 +1301,15 @@ function copyPlayerListFromServer (thisPointer, data) {
 
 }
 
+function copyGameSlotListFromServer (thisPointer, data) {
+
+	// copy game slots list
+  thisPointer.gameSlotList.splice(0, thisPointer.gameSlotList.length) // empty array
+	for (let c in data.gameSlotList) {
+		thisPointer.gameSlotList.push (JSON.parse(JSON.stringify(data.gameSlotList[c])))
+	}
+}
+
 function refreshDataFromServer(Http) {
 
   if (this.connectionState <= 0) {
@@ -1152,7 +1317,7 @@ function refreshDataFromServer(Http) {
 	}
 
   // get messages back from server
-	let url = 'http://' + serverName + ':8090/api/'
+	let url = 'http://' + serverName + ':8090/api'
 
 	url += '/refresh/' + this.token + '/' + this.chatMessagesSeq + '/' + this.gameTurn +  '/' + this.reactionListCounter + '/' + this.playerListLogons + '/' + this.playerListLogoffs
 
