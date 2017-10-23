@@ -28,6 +28,6 @@ export const saveGameState = function (store) {  store.dispatch('SAVE_GAME_STATE
 
 export const loadGameState = function (store, slotId) {  store.dispatch('LOAD_GAME_STATE', slotId) }
 
-export const deleteGameState = function (store, slotId) {  store.dispatch('DELETE_GAME_STATE', slotId) }
+export const deleteGameState = function (store, gameId, slotId) {  store.dispatch('DELETE_GAME_STATE', gameId, slotId) }
 
-export const renameGameState = function (store, slotId, newSlotDescription) {  store.dispatch('RENAME_GAME_STATE', slotId, newSlotDescription) }
+export const renameGameState = function (store, gameId, slotId, newSlotDescription) {  store.dispatch('RENAME_GAME_STATE', gameId, slotId, newSlotDescription) }

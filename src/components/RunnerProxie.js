@@ -897,7 +897,7 @@ function saveGameState (slotDescription) {
 		// necessary to refresh data
 		this.refreshGameSlotList (this.gameId)
 
-		var i = this.getGameSlotIndex(slotDescription)
+		var i = this.getGameSlotIndex(this.gameId, slotDescription)
 
 		if (i>=0) { // if name already exists
 			// if it is the default slot, exit
@@ -1012,7 +1012,7 @@ function loadGameState (slotId, showIntro) {
 		// necessary to refresh data
 		this.refreshGameSlotList (this.gameId)
 
-		var i = this.getGameSlotIndex(slotId)
+		var i = this.getGameSlotIndex(this.gameId, slotId)
 		if (i<0) {
 			console.log ("Game not loaded!. Slot: " + slotId)
 		} else {
@@ -1041,7 +1041,7 @@ function loadGameState (slotId, showIntro) {
 
 }
 
-function deleteGameState (slotId) {
+function deleteGameState (gameId, slotId) {
 
   if (this.connectionState < 0) return
 
@@ -1049,13 +1049,14 @@ function deleteGameState (slotId) {
 
 		if (!storageON()) return
 
-		var i = this.getGameSlotIndex(slotId)
+		var i = this.getGameSlotIndex(gameId, slotId)
 		if (i>=0) {
 			var ludi_games = JSON.parse (localStorage.ludi_games)
 
+			//??
 			this.gameSlotList.splice(i,1)
 
-			ludi_games[this.gameId] = this.gameSlotList
+			ludi_games[gameId] = this.gameSlotList
 			localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
 
 			console.log ("Game slot deleted!. Slot: " + slotId)
@@ -1067,7 +1068,7 @@ function deleteGameState (slotId) {
 
 }
 
-function renameGameState ( slotId, newSlotDescription) {
+function renameGameState ( gameId, slotId, newSlotDescription) {
 
 	if (this.connectionState < 0) return
 
@@ -1075,16 +1076,16 @@ function renameGameState ( slotId, newSlotDescription) {
 
 		if (!storageON()) return
 
-		var i = this.getGameSlotIndex (slotId)
+		var i = this.getGameSlotIndex (gameId, slotId)
 		if (i>=0) {
 			var ludi_games = JSON.parse (localStorage.ludi_games)
 
-			ludi_games[this.gameId][i].slotDescription = newSlotDescription
+			ludi_games[gameId][i].slotDescription = newSlotDescription
 			this.gameSlotList[i].slotDescription = newSlotDescription
 			localStorage.setItem("ludi_games", JSON.stringify(ludi_games));
 
 			// refresh state
-			this.gameSlotList = ludi_games[this.gameId]
+			this.gameSlotList = ludi_games[gameId]
 
 			console.log ("Game slot " + slotId + " renamed: [" + newSlotDescription + "]")
 		}
@@ -1153,11 +1154,11 @@ function getGameSlotList (parGameId) {
 }
 
 // internal
-function getGameSlotIndex( slotId) {
+function getGameSlotIndex(gameId, slotId) {
 
 	if (slotId == undefined) return -1
 
-	this.refreshGameSlotList (this.gameId)
+	this.refreshGameSlotList (gameId)
 
 	for (var i=0;i<this.gameSlotList.length;i++) {
 		if (this.gameSlotList[i] == undefined) continue

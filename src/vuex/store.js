@@ -567,16 +567,16 @@ const mutations = {
   	state.history = runnerProxie.getHistory().slice() //?
 
   },
-  DELETE_GAME_STATE (state, slotId) {
-	runnerProxie.deleteGameState (slotId)
+  DELETE_GAME_STATE (state, gameId, slotId) {
+	runnerProxie.deleteGameState (gameId, slotId)
 	// refresh slot list
-	state.gameSlots = runnerProxie.getGameSlotList (state.gameId )
+	state.gameSlots = runnerProxie.getGameSlotList (gameId )
   },
-  RENAME_GAME_STATE (state, slotId, newSlotDescription) {
+  RENAME_GAME_STATE (state, gameId, slotId, newSlotDescription) {
 
-	runnerProxie.renameGameState ( slotId, newSlotDescription)
+	runnerProxie.renameGameState (gameId, slotId, newSlotDescription)
 	// refresh slot list
-	state.gameSlots = runnerProxie.getGameSlotList (state.gameId )
+	state.gameSlots = runnerProxie.getGameSlotList (gameId )
 
 
   },

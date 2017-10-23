@@ -131,11 +131,11 @@ export default {
 		      return d.toLocaleString()
       },
       deleteGameSlot: function (slotId) {
-		      store.dispatch('DELETE_GAME_STATE', slotId)
+		      store.dispatch('DELETE_GAME_STATE', this.game.name, slotId)
       },
       renameGameSlot: function (slotId, oldDescription) {
           let newSlotDescription = prompt ("Description", oldDescription) // to-do: translation
-	        store.dispatch('RENAME_GAME_STATE', slotId, newSlotDescription)
+	        store.dispatch('RENAME_GAME_STATE', this.game.name, slotId, newSlotDescription)
       }
   },
   props: ['game'],

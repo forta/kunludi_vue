@@ -6,11 +6,10 @@
     <div v-show="locale == 'en'">
 
     <h4>Welcome to kunludi!</h4>
-    <p>"kun-ludi" means "to play together" in Esperanto. This is a environment <u>under development</u> to play <b>multilingual adventures of interactive fiction </b>.</p>
 
-    <p> Kunludi will later allow you to interact with other players: chat with them and see what they do in their games.</p>
+    <p>&quot;kun-ludi&quot; means &quot;to play together&quot; in Esperanto. This is an environment to play <b> multi-lingual interactive fiction</b> games, with the option of playing in <u>cooperative mode</u>.</p>
 
-    <p>The goal is to play <u>in team mode</u>, with two variants: in leader mode (leader decides and observers propose actions, including asking to be the new leader); Or in democratic mode (choosing the most popular option among those proposed by the players).</p>
+	  <p>In order to play in collaborative mode, indicate your username in the &quot;Together&quot; tab and you will be able to play the game you choose with other players, and chat with them. In addition, if the chosen game is multilingual, several players may be watching the same game, each one in their own language.</p>
 
     <p>If you want to collaborate in some way, you can write to: ludi.ludon (at) gmail (dot) com.</p>
 
@@ -46,11 +45,9 @@
 
         <h4>¡Bienvenido a kunludi!</h4>
 
-        <p>"kun-ludi" significa "jugar juntos" en esperanto. Se trata de un entorno <u>en desarrollo</u> para jugar <b>aventuras multilingües de ficción interactiva</b>.</p>
+        <p>&quot;kun-ludi&quot; significa &quot;jugar juntos&quot; en esperanto. Se trata de un entorno para jugar <b>aventuras multilingües de ficción interactiva</b>, con la opción de jugar en <u>modo cooperativo</u>.</p>
 
-        <p>Kunludi permitirá más adelante interactuar con otros jugadores que jueguen a tu mismo juego, para charlar con ellos y ver qué hacen en sus partidas.</p>
-
-        <p>El objetivo es poder jugar <u>en modo equipo</u>, con dos variantes: en modo líder (el líder decide y los observadores proponen acciones, incluyendo pedir ser el nuevo líder); o bien en modo democrático (eligiéndose la opción más popular entre las propuestas por los jugadores).</p>
+        <p>Para jugar en modo colaborativo, indica tu nombre de usuario en la pestaña &quot;Juntos&quot; y podrás jugar al juego que elijas con otros jugadores, pudiendo chatear con ellos. Además, si el juego elegido es multilingüe, varios jugadores podrán estar viendo el mismo juego, cada uno en su idioma.</p>
 
         <p>Si quieres colaborar de alguna manera, nos puedes escribir a: ludi.ludon (arroba) gmail (punto) com .</p>
 
@@ -81,14 +78,11 @@
 
     <div v-show="locale == 'eo'">
 
-
-
         <h4>Estu bonvena en kunludi!</h4>
-        <p>Kompreneble, estas esperanta vorto kaj temas pri <u>evoluigata sistema</u> por ludi <b>plurlingvajn interaga-fikciajn aventurojn</b>.</p>
 
-        <p>Kunludi eblos interagi kun aliaj sam-aventuraj ludantoj: babili kaj scii kion ili provas.</p>
+        <p>Kompreneble, &quot;kun-ludi &quot; estas esperanta vorto kaj estas medio por ludi <b>multlingvajn interagajn fikciajn ludojn</b>, kun la eblo de ludi <u>kunlabore</u></p>
 
-        <p>La celo estas ludi <b>teame</b> per du variantoj: varianto gvidanta (la ĉefo decidas kaj observantoj proponas agojn, inkluzive peti esti la novan ĉefon); aŭ varianto demokratia (elektiĝos la plej populara elekto inter tiuj proponitaj de la ludantoj).
+		    <p>Por ludi kunlabore, indiku vian uzantnomon en la langeto &quot;Kune&quot;  kaj vi povos ludi la ludon kiun vi elektos kun aliaj ludantoj kaj babili kun ili. Krome, se la elektita ludo estas multlingva, pluraj ludantoj povos vidi la saman ludon, ĉiu en sia propra lingvo.</p>
 
         <p>Se vi volas kunlabori iel ajn, vi povas kontakti nin je. ludi.ludon (ĉe) gmail (punkto) com .</p>
 
@@ -120,11 +114,10 @@
 
     <div v-show="locale == 'fr'">
         <h4>Bienvenue à kunludi!</h4>
-        <p>"kun-ludi" signifie «jouer ensemble» en espéranto. Il est un environnement <u>en développement</u> pour jouer <b>multilingue aventure fiction interactive </b>.</p>
 
-        <p>Kunludi à l'avenir permettra interagir avec d'autres joueurs qui jouent votre propre jeu: bavarder avec eux et voir ce qu'ils font dans leurs jeux.</p>
+        <p>&quot;kun-ludi&quot; signifie &quot;jouer ensemble&quot; en espéranto. C'est un environnement pour jouer à des <b>jeux de fiction interactifs multilingues</b>, avec la possibilité de jouer en <u>mode coopératif </u>.</p>
 
-        <p>Le but est de jouer en <u>équipe</u>, avec deux variantes: mode chef (le chef décide et observateurs a proposé des actions, y compris en demandant à être le nouveau chef); ou de manière démocratique (selon ce qui est le choix le plus populaire parmi ceux proposés par les joueurs).</p>
+		    <p>Pour jouer en mode collaboratif, indiquez votre nom d'utilisateur dans le champ &quot;Ensemble&quot;. onglet et vous serez en mesure de jouer le jeu que vous choisissez avec d'autres joueurs, et discuter avec eux. De plus, si le jeu choisi est multilingue, plusieurs joueurs peuvent regarder le même jeu, chacun dans leur propre langue.</p>
 
         <p>Si vous voulez aider en quelque sorte, nous pouvons écrire: ludi.ludon (at) gmail (dot) com</p>.
 
@@ -137,7 +130,7 @@
         <p>3. Une fois le jeu lancé, pour sauvegarder l'état actuel du jeu ou pour charger un jeu précédemment enregistré: cliquez sur <b>Archive</b></p>
 
      	<h3>Jeux disponibles</h3>
-         
+
         <ul>
 		<li>&quot;Trois Sources&quot;, dans une version antérieure de kunludi, a été présenté à la <a target="_blank" href ="http://wiki.caad.es/XComp_3">XComp  2016</a> et était reçu le premi sur le &quot;R & D&quot;. Avec traduction automatique grosse en anglais et l'espéranto.</li>
 		<li>&quot;<a target="_blank" href = "http://wiki.caad.es/Proyecto_Vampiro"> vampire </a>&quot;. Il a été écrit en espagnol. Avec la traduction de pointe dans des traductions automatiques français et frustes en anglais et en espéranto.</li>
