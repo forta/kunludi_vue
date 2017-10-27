@@ -306,10 +306,16 @@ let initReactions =  function  (reactions, primitives) {
 				if (primitives.IT_GetAttPropValue (par_c.loc, "generalState", "state") == "0") {
 
 					primitives.GD_CreateMsg ("es", "intro_cumple", "Hoy se cumple el aniversario de la muerte de Clara, tu mujer. Deberías llevar una triste vida de viudo desconsolado, pero desde que comenzaste a salir con Matilda hace unos meses, has cambiado los pañuelos para llorar por los preservativos para, bueno, para ser usados en vez de guardados en un cajón.<br/>Es un día raro. Has dormido fatal, recordando los cumpleaños pasados en los que siempre le hacías un inesperado regalo a Clara para contentarla y demostrarle tu amor. De alguna manera, tienes la necesidad de hacerle un regalo, pero es una estupidez. Ella no tiene ni nicho donde dejarlo ya que fue incinerada y sus restos deshidratados fueron arrojados al océano.<br/>")
+					
+					// bug en el primer mensaje
+					primitives.GD_CreateMsg ("en", "intro_cumple", "Today marks the anniversary of the death of Clara, your wife. You should have a sad life as a disconsolate widower, but since you started dating Matilda a few months ago, you changed your handkerchiefs to cry for condoms, well, to be used rather than stored in a drawer. a rare day. You've slept awful, remembering past birthdays in which you always made an unexpected gift to Clare to satisfy her and show her your love. Somehow, you have the need to make a gift, but it's stupid. She has no niche where to leave it since it was cremated and its dehydrated debris was thrown into the ocean. <br/>")
+
 
 					primitives.CA_ShowMsg ("intro_cumple");
 
 					primitives.GD_CreateMsg ("es", "pulsa_avanzar", "Continuar") // se reutilizará en más sitios
+					primitives.GD_CreateMsg ("en", "pulsa_avanzar", "Continue") // se reutilizará en más sitios
+					
 					primitives.CA_PressKey ("pulsa_avanzar");
 
 					primitives.IT_SetAttPropValue (par_c.loc, "generalState", "state", 1)

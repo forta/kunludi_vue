@@ -77,7 +77,7 @@
                    - {{kt("Players")}}: {{gameSlot.playerList.length}} =>  <span v-for="player in gameSlot.playerList"> {{player}} </span>
                  </span>
                  <span v-if="gameSlot.gameTurn>0 && gameSlot.playerList.length==0">
-                   <button v-on:click="reseteGameSlot(game.name, gameSlot.id, about.translation[languageIndex].language)"> {{kt("ResetGame")}} </button>
+                   <button v-on:click="reseteGameSlot(gameSlot.id, about.translation[languageIndex].language)"> {{kt("ResetGame")}} </button>
                  </span>
                  <br/>
               </span>
@@ -136,6 +136,9 @@ export default {
       renameGameSlot: function (slotId, oldDescription) {
           let newSlotDescription = prompt ("Description", oldDescription) // to-do: translation
 	        store.dispatch('RENAME_GAME_STATE', this.game.name, slotId, newSlotDescription)
+      },
+      reseteGameSlot: function (slotId, newLocal) {
+        store.dispatch('RESETSLOTID', this.game.name, slotId, newLocal)
       }
   },
   props: ['game'],

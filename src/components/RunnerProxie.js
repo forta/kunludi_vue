@@ -500,7 +500,8 @@ function backEnd_resetGameId (gameId, slotId, newLocal) {
 	var params = {
 		gameId: gameId,
 		token:  this.token,
-		slotId: slotId
+		slotId: slotId,
+		newLocal: newLocal
 	}
 
 	// ask for game session
