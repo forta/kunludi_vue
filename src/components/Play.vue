@@ -106,6 +106,8 @@
 
   	<!-- actions on selected item -->
       <div class="choices">
+          <!-- to-do: show current item -->
+          <p>{{{currentParent()}}}</p>
           <span v-for="choice in choices">
               <button v-if = "(choice.parent== 'obj1')" class={{getChoiceClass(choice)}} v-on:click="doGameChoice(choice)">{{choiceToShow(choice, false)}}</button>
           </span>
@@ -243,6 +245,15 @@ export default {
       convertDate: function (dateJSON) {
           var d = new Date (JSON.parse (dateJSON))
           return d.toLocaleString()
+      },
+      currentParent: function () {
+          for (var c in this.choices) {
+            if (this.choices[c].parent == 'obj1') {
+              var parentChoice = {choiceId:"obj1", item1:this.choices[c].action.item1, item1Id:this.choices[c].action.item1Id, "parent":"top"}
+              return "<p>" + this.echoChoice (parentChoice, false) + "</p>"
+            }
+          }
+         return ""
       },
       formatPiece: function (piece) {
 

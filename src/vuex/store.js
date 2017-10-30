@@ -84,11 +84,14 @@ function processChoice (state, choice) {
 
 	var optionMsg
 	if (choice.isLeafe) {
-		console.log ("store.js. action: {userSession:'" + state.userSession + "', action: {" +  JSON.stringify(choice.action) + "}" )
+		console.log ("store.js. leafe action: {userSession:'" + state.userSession + "', action: {" +  JSON.stringify(choice.action) + "}" )
 
 		optionMsg = choice.action.msg
     state.lastAction = choice
-	}
+	} else {
+    console.log ("store.js. non-leafe action: {userSession:'" + state.userSession + "', choice: {" +  JSON.stringify(choice) + "}" )
+
+  }
 
 	// processing choices or game actions (leave choices)
 	runnerProxie.processChoice (choice, optionMsg)
