@@ -28,12 +28,14 @@ module.exports = exports = {
 exports.choices = []
 exports.world =[]
 
-function dependsOn (libPrimitives, libReactions, gameReactions, reactionList) {
+function dependsOn (libPrimitives, libReactions, gameReactions, reactionList, metaDealer, metaState) {
 	this.libReactions = libReactions
 	this.gameReactions = gameReactions
 	this.reactionList = reactionList
+	this.metaDealer = metaDealer
+	this.metaState = metaState
 
-	libPrimitives.dependsOn(exports.world, this.reactionList, exports.userState );
+	libPrimitives.dependsOn(exports.world, this.reactionList, exports.userState, this.metaDealer, this.metaState);
 
 	this.libReactions.dependsOn(libPrimitives, this.reactionList);
 

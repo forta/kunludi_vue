@@ -112,6 +112,7 @@ const state = {
 	userSession: 'anonymous',
 	locale: '', // lingvo /here!!!
 	gameId: '', // ludi
+  subgameId: '',
 	i18n:[],
 	history: [ ],
 	gameSlots: [],
@@ -168,7 +169,6 @@ const state = {
 			return ""
 		}
 
-    // here!!
     let outText = ""
 
 		// console.log	("getEcho.choice: " + JSON.stringify(choice) )
@@ -276,25 +276,69 @@ function localData_loadGame (gameId, slotId) {
 
 	var libVersion = 'v0_01'
 
+  var subgameId = "", metaDealer, metaState
+
+  var slotIndex = arrayObjectIndexOf (state.gameSlots, "id", slotId)
+  var gameWorld0
+
+  // it is a  meta-game
+  if (typeof state.gameAbout.subgames == "object") {
+    metaDealer = require ('../../data/games/' + gameId + '/metaDealer.js');
+
+    // get first metaState from file; else from localStorage
+    if ((slotIndex < 0) || (slotId == "default")) {
+      metaState = require ('../../data/games/' + gameId + '/metaState.json');
+
+    } else {
+      metaState = state.gameSlots[slotIndex].metaState
+      subgameId = metaState.subgameId
+    }
+
+    metaDealer.dependsOn (metaState)
+
+    // decide wich it is the next subgame to play
+    var validSubgames = []
+    if (subgameId == "") {
+
+      // to-do: slotId is not needed becasue a new game is starting
+      slotId = "default"
+
+      var subgames = metaDealer.getSubgames()
+
+      for (var g in subgames) {
+          if (subgames[g].available()) {
+              validSubgames.push (subgames[g].id)
+          }
+      }
+    }
+
+    if (validSubgames.length == 0) {
+      alert ("No more modules to load: the game is over")
+      return
+    } else {
+      if (validSubgames.length > 0) subgameId = validSubgames[0]
+      alert ("Loading subgame " + subgameId +  " from metagame " + gameId + ". Valid subgames are: " + JSON.stringify (validSubgames))
+    }
+
+  }
+
 	// code
 	var primitives = require ('../components/libs/' + libVersion + '/primitives.js');
 	var libReactions = require ('../components/libs/' + libVersion + '/libReactions.js');
-	var gameReactions = require ('../../data/games/' + gameId + '/gReactions.js');
+	var gameReactions = require ('../../data/games/' + gameId + ((subgameId != "")? '/' + subgameId  : "") + '/gReactions.js');
 	var langHandel = require ('../components/libs/' + libVersion + '/localization/' + state.locale + '/handler.js');
 
 	// world
 	var libWorld = require ('../components/libs/' + libVersion + '/world.json');
-	var gameWorld0
-  var slotIndex = arrayObjectIndexOf (state.gameSlots, "id", slotId)
 
   if ((slotIndex < 0) || (slotId == "default")) {
-    gameWorld0 =  require ('../../data/games/' + gameId + '/world.json')
+    gameWorld0 =  require ('../../data/games/' + gameId + ((subgameId != "")? '/' + subgameId : "") + '/world.json')
   } else {
     gameWorld0 = JSON.parse(JSON.stringify(state.gameSlots[slotIndex].world))
   }
 
 	// load explicit data to the local engine
-	runnerProxie.local_loadGame (gameId, primitives, libReactions, gameReactions, libWorld, gameWorld0, slotId )
+	runnerProxie.local_loadGame (gameId, subgameId, primitives, libReactions, gameReactions, libWorld, gameWorld0, slotId, metaDealer, metaState)
 
   if ((slotIndex >= 0) && (slotId != "default")) {
     runnerProxie.loadGameState (slotId, false)
@@ -462,7 +506,7 @@ const mutations = {
 	cleanHistory()
 
 	if (state.userId == '') { // local engine
-		localData_loadGame (gameId, slotId)
+    localData_loadGame (gameId, slotId)
 		afterGameLoaded(slotId)
 	} else {
 

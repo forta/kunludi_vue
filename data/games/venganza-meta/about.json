@@ -1,0 +1,31 @@
+{
+	"ludi_id": "7",
+	"name": "venganza",
+	"translation": [
+		{
+			"language": "es",
+			"title": "La Venganza (extendida)",
+			"desc": "Juego de fanstasmas escrito en 3 horas, presentado en la ectocomp 2017: https://itch.io/jam/ectocomp17lpm-sp",
+			"introduction": "Hoy se cumple un año que falleció tu mujer. Tu pareja actual te ayuda a olvidarla, pero hoy es un día especial.",
+			"author": {
+				"name": "Francisco Orta",
+				"ludi_account": "forta",
+				"email": "ludi.ludon@gmail.com"
+			}
+		},
+		{
+			"language": "en",
+			"title": "The Revenge (extended)",
+			"desc": "Game of ghosts written in 3 hours, presented in ectocomp 2017: https://itch.io/jam/ectocomp17lpm",
+			"introduction": "Today is a year since your wife died. Your current partner helps you to forget her, but today is a special day.",
+			"author": {
+				"name": "Francisco Orta",
+				"ludi_account": "forta",
+				"email": "ludi.ludon@gmail.com"
+			}
+		}
+	],
+	"subgames": [
+		"acto1", "acto2"
+	]
+}

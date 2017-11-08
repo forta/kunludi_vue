@@ -1,0 +1,45 @@
+{
+    "items.prota.articulo": {
+        "message": "el"
+    },
+  	"items.salón_alberto.articulo": {
+          "message": "el"
+    },
+  	"items.salón_matilda.articulo": {
+          "message": "el"
+    },
+  	"items.hab_matilda.articulo": {
+          "message": "la"
+    },
+  	"items.cocina.articulo": {
+          "message": "la"
+    },
+  	"items.foto_boda.articulo": {
+          "message": "la"
+    },
+  	"items.mesa_noche.articulo": {
+          "message": "la"
+    },
+  	"items.cristales.articulo": {
+          "message": "los"
+    },
+  	"items.foto_boda_rota.articulo": {
+          "message": "la"
+    },
+  	"items.foto_quemada.articulo": {
+          "message": "la"
+    },
+  	"items.llaves_matilda.articulo": {
+          "message": "las"
+    },
+  	"items.diario.articulo": {
+          "message": "el"
+    },
+  	"items.tupperware.articulo": {
+          "message": "el"
+    },
+  	"items.frasco.articulo": {
+          "message": "el"
+    }
+
+}

@@ -1,0 +1,81 @@
+{
+    "items": [
+        {
+            "id": "prota",
+            "type": "pc",
+            "loc": "hab_alberto"
+        },
+        {
+            "id": "limbo",
+            "type": "loc"
+        },
+        {
+			"id": "hab_alberto",
+          "type": "loc",
+    			"address":[
+    				{  	"dir":"out",	"target":"salón_alberto"	}
+    			],
+          "att": {
+            "generalState": [ {"state":"0"}	]
+          }
+        },
+        {
+			"id": "salón_alberto",
+          "type": "loc",
+    			"address":[
+    				{  "dir":"out",	"target":"salón_matilda"}
+    			],
+          "att": {
+            "generalState": [ {"state":"0"}	]
+          }
+        },
+        {
+			"id": "salón_matilda",
+            "type": "loc",
+			"address":[]
+        },		{
+			"id": "foto_boda",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "mesa_noche",
+            "type": "obj",
+            "loc": "hab_alberto",
+            "att": {
+              "generalState": [ {"state":"0"}	]
+            }
+        },
+        {
+			"id": "cristales",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "foto_boda_rota",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "foto_quemada",
+            "type": "obj",
+            "loc": "limbo"
+        },
+        {
+			"id": "llaves_matilda",
+            "type": "obj",
+            "loc": "limbo"
+        }
+    ],
+	"attributes":[
+	 ],
+	"actions": [
+	],
+	"directions": [	],
+	"attExceptions":[
+	  {
+         "id":"isTakeAble",
+         "exceptionList": ["mesa_noche"]
+	  }
+   ]
+}

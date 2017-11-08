@@ -21,6 +21,11 @@
 			"group": "0"
 		},
 		{
+			"name": "venganza-meta",
+			"type": "0",
+			"group": "0"
+		},
+		{
 			"name": "texel",
 			"type": "0",
 			"group": "1"

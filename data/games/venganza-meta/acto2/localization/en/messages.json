@@ -1,0 +1,158 @@
+{
+  "items.prota.desc": {
+    "message": "You are the protagonist of Revenge."
+  },
+  "items.prota.txt": {
+    "message": "protagonist"
+  },
+  "items.hab_alberto.desc": {
+    "message": "The room where you lay innumerable times with your now deceased wife. Suddenly you feel very guilty for having defiled her sanctum with that display of obscene postures - and what postures, and how obscene - which you have developed with Matilda during the last months."
+  },
+  "items.hab_alberto.txt": {
+    "message": "Your bedroom"
+  },
+  "items.salón_alberto.desc": {
+    "message": "The living room suffers from the lack of a female hand. From being a pleasant place to sit and have a pleasant time, it has become an extension of your room, with clothes stacked in chairs and unfriendly"
+  },
+  "items.salón_alberto.txt": {
+    "message": "your living room"
+  },
+  "items.salón_matilda.desc": {
+    "message": "The flat appears as the last time you visited Matilda. Everything in its place, except ... a diary on the living room table."
+  },
+  "items.salón_matilda.txt": {
+    "message": "Matilda's living room"
+  },
+  "items.hab_matilda.desc": {
+    "message": "You know this room well. The few times you have visited her, you two have come directly here to taste the docks of the bed."
+  },
+  "items.hab_matilda.txt": {
+    "message": "Matilda's bedroom"
+  },
+  "items.cocina.desc": {
+    "message": "A very well stocked kitchen. As she works today, Matilda seems to have prepared something quick to luch and has left a food tupperware to thaw."
+  },
+  "items.cocina.txt": {
+    "message": "kitchen"
+  },
+  "items.foto_boda.desc": {
+    "message": "In the framed photo Clara and you are in the foreground. Behind you you see some guests smiling, except Matilda, who seems to cast a look of hatred on Clara. Strange, you had not noticed that look before, they were supposed to be very good friends."
+  },
+  "items.foto_boda.txt": {
+    "message": "wedding photo"
+  },
+  "items.mesa_noche.desc": {
+    "message": "nightstand"
+  },
+  "items.mesa_noche.txt": {
+    "message": "nightstand"
+  },
+  "items.cristales.desc": {
+    "message": "crystals desc"
+  },
+  "items.cristales.txt": {
+    "message": "crystals"
+  },
+  "items.foto_boda_rota.desc": {
+    "message": "photo_boda_rota desc"
+  },
+  "items.foto_boda_rota.txt": {
+    "message": "wedding broken photo"
+  },
+  "items.foto_quemada.desc": {
+    "message": "You notice that the burned part corresponds to the part where Matilda was before."
+  },
+  "items.foto_quemada.txt": {
+    "message": "photo burned"
+  },
+  "items.llaves_matilda.desc": {
+    "message": "The keys themselves have nothing special, a security key from Matilda's floor door, on the fourth floor; and the key to the portal."
+  },
+  "items.llaves_matilda.txt": {
+    "message": "keys"
+  },
+  "items.diario.txt": {
+    "message": "daily"
+  },
+  "items.tupperware.desc": {
+    "message": "Half thawed, a serving of meat pie."
+  },
+  "items.tupperware.txt": {
+    "message": "tupperware"
+  },
+  "items.barra_labios.desc": {
+    "message": "Apparently it's just a lipstick. You take great care to remove the lid."
+  },
+  "items.barra_labios.txt": {
+    "message": "lipstick"
+  },
+  "items.frasco.desc": {
+    "message": "Looks like a little perfume dispenser."
+  },
+  "items.frasco.txt": {
+    "message": "perfume bottle"
+  },
+  "messages.mesa_noche_desc.txt": {
+    "message": "A nightstand. When Matilda comes, you usually keep in your drawer the photo of your wedding because you are ashamed to have it in sight with her, and your are ashamed to get rid of it as well because it represents a lot for you."
+  },
+  "messages.mesa_noche_con_foto.txt": {
+    "message": "On the nightstand is the picture of your wedding."
+  },
+  "messages.foto_arde.txt": {
+    "message": "When you pick up the photo, a shiver runs through you. You stare as the photo begins to burn through one of its corners. At that moment, the door of the room opens wide alone and creates a draft of air that extinguishes the small flame of the photo, and throws it to the adjoining room."
+  },
+  "messages.tiras_cristales.txt": {
+    "message": "With neatness and safety you collect the crystals with care and strips them in the trash."
+  },
+  "messages.foto_boda__vuela_contra_pared.txt": {
+    "message": "When you go to take the photo, you marvel at how it goes flying and crashes against a wall, breaking the frame and leaving a trail of broken glass and the loose photo. You are looking for a logical explanation and you are self-convincing that you have been responsible yourself: an involuntary muscle spasm or something. Things always have a logical explanation. <br/>"
+  },
+  "messages.ex_diario_0.txt": {
+    "message": "You read with horror the last entry in your diary: <br/>&quot;But what the hell! It has been so difficult to get me Alberto was mine after being comforting him for months after widowing. And it was not easy to get that he became widower, risking me to end up in jail. With all this, with the fulfillment of the first year since Clara finally passed with my help to the other world, he now returns to think about her even and he tries to hide it. But it doen't matter, these days will pass and he will be mine again and forever.&quot;<br/>Your legs tremble, you do not believe what you have just read. You notes vibrate your wedding ring, and the presence of Clara, even without seeing her."
+  },
+  "messages.ex_diario_1.txt": {
+    "message": "You keep reading, you go to the date of the day of her death: <br/>&quot;What a silly look she put when we were in the bathroom of the restaurant and I told her that I had just poisoned her and she only had four heartbeats left before dying. The stupid woman collapsed and stared at me as I screamed, cried and asked disconsolately for help. I will keep forever that contaminated lipstick that lent him as a reward for my audacity. Soon I will fire my current boyfriend Luis. Alberto will finally be mine, and I will be the friend with whom he will cry and to whom he will catch, and much, I hope!&quot;"
+  },
+  "messages.ex_diario_2.txt": {
+    "message": "You no longer have the courage to keep reading. What you had to know, you know."
+  },
+  "messages.pomo_eléctrico.txt": {
+    "message": "But what…? The doorknob gives you something similar to a electric lightning and you can not open it. What a ridiculous thing this is. \"&quot;I hope Matilda is not playing me a joke on the other side.\"&quot;<br/>"
+  },
+  "messages.salir_sin_llaves.txt": {
+    "message": "And where do you suppose you want to go? <br/>"
+  },
+  "messages.salir_con_llaves.txt": {
+    "message": "You pick up the key and go up to the fourth floor. Today is Saturday morning and she is working. It's a good idea to prepare a romantic lunch for her to find the table prepared when she get home. <br/>"
+  },
+  "messages.atrás_no.txt": {
+    "message": "Back? Don't even think about it.<br/>"
+  },
+  "messages.fin_juego_1.txt": {
+    "message": "You're not 100 percent sure this will work. What if it was just a sexual stimulant? <br/> After applying it, you close the tupperware and you hide yourself behind the curtain in the living room. She has to be about to arrive, but time seems to have stopped and it seems centuries, until you hear how the door opens and she enters. <br/>"
+  },
+  "messages.pulsa_avanzar.txt": {
+    "message": "Continue"
+  },
+  "messages.eres_descubierto.txt": {
+    "message": "Matilda sees the keys and is surprised. She makes a detailed round the house and discovers you. When the curtain runs you can not think of anything but to say &quot;surprise!&quot; She is glad to see you, and she relaxes to see that the diary is in place. She invites you to have lunch but you refuse by saying that your stomach hurts, but you accompany her while she have lunch in the living room. <br/>"
+  },
+  "messages.fin_juego_2.txt": {
+    "message": "Now everything goes very fast. She gets comfortable, very sexy, and sits down to eat in the living room. Suddenly she stops and seems to look at you, but, no, it is not you but the figure of Clara that appears between you two and says: &quot;do not put on that stupid face, you only have four heartbeats&quot; Clara turns to you, looks at you with affection and disappears in a circle of light that appears next to you <br/>"
+  },
+  "messages.fin_juego_3.txt": {
+    "message": "The prison bed is not very uncomfortable. Your lawyer says that claiming transient mental alienation due to reading the daily, in a few months you will be back home. Your lawyer is a very attractive woman and gives you all her support, sometimes more than what is strictly professional. You'll probably invite her for dinner when you get out of jail, but it might not be a good idea to tell her about Clara's post-mortem jealousy. <br/> <br/>"
+  },
+  "messages.intro_cumple.txt": {
+    "message": "Today marks the anniversary of the death of Clara, your wife. You should have a sad life as a disconsolate widower, but since you started dating Matilda a few months ago, you replaced your handkerchiefs to cry with condoms to..., well, to be used rather than stored in a drawer<br/>. A rare day. You've slept awful, remembering past birthdays in which you always made an unexpected gift to Clara to satisfy her and show her your love. Somehow, you have the need to give her a gift, but it's stupid. You have no niche where to leave it since she was cremated and its dehydrated debris was thrown into the ocean. <br/>"
+  },
+  "messages.llaves_aparecen.txt": {
+    "message": "This is a surprise! Next to the photo that has come flying to the living room, falling on the messy sofa, you see something shining. You discover hidden the keys of Matilda's apartment, which she lost a few months ago and never appeared. This says a lot about how little you clean. You left her your key shortly after the first rolls in the hay, but there was no reciprocity in that. She is very jealous of her privacy. <br/>"
+  },
+  "messages.frasco_aparece.txt": {
+    "message": "You diligently search for the weapon of crime and soon you find it in a box along with a bottle that says: &quot;For Alberto, in case it was ever necessary&quot; <br/>"
+  },
+  "messages.diario_quieto_parao.txt": {
+    "message": "Better not move it so that Matilda does not know that you have read it. <br/>"
+  }
+}

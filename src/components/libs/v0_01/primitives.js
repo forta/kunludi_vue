@@ -125,10 +125,13 @@ function arrayObjectIndexOf(myArray, property, searchTerm) {
     return -1;
 }
 
-function dependsOn (worldPar, reactionListPar, userStatePar) {
+function dependsOn (worldPar, reactionListPar, userStatePar, metaDealer, metaState) {
 	this.world = worldPar;
 	this.reactionList = reactionListPar;
 	this.userState = userStatePar;
+	this.metaDealer = metaDealer;
+	this.metaState = metaState;
+
 };
 
 function executeGameAction (type, parameters) {
@@ -330,8 +333,8 @@ function CA_PressKey (txt) {
 	this.reactionList.push ({type:this.caMapping("PRESS_KEY"), txt:txt, pressed:false});
 }
 
-function CA_EndGame (txt) {
- this.reactionList.push ({type:this.caMapping("END_GAME"), txt:txt});
+function CA_EndGame (txt, state, data) {
+ this.reactionList.push ({type:this.caMapping("END_GAME"), txt:txt, state:state, data:data});
 }
 
 function CA_PlayAudio (fileName, autoStart, txt, param) {

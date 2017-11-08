@@ -145,8 +145,9 @@ function setLocale (locale) {
 	if ((this.gameId == "") || (this.gameId == undefined)) return
 
 	// by now, local
-	this.gameMessages = require ('../../data/games/' + this.gameId + '/localization/' + this.locale + '/messages.json')
-	this.gameExtraMessages = require ('../../data/games/' + this.gameId + '/localization/' + this.locale + '/extraMessages.json')
+
+	this.gameMessages = require ('../../data/games/' + this.gameId + ((this.subgameId != "")? '/' + this.subgameId  : "") + '/localization/' + this.locale + '/messages.json')
+	this.gameExtraMessages = require ('../../data/games/' + this.gameId + ((this.subgameId != "")? '/' + this.subgameId  : "") + '/localization/' + this.locale + '/extraMessages.json')
 	this.language.dependsOn (this.libMessages, this.gameMessages, this.gameExtraMessages)
 
 	// devMessages: from runner (locally or remotelly)
@@ -309,7 +310,23 @@ function gTranslator (reaction) {
 		return {type:'text', txt: expanded + " (play: " + reaction.fileName + " autoStart: " + reaction.autoStart + ")"}
 
 	} else if (reaction.type == "rt_end_game") {
+		// to-do: lock game
+
 		if (expanded == "") expanded = "End of game"
+		// in case of a subgame, save returned state
+		if (this.subgameId != "") expanded  += " (State: " + reaction.state + ")"
+		if (this.connectionState == 0) {
+			// save data
+			this.runner.metaState.subgames[this.runner.metaState.subgameId].push ({state:reaction.state, data: reaction.data} )
+			this.runner.metaState.history.push ({subgameId: this.runner.metaState.subgameId, state:reaction.state, data: reaction.data} )
+			// current subgame reset
+			this.runner.metaState.subgameId = ""
+
+			// user must save the game now
+			alert ("You ought to save the game in order to restart in the next module")
+			// afterwards: metaDealer.js will decided which module follows
+
+		}
 
 		// it was: state.choice = {choiceId:'quit', action:{actionId:''}, isLeafe:true}
 		this.choice = {choiceId:'quit', action:{actionId:''}, isLeafe:true}
@@ -922,7 +939,8 @@ function saveGameState (slotDescription) {
 			history: this.history.slice(),
 			gameTurn: this.runner.gameTurn,
 			userState: pointer.userState,
-			slotDescription: slotDescription
+			slotDescription: slotDescription,
+			metaState: this.runner.metaState
 		})
 
 		this.gameSlotList = ludi_games[this.gameId].slice()
@@ -966,11 +984,13 @@ function saveGameState (slotDescription) {
 
 }
 
-function local_loadGame (gameId, primitives, libReactions, gameReactions, libWorld, gameWorld, slotId) {
+function local_loadGame (gameId, subgameId, primitives, libReactions, gameReactions, libWorld, gameWorld, slotId, metaDealer, metaState) {
 
 	var libVersion = 'v0_01'
 
 	this.gameId = gameId
+	this.subgameId = subgameId
+	if (subgameId!= "") metaState.subgameId = subgameId
 
 	// code links
 	this.primitives = primitives
@@ -996,7 +1016,7 @@ function local_loadGame (gameId, primitives, libReactions, gameReactions, libWor
 
 	this.menu = []
 
-	this.runner.dependsOn(primitives, libReactions, gameReactions, this.reactionList)
+	this.runner.dependsOn(primitives, libReactions, gameReactions, this.reactionList, metaDealer, metaState)
 
 	this.connectionState = 0
 
