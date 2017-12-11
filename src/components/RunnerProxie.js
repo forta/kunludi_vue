@@ -144,18 +144,14 @@ function setLocale (locale) {
 
 	if ((this.gameId == "") || (this.gameId == undefined)) return
 
-	// by now, local
 
-	this.gameMessages = require ('../../data/games/' + this.gameId + ((this.subgameId != "")? '/' + this.subgameId  : "") + '/localization/' + this.locale + '/messages.json')
-	this.gameExtraMessages = require ('../../data/games/' + this.gameId + ((this.subgameId != "")? '/' + this.subgameId  : "") + '/localization/' + this.locale + '/extraMessages.json')
-	this.language.dependsOn (this.libMessages, this.gameMessages, this.gameExtraMessages)
+	if (this.connectionState == 0) {
 
-	// devMessages: from runner (locally or remotelly)
-
-	if (this.connectionState == 0) { // devMessages locally
-
+		this.gameMessages = require ('../../data/games/' + this.gameId + ((this.subgameId != "")? '/' + this.subgameId  : "") + '/localization/' + this.locale + '/messages.json')
+		this.gameExtraMessages = require ('../../data/games/' + this.gameId + ((this.subgameId != "")? '/' + this.subgameId  : "") + '/localization/' + this.locale + '/extraMessages.json')
 		this.language.devMessages =  this.runner.devMessages
 
+		this.language.dependsOn (this.libMessages, this.gameMessages, this.gameExtraMessages)
 
 	} else { // devMessages from server
 
@@ -168,7 +164,10 @@ function setLocale (locale) {
 
 		this.Http.post(url, {params: params}).then(response => {
 
+			this.gameMessages = response.data.gameMessages
+			this.gameExtraMessages = response.data.gameExtraMessages
 			this.language.devMessages = response.data.devMessages
+			this.language.dependsOn (this.libMessages, this.gameMessages, this.gameExtraMessages)
 
 		}, (response) => {
 			console.log ("Error posting locale to server")
@@ -581,6 +580,13 @@ function backEnd_LoadGame (gameId, slotId ) {
 			// first at all: devMessages
 			this.language.devMessages = response.data.devMessages
 
+			// game Messages
+			var subgameId = ""
+			this.gameMessages = require ('../../data/games/' + this.gameId + ((subgameId != "")? '/' + subgameId  : "") + '/localization/' + this.locale + '/messages.json')
+		  this.gameExtraMessages = require ('../../data/games/' + this.gameId + ((subgameId != "")? '/' + subgameId  : "") + '/localization/' + this.locale + '/extraMessages.json')
+
+			this.language.dependsOn (this.libMessages, this.gameMessages, this.gameExtraMessages)
+
 			this.processedReactionList = response.data.reactionList
 			this.choices = response.data.choices
 			this.currentChoice = response.data.currentChoice
@@ -605,6 +611,7 @@ function backEnd_LoadGame (gameId, slotId ) {
 			this.menuPiece = response.data.menuPiece
 
 			this.connectionState = 1
+
 
 
 		}, (response) => {

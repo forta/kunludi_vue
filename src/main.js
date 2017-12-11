@@ -27,8 +27,9 @@ var Games = require('./components/Games.vue')
 var Play = require('./components/Play.vue')
 var Lingvo = require('./components/Lingvo.vue')
 
+// extra modules
 var Admin = require('./components/Admin.vue')
-
+var Simple = require('./components/Simple.vue')
 var Ethereum = require('./components/Ethereum.vue')
 
 // create App instance
@@ -112,7 +113,9 @@ router.map({
 	'/admin': {
       component: Admin
 	},
-
+	'/simple': {
+      component: Simple
+	},
 	'/ethereum': {
       component: Ethereum
 	}
